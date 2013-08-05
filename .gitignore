@@ -28,3 +28,6 @@ braceros-tiffs
 *_bags
 
 /jetty
+
+# No IDEs
+.idea
