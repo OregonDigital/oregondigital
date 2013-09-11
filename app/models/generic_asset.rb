@@ -8,4 +8,8 @@ class GenericAsset < ActiveFedora::Base
 
   has_file_datastream name: 'content'
 
+  def self.assign_pid(object)
+    OregonDigital::IdService.mint
+  end
+
 end
