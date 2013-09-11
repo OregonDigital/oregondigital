@@ -39,4 +39,25 @@ describe GenericAsset do
       end
     end
   end
+
+  describe '.collections' do
+    before do
+      @coll = GenericCollection.new(:title => "Bar foo")
+      @coll.save
+      @coll2 = GenericCollection.new(:title => "Foo bar")
+      @coll2.save
+    end
+    before(:each) do
+      generic_asset.descMetadata.set = [@coll.pid]
+      generic_asset.save
+    end
+    it 'should return objects for all collections in item metadata' do
+      generic_asset.collections.should == [@coll]
+    end
+    it "should be able to return multiple objects" do
+      generic_asset.descMetadata.set = [@coll.pid, @coll2.pid]
+      generic_asset.save
+      generic_asset.collections(true).should == [@coll, @coll2]
+    end
+  end
 end

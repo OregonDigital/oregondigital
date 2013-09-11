@@ -2,6 +2,7 @@ class GenericAsset < ActiveFedora::Base
   include Hydra::ModelMixins::CommonMetadata
   include Hydra::ModelMethods
   include Hybag::Baggable
+  include OregonDigital::Collectible
 
   has_metadata :name => 'descMetadata', :type => OregonRDFDatastream
   has_metadata :name => 'rightsMetadata', :type =>
