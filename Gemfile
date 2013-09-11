@@ -27,7 +27,7 @@ gem 'therubyracer', :require => 'v8'
 gem 'ruby-filemagic', '~>0.4.2'
 
 gem 'noid', '~>0.6.6'
-gem 'bagit', '~>0.3.1'
+gem 'hybag'
 
 gem 'resque', '~>1.24.1'
 
@@ -78,5 +78,3 @@ group :development, :test do
   # Exif stuff - regardless of our image library, we want tests to access image data
   gem 'exifr', '~>1.1.3'
 end
-
-
