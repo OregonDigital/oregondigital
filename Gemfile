@@ -60,6 +60,13 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-steps'
 
+  # Spring as Rails preloader
+  gem 'spring'
+
+  # Guard for auto-test running
+  gem 'guard'
+  gem 'guard-rspec'
+
   gem 'unicorn', '~>4.6.3'
   gem 'sqlite3', '~>1.3.7'
   gem 'jettywrapper', '~>1.4.1'
