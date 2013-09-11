@@ -1,0 +1,118 @@
+module OregonDigital::Vocabularies
+  ##
+  # PREMIS Vocabulary
+  #
+  # @see http://multimedialab.elis.ugent.be/users/samcoppe/ontologies/Premis/premis.owl
+  class PREMIS < Vocabulary("http://multimedialab.elis.ugent.be/users/samcoppe/ontologies/Premis/premis.owl#")
+    # Object Properties
+    property :contentLocation
+    property :creatingApplication
+    property :dependency
+    property :derivationalRelationship
+    property :environment
+    property :eventOutcomeDetail
+    property :eventOutcomeInformation
+    property :eventType
+    property :extension
+    property :fixity
+    property :format
+    property :formatDesignation
+    property :formatRegistry
+    property :hardware
+    property :identifier
+    property :inhibitors
+    property :keyInformation
+    property :linkingAgent
+    property :linkingEvent
+    property :linkingIntellectualEntity
+    property :linkingObject
+    property :linkingOutcomeObject
+    property :linkingRightsStatement
+    property :linkingSourceObject
+    property :messageDigestAlgorithm
+    property :objectCharacteristics
+    property :preservationLevel
+    property :preservationLevelRole
+    property :relatedObject
+    property :relationship
+    property :rightsGranted
+    property :rightsStatement
+    property :signature
+    property :signatureInformation
+    property :signatureMethod
+    property :significantProperties
+    property :software
+    property :storage
+    property :structuralRelationship
+    property :termOfGrant
+
+    # Data Properties
+    property :act
+    property :agentName
+    property :agentNote
+    property :agentType
+    property :compositionLevel
+    property :contentLocationType
+    property :contentLocationValue
+    property :copyrightJurisdiction
+    property :copyrightNote
+    property :copyrightStatus
+    property :copyrightStatusDeterminationDate
+    property :creatingApplicationName
+    property :creatingApplicationVersion
+    property :dateCreatedByApplication
+    property :dependencyName
+    property :endDate
+    property :environmentCharacteristic
+    property :environmentNote
+    property :environmentPurpose
+    property :eventDateTime
+    property :eventDetail
+    property :eventOutcome
+    property :eventOutcomeDetailNote
+    property :formatName
+    property :formatNote
+    property :formatRegistryKey
+    property :formatRegistryName
+    property :formatRegistryRole
+    property :formatVersion
+    property :hwName
+    property :hwOtherInformation
+    property :hwType
+    property :identifierType
+    property :identifierValue
+    property :inhibitorKey
+    property :inhibitorTarget
+    property :inhibitorType
+    property :licenseNote
+    property :licenseTerms
+    property :messageDigest
+    property :messageDigestOriginator
+    property :originalName
+    property :preservationLevelDateAssigned
+    property :preservationLevelRationale
+    property :preservationLevelValue
+    property :relatedObjectSequence
+    property :restriction
+    property :rightsGrantedNote
+    property :signatureEncoding
+    property :signatureProperties
+    property :signatureValidationRules
+    property :signatureValue
+    property :signer
+    property :significantPropertiesType
+    property :significantPropertiesValue
+    property :size
+    property :startDate
+    property :statuteCitation
+    property :statuteInformationDeterminationDate
+    property :statuteJurisdiction
+    property :statuteNote
+    property :storageMedium
+    property :swDependency
+    property :swName
+    property :swOtherInformation
+    property :swType
+    property :swVersion
+  end
+end
