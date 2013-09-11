@@ -12,4 +12,7 @@ class GenericAsset < ActiveFedora::Base
     OregonDigital::IdService.mint
   end
 
+  delegate_to :descMetadata, [:hasFormat, :type, :location, :created, :description, :rights, :title, :modified, :date], :unique => true
+  delegate_to :descMetadata, [:identifier, :subject, :set]
+
 end
