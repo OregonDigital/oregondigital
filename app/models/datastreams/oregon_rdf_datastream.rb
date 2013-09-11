@@ -1,5 +1,6 @@
 class OregonRDFDatastream < ActiveFedora::NtriplesRDFDatastream
-  rdf_subject { |ds| Utils.rdf_subject(ds.pid) }
+  # TODO: use an http URI instead of the PID as a subject
+  # rdf_subject { |ds| Utils.rdf_subject(ds.pid) }
 
   map_predicates do |map|
 
