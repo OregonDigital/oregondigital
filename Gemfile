@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'hydra', '~> 6.0', :require => 'hydra6'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,9 +18,6 @@ gem 'simple_form', '~>2.1.0'
 
 # Local configs / overrides / etc
 gem 'constantinople', '~>0.2.2'
-
-gem 'blacklight', '~>4.2.2'
-gem 'hydra-head', '~> 6.2.0'
 
 gem "unicode", :platforms => [:mri_18, :mri_19]
 gem "bootstrap-sass", '~>2.3.2.0'
