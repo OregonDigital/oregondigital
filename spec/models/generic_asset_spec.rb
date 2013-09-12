@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe GenericAsset do
   it_behaves_like 'a baggable item'
+  it_behaves_like 'a collectible item'
 
   subject(:generic_asset) {GenericAsset.new}
 
@@ -46,8 +47,6 @@ describe GenericAsset do
       @coll.save
       @coll2 = GenericCollection.new(:title => "Foo bar")
       @coll2.save
-    end
-    before(:each) do
       generic_asset.descMetadata.set = [@coll.pid]
       generic_asset.save
     end
