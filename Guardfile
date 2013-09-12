@@ -3,6 +3,7 @@ guard 'rspec', :cli => '--color --format documentation', :env => {'SPRING_TMP_PA
   watch(%r{^spec/.+_spec.rb$})
   watch(%r{^lib/(.+).rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { 'spec' }
+  ignore(/jetty/)
 
   # Rails
   watch(%r{^app/(.+).rb$})                           { |m| "spec/#{m[1]}_spec.rb" }

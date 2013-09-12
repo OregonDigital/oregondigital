@@ -159,6 +159,10 @@ GEM
       hydra-access-controls (= 6.3.4)
       jettywrapper (>= 1.4.1)
       rails (>= 3.2.3, < 5)
+    hydra-derivatives (0.0.5)
+      active-fedora
+      activesupport (>= 3.2.13, < 5.0)
+      rmagick
     hydra-head (6.3.4)
       hydra-access-controls (= 6.3.4)
       hydra-core (= 6.3.4)
@@ -404,6 +408,7 @@ DEPENDENCIES
   guard-rspec
   hybag
   hydra (~> 6.0)
+  hydra-derivatives
   ip-ranges (~> 0.1.1)
   jettywrapper (~> 1.4.1)
   jquery-fileupload-rails (~> 0.4.1)

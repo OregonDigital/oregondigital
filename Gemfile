@@ -48,6 +48,10 @@ gem 'ip-ranges', '~>0.1.1'
 # Coverage reporting can be handy even in production, yo, so let's not group this, a'ight?
 gem 'simplecov', :require => false
 
+# Derivative Creation
+
+gem 'hydra-derivatives'
+
 group :development do
   gem 'pry', '~>0.9.12.2'
   gem 'pry-doc', '~>0.4.6'
