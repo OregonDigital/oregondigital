@@ -8,7 +8,7 @@ class GenericAsset < ActiveFedora::Base
   has_metadata :name => 'rightsMetadata', :type =>
     Hydra::Datastream::RightsMetadata
 
-  has_file_datastream name: 'content'
+  has_file_datastream name: 'content', type: ContentDatastream
 
   def self.assign_pid(_)
     OregonDigital::IdService.mint

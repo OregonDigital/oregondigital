@@ -16,22 +16,18 @@ class Hydra::Derivatives::PyramidalProcessor < Hydra::Derivatives::Image
     dimensions = [tile_size, tile_size]
     extension = extract_extension(source_datastream)
     # Can't build tiffs from memory with VIPS. =(
-    temp_file_name = "#{source_datastream.pid}_tmp.#{extension}"
-    temp_file = Tempfile.new(temp_file_name)
-    temp_file.binmode
-    temp_file.write(source_datastream.content)
-    temp_file.close
-    path = "#{path(output_datastream)}.tiff"
-    VIPS::Image.new(temp_file.path).tiff(path,
-                                       :compression  => :jpeg,
-                                       :layout       => :tile,
-                                       :multi_res    => :pyramid,
-                                       :quality      => quality,
-                                       :tile_size    => dimensions
-    )
-    output_datastream.content = File.read(path)
-    temp_file.unlink
-    File.delete(path) if File.exist?(path)
+    output_path = Dir::Tmpname.create(["#{source_datastream.pid}",".#{extension}"], Hydra::Derivatives.temp_file_base){}
+    source_datastream.to_tempfile do |f|
+      VIPS::Image.new(f.path).tiff(output_path,
+                                   :compression  => :jpeg,
+                                   :layout       => :tile,
+                                   :multi_res    => :pyramid,
+                                   :quality      => quality,
+                                   :tile_size    => dimensions
+      )
+    end
+    output_datastream.content = File.read(output_path)
+    File.delete(output_path) if File.exist?(output_path)
   end
 
   private
@@ -40,15 +36,6 @@ class Hydra::Derivatives::PyramidalProcessor < Hydra::Derivatives::Image
     fm = FileMagic.new(FileMagic::MAGIC_MIME)
     mime_type = fm.buffer(source_datastream.content).split(';')[0]
     MIME::Types[mime_type].first.extensions.first
-  end
-
-  # Gets path from a Tempfile - I would love to be able to generate this without actually making the file.
-  def path(output_datastream)
-    t = Tempfile.new("#{source_datastream.dsid}-#{output_datastream.dsid}_tmp.tmp")
-    path = t.path
-    t.close
-    t.unlink
-    return path
   end
 
 end
