@@ -1,5 +1,4 @@
 class Image < GenericAsset
-  include Hydra::Derivatives
   has_file_datastream :name => 'thumbnail'
   has_file_datastream :name => 'pyramidal'
 
