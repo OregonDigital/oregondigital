@@ -1,6 +1,8 @@
 OregonDigital
 =============
 
+[![Build Status](https://secure.travis-ci.org/osulp/oregondigital.png)](http://travis-ci.org/osulp/oregondigital)
+
 Development Setup
 ------------------
 
