@@ -52,6 +52,9 @@ gem 'simplecov', :require => false
 
 gem 'hydra-derivatives'
 
+# Docsplit for splitting up documents
+gem 'docsplit'
+
 group :development do
   gem 'pry', '~>0.9.12.2'
   gem 'pry-doc', '~>0.4.6'

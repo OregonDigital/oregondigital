@@ -104,6 +104,7 @@ GEM
       devise
     diff-lcs (1.2.4)
     docopt (0.5.0)
+    docsplit (0.7.2)
     equivalent-xml (0.3.0)
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
@@ -403,6 +404,7 @@ DEPENDENCIES
   constantinople (~> 0.2.2)
   devise
   devise-guests (~> 0.3)
+  docsplit
   exifr (~> 1.1.3)
   guard
   guard-rspec
