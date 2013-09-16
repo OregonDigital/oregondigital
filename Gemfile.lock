@@ -85,6 +85,12 @@ GEM
     constantinople (0.2.2)
       deep_merge (~> 1.0)
       map (~> 4.2)
+    coveralls (0.6.9)
+      multi_json (~> 1.3)
+      rest-client
+      simplecov (>= 0.7)
+      term-ansicolor
+      thor
     daemons (1.1.9)
     debugger (1.6.1)
       columnize (>= 0.3.1)
@@ -364,11 +370,14 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
     stomp (1.2.14)
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
     thor (0.18.1)
     tilt (1.4.1)
+    tins (0.9.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -402,6 +411,7 @@ DEPENDENCIES
   cocoon (~> 1.2.0)
   coffee-rails (~> 3.2.1)
   constantinople (~> 0.2.2)
+  coveralls
   devise
   devise-guests (~> 0.3)
   docsplit
@@ -430,7 +440,6 @@ DEPENDENCIES
   ruby-vips (~> 0.3.6)
   sass-rails (~> 3.2.3)
   simple_form (~> 2.1.0)
-  simplecov
   spring
   sqlite3 (~> 1.3.7)
   therubyracer
