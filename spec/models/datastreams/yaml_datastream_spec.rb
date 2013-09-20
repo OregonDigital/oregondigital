@@ -30,6 +30,17 @@ describe YamlDatastream do
         expect(subject.content).to be_blank
       end
     end
+    context "when a setter was used to add content" do
+      before(:each) do
+        subject.oregondigital = "test"
+      end
+      it "should be able to get that attribute back" do
+        expect(subject.oregondigital).to eq "test"
+      end
+      it "should persist that to content" do
+        expect(subject.content).to include("test")
+      end
+    end
     context "when content is set" do
       before(:each) do
         subject.content = @content

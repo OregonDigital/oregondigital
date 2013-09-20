@@ -32,8 +32,7 @@ class YamlDatastream < ActiveFedora::Datastream
 
   # Delegate missing methods to the underlying hash.
   def method_missing(method, *args, &block)
-    return super unless delegatable?(method)
-    @inner_hash.send(method, *args, &block)
+    inner_hash.send(method, *args, &block)
   end
 
   def respond_to_missing?(method, include_private=false)
@@ -41,6 +40,6 @@ class YamlDatastream < ActiveFedora::Datastream
   end
 
   def delegatable?(method)
-    @inner_hash.respond_to?(method)
+    inner_hash.respond_to?(method)
   end
 end
