@@ -55,6 +55,9 @@ gem 'docsplit'
 # Coveralls to announce our test coverage
 gem 'coveralls', require: false
 
+# Recursive open-struct for YAML Datastream
+gem 'recursive-open-struct'
+
 group :development do
   gem 'pry', '~>0.9.12.2'
   gem 'pry-doc', '~>0.4.6'
