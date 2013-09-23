@@ -7,6 +7,13 @@ module OregonDigital
       @crosswalk_fields ||= []
     end
 
+    def content
+      crosswalk_fields.each do |f|
+        self.send(f)
+      end
+      super
+    end
+
     def crosswalk(*args)
       args = args.first if args.respond_to? :first
       raise "crosswalk must specify an element as :field argument" unless args.kind_of?(Hash) && args.has_key?(:field)
@@ -17,36 +24,32 @@ module OregonDigital
       element = args.delete(:to).to_sym
       ds = args.delete(:in)
       raise "#{parent.pid} does not have a datastream '#{ds.inspect}'" unless parent.datastreams.has_key? ds.to_s
-      raise "datastream model '#{self.class}' does not define property '#{field.inspect}'" unless self.class.fields.include? field
-      raise "datastream model '#{parent.datastreams[ds.to_s].class}' does not define property '#{element.inspect}'" unless parent.datastreams[ds.to_s].class.fields.include? element
-      instance_eval do
-        alias :uncrosswalked_content :content unless respond_to? :uncrosswalked_content
-      end
-      if crosswalk_fields == [] # so this only runs once
-        self.metaclass.send(:define_method, "content") do
-          crosswalk_fields.each do |f|
-            self.send(f)
-          end
-          uncrosswalked_content
-        end
+      if parent.datastreams[ds.to_s].class.respond_to?(:fields)
+        raise "datastream model '#{self.class}' does not define property '#{field.inspect}'" unless self.class.fields.include? field
+        raise "datastream model '#{parent.datastreams[ds.to_s].class}' does not define property '#{element.inspect}'" unless parent.datastreams[ds.to_s].class.fields.include? element
       end
 
       crosswalk_fields << field
-
-      self.metaclass.send(:define_method, field.to_s) do
-        # TODO: make this work for non RDFDatastreams
-        # TODO: better way to do this with alias old_#{field} #{field} ?
-        self.send(:set_value, rdf_subject, field.to_sym, parent.datastreams[ds.to_s].send(element)) if self.kind_of? ActiveFedora::RDFDatastream
-        parent.datastreams[ds.to_s].send(element)
+      target_datastream = parent.datastreams[ds.to_s]
+      source_accessor = OregonDigital::CrosswalkAccessors::GenericAccessor.new(self,parent)
+      target_accessor = OregonDigital::CrosswalkAccessors::GenericAccessor.new(target_datastream,parent)
+      # TODO: Find a better way to do this.
+      if target_datastream.kind_of?(ActiveFedora::RelsExtDatastream)
+        target_accessor = OregonDigital::CrosswalkAccessors::RelsExtAccessor.new(target_datastream,parent)
+      end
+      define_singleton_method(field.to_s) do
+        source_accessor.set_value(field.to_s, target_accessor.get_value(element))
+        target_accessor.get_value(element.to_s)
       end
 
-      self.metaclass.send(:define_method, "#{field.to_s}=") do |v|
-        parent.datastreams[ds.to_s].send("#{element}=", v)
+      define_singleton_method("#{field.to_s}=") do |v|
+        if defined?(super)
+          super
+        else
+          self.send(:method_missing, "#{field.to_s}=",v)
+        end
+        target_accessor.set_value(element.to_s, v)
       end
-    end
-
-    def metaclass
-      class << self; self; end
     end
   end
 end
