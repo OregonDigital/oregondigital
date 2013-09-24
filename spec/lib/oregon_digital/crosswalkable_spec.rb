@@ -1,4 +1,5 @@
 require "spec_helper"
+require File.join(DUMMY_PATH, "dummy_om_datastream")
 describe OregonDigital::Crosswalkable do
   before(:each) do
     class CrosswalkAsset < ActiveFedora::Base; end
@@ -111,6 +112,27 @@ describe OregonDigital::Crosswalkable do
   end
 
   context 'with RDF and OmDatastreams' do
+    before(:each) do
+      CrosswalkAsset.has_metadata :name => 'descMetadata', :type => DummyOmDatastream
+      CrosswalkAsset.has_metadata :name => 'xwalkMetadata', :type => OregonRDFDatastream do |ds|
+        ds.crosswalk :field => :set, :to => [:name, :family_name], :in => :descMetadata
+      end
+      @i = CrosswalkAsset.new
+      @i.descMetadata.content = File.read(File.join(fixture_path, 'fixture_xml.xml'))
+      expect(@i.descMetadata.name(0).family_name).to eq ["Horn"]
+    end
+    it "should return the crosswalked field" do
+      expect(@i.xwalkMetadata.set).to eq ["Horn", "Caesar"]
+    end
+    it "should set the crosswalked field" do
+      @i.xwalkMetadata.set = "Testing"
+      expect(@i.descMetadata.name.family_name).to eq ["Testing"]
+    end
+    it "should serialize crosswalked data" do
+      expect(@i.xwalkMetadata.content).to include "Horn"
+      @i.descMetadata.name.family_name = "bla"
+      expect(@i.xwalkMetadata.content).to include "bla"
+    end
     context "with bad crosswalk specs" do
     end
   end

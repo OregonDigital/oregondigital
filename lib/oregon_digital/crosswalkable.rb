@@ -20,8 +20,8 @@ module OregonDigital
       raise "crosswalk for '#{args[:field]}' must specify an element as :to argument" unless args.kind_of?(Hash) && args.has_key?(:to)
       raise "crosswalk for '#{args[:field]}' must specify a datastream as :in argument" unless args.kind_of?(Hash) && args.has_key?(:in)
       parent = digital_object
-      field = args.delete(:field).to_sym
-      element = args.delete(:to).to_sym
+      field = args.delete(:field)
+      element = args.delete(:to)
       ds = args.delete(:in)
       raise "#{parent.pid} does not have a datastream '#{ds.inspect}'" unless parent.datastreams.has_key? ds.to_s
       if parent.datastreams[ds.to_s].class.respond_to?(:fields)
@@ -37,9 +37,12 @@ module OregonDigital
       if target_datastream.kind_of?(ActiveFedora::RelsExtDatastream)
         target_accessor = OregonDigital::CrosswalkAccessors::RelsExtAccessor.new(target_datastream,parent)
       end
+      if target_datastream.kind_of?(ActiveFedora::OmDatastream)
+        target_accessor = OregonDigital::CrosswalkAccessors::OmAccessor.new(target_datastream)
+      end
       define_singleton_method(field.to_s) do
-        source_accessor.set_value(field.to_s, target_accessor.get_value(element))
-        target_accessor.get_value(element.to_s)
+        source_accessor.set_value(field, target_accessor.get_value(element))
+        target_accessor.get_value(element)
       end
       singleton_class.class_eval do
         alias_method("#{field.to_s}_without_crosswalk=","#{field.to_s}=") if method_defined?("#{field.to_s}=")
@@ -50,7 +53,7 @@ module OregonDigital
         else
           self.send(:method_missing, "#{field.to_s}=",v)
         end
-        target_accessor.set_value(element.to_s, v)
+        target_accessor.set_value(element, v)
       end
     end
   end

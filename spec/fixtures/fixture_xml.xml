@@ -1,0 +1,18 @@
+<mods xmlns="http://www.loc.gov/mods/v3">
+  <name>
+    <namePart type="given">Zoia</namePart>
+    <namePart type="family">Horn</namePart>
+    <role>
+      <roleTerm type="text">author</roleTerm>
+      <roleTerm type="code">AUT</roleTerm>
+    </role>
+  </name>
+  <name>
+    <namePart type="family">Caesar</namePart>
+    <namePart type="given">Julius</namePart>
+    <role>
+      <roleTerm type="text">Contributor</roleTerm>
+      <roleTerm type="code">CON</roleTerm>
+    </role>
+  </name>
+</mods>
