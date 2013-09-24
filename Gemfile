@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'hydra', '~> 6.0', :require => 'hydra6'
+gem 'blacklight'
+gem 'hydra-head', '6.3.4'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -79,7 +80,7 @@ group :development, :test do
 
   gem 'unicorn', '~>4.6.3'
   gem 'sqlite3', '~>1.3.7'
-  gem 'jettywrapper', '~>1.4.1'
+  gem 'jettywrapper'
 
   # Form testing
   gem 'capybara', '~>2.0'
