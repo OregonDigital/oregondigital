@@ -9,6 +9,30 @@ describe GenericAsset do
   it 'should initialize' do
     expect { generic_asset }.not_to raise_error
   end
+
+  describe 'collection metadata crosswalking' do
+    context 'when the asset is a member of a collection' do
+      let(:collection) {GenericCollection.create(:pid => "oregondigital:test")}
+      before(:each) do
+        subject.save
+        subject.collections << collection
+        subject.save
+      end
+      it "should remove info:fedora from od:set"
+      it 'should populate od:set' do
+        expect(subject.descMetadata.set).to eq ["info:fedora/oregondigital:test"]
+      end
+      it "should populate od:set after being reloaded" do
+        item = GenericAsset.find(subject.pid)
+        expect(item.descMetadata.set).to eq ["info:fedora/oregondigital:test"]
+      end
+      after(:each) do
+        subject.destroy
+        collection.destroy
+      end
+    end
+  end
+
   describe 'pid assignment' do
     context 'before the object is saved' do
       it 'should be a filler PID' do

@@ -6,7 +6,9 @@ class GenericAsset < ActiveFedora::Base
   include OregonDigital::Collectible
   include OregonDigital::Workflow
 
-  has_metadata :name => 'descMetadata', :type => OregonRDFDatastream
+  has_metadata :name => 'descMetadata', :type => OregonRDFDatastream do |ds|
+    ds.crosswalk :field => :set, :to => :is_member_of_collection, :in => "RELS-EXT"
+  end
   has_metadata :name => 'rightsMetadata', :type =>
     Hydra::Datastream::RightsMetadata
 
