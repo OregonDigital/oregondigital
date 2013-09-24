@@ -1,1 +1,3 @@
 id_namespace: oregondigital
+uri_base:
+  oregondigital: 'http://oregondigital.org/resource/'

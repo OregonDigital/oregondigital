@@ -17,7 +17,7 @@ module OregonDigital
   class IdService
     @@minter = Noid::Minter.new(:template => '.reeddeeddk')
     def self.namespace
-      CONSTANTINOPLE.app.id_namespace
+      APP_CONFIG.id_namespace
     end
 
     def self.valid?(identifier)
