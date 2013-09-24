@@ -1,0 +1,10 @@
+---
+oregondigital:
+  test_key:
+    - 5
+    - 6
+    - 7
+  test_key_2: Beavers
+second_root:
+  element: Ducks
+third_root: Huskies

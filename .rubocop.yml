@@ -1,0 +1,20 @@
+# Disable encoding line
+Encoding:
+  Enabled: false
+
+# Limit lines to 79 characters
+LineLength:
+  Max: 99
+
+# Avoid methods longer than 10 lines of code
+MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 15
+
+# We like Ruby 1.8 hash syntax for dynamic key support
+HashSyntax:
+  Enabled: false
+
+# Classes don't need top-level comments
+Documentation:
+  Enabled: false

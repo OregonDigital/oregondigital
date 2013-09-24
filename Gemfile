@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'blacklight'
+gem 'hydra-head', '6.3.4'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,9 +20,6 @@ gem 'simple_form', '~>2.1.0'
 # Local configs / overrides / etc
 gem 'constantinople', '~>0.2.2'
 
-gem 'blacklight', '~>4.2.2'
-gem 'hydra-head', '~> 6.2.0'
-
 gem "unicode", :platforms => [:mri_18, :mri_19]
 gem "bootstrap-sass", '~>2.3.2.0'
 
@@ -30,7 +28,7 @@ gem 'therubyracer', :require => 'v8'
 gem 'ruby-filemagic', '~>0.4.2'
 
 gem 'noid', '~>0.6.6'
-gem 'bagit', '~>0.3.1'
+gem 'hybag'
 
 gem 'resque', '~>1.24.1'
 
@@ -48,8 +46,18 @@ gem "carrierwave", '~>0.9.0'
 
 gem 'ip-ranges', '~>0.1.1'
 
-# Coverage reporting can be handy even in production, yo, so let's not group this, a'ight?
-gem 'simplecov', :require => false
+# Derivative Creation
+
+gem 'hydra-derivatives'
+
+# Docsplit for splitting up documents
+gem 'docsplit'
+
+# Coveralls to announce our test coverage
+gem 'coveralls', require: false
+
+# Recursive open-struct for YAML Datastream
+gem 'recursive-open-struct'
 
 group :development do
   gem 'pry', '~>0.9.12.2'
@@ -63,9 +71,16 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-steps'
 
+  # Spring as Rails preloader
+  gem 'spring'
+
+  # Guard for auto-test running
+  gem 'guard'
+  gem 'guard-rspec'
+
   gem 'unicorn', '~>4.6.3'
   gem 'sqlite3', '~>1.3.7'
-  gem 'jettywrapper', '~>1.4.1'
+  gem 'jettywrapper'
 
   # Form testing
   gem 'capybara', '~>2.0'
@@ -74,5 +89,3 @@ group :development, :test do
   # Exif stuff - regardless of our image library, we want tests to access image data
   gem 'exifr', '~>1.1.3'
 end
-
-
