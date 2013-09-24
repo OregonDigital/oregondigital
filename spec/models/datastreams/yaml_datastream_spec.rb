@@ -10,6 +10,34 @@ describe YamlDatastream do
   before(:all) do
     @content = File.read(File.join(fixture_path, "fixture_yml.yml"))
   end
+  describe ".to_solr" do
+    context "when there is no content" do
+      it "should return an empty hash" do
+        expect(subject.to_solr).to eq({})
+      end
+    end
+    context "when there is content" do
+      subject {asset.descMetadata}
+      before(:each) do
+        asset.descMetadata.content = @content
+      end
+      it "should return all the root keys that have content" do
+        keys = subject.to_solr.keys
+        expect(subject.to_solr.keys).to include("desc_metadata__third_root_teim")
+      end
+      it "should index child keys" do
+        keys = subject.to_solr.keys
+        expect(subject.to_solr.keys).to include("desc_metadata__oregondigital__test_key_teim")
+      end
+      it "should index arrays" do
+        expect(subject.to_solr["desc_metadata__oregondigital__test_key_teim"]).to eq ["5","6","7"]
+      end
+      it "should be included in the asset's solr information" do
+        expect(asset.to_solr).to include("desc_metadata__oregondigital__test_key_teim")
+      end
+    end
+  end
+
   describe "content=" do
     before(:each) do
      subject.content = @content
