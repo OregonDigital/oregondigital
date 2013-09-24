@@ -53,9 +53,6 @@ gem 'hydra-derivatives'
 # Docsplit for splitting up documents
 gem 'docsplit'
 
-# Coveralls to announce our test coverage
-gem 'coveralls', require: false
-
 # Recursive open-struct for YAML Datastream
 gem 'recursive-open-struct'
 
@@ -64,6 +61,12 @@ group :development do
   gem 'pry-doc', '~>0.4.6'
   gem 'pry-debugger', '~>0.2.2'
   gem 'pry-rails', '~>0.3.1'
+  # Spring as Rails preloader
+  gem 'spring'
+  # Guard for auto-test running
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'unicorn', '~>4.6.3'
 end
 
 group :development, :test do
@@ -71,14 +74,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-steps'
 
-  # Spring as Rails preloader
-  gem 'spring'
-
-  # Guard for auto-test running
-  gem 'guard'
-  gem 'guard-rspec'
-
-  gem 'unicorn', '~>4.6.3'
   gem 'sqlite3', '~>1.3.7'
   gem 'jettywrapper'
 
@@ -88,4 +83,7 @@ group :development, :test do
 
   # Exif stuff - regardless of our image library, we want tests to access image data
   gem 'exifr', '~>1.1.3'
+
+  # Coveralls to announce our test coverage
+  gem 'coveralls', require: false
 end
