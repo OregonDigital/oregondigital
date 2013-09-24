@@ -41,10 +41,12 @@ module OregonDigital
         source_accessor.set_value(field.to_s, target_accessor.get_value(element))
         target_accessor.get_value(element.to_s)
       end
-
+      singleton_class.class_eval do
+        alias_method("#{field.to_s}_without_crosswalk=","#{field.to_s}=") if method_defined?("#{field.to_s}=")
+      end
       define_singleton_method("#{field.to_s}=") do |v|
-        if defined?(super)
-          super
+        if self.respond_to?("#{field.to_s}_without_crosswalk=")
+          self.send("#{field.to_s}_without_crosswalk=",v)
         else
           self.send(:method_missing, "#{field.to_s}=",v)
         end

@@ -11,7 +11,7 @@ module OregonDigital
       end
 
       def set_value(field, value)
-        datastream.send(:method_missing, "#{field.to_s}=",value)
+        datastream.send("#{field.to_s}=",value)
       end
     end
   end
