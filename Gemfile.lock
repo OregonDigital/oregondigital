@@ -14,7 +14,7 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    active-fedora (6.4.3)
+    active-fedora (6.5.1)
       activesupport (>= 3.0.0)
       deprecation
       mediashelf-loggable
@@ -41,7 +41,7 @@ GEM
     addressable (2.3.5)
     arel (3.0.2)
     backports (3.3.3)
-    bagit (0.3.1)
+    bagit (0.3.2)
       docopt (~> 0.5.0)
       validatable (~> 1.6)
     bcrypt-ruby (3.1.1)
@@ -85,6 +85,12 @@ GEM
     constantinople (0.2.2)
       deep_merge (~> 1.0)
       map (~> 4.2)
+    coveralls (0.6.9)
+      multi_json (~> 1.3)
+      rest-client
+      simplecov (>= 0.7)
+      term-ansicolor
+      thor
     daemons (1.1.9)
     debugger (1.6.1)
       columnize (>= 0.3.1)
@@ -104,6 +110,7 @@ GEM
       devise
     diff-lcs (1.2.4)
     docopt (0.5.0)
+    docsplit (0.7.2)
     equivalent-xml (0.3.0)
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
@@ -115,26 +122,45 @@ GEM
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
     ffi (1.9.0)
+    formatador (0.2.4)
+    guard (1.8.2)
+      formatador (>= 0.2.4)
+      listen (>= 1.0.0)
+      lumberjack (>= 1.0.2)
+      pry (>= 0.9.10)
+      thor (>= 0.14.6)
+    guard-rspec (3.0.3)
+      guard (>= 1.8)
+      rspec (~> 2.13)
     hike (1.2.3)
     hooks (0.3.1)
     http_parser.rb (0.5.3)
-    hydra-access-controls (6.2.2)
+    hybag (0.0.7)
+      active-fedora
+      activesupport (>= 3.2.0, < 5.0)
+      bagit
+      mime-types
+    hydra-access-controls (6.3.4)
       active-fedora (~> 6.1)
       activesupport
-      blacklight
+      blacklight (~> 4.0)
       cancan
       deprecation
-    hydra-core (6.2.2)
+    hydra-core (6.3.4)
       active-fedora
       blacklight (~> 4.0)
       block_helpers
       deprecation (>= 0.0.5)
-      hydra-access-controls (= 6.2.2)
+      hydra-access-controls (= 6.3.4)
       jettywrapper (>= 1.4.1)
-      rails (~> 3.2.3)
-    hydra-head (6.2.2)
-      hydra-access-controls (= 6.2.2)
-      hydra-core (= 6.2.2)
+      rails (>= 3.2.3, < 5)
+    hydra-derivatives (0.0.5)
+      active-fedora
+      activesupport (>= 3.2.13, < 5.0)
+      rmagick
+    hydra-head (6.3.4)
+      hydra-access-controls (= 6.3.4)
+      hydra-core (= 6.3.4)
       rails (>= 3.2.6)
     i18n (0.6.1)
     ip-ranges (0.1.1)
@@ -158,12 +184,17 @@ GEM
       activesupport (>= 3.0.0)
     kgio (2.8.0)
     libv8 (3.11.8.17)
+    listen (1.3.1)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+      rb-kqueue (>= 0.2)
     logger (1.2.8)
+    lumberjack (1.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     map (4.7.1)
-    marc (0.5.1)
+    marc (0.7.1)
     mediashelf-loggable (0.4.9)
     method_source (0.8.1)
     mime-types (1.23)
@@ -179,7 +210,7 @@ GEM
       activesupport
       i18n
       nokogiri
-    om (3.0.2)
+    om (3.0.3)
       activemodel
       activesupport
       deprecation
@@ -230,7 +261,12 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.11.0)
     rake (10.1.0)
-    rdf (1.0.7)
+    rb-fsevent (0.9.3)
+    rb-inotify (0.9.1)
+      ffi (>= 0.5.0)
+    rb-kqueue (0.2.0)
+      ffi (>= 0.5.0)
+    rdf (1.0.8)
       addressable (>= 2.2)
     rdf-rdfxml (1.0.1)
       rdf (>= 1.0)
@@ -240,6 +276,7 @@ GEM
       rdf (>= 0.3.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    recursive-open-struct (0.4.4)
     redis (3.0.4)
     redis-namespace (1.3.0)
       redis (~> 3.0.0)
@@ -314,19 +351,23 @@ GEM
       nokogiri
       stomp
       xml-simple
+    spring (0.0.10)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
-    stomp (1.2.10)
+    stomp (1.2.16)
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
     thor (0.18.1)
     tilt (1.4.1)
-    treetop (1.4.14)
+    tins (0.9.0)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
@@ -353,20 +394,25 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bagit (~> 0.3.1)
-  blacklight (~> 4.2.2)
+  blacklight
   bootstrap-sass (~> 2.3.2.0)
   capybara (~> 2.0)
   carrierwave (~> 0.9.0)
   cocoon (~> 1.2.0)
   coffee-rails (~> 3.2.1)
   constantinople (~> 0.2.2)
+  coveralls
   devise
   devise-guests (~> 0.3)
+  docsplit
   exifr (~> 1.1.3)
-  hydra-head (~> 6.2.0)
+  guard
+  guard-rspec
+  hybag
+  hydra-derivatives
+  hydra-head (= 6.3.4)
   ip-ranges (~> 0.1.1)
-  jettywrapper (~> 1.4.1)
+  jettywrapper
   jquery-fileupload-rails (~> 0.4.1)
   jquery-rails (~> 3.0.4)
   libv8 (~> 3.11.8)
@@ -376,7 +422,7 @@ DEPENDENCIES
   pry-debugger (~> 0.2.2)
   pry-doc (~> 0.4.6)
   pry-rails (~> 0.3.1)
-  rails (= 3.2.13)
+  recursive-open-struct
   resque (~> 1.24.1)
   rmagick (~> 2.13.2)
   rspec-rails
@@ -385,7 +431,7 @@ DEPENDENCIES
   ruby-vips (~> 0.3.6)
   sass-rails (~> 3.2.3)
   simple_form (~> 2.1.0)
-  simplecov
+  spring
   sqlite3 (~> 1.3.7)
   therubyracer
   uglifier (>= 1.0.3)
