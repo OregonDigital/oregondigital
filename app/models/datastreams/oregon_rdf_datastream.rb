@@ -1,6 +1,7 @@
 class OregonRDFDatastream < ActiveFedora::NtriplesRDFDatastream
   # TODO: use an http URI instead of the PID as a subject
   # rdf_subject { |ds| Utils.rdf_subject(ds.pid) }
+  include OregonDigital::Crosswalkable
 
   map_predicates do |map|
 
