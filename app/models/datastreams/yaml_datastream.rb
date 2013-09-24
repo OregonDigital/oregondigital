@@ -1,4 +1,9 @@
 class YamlDatastream < ActiveFedora::Datastream
+  include Solrizer::Common
+
+  def self.index_types
+    [:searchable, :facetable, :displayable]
+  end
 
   def content
     serialize
@@ -26,6 +31,29 @@ class YamlDatastream < ActiveFedora::Datastream
 
   def serialize!
     @content = serialize
+  end
+
+  def prefix(name,pre=nil)
+    name = name.to_s unless name.is_a? String
+    pre ||= dsid.underscore
+    return "#{pre}__#{name}".to_sym
+  end
+
+  def to_solr(solr_doc = Hash.new,item=nil,term_prefix=nil)
+    item ||= inner_hash.to_h
+    item.each do |key, value|
+      term_key = prefix(key,term_prefix)
+      value = Array.wrap(value)
+      value.each do |v|
+        if v.kind_of?(Hash)
+          solr_doc = self.to_solr(solr_doc, v, term_key)
+          next
+        end
+        v = v.to_s
+        self.class.create_and_insert_terms(term_key, v, self.class.index_types, solr_doc)
+      end
+    end
+    solr_doc
   end
 
   private
