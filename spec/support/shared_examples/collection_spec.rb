@@ -28,7 +28,6 @@ shared_examples 'a collection' do
       expect(generic_collection.members).to include other_item
       expect(other_item.reload.collections).to include generic_collection
     end
-    it 'should write collections to metadata'
   end
   describe '.delete' do
     it 'should remove relationships from items' do
