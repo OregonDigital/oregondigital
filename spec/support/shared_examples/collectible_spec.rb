@@ -30,7 +30,6 @@ shared_examples 'a collectible item' do
       expect(item.collections).to include other_collection
       expect(collection.reload.members).to include item
     end
-    it 'should write collections to metadata'
     it 'should not save collection' do
       collection.title = 'blah'
       item.collections << collection
