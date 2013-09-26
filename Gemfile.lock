@@ -135,7 +135,7 @@ GEM
     hike (1.2.3)
     hooks (0.3.1)
     http_parser.rb (0.5.3)
-    hybag (0.0.7)
+    hybag (0.0.8)
       active-fedora
       activesupport (>= 3.2.0, < 5.0)
       bagit
