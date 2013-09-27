@@ -56,6 +56,9 @@ gem 'docsplit'
 # Recursive open-struct for YAML Datastream
 gem 'recursive-open-struct'
 
+# Active Fedora Crosswalks
+gem 'active_fedora-crosswalks'
+
 group :development do
   gem 'pry', '~>0.9.12.2'
   gem 'pry-doc', '~>0.4.6'
