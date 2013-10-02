@@ -9,9 +9,6 @@ describe Documents::Paged do
   end
 
   describe "derivatives" do
-    after(:each) do
-      document.destroy
-    end
     context "when a document has content" do
       before(:each) do
         file = File.open(File.join(fixture_path, 'fixture_pdf.pdf'))
