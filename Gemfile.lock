@@ -24,7 +24,7 @@ GEM
       rdf-rdfxml (= 1.0.1)
       rsolr
       rubydora (~> 1.6, >= 1.6.5)
-    active_fedora-crosswalks (0.0.1)
+    active_fedora-crosswalks (0.0.2)
       active-fedora
       activesupport (>= 3.2.0, < 5.0)
       bagit
