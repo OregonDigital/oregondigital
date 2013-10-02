@@ -62,6 +62,7 @@ GEM
       activesupport (>= 2.0)
     bootstrap-sass (2.3.2.0)
       sass (~> 3.2)
+    bootstrap_forms (4.0.1)
     builder (3.0.4)
     cancan (1.6.10)
     capybara (2.0.3)
@@ -167,6 +168,9 @@ GEM
       hydra-access-controls (= 6.3.4)
       hydra-core (= 6.3.4)
       rails (>= 3.2.6)
+    hydra-role-management (0.1.0)
+      bootstrap_forms
+      cancan
     i18n (0.6.1)
     ip-ranges (0.1.1)
       netaddr (~> 1.5.0)
@@ -417,6 +421,7 @@ DEPENDENCIES
   hybag
   hydra-derivatives
   hydra-head (= 6.3.4)
+  hydra-role-management
   ip-ranges (~> 0.1.1)
   jettywrapper
   jquery-fileupload-rails (~> 0.4.1)
