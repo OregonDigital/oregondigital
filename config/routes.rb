@@ -5,6 +5,8 @@ Oregondigital::Application.routes.draw do
   HydraHead.add_routes(self)
 
   devise_for :users
+  mount Hydra::RoleManagement::Engine => '/'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
