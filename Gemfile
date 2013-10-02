@@ -59,6 +59,9 @@ gem 'recursive-open-struct'
 # Active Fedora Crosswalks
 gem 'active_fedora-crosswalks'
 
+# Hydra Role Management for roles
+gem 'hydra-role-management'
+
 group :development do
   gem 'pry', '~>0.9.12.2'
   gem 'pry-doc', '~>0.4.6'
