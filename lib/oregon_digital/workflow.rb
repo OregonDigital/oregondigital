@@ -30,5 +30,10 @@ module OregonDigital
     def review!
       review(true)
     end
+
+    def to_solr(solr_doc={})
+      Solrizer.set_field(solr_doc, :reviewed, (!!workflowMetadata.reviewed).to_s, :symbol)
+      super
+    end
   end
 end

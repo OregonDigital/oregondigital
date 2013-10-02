@@ -26,10 +26,6 @@ describe GenericAsset do
         item = GenericAsset.find(subject.pid)
         expect(item.descMetadata.set).to eq ["info:fedora/oregondigital:test"]
       end
-      after(:each) do
-        subject.destroy
-        collection.destroy
-      end
     end
   end
 
