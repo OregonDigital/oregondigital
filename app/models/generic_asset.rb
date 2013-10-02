@@ -1,4 +1,5 @@
 class GenericAsset < ActiveFedora::Base
+  include Hydra::ModelMixins::RightsMetadata
   include Hydra::ModelMixins::CommonMetadata
   include Hydra::ModelMethods
   include Hydra::Derivatives

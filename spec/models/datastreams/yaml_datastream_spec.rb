@@ -94,9 +94,6 @@ describe YamlDatastream do
         asset.descMetadata.content = @content
         asset.save
       end
-      after(:each) do
-        asset.destroy
-      end
       it "should store the data in Fedora" do
         reloaded_asset = DummyAsset.find(asset.pid)
         expect(reloaded_asset.descMetadata.content.to_s).to eq asset.descMetadata.content.to_s

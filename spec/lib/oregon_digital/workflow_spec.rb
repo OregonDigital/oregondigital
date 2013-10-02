@@ -5,10 +5,15 @@ describe OregonDigital::Workflow do
   end
 
   subject(:asset) { WorkflowAsset.new }
-
+  after(:each) do
+    subject.delete if subject.persisted?
+  end
   it "should initialize items with unreviewed workflow metadata" do
     asset.save
     expect(asset.workflowMetadata.reviewed).to eq false
+  end
+  it "should set the solr representation to have reviewed information" do
+    expect(asset.to_solr.keys).to include("reviewed_ssim")
   end
 
   describe 'review' do

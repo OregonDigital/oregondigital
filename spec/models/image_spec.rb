@@ -19,9 +19,6 @@ describe Image do
   end
 
   describe '.create_derivatives' do
-    after(:each) do
-      image.destroy
-    end
     context 'when the image has content' do
       before(:each) do
         file = File.open(File.join(fixture_path, 'fixture_image.jpg'))

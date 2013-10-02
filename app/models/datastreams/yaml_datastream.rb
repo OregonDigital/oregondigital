@@ -2,7 +2,7 @@ class YamlDatastream < ActiveFedora::Datastream
   include Solrizer::Common
 
   def self.index_types
-    [:searchable, :facetable, :displayable]
+    [:searchable, :facetable, :displayable, :symbol]
   end
 
   def content
