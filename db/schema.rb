@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131002220102) do
+ActiveRecord::Schema.define(:version => 20131007151315) do
 
   create_table "bookmarks", :force => true do |t|
     t.integer  "user_id",     :null => false
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(:version => 20131002220102) do
     t.datetime "updated_at",  :null => false
     t.string   "user_type"
   end
+
+  create_table "ip_ranges", :force => true do |t|
+    t.string   "ip_start"
+    t.string   "ip_end"
+    t.integer  "ip_start_i"
+    t.integer  "ip_end_i"
+    t.integer  "role_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "ip_ranges", ["ip_end_i"], :name => "index_ip_ranges_on_ip_end_i"
+  add_index "ip_ranges", ["ip_start_i"], :name => "index_ip_ranges_on_ip_start_i"
+  add_index "ip_ranges", ["role_id"], :name => "index_ip_ranges_on_role_id"
 
   create_table "roles", :force => true do |t|
     t.string "name"
