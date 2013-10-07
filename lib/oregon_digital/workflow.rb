@@ -3,32 +3,30 @@ module OregonDigital
     extend ActiveSupport::Concern
 
     included do
-      has_metadata :name => 'workflowMetadata', :type =>
-        YamlDatastream
-
+      has_metadata :name => 'workflowMetadata', :type => YamlDatastream
       after_initialize :reset_workflow, :if => :new_record?
     end
 
-    def reset_workflow(persist = false)
+    def reset_workflow
       workflowMetadata.reviewed = false
-      save if persist
     end
 
     def reset_workflow!
-      reset_workflow(true)
+      reset_workflow
+      save!
     end
 
     def reviewed?
       workflowMetadata.reviewed
     end
 
-    def review(persist = false)
+    def review
       workflowMetadata.reviewed = true
-      save if persist
     end
 
     def review!
-      review(true)
+      review
+      save!
     end
 
     def to_solr(solr_doc={})
