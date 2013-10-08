@@ -1,0 +1,16 @@
+<div class='span3'></div>
+<div class='span6'>
+  <h2 class='text-center'>Role:</h2>
+  <%= bootstrap_form_for @role, :url=>role_management.role_path(@role) do |f| %>
+    <%= f.text_field :name, :label=> 'Role name', :class => :inline %>
+    <%= bootstrap_actions do %>
+      <%= f.submit "Update" %>
+      <% if can? :destroy, Role %>
+        <%= link_to "Delete", role_management.role_path(@role), :method=>:delete, :class=>'btn btn-danger' %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<div class='span3'></div>
+<%= render 'user_form' %>
+<%= render 'ip_form' %>
