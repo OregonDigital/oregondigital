@@ -2,7 +2,7 @@ OregonDigital
 =============
 
 [![Build Status](https://secure.travis-ci.org/OregonDigital/oregondigital.png)](http://travis-ci.org/OregonDigital/oregondigital)
-[![Coverage Status](https://coveralls.io/repos/OregonDigital/oregondigital/badge.png?branch=feature%2FCoverAlls)](https://coveralls.io/r/OregonDigital/oregondigital?branch=feature%2FCoverAlls)
+[![Coverage Status](https://coveralls.io/repos/OregonDigital/oregondigital/badge.png)](https://coveralls.io/r/OregonDigital/oregondigital)
 
 Development Setup
 ------------------
