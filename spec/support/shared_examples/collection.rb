@@ -1,7 +1,9 @@
 
 shared_examples 'a collection' do
-  class TestItem < ActiveFedora::Base
-    include OregonDigital::Collectible
+  before(:each) do
+    class TestItem < ActiveFedora::Base
+      include OregonDigital::Collectible
+    end
   end
   subject(:generic_collection) { described_class.new }
   subject(:item) { TestItem.new }
@@ -11,6 +13,9 @@ shared_examples 'a collection' do
     generic_collection.save
     item.save
     other_item.save
+  end
+  after(:each) do
+    Object.send(:remove_const, :TestItem) if Object.const_defined?(:TestItem)
   end
 
   describe '.members' do
