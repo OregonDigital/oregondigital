@@ -1,14 +1,16 @@
 
 shared_examples 'a collectible item' do
-  class TestDatastream < ActiveFedora::NtriplesRDFDatastream
-    map_predicates do |map|
-      map.title(:in => RDF::DC)
+  before(:each) do
+    class TestDatastream < ActiveFedora::NtriplesRDFDatastream
+      map_predicates do |map|
+        map.title(:in => RDF::DC)
+      end
     end
-  end
-  class TestCollection < ActiveFedora::Base
-    include OregonDigital::Collection
-    has_metadata 'descMetadata', type: TestDatastream
-    delegate_to :descMetadata, [:title]
+    class TestCollection < ActiveFedora::Base
+      include OregonDigital::Collection
+      has_metadata 'descMetadata', type: TestDatastream
+      delegate_to :descMetadata, [:title]
+    end
   end
   subject(:item) { described_class.new }
   subject(:collection) { TestCollection.new }
@@ -17,6 +19,10 @@ shared_examples 'a collectible item' do
   before(:each) do
     item.save
     collection.save
+  end
+  after(:each) do
+    Object.send(:remove_const, :TestDatastream) if Object.const_defined?(:TestDatastream)
+    Object.send(:remove_const, :TestCollection) if Object.const_defined?(:TestCollection)
   end
   describe '.collection' do
     it 'should be empty when there are no collections' do
