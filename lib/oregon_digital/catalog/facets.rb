@@ -27,7 +27,8 @@ module OregonDigital
           config.add_facet_field solr_name('desc_metadata__date', :facetable), :label => 'Publication Year', :single => true
           config.add_facet_field solr_name('desc_metadata__subject', :facetable), :label => 'Topic', :limit => 20
           config.add_facet_field solr_name('desc_metadata__location', :facetable), :label => 'Region'
-          config.add_facet_field solr_name('desc_metadata__set', :facetable), :label => 'Collection'#, :helper_method => :get_collection_title
+          config.add_facet_field solr_name('desc_metadata__set', :facetable), :label => 'Collection', :helper_method => :collection_name
+          config.add_facet_fields_to_solr_request!
         end
       end
     end

@@ -3,7 +3,7 @@ module OregonDigital
     module IndexFields
       extend ActiveSupport::Concern
       included do
-        blacklight_config do |config|
+        configure_blacklight do |config|
           # solr fields to be displayed in the index (search results) view
           #   The ordering of the field names is the order of the display
           config.add_index_field solr_name('desc_metadata__subject', :displayable), :label => 'Subject:'

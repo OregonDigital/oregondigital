@@ -6,7 +6,7 @@ module OregonDigital
     module SearchFields
       extend ActiveSupport::Concern
       included do
-        blacklight_config do |config|
+        configure_blacklight do |config|
           # "fielded" search configuration. Used by pulldown among other places.
           # For supported keys in hash, see rdoc for Blacklight::SearchFields
           #
