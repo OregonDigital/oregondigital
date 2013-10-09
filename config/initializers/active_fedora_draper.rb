@@ -1,0 +1,1 @@
+Draper.setup_orm ActiveFedora::Base
