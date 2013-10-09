@@ -5,7 +5,7 @@ module OregonDigital
     module SortFields
       extend ActiveSupport::Concern
       included do
-        blacklight_config do |config|
+        configure_blacklight do |config|
           # "sort results by" select (pulldown)
           # label in pulldown is followed by the name of the SOLR field to sort by and
           # whether the sort is ascending or descending (it must be asc or desc
