@@ -18,13 +18,22 @@ describe GenericAsset do
         subject.collections << collection
         subject.save
       end
-      it "should remove info:fedora from od:set"
       it 'should populate od:set' do
-        expect(subject.descMetadata.set).to eq ["info:fedora/oregondigital:test"]
+        expect(subject.descMetadata.set).to eq ["oregondigital:test"]
       end
       it "should populate od:set after being reloaded" do
         item = GenericAsset.find(subject.pid)
-        expect(item.descMetadata.set).to eq ["info:fedora/oregondigital:test"]
+        expect(item.descMetadata.set).to eq ["oregondigital:test"]
+      end
+    end
+    context "when the asset is imported with set information" do
+      before(:each) do
+        subject.descMetadata.set_value(subject.descMetadata.rdf_subject, :set, "oregondigital:testing")
+        subject.save
+        @item = GenericAsset.find(:pid => subject.pid).first
+      end
+      it "should set the rels" do
+        expect(@item.relationships(:is_member_of_collection).to_a).to eq ["info:fedora/oregondigital:testing"]
       end
     end
   end
