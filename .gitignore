@@ -31,3 +31,20 @@ braceros-tiffs
 
 # No IDEs
 .idea
+
+# Hide compiled assets
+/public/assets
+
+# Checked-out directories for set-specific content and assets
+#
+# Rules:
+#
+# * We don't want to have anything "real" in app/assets/**/sets
+# * We reserve set_content strictly to be the checked-out set repo
+# * We ignore app/views/sets knowing that it ignores legitimate files, but to protect things from
+#   getting very weird (maybe crashy) if somebody does a "git add ." or similar.
+/set_content
+/app/assets/javascripts/sets
+/app/assets/images/sets
+/app/assets/stylesheets/sets
+/app/views/sets/*
