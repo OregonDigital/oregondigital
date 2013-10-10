@@ -32,7 +32,6 @@ namespace :bag do
     # GenericAsset.new.bag_path.split("/")[0...-1] ?
     args.with_defaults(:bag_directory => File.join('tmp', 'bags'))
     each_bag(args[:bag_directory]) do |bag|
-      next if item == '.' or item == '..'
       FileUtils.rm_r(bag.bag_dir, :force => true)
     end
   end
