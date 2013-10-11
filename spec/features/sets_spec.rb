@@ -15,6 +15,13 @@ describe "SetsController /index" do
     i.review!
     i
   end
+  let(:item2) do
+    i = GenericAsset.new
+    i.subject = "Other Facet"
+    i.read_groups = ["public"]
+    i.review!
+    i
+  end
   before(:each) do
     collection
   end
@@ -29,16 +36,19 @@ describe "SetsController /index" do
   context "when there are facetable items" do
     before(:each) do
       item
+      item2
       visit sets_path
     end
     it "should show the facets" do
       expect(page).to have_content("Test Facet")
+      expect(page).to have_content("Other Facet")
     end
   end
   context "when requesting a specific collection" do
     before(:each) do
       item.collections << collection
       item.save
+      item2
       visit sets_path(:set => collection)
     end
     context "that does have a set page" do
@@ -52,10 +62,13 @@ describe "SetsController /index" do
       it "should show the collection landing page" do
         expect(page).to have_content("The Braceros Program")
       end
+      it "should not show facets for items not in the collection" do
+        expect(page).not_to have_content("Other Facet")
+      end
     end
     context "that does not have a set page" do
       it "should show the generic collection landing page" do
-        within("#main-container") do
+        within("#main-container h2") do
           expect(page).to have_content("Test Collection")
         end
       end
