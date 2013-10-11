@@ -9,4 +9,7 @@ Oregondigital::Application.routes.draw do
   resources :roles, :only => [] do
     resources :ip_ranges, :only => [:create, :destroy], :controller => "roles_ip_ranges"
   end
+
+  # Downloads controller route
+  resources :downloads, :only => "show"
 end
