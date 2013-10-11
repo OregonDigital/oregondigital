@@ -1,5 +1,5 @@
 Oregondigital::Application.routes.draw do
-  root :to => "catalog#index"
+  root :to => "catalog#_home_text"
 
   Blacklight.add_routes(self)
   HydraHead.add_routes(self)
@@ -12,4 +12,5 @@ Oregondigital::Application.routes.draw do
 
   # Downloads controller route
   resources :downloads, :only => "show"
+  get '/sets(/:set)', :to => 'sets#index', :as => :sets
 end
