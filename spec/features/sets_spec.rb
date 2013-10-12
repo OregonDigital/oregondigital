@@ -65,6 +65,17 @@ describe "SetsController /index" do
       it "should not show facets for items not in the collection" do
         expect(page).not_to have_content("Other Facet")
       end
+      context "when you search" do
+        before(:each) do
+          click_button "Search"
+        end
+        it "should keep in the sets controller" do
+          expect(current_path).to include collection.pid.split(':').last
+        end
+        it "should not return items from other collections" do
+          expect(page).to have_selector('.document', :count => 1)
+        end
+      end
     end
     context "that does not have a set page" do
       it "should show the generic collection landing page" do

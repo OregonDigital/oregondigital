@@ -1,5 +1,5 @@
 Oregondigital::Application.routes.draw do
-  root :to => "catalog#_home_text"
+  root :to => "catalog#index"
 
   Blacklight.add_routes(self)
   HydraHead.add_routes(self)

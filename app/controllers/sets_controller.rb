@@ -8,6 +8,10 @@ class SetsController < CatalogController
     super
   end
 
+  def search_action_url(options={})
+    sets_path(options.merge(:set => set))
+  end
+
   private
 
   def sets
