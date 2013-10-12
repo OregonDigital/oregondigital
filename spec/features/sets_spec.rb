@@ -56,6 +56,11 @@ describe "SetsController /index" do
       it "should show the facets" do
         expect(page).to have_content("Test Facet")
       end
+      it "should not show the collection facets" do
+        within("#facets") do
+          expect(page).not_to have_content("Test Collection")
+        end
+      end
       it "should include the second half of the collection pid in the path" do
         expect(current_path).to eq "/sets/#{collection.pid.split(':').last}"
       end

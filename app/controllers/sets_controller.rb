@@ -2,6 +2,8 @@ class SetsController < CatalogController
 
   self.solr_search_params_logic += [:require_set]
 
+  before_filter :strip_facets
+
   def index
     @collections = sets
     @collection = set
@@ -25,6 +27,12 @@ class SetsController < CatalogController
   def require_set(solr_parameters, user_parameters)
     solr_parameters[:fq] ||= []
     solr_parameters[:fq] << "+#{ActiveFedora::SolrService.solr_name("desc_metadata__set",:facetable)}:\"#{set.pid}\"" if set
+  end
+
+  def strip_facets
+    if set
+      self.blacklight_config.facet_fields.except!(ActiveFedora::SolrService.solr_name("desc_metadata__set", :facetable))
+    end
   end
 
 end
