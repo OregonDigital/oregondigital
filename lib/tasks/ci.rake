@@ -13,6 +13,7 @@ task :ci => ['jetty:config'] do
   error = Jettywrapper.wrap(jetty_params) do
     Rake::Task['db:migrate'].invoke
     Rake::Task['db:test:prepare'].invoke
+    Rake::Task['sets:content:sync'].invoke
     Rake::Task['spec'].invoke
   end
   raise "test failures: #{error}" if error
