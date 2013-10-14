@@ -4,7 +4,7 @@ describe GenericAsset do
   it_behaves_like 'a baggable item'
   it_behaves_like 'a collectible item'
 
-  subject(:generic_asset) { GenericAsset.new }
+  subject(:generic_asset) { FactoryGirl.build(:generic_asset) }
 
   it 'should initialize' do
     expect { generic_asset }.not_to raise_error
@@ -12,18 +12,15 @@ describe GenericAsset do
 
   describe 'collection metadata crosswalking' do
     context 'when the asset is a member of a collection' do
-      let(:collection) {GenericCollection.create(:pid => "oregondigital:test")}
-      before(:each) do
-        subject.save
-        subject.collections << collection
-        subject.save
-      end
+      subject(:generic_asset) { FactoryGirl.create(:generic_asset, :in_collection!) }
+      let(:collection) { subject.collections.first }
+
       it 'should populate od:set' do
-        expect(subject.descMetadata.set).to eq ["oregondigital:test"]
+        expect(subject.descMetadata.set).to eq [collection.pid]
       end
       it "should populate od:set after being reloaded" do
         item = GenericAsset.find(subject.pid)
-        expect(item.descMetadata.set).to eq ["oregondigital:test"]
+        expect(item.descMetadata.set).to eq [collection.pid]
       end
     end
     context "when the asset is imported with set information" do
@@ -58,10 +55,7 @@ describe GenericAsset do
         end
       end
       context 'but it already has a pid' do
-        subject(:generic_asset) { GenericAsset.new(:pid => 'changeme:monkeys') }
-        before(:each) do
-          generic_asset.save
-        end
+        subject(:generic_asset) { FactoryGirl.create(:generic_asset, :has_pid, pid: "changeme:monkeys") }
         it 'should not override the pid' do
           expect(generic_asset.pid).to eq 'changeme:monkeys'
           expect(generic_asset).to be_persisted

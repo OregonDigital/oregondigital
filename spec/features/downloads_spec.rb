@@ -5,44 +5,23 @@ require "spec_helper"
 # TODO: Test this properly when we have more of the system built!  It should click to get to the
 # downloads, not just visit the URL directly.
 describe "Downloads" do
-  let(:image_fixture) do
-    File.open(fixture_path + "/fixture_image.jpg", "rb").read
-  end
-
-  let(:pdf_fixture) do
-    File.open(fixture_path + "/fixture_pdf.pdf", "rb").read
-  end
-
-  let(:image) do
-    image = Image.new
-    image.add_file_datastream(image_fixture, dsid: "content", mimeType: "image/jpeg", label: "large.jpg")
-    image.review
-    image.read_groups = ["public"]
-    image.save
-    image
-  end
-
-  let(:document) do
-    document = Document.new
-    document.add_file_datastream(pdf_fixture, dsid: "content", mimeType: "application/pdf", label: "doc.pdf")
-    document.review
-    document.read_groups = ["public"]
-    document.save
-    document
-  end
+  let(:image) { image = FactoryGirl.create(:image, :with_image_datastream) }
+  let(:document) { document = FactoryGirl.create(:document, :with_pdf_datastream) }
 
   describe "Visit download location directly" do
     context "(when the user has permission)" do
       it "should give us the proper image file" do
         visit download_path(:id => image.pid)
-        page.response_headers['Content-Type'].should eq "image/jpeg"
-        page.response_headers['Content-Length'].should eq image_fixture.length.to_s
+        headers = page.response_headers
+        headers['Content-Type'].should eq "image/jpeg"
+        headers['Content-Length'].should eq File.size(fixture_path + "/fixture_image.jpg").to_s
       end
 
       it "should give us the proper pdf file" do
         visit download_path(:id => document.pid)
-        page.response_headers['Content-Type'].should eq "application/pdf"
-        page.response_headers['Content-Length'].should eq pdf_fixture.length.to_s
+        headers = page.response_headers
+        headers['Content-Type'].should eq "application/pdf"
+        headers['Content-Length'].should eq File.size(fixture_path + "/fixture_pdf.pdf").to_s
       end
     end
 
