@@ -12,4 +12,5 @@ Oregondigital::Application.routes.draw do
 
   # Downloads controller route
   resources :downloads, :only => "show"
+  get '/sets(/:set)', :to => 'sets#index', :as => :sets
 end
