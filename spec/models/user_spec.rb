@@ -1,12 +1,8 @@
 require 'spec_helper'
 
 describe User do
-  subject(:user) do
-    u = User.new
-    u.email = "test@test.org"
-    u.password = "testing123"
-    u
-  end
+  subject(:user) { FactoryGirl.build(:user) }
+
   describe ".groups" do
     context "when nothing has been assigned" do
       it "should return a blank array" do
@@ -22,14 +18,9 @@ describe User do
       end
     end
     context "when the user has a role assigned directly" do
-      let(:role) do
-        r = Role.new
-        r.name = "admin"
-        r
-      end
+      let(:role) { FactoryGirl.create(:role, name: "admin") }
 
       before(:each) do
-        role.save!
         subject.roles << role
         subject.save!
       end
@@ -42,11 +33,7 @@ describe User do
         subject.stub(:current_sign_in_ip).and_return("127.0.0.1")
       end
       context "and there is an IP Range defined" do
-        let(:role) do
-          r = Role.new
-          r.name = "admin"
-          r
-        end
+        let(:role) { FactoryGirl.create(:role, name: "admin") }
         let(:ip_range) do
           i = IpRange.new
           i.ip_start = "127.0.0.1"
@@ -79,9 +66,7 @@ describe User do
           end
           context "and they are assigned a different role" do
             before(:each) do
-              r = Role.new
-              r.name = "test"
-              subject.roles << r
+              subject.roles << FactoryGirl.create(:role, name: "test")
             end
             it "should return both groups" do
               expect(subject.groups).to eq ["test", "admin"]

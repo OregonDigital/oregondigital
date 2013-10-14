@@ -2,26 +2,10 @@ require 'spec_helper'
 
 describe "SetsController /index" do
   let(:collection_pid) {'oregondigital:monkeys'}
-  let(:collection) do
-    g = GenericCollection.new(:pid => collection_pid)
-    g.title = "Test Collection"
-    g.save
-    g
-  end
-  let(:item) do
-    i = GenericAsset.new
-    i.subject = "Test Facet"
-    i.read_groups = ["public"]
-    i.review!
-    i
-  end
-  let(:item2) do
-    i = GenericAsset.new
-    i.subject = "Other Facet"
-    i.read_groups = ["public"]
-    i.review!
-    i
-  end
+  let(:collection) { FactoryGirl.create(:generic_collection, :has_pid, pid: collection_pid) }
+  let(:item) { FactoryGirl.create(:generic_asset, subject: "Test Facet") }
+  let(:item2) { FactoryGirl.create(:generic_asset, subject: "Other Facet") }
+
   before(:each) do
     collection
   end
@@ -40,8 +24,8 @@ describe "SetsController /index" do
       visit sets_path
     end
     it "should show the facets" do
-      expect(page).to have_content("Test Facet")
-      expect(page).to have_content("Other Facet")
+      expect(page).to have_content(item.subject.join)
+      expect(page).to have_content(item2.subject.join)
     end
   end
   context "when requesting a collection sub-page" do
@@ -63,7 +47,7 @@ describe "SetsController /index" do
     context "when it does not exist" do
       it "should show the generic collection landing page" do
         within("#main-container h2") do
-          expect(page).to have_content("Test Collection")
+          expect(page).to have_content(collection.title)
         end
       end
     end
@@ -109,7 +93,7 @@ describe "SetsController /index" do
     context "that does not have a set page" do
       it "should show the generic collection landing page" do
         within("#main-container h2") do
-          expect(page).to have_content("Test Collection")
+          expect(page).to have_content(collection.title)
         end
       end
     end
