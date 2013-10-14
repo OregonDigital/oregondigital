@@ -1,6 +1,14 @@
 class GenericCollection < GenericAsset
   include OregonDigital::Collection
+
   def to_param
-    OregonDigital::IdService.noidify(pid)
+    self.class.id_param(pid)
   end
+
+  private
+
+  def self.id_param(id)
+    OregonDigital::IdService.noidify(id)
+  end
+
 end
