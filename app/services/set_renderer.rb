@@ -1,5 +1,5 @@
 class SetRenderer
-  attr_accessor :set, :lookup_context, :set
+  attr_accessor :set, :lookup_context, :params
   def initialize(set, lookup_context, params={})
     @set, @lookup_context, @params = [set, lookup_context, params]
   end
