@@ -23,6 +23,6 @@ class SetRenderer
   end
 
   def page_name
-    "index"
+    params[:page] || "index"
   end
 end

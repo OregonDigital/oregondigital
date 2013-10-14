@@ -44,6 +44,30 @@ describe "SetsController /index" do
       expect(page).to have_content("Other Facet")
     end
   end
+  context "when requesting a collection sub-page" do
+    before(:each) do
+      item.collections << collection
+      item.save
+      item2
+      visit sets_path(:set => collection, :page => "related")
+    end
+    context "when it exists" do
+      let(:collection_pid) {'oregondigital:braceros'}
+      it "should show that set page" do
+        expect(page).to have_content("Additional Braceros Resources")
+      end
+      it "should have a readable path" do
+        expect(current_path).to eq "/sets/braceros/related"
+      end
+    end
+    context "when it does not exist" do
+      it "should show the generic collection landing page" do
+        within("#main-container h2") do
+          expect(page).to have_content("Test Collection")
+        end
+      end
+    end
+  end
   context "when requesting a specific collection" do
     before(:each) do
       item.collections << collection
