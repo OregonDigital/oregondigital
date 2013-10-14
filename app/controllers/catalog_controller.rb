@@ -20,9 +20,25 @@ class CatalogController < ApplicationController
   # Filter out unreviewed items.
   self.solr_search_params_logic += [:exclude_unreviewed_items]
 
+  def exclude_unwanted_models(solr_parameters, user_parameters)
+    solr_parameters[:fq] ||= []
+    unwanted_models.each do |model|
+      solr_parameters[:fq] << "-#{ActiveFedora::SolrService.solr_name("active_fedora_model", :stored_sortable)}:\"#{model.to_s}\""
+    end
+  end
+
   def exclude_unreviewed_items(solr_parameters, user_parameters)
     solr_parameters[:fq] ||= []
     solr_parameters[:fq] << "-#{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:\"false\""
+  end
+
+  private
+
+  # Array of models to exclude from catalog results.
+  def unwanted_models
+    [
+      GenericCollection
+    ]
   end
 
 end
