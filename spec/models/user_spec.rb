@@ -4,7 +4,7 @@ describe User do
   subject(:user) do
     u = User.new
     u.email = "test@test.org"
-    u.password = "testing"
+    u.password = "testing123"
     u
   end
   describe ".groups" do
@@ -13,19 +13,28 @@ describe User do
         expect(subject.groups).to eq []
       end
     end
+    context "immediately after saving" do
+      before(:each) do
+        subject.save!
+      end
+      it "should return the 'registered' group" do
+        expect(subject.groups).to eq ["registered"]
+      end
+    end
     context "when the user has a role assigned directly" do
       let(:role) do
         r = Role.new
         r.name = "admin"
         r
       end
+
       before(:each) do
-        role.save
+        role.save!
         subject.roles << role
-        subject.save
+        subject.save!
       end
       it "should return directly assigned groups" do
-        expect(subject.groups).to eq ["admin"]
+        expect(subject.groups.sort).to eq ["admin", "registered"]
       end
     end
     context "when the user has a current sign in IP" do
