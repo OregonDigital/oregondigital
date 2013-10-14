@@ -1,0 +1,38 @@
+class SetsController < CatalogController
+
+  self.solr_search_params_logic += [:require_set]
+
+  before_filter :strip_facets
+
+  def index
+    @collections = sets
+    @collection = set
+    super
+  end
+
+  def search_action_url(options={})
+    sets_path(options.merge(:set => set))
+  end
+
+  private
+
+  def sets
+    @sets ||= GenericCollectionDecorator.decorate_collection(GenericCollection.all)
+  end
+
+  def set
+    @set ||= sets.find{|x| x.pid.downcase == OregonDigital::IdService.namespaceize(params[:set]).downcase}
+  end
+
+  def require_set(solr_parameters, user_parameters)
+    solr_parameters[:fq] ||= []
+    solr_parameters[:fq] << "+#{ActiveFedora::SolrService.solr_name("desc_metadata__set",:facetable)}:\"#{set.pid}\"" if set
+  end
+
+  def strip_facets
+    if set
+      self.blacklight_config.facet_fields.except!(ActiveFedora::SolrService.solr_name("desc_metadata__set", :facetable))
+    end
+  end
+
+end
