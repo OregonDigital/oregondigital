@@ -95,4 +95,7 @@ group :development, :test do
 
   # Coveralls to announce our test coverage
   gem 'coveralls', require: false
+
+  # Factories to make our "let" blocks DRY
+  gem "factory_girl_rails"
 end
