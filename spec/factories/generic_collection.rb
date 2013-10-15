@@ -1,14 +1,5 @@
 FactoryGirl.define do
-  factory :generic_collection do
-    ignore do
-      pid "oregondigital:foo"
-    end
-
+  factory :generic_collection, parent: :active_fedora_base, class: GenericCollection do
     sequence(:title) {|n| "Generic Collection #{n}"}
-
-    trait :has_pid do
-      initialize_with { GenericCollection.new(pid: pid) }
-    end
   end
 end
-

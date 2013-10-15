@@ -2,7 +2,7 @@
 ROOT = File.expand_path(File.dirname(__FILE__) + "/../..")
 
 FactoryGirl.define do
-  factory :generic_asset do
+  factory :generic_asset, parent: :active_fedora_base, class: GenericAsset do
     sequence(:title) {|n| "Generic Asset #{n}"}
     read_groups ["public"]
     sequence(:subject) {|n| "Subject #{n}"}
