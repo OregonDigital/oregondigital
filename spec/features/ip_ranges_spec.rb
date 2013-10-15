@@ -1,19 +1,9 @@
 require 'spec_helper'
 
 describe "IP Range Administration" do
-  let(:user) do
-    u = User.new
-    u.email = "test@test.org"
-    u.password = "password"
-    u.save
-    u
-  end
-  let(:role) do
-    r = Role.new
-    r.name = "admin"
-    r.save
-    r
-  end
+  let(:user) { FactoryGirl.create(:user) }
+  let(:role) { FactoryGirl.create(:role, name: "admin") }
+
   describe "edit role" do
     context "when a user is logged in" do
       before(:each) do
@@ -31,10 +21,8 @@ describe "IP Range Administration" do
           user.save
         end
         context "and they try to delete the role" do
+          let(:new_role) { FactoryGirl.create(:role, name: "test") }
           before(:each) do
-            new_role = Role.new
-            new_role.name = "test"
-            new_role.save
             visit role_management.edit_role_path(new_role)
             within('.edit_role') do
               click_link "Delete"
