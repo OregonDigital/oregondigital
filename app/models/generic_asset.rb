@@ -6,6 +6,7 @@ class GenericAsset < ActiveFedora::Base
   include Hybag::Baggable
   include OregonDigital::Collectible
   include OregonDigital::Workflow
+  # FOO
 
   has_metadata :name => 'descMetadata', :type => OregonRDFDatastream do |ds|
     ds.crosswalk :field => :set, :to => :is_member_of_collection, :in => "RELS-EXT",
