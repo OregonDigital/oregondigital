@@ -1,4 +1,4 @@
-class YamlDatastream < ActiveFedora::Datastream
+class Datastream::Yaml < ActiveFedora::Datastream
   include Solrizer::Common
 
   def self.index_types
