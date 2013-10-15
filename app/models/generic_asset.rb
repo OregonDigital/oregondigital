@@ -7,7 +7,7 @@ class GenericAsset < ActiveFedora::Base
   include OregonDigital::Collectible
   include OregonDigital::Workflow
 
-  has_metadata :name => 'descMetadata', :type => OregonRDFDatastream do |ds|
+  has_metadata :name => 'descMetadata', :type => Datastream::OregonRDF do |ds|
     ds.crosswalk :field => :set, :to => :is_member_of_collection, :in => "RELS-EXT",
                  :transform => Proc.new {|x| x.gsub('info:fedora/','')},
                  :reverse_transform => Proc.new {|x| "info:fedora/#{x}"}
@@ -15,7 +15,7 @@ class GenericAsset < ActiveFedora::Base
   has_metadata :name => 'rightsMetadata', :type =>
     Hydra::Datastream::RightsMetadata
 
-  has_file_datastream name: 'content', type: ContentDatastream
+  has_file_datastream name: 'content', type: Datastream::Content
 
 
   def self.assign_pid(_)

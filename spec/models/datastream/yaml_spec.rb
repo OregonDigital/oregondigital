@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 class DummyAsset < ActiveFedora::Base
-  has_metadata 'descMetadata', :type => YamlDatastream
+  has_metadata 'descMetadata', :type => Datastream::Yaml
 end
 
-describe YamlDatastream do
-  subject(:datastream) {YamlDatastream.new}
+describe Datastream::Yaml do
+  subject(:datastream) {Datastream::Yaml.new}
   let(:asset) {DummyAsset.new}
   before(:all) do
     @content = File.read(File.join(fixture_path, "fixture_yml.yml"))

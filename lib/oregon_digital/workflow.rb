@@ -3,7 +3,7 @@ module OregonDigital
     extend ActiveSupport::Concern
 
     included do
-      has_metadata :name => 'workflowMetadata', :type => YamlDatastream
+      has_metadata :name => 'workflowMetadata', :type => Datastream::Yaml
       after_initialize :reset_workflow, :if => :new_record?
     end
 
