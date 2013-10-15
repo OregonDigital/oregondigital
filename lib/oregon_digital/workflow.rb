@@ -1,4 +1,4 @@
-require_relative "app/models/datastreams/yaml_datastream.rb"
+require_relative "../../app/models/datastreams/yaml_datastream.rb"
 
 module OregonDigital
   module Workflow
