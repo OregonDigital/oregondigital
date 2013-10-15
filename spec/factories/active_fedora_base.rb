@@ -1,7 +1,7 @@
 # This is a high-level factory with items common to any ActiveFedora object, but shouldn't be
 # instantiated directly!
 FactoryGirl.define do
-  factory :active_fedora_base do
+  factory :active_fedora_base, class: ActiveFedora::Base do
     ignore do
       pid "oregondigital:foo"
     end
