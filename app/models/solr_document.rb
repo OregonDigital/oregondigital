@@ -3,6 +3,8 @@ class SolrDocument
 
   include Blacklight::Solr::Document
 
+  include Draper::Decoratable
+
   # self.unique_key = 'id'
   
   # The following shows how to setup this blacklight document to display marc documents
