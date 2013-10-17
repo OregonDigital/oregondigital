@@ -1,5 +1,5 @@
 <%# default partial to display solr document fields in catalog show view -%>
-<%= render :partial => @document_object.view_partial, :locals => {:document => @document_object} %>
+<%= render :partial => decorated_object.view_partial, :locals => {:document => document} %>
 
 <dl class="dl-horizontal  dl-invert">
   <% document_show_fields(document).each do |solr_fname, field| -%>
