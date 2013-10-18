@@ -1,6 +1,5 @@
 class GenericAsset < ActiveFedora::Base
-  include Hydra::ModelMixins::RightsMetadata
-  include Hydra::ModelMixins::CommonMetadata
+  include Hydra::AccessControls::Permissions
   include Hydra::ModelMethods
   include Hydra::Derivatives
   include Hybag::Baggable
@@ -22,7 +21,7 @@ class GenericAsset < ActiveFedora::Base
     OregonDigital::IdService.mint
   end
 
-  delegate_to :descMetadata, [:hasFormat, :type, :location, :created, :description, :rights, :title, :modified, :date], :unique => true
-  delegate_to :descMetadata, [:identifier, :subject, :set]
+  delegate_to :descMetadata, [:hasFormat, :type, :location, :created, :description, :rights, :title, :modified, :date], :multiple => false
+  delegate_to :descMetadata, [:identifier, :subject, :set], :multiple => true
 
 end

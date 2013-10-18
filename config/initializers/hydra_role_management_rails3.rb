@@ -1,1 +1,0 @@
-Role.send :include, Hydra::RoleManagement::LegacyAttributeHandling
