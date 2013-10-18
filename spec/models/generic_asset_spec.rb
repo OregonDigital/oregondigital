@@ -37,8 +37,8 @@ describe GenericAsset do
 
   describe 'pid assignment' do
     context 'before the object is saved' do
-      it 'should be a filler PID' do
-        expect(generic_asset.pid).to eq '__DO_NOT_USE__'
+      it 'should be nil' do
+        expect(generic_asset.pid).to be_nil
       end
     end
     context 'when a new object is saved' do
@@ -47,8 +47,8 @@ describe GenericAsset do
           OregonDigital::IdService.should_receive(:mint).and_call_original
           generic_asset.save
         end
-        it 'should no longer be a filler PID' do
-          expect(generic_asset.pid).not_to eq '__DO_NOT_USE__'
+        it 'should no longer be nil' do
+          expect(generic_asset.pid).not_to be_nil
         end
         it 'should be a valid NOID' do
           expect(OregonDigital::IdService.valid?(generic_asset.pid)).to eq true
