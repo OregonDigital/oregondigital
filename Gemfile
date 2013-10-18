@@ -46,7 +46,7 @@ gem 'ip-ranges', '~>0.1.1'
 
 # Derivative Creation
 
-gem 'hydra-derivatives'
+gem 'hydra-derivatives', '0.0.5'
 
 # Docsplit for splitting up documents
 gem 'docsplit'
