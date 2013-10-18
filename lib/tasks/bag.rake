@@ -12,10 +12,10 @@ namespace :bag do
   desc 'Import Bags from directory provided'
   task :import, [:bag_directory] => :environment do |t, args|
     each_bag(args[:bag_directory]) do |bag|
-      puts "ingested: #{bag.bag_dir}"
       bag.manifest!
       bag.tagmanifest!
       Hybag.ingest(bag).review!
+      puts "ingested: #{bag.bag_dir}"
     end
   end
 
