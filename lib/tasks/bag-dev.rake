@@ -1,4 +1,4 @@
-
+#TODO: extract ingest service objects and handle collections from hybag.yml
 namespace :bag do
 
   def each_bag(dir, &block)
