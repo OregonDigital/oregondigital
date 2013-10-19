@@ -71,8 +71,8 @@ group :development do
   # Spring as Rails preloader
   gem 'spring'
   # Guard for auto-test running
-  gem 'guard'
-  gem 'guard-rspec'
+  gem 'guard', '~>1.0'
+  gem 'guard-rspec', '~>3.0'
   gem 'unicorn', '~>4.6.3'
 end
 
