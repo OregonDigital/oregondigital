@@ -27,16 +27,35 @@ describe Image do
         image.save
         image.create_derivatives
       end
+      after(:each) do
+        FileUtils.rm(image.pyramidal_tiff_location)
+      end
       it 'should populate the thumbnail datastream' do
         expect(image.thumbnail.content).not_to be_nil
         expect(image.thumbnail.content).not_to eq ''
       end
-      it 'should populate the pyramidal datastream' do
-        expect(image.pyramidal.content).not_to be_nil
-        expect(image.pyramidal.content).not_to eq ''
-        mime_type = FileMagic.new(FileMagic::MAGIC_MIME).buffer(image.pyramidal.content).split(';')[0]
+      it 'should populate the external pyramidal datastream' do
+        expect(image.pyramidal.dsLocation).to eq("file://" + image.pyramidal_tiff_location)
+        expect(image.pyramidal.content).to be_nil
+      end
+      it 'should save the external pyramidal datastream' do
+        mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(image.pyramidal_tiff_location).split(';')[0]
         expect(mime_type).to eq 'image/tiff'
       end
+    end
+  end
+
+  describe "#pyramidal_tiff_location" do
+    before(:each) do
+      image.stub(:pid => "oregondigital:foobar")
+    end
+    it "should return a string containing the pid" do
+      expect(image.pyramidal_tiff_location).to match(/#{image.pid.gsub(':', '-')}/)
+    end
+
+    it "should use APP_CONFIG for the base path" do
+      APP_CONFIG.stub(:pyramidal_tiff_path => "/foo")
+      expect(image.pyramidal_tiff_location).to match(%r|^/foo/|)
     end
   end
 end
