@@ -3,10 +3,15 @@
 class OregonDigital::FileDistributor
   attr_accessor :base_path, :identifier, :depth
 
-  # Sets up object with a default depth of 2 and no base path
+  # Sets up object with a default depth of 2 and a local base path
   def initialize(identifier)
     @identifier = identifier.to_s
     @depth = 2
+    @base_path = Rails.root.join("media")
+  end
+
+  def base_path=(val)
+    @base_path = Pathname.new(val)
   end
 
   # Sanitizes @identifier (converts all non-alphanumerics to hyphens) and returns a "safe" filename
@@ -15,13 +20,10 @@ class OregonDigital::FileDistributor
   end
 
   # Creates a path @depth subdirectories deep to represent a "bucket"-style directory structure,
-  # prefixing with base_path if set.  Zero-pads the identifier if it's too short.
+  # prefixing with base_path.  Zero-pads the identifier if it's too short.
   def path
     reversed = (filename.rjust(@depth, "0")).reverse.split(//)
-    directories = Pathname.new((["%s"] * @depth).join("/") % reversed)
-    if base_path
-      directories = Pathname.new(base_path) + directories
-    end
-    return directories.join(filename).to_s
+    bucket_path = (["%s"] * @depth).join("/") % reversed
+    return @base_path.join(bucket_path, filename).to_s
   end
 end
