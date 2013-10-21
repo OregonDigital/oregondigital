@@ -5,37 +5,45 @@ class Hydra::Derivatives::PyramidalProcessor < Hydra::Derivatives::Image
   def process
     directives.each do |name, args|
       opts = args.kind_of?(Hash) ? args : {}
-      quality = opts.fetch(:quality, 75)
-      tile_size = opts.fetch(:tile_size, 256)
-      output_datastream_name = opts.fetch(:datastream, output_datastream_id(name))
-      create_pyramidal_image(output_datastream(output_datastream_name), quality, tile_size)
+      tiff_file = nil
+      source_datastream.to_tempfile { |f| tiff_file = create_pyramidal_image(f, opts) }
+      create_datastream(tiff_file, name, opts)
     end
   end
 
-  def create_pyramidal_image(output_datastream, quality, tile_size)
+  def create_pyramidal_image(file, opts)
+    quality = opts.fetch(:quality, 75)
+    tile_size = opts.fetch(:tile_size, 256)
     dimensions = [tile_size, tile_size]
-    extension = extract_extension(source_datastream)
+    source_pid = source_datastream.pid
+
     # Can't build tiffs from memory with VIPS. =(
-    output_path = Dir::Tmpname.create(["#{source_datastream.pid}",".#{extension}"], Hydra::Derivatives.temp_file_base){}
-    source_datastream.to_tempfile do |f|
-      VIPS::Image.new(f.path).tiff(output_path,
-                                   :compression  => :jpeg,
-                                   :layout       => :tile,
-                                   :multi_res    => :pyramid,
-                                   :quality      => quality,
-                                   :tile_size    => dimensions
-      )
+    output_path = Dir::Tmpname.create(["#{source_pid}",".tiff"], Hydra::Derivatives.temp_file_base){}
+    VIPS::Image.new(file.path).tiff(output_path,
+      :compression  => :jpeg,
+      :layout       => :tile,
+      :multi_res    => :pyramid,
+      :quality      => quality,
+      :tile_size    => dimensions
+    )
+
+    raise "Unable to store pyramidal TIFF for #{source_pid}!" if !File.exist?(output_path)
+
+    return output_path
+  end
+
+  # Dispatches to the appropriate datastream creation method based on datastream control group
+  def create_datastream(tiff_file, name, opts)
+    ds = output_datastream(opts.fetch(:datastream, output_datastream_id(name)))
+    ds.mimeType = "image/tiff"
+
+    case ds.controlGroup
+      when "M" then store_managed_datastream(ds, tiff_file)
     end
-    output_datastream.content = File.read(output_path)
-    File.delete(output_path) if File.exist?(output_path)
   end
 
-  private
-
-  def extract_extension(source_datastream)
-    fm = FileMagic.new(FileMagic::MAGIC_MIME)
-    mime_type = fm.buffer(source_datastream.content).split(';')[0]
-    MIME::Types[mime_type].first.extensions.first
+  def store_managed_datastream(ds, tiff_file)
+    ds.content = File.read(tiff_file)
+    File.delete(tiff_file)
   end
-
 end
