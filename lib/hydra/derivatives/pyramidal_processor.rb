@@ -39,11 +39,21 @@ class Hydra::Derivatives::PyramidalProcessor < Hydra::Derivatives::Image
 
     case ds.controlGroup
       when "M" then store_managed_datastream(ds, tiff_file)
+      when "E" then store_external_datastream(ds, tiff_file, opts)
     end
   end
 
   def store_managed_datastream(ds, tiff_file)
     ds.content = File.read(tiff_file)
     File.delete(tiff_file)
+  end
+
+  # Moves the temporary tiff file and stores location metadata on the stream so Fedora knows how
+  # to serve up the file if necessary
+  def store_external_datastream(ds, tiff_file, opts)
+    file_path = opts[:file_path]
+    FileUtils.mkdir_p(File.dirname(file_path))
+    FileUtils.mv(tiff_file, file_path)
+    ds.dsLocation = "file://#{file_path}"
   end
 end
