@@ -48,3 +48,7 @@ braceros-tiffs
 /app/assets/images/sets
 /app/assets/stylesheets/sets
 /app/views/sets/*
+
+# Ignore derived tiffs - in production they probably won't live here, but we still don't want
+# to accidentally push any up during dev/test
+/media
