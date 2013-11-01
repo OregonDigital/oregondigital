@@ -1,14 +1,20 @@
 language: ruby
 rvm:
-  - "1.9.3"
-  - "2.0.0"
-bundler_args: --without development
+  - 2.0.0
+bundler_args: --without development --path=~/.bundle
 services:
   - redis-server
+env:
+  global:
+  - BUNDLE_ARCHIVE="OregonDigital"
+  - AWS_S3_BUCKET="CI-Artifacts"
+  - secure: QClPwl358D90HQEl6B5UT2pDxdYJN48411wxre86rTFhWEi7socrnuUNL11ZnD16I6BBki3KWlcNo37tkP2H6Pl36g4hngpLNekipvxA3wRzHaHVcDj2NAASnZmo78YG8MJYwbPc0oFf/bp2F39GKEP9CkvsdSyCv4ydi+NV3Ao=
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev graphicsmagick poppler-utils poppler-data ghostscript pdftk libreoffice
-
-branches:
-  only:
-    - master
+  - sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev graphicsmagick
+    poppler-utils poppler-data ghostscript pdftk libreoffice
+  - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
+  - gem install bundler bundle_cache
+  - bundle_cache_install
+after_script:
+  - bundle_cache
