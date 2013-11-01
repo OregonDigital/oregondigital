@@ -63,6 +63,8 @@ gem 'hydra-role-management'
 # Draper for decoration
 gem 'draper'
 
+gem 'spira', :github => 'terrellt/spira'
+
 group :development do
   gem 'pry'
   gem 'pry-doc'
