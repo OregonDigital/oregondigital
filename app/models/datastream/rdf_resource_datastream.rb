@@ -14,8 +14,8 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     @resource_class = Class.new(OregonDigital::ObjectResource) do
       # properties = ds_props
       ds_props.each do |field, args|
-        behaviors = args.delete(:behaviors)
-        type = args.delete(:type)
+        behaviors = args[:behaviors]
+        type = args[:type]
         property field, args do |index|
           index.as behaviors
           index.type type
