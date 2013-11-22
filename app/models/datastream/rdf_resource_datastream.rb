@@ -78,10 +78,7 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
 
   def to_solr(solr_doc = Hash.new) # :nodoc:
     fields.each do |field_key, field_info|
-      puts field_key
-      puts field_info
       values = resource.get_values(field_key)
-      puts values
       if values
         Array(values).each do |val|
           val = val.to_s if val.kind_of? RDF::URI
