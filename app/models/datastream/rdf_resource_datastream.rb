@@ -54,7 +54,11 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
   end
 
   def resource
-    @resource ||= @resource_class.new
+    @resource ||= begin
+      r = @resource_class.new
+      r << RDF::Reader.for(serialization_format).new(datastream_content) if datastream_content
+      r
+    end
   end
 
   def rdf_subject
