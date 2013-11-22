@@ -1,14 +1,18 @@
 require 'spec_helper'
 
-class DummyAsset < ActiveFedora::Base
-  has_metadata 'descMetadata', :type => Datastream::Yaml
-end
-
 describe Datastream::Yaml do
   subject(:datastream) {Datastream::Yaml.new}
   let(:asset) {DummyAsset.new}
   before(:all) do
     @content = File.read(File.join(fixture_path, "fixture_yml.yml"))
+  end
+  before(:each) do
+    class DummyAsset < ActiveFedora::Base
+      has_metadata 'descMetadata', :type => Datastream::Yaml
+    end
+  end
+  after(:each) do
+    Object.send(:remove_const, "DummyAsset") if Object
   end
   describe ".to_solr" do
     context "when there is no content" do
