@@ -1,13 +1,22 @@
 require 'spec_helper'
 
-describe Datastream::OregonResource do
+describe Datastream::RdfResourceDatastream do
   before(:each) do
+    class DummyResource < Datastream::RdfResourceDatastream
+      property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal do |index|
+        index.as :searchable, :displayable
+      end
+      def serialization_format
+        :ntriples
+      end
+    end
     class DummyAsset < ActiveFedora::Base
-      has_metadata :name => 'descMetadata', :type => Datastream::OregonResource
+      has_metadata :name => 'descMetadata', :type => DummyResource
     end
   end
   after(:each) do
     Object.send(:remove_const, "DummyAsset") if Object
+    Object.send(:remove_const, "DummyResource") if Object
   end
   subject {DummyAsset.new}
   describe "attribute setting" do
