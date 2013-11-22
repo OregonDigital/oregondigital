@@ -44,6 +44,11 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     resource << RDF::Reader.for(serialization_format).new(content)
   end
 
+  def content_changed?
+    @content = serialize
+    super
+  end
+
   def graph
     resource
   end
