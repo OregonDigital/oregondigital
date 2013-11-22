@@ -94,7 +94,7 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
       type = config[:type]
       behaviors = config[:behaviors]
       next unless type and behaviors
-      resource.query(:subject => subject, :predicate => config[:predicate]).each_statement do |statement|
+      resource.query(:subject => rdf_subject, :predicate => config[:predicate]).each_statement do |statement|
         field_map[name] ||= {:values => [], :type => type, :behaviors => behaviors}
         field_map[name][:values] << statement.object.to_s
       end
