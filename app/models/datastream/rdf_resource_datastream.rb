@@ -42,6 +42,7 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
   def content=(content)
     resource.clear!
     resource << RDF::Reader.for(serialization_format).new(content)
+    content
   end
 
   def content_changed?
