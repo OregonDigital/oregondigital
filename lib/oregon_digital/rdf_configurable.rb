@@ -32,8 +32,9 @@ module OregonDigital
       config = ActiveFedora::Rdf::NodeConfig.new(name, opts[:predicate], :class_name => opts[:class_name]).tap do |config|
         config.with_index(&block) if block_given?
       end
+      behaviors = config.behaviors.flatten unless config.behaviors.empty?
       self.properties[name] = {
-        :behaviors => config.behaviors.flatten,
+        :behaviors => behaviors,
         :type => config.type,
         :class_name => config.class_name,
         :predicate => config.predicate,
