@@ -61,6 +61,15 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     end
   end
 
+  def term_values(values)
+    values = Array.wrap(values)
+    current_value = nil
+    values.each do |value|
+      current_value = self.send(value)
+    end
+    return current_value
+  end
+
   def rdf_subject
     resource.subject
   end

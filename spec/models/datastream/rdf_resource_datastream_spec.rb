@@ -12,6 +12,7 @@ describe Datastream::RdfResourceDatastream do
     end
     class DummyAsset < ActiveFedora::Base
       has_metadata :name => 'descMetadata', :type => DummyResource
+      delegate :title, :to => :descMetadata, :multiple => true
     end
   end
   after(:each) do
@@ -19,6 +20,25 @@ describe Datastream::RdfResourceDatastream do
     Object.send(:remove_const, "DummyResource") if Object
   end
   subject {DummyAsset.new}
+  describe "#to_solr" do
+    before(:each) do
+      subject.descMetadata.title = "bla"
+    end
+    it "should not be blank" do
+      expect(subject.to_solr).not_to be_blank
+    end
+    it "should solrize" do
+      expect(subject.to_solr["desc_metadata__title_teim"]).to eq ["bla"]
+    end
+  end
+  describe "delegation" do
+    before(:each) do
+      subject.descMetadata.title = "bla"
+    end
+    it "should work" do
+      expect(subject.title).to eq ["bla"]
+    end
+  end
   describe "attribute setting" do
     before(:each) do
       subject.descMetadata.title = "bla"
