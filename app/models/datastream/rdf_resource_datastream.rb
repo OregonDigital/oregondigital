@@ -70,6 +70,14 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     return current_value
   end
 
+  def update_indexed_attributes(hash)
+    hash.each do |fields, value|
+      fields.each do |field|
+        self.send("#{field}=", value)
+      end
+    end
+  end
+
   def rdf_subject
     resource.subject
   end

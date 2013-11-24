@@ -32,11 +32,13 @@ describe Datastream::RdfResourceDatastream do
     end
   end
   describe "delegation" do
-    before(:each) do
+    it "should retrieve values" do
       subject.descMetadata.title = "bla"
-    end
-    it "should work" do
       expect(subject.title).to eq ["bla"]
+    end
+    it "should set values" do
+      subject.title = "blah"
+      expect(subject.descMetadata.title).to eq ["blah"]
     end
   end
   describe "attribute setting" do
