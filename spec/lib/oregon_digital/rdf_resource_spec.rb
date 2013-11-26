@@ -3,7 +3,9 @@ describe OregonDigital::RdfResource do
 
   before(:each) do
     class DummyResource < OregonDigital::RdfResource
-      property :title, :predicate => RDF::DC.title
+      map_predicates do |map|
+        map.title(:in => RDF::DC)
+      end
     end
   end
   after(:each) do

@@ -2,7 +2,6 @@ module OregonDigital
   module RdfProperties
 
     attr_accessor :properties
-
     def property(name, opts={}, &block)
       self.properties ||= {}.with_indifferent_access
       config = ActiveFedora::Rdf::NodeConfig.new(name, opts[:predicate], :class_name => opts[:class_name]).tap do |config|
@@ -40,6 +39,26 @@ module OregonDigital
            #{parent}get_values(:#{name})
         end
       eoruby
+    end
+
+    public
+    # Mapper is for backwards compatibility.
+    class Mapper
+      attr_accessor :parent
+      def initialize(parent)
+        @parent = parent
+      end
+      def method_missing(name, *args, &block)
+        properties = args.first || {}
+        vocab = properties.delete(:in)
+        to = properties.delete(:to) || name
+        predicate = vocab.send(to)
+        parent.property(name, properties.merge(:predicate => predicate), &block)
+      end
+    end
+    def map_predicates
+      mapper = Mapper.new(self)
+      yield(mapper)
     end
 
   end
