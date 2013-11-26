@@ -11,10 +11,15 @@ module OregonDigital
       RDF::RDFS.label
     end
 
+    def type
+      nil
+    end
+
     def configure(options = {})
       singleton_class.class_eval do {
           :base_uri => options[:base_uri],
-          :rdf_label => options[:rdf_label]
+          :rdf_label => options[:rdf_label],
+          :type => options[:type]
         }.each do |name, value|
           # redefine reader methods only when required,
           # otherwise, use the ancestor methods
@@ -32,7 +37,7 @@ module OregonDigital
       config = ActiveFedora::Rdf::NodeConfig.new(name, opts[:predicate], :class_name => opts[:class_name]).tap do |config|
         config.with_index(&block) if block_given?
       end
-      behaviors = config.behaviors.flatten unless config.behaviors.empty?
+      behaviors = config.behaviors.flatten if config.behaviors and not config.behaviors.empty?
       self.properties[name] = {
         :behaviors => behaviors,
         :type => config.type,
