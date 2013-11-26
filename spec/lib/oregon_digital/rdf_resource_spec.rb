@@ -67,4 +67,16 @@ describe OregonDigital::RdfResource do
       expect(subject.get_values(:title)).to eq ['Comet in Moominland', 'Finn Family Moomintroll']
     end
   end
+
+  describe 'editing the graph' do
+    it 'should write properties when statements are added' do
+      subject << RDF::Statement.new(subject.subject, RDF::DC.title, 'Comet in Moominland')
+      expect(subject.title).to include 'Comet in Moominland'
+    end
+    it 'should delete properties when statements are removed' do
+      subject << RDF::Statement.new(subject.subject, RDF::DC.title, 'Comet in Moominland')
+      subject.delete RDF::Statement.new(subject.subject, RDF::DC.title, 'Comet in Moominland')
+      expect(subject.title).to eq []
+    end
+  end
 end
