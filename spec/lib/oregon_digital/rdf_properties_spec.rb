@@ -25,4 +25,6 @@ describe OregonDigital::RdfProperties do
       expect(DummyProperties.properties[:title][:class_name]).to eq RDF::Literal
     end
   end
+
+  it 'should carry propereties from superclass'
 end
