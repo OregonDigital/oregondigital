@@ -6,6 +6,7 @@ module OregonDigital
     def initialize(*args, &block)
       resource_uri = args.shift unless args.first.is_a?(Hash)
       set_subject!(resource_uri) if resource_uri
+      self << RDF::Statement(self.subject, RDF::RDFS.label, type) if self.class.type.kind_of? RDF::URI
       super(*args, &block)
     end
 
