@@ -1,4 +1,4 @@
-class Datastream::OregonResource < Datastream::NtResourceDatastream
+class Datastream::OregonResource < Datastream::QuadResourceDatastream
   property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal do |index|
     index.as :searchable, :displayable
   end
