@@ -68,6 +68,16 @@ describe OregonDigital::RdfResource do
     end
   end
 
+  describe '#type' do
+    it 'should return the configured type'
+    it 'should set the type'
+    it 'should be the type in the graph'
+  end
+
+  describe '#rdf_label' do
+    it 'should return the configured label values'
+  end
+
   describe 'editing the graph' do
     it 'should write properties when statements are added' do
       subject << RDF::Statement.new(subject.subject, RDF::DC.title, 'Comet in Moominland')

@@ -17,7 +17,6 @@ describe OregonDigital::RdfConfigurable do
 
   describe '#rdf_label' do
     it 'should have good defaults if a label is not set'
-    it 'should return the values for the configured label'
   end
 
   describe '#base_uri' do
@@ -26,7 +25,7 @@ describe OregonDigital::RdfConfigurable do
 
   describe '#type' do
     it 'should return its own type'
-    it 'should be the type in the graph'
+
   end
 
 end
