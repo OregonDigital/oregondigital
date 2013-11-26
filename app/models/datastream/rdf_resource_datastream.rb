@@ -1,6 +1,6 @@
 class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
   include Solrizer::Common
-  extend OregonDigital::RdfConfigurable
+  extend OregonDigital::RdfProperties
 
   before_save do
     if content.blank?

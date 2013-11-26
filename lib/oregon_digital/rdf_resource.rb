@@ -1,6 +1,7 @@
 module OregonDigital
   class RdfResource < RDF::Graph
     extend RdfConfigurable
+    extend RdfProperties
 
     def initialize(*args, &block)
       resource_uri = args.shift unless args.first.is_a?(Hash)
