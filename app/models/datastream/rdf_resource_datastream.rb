@@ -79,11 +79,11 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
   end
 
   def rdf_subject
-    resource.subject
+    resource.rdf_subject
   end
 
   def serialize
-    resource.set_subject!(pid) if pid and resource.subject.node?
+    resource.set_subject!(pid) if pid and rdf_subject.node?
     resource.dump serialization_format
   end
 

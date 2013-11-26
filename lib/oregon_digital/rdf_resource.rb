@@ -6,12 +6,12 @@ module OregonDigital
     def initialize(*args, &block)
       resource_uri = args.shift unless args.first.is_a?(Hash)
       set_subject!(resource_uri) if resource_uri
-      self << RDF::Statement(self.subject, RDF::RDFS.label, type) if self.class.type.kind_of? RDF::URI
+      self << RDF::Statement(self.rdf_subject, RDF::RDFS.label, type) if self.class.type.kind_of? RDF::URI
       super(*args, &block)
     end
 
-    def subject
-      @subject ||= RDF::Node.new
+    def rdf_subject
+      @rdf_subject ||= RDF::Node.new
     end
 
     def base_uri
@@ -37,7 +37,7 @@ module OregonDigital
       values = Array(values)
       property_class = class_for_property(property)
       property = predicate_for_property(property) unless property.kind_of? RDF::URI
-      delete([subject, property, nil])
+      delete([rdf_subject, property, nil])
       values.each do |val|
         val = RDF::Literal(val) if val.kind_of? String
         # warn("Warning: #{val.to_s} is not of class #{property_class}.") unless val.kind_of? property_class or property_class == nil
@@ -48,14 +48,14 @@ module OregonDigital
         val = val.to_uri if val.respond_to? :to_uri
         raise 'value must be an RDF URI, Node, Literal, or a plain string' unless
             val.kind_of? RDF::Resource or val.kind_of? RDF::Literal
-        insert [subject, property, val]
+        insert [rdf_subject, property, val]
       end
     end
 
     def get_values(property)
       values = []
       property = predicate_for_property(property) unless property.kind_of? RDF::URI
-      query(:subject => subject, :predicate => property).each_statement do |statement|
+      query(:subject => rdf_subject, :predicate => property).each_statement do |statement|
         value = statement.object
         value = value.to_s if value.kind_of? RDF::Literal
         values << value
@@ -64,21 +64,21 @@ module OregonDigital
     end
 
     def set_subject!(uri_or_str)
-      raise "Refusing update URI when one is already assigned!" unless subject.node?
-      statements = query(:subject => subject)
+      raise "Refusing update URI when one is already assigned!" unless rdf_subject.node?
+      statements = query(:subject => rdf_subject)
       if uri_or_str.respond_to? :to_uri
-        @subject = uri_or_str.to_uri
+        @rdf_subject = uri_or_str.to_uri
       elsif base_uri
         separator = self.base_uri.to_s[-1,1] =~ /(\/|#)/ ? '' : '/'
-        @subject = RDF::URI.intern(self.base_uri.to_s + separator + uri_or_str.to_s)
+        @rdf_subject = RDF::URI.intern(self.base_uri.to_s + separator + uri_or_str.to_s)
       else
-        @subject = RDF::URI(uri_or_str)
+        @rdf_subject = RDF::URI(uri_or_str)
       end
 
       unless empty?
         statements.each_statement do |statement|
           delete(statement)
-          self << RDF::Statement.new(subject, statement.predicate, statement.object)
+          self << RDF::Statement.new(rdf_subject, statement.predicate, statement.object)
         end
       end
     end
@@ -94,7 +94,7 @@ module OregonDigital
     end
 
     def add_node(property, resource)
-      insert [subject, predicate_for_property(property), resource.subject]
+      insert [rdf_subject, predicate_for_property(property), resource.rdf_subject]
     end
 
   end
