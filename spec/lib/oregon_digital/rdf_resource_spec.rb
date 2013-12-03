@@ -22,7 +22,7 @@ describe OregonDigital::RdfResource do
 
   subject { DummyResource.new }
 
-  describe 'subject' do
+  describe 'rdf_subject' do
     it "should be a blank node if we haven't set it" do
       expect(subject.rdf_subject.node?).to be_true
     end
