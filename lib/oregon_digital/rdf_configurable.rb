@@ -1,8 +1,6 @@
 module OregonDigital
   module RdfConfigurable
 
-    attr_accessor :properties
-
     def base_uri
       nil
     end
