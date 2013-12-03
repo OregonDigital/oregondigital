@@ -14,6 +14,11 @@ module OregonDigital
       @rdf_subject ||= RDF::Node.new
     end
 
+    def node?
+      return true if rdf_subject.kind_of? RDF::Node
+      false
+    end
+
     def base_uri
       self.class.base_uri
     end
@@ -36,13 +41,13 @@ module OregonDigital
       values = [values] if values.kind_of? RDF::Graph
       values = Array(values)
       property_class = class_for_property(property)
-      property = predicate_for_property(property) unless property.kind_of? RDF::URI
+      property = predicate_for_property(property)
       delete([rdf_subject, property, nil])
       values.each do |val|
         val = RDF::Literal(val) if val.kind_of? String
         # warn("Warning: #{val.to_s} is not of class #{property_class}.") unless val.kind_of? property_class or property_class == nil
         if val.kind_of? RdfResource
-          add_node(property, val)
+          add_child_resource(property, val)
           next
         end
         val = val.to_uri if val.respond_to? :to_uri
@@ -54,10 +59,11 @@ module OregonDigital
 
     def get_values(property)
       values = []
-      property = predicate_for_property(property) unless property.kind_of? RDF::URI
-      query(:subject => rdf_subject, :predicate => property).each_statement do |statement|
+      predicate = predicate_for_property(property)
+      query(:subject => rdf_subject, :predicate => predicate).each_statement do |statement|
         value = statement.object
         value = value.to_s if value.kind_of? RDF::Literal
+        value = make_node(property, value) if value.kind_of? RDF::URI or value.kind_of? RDF::Node
         values << value
       end
       values
@@ -86,15 +92,31 @@ module OregonDigital
     private
 
     def predicate_for_property(property)
-      self.class.properties[property][:predicate]
+      return self.class.properties[property][:predicate] unless property.kind_of? RDF::URI
+      return property
+    end
+
+    def property_for_predicate(predicate)
+      self.class.properties.each do |property, values|
+        return property if values[:predicate] == predicate
+      end
+      return nil
     end
 
     def class_for_property(property)
-      self.class.properties[property][:class_name] if self.class.properties.include? property
+      klass = self.class.properties[property][:class_name] if self.class.properties.include? property
+      klass ||= OregonDigital::RdfResource
+      klass
     end
 
-    def add_node(property, resource)
-      insert [rdf_subject, predicate_for_property(property), resource.rdf_subject]
+    def add_child_resource(property, resource)
+      insert [rdf_subject, property, resource.rdf_subject]
+    end
+
+    def make_node(property, value)
+      klass = class_for_property(property)
+      node = klass.new()
+      node << query(:subject => self.rdf_subject, :predicate => property, :object => value)
     end
 
   end

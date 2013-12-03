@@ -2,7 +2,14 @@ require "spec_helper"
 describe OregonDigital::RdfResource do
 
   before(:each) do
+    class DummyLicense < OregonDigital::RdfResource
+      map_predicates do |map|
+        map.title(:in => RDF::DC)
+      end
+    end
+
     class DummyResource < OregonDigital::RdfResource
+      property :license, :predicate => RDF::DC.license, :class_name => DummyLicense
       map_predicates do |map|
         map.title(:in => RDF::DC)
       end
@@ -10,6 +17,7 @@ describe OregonDigital::RdfResource do
   end
   after(:each) do
     Object.send(:remove_const, "DummyResource") if Object
+    Object.send(:remove_const, "DummyLicense") if Object
   end
 
   subject { DummyResource.new }
@@ -40,6 +48,17 @@ describe OregonDigital::RdfResource do
     it 'should set and get properties' do
       subject.title = 'Comet in Moominland'
       expect(subject.title).to eq ['Comet in Moominland']
+    end
+  end
+
+  describe 'child nodes' do
+    it 'should return an RdfResource object when the value is a URI' do
+      subject.license = DummyLicense.new('http://example.org/license')
+      expect(subject.license.first).to be_kind_of DummyLicense
+    end
+    it 'should return an RdfResource object when the value is a bnode' do
+      subject.license = DummyLicense.new
+      expect(subject.license.first).to be_kind_of DummyLicense
     end
   end
 
