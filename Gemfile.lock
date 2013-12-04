@@ -190,6 +190,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    json_pure (1.8.1)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -213,6 +214,7 @@ GEM
     minitest (4.7.5)
     mono_logger (1.1.0)
     multi_json (1.8.2)
+    net-http-persistent (2.9)
     netaddr (1.5.0)
     noid (0.6.6)
       backports
@@ -275,6 +277,10 @@ GEM
       ffi (>= 0.5.0)
     rdf (1.0.9)
       addressable (>= 2.3)
+    rdf-4store (0.0.2)
+      nokogiri (>= 1.4.1)
+      rdf (>= 0.2.2)
+      sparql-client (>= 0.0.4)
     rdf-rdfxml (1.0.1)
       rdf (>= 1.0)
       rdf-xsd (>= 1.0)
@@ -349,6 +355,10 @@ GEM
       nokogiri
       stomp
       xml-simple
+    sparql-client (1.0.4.1)
+      json_pure (>= 1.4)
+      net-http-persistent (>= 1.4)
+      rdf (>= 1.0)
     spring (0.0.11)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -430,6 +440,7 @@ DEPENDENCIES
   pry-doc
   pry-rails
   rails (~> 4.0.0)
+  rdf-4store
   recursive-open-struct
   resque (~> 1.25.0)
   rmagick (~> 2.13.2)
