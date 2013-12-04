@@ -8,12 +8,15 @@ module OregonDigital
         config.with_index(&block) if block_given?
       end
       behaviors = config.behaviors.flatten if config.behaviors and not config.behaviors.empty?
+      persistence = opts[:persistence]
+      persistence ||= :parent
       self.properties[name] = {
         :behaviors => behaviors,
         :type => config.type,
         :class_name => config.class_name,
         :predicate => config.predicate,
-        :term => config.term
+        :term => config.term,
+        :persistence => persistence
       }
       register_property(name)
     end

@@ -103,6 +103,7 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
       if values
         Array(values).each do |val|
           val = val.to_s if val.kind_of? RDF::URI
+          val = val.solrize if val.kind_of? OregonDigital::RdfResource
           self.class.create_and_insert_terms(prefix(field_key), val, field_info[:behaviors], solr_doc)
         end
       end
