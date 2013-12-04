@@ -45,7 +45,7 @@ module OregonDigital
       delete([rdf_subject, property, nil])
       values.each do |val|
         val = RDF::Literal(val) if val.kind_of? String
-        # warn("Warning: #{val.to_s} is not of class #{property_class}.") unless val.kind_of? property_class or property_class == nil
+        #warn("Warning: #{val.to_s} is not of class #{property_class}.") unless val.kind_of? property_class or property_class == nil
         if val.kind_of? RdfResource
           add_child_resource(property, val)
           next
@@ -63,7 +63,7 @@ module OregonDigital
       query(:subject => rdf_subject, :predicate => predicate).each_statement do |statement|
         value = statement.object
         value = value.to_s if value.kind_of? RDF::Literal
-        value = make_node(property, value) if value.kind_of? RDF::URI or value.kind_of? RDF::Node
+        value = make_node(property, value) if value.kind_of? RDF::Resource
         values << value
       end
       values
@@ -115,7 +115,8 @@ module OregonDigital
 
     def make_node(property, value)
       klass = class_for_property(property)
-      node = klass.new()
+      node = klass.new if value.kind_of? RDF::Node
+      node ||= klass.new(value)
       node << query(:subject => self.rdf_subject, :predicate => property, :object => value)
     end
 

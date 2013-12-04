@@ -52,9 +52,13 @@ describe OregonDigital::RdfResource do
   end
 
   describe 'child nodes' do
-    it 'should return an RdfResource object when the value is a URI' do
+    it 'should return an object of the correct class when the value is a URI' do
       subject.license = DummyLicense.new('http://example.org/license')
       expect(subject.license.first).to be_kind_of DummyLicense
+    end
+    it 'should return an object with the correct URI when the value is a URI ' do
+      subject.license = DummyLicense.new('http://example.org/license')
+      expect(subject.license.first.rdf_subject).to eq RDF::URI("http://example.org/license")
     end
     it 'should return an RdfResource object when the value is a bnode' do
       subject.license = DummyLicense.new
