@@ -47,7 +47,7 @@ module OregonDigital
         val = RDF::Literal(val) if val.kind_of? String
         #warn("Warning: #{val.to_s} is not of class #{property_class}.") unless val.kind_of? property_class or property_class == nil
         if val.kind_of? RdfResource
-          add_child_resource(property, val)
+          insert [rdf_subject, property, val.rdf_subject]
           next
         end
         val = val.to_uri if val.respond_to? :to_uri
@@ -107,10 +107,6 @@ module OregonDigital
       klass = self.class.properties[property][:class_name] if self.class.properties.include? property
       klass ||= OregonDigital::RdfResource
       klass
-    end
-
-    def add_child_resource(property, resource)
-      insert [rdf_subject, property, resource.rdf_subject]
     end
 
     def make_node(property, value)
