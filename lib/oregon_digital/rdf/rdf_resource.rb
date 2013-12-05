@@ -77,7 +77,19 @@ module OregonDigital::RDF
       true
     end
 
-    def set_value(property, values)
+    def set_value(*args)
+      # Add support for legacy 3-parameter syntax
+      if args.length > 3 || args.length < 2
+        raise ArgumentError("wrong number of arguments (#{args.length} for 2-3)")
+      end
+      if args.length == 3
+        rdf_subject = RDF::URI.new(args.slice!(0,1).first.to_s)
+      else
+        rdf_subject = self.rdf_subject
+      end
+      property = args.first
+      values = args.last
+
       values = [values] if values.kind_of? RDF::Graph
       values = Array(values)
       predicate = predicate_for_property(property)
@@ -96,7 +108,14 @@ module OregonDigital::RDF
       end
     end
 
-    def get_values(property)
+    def get_values(*args)
+      raise ArgumentError("wrong number of arguments (#{args.length} for 1-2)") if args.length < 1 || args.length > 2
+      property = args.last
+      if args.length > 1
+        rdf_subject = args.first
+      else
+        rdf_subject = self.rdf_subject
+      end
       values = []
       predicate = predicate_for_property(property)
 
