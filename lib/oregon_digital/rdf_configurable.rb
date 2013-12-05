@@ -13,11 +13,16 @@ module OregonDigital
       nil
     end
 
+    def repository
+      :parent
+    end
+
     def configure(options = {})
       singleton_class.class_eval do {
           :base_uri => options[:base_uri],
           :rdf_label => options[:rdf_label],
-          :type => options[:type]
+          :type => options[:type],
+          :repository => options[:repository]
         }.each do |name, value|
           # redefine reader methods only when required,
           # otherwise, use the ancestor methods

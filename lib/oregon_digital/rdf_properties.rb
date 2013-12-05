@@ -15,8 +15,7 @@ module OregonDigital
         :type => config.type,
         :class_name => config.class_name,
         :predicate => config.predicate,
-        :term => config.term,
-        :persistence => persistence
+        :term => config.term
       }
       register_property(name)
     end

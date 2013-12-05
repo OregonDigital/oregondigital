@@ -6,7 +6,8 @@ module OregonDigital
     def initialize(*args, &block)
       resource_uri = args.shift unless args.first.is_a?(Hash)
       set_subject!(resource_uri) if resource_uri
-      self << RDF::Statement(self.rdf_subject, RDF::RDFS.label, type) if self.class.type.kind_of? RDF::URI
+      # set_value(RDF.type, type) if self.class.type.kind_of? RDF::URI
+      reload
       super(*args, &block)
     end
 
@@ -37,6 +38,45 @@ module OregonDigital
       get_values(self.class.rdf_label)
     end
 
+    def persist!(parent=nil)
+      repo = parent
+      repo = RdfRepositories.repositories[self.class.repository] unless self.class.repository == :parent
+      raise "failed when trying to persist to non-existant repository or parent resource" unless repo
+      each_statement do |s, p, o|
+        repo.delete [s, p, nil]
+      end
+      repo << self
+      @persisted = true
+    end
+
+    def persisted?
+      @persisted ||= false
+    end
+
+    def reload(parent=nil)
+      repo = RdfRepositories.repositories[self.class.repository]
+      if self.class.repository == :parent
+        return false if parent.nil?
+        repo = parent
+      end
+      self << repo.query(:subject => rdf_subject)
+      # need to query differently for blank nodes?
+      # Is there a solution which deals with both cases without iterating through potentially large repositories?
+      if rdf_subject.node?
+        repo.each_statement do |s|
+          self << s if s.subject == rdf_subject
+        end
+      end
+      # each_statement do |s, p, o|
+      #   if o.kind_of? RDF::Resource
+      #     node = make_node(property_for_predicate(p), o)
+      #     node.persist!
+      #   end
+      # end
+      @persisted = true unless empty?
+      true
+    end
+
     def set_value(property, values)
       values = [values] if values.kind_of? RDF::Graph
       values = Array(values)
@@ -59,6 +99,18 @@ module OregonDigital
     def get_values(property)
       values = []
       predicate = predicate_for_property(property)
+
+      # Again, why do we need a special query for nodes?
+      if node?
+        each_statement do |statement|
+          value = statement.object if statement.subject == rdf_subject and statement.predicate == predicate
+          value = value.to_s if value.kind_of? RDF::Literal
+          value = make_node(property, value) if value.kind_of? RDF::Resource
+          values << value unless value.nil?
+        end
+        return values
+      end
+
       query(:subject => rdf_subject, :predicate => predicate).each_statement do |statement|
         value = statement.object
         value = value.to_s if value.kind_of? RDF::Literal
@@ -69,13 +121,16 @@ module OregonDigital
     end
 
     def set_subject!(uri_or_str)
-      raise "Refusing update URI when one is already assigned!" unless rdf_subject.node?
+      raise "Refusing update URI when one is already assigned!" unless node?
+      # raise "Refusing update URI! This object is persisted to a datastream." if persisted?
       statements = query(:subject => rdf_subject)
       if uri_or_str.respond_to? :to_uri
         @rdf_subject = uri_or_str.to_uri
       elsif base_uri
         separator = self.base_uri.to_s[-1,1] =~ /(\/|#)/ ? '' : '/'
         @rdf_subject = RDF::URI.intern(self.base_uri.to_s + separator + uri_or_str.to_s)
+      elsif uri_or_str.to_s.start_with? '_:'
+        @rdf_subject = RDF::Node(uri_or_str.to_s[2..-1])
       else
         @rdf_subject = RDF::URI(uri_or_str)
       end
@@ -91,7 +146,7 @@ module OregonDigital
     def solrize
       return rdf_label unless rdf_label.empty?
       return rdf_subject.to_s unless node?
-      return nil
+      # how to solrize bnodes without labels?
     end
 
     private
@@ -114,61 +169,16 @@ module OregonDigital
       klass
     end
 
-    def get_property_persistence(klass)
-      repositories = {}
-      klass.properties.each do |p, conf|
-        repositories[conf[:predicate]] = conf[:persistence]
-      end
-      repositories
-    end
-
     def add_child_node(property, resource)
       insert [rdf_subject, predicate_for_property(property), resource.rdf_subject]
-      if self.class.properties[property][:persistence] == :parent
-        self << resource
-      else
-        repos = get_property_persistence(resource.klass)
-        resource.each_statement do |s|
-          self << s if repos[s.predicate] == :parent
-          RdfRepositories.repositories[repos[s.predicate]] << s
-        end
-      end
+      resource.persist!(self) if resource.class.repository == :parent
     end
 
     def make_node(property, value)
       klass = class_for_property(property)
-      node = klass.new if value.node?
-      node ||= klass.new(value)
-
-      if node.node?
-        query(:subject => value).each_statement do |s|
-          s.subject = node.rdf_subject if s.subject == value
-          node << s
-        end
-        return node
-      end
-
-      if self.class.properties[property][:persistence] == :parent
-        default_repo = self
-      else
-        default_repo = RdfRepositories.repositories[self.class.properties[property][:persistence]]
-      end
-      node << default_repo.query(:subject => node.rdf_subject)
-
-
-      repos = get_property_persistence(klass)
-      repos.each do |pred, repo|
-        next if repo == self.class.properties[property][:persistence]
-        if repo == :parent
-          repo = self
-        else
-          repo = RdfRepositories.repositories[repo]
-        end
-        next if repo.nil?
-        node << repo.query(:subject => node.rdf_subject, :predicate => pred)
-      end
+      node = klass.new(value)
+      node.reload(self)
       node
     end
-
   end
 end
