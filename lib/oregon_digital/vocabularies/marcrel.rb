@@ -3,7 +3,7 @@ module OregonDigital::Vocabularies
   # MARC Relators
   #
   # @see http://id.loc.gov/vocabulary/relators
-  class MARCREL < RDF::Vocabulary("http://id.loc.gov/vocabulary/relators/")
+  class MARCREL < ::RDF::Vocabulary("http://id.loc.gov/vocabulary/relators/")
     property :act
     property :adp
     property :anl

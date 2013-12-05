@@ -3,7 +3,7 @@ module OregonDigital::Vocabularies
   # PREMIS Vocabulary
   #
   # @see http://multimedialab.elis.ugent.be/users/samcoppe/ontologies/Premis/premis.owl
-  class PREMIS < RDF::Vocabulary("http://multimedialab.elis.ugent.be/users/samcoppe/ontologies/Premis/premis.owl#")
+  class PREMIS < ::RDF::Vocabulary("http://multimedialab.elis.ugent.be/users/samcoppe/ontologies/Premis/premis.owl#")
     # Object Properties
     property :contentLocation
     property :creatingApplication
