@@ -1,14 +1,14 @@
 require "spec_helper"
-describe OregonDigital::RdfResource do
+describe OregonDigital::RDF::RdfResource do
 
   before(:each) do
-    class DummyLicense < OregonDigital::RdfResource
+    class DummyLicense < OregonDigital::RDF::RdfResource
       map_predicates do |map|
         map.title(:in => RDF::DC)
       end
     end
 
-    class DummyResource < OregonDigital::RdfResource
+    class DummyResource < OregonDigital::RDF::RdfResource
       property :license, :predicate => RDF::DC.license, :class_name => DummyLicense
       map_predicates do |map|
         map.title(:in => RDF::DC)

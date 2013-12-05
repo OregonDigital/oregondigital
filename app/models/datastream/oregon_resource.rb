@@ -34,7 +34,7 @@ class Datastream::OregonResource < Datastream::QuadResourceDatastream
     index.as :displayable
   end
   property :license, :predicate => RDF::DC[:license], :class_name =>
-    OregonDigital::RdfTypes::License do |index|
+    OregonDigital::RDF::RdfTypes::License do |index|
     index.as :searchable, :displayable
   end
 end

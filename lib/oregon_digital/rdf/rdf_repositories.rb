@@ -1,4 +1,4 @@
-module OregonDigital
+module OregonDigital::RDF
   module RdfRepositories
 
     def add_repository(name, repo)

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Datastream::RdfResourceDatastream do
   before(:each) do
-    class DummySubnode < OregonDigital::RdfResource
+    class DummySubnode < OregonDigital::RDF::RdfResource
       property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal
     end
     class DummyResource < Datastream::RdfResourceDatastream

@@ -1,8 +1,8 @@
 require "spec_helper"
-describe OregonDigital::RdfProperties do
+describe OregonDigital::RDF::RdfProperties do
   before(:each) do
     class DummyProperties
-      extend OregonDigital::RdfProperties
+      extend OregonDigital::RDF::RdfProperties
     end
   end
   after(:each) do

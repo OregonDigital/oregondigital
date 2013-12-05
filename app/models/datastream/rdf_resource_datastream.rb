@@ -1,6 +1,6 @@
 class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
   include Solrizer::Common
-  extend OregonDigital::RdfProperties
+  extend OregonDigital::RDF::RdfProperties
 
   before_save do
     if content.blank?
@@ -11,7 +11,7 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
 
   def initialize(*args, &block)
     ds_props = self.class.properties
-    @resource_class = Class.new(OregonDigital::ObjectResource) do
+    @resource_class = Class.new(OregonDigital::RDF::ObjectResource) do
       # properties = ds_props
       ds_props.each do |field, args|
         behaviors = args[:behaviors]
@@ -103,7 +103,7 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
       if values
         Array(values).each do |val|
           val = val.to_s if val.kind_of? RDF::URI
-          val = val.solrize if val.kind_of? OregonDigital::RdfResource
+          val = val.solrize if val.kind_of? OregonDigital::RDF::RdfResource
           self.class.create_and_insert_terms(prefix(field_key), val, field_info[:behaviors], solr_doc)
         end
       end

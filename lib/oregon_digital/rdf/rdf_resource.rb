@@ -1,4 +1,4 @@
-module OregonDigital
+module OregonDigital::RDF
   class RdfResource < RDF::Graph
     extend RdfConfigurable
     extend RdfProperties
@@ -165,7 +165,7 @@ module OregonDigital
 
     def class_for_property(property)
       klass = self.class.properties[property][:class_name] if self.class.properties.include? property
-      klass ||= OregonDigital::RdfResource
+      klass ||= OregonDigital::RDF::RdfResource
       klass
     end
 

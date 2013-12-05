@@ -1,8 +1,8 @@
 require "spec_helper"
-describe OregonDigital::RdfConfigurable do
+describe OregonDigital::RDF::RdfConfigurable do
   before(:each) do
     class DummyConfigurable
-      extend OregonDigital::RdfConfigurable
+      extend OregonDigital::RDF::RdfConfigurable
     end
   end
   after(:each) do

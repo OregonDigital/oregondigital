@@ -1,4 +1,4 @@
-module OregonDigital
+module OregonDigital::RDF
   module RdfProperties
 
     attr_accessor :properties
