@@ -12,6 +12,7 @@ describe Datastream::RdfResourceDatastream do
       property :license, :predicate => RDF::DC[:license], :class_name => DummySubnode do |index|
         index.as :searchable, :displayable
       end
+      property :creator, :predicate => RDF::DC[:creator], :class_name => Datastream::RdfResourceDatastream
       def serialization_format
         :ntriples
       end
@@ -83,6 +84,9 @@ describe Datastream::RdfResourceDatastream do
         it "should serialize to content" do
           expect(subject.descMetadata.content).not_to be_blank
         end
+        it "should be able to access sub attributes" do
+          expect(subject.descMetadata.license.first.title).to eq ['subbla']
+        end
       end
       context "and it is found again" do
         before(:each) do
@@ -97,7 +101,27 @@ describe Datastream::RdfResourceDatastream do
         it "should have datastream content" do
           expect(@object.descMetadata.datastream_content).not_to be_blank
         end
+        it "should be able to access sub attributes" do
+          expect(@object.descMetadata.license.first.title).to eq ['subbla']
+        end
       end
+    end
+  end
+  describe "relationships" do
+    before(:each) do
+      @new_object = DummyAsset.new
+      @new_object.title = "subbla"
+      @new_object.save
+      subject.title = "bla"
+      subject.descMetadata.creator = @new_object
+    end
+    it "should have accessible relationship attributes" do
+      expect(subject.descMetadata.license.title).to eq "subbla"
+    end
+    it "should let me get to an AF:Base object" do
+      subject.save
+      subject.reload
+      expect(subject.descMetadata.creator).to be_kind_of(ActiveFedora::Base)
     end
   end
 end

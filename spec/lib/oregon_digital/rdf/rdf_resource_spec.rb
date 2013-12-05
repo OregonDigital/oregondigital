@@ -33,6 +33,9 @@ describe OregonDigital::RDF::RdfResource do
     it "should edit graph when changing subject" do
       subject.title = ['Comet in Moominland']
       subject.set_subject! RDF::URI('http://example.org/moomin')
+      subject.statements.each do |statement|
+        expect(statement.subject).to eq RDF::URI('http://example.org/moomin')
+      end
     end
     describe 'with URI subject' do
       before(:each) do
@@ -80,6 +83,10 @@ describe OregonDigital::RDF::RdfResource do
     it "raise an error if the value is not a URI, Node, Literal, RdfResource, or string" do
       expect{subject.set_value(RDF::DC.title, Object.new)}.to raise_error
     end
+    it "should be able to accept a subject" do
+      expect{subject.set_value(RDF::URI("http://opaquenamespace.org/jokes"), RDF::DC.title, 'Comet in Moominland')}.not_to raise_error
+      expect(subject.query(:subject => RDF::URI("http://opaquenamespace.org/jokes"), :predicate => RDF::DC.title).statements.to_a.length).to eq 1
+    end
   end
   describe '#get_values' do
     before(:each) do
@@ -90,6 +97,11 @@ describe OregonDigital::RDF::RdfResource do
     end
     it 'should return values for a registered predicate symbol' do
       expect(subject.get_values(:title)).to eq ['Comet in Moominland', 'Finn Family Moomintroll']
+    end
+    it "should return values for other subjects if asked" do
+      expect(subject.get_values(RDF::URI("http://opaquenamespace.org/jokes"),:title)).to eq []
+      subject.set_value(RDF::URI("http://opaquenamespace.org/jokes"), RDF::DC.title, 'Comet in Moominland')
+      expect(subject.get_values(RDF::URI("http://opaquenamespace.org/jokes"),:title)).to eq ["Comet in Moominland"]
     end
   end
 

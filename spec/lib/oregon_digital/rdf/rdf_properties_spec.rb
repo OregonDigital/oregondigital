@@ -42,6 +42,18 @@ describe OregonDigital::RDF::RdfProperties do
       expect(DummyProperties.properties[:title][:class_name]).to eq RDF::Literal
     end
   end
-
-  it 'should carry propereties from superclass'
+  context "when using a subclass" do
+    before(:each) do
+      DummyProperties.property :title, :predicate => RDF::DC.title
+      class DummySubClass < DummyProperties
+        property :source, :predicate => RDF::DC11[:source]
+      end
+    end
+    after(:each) do
+      Object.send(:remove_const, "DummySubClass") if Object
+    end
+    it 'should carry properties from superclass' do
+      expect(DummySubClass.properties.keys).to eq ["title", "source"]
+    end
+  end
 end
