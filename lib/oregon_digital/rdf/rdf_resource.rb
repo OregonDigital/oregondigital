@@ -2,17 +2,19 @@ module OregonDigital::RDF
   class RdfResource < RDF::Graph
     extend RdfConfigurable
     extend RdfProperties
+
     def self.from_uri(uri,vals=nil)
-      new_object = new(uri)
-      new_object.reload(vals)
-      return new_object
+      new(uri, vals)
     end
+
+    # You can pass in only a parent with:
+    #     RdfResource.new(nil, parent)
     def initialize(*args, &block)
       resource_uri = args.shift unless args.first.is_a?(Hash)
+      parent = args.shift unless args.first.is_a?(Hash)
       set_subject!(resource_uri) if resource_uri
-      # set_value(RDF.type, type) if self.class.type.kind_of? RDF::URI
-      reload
       super(*args, &block)
+      reload(parent)
     end
 
     def rdf_subject
@@ -35,7 +37,7 @@ module OregonDigital::RDF
     def type=(type)
       raise "Type must be an RDF::URI" unless type.respond_to? :to_uri
       @type = type.to_uri
-      self.set_value(RDF::RDFS.type, type)
+      self.update(rdf_subject, RDF::RDFS.type, type)
     end
 
     def rdf_label
@@ -77,7 +79,10 @@ module OregonDigital::RDF
       #     node.persist!
       #   end
       # end
-      @persisted = true unless empty?
+      unless empty?
+        persisted = true
+        type = type if type.kind_of? RDF::URI
+      end
       true
     end
 
@@ -125,7 +130,7 @@ module OregonDigital::RDF
       predicate = predicate_for_property(property)
 
       # Again, why do we need a special query for nodes?
-        if node?
+      if node?
         each_statement do |statement|
           value = statement.object if statement.subject == rdf_subject and statement.predicate == predicate
           value = value.to_s if value.kind_of? RDF::Literal
@@ -146,16 +151,18 @@ module OregonDigital::RDF
 
     def set_subject!(uri_or_str)
       raise "Refusing update URI when one is already assigned!" unless node?
+      # Refusing set uri to an empty string.
+      return false if uri_or_str.nil? or uri_or_str.to_s.empty?
       # raise "Refusing update URI! This object is persisted to a datastream." if persisted?
       statements = query(:subject => rdf_subject)
       if uri_or_str.respond_to? :to_uri
         @rdf_subject = uri_or_str.to_uri
+      elsif uri_or_str.to_s.start_with? '_:'
+        @rdf_subject = RDF::Node(uri_or_str.to_s[2..-1])
       elsif base_uri
         separator = self.base_uri.to_s[-1,1] =~ /(\/|#)/ ? '' : '/'
         @rdf_subject = RDF::URI.intern(self.base_uri.to_s + separator + uri_or_str.to_s)
-      elsif uri_or_str.to_s.start_with? '_:'
-        @rdf_subject = RDF::Node(uri_or_str.to_s[2..-1])
-      else
+      elsif
         @rdf_subject = RDF::URI(uri_or_str)
       end
 
