@@ -95,7 +95,8 @@ module OregonDigital::RDF
         raise ArgumentError("wrong number of arguments (#{args.length} for 2-3)")
       end
       if args.length == 3
-        rdf_subject = RDF::URI.new(args.slice!(0,1).first.to_s)
+        rdf_subject = args.shift
+        rdf_subject = RDF::URI.new(rdf_subject.to_s) unless rdf_subject.kind_of? RDF::Resource
       else
         rdf_subject = self.rdf_subject
       end
