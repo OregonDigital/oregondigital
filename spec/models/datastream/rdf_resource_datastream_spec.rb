@@ -5,6 +5,7 @@ describe Datastream::RdfResourceDatastream do
     class DummySubnode < OregonDigital::RDF::RdfResource
       property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal
     end
+    class DummyAsset < ActiveFedora::Base; end;
     class DummyResource < Datastream::RdfResourceDatastream
       property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal do |index|
         index.as :searchable, :displayable
@@ -12,12 +13,13 @@ describe Datastream::RdfResourceDatastream do
       property :license, :predicate => RDF::DC[:license], :class_name => DummySubnode do |index|
         index.as :searchable, :displayable
       end
-      property :creator, :predicate => RDF::DC[:creator], :class_name => Datastream::RdfResourceDatastream
+      property :creator, :predicate => RDF::DC[:creator], :class_name => DummyAsset
       def serialization_format
         :ntriples
       end
     end
     class DummyAsset < ActiveFedora::Base
+      include OregonDigital::RDF::RdfIdentifiable
       has_metadata :name => 'descMetadata', :type => DummyResource
       delegate :title, :to => :descMetadata, :multiple => true
       delegate :license, :to => :descMetadata, :multiple => true
@@ -116,12 +118,21 @@ describe Datastream::RdfResourceDatastream do
       subject.descMetadata.creator = @new_object
     end
     it "should have accessible relationship attributes" do
-      expect(subject.descMetadata.license.title).to eq "subbla"
+      expect(subject.descMetadata.creator.first.title).to eq ["subbla"]
     end
     it "should let me get to an AF:Base object" do
       subject.save
       subject.reload
-      expect(subject.descMetadata.creator).to be_kind_of(ActiveFedora::Base)
+      expect(subject.descMetadata.creator.first).to be_kind_of(ActiveFedora::Base)
+    end
+    context "when the object with a relationship is saved" do
+      before(:each) do
+        subject.save
+        @object = subject.class.find(subject.pid)
+      end
+      it "should be retrievable" do
+        expect(subject.descMetadata.creator.first.title).to eq ["subbla"]
+      end
     end
   end
 end

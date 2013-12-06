@@ -101,7 +101,7 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     fields.each do |field_key, field_info|
       values = resource.get_values(field_key)
       if values
-        Array(values).each do |val|
+        Array.wrap(values).each do |val|
           val = val.to_s if val.kind_of? RDF::URI
           val = val.solrize if val.kind_of? OregonDigital::RDF::RdfResource
           self.class.create_and_insert_terms(prefix(field_key), val, field_info[:behaviors], solr_doc)
@@ -118,11 +118,13 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
       type = config[:type]
       behaviors = config[:behaviors]
       next unless type and behaviors
+      next if config[:class_name] && config[:class_name].kind_of?(ActiveFedora::Base)
       resource.query(:subject => rdf_subject, :predicate => config[:predicate]).each_statement do |statement|
         field_map[name] ||= {:values => [], :type => type, :behaviors => behaviors}
         field_map[name][:values] << statement.object.to_s
       end
     end
+    return field_map
   end
 
 end

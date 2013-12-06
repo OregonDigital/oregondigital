@@ -2,7 +2,11 @@ module OregonDigital::RDF
   class RdfResource < RDF::Graph
     extend RdfConfigurable
     extend RdfProperties
-
+    def self.from_uri(uri,vals=nil)
+      new_object = new(uri)
+      new_object.reload(vals)
+      return new_object
+    end
     def initialize(*args, &block)
       resource_uri = args.shift unless args.first.is_a?(Hash)
       set_subject!(resource_uri) if resource_uri
@@ -96,6 +100,7 @@ module OregonDigital::RDF
       delete([rdf_subject, predicate, nil])
       values.each do |val|
         val = RDF::Literal(val) if val.kind_of? String
+        val = val.resource if val.respond_to?(:resource)
         #warn("Warning: #{val.to_s} is not of class #{property_class}.") unless val.kind_of? property_class or property_class == nil
         if val.kind_of? RdfResource
           add_child_node(property, val)
@@ -120,7 +125,7 @@ module OregonDigital::RDF
       predicate = predicate_for_property(property)
 
       # Again, why do we need a special query for nodes?
-      if node?
+        if node?
         each_statement do |statement|
           value = statement.object if statement.subject == rdf_subject and statement.predicate == predicate
           value = value.to_s if value.kind_of? RDF::Literal
@@ -195,9 +200,7 @@ module OregonDigital::RDF
 
     def make_node(property, value)
       klass = class_for_property(property)
-      node = klass.new(value)
-      node.reload(self)
-      node
+      node = klass.from_uri(value,self)
     end
   end
 end
