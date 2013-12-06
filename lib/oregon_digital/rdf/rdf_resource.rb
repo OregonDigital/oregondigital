@@ -102,8 +102,7 @@ module OregonDigital::RDF
       property = args.first
       values = args.last
 
-      values = [values] if values.kind_of? RDF::Graph
-      values = Array(values)
+      values = Array.wrap(values)
       predicate = predicate_for_property(property)
       delete([rdf_subject, predicate, nil])
       values.each do |val|
@@ -132,22 +131,11 @@ module OregonDigital::RDF
       values = []
       predicate = predicate_for_property(property)
 
-      # Again, why do we need a special query for nodes?
-      if node?
-        each_statement do |statement|
-          value = statement.object if statement.subject == rdf_subject and statement.predicate == predicate
-          value = value.to_s if value.kind_of? RDF::Literal
-          value = make_node(property, value) if value.kind_of? RDF::Resource
-          values << value unless value.nil?
-        end
-        return values
-      end
-
       query(:subject => rdf_subject, :predicate => predicate).each_statement do |statement|
         value = statement.object
         value = value.to_s if value.kind_of? RDF::Literal
         value = make_node(property, value) if value.kind_of? RDF::Resource
-        values << value
+        values << value unless value.nil?
       end
       values
     end
@@ -179,20 +167,24 @@ module OregonDigital::RDF
 
     private
 
+    def properties
+      self.singleton_class.properties
+    end
+
     def predicate_for_property(property)
-      return self.class.properties[property][:predicate] unless property.kind_of? RDF::URI
+      return properties[property][:predicate] unless property.kind_of? RDF::URI
       return property
     end
 
     def property_for_predicate(predicate)
-      self.class.properties.each do |property, values|
+      properties.each do |property, values|
         return property if values[:predicate] == predicate
       end
       return nil
     end
 
     def class_for_property(property)
-      klass = self.class.properties[property][:class_name] if self.class.properties.include? property
+      klass = properties[property][:class_name] if properties.include? property
       klass ||= OregonDigital::RDF::RdfResource
       klass
     end

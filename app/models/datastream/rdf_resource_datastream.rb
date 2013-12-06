@@ -2,6 +2,8 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
   include Solrizer::Common
   extend OregonDigital::RDF::RdfProperties
 
+  delegate :rdf_subject, :set_value, :get_values, :to => :resource
+
   before_save do
     if content.blank?
       logger.warn "Cowardly refusing to save a datastream with empty content: #{self.inspect}"
@@ -9,30 +11,8 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     end
   end
 
-  def initialize(*args, &block)
-    ds_props = self.class.properties
-    @resource_class = Class.new(OregonDigital::RDF::ObjectResource) do
-      # properties = ds_props
-      ds_props.each do |field, args|
-        behaviors = args[:behaviors]
-        type = args[:type]
-        property field, args do |index|
-          index.as behaviors
-          index.type type
-        end
-      end
-    end
-    super(*args, &block)
-  end
-
   def metadata?
     true
-  end
-
-  def prefix(name)
-    name = name.to_s unless name.is_a? String
-    pre = dsid.underscore
-    return "#{pre}__#{name}".to_sym
   end
 
   def content
@@ -50,17 +30,21 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     super
   end
 
-  def graph
-    resource
+  # Utility method which can be overridden to determine the object resource that is created.
+  def resource_class
+    OregonDigital::RDF::ObjectResource
   end
 
   def resource
     @resource ||= begin
-      r = @resource_class.new
+      r = resource_class.new
+      r.singleton_class.properties = self.class.properties
       r << RDF::Reader.for(serialization_format).new(datastream_content) if datastream_content
       r
     end
   end
+
+  alias_method :graph, :resource
 
   def term_values(*values)
     current_value = nil
@@ -78,10 +62,6 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     end
   end
 
-  def rdf_subject
-    resource.rdf_subject
-  end
-
   def serialize
     resource.set_subject!(pid) if pid and rdf_subject.node?
     resource.dump serialization_format
@@ -95,14 +75,6 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
 
   def serialization_format
     raise "you must override the `serialization_format' method in a subclass"
-  end
-
-  def set_value(*args)
-    resource.set_value(*args)
-  end
-
-  def get_value(*args)
-    resource.get_value(*args)
   end
 
   def to_solr(solr_doc = Hash.new) # :nodoc:
@@ -119,6 +91,13 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     solr_doc
   end
 
+  def prefix(name)
+    name = name.to_s unless name.is_a? String
+    pre = dsid.underscore
+    return "#{pre}__#{name}".to_sym
+  end
+
+
   def fields
     field_map = {}.with_indifferent_access
 
@@ -126,7 +105,7 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
       type = config[:type]
       behaviors = config[:behaviors]
       next unless type and behaviors
-      next if config[:class_name] && config[:class_name].kind_of?(ActiveFedora::Base)
+      next if config[:class_name] && config[:class_name] < ActiveFedora::Base
       resource.query(:subject => rdf_subject, :predicate => config[:predicate]).each_statement do |statement|
         field_map[name] ||= {:values => [], :type => type, :behaviors => behaviors}
         field_map[name][:values] << statement.object.to_s

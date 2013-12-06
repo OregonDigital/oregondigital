@@ -13,7 +13,9 @@ describe Datastream::RdfResourceDatastream do
       property :license, :predicate => RDF::DC[:license], :class_name => DummySubnode do |index|
         index.as :searchable, :displayable
       end
-      property :creator, :predicate => RDF::DC[:creator], :class_name => DummyAsset
+      property :creator, :predicate => RDF::DC[:creator], :class_name => DummyAsset do |index|
+        index.as :searchable
+      end
       def serialization_format
         :ntriples
       end
