@@ -56,55 +56,75 @@ describe Datastream::RdfResourceDatastream do
     end
   end
   describe "attribute setting" do
-    before(:each) do
-      subject.descMetadata.title = "bla"
-      dummy = DummySubnode.new
-      dummy.title = 'subbla'
-      subject.descMetadata.license = dummy
-    end
-    it "should let you access text attributes" do
-      expect(subject.descMetadata.title).to eq ["bla"]
-    end
-    it "should let you access resource attributes" do
-      expect(subject.descMetadata.license.first.title).to eq ['subbla']
-    end
-    it "should mark it as changed" do
-      expect(subject.descMetadata).to be_changed
-    end
-    context "after it is persisted" do
+    context "on text attributes" do
       before(:each) do
-        subject.save
-        subject.reload
+        subject.descMetadata.title = "bla"
       end
-      context "and it's reloaded" do
+      it "should let you access" do
+        expect(subject.descMetadata.title).to eq ["bla"]
+      end
+      it "should mark it as changed" do
+        expect(subject.descMetadata).to be_changed
+      end
+      context "after it is persisted" do
         before(:each) do
+          subject.save
           subject.reload
         end
-        it "should be accessible after being saved" do
-          expect(subject.descMetadata.title).to eq ["bla"]
+        context "and it's reloaded" do
+          before(:each) do
+            subject.reload
+          end
+          it "should be accessible after being saved" do
+            expect(subject.descMetadata.title).to eq ["bla"]
+          end
+          it "should serialize to content" do
+            expect(subject.descMetadata.content).not_to be_blank
+          end
         end
-        it "should serialize to content" do
-          expect(subject.descMetadata.content).not_to be_blank
-        end
-        it "should be able to access sub attributes" do
-          expect(subject.descMetadata.license.first.title).to eq ['subbla']
+        context "and it is found again" do
+          before(:each) do
+            @object = DummyAsset.find(subject.pid)
+          end
+          it "should serialize to content" do
+            expect(@object.descMetadata.content).not_to be_blank
+          end
+          it "should be accessible after being saved" do
+            expect(@object.descMetadata.title).to eq ["bla"]
+          end
+          it "should have datastream content" do
+            expect(@object.descMetadata.datastream_content).not_to be_blank
+          end
         end
       end
-      context "and it is found again" do
+    end
+    context "on rdf resource attributes" do
+      context "persisted to parent" do
         before(:each) do
-          @object = DummyAsset.find(subject.pid)
+          dummy = DummySubnode.new
+          dummy.title = 'subbla'
+          subject.descMetadata.license = dummy
         end
-        it "should serialize to content" do
-          expect(@object.descMetadata.content).not_to be_blank
+        it "should let you access" do
+          expect(subject.descMetadata.license.first.title).to eq ['subbla']
         end
-        it "should be accessible after being saved" do
-          expect(@object.descMetadata.title).to eq ["bla"]
+        it "should mark it as changed" do
+          expect(subject.descMetadata).to be_changed
         end
-        it "should have datastream content" do
-          expect(@object.descMetadata.datastream_content).not_to be_blank
+      end
+      context "persisted to repository" do
+        before(:each) do
+          OregonDigital::RDF::RdfRepositories.add_repository :default, RDF::Repository.new
+          DummySubnode.configure :repository => :default
+          dummy = DummySubnode.new(RDF::URI('http://example.org/dummy/blah'))
+          dummy.title = 'subbla'
+          subject.descMetadata.license = dummy
         end
-        it "should be able to access sub attributes" do
-          expect(@object.descMetadata.license.first.title).to eq ['subbla']
+        it "should let you access" do
+          expect(subject.descMetadata.license.first.title).to eq ['subbla']
+        end
+        it "should mark it as changed" do
+          expect(subject.descMetadata).to be_changed
         end
       end
     end
