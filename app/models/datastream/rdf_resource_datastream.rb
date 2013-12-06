@@ -37,7 +37,7 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
 
   def resource
     @resource ||= begin
-      r = resource_class.new
+      r = resource_class.new(pid)
       r.singleton_class.properties = self.class.properties
       r << RDF::Reader.for(serialization_format).new(datastream_content) if datastream_content
       r

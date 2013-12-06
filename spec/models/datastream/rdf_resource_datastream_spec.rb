@@ -138,7 +138,7 @@ describe Datastream::RdfResourceDatastream do
       @loaded_object = DummyAsset.load_instance_from_solr(subject.pid)
     end
     it "should load the datastream" do
-      expect(@loaded_object.title).to eq "Monkeys"
+      expect(@loaded_object.title).to eq ["Monkeys"]
     end
   end
   describe "relationships" do
