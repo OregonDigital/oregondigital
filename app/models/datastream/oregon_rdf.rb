@@ -1,4 +1,4 @@
-class Datastream::OregonRDF < ActiveFedora::NtriplesRDFDatastream
+class Datastream::OregonRDF < Datastream::QuadResourceDatastream
   # TODO: use an http URI instead of the PID as a subject
   # rdf_subject { |ds| Utils.rdf_subject(ds.pid) }
   include ActiveFedora::Crosswalks::Crosswalkable

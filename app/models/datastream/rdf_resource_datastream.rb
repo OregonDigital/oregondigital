@@ -97,6 +97,14 @@ class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
     raise "you must override the `serialization_format' method in a subclass"
   end
 
+  def set_value(*args)
+    resource.set_value(*args)
+  end
+
+  def get_value(*args)
+    resource.get_value(*args)
+  end
+
   def to_solr(solr_doc = Hash.new) # :nodoc:
     fields.each do |field_key, field_info|
       values = resource.get_values(field_key)
