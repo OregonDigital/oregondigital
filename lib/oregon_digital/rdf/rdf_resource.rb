@@ -41,8 +41,11 @@ module OregonDigital::RDF
     end
 
     def rdf_label
-      get_values(self.class.rdf_label)
+      values = get_values(self.class.rdf_label)
+      values = rdf_subject.to_s unless node? if values.empty?
+      return values
     end
+    alias_method :solrize, :rdf_label
 
     def persist!(parent=nil)
       repo = parent
@@ -172,12 +175,6 @@ module OregonDigital::RDF
           self << RDF::Statement.new(rdf_subject, statement.predicate, statement.object)
         end
       end
-    end
-
-    def solrize
-      return rdf_label unless rdf_label.empty?
-      return rdf_subject.to_s unless node?
-      # how to solrize bnodes without labels?
     end
 
     private
