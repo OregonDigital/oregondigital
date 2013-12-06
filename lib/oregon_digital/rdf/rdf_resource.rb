@@ -202,9 +202,16 @@ module OregonDigital::RDF
       resource.persist!(self) if resource.class.repository == :parent
     end
 
+    def node_cache
+      @node_cache ||= {}
+    end
+
     def make_node(property, value)
       klass = class_for_property(property)
+      return node_cache[value] if node_cache[value]
       node = klass.from_uri(value,self)
+      node_cache[value] = node
+      return node
     end
   end
 end

@@ -145,6 +145,10 @@ describe Datastream::RdfResourceDatastream do
       subject.reload
       expect(subject.descMetadata.creator.first).to be_kind_of(ActiveFedora::Base)
     end
+    it "should allow for deep attributes to be set directly" do
+      subject.descMetadata.creator.first.title = "Bla"
+      expect(subject.descMetadata.creator.first.title).to eq ["Bla"]
+    end
     context "when the object with a relationship is saved" do
       before(:each) do
         subject.save
