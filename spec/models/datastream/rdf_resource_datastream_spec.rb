@@ -120,6 +120,9 @@ describe Datastream::RdfResourceDatastream do
           DummySubnode.configure :repository => :default
           dummy = DummySubnode.new(RDF::URI('http://example.org/dummy/blah'))
           dummy.title = 'subbla'
+          # We want to have to manually persist to the repository.
+          # Parent objects shouldn't be persisting children they share with other parents
+          dummy.persist!
           subject.descMetadata.license = dummy
         end
         it "should let you access" do
