@@ -76,12 +76,6 @@ module OregonDigital::RDF
           self << s if s.subject == rdf_subject
         end
       end
-      # each_statement do |s, p, o|
-      #   if o.kind_of? RDF::Resource
-      #     node = make_node(property_for_predicate(p), o)
-      #     node.persist!
-      #   end
-      # end
       unless empty?
         persisted = true
         type = type if type.kind_of? RDF::URI
@@ -131,7 +125,16 @@ module OregonDigital::RDF
       end
       values = []
       predicate = predicate_for_property(property)
-
+      # Again, why do we need a special query for nodes?
+      if node?
+        each_statement do |statement|
+          value = statement.object if statement.subject == rdf_subject and statement.predicate == predicate
+          value = value.to_s if value.kind_of? RDF::Literal
+          value = make_node(property, value) if value.kind_of? RDF::Resource
+          values << value unless value.nil?
+        end
+        return values
+      end
       query(:subject => rdf_subject, :predicate => predicate).each_statement do |statement|
         value = statement.object
         value = value.to_s if value.kind_of? RDF::Literal
