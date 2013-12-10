@@ -3,13 +3,10 @@ module OregonDigital::RDF
 
     attr_accessor :properties
     def property(name, opts={}, &block)
-      self.properties ||= {}.with_indifferent_access
       config = ActiveFedora::Rdf::NodeConfig.new(name, opts[:predicate], :class_name => opts[:class_name]).tap do |config|
         config.with_index(&block) if block_given?
       end
       behaviors = config.behaviors.flatten if config.behaviors and not config.behaviors.empty?
-      persistence = opts[:persistence]
-      persistence ||= :parent
       self.properties[name] = {
         :behaviors => behaviors,
         :type => config.type,
