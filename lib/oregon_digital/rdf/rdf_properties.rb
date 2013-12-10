@@ -1,7 +1,29 @@
 module OregonDigital::RDF
   module RdfProperties
+    ##
+    # Implements property configuration common to RdfResource and
+    # RdfResourceDatastream.  It does its work at the class level, and
+    # is meant to be extended.
+    #
+    # Define properties at the class level with:
+    #
+    #    property :title, :predicate => RDF::DC.title, :class_name => ResourceClass
+    #
+    # or with the 'old' ActiveFedora::RDFDatastream style:
+    #
+    #    map_predicates do |map|
+    #      map.title(:in => RDF::DC)
+    #    end
+    #
+    # You can pass a block to either to set index behavior.
 
     attr_accessor :properties
+
+    ##
+    # Registers properties for RdfResource like classes
+    # @param [Symbol]  name of the property (and its accessor methods)
+    # @param [Hash]  opts for this property, must include a :predicate
+    # @yield [index] index sets solr behaviors for the property
     def property(name, opts={}, &block)
       config = ActiveFedora::Rdf::NodeConfig.new(name, opts[:predicate], :class_name => opts[:class_name]).tap do |config|
         config.with_index(&block) if block_given?
@@ -41,7 +63,7 @@ module OregonDigital::RDF
     end
 
     public
-    # Mapper is for backwards compatibility.
+    # Mapper is for backwards compatibility with AF::RDFDatastream
     class Mapper
       attr_accessor :parent
       def initialize(parent)
