@@ -49,17 +49,19 @@ module OregonDigital::RDF
 
     private
 
+    ##
+    # Private method for creating accessors for a given property.
+    # If used on an ActiveFedora::Datastream it will create accessors which use the datastream's resource.
+    # @param [#to_s] name Name of the accessor to be created, get/set_value is called on the resource using this.
     def register_property(name)
-      parent = ''
-      parent = 'resource.' if self < ActiveFedora::Datastream
-      class_eval <<-eoruby, __FILE__, __LINE__ + 1
-        def #{name}=(*args)
-           #{parent}set_value(:#{name}, *args)
-        end
-        def #{name}
-           #{parent}get_values(:#{name})
-        end
-      eoruby
+      parent = Proc.new{self}
+      parent = Proc.new{resource} if self < ActiveFedora::Datastream
+      define_method "#{name}=" do |*args|
+        instance_eval(&parent).set_value(name.to_sym, *args)
+      end
+      define_method name do
+        instance_eval(&parent).get_values(name.to_sym)
+      end
     end
 
     public
