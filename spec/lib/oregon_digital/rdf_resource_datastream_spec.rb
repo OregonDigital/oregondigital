@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Datastream::RdfResourceDatastream do
+describe OregonDigital::RdfResourceDatastream do
   before(:each) do
     class DummySubnode < OregonDigital::RDF::RdfResource
       property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal
     end
     class DummyAsset < ActiveFedora::Base; end;
-    class DummyResource < Datastream::RdfResourceDatastream
+    class DummyResource < OregonDigital::RdfResourceDatastream
       property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal do |index|
         index.as :searchable, :displayable
       end

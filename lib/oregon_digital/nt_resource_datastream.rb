@@ -1,6 +1,6 @@
 require 'rdf/ntriples'
 
-class Datastream::NtResourceDatastream < Datastream::RdfResourceDatastream
+class OregonDigital::NtResourceDatastream < OregonDigital::RdfResourceDatastream
   def self.default_attributes
     super.merge(:controlGroup => 'M', :mimeType => 'text/plain')
   end

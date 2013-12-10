@@ -1,4 +1,4 @@
-class Datastream::QuadResourceDatastream < Datastream::RdfResourceDatastream
+class OregonDigital::QuadResourceDatastream < OregonDigital::RdfResourceDatastream
   def self.default_attributes
     super.merge(:controlGroup => 'M', :mimeType => 'text/plain')
   end

@@ -1,4 +1,4 @@
-class Datastream::RdfResourceDatastream < ActiveFedora::Datastream
+class OregonDigital::RdfResourceDatastream < ActiveFedora::Datastream
   include Solrizer::Common
   extend OregonDigital::RDF::RdfProperties
 
