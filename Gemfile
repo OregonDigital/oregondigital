@@ -31,6 +31,7 @@ gem 'rdf-redis', '~>0.0.2', :git => 'git://github.com/no-reply/rdf-redis.git'
 
 gem 'noid', '~>0.6.6'
 gem 'hybag'
+gem 'qa'
 
 gem 'resque', '~>1.25.0'
 
