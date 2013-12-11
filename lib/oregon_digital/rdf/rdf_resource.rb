@@ -1,5 +1,22 @@
 module OregonDigital::RDF
   class RdfResource < RDF::Graph
+    ##
+    # Defines a generic RdfResource as an RDF::Graph with property
+    # configuration, accessors, and some other methods for managing
+    # "resources" as discrete subgraphs which can be managed by a Hydra
+    # datastream model.
+    #
+    # Resources can be instances of RdfResource directly, but more
+    # often they will be instances of subclasses with registered
+    # properties and configuration. e.g.
+    #
+    #    class License < RdfResource
+    #      configure :repository => :default
+    #      property :title, :predicate => RDF::DC.title, :class_name => RDF::Literal do |index|
+    #        index.as :displayable, :facetable
+    #      end
+    #    end
+
     extend RdfConfigurable
     extend RdfProperties
 
@@ -7,8 +24,16 @@ module OregonDigital::RDF
       new(uri, vals)
     end
 
+    ##
+    # Initialize an instance of this resource class. Defaults to a
+    # blank node subject. In addition to RDF::Graph parameters, you
+    # can pass in a URI and/or a parent to build a resource from a
+    # existing data.
+    #
     # You can pass in only a parent with:
-    #     RdfResource.new(nil, parent)
+    #    RdfResource.new(nil, parent)
+    #
+    # @see RDF::Graph
     def initialize(*args, &block)
       resource_uri = args.shift unless args.first.is_a?(Hash)
       parent = args.shift unless args.first.is_a?(Hash)
@@ -48,8 +73,7 @@ module OregonDigital::RDF
     alias_method :solrize, :rdf_label
 
     def persist!(parent=nil)
-      repo = parent
-      repo = RdfRepositories.repositories[self.class.repository] unless self.class.repository == :parent
+      repo = get_repository(parent)
       raise "failed when trying to persist to non-existant repository or parent resource" unless repo
       each_statement do |s, p, o|
         repo.delete [s, p, nil]
@@ -63,11 +87,10 @@ module OregonDigital::RDF
     end
 
     def reload(parent=nil)
-      repo = RdfRepositories.repositories[self.class.repository]
       if self.class.repository == :parent
         return false if parent.nil?
-        repo = parent
       end
+      repo = get_repository(parent)
       self << repo.query(:subject => rdf_subject)
       # need to query differently for blank nodes?
       # Is there a solution which deals with both cases without iterating through potentially large repositories?
@@ -198,10 +221,22 @@ module OregonDigital::RDF
       resource.persist!(self) if resource.class.repository == :parent
     end
 
+    ##
+    # Return the repository (or parent) that this resource should
+    # write to when persisting.
+    #
+    # @param [RdfResource] parent resource we are persisting in the context of
+    def get_repository(parent=nil)
+      return parent if self.class.repository == :parent
+      RdfRepositories.repositories[self.class.repository]
+    end
+
     def node_cache
       @node_cache ||= {}
     end
 
+    ##
+    # Build a child resource or return it from this object's cache
     def make_node(property, value)
       klass = class_for_property(property)
       return node_cache[value] if node_cache[value]
