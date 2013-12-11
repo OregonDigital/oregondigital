@@ -60,9 +60,9 @@ module OregonDigital::RDF
     end
 
     def type=(type)
-      raise "Type must be an RDF::URI" unless type.respond_to? :to_uri
-      @type = type.to_uri
-      self.update(rdf_subject, RDF::RDFS.type, type)
+      raise "Type must be an RDF::URI" unless type.kind_of? RDF::URI
+      @type = type
+      self.update(RDF::Statement.new(rdf_subject, RDF::RDFS.type, type))
     end
 
     def rdf_label
@@ -101,8 +101,8 @@ module OregonDigital::RDF
       end
       unless empty?
         persisted = true
-        type = type if type.kind_of? RDF::URI
       end
+      self.type = type if type.kind_of? RDF::URI
       true
     end
 

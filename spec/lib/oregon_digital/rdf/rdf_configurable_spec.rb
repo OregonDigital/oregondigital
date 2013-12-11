@@ -10,22 +10,20 @@ describe OregonDigital::RDF::RdfConfigurable do
   end
 
   describe '#configure' do
-    it 'should set a base uri'
-    it 'should set an rdf_label'
-    it 'should set a type'
+    before(:each) do
+      DummyConfigurable.configure :base_uri => "http://example.org/base", :type => RDF::Literal, :rdf_label => RDF::DC.title
+    end
+
+    it 'should set a base uri' do
+      expect(DummyConfigurable.base_uri).to eq "http://example.org/base"
+    end
+
+    it 'should set an rdf_label' do
+      expect(DummyConfigurable.rdf_label).to eq RDF::DC.title
+    end
+
+    it 'should set a type' do
+      expect(DummyConfigurable.type).to eq RDF::Literal
+    end
   end
-
-  describe '#rdf_label' do
-    it 'should have good defaults if a label is not set'
-  end
-
-  describe '#base_uri' do
-    it 'should be the default uri base for new objects'
-  end
-
-  describe '#type' do
-    it 'should return its own type'
-
-  end
-
 end

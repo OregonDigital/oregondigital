@@ -9,6 +9,7 @@ describe OregonDigital::RDF::RdfResource do
     end
 
     class DummyResource < OregonDigital::RDF::RdfResource
+      configure :type => RDF::DC['SomeClass']
       property :license, :predicate => RDF::DC.license, :class_name => DummyLicense
       map_predicates do |map|
         map.title(:in => RDF::DC)
@@ -106,9 +107,20 @@ describe OregonDigital::RDF::RdfResource do
   end
 
   describe '#type' do
-    it 'should return the configured type'
-    it 'should set the type'
-    it 'should be the type in the graph'
+    it 'should return the type configured on the parent class' do
+      expect(subject.type).to eq DummyResource.type
+    end
+
+    it 'should set the type' do
+      subject.type = RDF::DC['AnotherClass']
+      expect(subject.type).to eq RDF::DC['AnotherClass']
+    end
+
+    it 'should be the type in the graph' do
+      subject.query(:subject => subject.rdf_subject, :predicate => RDF::RDFS.type).statements do |s|
+        expect(s.object).to eq RDF::DC['AnotherClass']
+      end
+    end
   end
 
   describe '#rdf_label' do
