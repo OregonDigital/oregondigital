@@ -32,6 +32,7 @@ describe OregonDigital::RdfResourceDatastream do
   after(:each) do
     Object.send(:remove_const, "DummyAsset") if Object
     Object.send(:remove_const, "DummyResource") if Object
+    Object.send(:remove_const, "DummySubnode") if Object
   end
   subject {DummyAsset.new}
   describe "#to_solr" do
