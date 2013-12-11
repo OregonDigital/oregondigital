@@ -98,7 +98,7 @@ module OregonDigital::RDF
         end
       end
       unless empty?
-        persisted = true
+        @persisted = true
       end
       self.type = type if type.kind_of? RDF::URI
       true
@@ -121,6 +121,7 @@ module OregonDigital::RDF
       values = Array.wrap(values)
       predicate = predicate_for_property(property)
       delete([rdf_subject, predicate, nil])
+      old_value = self.get_values(property)
       values.each do |val|
         val = RDF::Literal(val) if val.kind_of? String
         val = val.resource if val.respond_to?(:resource)
@@ -133,6 +134,10 @@ module OregonDigital::RDF
         raise 'value must be an RDF URI, Node, Literal, or a plain string' unless
             val.kind_of? RDF::Resource or val.kind_of? RDF::Literal
         insert [rdf_subject, predicate, val]
+      end
+      # Make it be unpersisted if the value has changed for this property.
+      if self.get_values(property) != old_value
+        @persisted = false
       end
     end
 

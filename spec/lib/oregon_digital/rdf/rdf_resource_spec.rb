@@ -58,6 +58,46 @@ describe OregonDigital::RDF::RdfResource do
     end
   end
 
+  describe "#persisted?" do
+    before(:each) do
+      repository = RDF::Repository.new
+      subject.stub(:repository).and_return(repository)
+    end
+    context "when the object is new" do
+      it "should return false" do
+        expect(subject).not_to be_persisted
+      end
+    end
+    context "when it is saved" do
+      before(:each) do
+        subject.title = "bla"
+        subject.persist!
+      end
+      it "should return true" do
+        expect(subject).to be_persisted
+      end
+      context "and then modified" do
+        before(:each) do
+          subject.title = "newbla"
+        end
+        it "should return false" do
+          expect(subject).not_to be_persisted
+        end
+      end
+      context "and then reloaded" do
+        before(:each) do
+          subject.reload
+        end
+        it "should reset the title" do
+          expect(subject.title).to eq ["bla"]
+        end
+        it "should be persisted" do
+          expect(subject).to be_persisted
+        end
+      end
+    end
+  end
+
   describe 'property methods' do
     it 'should set and get properties' do
       subject.title = 'Comet in Moominland'
