@@ -1,0 +1,2 @@
+module OregonDigital::ControlledVocabularies
+end
