@@ -183,7 +183,7 @@ module OregonDigital::RDF
       # Refusing set uri to an empty string.
       return false if uri_or_str.nil? or uri_or_str.to_s.empty?
       # raise "Refusing update URI! This object is persisted to a datastream." if persisted?
-      statements = query(:subject => rdf_subject)
+      old_subject = rdf_subject
       if uri_or_str.respond_to? :to_uri
         @rdf_subject = uri_or_str.to_uri
       elsif uri_or_str.to_s.start_with? '_:'
@@ -196,10 +196,14 @@ module OregonDigital::RDF
       end
 
       unless empty?
-        statements.each_statement do |statement|
-          #TODO: what about if the statement has a different subject?
-          delete(statement)
-          self << RDF::Statement.new(rdf_subject, statement.predicate, statement.object)
+        each_statement do |statement|
+          if statement.subject == old_subject
+            delete(statement)
+            self << RDF::Statement.new(rdf_subject, statement.predicate, statement.object)
+          elsif statement.object == old_subject
+            delete(statement)
+            self << RDF::Statement.new(statement.subject, statement.predicate, rdf_subject)
+          end
         end
       end
     end
@@ -249,6 +253,9 @@ module OregonDigital::RDF
 
     ##
     # Build a child resource or return it from this object's cache
+    #
+    # Builds the resource from the class_name specified for the
+    # property.
     def make_node(property, value)
       klass = class_for_property(property)
       return node_cache[value] if node_cache[value]

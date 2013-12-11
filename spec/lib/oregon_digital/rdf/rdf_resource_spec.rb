@@ -31,11 +31,21 @@ describe OregonDigital::RDF::RdfResource do
       subject.set_subject! RDF::URI('http://example.org/moomin')
       expect(subject.rdf_subject).to eq RDF::URI('http://example.org/moomin')
     end
-    it "should edit graph when changing subject" do
-      subject.title = ['Comet in Moominland']
-      subject.set_subject! RDF::URI('http://example.org/moomin')
-      subject.statements.each do |statement|
-        expect(statement.subject).to eq RDF::URI('http://example.org/moomin')
+    describe 'when changing subject' do
+      before(:each) do
+        subject << RDF::Statement.new(subject.rdf_subject, RDF::DC.title, RDF::Literal('Comet in Moominland'))
+        subject << RDF::Statement.new(RDF::URI('http://example.org/moomin_comics'), RDF::DC.isPartOf, subject.rdf_subject)
+        subject << RDF::Statement.new(RDF::URI('http://example.org/moomin_comics'), RDF::DC.relation, 'http://example.org/moomin_land')
+        subject.set_subject! RDF::URI('http://example.org/moomin')
+      end
+      it 'should update graph subjects' do
+        expect(subject.has_statement?(RDF::Statement.new(subject.rdf_subject, RDF::DC.title, RDF::Literal('Comet in Moominland')))).to be_true
+      end
+      it 'should update graph objects' do
+        expect(subject.has_statement?(RDF::Statement.new(RDF::URI('http://example.org/moomin_comics'), RDF::DC.isPartOf, subject.rdf_subject))).to be_true
+      end
+      it 'should leave other uris alone' do
+        expect(subject.has_statement?(RDF::Statement.new(RDF::URI('http://example.org/moomin_comics'), RDF::DC.relation, 'http://example.org/moomin_land'))).to be_true
       end
     end
     describe 'with URI subject' do
