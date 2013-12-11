@@ -20,6 +20,9 @@ module OregonDigital::RDF
     extend RdfProperties
     attr_accessor :parent
 
+    ##
+    # Adapter for a consistent interface for creating a new node from a URI.
+    # Similar functionality should exist in all objects which can become a node.
     def self.from_uri(uri,vals=nil)
       new(uri, vals)
     end
