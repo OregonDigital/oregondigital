@@ -1,22 +1,21 @@
 module OregonDigital::RDF
+  ##
+  # Defines a generic RdfResource as an RDF::Graph with property
+  # configuration, accessors, and some other methods for managing
+  # "resources" as discrete subgraphs which can be managed by a Hydra
+  # datastream model.
+  #
+  # Resources can be instances of RdfResource directly, but more
+  # often they will be instances of subclasses with registered
+  # properties and configuration. e.g.
+  #
+  #    class License < RdfResource
+  #      configure :repository => :default
+  #      property :title, :predicate => RDF::DC.title, :class_name => RDF::Literal do |index|
+  #        index.as :displayable, :facetable
+  #      end
+  #    end
   class RdfResource < RDF::Graph
-    ##
-    # Defines a generic RdfResource as an RDF::Graph with property
-    # configuration, accessors, and some other methods for managing
-    # "resources" as discrete subgraphs which can be managed by a Hydra
-    # datastream model.
-    #
-    # Resources can be instances of RdfResource directly, but more
-    # often they will be instances of subclasses with registered
-    # properties and configuration. e.g.
-    #
-    #    class License < RdfResource
-    #      configure :repository => :default
-    #      property :title, :predicate => RDF::DC.title, :class_name => RDF::Literal do |index|
-    #        index.as :displayable, :facetable
-    #      end
-    #    end
-
     extend RdfConfigurable
     extend RdfProperties
 
@@ -167,6 +166,18 @@ module OregonDigital::RDF
       values
     end
 
+    ##
+    # Set a new rdf_subject for the resource.
+    #
+    # This raises an error if the current subject is not a blank node,
+    # and returns false if it can't figure out how to make a URI from
+    # the param. Otherwise it creates a URI for the resource and
+    # rebuilds the graph with the updated URI.
+    #
+    # Will try to build a uri as an extension of the class's base_uri
+    # if appropriate.
+    #
+    # @param [#to_uri, #to_s] uri_or_str the uri or string to use
     def set_subject!(uri_or_str)
       raise "Refusing update URI when one is already assigned!" unless node?
       # Refusing set uri to an empty string.
@@ -186,6 +197,7 @@ module OregonDigital::RDF
 
       unless empty?
         statements.each_statement do |statement|
+          #TODO: what about if the statement has a different subject?
           delete(statement)
           self << RDF::Statement.new(rdf_subject, statement.predicate, statement.object)
         end

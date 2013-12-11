@@ -1,22 +1,21 @@
 module OregonDigital::RDF
+  ##
+  # Implements property configuration common to RdfResource and
+  # RdfResourceDatastream.  It does its work at the class level, and
+  # is meant to be extended.
+  #
+  # Define properties at the class level with:
+  #
+  #    property :title, :predicate => RDF::DC.title, :class_name => ResourceClass
+  #
+  # or with the 'old' ActiveFedora::RDFDatastream style:
+  #
+  #    map_predicates do |map|
+  #      map.title(:in => RDF::DC)
+  #    end
+  #
+  # You can pass a block to either to set index behavior.
   module RdfProperties
-    ##
-    # Implements property configuration common to RdfResource and
-    # RdfResourceDatastream.  It does its work at the class level, and
-    # is meant to be extended.
-    #
-    # Define properties at the class level with:
-    #
-    #    property :title, :predicate => RDF::DC.title, :class_name => ResourceClass
-    #
-    # or with the 'old' ActiveFedora::RDFDatastream style:
-    #
-    #    map_predicates do |map|
-    #      map.title(:in => RDF::DC)
-    #    end
-    #
-    # You can pass a block to either to set index behavior.
-
     attr_accessor :properties
 
     ##
