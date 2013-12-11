@@ -4,6 +4,7 @@ describe OregonDigital::RdfResourceDatastream do
   before(:each) do
     class DummySubnode < OregonDigital::RDF::RdfResource
       property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal
+      property :relation, :predicate => RDF::DC[:relation]
     end
     class DummyAsset < ActiveFedora::Base; end;
     class DummyResource < OregonDigital::RdfResourceDatastream
@@ -25,6 +26,7 @@ describe OregonDigital::RdfResourceDatastream do
       has_metadata :name => 'descMetadata', :type => DummyResource
       delegate :title, :to => :descMetadata, :multiple => true
       delegate :license, :to => :descMetadata, :multiple => true
+      delegate :relation, :to => 'descMetadata', :at => [:license, :relation], :multiple => false
     end
   end
   after(:each) do
@@ -55,6 +57,17 @@ describe OregonDigital::RdfResourceDatastream do
     it "should set values" do
       subject.title = "blah"
       expect(subject.descMetadata.title).to eq ["blah"]
+    end
+    context "when the delegation is deep" do
+      before(:each) do
+        dummy = DummySubnode.new
+        dummy.relation = 'subbla'
+        subject.descMetadata.license = dummy
+      end
+      # This test is pending. For now we have no use case for deep delegation into an RDF graph.
+      xit "should retrieve values" do
+        expect(subject.relation).to eq ["subbla"]
+      end
     end
   end
   describe "attribute setting" do

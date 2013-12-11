@@ -46,12 +46,14 @@ class OregonDigital::RdfResourceDatastream < ActiveFedora::Datastream
 
   alias_method :graph, :resource
 
+  ##
+  # This method allows for delegation.
+  # This patches the fact that there's no consistent API for allowing delegation - we're matching the
+  # OMDatastream implementation as our "consistentcy" point.
+  # @TODO: We may need to enable deep RDF delegation at one point.
   def term_values(*values)
     current_value = nil
-    values.each do |value|
-      current_value = self.send(value)
-    end
-    return current_value
+    self.send(values.first)
   end
 
   def update_indexed_attributes(hash)
