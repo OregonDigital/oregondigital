@@ -30,11 +30,18 @@ class OregonDigital::RdfResourceDatastream < ActiveFedora::Datastream
     super
   end
 
-  # Utility method which can be overridden to determine the object resource that is created.
+  # Utility method which can be overridden to determine the object
+  # resource that is created.
   def resource_class
     OregonDigital::RDF::ObjectResource
   end
 
+  ##
+  # The resource is the RdfResource object that stores the graph for
+  # the datastream and is the central point for its relationship to
+  # other nodes.
+  #
+  # set_value, get_value, and property accessors are delegated to this object.
   def resource
     @resource ||= begin
       r = resource_class.new(pid)
@@ -49,7 +56,7 @@ class OregonDigital::RdfResourceDatastream < ActiveFedora::Datastream
   ##
   # This method allows for delegation.
   # This patches the fact that there's no consistent API for allowing delegation - we're matching the
-  # OMDatastream implementation as our "consistentcy" point.
+  # OMDatastream implementation as our "consistency" point.
   # @TODO: We may need to enable deep RDF delegation at one point.
   def term_values(*values)
     current_value = nil
