@@ -18,6 +18,7 @@ module OregonDigital::RDF
   class RdfResource < RDF::Graph
     extend RdfConfigurable
     extend RdfProperties
+    attr_accessor :parent
 
     def self.from_uri(uri,vals=nil)
       new(uri, vals)
@@ -35,10 +36,10 @@ module OregonDigital::RDF
     # @see RDF::Graph
     def initialize(*args, &block)
       resource_uri = args.shift unless args.first.is_a?(Hash)
-      parent = args.shift unless args.first.is_a?(Hash)
+      self.parent = args.shift unless args.first.is_a?(Hash)
       set_subject!(resource_uri) if resource_uri
       super(*args, &block)
-      reload(parent)
+      reload
     end
 
     def rdf_subject
@@ -71,13 +72,12 @@ module OregonDigital::RDF
     end
     alias_method :solrize, :rdf_label
 
-    def persist!(parent=nil)
-      repo = get_repository(parent)
-      raise "failed when trying to persist to non-existant repository or parent resource" unless repo
+    def persist!
+      raise "failed when trying to persist to non-existant repository or parent resource" unless repository
       each_statement do |s, p, o|
-        repo.delete [s, p, nil]
+        repository.delete [s, p, nil]
       end
-      repo << self
+      repository << self
       @persisted = true
     end
 
@@ -85,16 +85,15 @@ module OregonDigital::RDF
       @persisted ||= false
     end
 
-    def reload(parent=nil)
+    def reload
       if self.class.repository == :parent
         return false if parent.nil?
       end
-      repo = get_repository(parent)
-      self << repo.query(:subject => rdf_subject)
+      self << repository.query(:subject => rdf_subject)
       # need to query differently for blank nodes?
       # Is there a solution which deals with both cases without iterating through potentially large repositories?
       if rdf_subject.node?
-        repo.each_statement do |s|
+        repository.each_statement do |s|
           self << s if s.subject == rdf_subject
         end
       end
@@ -234,17 +233,21 @@ module OregonDigital::RDF
 
     def add_child_node(property, resource)
       insert [rdf_subject, predicate_for_property(property), resource.rdf_subject]
-      resource.persist!(self) if resource.class.repository == :parent
+      resource.parent = self
+      resource.persist! if resource.class.repository == :parent
     end
 
     ##
     # Return the repository (or parent) that this resource should
     # write to when persisting.
-    #
-    # @param [RdfResource] parent resource we are persisting in the context of
-    def get_repository(parent=nil)
-      return parent if self.class.repository == :parent
-      RdfRepositories.repositories[self.class.repository]
+    def repository
+      @repository ||= begin
+        if self.class.repository == :parent
+          parent
+        else
+          OregonDigital::RDF::RdfRepositories.repositories[self.class.repository]
+        end
+      end
     end
 
     def node_cache
