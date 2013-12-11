@@ -88,6 +88,8 @@ module OregonDigital::RDF
       @persisted ||= false
     end
 
+    ##
+    # Repopulates the graph from the repository or parent resource.
     def reload
       if self.class.repository == :parent
         return false if parent.nil?
@@ -107,6 +109,17 @@ module OregonDigital::RDF
       true
     end
 
+    ##
+    # Adds or updates a property with supplied values.
+    #
+    # Handles two argument patterns. The recommended pattern is:
+    #    set_value(property, values)
+    #
+    # For backwards compatibility, there is support for explicitly
+    # passing the rdf_subject to be used in the statement:
+    #    set_value(uri, property, values)
+    #
+    # @note This method will delete existing statements with the correct subject and predicate from the graph
     def set_value(*args)
       # Add support for legacy 3-parameter syntax
       if args.length > 3 || args.length < 2
@@ -144,6 +157,17 @@ module OregonDigital::RDF
       end
     end
 
+    ##
+    # Returns an array of values belonging to the property
+    # requested. Elements in the array may be strings or RdfResource
+    # objects.
+    #
+    # Handles two argument patterns. The recommended pattern is:
+    #    get_values(property)
+    #
+    # For backwards compatibility, there is support for explicitly
+    # passing the rdf_subject to be used in th statement:
+    #    get_values(uri, property)
     def get_values(*args)
       raise ArgumentError("wrong number of arguments (#{args.length} for 1-2)") if args.length < 1 || args.length > 2
       property = args.last

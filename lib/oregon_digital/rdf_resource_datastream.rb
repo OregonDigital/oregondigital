@@ -99,7 +99,11 @@ class OregonDigital::RdfResourceDatastream < ActiveFedora::Datastream
     return "#{pre}__#{name}".to_sym
   end
 
+  private
 
+  ##
+  # Builds a map of properties with values, type and index behaviors
+  # for consumption by to_solr.
   def fields
     field_map = {}.with_indifferent_access
 
