@@ -127,7 +127,7 @@ module OregonDigital::RDF
       end
       if args.length == 3
         rdf_subject = args.shift
-        rdf_subject = RDF::URI.new(rdf_subject.to_s) unless rdf_subject.kind_of? RDF::Resource
+        rdf_subject = RDF::URI.new(rdf_subject.to_s) unless rdf_subject.kind_of? RDF::Value
       else
         rdf_subject = self.rdf_subject
       end
@@ -148,7 +148,7 @@ module OregonDigital::RDF
         end
         val = val.to_uri if val.respond_to? :to_uri
         raise 'value must be an RDF URI, Node, Literal, or a plain string' unless
-            val.kind_of? RDF::Resource or val.kind_of? RDF::Literal
+            val.kind_of? RDF::Value or val.kind_of? RDF::Literal
         insert [rdf_subject, predicate, val]
       end
       # Make it be unpersisted if the value has changed for this property.
@@ -183,7 +183,7 @@ module OregonDigital::RDF
         each_statement do |statement|
           value = statement.object if statement.subject == rdf_subject and statement.predicate == predicate
           value = value.to_s if value.kind_of? RDF::Literal
-          value = make_node(property, value) if value.kind_of? RDF::Resource
+          value = make_node(property, value) if value.kind_of? RDF::Value
           values << value unless value.nil?
         end
         return values
@@ -191,7 +191,7 @@ module OregonDigital::RDF
       query(:subject => rdf_subject, :predicate => predicate).each_statement do |statement|
         value = statement.object
         value = value.to_s if value.kind_of? RDF::Literal
-        value = make_node(property, value) if value.kind_of? RDF::Resource
+        value = make_node(property, value) if value.kind_of? RDF::Value
         values << value unless value.nil?
       end
       values
