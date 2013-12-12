@@ -9,7 +9,7 @@ describe OregonDigital::RDF::RdfResource do
     end
 
     class DummyResource < OregonDigital::RDF::RdfResource
-      configure :type => RDF::DC['SomeClass']
+      configure :type => RDF::URI('http://example.org/SomeClass')
       property :license, :predicate => RDF::DC.license, :class_name => DummyLicense
       map_predicates do |map|
         map.title(:in => RDF::DC)
@@ -162,13 +162,13 @@ describe OregonDigital::RDF::RdfResource do
     end
 
     it 'should set the type' do
-      subject.type = RDF::DC['AnotherClass']
-      expect(subject.type).to eq RDF::DC['AnotherClass']
+      subject.type = RDF::URI('http://example.org/AnotherClass')
+      expect(subject.type).to eq RDF::URI('http://example.org/AnotherClass')
     end
 
     it 'should be the type in the graph' do
-      subject.query(:subject => subject.rdf_subject, :predicate => RDF::RDFS.type).statements do |s|
-        expect(s.object).to eq RDF::DC['AnotherClass']
+      subject.query(:subject => subject.rdf_subject, :predicate => RDF.type).statements do |s|
+        expect(s.object).to eq RDF::URI('http://example.org/AnotherClass')
       end
     end
   end
