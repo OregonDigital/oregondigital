@@ -59,7 +59,6 @@ class OregonDigital::RdfResourceDatastream < ActiveFedora::Datastream
   # OMDatastream implementation as our "consistency" point.
   # @TODO: We may need to enable deep RDF delegation at one point.
   def term_values(*values)
-    current_value = nil
     self.send(values.first)
   end
 
