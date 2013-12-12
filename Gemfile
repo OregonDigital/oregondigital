@@ -25,6 +25,9 @@ gem "bootstrap-sass", '~>2.3.2.0'
 gem 'therubyracer'
 gem 'ruby-filemagic', '~>0.4.2'
 
+gem 'rdf', '~>1.1.0.1'
+gem 'rdf-4store'
+
 gem 'noid', '~>0.6.6'
 gem 'hybag'
 
