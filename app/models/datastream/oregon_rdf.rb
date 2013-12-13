@@ -96,8 +96,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     end
 
     # PREMIS
-    map.preservation(:to => 'originalName', :in => OregonDigital::Vocabularies::PREMIS)
-    map.fixity(:in => OregonDigital::Vocabularies::PREMIS) # don't index
+    map.preservation(:to => 'hasOriginalName', :in => OregonDigital::Vocabularies::PREMIS)
+    map.hasFixity(:in => OregonDigital::Vocabularies::PREMIS) # don't index
 
     # Oregon Digital
     map.set(:in => OregonDigital::Vocabularies::OREGONDIGITAL) do |index|
