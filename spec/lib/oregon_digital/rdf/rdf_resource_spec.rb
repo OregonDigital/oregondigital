@@ -80,8 +80,8 @@ describe OregonDigital::RDF::RdfResource do
         before(:each) do
           subject.title = "newbla"
         end
-        it "should return false" do
-          expect(subject).not_to be_persisted
+        it "should return true" do
+          expect(subject).to be_persisted
         end
       end
       context "and then reloaded" do

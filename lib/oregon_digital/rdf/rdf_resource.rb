@@ -151,10 +151,6 @@ module OregonDigital::RDF
             val.kind_of? RDF::Value or val.kind_of? RDF::Literal
         insert [rdf_subject, predicate, val]
       end
-      # Make it be unpersisted if the value has changed for this property.
-      if self.get_values(property) != old_value
-        @persisted = false
-      end
     end
 
     ##
