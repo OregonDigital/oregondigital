@@ -1,17 +1,12 @@
+# Based closely on https://github.com/ruby-rdf/rdf/blob/develop/Rakefile
 
 require 'linkeddata'
 require 'rdf/cli/vocab-loader'
 
 desc "Generate Vocabularies"
-vocab_sources = {
-  :dcmitype =>  { :prefix => 'http://purl.org/dc/dcmitype/', :source => 'http://dublincore.org/2012/06/14/dctype.rdf' },
-  :marcrel  =>  { :prefix => 'http://id.loc.gov/vocabulary/relators/', :source => 'http://id.loc.gov/vocabulary/relators.nt' },
-  # :dwc      =>  { :prefix => 'http://rs.tdwg.org/dwc/terms/', :source => 'http://rs.tdwg.org/dwc/rdf/dwcterms.rdf' },
-  :premis   =>  { :prefix => 'http://www.loc.gov/premis/rdf/v1#', :source => 'http://www.loc.gov/premis/rdf/v1.nt' },
-}
 
 task :gen_vocabs => :environment do
-  vocab_sources.each do |id, v|
+  RDF_VOCABS.each do |id, v|
     puts "Generate lib/oregon_digital/vocabularies/#{id}.rb"
     begin
       out = StringIO.new
