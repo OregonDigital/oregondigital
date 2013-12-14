@@ -1,4 +1,5 @@
 require 'linkeddata'
+require 'rdf/cli/vocab-loader'
 module OregonDigital
   module RDF
     ##

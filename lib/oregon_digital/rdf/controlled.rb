@@ -1,11 +1,15 @@
+require 'linkeddata'
+
 module OregonDigital::RDF
   ##
   # Adds add support for controlled vocabularies and
   # QuestioningAuthority to RdfResource classes.
+  # @TODO: introduce graph context for provenance
   module Controlled
 
     def self.included(klass)
       klass.extend ClassMethods
+      klass.configure :repository => :vocabs
     end
 
     ##
@@ -51,6 +55,12 @@ module OregonDigital::RDF
         @vocabularies ||= {}.with_indifferent_access
       end
 
+      def load_vocabularies
+        vocabularies.each do |name, config|
+          load_vocab(name)
+        end
+      end
+
       def uses_vocab_prefix?(str)
         vocabularies.each do |vocab, config|
           return true if str.start_with? config[:prefix]
@@ -58,10 +68,35 @@ module OregonDigital::RDF
         false
       end
 
+      ######
+      #
+      # Implement QuestioningAuthority API
+      #
+      ######
+
+      ##
+      # Not a very smart sparql search. It's mostly intended to be
+      # overridden in subclasses, but it could also stand to be a bit
+      # better as a baseline RDF vocab search.
+      def search(q, sub_authority=nil)
+        solutions = []
+        cache = OregonDigital::RDF::RdfRepositories.repositories[repository]
+        cache.query(:object => RDF::Literal(q)).each_statement do |solution|
+          solutions << { :id => solution.subject, :label => solution.object } if uses_vocab_prefix? solution.subject
+        end
+      end
+
       private
 
       def name_to_class(name)
         "OregonDigital::Vocabularies::#{name.upcase.to_s}".constantize
+      end
+
+      def load_vocab(name)
+        cache = OregonDigital::RDF::RdfRepositories.repositories[repository]
+        graph = RDF::Graph.new(:data => cache, :context => RDF_VOCABS[name.to_sym][:source])
+        graph.load(RDF_VOCABS[name.to_sym][:source])
+        graph
       end
     end
 
