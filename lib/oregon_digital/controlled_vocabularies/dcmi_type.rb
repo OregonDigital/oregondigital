@@ -1,6 +1,8 @@
 module OregonDigital::ControlledVocabularies
-  class DCMIType < OregonDigital::RDF::VocabularyResource
-    configure :base_uri => 'http://purl.org/dc/dcmitype/'
+  class DCMIType < OregonDigital::RDF::RdfResource
+    include OregonDigital::RDF::Controlled
+
+    use_vocabulary :dcmitype
 
   end
 end
