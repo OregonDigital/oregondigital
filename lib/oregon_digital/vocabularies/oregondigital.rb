@@ -1,9 +1,6 @@
+# This file generated automatically using vocab-fetch from http://opaquenamespace.org/
+require 'rdf'
 module OregonDigital::Vocabularies
-  ##
-  # Darwin Core
-  #
-  # @see http://rs.tdwg.org/dwc/terms/
-  class OREGONDIGITAL < ::RDF::Vocabulary("http://data.library.oregonstate.edu/ns/")
-    property :set
+  class OREGONDIGITAL < ::RDF::Vocabulary("http://opaquenamespace.org/")
   end
 end

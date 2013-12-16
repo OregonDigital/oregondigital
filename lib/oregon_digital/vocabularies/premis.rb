@@ -214,9 +214,9 @@ module OregonDigital::Vocabularies
         with significantPropertiesType of "behavior"] Editable, [For
         detail associated with a significantPropertiesType of "page
         width"] 210 mm, [For a PDF with an embedded graph, where the
-        lines' color determines the lines' meaning] Color, [For detail
-        associated with a significantPropertiesType of "appearance"]
-        Color)
+        lines\' color determines the lines\' meaning] Color, [For
+        detail associated with a significantPropertiesType of
+        "appearance"] Color)
     property :hasSize, :comment =>
       %(Example: 2038937)
     property :hasSoftwareDependency, :comment =>

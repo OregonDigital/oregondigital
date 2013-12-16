@@ -6,6 +6,28 @@ module OregonDigital
     # Overrides some ruby-rdf specific stuff in RDF::VocabularyLoader.
     # One day it might also do some better/custom nvocab parsing.
     class VocabularyLoader < ::RDF::VocabularyLoader
+
+      def from_solution(solution)
+        prefix_match = %r{\A#{@prefix}(.*)}
+        return if !solution.resource.uri? || (match = prefix_match.match(solution.resource.to_s)).nil?
+        name = match[1]
+
+        # If there's a label or comment, the must either have no language, or be en
+        label = solution[:label]
+        comment = solution[:comment]
+
+        return if label && label.has_language? && !label.language.to_s.start_with?("en")
+        return if comment && comment.has_language? && !comment.language.to_s.start_with?("en")
+        label = label.to_s.encode(Encoding::US_ASCII).strip.gsub(/\s+/m, ' ').gsub("\'", "\\\\\'")
+        comment = comment.to_s.encode(Encoding::US_ASCII).strip.gsub(/\s+/m, ' ').gsub(/([\(\)])/, '\\\\\\1').gsub("\'", "\\\\\'")
+
+        @output.write "    property #{name.to_sym.inspect}"
+        @output.write ", :label => '#{label}'" unless label.empty?
+        @output.write ", :comment =>\n      %(#{comment.scan(/\S.{0,60}\S(?=\s|$)|\S+/).join("\n        ")})" unless comment.empty?
+        @output.puts
+      rescue Encoding::UndefinedConversionError
+      end
+
       # Actually executes the load-and-emit process - useful when using this
       # class outside of a command line - instantiate, set attributes manually,
       # then call #run
@@ -26,6 +48,20 @@ module OregonDigital
           pattern [:resource, ::RDF.type, ::RDF::OWL.Class]
           pattern [:resource, ::RDF::RDFS.label, :label], :optional => true
           pattern [:resource, ::RDF::RDFS.comment, :comment], :optional => true
+        end
+
+        skos_concepts = ::RDF::Query.new do
+          pattern [:resource, ::RDF.type, ::RDF::SKOS.Concept]
+          pattern [:resource, ::RDF::RDFS.label, :label], :optional => true
+          pattern [:resource, ::RDF::RDFS.comment, :comment], :optional => true
+        end
+
+        concept_defs = graph.query(skos_concepts).to_a
+        unless concept_defs.empty?
+          @output.puts "\n    # Concept terms"
+          concept_defs.sort_by {|s| (s[:label] || s[:resource]).to_s}.each do |klass|
+            from_solution(klass)
+          end
         end
 
         class_defs = graph.query(classes).to_a + graph.query(owl_classes).to_a
