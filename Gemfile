@@ -68,6 +68,9 @@ gem 'hydra-role-management'
 # Draper for decoration
 gem 'draper'
 
+# Ingest form FBOs
+gem 'metadata-ingest-form', :git => "git://github.com/OregonDigital/metadata-ingest-form.git"
+
 # mysql gem
 gem 'mysql2'
 
