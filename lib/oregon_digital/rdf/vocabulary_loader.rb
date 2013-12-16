@@ -56,6 +56,7 @@ module OregonDigital
           pattern [:resource, ::RDF::RDFS.comment, :comment], :optional => true
         end
 
+        # @TODO: Don't add SKOS Concepts if they are already Classes or Properties
         concept_defs = graph.query(skos_concepts).to_a
         unless concept_defs.empty?
           @output.puts "\n    # Concept terms"
