@@ -1,0 +1,2 @@
+class IngestController < ApplicationController
+end
