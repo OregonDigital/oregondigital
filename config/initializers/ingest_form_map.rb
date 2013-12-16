@@ -48,4 +48,4 @@ INGEST_MAP = {
     location: :location,
   },
 }
-Metadata::Ingest::Form.internal_groups = INGEST_MAP.keys.collect {|key| key.to_s.pluralize}
+Metadata::Ingest::Form.internal_groups = INGEST_MAP.keys.collect {|key| key.to_s}
