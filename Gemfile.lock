@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/OregonDigital/metadata-ingest-form.git
+  revision: 37cf5ed8bdd0599334480c71d4603386a8f9dede
+  specs:
+    metadata-ingest-form (1.0.0)
+      activemodel (>= 3.0)
+
+GIT
   remote: git://github.com/no-reply/rdf-redis.git
   revision: 5f99f818c27db8fda9b002cbc082fa0412930125
   specs:
@@ -505,6 +512,7 @@ DEPENDENCIES
   jquery-fileupload-rails (~> 0.4.1)
   jquery-rails (~> 3.0.4)
   linkeddata
+  metadata-ingest-form!
   mysql2
   noid (~> 0.6.6)
   oai
