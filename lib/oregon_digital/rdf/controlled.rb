@@ -84,6 +84,7 @@ module OregonDigital::RDF
         cache.query(:object => RDF::Literal(q)).each_statement do |solution|
           solutions << { :id => solution.subject, :label => solution.object } if uses_vocab_prefix? solution.subject
         end
+        solutions
       end
 
       private
@@ -93,6 +94,7 @@ module OregonDigital::RDF
       end
 
       def load_vocab(name)
+        return nil unless RDF_VOCABS[name.to_sym].include? :source
         cache = OregonDigital::RDF::RdfRepositories.repositories[repository]
         graph = RDF::Graph.new(:data => cache, :context => RDF_VOCABS[name.to_sym][:source])
         graph.load(RDF_VOCABS[name.to_sym][:source])
