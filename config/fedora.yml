@@ -2,13 +2,13 @@ development:
   user: fedoraAdmin
   password: fedoraAdmin
   url: http://127.0.0.1:8983/fedora
-test: &TEST  
+test: &TEST
   user: fedoraAdmin
   password: fedoraAdmin
   url: <%= "http://127.0.0.1:#{ENV['TEST_JETTY_PORT'] || 8983}/fedora-test" %>
 production:
-  user: fedoraAdmin
-  password: fedoraAdmin
-  url: http://your.production.server:8080/fedora
+  user: <%= ENV['OREGONDIGITAL_FEDORA_USER'] || "fedoraAdmin" %>
+  password: <%= ENV['OREGONDIGITAL_FEDORA_PASSWORD'] || "fedoraAdmin" %>
+  url: <%= ENV['OREGONDIGITAL_FEDORA_HOST'] || "http://your.production.server:8080/fedora" %>
 cucumber:
   <<: *TEST
