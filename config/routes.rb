@@ -17,5 +17,5 @@ Oregondigital::Application.routes.draw do
   get '/oai', :to => 'oai#index'
 
   # Ingest form routing
-  get 'ingest(/:id)/form' => 'ingest#form',   :as => :show_ingest_form
+  get 'ingest(/:id)/form', to: 'ingest#form', as: :show_ingest_form
 end
