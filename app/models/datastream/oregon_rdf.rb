@@ -33,7 +33,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     map.location(:to => 'spatial', :in => RDF::DC) do |index|
       index.as :searchable, :facetable, :displayable
     end
-    map.rights(:in => RDF::DC) do |index|
+    map.rights(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::RightsStatement) do |index|
       index.as :displayable
     end
     map.identifier(:in => RDF::DC) do |index|
