@@ -30,5 +30,7 @@ module OregonDigital::Vocabularies
       %(A static visual representation.)
     property :Text, :label => 'Text', :comment =>
       %(A resource consisting primarily of words for reading.)
+
+    # Other terms
   end
 end

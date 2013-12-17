@@ -21,6 +21,9 @@ module OregonDigital
         label = label.to_s.encode(Encoding::US_ASCII).strip.gsub(/\s+/m, ' ').gsub("\'", "\\\\\'")
         comment = comment.to_s.encode(Encoding::US_ASCII).strip.gsub(/\s+/m, ' ').gsub(/([\(\)])/, '\\\\\\1').gsub("\'", "\\\\\'")
 
+        @subjects ||= []
+        @subjects << solution.resource
+
         @output.write "    property #{name.to_sym.inspect}"
         @output.write ", :label => '#{label}'" unless label.empty?
         @output.write ", :comment =>\n      %(#{comment.scan(/\S.{0,60}\S(?=\s|$)|\S+/).join("\n        ")})" unless comment.empty?
@@ -32,6 +35,7 @@ module OregonDigital
       # class outside of a command line - instantiate, set attributes manually,
       # then call #run
       def run
+        @subjects = []
         @output.print %(# This file generated automatically using vocab-fetch from #{source}
         require 'rdf'
         module OregonDigital::Vocabularies
@@ -48,21 +52,6 @@ module OregonDigital
           pattern [:resource, ::RDF.type, ::RDF::OWL.Class]
           pattern [:resource, ::RDF::RDFS.label, :label], :optional => true
           pattern [:resource, ::RDF::RDFS.comment, :comment], :optional => true
-        end
-
-        skos_concepts = ::RDF::Query.new do
-          pattern [:resource, ::RDF.type, ::RDF::SKOS.Concept]
-          pattern [:resource, ::RDF::RDFS.label, :label], :optional => true
-          pattern [:resource, ::RDF::RDFS.comment, :comment], :optional => true
-        end
-
-        # @TODO: Don't add SKOS Concepts if they are already Classes or Properties
-        concept_defs = graph.query(skos_concepts).to_a
-        unless concept_defs.empty?
-          @output.puts "\n    # Concept terms"
-          concept_defs.sort_by {|s| (s[:label] || s[:resource]).to_s}.each do |klass|
-            from_solution(klass)
-          end
         end
 
         class_defs = graph.query(classes).to_a + graph.query(owl_classes).to_a
@@ -126,6 +115,36 @@ module OregonDigital
           @output.puts "\n    # Datatype definitions"
           dt_defs.each do |dt|
             from_solution(dt)
+          end
+        end
+
+        # Potential Repeats
+        skos_concepts = ::RDF::Query.new do
+          pattern [:resource, ::RDF.type, ::RDF::SKOS.Concept]
+          pattern [:resource, ::RDF::RDFS.label, :label], :optional => true
+          pattern [:resource, ::RDF::RDFS.comment, :comment], :optional => true
+        end
+
+        # @TODO: Don't add SKOS Concepts if they are already Classes or Properties
+        concept_defs = graph.query(skos_concepts).to_a
+        unless concept_defs.empty?
+          @output.puts "\n    # Concept terms"
+          concept_defs.sort_by {|s| (s[:label] || s[:resource]).to_s}.each do |klass|
+            from_solution(klass) unless @subjects.include? klass[:resource]
+          end
+        end
+
+        # Potential Repeats
+        other_terms = ::RDF::Query.new do
+          pattern [:resource, ::RDF.type, :type]
+          pattern [:resource, ::RDF::RDFS.label, :label], :optional => true
+          pattern [:resource, ::RDF::RDFS.comment, :comment], :optional => true
+        end
+        other_terms = graph.query(other_terms).to_a
+        unless other_terms.empty?
+          @output.puts "\n    # Other terms"
+          other_terms.sort_by {|s| (s[:label] || s[:resource]).to_s}.each do |klass|
+            from_solution(klass) unless @subjects.include? klass[:resource]
           end
         end
 

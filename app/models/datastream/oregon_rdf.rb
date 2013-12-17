@@ -9,10 +9,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     map.title(:in => RDF::DC) do |index|
       index.as :searchable, :displayable
     end
-    map.creator(:in => RDF::DC) do |index|
+    map.creator(:in => RDF::DC11) do |index|
       index.as :searchable, :facetable, :displayable
     end
-    map.contributor(:in => RDF::DC) do |index|
+    map.contributor(:in => RDF::DC11) do |index|
       index.as :searchable, :facetable, :displayable
     end
     map.abstract(:in => RDF::DC) do |index|
@@ -36,6 +36,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     map.rights(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::RightsStatement) do |index|
       index.as :displayable
     end
+    map.language(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Language) do |index|
+      index.as :displayable, :facetable
+    end
     map.identifier(:in => RDF::DC) do |index|
       index.as :searchable, :displayable
     end
@@ -51,7 +54,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     map.date(:in => RDF::DC) do |index|
       index.as :searchable, :facetable, :displayable
     end
-    map.hasFormat(:to => 'hasFormat', :in => RDF::DC) do |index|
+    map.format(:to => 'format', :in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Format) do |index|
       index.as :searchable, :facetable, :displayable
     end
     map.localCollection(:to => 'isPartOf', :in => RDF::DC) do |index|

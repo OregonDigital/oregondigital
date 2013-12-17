@@ -446,5 +446,7 @@ module OregonDigital::Vocabularies
     property :hasTermOfGrant
     property :hasTermOfRestriction
     property :hasSigner
+
+    # Other terms
   end
 end

@@ -8,4 +8,5 @@ RDF_VOCABS = {
   :oregondigital        =>  { :prefix => 'http://opaquenamespace.org/', :strict => false, :fetch => false },
   :cclicenses           =>  { :prefix => 'http://creativecommons.org/licenses/by/4.0/', :strict => false, :fetch => false},
   :od_rights_statements =>  { :prefix => 'http://opaquenamespace.org/rights/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/rights.jsonld' },
+  :mimetype             =>  { :prefix => 'http://purl.org/NET/mediatypes/', :source => 'http://mediatypes.appspot.com/dump.rdf' },
 }

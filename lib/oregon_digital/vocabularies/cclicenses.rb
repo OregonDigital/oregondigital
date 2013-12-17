@@ -2,5 +2,8 @@
 require 'rdf'
 module OregonDigital::Vocabularies
   class CCLICENSES < ::RDF::Vocabulary("http://creativecommons.org/licenses/by/4.0/")
+
+    # Other terms
+    property :""
   end
 end

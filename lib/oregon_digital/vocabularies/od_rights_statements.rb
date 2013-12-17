@@ -7,5 +7,7 @@ module OregonDigital::Vocabularies
     property :allRightsReserved, :label => 'All Rights Reserved'
     property :educationalUse, :label => 'Educational Use Permitted'
     property :publicDomainAcknowledgement, :label => 'Public Domain; Acknowledgement Requested.'
+
+    # Other terms
   end
 end
