@@ -1,0 +1,16 @@
+<%#
+    For some reason, simple form's error notification seems to totally ignore errors on base, so
+    I'm basically duplicating their work here
+%>
+<% if f.object.errors.any? %>
+  <div class="alert alert-error">
+    <i class="icon-exclamation-sign"></i>
+    <b><%= error_notification_for(f) %></b>
+
+    <ul>
+      <% for message in f.object.errors.full_messages %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

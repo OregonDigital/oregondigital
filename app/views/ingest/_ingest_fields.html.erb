@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <%= f.input :type, :collection => INGEST_MAP[f.object.group.to_sym].keys, :input_html => {:class => "input-medium"} %>
+  <%= f.input :value, :input_html => {:class => "input-xxlarge"} %>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= link_to_remove_ingest_association(f) %>
+    </div>
+  </div>
+
+  <hr />
+</div>
