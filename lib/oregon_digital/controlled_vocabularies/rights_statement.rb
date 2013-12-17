@@ -4,6 +4,7 @@ module OregonDigital::ControlledVocabularies
 
     use_vocabulary :od_rights_statements
     use_vocabulary :cclicenses
+    use_vocabulary :ccpublic
 
   end
 end
