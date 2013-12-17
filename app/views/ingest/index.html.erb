@@ -1,0 +1,21 @@
+<%# TODO: Uncomment template stuff when templates are ported %>
+<h2><b>Not implemented yet - just use the "start from scratch" link for now</b></h2>
+<div class="span6">
+  <h2>Digital Asset Ingestion</h2>
+
+  <p>Ingest from a template</p>
+  <form action="<%# show_ingest_form_path %>" method="get">
+    <label for="template_id">Template:</label>
+    <select name="template_id" id="template_id"><%# options_from_collection_for_select(@templates, 'id', 'name') %></select>
+
+    <input type="submit" value="Go" />
+  </form>
+
+  <p>Or <%= link_to "start from scratch", show_ingest_form_path %></p>
+</div>
+
+<div class="span6">
+  <h2>Administration</h2>
+
+  <%# link_to "Template administration", templates_path %>
+</div>

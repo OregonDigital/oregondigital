@@ -1,4 +1,7 @@
 class IngestController < ApplicationController
+  def index
+  end
+
   def form
     @form = Metadata::Ingest::Form.new
 

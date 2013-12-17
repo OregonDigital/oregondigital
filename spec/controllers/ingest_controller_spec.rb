@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe IngestController do
+  describe "#index" do
+    # Index doesn't do much yet, so this is just a quick smoke test to verify nothing crashes
+    it "works" do
+      get :index
+    end
+  end
+
   describe "#form" do
     before(:each) do
       # Create a local form and stub .new so we can make assertions on what the controller sees
