@@ -75,6 +75,14 @@ module OregonDigital::RDF
     end
     alias_method :solrize, :rdf_label
 
+    ##
+    # Load data from URI
+    # @TODO: use graph name context for provenance
+    def fetch
+      load(rdf_subject)
+      self
+    end
+
     def persist!
       raise "failed when trying to persist to non-existant repository or parent resource" unless repository
       each_statement do |s, p, o|
