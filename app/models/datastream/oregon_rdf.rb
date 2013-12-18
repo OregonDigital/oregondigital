@@ -5,7 +5,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
   map_predicates do |map|
 
-    # Basic Dublin Core
+    # Core Properties
     map.title(:in => RDF::DC) do |index|
       index.as :searchable, :displayable
     end
@@ -21,7 +21,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     map.description(:in => RDF::DC) do |index|
       index.as :searchable, :displayable
     end
-    map.subject(:in => RDF::DC) do |index|
+    map.subject(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Subject) do |index|
       index.as :searchable, :facetable, :displayable
     end
     map.source(:in => RDF::DC) do |index|
@@ -30,7 +30,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     map.type(:in => RDF::DC) do |index|
       index.as :facetable, :displayable
     end
-    map.location(:to => 'spatial', :in => RDF::DC) do |index|
+    map.location(:to => 'spatial', :in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Geographic) do |index|
       index.as :searchable, :facetable, :displayable
     end
     map.rights(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::RightsStatement) do |index|
@@ -61,7 +61,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
       index.as :searchable, :facetable, :displayable
     end
 
-    map.replacesUrl(:to => 'isPartOf', :in => RDF::DC) # do not index
+    map.replacesUrl(:to => 'replaces', :in => RDF::DC) # do not index
 
     # MARCRel
     # These fields should all be searchable as equivalent to dc.contributor
