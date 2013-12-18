@@ -68,23 +68,12 @@ module OregonDigital::RDF
         false
       end
 
-      ######
-      #
-      # Implement QuestioningAuthority API
-      #
-      ######
+      def qa_interface
+        @qa_interface ||= QaRDF.new(self)
+      end
 
-      ##
-      # Not a very smart sparql search. It's mostly intended to be
-      # overridden in subclasses, but it could also stand to be a bit
-      # better as a baseline RDF vocab search.
-      def search(q, sub_authority=nil)
-        solutions = []
-        cache = OregonDigital::RDF::RdfRepositories.repositories[repository]
-        cache.query(:object => RDF::Literal(q)).each_statement do |solution|
-          solutions << { :id => solution.subject, :label => solution.object } if uses_vocab_prefix? solution.subject
-        end
-        solutions
+      def search(q, subauthority=nil)
+        qa_interface.search(q, subauthority=nil)
       end
 
       private
@@ -99,6 +88,35 @@ module OregonDigital::RDF
         graph = RDF::Graph.new(:data => cache, :context => RDF_VOCABS[name.to_sym][:source])
         graph.load(RDF_VOCABS[name.to_sym][:source])
         graph
+      end
+
+      ######
+      #
+      # Implement QuestioningAuthority API
+      #
+      ######
+      class QaRDF
+        attr_accessor :response, :raw_response
+
+        def initialize(parent=nil)
+          @parent = parent
+        end
+
+        ##
+        # Not a very smart sparql search. It's mostly intended to be
+        # overridden in subclasses, but it could also stand to be a bit
+        # better as a baseline RDF vocab search.
+        def search(q, sub_authority=nil)
+          solutions = []
+          cache = OregonDigital::RDF::RdfRepositories.repositories[@parent.repository]
+          cache.query(:object => RDF::Literal(q)).each_statement do |solution|
+            solutions << { :id => solution.subject, :label => solution.object } if uses_vocab_prefix? solution.subject
+          end
+          self.response = solutions
+        end
+
+        def get_full_record(id, sub_authority)
+        end
       end
     end
 

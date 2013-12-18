@@ -280,11 +280,13 @@ GEM
       yard (>= 0.8)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
-    qa (0.0.1)
+    qa (0.0.3)
       activerecord-import (>= 0.4.0)
       curb
+      deprecation
       nokogiri (~> 1.6.0)
       rails (~> 4.0.0)
+      rest-client
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -493,7 +495,7 @@ DEPENDENCIES
   pry-debugger
   pry-doc
   pry-rails
-  qa
+  qa (~> 0.0.3)
   rails (~> 4.0.0)
   rdf (~> 1.1.0.1)
   rdf-redis (~> 0.0.2)!

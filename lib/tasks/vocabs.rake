@@ -14,6 +14,7 @@ task :gen_vocabs => :environment do
       loader.prefix = v[:prefix]
       loader.source = v[:source] if v[:source]
       loader.extra = v[:extra] if v[:extra]
+      loader.fetch = v.fetch(:fetch, true)
       loader.strict = v.fetch(:strict, true)
       loader.output = out
       loader.run

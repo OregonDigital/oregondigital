@@ -1,7 +1,7 @@
 # This file generated automatically using vocab-fetch from https://raw.github.com/OregonDigital/opaque_ns/master/rights.jsonld
 require 'rdf'
 module OregonDigital::Vocabularies
-  class OD_RIGHTS_STATEMENTS < ::RDF::Vocabulary("http://opaquenamespace.org/rights/")
+  class RIGHTS < ::RDF::Vocabulary("http://opaquenamespace.org/rights/")
 
     # Concept terms
     property :allRightsReserved, :label => 'All Rights Reserved'
