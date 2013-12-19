@@ -6,7 +6,7 @@ RDF_VOCABS = {
   :premis               =>  { :prefix => 'http://www.loc.gov/premis/rdf/v1#', :source => 'http://www.loc.gov/premis/rdf/v1.nt' },
   :geonames             =>  { :prefix => 'http://sws.geonames.org/', :strict => false, :fetch => false },
   :lcsh                 =>  { :prefix => 'http://id.loc.gov/authorities/subjects/', :strict => false, :fetch => false },
-  :aat                  =>  { :prefix => 'http://vocab.getty.edu/aat/300311452', :strict => false, :fetch => false },
+  :aat                  =>  { :prefix => 'http://vocab.getty.edu/aat/', :strict => false, :fetch => false },
   :cclicenses           =>  { :prefix => 'http://creativecommons.org/licenses/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/cclicenses/cclicenses.nt'},
   :ccpublic             =>  { :prefix => 'http://creativecommons.org/publicdomain/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/cclicenses/cclicenses.nt'},
   :rights               =>  { :prefix => 'http://opaquenamespace.org/rights/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/rights.jsonld', :strict => false },
