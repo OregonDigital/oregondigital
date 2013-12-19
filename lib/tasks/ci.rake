@@ -1,10 +1,7 @@
 # CI Task from Sufia [https://github.com/projecthydra/sufia/blob/master/tasks/sufia-dev.rake]
 
-require 'rspec/core'
-require 'rspec/core/rake_task'
 APP_ROOT="." # for jettywrapper
 require 'jettywrapper'
-ENV["RAILS_ROOT"] ||= 'spec/internal'
 
 desc 'Spin up hydra-jetty and run specs'
 task :ci => ['jetty:config'] do
