@@ -242,6 +242,8 @@ GEM
     minitest (4.7.5)
     mono_logger (1.1.0)
     multi_json (1.8.2)
+    mysql2 (0.3.14)
+    net-http-persistent (2.9)
     netaddr (1.5.0)
     noid (0.6.6)
       backports
@@ -479,6 +481,7 @@ DEPENDENCIES
   jquery-fileupload-rails (~> 0.4.1)
   jquery-rails (~> 3.0.4)
   linkeddata
+  mysql2
   noid (~> 0.6.6)
   poltergeist (~> 1.4.0)
   pry

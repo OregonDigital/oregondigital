@@ -67,6 +67,9 @@ gem 'hydra-role-management'
 # Draper for decoration
 gem 'draper'
 
+# mysql gem
+gem 'mysql2'
+
 group :development do
   gem 'pry'
   gem 'pry-doc'
