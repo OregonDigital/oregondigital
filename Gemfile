@@ -67,6 +67,12 @@ gem 'hydra-role-management'
 # Draper for decoration
 gem 'draper'
 
+# mysql gem
+gem 'mysql2'
+
+# Unicorn for web server
+gem 'unicorn', '~>4.6.3'
+
 group :development do
   gem 'pry'
   gem 'pry-doc'
@@ -77,7 +83,6 @@ group :development do
   # Guard for auto-test running
   gem 'guard', '~>1.0'
   gem 'guard-rspec', '~>3.0'
-  gem 'unicorn', '~>4.6.3'
 end
 
 group :development, :test do
