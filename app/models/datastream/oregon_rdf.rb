@@ -27,7 +27,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     map.source(:in => RDF::DC) do |index|
       index.as :displayable
     end
-    map.type(:in => RDF::DC) do |index|
+    map.type(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::DCMIType) do |index|
       index.as :facetable, :displayable
     end
     map.location(:to => 'spatial', :in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Geographic) do |index|

@@ -99,6 +99,7 @@ module OregonDigital::RDF
     ##
     # Repopulates the graph from the repository or parent resource.
     def reload
+      @node_cache = {}
       if self.class.repository == :parent
         return false if parent.nil?
       end
@@ -302,5 +303,6 @@ module OregonDigital::RDF
       node_cache[value] = node
       return node
     end
+
   end
 end
