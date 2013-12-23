@@ -68,8 +68,14 @@ module OregonDigital::RDF
       self.update(RDF::Statement.new(rdf_subject, RDF.type, type))
     end
 
+    ##
+    # Look for labels in various default fields if no rdf_label is set
     def rdf_label
-      values = get_values(self.class.rdf_label)
+      return get_values(self.class.rdf_label) if self.class.rdf_label
+      values = get_values(RDF::SKOS.prefLabel)
+      values = get_values(RDF::DC.title) if values.empty?
+      values = get_values(RDF::RDFS.label) if values.empty?
+      values = get_values(RDF::SKOS.altLabel) if values.empty?
       values = rdf_subject.to_s unless node? if values.empty?
       return values
     end
