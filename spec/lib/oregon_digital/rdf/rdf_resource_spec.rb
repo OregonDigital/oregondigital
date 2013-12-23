@@ -217,7 +217,6 @@ describe OregonDigital::RDF::RdfResource do
     it 'should accept uncontrolled external terms' do
       expect(subject.geo.first).to be_kind_of DummyVocab
     end
-    # @todo: mock web requests
     it 'should load data for controlled terms' do
       DummyStrict.load_vocabularies
       subject.reload
