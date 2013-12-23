@@ -69,6 +69,10 @@ gem 'hydra-role-management'
 gem 'draper'
 
 group :development do
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-debugger'
+  gem 'pry-rails'
   # Spring as Rails preloader
   gem 'spring'
   # Guard for auto-test running
@@ -82,11 +86,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'pry-debugger'
-  gem 'pry-rails'
-
   # Rspec stuff
   gem 'rspec-rails', '~>2.14.0'
 
