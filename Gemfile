@@ -69,10 +69,6 @@ gem 'hydra-role-management'
 gem 'draper'
 
 group :development do
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'pry-debugger'
-  gem 'pry-rails'
   # Spring as Rails preloader
   gem 'spring'
   # Guard for auto-test running
@@ -81,10 +77,18 @@ group :development do
   gem 'unicorn', '~>4.6.3'
 end
 
+group :test do
+  gem 'webmock'
+end
+
 group :development, :test do
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-debugger'
+  gem 'pry-rails'
+
   # Rspec stuff
   gem 'rspec-rails', '~>2.14.0'
-  gem 'webmock'
 
   gem 'sqlite3', '~>1.3.7'
   gem 'jettywrapper'
