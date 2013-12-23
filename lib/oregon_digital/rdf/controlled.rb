@@ -42,7 +42,7 @@ module OregonDigital::RDF
     end
 
     ##
-    #
+    #  Class methods for adding and using controlled vocabularies
     module ClassMethods
       def use_vocabulary(name, opts={})
         raise ControlledVocabularyError, "Vocabulary undefined: #{name.to_s.upcase}" unless RDF_VOCABS.include? name
@@ -55,6 +55,11 @@ module OregonDigital::RDF
         @vocabularies ||= {}.with_indifferent_access
       end
 
+      ##
+      # Gets data for all vocabularies used and loads it into the
+      # configured repository. After running this new (and reloaded)
+      # RdfResource objects of this class will have data from their
+      # source web document.
       def load_vocabularies
         vocabularies.each do |name, config|
           load_vocab(name)

@@ -76,7 +76,7 @@ module OregonDigital::RDF
       values = get_values(RDF::DC.title) if values.empty?
       values = get_values(RDF::RDFS.label) if values.empty?
       values = get_values(RDF::SKOS.altLabel) if values.empty?
-      values = rdf_subject.to_s unless node? if values.empty?
+      values = [rdf_subject.to_s] unless node? if values.empty?
       return values
     end
     alias_method :solrize, :rdf_label
