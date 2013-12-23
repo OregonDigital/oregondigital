@@ -174,6 +174,9 @@ describe OregonDigital::RDF::RdfResource do
   end
 
   describe '#rdf_label' do
+    it 'should return an array of label values' do
+      expect(subject.rdf_label).to be_kind_of Array
+    end
     it 'should return the configured label values'
   end
 
