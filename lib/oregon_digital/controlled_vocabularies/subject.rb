@@ -4,7 +4,10 @@ module OregonDigital::ControlledVocabularies
 
     use_vocabulary :lcsh
 
-    class QaLcsh < Qa::Authorities::Lcsh
+    class QaLcsh < Qa::Authorities::Loc
+      def search(q, sub_authority=nil)
+        super(q, 'subjects')
+      end
       def get_id_from_url(url)
         url
       end
