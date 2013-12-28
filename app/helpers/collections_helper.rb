@@ -1,4 +1,6 @@
 module CollectionsHelper
+  # Force Blacklight's facet stuff to load first so we can override its methods
+  include Blacklight::FacetsHelperBehavior
 
   def collection_name(pid)
     GenericCollection.load_instance_from_solr(pid).decorate.title
