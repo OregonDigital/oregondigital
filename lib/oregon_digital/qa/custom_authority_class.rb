@@ -17,22 +17,25 @@ module OregonDigital::Qa
       replacement = params[:vocab]
       for pattern in OregonDigital::Qa::CustomAuthorityClass.qa_class_patterns
         test = pattern % replacement
-        return test if valid_class?(test)
+        return test if valid_const?(test)
       end
 
       # None worked, default to Qa::Authorities:: prefix
       return super
     end
 
-    # Returns true or false depending on whether `class_string` is a valid constant.
-    #
-    # NOTE: Yes, this is hacky, but easier than recreating the constantize method.
-    def valid_class?(class_string)
-      begin
-        return true if class_string.constantize
-      rescue NameError
-        return false
+    # Returns true or false depending on whether `camel_cased_word` is a valid constant.
+    def valid_const?(camel_cased_word)
+      names = camel_cased_word.split('::')
+      names.shift if names.empty? || names.first.empty?
+
+      constant = Object
+      names.each do |name|
+        return false unless constant.const_defined?(name)
+        constant = constant.const_defined?(name) ? constant.const_get(name) : constant.const_missing(name)
       end
+
+      return true
     end
   end
 end
