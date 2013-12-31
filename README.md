@@ -7,6 +7,8 @@ OregonDigital
 Development Setup
 ------------------
 
+**Requires Ruby 2.0**
+
     git clone https://github.com/OregonDigital/oregondigital
 	cd oregondigital
 	bundle install
