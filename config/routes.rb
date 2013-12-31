@@ -6,6 +6,7 @@ Oregondigital::Application.routes.draw do
 
   devise_for :users
   mount Hydra::RoleManagement::Engine => '/'
+  mount Qa::Engine => '/qa'
   resources :roles, :only => [] do
     resources :ip_ranges, :only => [:create, :destroy], :controller => "roles_ip_ranges"
   end

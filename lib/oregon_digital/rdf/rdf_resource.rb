@@ -68,12 +68,26 @@ module OregonDigital::RDF
       self.update(RDF::Statement.new(rdf_subject, RDF.type, type))
     end
 
+    ##
+    # Look for labels in various default fields if no rdf_label is set
     def rdf_label
-      values = get_values(self.class.rdf_label)
-      values = rdf_subject.to_s unless node? if values.empty?
+      return get_values(self.class.rdf_label) if self.class.rdf_label
+      values = get_values(RDF::SKOS.prefLabel)
+      values = get_values(RDF::DC.title) if values.empty?
+      values = get_values(RDF::RDFS.label) if values.empty?
+      values = get_values(RDF::SKOS.altLabel) if values.empty?
+      values = [rdf_subject.to_s] unless node? if values.empty?
       return values
     end
     alias_method :solrize, :rdf_label
+
+    ##
+    # Load data from URI
+    # @TODO: use graph name context for provenance
+    def fetch
+      load(rdf_subject)
+      self
+    end
 
     def persist!
       raise "failed when trying to persist to non-existant repository or parent resource" unless repository
@@ -91,6 +105,7 @@ module OregonDigital::RDF
     ##
     # Repopulates the graph from the repository or parent resource.
     def reload
+      @node_cache = {}
       if self.class.repository == :parent
         return false if parent.nil?
       end
@@ -294,5 +309,6 @@ module OregonDigital::RDF
       node_cache[value] = node
       return node
     end
+
   end
 end

@@ -10,13 +10,12 @@ module OregonDigital::RDF
     #    configure :base_uri => "http://oregondigital.org/resource/", :repository => :parent
     # Available properties are base_uri, rdf_label, type, and repository
 
-
     def base_uri
       nil
     end
 
     def rdf_label
-      RDF::RDFS.label
+      nil
     end
 
     def type

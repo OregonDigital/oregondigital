@@ -5,14 +5,14 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
   map_predicates do |map|
 
-    # Basic Dublin Core
+    # Core Properties
     map.title(:in => RDF::DC) do |index|
       index.as :searchable, :displayable
     end
-    map.creator(:in => RDF::DC) do |index|
+    map.creator(:in => RDF::DC11) do |index|
       index.as :searchable, :facetable, :displayable
     end
-    map.contributor(:in => RDF::DC) do |index|
+    map.contributor(:in => RDF::DC11) do |index|
       index.as :searchable, :facetable, :displayable
     end
     map.abstract(:in => RDF::DC) do |index|
@@ -21,20 +21,23 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     map.description(:in => RDF::DC) do |index|
       index.as :searchable, :displayable
     end
-    map.subject(:in => RDF::DC) do |index|
+    map.subject(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Subject) do |index|
       index.as :searchable, :facetable, :displayable
     end
     map.source(:in => RDF::DC) do |index|
       index.as :displayable
     end
-    map.type(:in => RDF::DC) do |index|
+    map.type(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::DCMIType) do |index|
       index.as :facetable, :displayable
     end
-    map.location(:to => 'spatial', :in => RDF::DC) do |index|
+    map.location(:to => 'spatial', :in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Geographic) do |index|
       index.as :searchable, :facetable, :displayable
     end
-    map.rights(:in => RDF::DC) do |index|
+    map.rights(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::RightsStatement) do |index|
       index.as :displayable
+    end
+    map.language(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Language) do |index|
+      index.as :displayable, :facetable
     end
     map.identifier(:in => RDF::DC) do |index|
       index.as :searchable, :displayable
@@ -51,14 +54,14 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     map.date(:in => RDF::DC) do |index|
       index.as :searchable, :facetable, :displayable
     end
-    map.hasFormat(:to => 'hasFormat', :in => RDF::DC) do |index|
+    map.format(:to => 'format', :in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Format) do |index|
       index.as :searchable, :facetable, :displayable
     end
     map.localCollection(:to => 'isPartOf', :in => RDF::DC) do |index|
       index.as :searchable, :facetable, :displayable
     end
 
-    map.replacesUrl(:to => 'isPartOf', :in => RDF::DC) # do not index
+    map.replacesUrl(:to => 'replaces', :in => RDF::DC) # do not index
 
     # MARCRel
     # These fields should all be searchable as equivalent to dc.contributor
@@ -96,8 +99,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     end
 
     # PREMIS
-    map.preservation(:to => 'originalName', :in => OregonDigital::Vocabularies::PREMIS)
-    map.fixity(:in => OregonDigital::Vocabularies::PREMIS) # don't index
+    map.preservation(:to => 'hasOriginalName', :in => OregonDigital::Vocabularies::PREMIS)
+    map.hasFixity(:in => OregonDigital::Vocabularies::PREMIS) # don't index
 
     # Oregon Digital
     map.set(:in => OregonDigital::Vocabularies::OREGONDIGITAL) do |index|

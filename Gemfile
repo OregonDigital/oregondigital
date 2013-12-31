@@ -31,6 +31,7 @@ gem 'rdf-redis', '~>0.0.2', :git => 'git://github.com/no-reply/rdf-redis.git'
 
 gem 'noid', '~>0.6.6'
 gem 'hybag'
+gem 'qa', '~>0.0.3'
 
 gem 'resque', '~>1.25.0'
 
@@ -83,6 +84,10 @@ group :development do
   # Guard for auto-test running
   gem 'guard', '~>1.0'
   gem 'guard-rspec', '~>3.0'
+end
+
+group :test do
+  gem 'webmock'
 end
 
 group :development, :test do

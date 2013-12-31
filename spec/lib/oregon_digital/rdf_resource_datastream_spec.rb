@@ -130,7 +130,6 @@ describe OregonDigital::RdfResourceDatastream do
       end
       context "persisted to repository" do
         before(:each) do
-          OregonDigital::RDF::RdfRepositories.add_repository :default, RDF::Repository.new
           DummySubnode.configure :repository => :default
           dummy = DummySubnode.new(RDF::URI('http://example.org/dummy/blah'))
           dummy.title = 'subbla'
