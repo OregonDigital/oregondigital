@@ -10,6 +10,39 @@ describe GenericAsset do
     expect { generic_asset }.not_to raise_error
   end
 
+  describe '.save' do
+    context 'when content has not been assigned' do
+      it 'should not try to create derivatives' do
+        generic_asset.should_not_receive(:create_derivatives)
+        generic_asset.save
+      end
+    end
+    context 'when content has been assigned' do
+      before(:each) do
+        file = File.open(File.join(fixture_path, 'fixture_image.jpg'), 'rb')
+        generic_asset.add_file_datastream(file, :dsid => 'content')
+        expect(generic_asset.content).not_to be_blank
+      end
+      it 'should try to create derivatives' do
+        GenericAsset.any_instance.should_receive(:create_derivatives)
+        generic_asset.save
+      end
+    end
+    context "when content is returned to nil" do
+      before(:each) do
+        file = File.open(File.join(fixture_path, 'fixture_image.jpg'), 'rb')
+        generic_asset.add_file_datastream(file, :dsid => 'content')
+        generic_asset.save
+        g = GenericAsset.find(generic_asset.pid)
+        generic_asset.content.content = nil
+      end
+      it "should not try to create derivatives" do
+        GenericAsset.any_instance.should_not_receive(:create_derivatives)
+        generic_asset.save
+      end
+    end
+  end
+
   describe 'collection metadata crosswalking' do
     context 'when the asset is a member of a collection' do
       subject(:generic_asset) { FactoryGirl.create(:generic_asset, :in_collection!) }
@@ -27,7 +60,7 @@ describe GenericAsset do
       before(:each) do
         subject.descMetadata.set_value(subject.descMetadata.rdf_subject, :set, "oregondigital:testing")
         subject.save
-        @item = GenericAsset.find(:pid => subject.pid).first
+        @item = GenericAsset.find(subject.pid)
       end
       it "should set the rels" do
         expect(@item.relationships(:is_member_of_collection).to_a).to eq ["info:fedora/oregondigital:testing"]
