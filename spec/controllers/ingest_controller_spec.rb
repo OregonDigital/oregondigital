@@ -84,6 +84,12 @@ describe IngestController do
         post :save, :metadata_ingest_form => @attrs
       end
 
+      it "should use the internal value if one is sent" do
+        @attrs["titles_attributes"]["0"]["internal"] = "internal"
+        expect(@asset).to receive(:title=).with("internal")
+        post :save, :metadata_ingest_form => @attrs
+      end
+
       it "should create a new asset" do
         @asset.should_receive(:save).once
         post :save, :metadata_ingest_form => @attrs
