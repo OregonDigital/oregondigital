@@ -17,12 +17,10 @@ module OregonDigital::Qa
       replacement = params[:vocab]
       for pattern in OregonDigital::Qa::CustomAuthorityClass.qa_class_patterns
         test = pattern % replacement
-        Rails.logger.info "Testing out #{test}"
         return test if valid_class?(test)
       end
 
       # None worked, default to Qa::Authorities:: prefix
-      Rails.logger.info "Falling back to default"
       return super
     end
 
