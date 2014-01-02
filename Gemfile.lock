@@ -7,6 +7,18 @@ GIT
       activemodel (>= 3.0)
 
 GIT
+  remote: git://github.com/jechols/questioning_authority
+  revision: ae4321eaef1097ed1200058fd6943d5c0f0a12d2
+  branch: simplify-routing
+  specs:
+    qa (0.0.3)
+      activerecord-import (>= 0.4.0)
+      deprecation
+      nokogiri (~> 1.6.0)
+      rails (~> 4.0.0)
+      rest-client
+
+GIT
   remote: git://github.com/no-reply/rdf-redis.git
   revision: 5f99f818c27db8fda9b002cbc082fa0412930125
   specs:
@@ -116,7 +128,6 @@ GEM
       thor
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
-    curb (0.8.5)
     daemons (1.1.9)
     debugger (1.6.5)
       columnize (>= 0.3.1)
@@ -300,13 +311,6 @@ GEM
       yard (>= 0.8)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
-    qa (0.0.3)
-      activerecord-import (>= 0.4.0)
-      curb
-      deprecation
-      nokogiri (~> 1.6.0)
-      rails (~> 4.0.0)
-      rest-client
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -522,7 +526,7 @@ DEPENDENCIES
   pry-debugger
   pry-doc
   pry-rails
-  qa (~> 0.0.3)
+  qa (~> 0.0.3)!
   rails (~> 4.0.0)
   rdf (~> 1.1.0.1)
   rdf-redis (~> 0.0.2)!
