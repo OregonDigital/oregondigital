@@ -1,6 +1,6 @@
 <div class="nested-fields form-fields-wrapper" data-group="<%= f.object.group %>">
-  <%= f.input :type, :collection => INGEST_MAP[f.object.group.to_sym].keys, :input_html => {:class => "input-medium"} %>
-  <%= f.input :value, :input_html => {:class => "input-xxlarge"} %>
+  <%= f.input :type, :collection => INGEST_MAP[f.object.group.to_sym].keys, :input_html => {:class => "input-medium type-selector"} %>
+  <%= f.input :value, :input_html => {:class => "input-xxlarge value-field"} %>
   <%= f.hidden_field :internal %>
 
   <div class="control-group">

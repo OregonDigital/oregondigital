@@ -9,3 +9,7 @@
     <%= form_submit(f) %>
   <% end %>
 </div>
+
+<script>
+  var controlledVocabMap = <%= raw(@controlled_vocab_map.to_json) %>;
+</script>
