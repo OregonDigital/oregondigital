@@ -33,7 +33,6 @@ checkControlledVocabulary = (input, select) ->
   input.typeahead("destroy")
   uri = option.attr("data-typeahead-uri")
   if uri
-    console.log("Applying a typeahead to '#{option.val()}': '#{uri}'")
     input.typeahead([{
       name: option.val()
       remote: {
