@@ -13,6 +13,14 @@ class IngestController < ApplicationController
         @form.send("build_#{group}")
       end
     end
+
+    # TODO: Replace this with something that dynamically sets up controlled vocabulary data
+    # based on the form map and the datastream's properties
+    @controlled_vocab_map = {
+      "subject" => {
+        "subject" => qa.search_path(:vocab => "Subject::QaLcsh", :q => "VOCABQUERY")
+      }
+    }
   end
 
   # Combined create/update form handler
