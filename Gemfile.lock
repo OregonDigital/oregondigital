@@ -8,8 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/jechols/questioning_authority
-  revision: ae4321eaef1097ed1200058fd6943d5c0f0a12d2
-  branch: simplify-routing
+  revision: 9bd6a97ca16ac3a46073c0d4e2bab1a118e5a569
   specs:
     qa (0.0.3)
       activerecord-import (>= 0.4.0)
