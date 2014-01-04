@@ -25,17 +25,15 @@ module OregonDigital::Qa
     end
 
     # Returns true or false depending on whether `camel_cased_word` is a valid constant.
+    #
+    # Hacky, but constantize seems the right way to deal with autoloading and such.
     def valid_const?(camel_cased_word)
-      names = camel_cased_word.split('::')
-      names.shift if names.empty? || names.first.empty?
-
-      constant = Object
-      names.each do |name|
-        return false unless constant.const_defined?(name)
-        constant = constant.const_defined?(name) ? constant.const_get(name) : constant.const_missing(name)
+      begin
+        camel_cased_word.constantize
+        return true
+      rescue NameError
+        return false
       end
-
-      return true
     end
   end
 end

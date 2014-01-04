@@ -1,9 +1,21 @@
 GIT
   remote: git://github.com/OregonDigital/metadata-ingest-form.git
-  revision: 37cf5ed8bdd0599334480c71d4603386a8f9dede
+  revision: 11c61c8888291be80106f2c708db83a25a18d525
+  branch: feature/allow-internal-values
   specs:
     metadata-ingest-form (1.0.0)
       activemodel (>= 3.0)
+
+GIT
+  remote: git://github.com/jechols/questioning_authority
+  revision: 9bd6a97ca16ac3a46073c0d4e2bab1a118e5a569
+  specs:
+    qa (0.0.3)
+      activerecord-import (>= 0.4.0)
+      deprecation
+      nokogiri (~> 1.6.0)
+      rails (~> 4.0.0)
+      rest-client
 
 GIT
   remote: git://github.com/no-reply/rdf-redis.git
@@ -115,7 +127,6 @@ GEM
       thor
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
-    curb (0.8.5)
     daemons (1.1.9)
     debugger (1.6.5)
       columnize (>= 0.3.1)
@@ -299,13 +310,6 @@ GEM
       yard (>= 0.8)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
-    qa (0.0.3)
-      activerecord-import (>= 0.4.0)
-      curb
-      deprecation
-      nokogiri (~> 1.6.0)
-      rails (~> 4.0.0)
-      rest-client
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -521,7 +525,7 @@ DEPENDENCIES
   pry-debugger
   pry-doc
   pry-rails
-  qa (~> 0.0.3)
+  qa (~> 0.0.3)!
   rails (~> 4.0.0)
   rdf (~> 1.1.0.1)
   rdf-redis (~> 0.0.2)!
