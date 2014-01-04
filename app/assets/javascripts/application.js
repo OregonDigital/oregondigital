@@ -19,3 +19,6 @@
 //
 // Include cocoon JS
 //= require cocoon
+//
+// Gotta have typeahead for ingest form
+//= require twitter/typeahead.min

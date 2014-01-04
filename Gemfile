@@ -31,7 +31,7 @@ gem 'rdf-redis', '~>0.0.2', :git => 'git://github.com/no-reply/rdf-redis.git'
 
 gem 'noid', '~>0.6.6'
 gem 'hybag'
-gem 'qa', '~>0.0.3'
+gem 'qa', '~>0.0.3', :git => "git://github.com/jechols/questioning_authority"
 
 gem 'resque', '~>1.25.0'
 
@@ -69,7 +69,7 @@ gem 'hydra-role-management'
 gem 'draper'
 
 # Ingest form FBOs
-gem 'metadata-ingest-form', :git => "git://github.com/OregonDigital/metadata-ingest-form.git"
+gem 'metadata-ingest-form', :git => "git://github.com/OregonDigital/metadata-ingest-form.git", :branch => "feature/allow-internal-values"
 
 # mysql gem
 gem 'mysql2'
