@@ -2,6 +2,7 @@ require 'metadata/ingest/translators/form_to_attributes'
 
 class IngestController < ApplicationController
   before_filter :setup_ingest_map
+  before_filter :build_controlled_vocabulary_map
 
   def index
   end
@@ -15,14 +16,6 @@ class IngestController < ApplicationController
         @form.send("build_#{group}")
       end
     end
-
-    # TODO: Replace this with something that dynamically sets up controlled vocabulary data
-    # based on the form map and the datastream's properties
-    @controlled_vocab_map = {
-      "subject" => {
-        "subject" => qa.search_path(:vocab => "Subject::QaLcsh", :q => "VOCABQUERY")
-      }
-    }
   end
 
   # Combined create/update form handler
@@ -49,4 +42,13 @@ class IngestController < ApplicationController
     Metadata::Ingest::Form.internal_groups = ingest_map.keys.collect {|key| key.to_s}
     Metadata::Ingest::Translators::FormToAttributes.map = ingest_map
   end
+
+  def build_controlled_vocabulary_map
+    # TODO: Replace this with something that dynamically sets up controlled vocabulary data
+    # based on the form map and the datastream's properties
+    @controlled_vocab_map = {
+      "subject" => {
+        "subject" => qa.search_path(:vocab => "Subject::QaLcsh", :q => "VOCABQUERY")
+      }
+    }
 end
