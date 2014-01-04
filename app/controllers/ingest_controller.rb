@@ -1,6 +1,8 @@
 require 'metadata/ingest/translators/form_to_attributes'
 
 class IngestController < ApplicationController
+  before_filter :setup_ingest_map
+
   def index
   end
 
@@ -27,10 +29,24 @@ class IngestController < ApplicationController
   def save
     @form = Metadata::Ingest::Form.new(params[:metadata_ingest_form].to_hash)
     @asset = GenericAsset.new
-    Metadata::Ingest::Translators::FormToAttributes.map = INGEST_MAP
     Metadata::Ingest::Translators::FormToAttributes.from(@form).to(@asset)
     @asset.save
 
     redirect_to :ingest
+  end
+
+  private
+
+  # Chooses the ingest map to be used for grouping form elements and
+  # translating data.  This is hard-coded for now, but may eventually use
+  # things like user groups or collection info or who knows what.
+  def ingest_map
+    return INGEST_MAP
+  end
+
+  # Sets up the form to use the chosen ingest map
+  def setup_ingest_map
+    Metadata::Ingest::Form.internal_groups = ingest_map.keys.collect {|key| key.to_s}
+    Metadata::Ingest::Translators::FormToAttributes.map = ingest_map
   end
 end
