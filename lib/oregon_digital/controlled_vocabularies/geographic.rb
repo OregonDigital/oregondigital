@@ -10,7 +10,8 @@ module OregonDigital::ControlledVocabularies
       GEONAMES_PREFIX   = 'http://sws.geonames.org/'
       GEONAMES_API_USER = 'johnson.tom@gmail.com'
 
-      def search(q)
+      def search(q, sub_authority = nil)
+        q = URI.escape(q)
         uri = "http://api.geonames.org/searchJSON?q=#{q}&maxRows=20&username=#{GEONAMES_API_USER}"
         json_terms = get_json(uri)["geonames"]
         self.response = build_response(json_terms)
