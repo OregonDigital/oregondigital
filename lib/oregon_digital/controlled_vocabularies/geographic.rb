@@ -28,11 +28,19 @@ module OregonDigital::ControlledVocabularies
       end
 
       def build_response(json_response)
-        json_response.each do |geo|
-          geo['id'] = GEONAMES_PREFIX + geo.delete('geonameId').to_s + '/'
-          geo['countryId'] = GEONAMES_PREFIX + geo.delete('countryId').to_s + '/'
+        return json_response.collect do |geo|
+          item = { id: GEONAMES_PREFIX + geo['geonameId'].to_s }
+          item[:label] = geo["toponymName"]
+          unless geo["countryName"].blank?
+            if geo["adminName1"].blank?
+              item[:label] += " (%s)" % geo["countryName"]
+            else
+              item[:label] += " (%s >> %s)" % [geo["countryName"], geo["adminName1"]]
+            end
+          end
+
+          item
         end
-        json_response
       end
     end
 
