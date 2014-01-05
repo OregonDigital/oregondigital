@@ -30,7 +30,7 @@ INGEST_MAP = {
   },
 
   format: {
-    hasFormat: :hasFormat,
+    format: :format,
   },
 
   date: {
