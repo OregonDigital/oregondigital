@@ -16,6 +16,10 @@ module OregonDigital::ControlledVocabularies
         self.response = build_response(json_terms)
       end
 
+      def results
+        return response
+      end
+
       private
 
       def get_json(url)
