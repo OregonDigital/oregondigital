@@ -69,7 +69,7 @@ gem 'hydra-role-management'
 gem 'draper'
 
 # Ingest form FBOs
-gem 'metadata-ingest-form', :git => "git://github.com/OregonDigital/metadata-ingest-form.git", :branch => "feature/allow-internal-values"
+gem 'metadata-ingest-form', :git => "git://github.com/OregonDigital/metadata-ingest-form.git"
 
 # mysql gem
 gem 'mysql2'
