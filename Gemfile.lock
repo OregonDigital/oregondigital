@@ -1,7 +1,6 @@
 GIT
   remote: git://github.com/OregonDigital/metadata-ingest-form.git
-  revision: 11c61c8888291be80106f2c708db83a25a18d525
-  branch: feature/allow-internal-values
+  revision: 21c84bd07a1d2ad59e4e71d8a6b840e61661f7aa
   specs:
     metadata-ingest-form (1.0.0)
       activemodel (>= 3.0)
