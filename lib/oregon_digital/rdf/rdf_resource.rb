@@ -70,8 +70,10 @@ module OregonDigital::RDF
 
     ##
     # Look for labels in various default fields if no rdf_label is set
+    # these are configured in
     def rdf_label
       return get_values(self.class.rdf_label) if self.class.rdf_label
+      values = []
       APP_CONFIG['rdf_labels'].each do |label|
         values = get_values(RDF::URI(label))
         return values unless values.empty?
