@@ -8,3 +8,11 @@ devise:
 
 # Set this to an absolute path in production - when it's nil, we use a local path in the Rails root
 pyramidal_tiff_path:
+
+# set RDF Label predicates
+rdf_labels:
+  - 'http://www.w3.org/2004/02/skos/core#prefLabel'
+  - 'http://purl.org/dc/terms/title'
+  - 'http://www.w3.org/2000/01/rdf-schema#label'
+  - 'http://www.w3.org/2004/02/skos/core#altLabel'
+  - 'http://www.w3.org/2004/02/skos/core#hiddenLabel'
