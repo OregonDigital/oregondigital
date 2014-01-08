@@ -72,12 +72,18 @@ module OregonDigital::RDF
     # Look for labels in various default fields if no rdf_label is set
     # these are configured in
     def rdf_label
-      return get_values(self.class.rdf_label) if self.class.rdf_label
-      values = []
-      APP_CONFIG['rdf_labels'].each do |label|
-        values = get_values(RDF::URI(label))
+      labels = self.class.rdf_label
+      labels = [labels] unless labels.kind_of? Array
+      labels << [RDF::SKOS.prefLabel,
+       RDF::DC.title,
+       RDF::RDFS.label,
+       RDF::SKOS.altLabel,
+       RDF::SKOS.hiddenLabel]
+      labels.each do |label|
+        values = get_values(label)
         return values unless values.empty?
       end
+      values = []
       values = [rdf_subject.to_s] unless node?
       return values
     end
