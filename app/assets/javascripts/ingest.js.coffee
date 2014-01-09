@@ -45,8 +45,5 @@ checkControlledVocabulary = (input, select) ->
 
     # Handle selections so we can populate hidden fields
     input.on 'typeahead:selected', (object, datum) ->
-      console.log("#{datum.id} will be set on the hidden field")
       hiddenField = input.closest(".form-fields-wrapper").find("input.internal-field")
       hiddenField.attr("value", datum.id)
-      console.log("#{datum.id} was set on")
-      console.log(hiddenField)
