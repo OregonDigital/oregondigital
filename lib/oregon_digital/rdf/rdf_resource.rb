@@ -69,14 +69,22 @@ module OregonDigital::RDF
     end
 
     ##
-    # Look for labels in various default fields if no rdf_label is set
+    # Look for labels in various default fields, prioritizing
+    # configured label fields
     def rdf_label
-      return get_values(self.class.rdf_label) if self.class.rdf_label
-      values = get_values(RDF::SKOS.prefLabel)
-      values = get_values(RDF::DC.title) if values.empty?
-      values = get_values(RDF::RDFS.label) if values.empty?
-      values = get_values(RDF::SKOS.altLabel) if values.empty?
-      values = [rdf_subject.to_s] unless node? if values.empty?
+      labels = self.class.rdf_label
+      labels = [labels] unless labels.kind_of? Array
+      labels << [RDF::SKOS.prefLabel,
+       RDF::DC.title,
+       RDF::RDFS.label,
+       RDF::SKOS.altLabel,
+       RDF::SKOS.hiddenLabel]
+      labels.each do |label|
+        values = get_values(label)
+        return values unless values.empty?
+      end
+      values = []
+      values = [rdf_subject.to_s] unless node?
       return values
     end
     alias_method :solrize, :rdf_label
