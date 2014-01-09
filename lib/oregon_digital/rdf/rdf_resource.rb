@@ -69,8 +69,8 @@ module OregonDigital::RDF
     end
 
     ##
-    # Look for labels in various default fields if no rdf_label is set
-    # these are configured in
+    # Look for labels in various default fields, prioritizing
+    # configured label fields
     def rdf_label
       labels = self.class.rdf_label
       labels = [labels] unless labels.kind_of? Array
