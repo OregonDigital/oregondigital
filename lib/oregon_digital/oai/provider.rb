@@ -1,8 +1,8 @@
 class OregonDigital::OAI::Provider < ::OAI::Provider::Base
-  repository_name 'Oregon Digital OAI Provider'
-  repository_url 'http://oregondigital.library.oregonstate.edu/provider'
-  record_prefix 'oai:oregondigital'
-  admin_email 'trey.terrell@oregonstate.edu'
-  sample_id 'oai:oregondigital:13000'
+  repository_name APP_CONFIG['oai']['repository_name']
+  repository_url APP_CONFIG['oai']['repository_url']
+  record_prefix APP_CONFIG['oai']['record_prefix']
+  admin_email APP_CONFIG['oai']['admin_email']
+  sample_id APP_CONFIG['oai']['sample_id']
   source_model ::OregonDigital::OAI::Model::ActiveFedoraWrapper.new(::GenericAsset)
 end

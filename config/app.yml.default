@@ -8,3 +8,9 @@ devise:
 
 # Set this to an absolute path in production - when it's nil, we use a local path in the Rails root
 pyramidal_tiff_path:
+oai:
+  repository_name: "Oregon Digital OAI Repository"
+  repository_url: "http://oregondigital.org/oai"
+  record_prefix: ""
+  admin_email: "admin@oregondigital.org"
+  sample_id: "oregondigital:h989r3203"
