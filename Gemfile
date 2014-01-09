@@ -74,6 +74,9 @@ gem 'mysql2'
 # Unicorn for web server
 gem 'unicorn', '~>4.6.3'
 
+# OAI
+gem 'oai'
+
 group :development do
   gem 'pry'
   gem 'pry-doc'

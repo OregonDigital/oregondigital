@@ -147,6 +147,10 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.0)
+      faraday (>= 0.7.4, < 0.9)
     fastercsv (1.5.5)
     ffi (1.9.0)
     formatador (0.2.4)
@@ -247,6 +251,7 @@ GEM
     minitest (4.7.5)
     mono_logger (1.1.0)
     multi_json (1.8.2)
+    multipart-post (1.2.0)
     mysql2 (0.3.14)
     netaddr (1.5.0)
     noid (0.6.6)
@@ -257,6 +262,10 @@ GEM
       activesupport
       i18n
       nokogiri
+    oai (0.3.1)
+      builder (>= 2.0.0)
+      faraday
+      faraday_middleware
     om (3.0.4)
       activemodel
       activesupport
@@ -498,6 +507,7 @@ DEPENDENCIES
   linkeddata
   mysql2
   noid (~> 0.6.6)
+  oai
   poltergeist (~> 1.4.0)
   pry
   pry-debugger

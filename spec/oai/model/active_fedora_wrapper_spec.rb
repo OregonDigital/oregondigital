@@ -1,0 +1,38 @@
+require 'spec_helper'
+
+describe Model::ActiveFedoraWrapper do
+  context "when initiated with a generic asset" do
+    subject {Model::ActiveFedoraWrapper.new(GenericAsset)}
+    let(:generic_asset_1) {FactoryGirl.create(:generic_asset)}
+    let(:generic_asset_2) {FactoryGirl.create(:generic_asset)}
+    before(:each) do
+      generic_asset_1
+      generic_asset_2
+      generic_asset_1.reload
+      generic_asset_2.reload
+      expect(generic_asset_1.modified_date).not_to eq generic_asset_2.modified_date
+    end
+    describe "#find" do
+      context "when given :all" do
+        it "should return all records" do
+          expect(subject.find(:all).length).to eq 2
+        end
+      end
+      context "when given an id" do
+        it "should return that record" do
+          expect(subject.find(generic_asset_1.pid).first).to eq generic_asset_1
+        end
+      end
+    end
+    describe "#earliest" do
+      it "should return the earliest modified_date timestamp" do
+        expect(subject.earliest).to eq generic_asset_1.modified_date
+      end
+    end
+    describe "#latest" do
+      it "should return the latest modified_date timestamp" do
+        expect(subject.latest).to eq generic_asset_2.modified_date
+      end
+    end
+  end
+end
