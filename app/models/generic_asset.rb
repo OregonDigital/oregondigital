@@ -5,6 +5,7 @@ class GenericAsset < ActiveFedora::Base
   include Hybag::Baggable
   include OregonDigital::Collectible
   include OregonDigital::Workflow
+  include OregonDigital::OAI::Concern
 
   has_metadata :name => 'descMetadata', :type => Datastream::OregonRDF do |ds|
     ds.crosswalk :field => :set, :to => :is_member_of_collection, :in => "RELS-EXT",
@@ -25,7 +26,7 @@ class GenericAsset < ActiveFedora::Base
   end
 
   delegate_to :descMetadata, [:hasFormat, :type, :location, :created, :description, :rights, :title, :modified, :date], :multiple => false
-  delegate_to :descMetadata, [:identifier, :subject, :set], :multiple => true
+  delegate_to :descMetadata, [:identifier, :subject, :set, :creator, :contributor], :multiple => true
 
   private
 
