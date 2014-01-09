@@ -110,12 +110,12 @@ GEM
       safe_yaml (~> 0.9.0)
     curb (0.8.5)
     daemons (1.1.9)
-    debugger (1.6.2)
+    debugger (1.6.5)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.3)
+      debugger-ruby_core_source (~> 1.3.1)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.3)
+    debugger-ruby_core_source (1.3.1)
     deep_merge (1.0.0)
     deprecation (0.0.5)
       activesupport
@@ -248,7 +248,6 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.8.2)
     mysql2 (0.3.14)
-    net-http-persistent (2.9)
     netaddr (1.5.0)
     noid (0.6.6)
       backports
