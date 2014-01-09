@@ -1,4 +1,4 @@
-class Model::ActiveFedoraWrapper < OAI::Provider::Model
+class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   attr_accessor :inner_model
 
   def initialize(model)

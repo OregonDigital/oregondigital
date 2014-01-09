@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Model::ActiveFedoraWrapper do
+describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
   context "when initiated with a generic asset" do
-    subject {Model::ActiveFedoraWrapper.new(GenericAsset)}
+    subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset)}
     let(:generic_asset_1) {FactoryGirl.create(:generic_asset)}
     let(:generic_asset_2) {FactoryGirl.create(:generic_asset)}
     before(:each) do
