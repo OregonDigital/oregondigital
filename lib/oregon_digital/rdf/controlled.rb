@@ -57,6 +57,21 @@ module OregonDigital::RDF
       end
 
       ##
+      # @return [Array<RDF::URI>] terms allowable by the registered StrictVocabularies
+      #
+      # Note: this does not necessarily list *all the term* allowable
+      # by the class. Non-strict RDF::Vocabularies are not included in
+      # this method's output.
+      def list_terms
+        terms = []
+        vocabularies.each do |vocab, config|
+          next unless config[:class].respond_to? :properties
+          terms += config[:class].properties.select { |s| s.start_with? config[:class].to_s }
+        end
+        terms
+      end
+
+      ##
       # Gets data for all vocabularies used and loads it into the
       # configured repository. After running this new (and reloaded)
       # RdfResource objects of this class will have data from their

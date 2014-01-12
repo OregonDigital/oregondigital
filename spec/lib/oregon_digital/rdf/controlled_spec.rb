@@ -34,6 +34,21 @@ describe OregonDigital::RDF::Controlled do
     end
   end
 
+  describe '#list_terms' do
+    it 'should list terms from registered StrictVocabs' do
+      subject.vocabularies.each do |name, vocab|
+        expect([vocab[:class].Image] - subject.list_terms).to be_empty
+      end
+    end
+    it 'should list only terms from registered StrictVocabs' do
+      terms = []
+      subject.vocabularies.each do |name, vocab|
+        terms += vocab[:class].properties
+      end
+      expect(subject.list_terms - terms).to be_empty
+    end
+  end
+
   describe '#load_vocabularies' do
     it 'should load data' do
       subject.load_vocabularies
