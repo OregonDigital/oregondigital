@@ -25,7 +25,7 @@ class IngestController < ApplicationController
     Metadata::Ingest::Translators::FormToAttributes.from(@form).to(@asset)
     @asset.save
 
-    redirect_to :ingest
+    redirect_to :ingest, :notice => "Ingested new object"
   end
 
   private
