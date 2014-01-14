@@ -47,15 +47,6 @@ describe IngestController do
 
   describe "#save" do
     before(:each) do
-      # Fake asset to avoid AF hits, create expectations, etc
-      @asset = double("GenericAsset instance")
-
-      # Stub out *public* API methods we'll hit from the controller - this ensures tests don't
-      # have to write expectations or stubs for anything but the specific item under test
-      @asset.stub :title=
-      @asset.stub :subject=
-      @asset.stub :save
-
       # This is ugly but it mimics exactly what Rails params look like
       @attrs = {
         "titles_attributes" => {
@@ -70,29 +61,34 @@ describe IngestController do
 
     context "(when the form represents a new asset)" do
       before(:each) do
+        # Stubbed asset to avoid AF hits, create expectations, etc
+        @asset = GenericAsset.new
+        @ds = @asset.descMetadata
+        @asset.stub(:save)
+        @asset.stub(:save!)
         GenericAsset.stub(:new => @asset)
       end
 
       it "should set single-value attributes to a scalar value" do
-        expect(@asset).to receive(:title=).with("test title")
+        expect(@ds).to receive(:title=).with("test title")
         post :save, :metadata_ingest_form => @attrs
       end
 
       it "should set multiple-value attributes to arrays" do
-        expect(@asset).to receive(:subject=).with(["foo", "bar"])
+        expect(@ds).to receive(:subject=).with(["foo", "bar"])
         post :save, :metadata_ingest_form => @attrs
       end
 
       it "shouldn't set anything on empty attributes" do
         @attrs["titles_attributes"]["0"]["type"] = ""
         @attrs["titles_attributes"]["0"]["value"] = ""
-        expect(@asset).not_to receive(:title=)
+        expect(@ds).not_to receive(:title=)
         post :save, :metadata_ingest_form => @attrs
       end
 
       it "should use the internal value if one is sent" do
         @attrs["titles_attributes"]["0"]["internal"] = "internal"
-        expect(@asset).to receive(:title=).with("internal")
+        expect(@ds).to receive(:title=).with("internal")
         post :save, :metadata_ingest_form => @attrs
       end
 
