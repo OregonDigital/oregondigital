@@ -18,41 +18,41 @@
 #   UI group things in a logical way as well as showing types in the given order
 INGEST_MAP = {
   title: {
-    title: :title,
+    title: "descMetadata.title",
   },
 
   subject: {
-    subject: :subject,
+    subject: "descMetadata.subject",
   },
 
   type: {
-    type: :type,
+    type: "descMetadata.type",
   },
 
   format: {
-    format: :format,
+    format: "descMetadata.format",
   },
 
   date: {
-    created: :created,
-    modified: :modified,
-    date: :date,
+    created: "descMetadata.created",
+    modified: "descMetadata.modified",
+    date: "descMetadata.date",
   },
 
   description: {
-    description: :description
+    description: "descMetadata.description"
   },
 
   grouping: {
-    set: :set
+    set: "descMetadata.set"
   },
 
   identifier: {
-    identifier: :identifier,
+    identifier: "descMetadata.identifier",
   },
 
   right: {
-    rights: :rights
+    rights: "descMetadata.rights"
   },
 
   publisher: {
@@ -62,6 +62,6 @@ INGEST_MAP = {
   },
 
   geographic: {
-    location: :location,
+    location: "descMetadata.location",
   },
 }

@@ -51,7 +51,14 @@ class IngestController < ApplicationController
     for group, type_map in ingest_map
       @controlled_vocab_map[group.to_s] = {}
       for type, attribute in type_map
-        property = Datastream::OregonRDF.properties[attribute]
+        # We are assuming that a new-style datastream is going to be the final
+        # object in the type-to-attribute value (i.e., in "foo.bar.baz", bar is
+        # datastream, baz is attribute).  With this assumption we can pull the
+        # property definition to see if a class is registered, and if so,
+        # figure out how to set up a controlled vocabulary query URI.
+        objects = attribute.to_s.split(".")
+        attribute = objects.pop
+        property = objects.reduce(GenericAsset.new, :send).class.properties[attribute]
 
         # TODO: What does it mean if we have no property for a mapped
         # attribute?  Likely a misconfiguration that the user cannot control.
