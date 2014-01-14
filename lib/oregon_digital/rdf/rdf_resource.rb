@@ -80,7 +80,6 @@ module OregonDigital::RDF
       end
       return node? ? [] : [rdf_subject.to_s]
     end
-    alias_method :solrize, :rdf_label
 
     ##
     # Load data from URI
@@ -249,6 +248,14 @@ module OregonDigital::RDF
           end
         end
       end
+    end
+
+    ##
+    # @return [String] the string to index in solr
+    #
+    # @TODO: is there a better pattern for bnodes than indexing the rdf_label?
+    def solrize
+      node? ? rdf_label : rdf_subject.to_s
     end
 
     private
