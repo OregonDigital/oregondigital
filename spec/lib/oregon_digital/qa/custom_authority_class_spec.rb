@@ -14,7 +14,7 @@ describe OregonDigital::Qa::CustomAuthorityClass do
     @instance = DummyClass.new
 
     # Set up various patterns for testing priority
-    OregonDigital::Qa::CustomAuthorityClass.qa_class_patterns = ["First::%s", "Second::%s"]
+    OregonDigital::Qa::CustomAuthorityClass.stub(:qa_class_patterns => ["First::%s", "Second::%s"])
   end
 
   after(:each) do

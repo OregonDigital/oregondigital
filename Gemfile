@@ -31,7 +31,7 @@ gem 'rdf-redis', '~>0.0.2', :git => 'git://github.com/no-reply/rdf-redis.git'
 
 gem 'noid', '~>0.6.6'
 gem 'hybag'
-gem 'qa', '~>0.0.3'
+gem 'qa', '~>0.0.3', :git => "git://github.com/jechols/questioning_authority"
 
 gem 'resque', '~>1.25.0'
 
@@ -68,6 +68,9 @@ gem 'hydra-role-management'
 # Draper for decoration
 gem 'draper'
 
+# Ingest form FBOs
+gem 'metadata-ingest-form', :git => "git://github.com/OregonDigital/metadata-ingest-form.git"
+
 # mysql gem
 gem 'mysql2'
 
@@ -102,7 +105,7 @@ group :development, :test do
 
   # Form testing
   gem 'capybara', '~>2.1'
-  gem 'poltergeist', '~>1.4.0'
+  gem 'poltergeist', '~>1.5.0'
 
   # Exif stuff - regardless of our image library, we want tests to access image data
   gem 'exifr', '~>1.1.3'
