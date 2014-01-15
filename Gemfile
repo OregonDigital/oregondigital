@@ -105,7 +105,7 @@ group :development, :test do
 
   # Form testing
   gem 'capybara', '~>2.1'
-  gem 'poltergeist', '~>1.4.0'
+  gem 'poltergeist', '~>1.5.0'
 
   # Exif stuff - regardless of our image library, we want tests to access image data
   gem 'exifr', '~>1.1.3'
