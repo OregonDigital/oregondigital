@@ -29,19 +29,21 @@ module OregonDigital::ControlledVocabularies
       end
 
       def build_response(json_response)
-        return json_response.collect do |geo|
-          item = { id: GEONAMES_PREFIX + geo['geonameId'].to_s }
-          item[:label] = geo["toponymName"]
-          unless geo["countryName"].blank?
-            if geo["adminName1"].blank?
-              item[:label] += " (%s)" % geo["countryName"]
-            else
-              item[:label] += " (%s >> %s)" % [geo["countryName"], geo["adminName1"]]
-            end
-          end
+        return json_response.collect {|geo| geo_json_to_qa_item(geo)}
+      end
 
-          item
+      def geo_json_to_qa_item(geo)
+        item = { id: GEONAMES_PREFIX + geo['geonameId'].to_s }
+        item[:label] = geo["toponymName"]
+        unless geo["countryName"].blank?
+          if geo["adminName1"].blank?
+            item[:label] += " (%s)" % geo["countryName"]
+          else
+            item[:label] += " (%s >> %s)" % [geo["countryName"], geo["adminName1"]]
+          end
         end
+
+        return item
       end
     end
 
