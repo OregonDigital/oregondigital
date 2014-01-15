@@ -1,0 +1,1733 @@
+[
+            "atom:feed",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress Authorities and Vocabulary Service: Search Results"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "href" : "http://id.loc.gov/search/?q=food cs:http://id.loc.gov/authorities/subjects&start=1&format=atom", 
+                "rel" : "self"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "href" : "http://id.loc.gov/search/?q=food cs:http://id.loc.gov/authorities/subjects&start=21&format=atom", 
+                "rel" : "next"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/search/?q=food+cs:http://id.loc.gov/authorities/subjects"
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2014-01-15T12:29:22.860472-05:00"
+            ],
+                            [
+            "opensearch:totalResults",
+            {
+                "xmlns:opensearch" : "http://a9.com/-/spec/opensearch/1.1/"
+            }
+            ,
+                "761"
+            ],
+                            [
+            "opensearch:startIndex",
+            {
+                "xmlns:opensearch" : "http://a9.com/-/spec/opensearch/1.1/"
+            }
+            ,
+                "1"
+            ],
+                            [
+            "opensearch:itemsPerPage",
+            {
+                "xmlns:opensearch" : "http://a9.com/-/spec/opensearch/1.1/"
+            }
+            ,
+                "20"
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050184"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050184.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050184.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050184"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2010-06-14T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh99005367"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh99005367.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh99005367.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh99005367"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2010-09-09T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1999-07-21T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food adulteration and inspection"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050256"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050256.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050256.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050256"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1996-03-22T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food industry and whatnot and stuff"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050282"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050282.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050282.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050282"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1999-12-14T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-11-25T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food stamps"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050334"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050334.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050334.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050334"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1994-08-08T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food law and legislation"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050300"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050300.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050300.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050300"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1992-07-02T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food portions"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh98000649"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh98000649.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh98000649.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh98000649"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1998-02-04T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1998-02-04T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food supply insurance"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85066909"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85066909.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85066909.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85066909"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2008-08-15T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food trucks"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh2011001950"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh2011001950.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh2011001950.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh2011001950"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2011-04-19T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "2011-04-19T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food texture"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050345"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050345.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050345.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050345"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1997-03-18T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food handling"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050276"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050276.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050276.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050276"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1992-10-22T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food poisoning"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050303"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050303.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050303.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050303"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food intolerance"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh2013001029"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh2013001029.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh2013001029.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh2013001029"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2013-04-10T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "2013-04-10T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food and wine pairing"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh2008004136"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh2008004136.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh2008004136.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh2008004136"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2008-05-29T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "2008-05-29T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food service hosts"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050330"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050330.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050330.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050330"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2011-04-13T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food containers"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050271"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050271.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050271.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050271"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food consumption forecasting"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050269"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050269.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050269.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050269"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food in the Qurʼan"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050281"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050281.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050281.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050281"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2013-04-03T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food inspectors"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh97003362"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh97003362.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh97003362.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh97003362"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "1997-04-10T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1997-04-10T00:00:00-04:00"
+            ]
+            ],
+                            [
+            "atom:entry",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:title",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Food service management"
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050331"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/rdf+xml", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050331.rdf"
+            }
+            
+            ],
+                            [
+            "atom:link",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom", 
+                "rel" : "alternate", 
+                "type" : "application/json", 
+                "href" : "http://id.loc.gov/authorities/subjects/sh85050331.json"
+            }
+            
+            ],
+                            [
+            "atom:id",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "info:lc/authorities/subjects/sh85050331"
+            ],
+                            [
+            "atom:author",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                        [
+            "atom:name",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "Library of Congress"
+            ]
+            ],
+                            [
+            "atom:updated",
+            {
+                "xmlns:atom" : "http://www.w3.org/2005/Atom"
+            }
+            ,
+                "2011-04-13T00:00:00-04:00"
+            ],
+                            [
+            "dcterms:created",
+            {
+                "xmlns:dcterms" : "http://purl.org/dc/terms/"
+            }
+            ,
+                "1986-02-11T00:00:00-04:00"
+            ]
+            ]
+            ]

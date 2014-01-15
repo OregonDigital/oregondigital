@@ -82,27 +82,28 @@ describe "(Ingest Form)", :js => true do
     fill_out_dummy_data
 
     subject_div = all(:css, ".nested-fields[data-group=subject]").first
-    title = "Food industry and trade"
 
-    VCR.use_cassette 'vocab-lookups/loc-subject-food' do
-      within(subject_div) do
-        select('subject', :from => "Type")
-        fill_in("Value", :with => "food")
-      end
+    # This title is hacked into the mocked fake JSON to validate the request is
+    # properly stubbed.  This isn't a legitimate subject in LCSH.
+    title = "Food industry and whatnot and stuff"
 
-      # Find the value field's ID for autocomplete JS execution
-      value_field_id = subject_div.find("input.value-field")[:id]
-
-      # Now you don't see it...
-      page.should_not have_content(title)
-
-      # (ensure the autocomplete JS "sees" the user interaction with the form)
-      page.execute_script %Q{ $('##{value_field_id}').trigger("focus") }
-      page.execute_script %Q{ $('##{value_field_id}').trigger("keydown") }
-
-      # ...now you do!  Find it, click it, and ingest
-      page.should have_content(title)
+    within(subject_div) do
+      select('subject', :from => "Type")
+      fill_in("Value", :with => "food")
     end
+
+    # Find the value field's ID for autocomplete JS execution
+    value_field_id = subject_div.find("input.value-field")[:id]
+
+    # Now you don't see it...
+    page.should_not have_content(title)
+
+    # (ensure the autocomplete JS "sees" the user interaction with the form)
+    page.execute_script %Q{ $('##{value_field_id}').trigger("focus") }
+    page.execute_script %Q{ $('##{value_field_id}').trigger("keydown") }
+
+    # ...now you do!  Find it, click it, and ingest
+    page.should have_content(title)
 
     autocomplete_p_tags = all(:css, '.tt-suggestions p')
     autocomplete_p_tags.select {|tag| tag.text == title}.first.click
