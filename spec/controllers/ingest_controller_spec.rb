@@ -17,7 +17,7 @@ describe IngestController do
       # Hack groups to just two simple values
       Metadata::Ingest::Form.stub(:groups).and_return(["foo", "bar"])
 
-      # Make sure we don't typo a should_not_receive, since that's a false positive
+      # Make sure we don't typo a method, since that's a false positive
       @build_foo = :build_foo
       @build_bar = :build_bar
     end
@@ -28,8 +28,8 @@ describe IngestController do
     end
 
     it "should build an empty association for each group" do
-      @form.should_receive(@build_foo).once
-      @form.should_receive(@build_bar).once
+      expect(@form).to receive(@build_foo).once
+      expect(@form).to receive(@build_bar).once
       get :form
     end
 
@@ -39,8 +39,8 @@ describe IngestController do
       @form.build_bar
 
       # Neither builder should be called
-      @form.should_not_receive(@build_foo)
-      @form.should_not_receive(@build_bar)
+      expect(@form).not_to receive(@build_foo)
+      expect(@form).not_to receive(@build_bar)
       get :form
     end
   end
@@ -93,7 +93,7 @@ describe IngestController do
       end
 
       it "should create a new asset" do
-        @asset.should_receive(:save).once
+        expect(@asset).to receive(:save).once
         post :save, :metadata_ingest_form => @attrs
       end
     end

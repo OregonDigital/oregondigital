@@ -19,7 +19,7 @@ describe "(Ingest Form)", :js => true do
     visit('/ingest')
     click_link "start from scratch"
 
-    page.should have_selector("input[type=submit]")
+    expect(page).to have_selector("input[type=submit]")
   end
 
   def fill_out_dummy_data
@@ -47,7 +47,7 @@ describe "(Ingest Form)", :js => true do
   def click_the_ingest_button
     button = all(:css, 'input[type=submit]').first
     button.click
-    page.should have_content("Ingested new object")
+    expect(page).to have_content("Ingested new object")
   end
 
   def mark_as_reviewed
@@ -67,12 +67,12 @@ describe "(Ingest Form)", :js => true do
     mark_as_reviewed
 
     visit(catalog_path(@pid))
-    page.status_code.should == 200
+    expect(page.status_code).to eq(200)
 
     # object has meta data
     pending "Need to verify that the show view has the data we ingested"
-    page.should have_content('First Title, Second Title')
-    page.should have_content('Test Subject')
+    expect(page).to have_content('First Title, Second Title')
+    expect(page).to have_content('Test Subject')
   end
 
   it "should fail when data is freely typed into a controlled vocabulary field"
@@ -85,7 +85,7 @@ describe "(Ingest Form)", :js => true do
     title = "Canned foods industry--Accidents"
 
     # Now you don't see it...
-    page.should_not have_content(title)
+    expect(page).not_to have_content(title)
 
     within(subject_div) do
       select('subject', :from => "Type")
@@ -96,7 +96,7 @@ describe "(Ingest Form)", :js => true do
     value_field.native.send_key("food")
 
     # ...now you do!  Find it, click it, and ingest
-    page.should have_content(title)
+    expect(page).to have_content(title)
 
     autocomplete_p_tags = all(:css, '.tt-suggestions p')
     autocomplete_p_tags.select {|tag| tag.text == title}.first.click
@@ -105,7 +105,7 @@ describe "(Ingest Form)", :js => true do
     mark_as_reviewed
 
     visit(catalog_path(@pid))
-    page.status_code.should == 200
+    expect(page.status_code).to eq(200)
     pending "Need to verify that the show view has the data we ingested"
   end
 end
