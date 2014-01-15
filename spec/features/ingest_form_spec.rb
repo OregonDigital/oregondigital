@@ -84,20 +84,16 @@ describe "(Ingest Form)", :js => true do
     subject_div = all(:css, ".nested-fields[data-group=subject]").first
     title = "Canned foods industry--Accidents"
 
-    within(subject_div) do
-      select('subject', :from => "Type")
-      fill_in("Value", :with => "food")
-    end
-
-    # Find the value field's ID for autocomplete JS execution
-    value_field_id = subject_div.find("input.value-field")[:id]
-
     # Now you don't see it...
     page.should_not have_content(title)
 
-    # (ensure the autocomplete JS "sees" the user interaction with the form)
-    page.execute_script %Q{ $('##{value_field_id}').trigger("focus") }
-    page.execute_script %Q{ $('##{value_field_id}').trigger("keydown") }
+    within(subject_div) do
+      select('subject', :from => "Type")
+    end
+
+    # Make typing mimic actual human use
+    value_field = subject_div.find("input.value-field")
+    value_field.native.send_key("food")
 
     # ...now you do!  Find it, click it, and ingest
     page.should have_content(title)
