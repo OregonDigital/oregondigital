@@ -3,7 +3,18 @@ require 'spec_helper'
 describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
   context "when initiated with a generic asset" do
     subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset)}
-    let(:generic_asset_1) {FactoryGirl.create(:generic_asset)}
+    let(:generic_asset_1) do
+      f = FactoryGirl.build(:generic_asset)
+      f.stub(:modified_date).and_return(Time.current.midnight.iso8601)
+      f.save
+      f
+    end
+    let(:generic_asset_2) do
+      f = FactoryGirl.build(:generic_asset)
+      f.stub(:modified_date).and_return(Time.current.tomorrow.midnight.iso8601)
+      f.save
+      f
+    end
     let(:generic_asset_2) {FactoryGirl.create(:generic_asset)}
     before(:each) do
       generic_asset_1
@@ -26,12 +37,12 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
     end
     describe "#earliest" do
       it "should return the earliest modified_date timestamp" do
-        expect(subject.earliest).to eq generic_asset_1.modified_date
+        expect(subject.earliest).to eq GenericAsset.all.first.modified_date
       end
     end
     describe "#latest" do
       it "should return the latest modified_date timestamp" do
-        expect(subject.latest).to eq generic_asset_2.modified_date
+        expect(subject.latest).to eq GenericAsset.all.last.modified_date
       end
     end
   end
