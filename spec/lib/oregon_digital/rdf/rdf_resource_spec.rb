@@ -192,6 +192,16 @@ describe OregonDigital::RDF::RdfResource do
     end
   end
 
+  describe '#solrize' do
+    it 'should return a label for bnodes' do
+      expect(subject.solrize).to eq subject.rdf_label
+    end
+    it 'should return a string of the resource uri' do
+      subject.set_subject! 'http://example.org/moomin'
+      expect(subject.solrize).to eq 'http://example.org/moomin'
+    end
+  end
+
   describe 'editing the graph' do
     it 'should write properties when statements are added' do
       subject << RDF::Statement.new(subject.rdf_subject, RDF::DC.title, 'Comet in Moominland')
