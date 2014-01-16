@@ -96,9 +96,27 @@ describe "(Ingest Form)", :js => true do
     autocomplete_p_tags = all(:css, '.tt-suggestions p')
     autocomplete_p_tags.select {|tag| tag.text == title}.first.click
 
+    # Validate the internal field
+    nodes = ingest_group_nodes("subject")
+    expect(nodes.count).to eq(1)
+    within(nodes.first) do
+      internal_field = find("input.internal-field")
+      expect(internal_field.value).to eq("info:lc/authorities/subjects/sh2007009834")
+    end
+
     click_the_ingest_button
     mark_as_reviewed
 
+    # Hit the edit page and verify data is as expected
+    visit_edit_form_url(@pid)
+    expect(page).to include_ingest_fields_for("title", "title", "First Title")
+    expect(page).to include_ingest_fields_for("title", "title", "Second Title")
+    expect(page).to include_ingest_fields_for("date", "created", "2014-01-07")
+    expect(page).to include_ingest_fields_for("subject", "subject", "info:lc/authorities/subjects/sh2007009834")
+
+    pending "When translation is fixed, get rid of that internal element showing up!"
+
+    # Verify on the show page as well
     visit(catalog_path(@pid))
     expect(page.status_code).to eq(200)
     pending "Need to verify that the show view has the data we ingested"
