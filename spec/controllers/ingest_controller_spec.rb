@@ -134,5 +134,67 @@ describe IngestController do
         post :save, :metadata_ingest_form => @attrs
       end
     end
+
+    context "(when the form represents an existing asset)" do
+      before(:each) do
+        # Stubbed asset to avoid AF hits, create expectations, etc
+        @asset = GenericAsset.new
+        GenericAsset.stub(:find).with("1").and_return(@asset)
+        @ds = @asset.descMetadata
+        @asset.stub(:save)
+        @asset.stub(:save!)
+      end
+
+      it "should modify the existing asset" do
+        expect(@ds).to receive(:subject=).with(["foo", "bar"])
+        post :save, id: 1, metadata_ingest_form: @attrs
+      end
+
+      it "should save the existing asset" do
+        expect(@asset).to receive(:save).once
+        post :save, id: 1, metadata_ingest_form: @attrs
+      end
+
+      it "shouldn't modify unmapped data" do
+        # We use a real object here as RDF magic happens in the saving
+        # cycle as opposed to any obvious place in our code
+        asset = FactoryGirl.build(:image, title: "Testing stuffs")
+        unknown_statement = RDF::Statement.new(
+          RDF::URI.new("subject"),
+          RDF::URI.new("predicate"),
+          RDF::Literal.new("object")
+        )
+        asset.descMetadata.graph << unknown_statement
+        asset.save
+
+        pid = asset.pid
+        GenericAsset.unstub(:find)
+        post :save, id: pid, metadata_ingest_form: @attrs
+        asset = GenericAsset.find(pid)
+        rdf = asset.descMetadata.graph
+        expect(rdf).to have_statement(unknown_statement)
+      end
+
+      it "should override data" do
+        @asset.descMetadata.subject = ["foo", "bar"]
+        @attrs["subjects_attributes"] = {
+          "0" => {"type" => "subject", "value" => "FOO", "internal" => "", "_destroy" => "false"}
+        }
+        expect(@ds).to receive(:subject=).with("FOO")
+        post :save, id: 1, metadata_ingest_form: @attrs
+      end
+
+      it "should remove data properly when blank items are submitted" do
+        # This is a tricky case - by default, if there's no data for a group,
+        # it won't be sent to the object, so removals are only handled well
+        # when a single removal happens....
+        @asset.descMetadata.subject = ["foo", "bar"]
+        @attrs.delete("subjects_attributes")
+        pending "Umm... hmm.  Now how do I solve this?"
+
+        expect(@ds).to receive(:subject=).with("")
+        post :save, id: 1, metadata_ingest_form: @attrs
+      end
+    end
   end
 end

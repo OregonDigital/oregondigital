@@ -20,8 +20,7 @@ class IngestController < ApplicationController
 
   # Combined create/update form handler
   def save
-    @form = Metadata::Ingest::Form.new(params[:metadata_ingest_form].to_hash)
-    @asset = GenericAsset.new
+    @form.attributes = params[:metadata_ingest_form].to_hash
     Metadata::Ingest::Translators::FormToAttributes.from(@form).to(@asset)
     @asset.save
 
