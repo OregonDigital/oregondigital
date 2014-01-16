@@ -23,25 +23,10 @@ describe "(Ingest Form)", :js => true do
   end
 
   def fill_out_dummy_data
-    nodes = all(:css, ".nested-fields[data-group=title]")
-    within(nodes.first) do
-      select("title", :from => "Type")
-      fill_in("Value", :with => "First Title")
-    end
-
+    fill_in_ingest_data("title", "title", "First Title")
     click_link 'Add title'
-    nodes = all(:css, ".nested-fields[data-group=title]")
-    within(nodes[1]) do
-      select("title", :from => "Type")
-      fill_in("Value", :with => "Second Title")
-    end
-
-    # Fill out the created date
-    nodes = all(:css, ".nested-fields[data-group=date]")
-    within(nodes.first) do
-      select('created', :from => "Type")
-      fill_in("Value", :with => '2014-01-07')
-    end
+    fill_in_ingest_data("title", "title", "Second Title", 1)
+    fill_in_ingest_data("date", "created", "2014-01-07")
   end
 
   def click_the_ingest_button
