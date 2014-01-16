@@ -1,16 +1,16 @@
 require 'metadata/ingest/translators/form_to_attributes'
+require 'metadata/ingest/translators/attributes_to_form'
 
 class IngestController < ApplicationController
   before_filter :setup_ingest_map
   before_filter :build_controlled_vocabulary_map
+  before_filter :setup_resources, except: :index
 
   def index
   end
 
   # Combined new/edit form handler
   def form
-    @form = Metadata::Ingest::Form.new
-
     for group in Metadata::Ingest::Form.groups
       if @form.send(group.pluralize).empty?
         @form.send("build_#{group}")
@@ -41,6 +41,21 @@ class IngestController < ApplicationController
   def setup_ingest_map
     Metadata::Ingest::Form.internal_groups = ingest_map.keys.collect {|key| key.to_s}
     Metadata::Ingest::Translators::FormToAttributes.map = ingest_map
+    Metadata::Ingest::Translators::AttributesToForm.map = ingest_map
+  end
+
+  # Builds asset and form objects based on incoming data.  If an id is not
+  # passed in, @asset will be a new GenericAsset, and @form will be an empty
+  # ingest form.  If an id is passed in, @asset will represent the asset for
+  # the given id, and @form will use a translator to pull attributes from the
+  # asset and put them into the ingest form.
+  def setup_resources
+    @form = Metadata::Ingest::Form.new
+    @asset = GenericAsset.new
+    return unless params[:id]
+
+    @asset = GenericAsset.find(params[:id])
+    Metadata::Ingest::Translators::AttributesToForm.from(@asset).to(@form)
   end
 
   # Iterates over the ingest map, and looks up properties in the datastream
