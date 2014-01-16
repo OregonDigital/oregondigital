@@ -72,6 +72,48 @@ describe "(Ingest Form)", :js => true do
 
   it "should fail when data is freely typed into a controlled vocabulary field"
 
+  it "should update an existing object" do
+    asset = FactoryGirl.create(:generic_asset, title: "Testing stuffs")
+    pid = asset.pid
+    visit_edit_form_url(pid)
+
+    # Verify this has the data we expect in the right fields
+    div = find(:css, ".nested-fields[data-group=title]")
+    element = div.find("input.value-field")
+    expect(element.value).to eq("Testing stuffs")
+
+    # Modify some data, add some data
+    fill_in_ingest_data("title", "title", "Updated title")
+    fill_in_ingest_data("date", "created", "2001-01-01")
+    click_link 'Add date'
+    fill_in_ingest_data("date", "modified", "2001-01-01", 1)
+    fill_in_ingest_data("description", "description", "This is not a useful description")
+
+    click_the_ingest_button
+    mark_as_reviewed
+
+    # Hit the edit page and verify data is as expected
+    visit_edit_form_url(pid)
+
+    page.driver.resize(1920, 4320)
+    page.save_screenshot(Rails.root.join("public", "screen.png"))
+
+    expect(page).to include_ingest_fields_for("title", "title", "Updated title")
+    expect(page).not_to include_ingest_fields_for("title", "title", "Testing stuffs")
+    expect(page).to include_ingest_fields_for("date", "created", "2001-01-01")
+    expect(page).to include_ingest_fields_for("date", "modified", "2001-01-01")
+    expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
+
+    # Hit the show page, too
+    visit(catalog_path(pid))
+    expect(page.status_code).to eq(200)
+
+    # object has meta data
+    pending "Need to verify that the show view has the data we ingested"
+    expect(page).to have_content('First Title, Second Title')
+    expect(page).to have_content('Test Subject')
+  end
+
   it "should autocomplete controlled vocabulary fields" do
     visit_ingest_url
     fill_out_dummy_data

@@ -3,6 +3,9 @@
 <div id="ingest-form-container">
   <%= ingest_form_for(@form) do |f| %>
     <%= form_errors(f) %>
+    <% unless @asset.pid.blank? %>
+      <%= hidden_field_tag :id, @asset.pid %>
+    <% end %>
     <%= render "internal_group_fields", :f => f %>
     <%= render "unmapped_associations", :form => @form %>
     <%= render "raw_statements", :form => @form %>
