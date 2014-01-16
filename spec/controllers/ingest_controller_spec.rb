@@ -87,11 +87,11 @@ describe IngestController do
       # This is ugly but it mimics exactly what Rails params look like
       @attrs = {
         "titles_attributes" => {
-          "0" => {"type" => "title", "value" => "test title", "_destroy" => "false"}
+          "0" => {"type" => "title", "value" => "test title", "internal" => "", "_destroy" => "false"}
         },
         "subjects_attributes" => {
-          "0" => {"type" => "subject", "value" => "foo", "_destroy" => "false"},
-          "1" => {"type" => "subject", "value" => "bar", "_destroy" => "false"}
+          "0" => {"type" => "subject", "value" => "foo", "internal" => "", "_destroy" => "false"},
+          "1" => {"type" => "subject", "value" => "bar", "internal" => "", "_destroy" => "false"}
         }
       }
     end
