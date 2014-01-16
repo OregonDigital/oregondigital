@@ -22,6 +22,11 @@ describe "(Ingest Form)", :js => true do
     expect(page).to have_selector("input[type=submit]")
   end
 
+  def visit_edit_form_url(pid)
+    visit("/ingest/#{pid}/form")
+    expect(page).to have_selector("input[type=submit]")
+  end
+
   def fill_out_dummy_data
     fill_in_ingest_data("title", "title", "First Title")
     click_link 'Add title'
@@ -51,10 +56,15 @@ describe "(Ingest Form)", :js => true do
     click_the_ingest_button
     mark_as_reviewed
 
+    # Verify on the edit view
+    visit_edit_form_url(@pid)
+    expect(page).to include_ingest_fields_for("title", "title", "First Title")
+    expect(page).to include_ingest_fields_for("title", "title", "Second Title")
+    expect(page).to include_ingest_fields_for("date", "created", "2014-01-07")
+
+    # Verify on the show view, too
     visit(catalog_path(@pid))
     expect(page.status_code).to eq(200)
-
-    # object has meta data
     pending "Need to verify that the show view has the data we ingested"
     expect(page).to have_content('First Title, Second Title')
     expect(page).to have_content('Test Subject')
