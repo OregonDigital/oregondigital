@@ -16,3 +16,9 @@
 // Required by Blacklight
 //= require blacklight/blacklight
 //= require_tree .
+//
+// Include cocoon JS
+//= require cocoon
+//
+// Gotta have typeahead for ingest form
+//= require twitter/typeahead.min

@@ -10,10 +10,15 @@ module OregonDigital::ControlledVocabularies
       GEONAMES_PREFIX   = 'http://sws.geonames.org/'
       GEONAMES_API_USER = 'johnson.tom@gmail.com'
 
-      def search(q)
+      def search(q, sub_authority = nil)
+        q = URI.escape(q)
         uri = "http://api.geonames.org/searchJSON?q=#{q}&maxRows=20&username=#{GEONAMES_API_USER}"
         json_terms = get_json(uri)["geonames"]
         self.response = build_response(json_terms)
+      end
+
+      def results
+        return response
       end
 
       private
@@ -24,11 +29,21 @@ module OregonDigital::ControlledVocabularies
       end
 
       def build_response(json_response)
-        json_response.each do |geo|
-          geo['id'] = GEONAMES_PREFIX + geo.delete('geonameId').to_s + '/'
-          geo['countryId'] = GEONAMES_PREFIX + geo.delete('countryId').to_s + '/'
+        return json_response.collect {|geo| geo_json_to_qa_item(geo)}
+      end
+
+      def geo_json_to_qa_item(geo)
+        item = { id: GEONAMES_PREFIX + geo['geonameId'].to_s }
+        item[:label] = geo["toponymName"]
+        unless geo["countryName"].blank?
+          if geo["adminName1"].blank?
+            item[:label] += " (%s)" % geo["countryName"]
+          else
+            item[:label] += " (%s >> %s)" % [geo["countryName"], geo["adminName1"]]
+          end
         end
-        json_response
+
+        return item
       end
     end
 

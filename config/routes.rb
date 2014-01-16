@@ -15,4 +15,9 @@ Oregondigital::Application.routes.draw do
   resources :downloads, :only => "show"
   get '/sets(/:set(/:page))', :to => 'sets#index', :as => :sets
   get '/oai', :to => 'oai#index'
+
+  # Ingest form routes
+  get 'ingest', to: 'ingest#index', as: :ingest
+  get 'ingest(/:id)/form', to: 'ingest#form', as: :show_ingest_form
+  match 'ingest(/:id)/save', to: 'ingest#save', as: :ingest_object, via: [:post, :put]
 end
