@@ -1,0 +1,1 @@
+MiniMagick.processor = :gm
