@@ -143,7 +143,7 @@ describe "(Ingest Form)", :js => true do
     expect(nodes.count).to eq(1)
     within(nodes.first) do
       internal_field = find("input.internal-field")
-      expect(internal_field.value).to eq("info:lc/authorities/subjects/sh2007009834")
+      expect(internal_field.value).to eq("http://id.loc.gov/authorities/subjects/sh2007009834")
     end
 
     click_the_ingest_button
@@ -154,7 +154,7 @@ describe "(Ingest Form)", :js => true do
     expect(page).to include_ingest_fields_for("title", "title", "First Title")
     expect(page).to include_ingest_fields_for("title", "title", "Second Title")
     expect(page).to include_ingest_fields_for("date", "created", "2014-01-07")
-    expect(page).to include_ingest_fields_for("subject", "subject", "info:lc/authorities/subjects/sh2007009834")
+    expect(page).to include_ingest_fields_for("subject", "subject", "http://id.loc.gov/authorities/subjects/sh2007009834")
 
     pending "When translation is fixed, get rid of that internal element showing up!"
 

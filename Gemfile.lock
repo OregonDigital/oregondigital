@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/jechols/questioning_authority
-  revision: 9bd6a97ca16ac3a46073c0d4e2bab1a118e5a569
+  revision: a49f5fe83a5507558a21ecdcd0f5590e01cbce53
   specs:
     qa (0.0.3)
       activerecord-import (>= 0.4.0)
