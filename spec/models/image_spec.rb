@@ -28,11 +28,21 @@ describe Image do
         image.create_derivatives
       end
       after(:each) do
-        FileUtils.rm(image.pyramidal_tiff_location)
+        FileUtils.rm(image.pyramidal_tiff_location) if File.exists?(image.pyramidal_tiff_location)
+        FileUtils.rm(image.thumbnail_location) if File.exists?(image.thumbnail_location)
       end
-      it 'should populate the thumbnail datastream' do
-        expect(image.thumbnail.content).not_to be_nil
-        expect(image.thumbnail.content).not_to eq ''
+      it 'should populate the external thumbnail datastream' do
+        expect(image.thumbnail.content).to be_nil
+        expect(image.thumbnail.dsLocation).to eq("file://#{image.thumbnail_location}")
+      end
+      it "should save the external thumbnail" do
+        mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(image.thumbnail_location).split(';')[0]
+        expect(mime_type).to eq 'image/jpeg'
+      end
+      it "should resize the thumbnail" do
+        f = MiniMagick::Image.open(image.thumbnail_location)
+        expect(f['width']).to eq 120
+        expect(f['height']).to eq 120
       end
       it 'should populate the external pyramidal datastream' do
         expect(image.pyramidal.dsLocation).to eq("file://" + image.pyramidal_tiff_location)
