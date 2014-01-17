@@ -13,6 +13,8 @@ class Image < GenericAsset
             :datastream => 'thumbnail',
             :size => '120x120>',
             :file_path => thumbnail_location,
+            :format => 'jpeg',
+            :quality => '75'
         }
     }, :processor => :image_filesystem_processor
   end
@@ -36,7 +38,7 @@ class Image < GenericAsset
   def thumbnail_location
     fd = OregonDigital::FileDistributor.new(pid)
     fd.base_path = APP_CONFIG.try(:thumbnail_path) || Rails.root.join("media", "thumbnails")
-    fd.extension = ".png"
+    fd.extension = ".jpg"
     return fd.path
   end
 

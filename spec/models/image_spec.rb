@@ -37,7 +37,7 @@ describe Image do
       end
       it "should save the external thumbnail" do
         mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(image.thumbnail_location).split(';')[0]
-        expect(mime_type).to eq 'image/png'
+        expect(mime_type).to eq 'image/jpeg'
       end
       it "should resize the thumbnail" do
         f = MiniMagick::Image.open(image.thumbnail_location)
