@@ -119,10 +119,10 @@ describe "(Ingest Form)", :js => true do
     fill_out_dummy_data
 
     subject_div = all(:css, ".nested-fields[data-group=subject]").first
-    title = "Canned foods industry--Accidents"
+    vocab_subject = "Canned foods industry--Accidents"
 
     # Now you don't see it...
-    expect(page).not_to have_content(title)
+    expect(page).not_to have_content(vocab_subject)
 
     within(subject_div) do
       select('subject', :from => "Type")
@@ -133,10 +133,10 @@ describe "(Ingest Form)", :js => true do
     value_field.native.send_key("food")
 
     # ...now you do!  Find it, click it, and ingest
-    expect(page).to have_content(title)
+    expect(page).to have_content(vocab_subject)
 
     autocomplete_p_tags = all(:css, '.tt-suggestions p')
-    autocomplete_p_tags.select {|tag| tag.text == title}.first.click
+    autocomplete_p_tags.select {|tag| tag.text == vocab_subject}.first.click
 
     # Validate the internal field
     nodes = ingest_group_nodes("subject")
@@ -157,6 +157,7 @@ describe "(Ingest Form)", :js => true do
     expect(page).to include_ingest_fields_for("subject", "subject", "http://id.loc.gov/authorities/subjects/sh2007009834")
 
     pending "When translation is fixed, get rid of that internal element showing up!"
+    expect(page).to include_ingest_fields_for("subject", "subject", vocab_subject)
 
     # Verify on the show page as well
     visit(catalog_path(@pid))
