@@ -187,10 +187,9 @@ describe IngestController do
         # it won't be sent to the object, so removals are only handled well
         # when a single removal happens....
         @asset.descMetadata.subject = ["foo", "bar"]
-        @attrs.delete("subjects_attributes")
-        pending "Umm... hmm.  Now how do I solve this?"
+        @attrs["subjects_attributes"].each {|index, data| data["_destroy"] = "1"}
 
-        expect(@ds).to receive(:subject=).with("")
+        expect(@ds).to receive(:subject=).with(nil)
         post :save, id: 1, metadata_ingest_form: @attrs
       end
     end
