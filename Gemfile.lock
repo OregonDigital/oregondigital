@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/OregonDigital/metadata-ingest-form.git
-  revision: 87573b7bdb39022173913d9f91946be96aa5e722
+  revision: 4351ca26da2d34ca3f26670e5bfd5ab197425f6a
   specs:
-    metadata-ingest-form (1.2.1)
+    metadata-ingest-form (2.0.0)
       activemodel (>= 3.0)
 
 GIT

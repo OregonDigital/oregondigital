@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+# NOTE: This is slightly fragile now in order to simplify testing.  If the
+# ingest map changes for some reason, the tests may need to be updated to
+# either stub the map as a whole or else to traverse the real map instead of
+# hard-code attributes.
 describe IngestController do
   describe "#index" do
     # Index doesn't do much yet, so this is just a quick smoke test to verify nothing crashes
@@ -16,34 +20,28 @@ describe IngestController do
     end
 
     context "for a new asset" do
-      before(:each) do
-        # Hack groups to just two simple values
-        Metadata::Ingest::Form.stub(:groups).and_return(["foo", "bar"])
-
-        # Make sure we don't typo a method, since that's a false positive
-        @build_foo = :build_foo
-        @build_bar = :build_bar
-      end
-
       it "should assign a form variable" do
         get :form
         expect(assigns(:form)).to be_kind_of(Metadata::Ingest::Form)
       end
 
       it "should build an empty association for each group" do
-        expect(@form).to receive(@build_foo).once
-        expect(@form).to receive(@build_bar).once
+        for group in @form.groups
+          expect(@form).to receive(:"build_#{group}").once
+        end
         get :form
       end
 
       it "shouldn't build empty associations for groups which have data" do
         # Add a single empty object to each group
-        @form.build_foo
-        @form.build_bar
+        for group in @form.groups
+          @form._build_group(group, {})
+        end
 
         # Neither builder should be called
-        expect(@form).not_to receive(@build_foo)
-        expect(@form).not_to receive(@build_bar)
+        for group in @form.groups
+          expect(@form).not_to receive(:"build_#{group}")
+        end
         get :form
       end
     end

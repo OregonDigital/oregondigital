@@ -1,4 +1,4 @@
-<% for group in Metadata::Ingest::Form.internal_groups %>
+<% for group in @form.internal_groups %>
   <div class="multi-fields well">
     <h3 class="inverse"><%= I18n.t("ingest_form.#{group}.group_header", :default => group.humanize.pluralize) %></h3>
 

@@ -2,7 +2,6 @@ require 'metadata/ingest/translators/form_to_attributes'
 require 'metadata/ingest/translators/attributes_to_form'
 
 class IngestController < ApplicationController
-  before_filter :setup_ingest_map
   before_filter :build_controlled_vocabulary_map
   before_filter :setup_resources, except: :index
 
@@ -11,7 +10,7 @@ class IngestController < ApplicationController
 
   # Combined new/edit form handler
   def form
-    for group in Metadata::Ingest::Form.groups
+    for group in @form.groups
       if @form.send(group.pluralize).empty?
         @form.send("build_#{group}")
       end
@@ -21,7 +20,7 @@ class IngestController < ApplicationController
   # Combined create/update form handler
   def save
     @form.attributes = params[:metadata_ingest_form].to_hash
-    Metadata::Ingest::Translators::FormToAttributes.from(@form).to(@asset)
+    Metadata::Ingest::Translators::FormToAttributes.from(@form).using_map(ingest_map).to(@asset)
     @asset.save
 
     redirect_to :ingest, :notice => "Ingested new object"
@@ -36,13 +35,6 @@ class IngestController < ApplicationController
     return INGEST_MAP
   end
 
-  # Sets up the form to use the chosen ingest map
-  def setup_ingest_map
-    Metadata::Ingest::Form.internal_groups = ingest_map.keys.collect {|key| key.to_s}
-    Metadata::Ingest::Translators::FormToAttributes.map = ingest_map
-    Metadata::Ingest::Translators::AttributesToForm.map = ingest_map
-  end
-
   # Builds asset and form objects based on incoming data.  If an id is not
   # passed in, @asset will be a new GenericAsset, and @form will be an empty
   # ingest form.  If an id is passed in, @asset will represent the asset for
@@ -50,11 +42,12 @@ class IngestController < ApplicationController
   # asset and put them into the ingest form.
   def setup_resources
     @form = Metadata::Ingest::Form.new
+    @form.internal_groups = ingest_map.keys.collect {|key| key.to_s}
     @asset = GenericAsset.new
     return unless params[:id]
 
     @asset = GenericAsset.find(params[:id])
-    Metadata::Ingest::Translators::AttributesToForm.from(@asset).to(@form)
+    Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(ingest_map).to(@form)
   end
 
   # Iterates over the ingest map, and looks up properties in the datastream
