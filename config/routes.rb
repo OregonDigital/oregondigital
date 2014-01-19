@@ -19,5 +19,5 @@ Oregondigital::Application.routes.draw do
   # Ingest form routes
   get 'ingest', to: 'ingest#index', as: :ingest
   get 'ingest(/:id)/form', to: 'ingest#form', as: :show_ingest_form
-  match 'ingest(/:id)/save', to: 'ingest#save', as: :ingest_object, via: [:post, :put]
+  match 'ingest(/:id)/save', to: 'ingest#save', as: :ingest_object, via: [:post, :put, :patch]
 end
