@@ -23,7 +23,7 @@ describe "(Ingest Form)", :js => true do
   end
 
   def visit_edit_form_url(pid)
-    visit("/ingest/#{pid}/form")
+    visit("/ingest/#{pid}/edit")
     expect(page).to have_selector("input[type=submit]")
   end
 
@@ -37,7 +37,7 @@ describe "(Ingest Form)", :js => true do
   def click_the_ingest_button
     button = all(:css, 'input[type=submit]').first
     button.click
-    expect(page).to have_content("Ingested new object")
+    expect(page).to have_content(/(Ingested new|Updated) object/)
   end
 
   def mark_as_reviewed
