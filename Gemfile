@@ -25,7 +25,7 @@ gem "bootstrap-sass", '~>2.3.2.0'
 gem 'therubyracer'
 gem 'ruby-filemagic', '~>0.4.2'
 
-gem 'rdf', '~>1.1.0.1'
+gem 'rdf', '~>1.1.2.1'
 gem 'linkeddata'
 gem 'rdf-redis', '~>0.0.2', :git => 'git://github.com/no-reply/rdf-redis.git'
 
