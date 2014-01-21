@@ -95,9 +95,6 @@ describe "(Ingest Form)", :js => true do
     # Hit the edit page and verify data is as expected
     visit_edit_form_url(pid)
 
-    page.driver.resize(1920, 4320)
-    page.save_screenshot(Rails.root.join("public", "screen.png"))
-
     expect(page).to include_ingest_fields_for("title", "title", "Updated title")
     expect(page).not_to include_ingest_fields_for("title", "title", "Testing stuffs")
     expect(page).to include_ingest_fields_for("date", "created", "2001-01-01")
