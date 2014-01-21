@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/OregonDigital/metadata-ingest-form.git
-  revision: bcbd3f297fa8e25e85924accfacb45ae32eb91ff
-  specs:
-    metadata-ingest-form (2.1.0)
-      activemodel (>= 3.0)
-
-GIT
   remote: git://github.com/jechols/questioning_authority
   revision: a49f5fe83a5507558a21ecdcd0f5590e01cbce53
   specs:
@@ -265,6 +258,8 @@ GEM
     map (4.7.1)
     marc (0.7.1)
     mediashelf-loggable (0.4.9)
+    metadata-ingest-form (2.1.0)
+      activemodel (>= 3.0)
     method_source (0.8.2)
     mime-types (1.25)
     mini_magick (3.7.0)
@@ -521,7 +516,7 @@ DEPENDENCIES
   jquery-fileupload-rails (~> 0.4.1)
   jquery-rails (~> 3.0.4)
   linkeddata
-  metadata-ingest-form!
+  metadata-ingest-form (~> 2.1)
   mini_magick
   mysql2
   noid (~> 0.6.6)
