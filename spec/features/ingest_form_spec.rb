@@ -149,6 +149,7 @@ describe "(Ingest Form)", :js => true do
     vocab_subject_2 = "Food industry and trade"
     within(subject_div) { select('subject', :from => "Type") }
     subject_div.find("input.value-field").native.send_key("food")
+    expect(page).to have_content(vocab_subject_2)
     all(:css, '.tt-suggestions p').select {|tag| tag.text == vocab_subject_2}.first.click
 
     click_the_ingest_button
