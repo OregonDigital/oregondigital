@@ -75,33 +75,55 @@ describe IngestController do
   end
 
   describe "#edit" do
-    it "should have a form representing the asset" do
+    before(:each) do
       existing_asset.title = "Title"
       existing_asset.descMetadata.subject = [
         "http://id.loc.gov/authorities/subjects/sh85050282",
         "http://id.loc.gov/authorities/subjects/sh96005121"
       ]
+      existing_asset.descMetadata.created = Date.today.to_s
 
       get :edit, id: 1
+    end
 
-      sub1 = form.subjects.first
-      sub2 = form.subjects.last
-      title = form.titles.first
+    context "form" do
+      subject { form }
 
-      expect(sub1.group).to eq("subject")
-      expect(sub2.group).to eq("subject")
-      expect(title.group).to eq("title")
+      it "should have four associations with data" do
+        expect(subject.associations.select {|assoc| !assoc.blank?}.length).to eq(4)
+      end
 
-      expect(sub1.type).to eq("subject")
-      expect(sub2.type).to eq("subject")
-      expect(title.type).to eq("title")
+      it "should have a single title" do
+        expect(subject.titles.length).to eq(1)
+      end
 
-      expect(sub1.value).to eq("http://id.loc.gov/authorities/subjects/sh85050282")
-      expect(sub2.value).to eq("http://id.loc.gov/authorities/subjects/sh96005121")
-      expect(title.value).to eq("Title")
+      it "should have the correct title" do
+        expect(subject.titles.first).to eq(Metadata::Ingest::Association.new(
+          group: "title",
+          type: "title",
+          value: "Title",
+          internal: nil,
+        ))
+      end
 
-      expect(form.titles.length).to eq(1)
-      expect(form.subjects.length).to eq(2)
+      it "should have two subjects" do
+        expect(subject.subjects.length).to eq(2)
+      end
+
+      it "should have the correct subjects" do
+        expect(subject.subjects[0]).to eq(Metadata::Ingest::Association.new(
+          group: "subject",
+          type: "subject",
+          value: "http://id.loc.gov/authorities/subjects/sh85050282",
+          internal: nil,
+        ))
+        expect(subject.subjects[1]).to eq(Metadata::Ingest::Association.new(
+          group: "subject",
+          type: "subject",
+          value: "http://id.loc.gov/authorities/subjects/sh96005121",
+          internal: nil,
+        ))
+      end
     end
 
     it "should assign an uploader" do
