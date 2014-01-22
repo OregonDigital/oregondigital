@@ -1,31 +1,30 @@
 require 'metadata/ingest/translators/form_to_attributes'
+require 'metadata/ingest/translators/attributes_to_form'
 
 class IngestController < ApplicationController
-  before_filter :setup_ingest_map
   before_filter :build_controlled_vocabulary_map
+  before_filter :setup_resources, only: [:new, :create, :edit, :update]
+  before_filter :load_asset, only: [:edit, :update]
+  before_filter :add_blank_groups, only: [:new, :edit]
+  before_filter :form_to_asset, only: [:create, :update]
 
   def index
   end
 
-  # Combined new/edit form handler
-  def form
-    @form = Metadata::Ingest::Form.new
-
-    for group in Metadata::Ingest::Form.groups
-      if @form.send(group.pluralize).empty?
-        @form.send("build_#{group}")
-      end
-    end
+  def new
   end
 
-  # Combined create/update form handler
-  def save
-    @form = Metadata::Ingest::Form.new(params[:metadata_ingest_form].to_hash)
-    @asset = GenericAsset.new
-    Metadata::Ingest::Translators::FormToAttributes.from(@form).to(@asset)
-    @asset.save
+  def edit
+  end
 
-    redirect_to :ingest, :notice => "Ingested new object"
+  def create
+    @asset.save
+    redirect_to ingest_index_path, :notice => "Ingested new object"
+  end
+
+  def update
+    @asset.save
+    redirect_to ingest_index_path, :notice => "Updated object"
   end
 
   private
@@ -37,10 +36,33 @@ class IngestController < ApplicationController
     return INGEST_MAP
   end
 
-  # Sets up the form to use the chosen ingest map
-  def setup_ingest_map
-    Metadata::Ingest::Form.internal_groups = ingest_map.keys.collect {|key| key.to_s}
-    Metadata::Ingest::Translators::FormToAttributes.map = ingest_map
+  # Ensures page has at least one visible entry for each group
+  def add_blank_groups
+    for group in @form.groups
+      if @form.send(group.pluralize).empty?
+        @form.send("build_#{group}")
+      end
+    end
+  end
+
+  # Sets up @form and @asset for new and edit forms
+  def setup_resources
+    @form = Metadata::Ingest::Form.new
+    @form.internal_groups = ingest_map.keys.collect {|key| key.to_s}
+    @asset = GenericAsset.new
+  end
+
+  # Loads @asset from Fedora and uses the translator to get the asset's
+  # attributes onto @form
+  def load_asset
+    @asset = GenericAsset.find(params[:id])
+    Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(ingest_map).to(@form)
+  end
+
+  # Stores parameters on @form and translates those to @asset attributes
+  def form_to_asset
+    @form.attributes = params[:metadata_ingest_form].to_hash
+    Metadata::Ingest::Translators::FormToAttributes.from(@form).using_map(ingest_map).to(@asset)
   end
 
   # Iterates over the ingest map, and looks up properties in the datastream

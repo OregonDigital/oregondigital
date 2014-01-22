@@ -22,32 +22,22 @@ describe "(Ingest Form)", :js => true do
     expect(page).to have_selector("input[type=submit]")
   end
 
+  def visit_edit_form_url(pid)
+    visit("/ingest/#{pid}/edit")
+    expect(page).to have_selector("input[type=submit]")
+  end
+
   def fill_out_dummy_data
-    nodes = all(:css, ".nested-fields[data-group=title]")
-    within(nodes.first) do
-      select("title", :from => "Type")
-      fill_in("Value", :with => "First Title")
-    end
-
+    fill_in_ingest_data("title", "title", "First Title")
     click_link 'Add title'
-    nodes = all(:css, ".nested-fields[data-group=title]")
-    within(nodes[1]) do
-      select("title", :from => "Type")
-      fill_in("Value", :with => "Second Title")
-    end
-
-    # Fill out the created date
-    nodes = all(:css, ".nested-fields[data-group=date]")
-    within(nodes.first) do
-      select('created', :from => "Type")
-      fill_in("Value", :with => '2014-01-07')
-    end
+    fill_in_ingest_data("title", "title", "Second Title", 1)
+    fill_in_ingest_data("date", "created", "2014-01-07")
   end
 
   def click_the_ingest_button
     button = all(:css, 'input[type=submit]').first
     button.click
-    expect(page).to have_content("Ingested new object")
+    expect(page).to have_content(/(Ingested new|Updated) object/)
   end
 
   def mark_as_reviewed
@@ -66,7 +56,53 @@ describe "(Ingest Form)", :js => true do
     click_the_ingest_button
     mark_as_reviewed
 
+    # Verify on the edit view
+    visit_edit_form_url(@pid)
+    expect(page).to include_ingest_fields_for("title", "title", "First Title")
+    expect(page).to include_ingest_fields_for("title", "title", "Second Title")
+    expect(page).to include_ingest_fields_for("date", "created", "2014-01-07")
+
+    # Verify on the show view, too
     visit(catalog_path(@pid))
+    expect(page.status_code).to eq(200)
+    pending "Need to verify that the show view has the data we ingested"
+    expect(page).to have_content('First Title, Second Title')
+    expect(page).to have_content('Test Subject')
+  end
+
+  it "should fail when data is freely typed into a controlled vocabulary field"
+
+  it "should update an existing object" do
+    asset = FactoryGirl.create(:generic_asset, title: "Testing stuffs")
+    pid = asset.pid
+    visit_edit_form_url(pid)
+
+    # Verify this has the data we expect in the right fields
+    div = find(:css, ".nested-fields[data-group=title]")
+    element = div.find("input.value-field")
+    expect(element.value).to eq("Testing stuffs")
+
+    # Modify some data, add some data
+    fill_in_ingest_data("title", "title", "Updated title")
+    fill_in_ingest_data("date", "created", "2001-01-01")
+    click_link 'Add date'
+    fill_in_ingest_data("date", "modified", "2001-01-01", 1)
+    fill_in_ingest_data("description", "description", "This is not a useful description")
+
+    click_the_ingest_button
+    mark_as_reviewed
+
+    # Hit the edit page and verify data is as expected
+    visit_edit_form_url(pid)
+
+    expect(page).to include_ingest_fields_for("title", "title", "Updated title")
+    expect(page).not_to include_ingest_fields_for("title", "title", "Testing stuffs")
+    expect(page).to include_ingest_fields_for("date", "created", "2001-01-01")
+    expect(page).to include_ingest_fields_for("date", "modified", "2001-01-01")
+    expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
+
+    # Hit the show page, too
+    visit(catalog_path(pid))
     expect(page.status_code).to eq(200)
 
     # object has meta data
@@ -75,17 +111,15 @@ describe "(Ingest Form)", :js => true do
     expect(page).to have_content('Test Subject')
   end
 
-  it "should fail when data is freely typed into a controlled vocabulary field"
-
   it "should autocomplete controlled vocabulary fields" do
     visit_ingest_url
     fill_out_dummy_data
 
     subject_div = all(:css, ".nested-fields[data-group=subject]").first
-    title = "Canned foods industry--Accidents"
+    vocab_subject = "Canned foods industry--Accidents"
 
     # Now you don't see it...
-    expect(page).not_to have_content(title)
+    expect(page).not_to have_content(vocab_subject)
 
     within(subject_div) do
       select('subject', :from => "Type")
@@ -96,14 +130,33 @@ describe "(Ingest Form)", :js => true do
     value_field.native.send_key("food")
 
     # ...now you do!  Find it, click it, and ingest
-    expect(page).to have_content(title)
+    expect(page).to have_content(vocab_subject)
 
     autocomplete_p_tags = all(:css, '.tt-suggestions p')
-    autocomplete_p_tags.select {|tag| tag.text == title}.first.click
+    autocomplete_p_tags.select {|tag| tag.text == vocab_subject}.first.click
+
+    # Validate the internal field
+    nodes = ingest_group_nodes("subject")
+    expect(nodes.count).to eq(1)
+    within(nodes.first) do
+      internal_field = find("input.internal-field")
+      expect(internal_field.value).to eq("http://id.loc.gov/authorities/subjects/sh2007009834")
+    end
 
     click_the_ingest_button
     mark_as_reviewed
 
+    # Hit the edit page and verify data is as expected
+    visit_edit_form_url(@pid)
+    expect(page).to include_ingest_fields_for("title", "title", "First Title")
+    expect(page).to include_ingest_fields_for("title", "title", "Second Title")
+    expect(page).to include_ingest_fields_for("date", "created", "2014-01-07")
+    expect(page).to include_ingest_fields_for("subject", "subject", "http://id.loc.gov/authorities/subjects/sh2007009834")
+
+    pending "When translation is fixed, get rid of that internal element showing up!"
+    expect(page).to include_ingest_fields_for("subject", "subject", vocab_subject)
+
+    # Verify on the show page as well
     visit(catalog_path(@pid))
     expect(page.status_code).to eq(200)
     pending "Need to verify that the show view has the data we ingested"

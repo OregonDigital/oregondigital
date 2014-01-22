@@ -1,7 +1,7 @@
 module IngestHelper
   # Renders the ingest form for the given form object
   def ingest_form_for(ingest_form)
-    url = ingest_object_path(ingest_form)
+    url = ingest_path(ingest_form)
     html_options = {:multipart => true, :class => "form-horizontal form-inline"}
 
     simple_form_for(ingest_form, {:url => url, :html => html_options}) do |f|
