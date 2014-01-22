@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'collection facets' do
   context "when there is an item in a collection" do
-    let(:item) { FactoryGirl.create(:generic_asset, :in_collection!) }
+    let(:item) { FactoryGirl.create(:generic_asset, :in_collection!, subject: "http://id.loc.gov/authorities/subjects/sh96005121") }
     let(:collection) { item.collections.first }
 
     before(:each) do

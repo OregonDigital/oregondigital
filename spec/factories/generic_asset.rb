@@ -5,7 +5,7 @@ FactoryGirl.define do
   factory :generic_asset, parent: :active_fedora_base, class: GenericAsset do
     sequence(:title) {|n| "Generic Asset #{n}"}
     read_groups ["public"]
-    sequence(:subject) {|n| "Subject #{n}"}
+    sequence(:created) { |n| (Date.today - 1000 + n).to_s }
 
     after(:build) {|obj| obj.review}
 
