@@ -10,6 +10,8 @@ describe IngestController do
   let(:existing_asset) { GenericAsset.new }
   let(:ds_exist) { existing_asset.descMetadata }
   let(:form) { Metadata::Ingest::Form.new }
+  let(:subject1) { "http://id.loc.gov/authorities/subjects/sh85050282" }
+  let(:subject2) { "http://id.loc.gov/authorities/subjects/sh96005121" }
 
   # This is ugly but it mimics exactly what Rails params look like
   let(:attrs) do
@@ -18,8 +20,8 @@ describe IngestController do
         "0" => {"type" => "title", "value" => "test title", "internal" => "", "_destroy" => "false"}
       },
       "subjects_attributes" => {
-        "0" => {"type" => "subject", "value" => "foo", "internal" => "", "_destroy" => "false"},
-        "1" => {"type" => "subject", "value" => "bar", "internal" => "", "_destroy" => "false"}
+        "0" => {"type" => "subject", "value" => "foo", "internal" => subject1, "_destroy" => "false"},
+        "1" => {"type" => "subject", "value" => "bar", "internal" => subject2, "_destroy" => "false"}
       }
     }
   end
@@ -33,6 +35,16 @@ describe IngestController do
     GenericAsset.stub(:find).with("1").and_return(existing_asset)
     existing_asset.stub(:save)
     existing_asset.stub(:save!)
+
+    # If we pre-load the RDF lookup somehow, this won't be necessary, but for
+    # right now we're hacking stuff up to verify that subjects are being
+    # translated properly.
+    res1 = OregonDigital::ControlledVocabularies::Subject.from_uri(subject1)
+    res2 = OregonDigital::ControlledVocabularies::Subject.from_uri(subject2)
+    OregonDigital::ControlledVocabularies::Subject.stub(:from_uri).with(subject1).and_return(res1)
+    OregonDigital::ControlledVocabularies::Subject.stub(:from_uri).with(subject2).and_return(res2)
+    res1.stub(:rdf_label => ["Food industry and trade"])
+    res2.stub(:rdf_label => ["Combinatorial chemistry", "something else"])
   end
 
   describe "#index" do
@@ -77,10 +89,7 @@ describe IngestController do
   describe "#edit" do
     before(:each) do
       existing_asset.title = "Title"
-      existing_asset.descMetadata.subject = [
-        "http://id.loc.gov/authorities/subjects/sh85050282",
-        "http://id.loc.gov/authorities/subjects/sh96005121"
-      ]
+      existing_asset.descMetadata.subject = [subject1, subject2]
       existing_asset.descMetadata.created = Date.today.to_s
 
       get :edit, id: 1
@@ -108,21 +117,20 @@ describe IngestController do
 
       it "should have two subjects" do
         expect(subject.subjects.length).to eq(2)
+        for assoc in subject.subjects
+          expect(assoc.group).to eq("subject")
+          expect(assoc.type).to eq("subject")
+        end
       end
 
-      it "should have the correct subjects" do
-        expect(subject.subjects[0]).to eq(Metadata::Ingest::Association.new(
-          group: "subject",
-          type: "subject",
-          value: "http://id.loc.gov/authorities/subjects/sh85050282",
-          internal: nil,
-        ))
-        expect(subject.subjects[1]).to eq(Metadata::Ingest::Association.new(
-          group: "subject",
-          type: "subject",
-          value: "http://id.loc.gov/authorities/subjects/sh96005121",
-          internal: nil,
-        ))
+      it "should translate the subject URIs into human-friendly text" do
+        expect(subject.subjects[0].value).to eq("Food industry and trade")
+        expect(subject.subjects[1].value).to eq("Combinatorial chemistry")
+      end
+
+      it "should preserve the subject URIs as internal values" do
+        expect(subject.subjects[0].internal).to eq("http://id.loc.gov/authorities/subjects/sh85050282")
+        expect(subject.subjects[1].internal).to eq("http://id.loc.gov/authorities/subjects/sh96005121")
       end
     end
 
@@ -141,7 +149,7 @@ describe IngestController do
     end
 
     it "should set multiple-value attributes to arrays" do
-      expect(ds_new).to receive(:subject=).with(["foo", "bar"])
+      expect(ds_new).to receive(:subject=).with([subject1, subject2])
       post :create, :metadata_ingest_form => attrs
     end
 
@@ -177,7 +185,7 @@ describe IngestController do
     it_should_behave_like "an ingest controller uploader", :update
 
     it "should modify the existing asset" do
-      expect(ds_exist).to receive(:subject=).with(["foo", "bar"])
+      expect(ds_exist).to receive(:subject=).with([subject1, subject2])
       post :update, id: 1, metadata_ingest_form: attrs
     end
 
@@ -208,7 +216,7 @@ describe IngestController do
     end
 
     it "should override data" do
-      existing_asset.descMetadata.subject = ["foo", "bar"]
+      existing_asset.descMetadata.subject = [subject1, subject2]
       attrs["subjects_attributes"] = {
         "0" => {"type" => "subject", "value" => "FOO", "internal" => "", "_destroy" => "false"}
       }
@@ -220,7 +228,7 @@ describe IngestController do
       # This is a tricky case - by default, if there's no data for a group,
       # it won't be sent to the object, so removals are only handled well
       # when a single removal happens....
-      existing_asset.descMetadata.subject = ["foo", "bar"]
+      existing_asset.descMetadata.subject = [subject1, subject2]
       attrs["subjects_attributes"].each {|index, data| data["_destroy"] = "1"}
 
       expect(ds_exist).to receive(:subject=).with(nil)
