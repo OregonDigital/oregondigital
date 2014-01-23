@@ -258,7 +258,7 @@ GEM
     map (4.7.1)
     marc (0.7.1)
     mediashelf-loggable (0.4.9)
-    metadata-ingest-form (2.1.0)
+    metadata-ingest-form (2.2.0)
       activemodel (>= 3.0)
     method_source (0.8.2)
     mime-types (1.25)
@@ -516,7 +516,7 @@ DEPENDENCIES
   jquery-fileupload-rails (~> 0.4.1)
   jquery-rails (~> 3.0.4)
   linkeddata
-  metadata-ingest-form (~> 2.1)
+  metadata-ingest-form (~> 2.2)
   mini_magick
   mysql2
   noid (~> 0.6.6)

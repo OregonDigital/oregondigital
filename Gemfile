@@ -70,7 +70,7 @@ gem 'hydra-role-management'
 gem 'draper'
 
 # Ingest form FBOs
-gem 'metadata-ingest-form', '~>2.1'
+gem 'metadata-ingest-form', '~>2.2'
 
 # mysql gem
 gem 'mysql2'
