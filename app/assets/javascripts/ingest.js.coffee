@@ -6,7 +6,6 @@ $ ->
   form = $("#ingest-form-container")
   if form.length != 0
     attachVocabularyListeners()
-    setupVocabularyURIsOnOptions(form, controlledVocabMap)
 
     # This is how we ensure whatever state the form starts on, typeaheads are properly set up
     form.find("select.type-selector").change()
@@ -19,19 +18,16 @@ attachVocabularyListeners = () ->
 
 # Iterates over group divs and sets "data-typeahead-uri" to options that have mapped
 # vocabulary data
-setupVocabularyURIsOnOptions = (form, vocabMap) ->
-  $("#ingest-form-container select.type-selector option").each (index, element) ->
-    group = $(element).closest(".form-fields-wrapper").attr("data-group")
-    type = $(element).val()
-    uri = vocabMap[group]?[type]
-    if uri
-      $(element).attr("data-typeahead-uri", uri)
+controlledVocabURIFor = (option) ->
+  group = option.closest(".form-fields-wrapper").attr("data-group")
+  type = option.val()
+  return controlledVocabMap[group]?[type]
 
 # Checks the given input/select combination to see if the input needs a typeahead attached
 checkControlledVocabulary = (input, select) ->
-  option = select.find("option").filter(":selected")
   input.typeahead("destroy")
-  uri = option.attr("data-typeahead-uri")
+  option = select.find("option").filter(":selected")
+  uri = controlledVocabURIFor(option)
   if uri
     input.typeahead([{
       name: option.val()

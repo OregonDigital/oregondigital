@@ -116,10 +116,10 @@ describe "(Ingest Form)", :js => true do
     fill_out_dummy_data
 
     subject_div = all(:css, ".nested-fields[data-group=subject]").first
-    vocab_subject = "Canned foods industry--Accidents"
+    vocab_subject_1 = "Canned foods industry--Accidents"
 
     # Now you don't see it...
-    expect(page).not_to have_content(vocab_subject)
+    expect(page).not_to have_content(vocab_subject_1)
 
     within(subject_div) do
       select('subject', :from => "Type")
@@ -130,10 +130,10 @@ describe "(Ingest Form)", :js => true do
     value_field.native.send_key("food")
 
     # ...now you do!  Find it, click it, and ingest
-    expect(page).to have_content(vocab_subject)
+    expect(page).to have_content(vocab_subject_1)
 
     autocomplete_p_tags = all(:css, '.tt-suggestions p')
-    autocomplete_p_tags.select {|tag| tag.text == vocab_subject}.first.click
+    autocomplete_p_tags.select {|tag| tag.text == vocab_subject_1}.first.click
 
     # Validate the internal field
     nodes = ingest_group_nodes("subject")
@@ -142,6 +142,15 @@ describe "(Ingest Form)", :js => true do
       internal_field = find("input.internal-field")
       expect(internal_field.value).to eq("http://id.loc.gov/authorities/subjects/sh2007009834")
     end
+
+    # Add another subject to ensure dynamic fields get typeaheads properly
+    click_link 'Add subject'
+    subject_div = all(:css, ".nested-fields[data-group=subject]").last
+    vocab_subject_2 = "Food industry and trade"
+    within(subject_div) { select('subject', :from => "Type") }
+    subject_div.find("input.value-field").native.send_key("food")
+    expect(page).to have_content(vocab_subject_2)
+    all(:css, '.tt-suggestions p').select {|tag| tag.text == vocab_subject_2}.first.click
 
     click_the_ingest_button
     mark_as_reviewed
@@ -152,9 +161,11 @@ describe "(Ingest Form)", :js => true do
     expect(page).to include_ingest_fields_for("title", "title", "Second Title")
     expect(page).to include_ingest_fields_for("date", "created", "2014-01-07")
     expect(page).to include_ingest_fields_for("subject", "subject", "http://id.loc.gov/authorities/subjects/sh2007009834")
+    expect(page).to include_ingest_fields_for("subject", "subject", "http://id.loc.gov/authorities/subjects/sh85050282")
 
     pending "When translation is fixed, get rid of that internal element showing up!"
-    expect(page).to include_ingest_fields_for("subject", "subject", vocab_subject)
+    expect(page).to include_ingest_fields_for("subject", "subject", vocab_subject_1)
+    expect(page).to include_ingest_fields_for("subject", "subject", vocab_subject_2)
 
     # Verify on the show page as well
     visit(catalog_path(@pid))
