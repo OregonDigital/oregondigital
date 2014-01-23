@@ -15,10 +15,6 @@ shared_examples 'an ingest controller uploader' do |action|
         "titles_attributes" => {
           "0" => {"type" => "title", "value" => "test title", "internal" => "", "_destroy" => "false"}
         },
-        "subjects_attributes" => {
-          "0" => {"type" => "subject", "value" => "foo", "internal" => "", "_destroy" => "false"},
-          "1" => {"type" => "subject", "value" => "bar", "internal" => "", "_destroy" => "false"}
-        }
       },
       "upload" => "foo",
       "upload_cache" => "bar"

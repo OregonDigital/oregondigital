@@ -206,12 +206,12 @@ describe IngestController do
     end
 
     it "should override data" do
-      existing_asset.descMetadata.subject = [subject1, subject2]
-      attrs["subjects_attributes"] = {
-        "0" => {"type" => "subject", "value" => "FOO", "internal" => "", "_destroy" => "false"}
+      ds_exist.title = ["title", "title 2"]
+      attrs["titles_attributes"] = {
+        "0" => {"type" => "title", "value" => "FOO", "internal" => "", "_destroy" => "false"}
       }
-      expect(ds_exist).to receive(:subject=).with("FOO")
       post :update, id: 1, metadata_ingest_form: attrs
+      expect(ds_exist.title).to eq(["FOO"])
     end
 
     it "should remove data properly when blank items are submitted" do

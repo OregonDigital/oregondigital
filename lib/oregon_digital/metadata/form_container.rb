@@ -87,7 +87,7 @@ class OregonDigital::Metadata::FormContainer
     attrs = attrs.to_hash
     @form.attributes = attrs
     if @form.valid?
-      Metadata::Ingest::Translators::FormToAttributes.from(@form).using_map(@translation_map).to(@asset)
+      OregonDigital::Metadata::FormToAttributes.from(@form).using_map(@translation_map).to(@asset)
     end
   end
 

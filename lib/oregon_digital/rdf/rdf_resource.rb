@@ -91,9 +91,7 @@ module OregonDigital::RDF
 
     def persist!
       raise "failed when trying to persist to non-existant repository or parent resource" unless repository
-      each_statement do |s, p, o|
-        repository.delete [s, p, nil]
-      end
+      repository.delete [rdf_subject, nil, nil]
       repository << self
       @persisted = true
     end
