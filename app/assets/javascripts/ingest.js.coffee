@@ -39,7 +39,21 @@ checkControlledVocabulary = (input, select) ->
       limit: 10
     }])
 
-    # Handle selections so we can populate hidden fields
+    # Handle selections so we can populate hidden fields and lock the form down
     input.on 'typeahead:selected', (object, datum) ->
+      # Store the internal data
       hiddenField = input.closest(".form-fields-wrapper").find("input.internal-field")
       hiddenField.attr("value", datum.id)
+
+      # Kill the typeahead as it isn't useful now and makes the UI weird
+      input.typeahead("destroy")
+
+      # Make the type and value fields read-only.  Sadly, the readonly
+      # attribute on a select isn't actually respected by browsers (though it
+      # does change the UI, so there's that!)
+      wrapper = input.closest(".form-fields-wrapper")
+      valueField = wrapper.find("input.value-field")
+      selectField = wrapper.find("select.type-selector")
+      valueField.attr("readonly", "readonly")
+      selectField.attr("readonly", "readonly")
+      selectField.find("option:not(:selected)").hide().attr("disabled",true)
