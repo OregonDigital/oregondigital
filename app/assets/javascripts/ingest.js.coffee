@@ -16,8 +16,7 @@ attachVocabularyListeners = () ->
     input = $(this).closest(".form-fields-wrapper").find("input.value-field")
     checkControlledVocabulary(input, $(this))
 
-# Iterates over group divs and sets "data-typeahead-uri" to options that have mapped
-# vocabulary data
+# Looks up the controlled vocabulary URI for the given option
 controlledVocabURIFor = (option) ->
   group = option.closest(".form-fields-wrapper").attr("data-group")
   type = option.val()
@@ -29,31 +28,37 @@ checkControlledVocabulary = (input, select) ->
   option = select.find("option").filter(":selected")
   uri = controlledVocabURIFor(option)
   if uri
-    input.typeahead([{
-      name: option.val()
-      remote: {
-        url: uri
-        wildcard: "VOCABQUERY"
-      }
-      valueKey: "label"
-      limit: 10
-    }])
+    attachControlledVocabularyTypeahead(option, input, uri)
 
-    # Handle selections so we can populate hidden fields and lock the form down
-    input.on 'typeahead:selected', (object, datum) ->
-      # Store the internal data
-      hiddenField = input.closest(".form-fields-wrapper").find("input.internal-field")
-      hiddenField.attr("value", datum.id)
+# Attaches a typeahead to the given input with the given URI, with default
+# behaviors and data for our controlled vocabulary system
+attachControlledVocabularyTypeahead = (option, input, uri) ->
+  input.typeahead([{
+    name: option.val()
+    remote: {
+      url: uri
+      wildcard: "VOCABQUERY"
+    }
+    valueKey: "label"
+    limit: 10
+  }])
 
-      # Kill the typeahead as it isn't useful now and makes the UI weird
-      input.typeahead("destroy")
+  # Handle selections so we can populate hidden fields and lock the form down
+  input.on 'typeahead:selected', (object, datum) ->
+    storeControlledVocabularyData(input, datum)
+    lockControlledVocabularyFields(input)
 
-      # Make the type and value fields read-only.  Sadly, the readonly
-      # attribute on a select isn't actually respected by browsers (though it
-      # does change the UI, so there's that!)
-      wrapper = input.closest(".form-fields-wrapper")
-      valueField = wrapper.find("input.value-field")
-      selectField = wrapper.find("select.type-selector")
-      valueField.attr("readonly", "readonly")
-      selectField.attr("readonly", "readonly")
-      selectField.find("option:not(:selected)").hide().attr("disabled",true)
+storeControlledVocabularyData = (input, datum) ->
+  hiddenField = input.closest(".form-fields-wrapper").find("input.internal-field")
+  hiddenField.attr("value", datum.id)
+
+# Prevents the type and value from being modified accidentally
+lockControlledVocabularyFields = (input) ->
+  input.typeahead("destroy")
+  selectField = input.closest(".form-fields-wrapper").find("select.type-selector")
+  input.attr("readonly", "readonly")
+  selectField.attr("readonly", "readonly")
+
+  # This is kind of stupid, but the readonly attribute only applies UI to the
+  # field since selects can't be readonly in HTML for some lovely reason
+  selectField.find("option:not(:selected)").hide().attr("disabled",true)
