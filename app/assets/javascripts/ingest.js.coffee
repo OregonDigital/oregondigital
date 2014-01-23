@@ -6,6 +6,7 @@ $ ->
   form = $("#ingest-form-container")
   if form.length != 0
     attachVocabularyListeners()
+    lockAllControlledVocabularyFields()
 
     # This is how we ensure whatever state the form starts on, typeaheads are properly set up
     form.find("select.type-selector").change()
@@ -15,6 +16,15 @@ attachVocabularyListeners = () ->
   $(document).on "change", "#ingest-form-container select.type-selector", (event) ->
     input = $(this).closest(".form-fields-wrapper").find("input.value-field")
     checkControlledVocabulary(input, $(this))
+
+# Iterates over all internal fields, locking the surrounding fields for any
+# with a value
+lockAllControlledVocabularyFields = () ->
+  $("input.internal-field").each ->
+    input = $(this)
+    if (input.val())
+      valueField = input.closest(".form-fields-wrapper").find("input.value-field")
+      lockControlledVocabularyFields(valueField)
 
 # Looks up the controlled vocabulary URI for the given option
 controlledVocabURIFor = (option) ->
