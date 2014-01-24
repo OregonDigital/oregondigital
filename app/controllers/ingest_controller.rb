@@ -18,23 +18,11 @@ class IngestController < ApplicationController
   end
 
   def create
-    if !@form.valid?
-      render :new
-      return
-    end
-
-    @asset.save
-    redirect_to ingest_index_path, :notice => "Ingested new object"
+    validate_and_save("Ingested new object", :new)
   end
 
   def update
-    if !@form.valid?
-      render :edit
-      return
-    end
-
-    @asset.save
-    redirect_to ingest_index_path, :notice => "Updated object"
+    validate_and_save("Updated object", :edit)
   end
 
   private
@@ -44,6 +32,28 @@ class IngestController < ApplicationController
   # things like user groups or collection info or who knows what.
   def ingest_map
     return INGEST_MAP
+  end
+
+  # Attempts to save the asset, merging errors with the ingest form since the
+  # form elements aren't mapped 1:1 to the asset fields. (type + value +
+  # internal represent a single property).
+  #
+  # Note that fedora object errors won't necessarily make sense to the form if
+  # they're too low-level, so custom validations should be carefully worded.
+  def validate_and_save(success_message, failure_template)
+    unless @form.valid?
+      render failure_template
+      return
+    end
+
+    unless @asset.valid?
+      @asset.errors.each {|key, val| @form.errors.add(key, val)}
+      render failure_template
+      return
+    end
+
+    @asset.save
+    redirect_to ingest_index_path, :notice => success_message
   end
 
   # Ensures page has at least one visible entry for each group
