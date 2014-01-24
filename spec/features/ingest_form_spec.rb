@@ -115,42 +115,15 @@ describe "(Ingest Form)", :js => true do
     visit_ingest_url
     fill_out_dummy_data
 
-    subject_div = all(:css, ".nested-fields[data-group=subject]").first
     vocab_subject_1 = "Canned foods industry--Accidents"
-
-    # Now you don't see it...
-    expect(page).not_to have_content(vocab_subject_1)
-
-    within(subject_div) do
-      select('subject', :from => "Type")
-    end
-
-    # Make typing mimic actual human use
-    value_field = subject_div.find("input.value-field")
-    value_field.native.send_key("food")
-
-    # ...now you do!  Find it, click it, and ingest
-    expect(page).to have_content(vocab_subject_1)
-
-    autocomplete_p_tags = all(:css, '.tt-suggestions p')
-    autocomplete_p_tags.select {|tag| tag.text == vocab_subject_1}.first.click
-
-    # Validate the internal field
-    nodes = ingest_group_nodes("subject")
-    expect(nodes.count).to eq(1)
-    within(nodes.first) do
-      internal_field = find("input.internal-field")
-      expect(internal_field.value).to eq("http://id.loc.gov/authorities/subjects/sh2007009834")
-    end
+    vocab_uri_1 = "http://id.loc.gov/authorities/subjects/sh2007009834"
+    choose_controlled_vocabulary_item("subject", "subject", "food", vocab_subject_1, vocab_uri_1)
 
     # Add another subject to ensure dynamic fields get typeaheads properly
     click_link 'Add subject'
-    subject_div = all(:css, ".nested-fields[data-group=subject]").last
     vocab_subject_2 = "Food industry and trade"
-    within(subject_div) { select('subject', :from => "Type") }
-    subject_div.find("input.value-field").native.send_key("food")
-    expect(page).to have_content(vocab_subject_2)
-    all(:css, '.tt-suggestions p').select {|tag| tag.text == vocab_subject_2}.first.click
+    vocab_uri_2 = "http://id.loc.gov/authorities/subjects/sh85050282"
+    choose_controlled_vocabulary_item("subject", "subject", "food", vocab_subject_2, vocab_uri_2, 1)
 
     click_the_ingest_button
     mark_as_reviewed
@@ -160,8 +133,8 @@ describe "(Ingest Form)", :js => true do
     expect(page).to include_ingest_fields_for("title", "title", "First Title")
     expect(page).to include_ingest_fields_for("title", "title", "Second Title")
     expect(page).to include_ingest_fields_for("date", "created", "2014-01-07")
-    expect(page).to include_ingest_fields_for("subject", "subject", "http://id.loc.gov/authorities/subjects/sh2007009834")
-    expect(page).to include_ingest_fields_for("subject", "subject", "http://id.loc.gov/authorities/subjects/sh85050282")
+    expect(page).to include_ingest_fields_for("subject", "subject", vocab_uri_1)
+    expect(page).to include_ingest_fields_for("subject", "subject", vocab_uri_2)
 
     pending "When translation is fixed, get rid of that internal element showing up!"
     expect(page).to include_ingest_fields_for("subject", "subject", vocab_subject_1)
@@ -171,5 +144,37 @@ describe "(Ingest Form)", :js => true do
     visit(catalog_path(@pid))
     expect(page.status_code).to eq(200)
     pending "Need to verify that the show view has the data we ingested"
+  end
+
+  it "locks down controlled vocabulary ingest fields on select" do
+    # Hack the map to add a subject
+    INGEST_MAP[:subject][:subj2] = "descMetadata.subject"
+
+    visit_ingest_url
+
+    subject_div = ingest_group_nodes("subject").first
+
+    # We should have no trouble finding the "subj2" option
+    subj2_selector = "option[value=subj2]"
+    expect(subject_div).to have_selector(subj2_selector)
+
+    # We should have no trouble typing into the value field
+    value_field = subject_div.find("input.value-field")
+    value_field.native.send_key("blargh")
+    expect(value_field.value).to eq("blargh")
+
+    vocab_subject = "Canned foods industry--Accidents"
+    vocab_uri = "http://id.loc.gov/authorities/subjects/sh2007009834"
+    choose_controlled_vocabulary_item("subject", "subject", "food", vocab_subject, vocab_uri)
+
+    # "subj2" should now be missing, which is how we fake readonly for the select
+    expect(subject_div).not_to have_selector(subj2_selector)
+
+    # Value field should be completely read-only
+    value_field = subject_div.find("input.value-field")
+    value_field.native.send_key("blargh")
+    expect(value_field.value).to eq(vocab_subject)
+
+    INGEST_MAP[:subject].delete(:subj2)
   end
 end
