@@ -40,6 +40,10 @@ checkControlledVocabulary = (input, select) ->
   if uri
     attachControlledVocabularyTypeahead(option, input, uri)
 
+controlledVocabularySuggestionHTML = (datum) ->
+  "<div class=\"suggestion-label\">#{datum.label}</div>" +
+  "<div class=\"suggestion-uri\">#{datum.id}</div>"
+
 # Attaches a typeahead to the given input with the given URI, with default
 # behaviors and data for our controlled vocabulary system
 attachControlledVocabularyTypeahead = (option, input, uri) ->
@@ -51,6 +55,7 @@ attachControlledVocabularyTypeahead = (option, input, uri) ->
     }
     valueKey: "label"
     limit: 10
+    template: controlledVocabularySuggestionHTML
   }])
 
   # Handle selections so we can populate hidden fields and lock the form down
