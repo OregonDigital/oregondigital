@@ -20,11 +20,13 @@ def choose_controlled_vocabulary_item(group, type, search, pick, internal, posit
   value_field = group_div.find("input.value-field")
   value_field.native.send_key(search)
 
-  # This serves as a test as well as a way to ensure we wait for the typeahead
+  # These serve as tests as well as pauses - capybara will wait a bit on
+  # has_content?, so the typeahead content can show up
   expect(page).to have_content(pick)
+  expect(page).to have_content(internal)
 
-  autocomplete_p_tags = all(:css, '.tt-suggestions p')
-  autocomplete_p_tags.select {|tag| tag.text == pick}.first.click
+  autocomplete_tags = all(:css, '.tt-suggestion .suggestion-label')
+  autocomplete_tags.select {|tag| tag.text == pick}.first.click
 
   # Validate the internal field
   internal_field = group_div.find("input.internal-field")
