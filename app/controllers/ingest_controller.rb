@@ -18,11 +18,21 @@ class IngestController < ApplicationController
   end
 
   def create
+    if !@form.valid?
+      render :new
+      return
+    end
+
     @asset.save
     redirect_to ingest_index_path, :notice => "Ingested new object"
   end
 
   def update
+    if !@form.valid?
+      render :edit
+      return
+    end
+
     @asset.save
     redirect_to ingest_index_path, :notice => "Updated object"
   end
@@ -62,7 +72,9 @@ class IngestController < ApplicationController
   # Stores parameters on @form and translates those to @asset attributes
   def form_to_asset
     @form.attributes = params[:metadata_ingest_form].to_hash
-    Metadata::Ingest::Translators::FormToAttributes.from(@form).using_map(ingest_map).to(@asset)
+    if @form.valid?
+      Metadata::Ingest::Translators::FormToAttributes.from(@form).using_map(ingest_map).to(@asset)
+    end
   end
 
   # Iterates over the ingest map, and looks up properties in the datastream

@@ -128,6 +128,15 @@ describe IngestController do
       expect(@new_asset).to receive(:save).once
       post :create, :metadata_ingest_form => @attrs
     end
+
+    it "shouldn't try to modify the asset if the form isn't valid" do
+      @form.stub(:valid? => false)
+      expect(@new_asset).not_to receive(:save)
+      expect(@new_asset).not_to receive(:save!)
+      expect(@ds_new).not_to receive(:subject=)
+      expect(@ds_new).not_to receive(:title=)
+      post :update, id: 1, metadata_ingest_form: @attrs
+    end
   end
 
   describe "#update" do
@@ -179,6 +188,15 @@ describe IngestController do
       @attrs["subjects_attributes"].each {|index, data| data["_destroy"] = "1"}
 
       expect(@ds_exist).to receive(:subject=).with(nil)
+      post :update, id: 1, metadata_ingest_form: @attrs
+    end
+
+    it "shouldn't try to modify the asset if the form isn't valid" do
+      @form.stub(:valid? => false)
+      expect(@existing_asset).not_to receive(:save)
+      expect(@existing_asset).not_to receive(:save!)
+      expect(@ds_exist).not_to receive(:subject=)
+      expect(@ds_exist).not_to receive(:title=)
       post :update, id: 1, metadata_ingest_form: @attrs
     end
   end
