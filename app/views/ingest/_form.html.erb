@@ -1,6 +1,7 @@
 <div id="ingest-form-container">
   <%= ingest_form_for(@form) do |f| %>
     <%= form_errors(f) %>
+    <%= render "file_upload_field", :asset => @asset, :upload => @upload, :f => f %>
     <%= render "internal_group_fields", :f => f %>
     <%= render "unmapped_associations", :form => @form %>
     <%= render "raw_statements", :form => @form %>

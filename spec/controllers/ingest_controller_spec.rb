@@ -10,6 +10,10 @@ describe IngestController do
     @form = Metadata::Ingest::Form.new
     Metadata::Ingest::Form.stub(:new => @form)
 
+    # Create an uploader and hack it to be the return from .new
+    @upload = IngestFileUpload.new
+    IngestFileUpload.stub(:new).and_return(@upload)
+
     # Stub asset to avoid AF hits, create expectations, etc
     @new_asset = GenericAsset.new
     @ds_new = @new_asset.descMetadata
@@ -67,6 +71,11 @@ describe IngestController do
       end
       get :new
     end
+
+    it "should assign an uploader" do
+      get :new
+      assigns(:upload).should eq(@upload)
+    end
   end
 
   describe "#edit" do
@@ -97,6 +106,11 @@ describe IngestController do
 
       expect(@form.titles.length).to eq(1)
       expect(@form.subjects.length).to eq(2)
+    end
+
+    it "should assign an uploader" do
+      get :edit, id: 1
+      assigns(:upload).should eq(@upload)
     end
   end
 
@@ -136,6 +150,51 @@ describe IngestController do
       expect(@ds_new).not_to receive(:subject=)
       expect(@ds_new).not_to receive(:title=)
       post :update, id: 1, metadata_ingest_form: @attrs
+    end
+
+    context "when a file upload is present" do
+      let(:file) do
+        OpenStruct.new(
+          read: "contents",
+          filename: "filename",
+          file: OpenStruct.new(:content_type => "image/tiff")
+        )
+      end
+
+      before(:each) do
+        @params = {metadata_ingest_form: @attrs, id: 1, upload: "foo", upload_cache: "bar"}
+        @upload.stub(:file=)
+        @upload.stub(:file_cache=)
+        @upload.stub(:file => file)
+      end
+
+      it "should set up the @upload object" do
+        expect(@upload).to receive(:file=).with(@params[:upload])
+        expect(@upload).to receive(:file_cache=).with(@params[:upload_cache])
+        post :update, @params
+      end
+
+      it "should save the file to the asset's content datastream" do
+        expect(file).to receive(:process!)
+        expect(@existing_asset.content).to receive(:content=).with("contents")
+        expect(@existing_asset.content).to receive(:dsLabel=).with("filename")
+        expect(@existing_asset.content).to receive(:mimeType=).with("image/tiff")
+        @existing_asset.should_receive(:save)
+
+        post :update, @params
+      end
+
+      it "shouldn't alter the existing file if a new file wasn't uploaded" do
+        expect(file).not_to receive(:process!)
+        expect(@existing_asset.content).not_to receive(:content=)
+        expect(@existing_asset.content).not_to receive(:dsLabel=)
+        expect(@existing_asset.content).not_to receive(:mimeType=)
+        @existing_asset.should_receive(:save)
+
+        @params.delete(:upload)
+        @params.delete(:upload_cache)
+        post :update, @params
+      end
     end
   end
 

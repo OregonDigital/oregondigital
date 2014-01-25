@@ -1,0 +1,22 @@
+<% group = "file" %>
+<div id="<%= group %>" class="multi-fields well">
+  <h3 class="inverse"><%= I18n.t("ingest_form.#{group}.group_header", :default => group.humanize) %></h3>
+
+  <% if upload.file_cache %>
+    <p>
+      <span class="label label-info">Note:</span>
+      An uploaded file, <%= upload.file.filename %>, is already present.  You do not need to
+      redo the upload unless you want to use a different file.
+    </p>
+    <%= f.input :upload_cache, :as => :hidden, :input_html => {:name => "upload_cache", :value => upload.file_cache} %>
+  <% elsif asset && asset.content && !asset.content.new? %>
+    <p>
+      <span class="label label-important">Note:</span>
+      You are editing a record that already has a file (<%= asset.content.dsLabel.inspect %>).
+      If you choose to upload a file here, it will overwrite the existing file and replace
+      derivatives based on that file.
+    </p>
+  <% end %>
+
+  <%= f.input :upload, :as => :file, :input_html => {:name => "upload", :value => upload.file} %>
+</div>
