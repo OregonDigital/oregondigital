@@ -12,7 +12,6 @@ describe "(Ingest Form)", :js => true do
       $pid_counter += 1
       @pid = OregonDigital::IdService.namespaceize($pid_counter)
     end
-    visit_ingest_url
   end
 
   def visit_ingest_url
