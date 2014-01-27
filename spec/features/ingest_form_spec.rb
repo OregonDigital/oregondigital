@@ -36,7 +36,6 @@ describe "(Ingest Form)", :js => true do
   def click_the_ingest_button
     button = all(:css, 'input[type=submit]').first
     button.click
-    expect(page).to have_content(/(Ingested new|Updated) object/)
   end
 
   def mark_as_reviewed
@@ -53,6 +52,7 @@ describe "(Ingest Form)", :js => true do
     visit_ingest_url
     fill_out_dummy_data
     click_the_ingest_button
+    expect(page).to have_content("Ingested new object")
     mark_as_reviewed
 
     # Verify on the edit view
@@ -89,6 +89,7 @@ describe "(Ingest Form)", :js => true do
     fill_in_ingest_data("description", "description", "This is not a useful description")
 
     click_the_ingest_button
+    expect(page).to have_content("Updated object")
     mark_as_reviewed
 
     # Hit the edit page and verify data is as expected
