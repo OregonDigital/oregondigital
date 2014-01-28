@@ -56,6 +56,21 @@ RSpec.configure do |config|
     ActiveFedora::Base.delete_all
   end
 
+  # Pre-load a couple RDF subject labels
+  config.before(:suite) do
+    subject_uri_map = {
+      "http://id.loc.gov/authorities/subjects/sh2007009834" => "Canned foods industry--Accidents",
+      "http://id.loc.gov/authorities/subjects/sh85050282"   => "Food industry and trade",
+      "http://id.loc.gov/authorities/subjects/sh96005121"   => "Combinatorial chemistry"
+    }
+
+    for (uri, label) in subject_uri_map
+      s = OregonDigital::ControlledVocabularies::Subject.new(uri)
+      s.set_value(RDF::SKOS.prefLabel, label)
+      s.persist!
+    end
+  end
+
   config.after(:suite) do
     FileUtils.rm_rf(Rails.root.join('tmp', 'bags'))
     FileUtils.rm_rf(Rails.root.join('tmp', 'upload-cache'))

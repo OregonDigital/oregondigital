@@ -5,6 +5,11 @@ Capybara.javascript_driver = :poltergeist
 
 $pid_counter = 0
 describe "(Ingest Form)", :js => true do
+  let(:subject1) { "http://id.loc.gov/authorities/subjects/sh2007009834" }
+  let(:label1) { "Canned foods industry--Accidents" }
+  let(:subject2) { "http://id.loc.gov/authorities/subjects/sh85050282" }
+  let(:label2) { "Food industry and trade" }
+
   before(:each) do
     # Ensure ingested objects create predictable and unique pids
     OregonDigital::IdService.stub(:namespace).and_return("spec-feature-ingestform")
@@ -12,18 +17,6 @@ describe "(Ingest Form)", :js => true do
       $pid_counter += 1
       @pid = OregonDigital::IdService.namespaceize($pid_counter)
     end
-
-    # If we pre-load the RDF lookup somehow, this won't be necessary, but for
-    # right now we're hacking stuff up to verify that subjects are being
-    # translated properly.
-    @subject1 = "http://id.loc.gov/authorities/subjects/sh2007009834"
-    @subject2 = "http://id.loc.gov/authorities/subjects/sh85050282"
-    @res1 = OregonDigital::ControlledVocabularies::Subject.from_uri(@subject1)
-    @res2 = OregonDigital::ControlledVocabularies::Subject.from_uri(@subject2)
-    OregonDigital::ControlledVocabularies::Subject.stub(:from_uri).with(@subject1).and_return(@res1)
-    OregonDigital::ControlledVocabularies::Subject.stub(:from_uri).with(@subject2).and_return(@res2)
-    @res1.stub(:rdf_label => ["Canned foods industry--Accidents"])
-    @res2.stub(:rdf_label => ["Food industry and trade", "something else"])
   end
 
   def visit_ingest_url
@@ -127,13 +120,11 @@ describe "(Ingest Form)", :js => true do
     visit_ingest_url
     fill_out_dummy_data
 
-    vocab_subject_1 = @res1.rdf_label.first
-    choose_controlled_vocabulary_item("subject", "subject", "food", vocab_subject_1, @subject1)
+    choose_controlled_vocabulary_item("subject", "subject", "food", label1, subject1)
 
     # Add another subject to ensure dynamic fields get typeaheads properly
     click_link 'Add subject'
-    vocab_subject_2 = @res2.rdf_label.first
-    choose_controlled_vocabulary_item("subject", "subject", "food", vocab_subject_2, @subject2, 1)
+    choose_controlled_vocabulary_item("subject", "subject", "food", label2, subject2, 1)
 
     click_the_ingest_button
     mark_as_reviewed
@@ -143,8 +134,8 @@ describe "(Ingest Form)", :js => true do
     expect(page).to include_ingest_fields_for("title", "title", "First Title")
     expect(page).to include_ingest_fields_for("title", "title", "Second Title")
     expect(page).to include_ingest_fields_for("date", "created", "2014-01-07")
-    expect(page).to include_ingest_fields_for("subject", "subject", vocab_subject_1)
-    expect(page).to include_ingest_fields_for("subject", "subject", vocab_subject_2)
+    expect(page).to include_ingest_fields_for("subject", "subject", label1)
+    expect(page).to include_ingest_fields_for("subject", "subject", label2)
 
     # Verify on the show page as well
     visit(catalog_path(@pid))
@@ -169,8 +160,7 @@ describe "(Ingest Form)", :js => true do
     value_field.native.send_key("blargh")
     expect(value_field.value).to eq("blargh")
 
-    vocab_subject = @res1.rdf_label.first
-    choose_controlled_vocabulary_item("subject", "subject", "food", vocab_subject, @subject1)
+    choose_controlled_vocabulary_item("subject", "subject", "food", label1, subject1)
 
     # "subj2" should now be missing, which is how we fake readonly for the select
     expect(subject_div).not_to have_selector(subj2_selector)
@@ -178,7 +168,7 @@ describe "(Ingest Form)", :js => true do
     # Value field should be completely read-only
     value_field = subject_div.find("input.value-field")
     value_field.native.send_key("blargh")
-    expect(value_field.value).to eq(vocab_subject)
+    expect(value_field.value).to eq(label1)
 
     INGEST_MAP[:subject].delete(:subj2)
   end

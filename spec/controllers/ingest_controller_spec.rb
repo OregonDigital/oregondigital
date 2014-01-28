@@ -11,7 +11,9 @@ describe IngestController do
   let(:ds_exist) { existing_asset.descMetadata }
   let(:form) { Metadata::Ingest::Form.new }
   let(:subject1) { "http://id.loc.gov/authorities/subjects/sh85050282" }
+  let(:label1) { "Food industry and trade" }
   let(:subject2) { "http://id.loc.gov/authorities/subjects/sh96005121" }
+  let(:label2) { "Combinatorial chemistry" }
 
   # This is ugly but it mimics exactly what Rails params look like
   let(:attrs) do
@@ -35,16 +37,6 @@ describe IngestController do
     GenericAsset.stub(:find).with("1").and_return(existing_asset)
     existing_asset.stub(:save)
     existing_asset.stub(:save!)
-
-    # If we pre-load the RDF lookup somehow, this won't be necessary, but for
-    # right now we're hacking stuff up to verify that subjects are being
-    # translated properly.
-    res1 = OregonDigital::ControlledVocabularies::Subject.from_uri(subject1)
-    res2 = OregonDigital::ControlledVocabularies::Subject.from_uri(subject2)
-    OregonDigital::ControlledVocabularies::Subject.stub(:from_uri).with(subject1).and_return(res1)
-    OregonDigital::ControlledVocabularies::Subject.stub(:from_uri).with(subject2).and_return(res2)
-    res1.stub(:rdf_label => ["Food industry and trade"])
-    res2.stub(:rdf_label => ["Combinatorial chemistry", "something else"])
   end
 
   describe "#index" do
@@ -124,13 +116,13 @@ describe IngestController do
       end
 
       it "should translate the subject URIs into human-friendly text" do
-        expect(subject.subjects[0].value).to eq("Food industry and trade")
-        expect(subject.subjects[1].value).to eq("Combinatorial chemistry")
+        expect(subject.subjects[0].value).to eq(label1)
+        expect(subject.subjects[1].value).to eq(label2)
       end
 
       it "should preserve the subject URIs as internal values" do
-        expect(subject.subjects[0].internal).to eq("http://id.loc.gov/authorities/subjects/sh85050282")
-        expect(subject.subjects[1].internal).to eq("http://id.loc.gov/authorities/subjects/sh96005121")
+        expect(subject.subjects[0].internal).to eq(subject1)
+        expect(subject.subjects[1].internal).to eq(subject2)
       end
     end
 
