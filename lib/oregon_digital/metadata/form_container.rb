@@ -33,14 +33,22 @@ class OregonDigital::Metadata::FormContainer
 
   # Sets up all internal objects based on parameters
   def prepare_data(params)
+    build_ingest_form
+    build_asset(params.delete(:id))
+    assign_form_attributes(params)
+  end
+
+  def build_ingest_form
     @form = Metadata::Ingest::Form.new
     @form.internal_groups = @translation_map.keys.collect {|key| key.to_s}
+  end
 
-    asset_id = params.delete(:id)
-    load_asset(asset_id) if asset_id
-
+  def build_asset(id = nil)
+    load_asset(id) if id
     @asset ||= GenericAsset.new
+  end
 
+  def assign_form_attributes(params)
     attrs = params[:metadata_ingest_form]
     set_attributes(attrs) if attrs
   end
