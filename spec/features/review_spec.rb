@@ -59,6 +59,12 @@ describe "item review behavior" do
             expect(page).to have_content('Successfully reviewed.')
             expect(GenericAsset.last).to be_reviewed
           end
+          it "should be viewable on the catalog" do
+            expect(page).to have_content('Successfully reviewed.')
+            visit catalog_index_path
+            click_button "search"
+            expect(page).to have_selector(".document")
+          end
         end
       end
     end

@@ -1,6 +1,7 @@
 require "spec_helper"
 describe OregonDigital::Workflow do
   class WorkflowAsset < ActiveFedora::Base
+    include Hydra::AccessControls::Permissions
     include OregonDigital::Workflow
   end
 
