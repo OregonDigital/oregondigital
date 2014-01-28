@@ -18,4 +18,14 @@ Oregondigital::Application.routes.draw do
 
   # Ingest form routes
   resources :ingest
+
+  # Reviewer Controller Routes
+  resources :reviewer, :only => [:index, :show, :update]
+
+  # Generic Asset
+  resources :generic_asset, :only => [] do
+    member do
+      put '/review', :to => 'generic_asset#review'
+    end
+  end
 end

@@ -21,6 +21,7 @@ module OregonDigital
     end
 
     def review
+      self.read_groups |= ["public"]
       workflowMetadata.reviewed = true
     end
 
