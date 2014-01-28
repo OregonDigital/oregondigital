@@ -5,17 +5,16 @@ class IngestController < ApplicationController
   before_filter :build_controlled_vocabulary_map
   before_filter :setup_resources, only: [:new, :create, :edit, :update]
   before_filter :process_upload, only: [:create, :update]
-  before_filter :load_asset, only: [:edit, :update]
-  before_filter :add_blank_groups, only: [:new, :edit]
-  before_filter :form_to_asset, only: [:create, :update]
 
   def index
   end
 
   def new
+    @form_container.add_blank_groups
   end
 
   def edit
+    @form_container.add_blank_groups
   end
 
   def create
@@ -55,13 +54,7 @@ class IngestController < ApplicationController
   # Note that fedora object errors won't necessarily make sense to the form if
   # they're too low-level, so custom validations should be carefully worded.
   def validate_and_save(success_message, failure_template)
-    unless @form.valid?
-      render failure_template
-      return
-    end
-
-    unless @asset.valid?
-      @asset.errors.each {|key, val| @form.errors.add(key, val)}
+    unless @form_container.valid?
       render failure_template
       return
     end
@@ -70,7 +63,7 @@ class IngestController < ApplicationController
     redirect_to ingest_index_path, :notice => success_message
   end
 
-  # Stores uploaded file on @asset, attempts to save it, and returns success
+  # Stores uploaded file on @form_container.asset, attempts to save it, and returns success
   #
   # TODO: Move this into a service or something - the magic here will likely be
   # needed on bulk ingest, too
@@ -81,45 +74,18 @@ class IngestController < ApplicationController
 
       # Set data on the asset's content datastream
       mimetype = @upload.file.file.content_type
-      @asset.content.content = @upload.file.read
-      @asset.content.dsLabel = @upload.file.filename
-      @asset.content.mimeType = mimetype
+      @form_container.asset.content.content = @upload.file.read
+      @form_container.asset.content.dsLabel = @upload.file.filename
+      @form_container.asset.content.mimeType = mimetype
     end
 
-    @asset.save
+    @form_container.asset.save
   end
 
-  # Ensures page has at least one visible entry for each group
-  def add_blank_groups
-    for group in @form.groups
-      if @form.send(group.pluralize).empty?
-        @form.send("build_#{group}")
-      end
-    end
-  end
-
-  # Sets up @form and @asset for new and edit forms
+  # Sets up @form_container and @upload for new and edit forms
   def setup_resources
-    @form = Metadata::Ingest::Form.new
-    @form.internal_groups = ingest_map.keys.collect {|key| key.to_s}
-    @asset = GenericAsset.new
+    @form_container = OregonDigital::Metadata::FormContainer.new(params.merge(map: ingest_map))
     @upload = IngestFileUpload.new
-  end
-
-  # Loads @asset from Fedora and uses the translator to get the asset's
-  # attributes onto @form
-  def load_asset
-    @asset = GenericAsset.find(params[:id])
-    Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(ingest_map).
-        using_translator(OregonDigital::Metadata::AttributeTranslator).to(@form)
-  end
-
-  # Stores parameters on @form and translates those to @asset attributes
-  def form_to_asset
-    @form.attributes = params[:metadata_ingest_form].to_hash
-    if @form.valid?
-      Metadata::Ingest::Translators::FormToAttributes.from(@form).using_map(ingest_map).to(@asset)
-    end
   end
 
   # Iterates over the ingest map, and looks up properties in the datastream

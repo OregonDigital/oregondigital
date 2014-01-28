@@ -1,10 +1,10 @@
 <div id="ingest-form-container">
-  <%= ingest_form_for(@form) do |f| %>
+  <%= ingest_form_for(@form_container.form) do |f| %>
     <%= form_errors(f) %>
-    <%= render "file_upload_field", :asset => @asset, :upload => @upload, :f => f %>
-    <%= render "internal_group_fields", :f => f %>
-    <%= render "unmapped_associations", :form => @form %>
-    <%= render "raw_statements", :form => @form %>
+    <%= render "file_upload_field", :asset => @form_container.asset, :upload => @upload, :f => f %>
+    <%= render "internal_group_fields", :form => @form_container.form, :f => f %>
+    <%= render "unmapped_associations", :form => @form_container.form %>
+    <%= render "raw_statements", :form => @form_container.form %>
     <%= form_submit(f) %>
   <% end %>
 </div>
