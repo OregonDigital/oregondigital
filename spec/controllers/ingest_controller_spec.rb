@@ -37,6 +37,13 @@ describe IngestController do
     GenericAsset.stub(:find).with("1").and_return(existing_asset)
     existing_asset.stub(:save)
     existing_asset.stub(:save!)
+
+    # Pre-load a couple RDF subject labels
+    for (uri, label) in { subject1 => label1, subject2 => label2 }
+      s = OregonDigital::ControlledVocabularies::Subject.new(uri)
+      s.set_value(RDF::SKOS.prefLabel, label)
+      s.persist!
+    end
   end
 
   describe "#index" do

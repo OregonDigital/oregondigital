@@ -17,6 +17,13 @@ describe "(Ingest Form)", :js => true do
       $pid_counter += 1
       @pid = OregonDigital::IdService.namespaceize($pid_counter)
     end
+
+    # Pre-load a couple RDF subject labels
+    for (uri, label) in { subject1 => label1, subject2 => label2 }
+      s = OregonDigital::ControlledVocabularies::Subject.new(uri)
+      s.set_value(RDF::SKOS.prefLabel, label)
+      s.persist!
+    end
   end
 
   def visit_ingest_url
