@@ -35,15 +35,17 @@ class IngestController < ApplicationController
     return INGEST_MAP
   end
 
+  def has_upload?
+    return params[:upload] || params[:upload_cache]
+  end
+
   # This must be a very early filter: if there was an upload, we have to store
   # variables in case the form is re-rendered
   def process_upload
-    @has_upload = params[:upload] || params[:upload_cache]
+    return unless has_upload?
 
-    if @has_upload
-      @upload.file = params[:upload]
-      @upload.file_cache = params[:upload_cache]
-    end
+    @upload.file = params[:upload]
+    @upload.file_cache = params[:upload_cache]
   end
 
   # Attempts to save the asset, merging errors with the ingest form since the
@@ -73,7 +75,7 @@ class IngestController < ApplicationController
   # TODO: Move this into a service or something - the magic here will likely be
   # needed on bulk ingest, too
   def save_asset
-    if @has_upload
+    if has_upload?
       # If we don't explicitly process the file, its content type can be all messed up
       @upload.file.process!
 
