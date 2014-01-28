@@ -110,7 +110,8 @@ class IngestController < ApplicationController
   # attributes onto @form
   def load_asset
     @asset = GenericAsset.find(params[:id])
-    Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(ingest_map).to(@form)
+    Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(ingest_map).
+        using_translator(OregonDigital::Metadata::AttributeTranslator).to(@form)
   end
 
   # Stores parameters on @form and translates those to @asset attributes
