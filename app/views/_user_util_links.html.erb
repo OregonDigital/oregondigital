@@ -23,4 +23,8 @@
     <br>
     <%= link_to "Roles", role_management.roles_path %>
   <% end -%>
+  <% if can?(:review, GenericAsset) -%>
+   |
+    <%= link_to "Review", reviewer_index_path %>
+  <% end -%>
 </div>
