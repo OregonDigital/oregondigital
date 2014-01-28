@@ -32,3 +32,19 @@ def choose_controlled_vocabulary_item(group, type, search, pick, internal, posit
   internal_field = group_div.find("input.internal-field")
   expect(internal_field.value).to eq(internal)
 end
+
+def upload_path(type)
+  map = {
+    jpg: "fixture_image.jpg",
+    pdf: "fixture_pdf.pdf",
+    xml: "fixture_xml.xml",
+    yml: "fixture_yml.yml",
+  }
+  file_path = Rails.root.join("spec", "fixtures", map[type]).to_s
+end
+
+def submit_ingest_form_with_upload(filetype = :pdf)
+  fill_out_dummy_data
+  attach_file("Upload", upload_path(filetype))
+  click_the_ingest_button
+end

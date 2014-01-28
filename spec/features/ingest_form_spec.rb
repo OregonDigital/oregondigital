@@ -12,7 +12,6 @@ describe "(Ingest Form)", :js => true do
       $pid_counter += 1
       @pid = OregonDigital::IdService.namespaceize($pid_counter)
     end
-    visit_ingest_url
   end
 
   def visit_ingest_url
@@ -37,7 +36,6 @@ describe "(Ingest Form)", :js => true do
   def click_the_ingest_button
     button = all(:css, 'input[type=submit]').first
     button.click
-    expect(page).to have_content(/(Ingested new|Updated) object/)
   end
 
   def mark_as_reviewed
@@ -54,6 +52,7 @@ describe "(Ingest Form)", :js => true do
     visit_ingest_url
     fill_out_dummy_data
     click_the_ingest_button
+    expect(page).to have_content("Ingested new object")
     mark_as_reviewed
 
     # Verify on the edit view
@@ -90,6 +89,7 @@ describe "(Ingest Form)", :js => true do
     fill_in_ingest_data("description", "description", "This is not a useful description")
 
     click_the_ingest_button
+    expect(page).to have_content("Updated object")
     mark_as_reviewed
 
     # Hit the edit page and verify data is as expected
@@ -176,5 +176,49 @@ describe "(Ingest Form)", :js => true do
     expect(value_field.value).to eq(vocab_subject)
 
     INGEST_MAP[:subject].delete(:subj2)
+  end
+
+  context "(when the form is invalid)" do
+    let(:asset) { GenericAsset.find(@pid) }
+    before(:each) do
+      # Go to a blank form, add a field with bad data (blank value), and attach
+      # a file to test the caching logic
+      visit_ingest_url
+      fill_in_ingest_data("description", "description", "")
+      submit_ingest_form_with_upload(:pdf)
+    end
+
+    it "doesn't store anything in Fedora" do
+      expect(ActiveFedora::Base.all.count).to eq(0)
+    end
+
+    it "doesn't require an attached file to be re-uploaded" do
+      expect(page).to have_content("You do not need to redo the upload unless you want to use a different file.")
+      fill_in_ingest_data("description", "description", "This is valid now")
+      click_the_ingest_button
+      asset = GenericAsset.find(@pid)
+      expect(asset.content.content == IO.binread(upload_path(:pdf))).to be_true
+    end
+  end
+
+  context "(file uploads)" do
+    it "saves uploaded files on new assets" do
+      visit_ingest_url
+      submit_ingest_form_with_upload(:pdf)
+      asset = GenericAsset.find(@pid)
+      expect(asset.content.content == IO.binread(upload_path(:pdf))).to be_true
+    end
+
+    it "overwrites asset data with uploaded files" do
+      visit_ingest_url
+      submit_ingest_form_with_upload(:pdf)
+
+      # Grab asset up here so we're sure the file is changing on the original asset
+      asset = GenericAsset.find(@pid)
+
+      visit_edit_form_url(@pid)
+      submit_ingest_form_with_upload(:jpg)
+      expect(asset.content.content == IO.binread(upload_path(:jpg))).to be_true
+    end
   end
 end

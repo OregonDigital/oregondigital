@@ -51,7 +51,13 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
   config.before(:each) do
     ActiveFedora::Base.delete_all
+  end
+
+  config.after(:suite) do
+    FileUtils.rm_rf(Rails.root.join('tmp', 'bags'))
+    FileUtils.rm_rf(Rails.root.join('tmp', 'upload-cache'))
   end
 end
