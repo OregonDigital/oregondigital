@@ -4,7 +4,6 @@ require 'metadata/ingest/translators/attributes_to_form'
 class IngestController < ApplicationController
   before_filter :build_controlled_vocabulary_map
   before_filter :setup_resources, only: [:new, :create, :edit, :update]
-  before_filter :process_upload, only: [:create, :update]
 
   def index
   end
@@ -34,19 +33,6 @@ class IngestController < ApplicationController
     return INGEST_MAP
   end
 
-  def has_upload?
-    return params[:upload] || params[:upload_cache]
-  end
-
-  # This must be a very early filter: if there was an upload, we have to store
-  # variables in case the form is re-rendered
-  def process_upload
-    return unless has_upload?
-
-    @upload.file = params[:upload]
-    @upload.file_cache = params[:upload_cache]
-  end
-
   # Attempts to save the asset, merging errors with the ingest form since the
   # form elements aren't mapped 1:1 to the asset fields. (type + value +
   # internal represent a single property).
@@ -59,33 +45,13 @@ class IngestController < ApplicationController
       return
     end
 
-    save_asset
+    @form.save
     redirect_to ingest_index_path, :notice => success_message
   end
 
-  # Stores uploaded file on @form.asset, attempts to save it, and returns success
-  #
-  # TODO: Move this into a service or something - the magic here will likely be
-  # needed on bulk ingest, too
-  def save_asset
-    if has_upload?
-      # If we don't explicitly process the file, its content type can be all messed up
-      @upload.file.process!
-
-      # Set data on the asset's content datastream
-      mimetype = @upload.file.file.content_type
-      @form.asset.content.content = @upload.file.read
-      @form.asset.content.dsLabel = @upload.file.filename
-      @form.asset.content.mimeType = mimetype
-    end
-
-    @form.asset.save
-  end
-
-  # Sets up @form and @upload for new and edit forms
+  # Sets up the form container
   def setup_resources
     @form = OregonDigital::Metadata::FormContainer.new(params.merge(map: ingest_map))
-    @upload = IngestFileUpload.new
   end
 
   # Iterates over the ingest map, and looks up properties in the datastream

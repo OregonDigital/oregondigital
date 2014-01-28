@@ -79,11 +79,6 @@ describe IngestController do
       end
       get :new
     end
-
-    it "should assign an uploader" do
-      get :new
-      assigns(:upload).should be_kind_of(IngestFileUpload)
-    end
   end
 
   describe "#edit" do
@@ -132,11 +127,6 @@ describe IngestController do
         expect(subject.subjects[0].internal).to eq(subject1)
         expect(subject.subjects[1].internal).to eq(subject2)
       end
-    end
-
-    it "should assign an uploader" do
-      get :edit, id: 1
-      assigns(:upload).should be_kind_of(IngestFileUpload)
     end
   end
 

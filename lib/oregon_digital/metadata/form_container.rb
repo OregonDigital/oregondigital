@@ -1,7 +1,7 @@
 # All-in-one form object for managing our forms and their translations while making it seem like
 # a more standard single-object-as-model approach
 class OregonDigital::Metadata::FormContainer
-  attr_reader :asset, :form
+  attr_reader :asset, :form, :upload
 
   def initialize(params = {})
     @translation_map = params.delete(:map)
@@ -29,18 +29,40 @@ class OregonDigital::Metadata::FormContainer
     end
   end
 
+  def has_upload?
+    return @has_upload
+  end
+
+  # Stores the asset with any uploaded file attached
+  def save
+    process_upload if has_upload?
+    @asset.save
+  end
+
   private
 
   # Sets up all internal objects based on parameters
   def prepare_data(params)
     build_ingest_form
-    build_asset(params.delete(:id))
+    build_uploader(params[:upload], params[:upload_cache])
+    build_asset(params[:id])
     assign_form_attributes(params)
   end
 
   def build_ingest_form
     @form = Metadata::Ingest::Form.new
     @form.internal_groups = @translation_map.keys.collect {|key| key.to_s}
+  end
+
+  def build_uploader(upload, upload_cache)
+    @upload = IngestFileUpload.new
+    @has_upload = false
+
+    if upload || upload_cache
+      @has_upload = true
+      @upload.file = upload
+      @upload.file_cache = upload_cache
+    end
   end
 
   def build_asset(id = nil)
@@ -67,5 +89,20 @@ class OregonDigital::Metadata::FormContainer
     if @form.valid?
       Metadata::Ingest::Translators::FormToAttributes.from(@form).using_map(@translation_map).to(@asset)
     end
+  end
+
+  # Sets up content datastream on asset with uploaded file
+  #
+  # TODO: Move this into a service or something - the magic here will likely be
+  # needed on bulk ingest, too
+  def process_upload
+    # If we don't explicitly process the file, its content type can be all messed up
+    @upload.file.process!
+
+    # Set data on the asset's content datastream
+    mimetype = @upload.file.file.content_type
+    @asset.content.content = @upload.file.read
+    @asset.content.dsLabel = @upload.file.filename
+    @asset.content.mimeType = mimetype
   end
 end
