@@ -56,8 +56,8 @@ describe IngestController do
   describe "#new" do
     it "should assign a form variable" do
       get :new
-      expect(assigns(:form_container)).to be_kind_of(OregonDigital::Metadata::FormContainer)
-      expect(assigns(:form_container).form).to be_kind_of(Metadata::Ingest::Form)
+      expect(assigns(:form)).to be_kind_of(OregonDigital::Metadata::FormContainer)
+      expect(assigns(:form).form).to be_kind_of(Metadata::Ingest::Form)
     end
 
     it "should build an empty association for each group" do

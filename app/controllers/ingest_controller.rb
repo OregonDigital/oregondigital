@@ -10,11 +10,11 @@ class IngestController < ApplicationController
   end
 
   def new
-    @form_container.add_blank_groups
+    @form.add_blank_groups
   end
 
   def edit
-    @form_container.add_blank_groups
+    @form.add_blank_groups
   end
 
   def create
@@ -54,7 +54,7 @@ class IngestController < ApplicationController
   # Note that fedora object errors won't necessarily make sense to the form if
   # they're too low-level, so custom validations should be carefully worded.
   def validate_and_save(success_message, failure_template)
-    unless @form_container.valid?
+    unless @form.valid?
       render failure_template
       return
     end
@@ -63,7 +63,7 @@ class IngestController < ApplicationController
     redirect_to ingest_index_path, :notice => success_message
   end
 
-  # Stores uploaded file on @form_container.asset, attempts to save it, and returns success
+  # Stores uploaded file on @form.asset, attempts to save it, and returns success
   #
   # TODO: Move this into a service or something - the magic here will likely be
   # needed on bulk ingest, too
@@ -74,17 +74,17 @@ class IngestController < ApplicationController
 
       # Set data on the asset's content datastream
       mimetype = @upload.file.file.content_type
-      @form_container.asset.content.content = @upload.file.read
-      @form_container.asset.content.dsLabel = @upload.file.filename
-      @form_container.asset.content.mimeType = mimetype
+      @form.asset.content.content = @upload.file.read
+      @form.asset.content.dsLabel = @upload.file.filename
+      @form.asset.content.mimeType = mimetype
     end
 
-    @form_container.asset.save
+    @form.asset.save
   end
 
-  # Sets up @form_container and @upload for new and edit forms
+  # Sets up @form and @upload for new and edit forms
   def setup_resources
-    @form_container = OregonDigital::Metadata::FormContainer.new(params.merge(map: ingest_map))
+    @form = OregonDigital::Metadata::FormContainer.new(params.merge(map: ingest_map))
     @upload = IngestFileUpload.new
   end
 
