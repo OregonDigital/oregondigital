@@ -91,6 +91,12 @@ class OregonDigital::Metadata::FormContainer
     end
   end
 
+  # Gets the mime type of the uploaded file.  This should be used ONLY when
+  # @upload is present, and ONLY after @upload has been processed!
+  def uploaded_mimetype
+    return @upload.file.file.content_type
+  end
+
   # Sets up content datastream on asset with uploaded file
   #
   # TODO: Move this into a service or something - the magic here will likely be
@@ -100,9 +106,8 @@ class OregonDigital::Metadata::FormContainer
     @upload.file.process!
 
     # Set data on the asset's content datastream
-    mimetype = @upload.file.file.content_type
     @asset.content.content = @upload.file.read
     @asset.content.dsLabel = @upload.file.filename
-    @asset.content.mimeType = mimetype
+    @asset.content.mimeType = uploaded_mimetype
   end
 end
