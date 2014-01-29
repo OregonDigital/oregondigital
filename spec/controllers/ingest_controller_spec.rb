@@ -56,7 +56,8 @@ describe IngestController do
   describe "#new" do
     it "should assign a form variable" do
       get :new
-      expect(assigns(:form)).to be_kind_of(Metadata::Ingest::Form)
+      expect(assigns(:form)).to be_kind_of(OregonDigital::Metadata::FormContainer)
+      expect(assigns(:form).form).to be_kind_of(Metadata::Ingest::Form)
     end
 
     it "should build an empty association for each group" do
@@ -77,11 +78,6 @@ describe IngestController do
         expect(form).not_to receive(:"build_#{group}")
       end
       get :new
-    end
-
-    it "should assign an uploader" do
-      get :new
-      assigns(:upload).should be_kind_of(IngestFileUpload)
     end
   end
 
@@ -131,11 +127,6 @@ describe IngestController do
         expect(subject.subjects[0].internal).to eq(subject1)
         expect(subject.subjects[1].internal).to eq(subject2)
       end
-    end
-
-    it "should assign an uploader" do
-      get :edit, id: 1
-      assigns(:upload).should be_kind_of(IngestFileUpload)
     end
   end
 
@@ -241,6 +232,29 @@ describe IngestController do
       expect(ds_exist).not_to receive(:subject=)
       expect(ds_exist).not_to receive(:title=)
       post :update, id: 1, metadata_ingest_form: attrs
+    end
+
+    context "(when the asset is invalid)" do
+      before(:each) do
+        existing_asset.stub(:valid? => false)
+        existing_asset.errors.add(:foo, "is not legitimate")
+      end
+
+      it "shouldn't save" do
+        expect(existing_asset).not_to receive(:save)
+        expect(existing_asset).not_to receive(:save!)
+        post :update, id: 1, metadata_ingest_form: attrs
+      end
+
+      it "should cause the form container to be invalid" do
+        post :update, id: 1, metadata_ingest_form: attrs
+        expect(assigns(:form).valid?).to be_false
+      end
+
+      it "should propagate asset errors onto the form" do
+        post :update, id: 1, metadata_ingest_form: attrs
+        expect(form.errors.full_messages).to eq(["Foo is not legitimate"])
+      end
     end
   end
 end
