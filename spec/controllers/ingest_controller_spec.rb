@@ -233,5 +233,28 @@ describe IngestController do
       expect(ds_exist).not_to receive(:title=)
       post :update, id: 1, metadata_ingest_form: attrs
     end
+
+    context "(when the asset is invalid)" do
+      before(:each) do
+        existing_asset.stub(:valid? => false)
+        existing_asset.errors.add(:foo, "is not legitimate")
+      end
+
+      it "shouldn't save" do
+        expect(existing_asset).not_to receive(:save)
+        expect(existing_asset).not_to receive(:save!)
+        post :update, id: 1, metadata_ingest_form: attrs
+      end
+
+      it "should cause the form container to be invalid" do
+        post :update, id: 1, metadata_ingest_form: attrs
+        expect(assigns(:form).valid?).to be_false
+      end
+
+      it "should propagate asset errors onto the form" do
+        post :update, id: 1, metadata_ingest_form: attrs
+        expect(form.errors.full_messages).to eq(["Foo is not legitimate"])
+      end
+    end
   end
 end

@@ -17,7 +17,7 @@ class OregonDigital::Metadata::FormContainer
 
     # If the asset is invalid, we need to copy up all the errors
     @asset.errors.each {|key, val| @form.errors.add(key, val)}
-    return @false
+    return false
   end
 
   # Ensures form has at least one visible entry for each group
