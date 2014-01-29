@@ -180,6 +180,24 @@ describe "(Ingest Form)", :js => true do
     INGEST_MAP[:subject].delete(:subj2)
   end
 
+  it "caches the label returned by QA" do
+    # Make sure all known labels we could have set are cleared
+    sub = OregonDigital::ControlledVocabularies::Subject.from_uri(subject1)
+    sub.set_value(RDF::SKOS.prefLabel, [])
+    sub.set_value(RDF::SKOS.hiddenLabel, [])
+    expect(sub.rdf_label).to eq([subject1])
+    sub.persist!
+
+    sub = OregonDigital::ControlledVocabularies::Subject.from_uri(subject1)
+    expect(sub.rdf_label).to eq([subject1])
+    visit_ingest_url
+    choose_controlled_vocabulary_item("subject", "subject", "food", label1, subject1)
+    click_the_ingest_button
+
+    visit_edit_form_url(@pid)
+    expect(page).to include_ingest_fields_for("subject", "subject", label1)
+  end
+
   context "(when the form is invalid)" do
     let(:asset) { GenericAsset.find(@pid) }
     before(:each) do
