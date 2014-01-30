@@ -20,6 +20,14 @@ class AssetFileAttacher
     @upload_processed = false
   end
 
+  # Creates an AssetFileAttacher, attaches the file to the asset, and returns
+  # the modified asset
+  def self.call(asset, file)
+    afa = self.new(asset, file)
+    afa.attach_file_to_asset
+    return afa.asset
+  end
+
   # Sets file data on asset's content datastream and replaces @asset base on
   # the file's mimetype
   def attach_file_to_asset

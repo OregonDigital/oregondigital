@@ -10,6 +10,27 @@ describe AssetFileAttacher do
     upload.file = File.new(upload_path(:jpg))
   end
 
+  describe ".call" do
+    let(:asset) { double("asset") }
+    let(:file) { double("file") }
+    let(:afa) { AssetFileAttacher.new(asset, file) }
+
+    before(:each) do
+      AssetFileAttacher.stub(:new => afa)
+      afa.stub(:attach_file_to_asset)
+    end
+
+    it "instantiates a new object and calls attach_file_to_asset" do
+      expect(AssetFileAttacher).to receive(:new).with(asset, file).and_return(afa)
+      expect(afa).to receive(:attach_file_to_asset)
+      AssetFileAttacher.call(asset, file)
+    end
+
+    it "returns the modified asset" do
+      expect(AssetFileAttacher.call(asset, file)).to eq(asset)
+    end
+  end
+
   describe "#attach_file_to_asset" do
     let(:asset) { double("ActiveFedora asset") }
     let(:content) { double("content datastream") }

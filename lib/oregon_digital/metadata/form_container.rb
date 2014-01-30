@@ -39,9 +39,7 @@ class OregonDigital::Metadata::FormContainer
   # Stores the asset with any uploaded file attached
   def save
     if has_upload?
-      attacher = AssetFileAttacher.new(@asset, @upload)
-      attacher.attach_file_to_asset
-      @asset = attacher.asset
+      @asset = AssetFileAttacher.call(@asset, @upload)
     end
 
     @asset.save
