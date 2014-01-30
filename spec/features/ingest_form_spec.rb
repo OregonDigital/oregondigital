@@ -237,5 +237,19 @@ describe "(Ingest Form)", :js => true do
       submit_ingest_form_with_upload(:jpg)
       expect(@asset.content.content == IO.binread(upload_path(:jpg))).to be_true
     end
+
+    it "sets asset type based on mime type" do
+      expect(@asset.class).to eq(Document)
+
+      visit_edit_form_url(@pid)
+      submit_ingest_form_with_upload(:jpg)
+      @asset = GenericAsset.find(@pid, cast: true)
+      expect(@asset.class).to eq(Image)
+
+      visit_edit_form_url(@pid)
+      submit_ingest_form_with_upload(:xml)
+      @asset = GenericAsset.find(@pid, cast: true)
+      expect(@asset.class).to eq(GenericAsset)
+    end
   end
 end

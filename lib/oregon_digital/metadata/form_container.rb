@@ -1,3 +1,6 @@
+require 'metadata/ingest/translators/form_to_attributes'
+require 'metadata/ingest/translators/attributes_to_form'
+
 # All-in-one form object for managing our forms and their translations while making it seem like
 # a more standard single-object-as-model approach
 class OregonDigital::Metadata::FormContainer
@@ -77,7 +80,7 @@ class OregonDigital::Metadata::FormContainer
 
   # Loads the given asset and populates the form with its data
   def load_asset(id)
-    @asset = GenericAsset.find(id)
+    @asset = GenericAsset.find(id, cast: true)
     Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(@translation_map).
         using_translator(OregonDigital::Metadata::AttributeTranslator).to(@form)
   end
@@ -109,5 +112,37 @@ class OregonDigital::Metadata::FormContainer
     @asset.content.content = @upload.file.read
     @asset.content.dsLabel = @upload.file.filename
     @asset.content.mimeType = uploaded_mimetype
+
+    # Make @asset the right class based on the upload
+    set_asset_class
+  end
+
+  # Determines asset class based on uploaded file's mimetype
+  def set_asset_class
+    # TODO: Make this external!
+    asset_class_lookup = {
+      %r|\Aimage/.*| => Image,
+      "application/pdf" => Document,
+    }
+
+    for pattern, klass in asset_class_lookup
+      if pattern === uploaded_mimetype
+        transmogrify_asset(klass)
+        return
+      end
+    end
+
+    # If we didn't find a matching mimetype, force it to be a GenericAsset
+    transmogrify_asset(GenericAsset)
+  end
+
+  # Replaces @asset with an identical object of the given class
+  def transmogrify_asset(klass)
+    old_class = @asset.class
+    return if old_class == klass
+
+    @asset = @asset.adapt_to(klass)
+    @asset.clear_relationship(:has_model)
+    @asset.assert_content_model
   end
 end
