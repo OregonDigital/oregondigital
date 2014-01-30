@@ -73,8 +73,7 @@ class AssetFileAttacher
 
   # Replaces @asset with an identical object of the given class
   def transmogrify_asset(klass)
-    old_class = @asset.class
-    return if old_class == klass
+    return if @asset.class == klass
 
     @asset = @asset.adapt_to(klass)
     @asset.clear_relationship(:has_model)
