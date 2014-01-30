@@ -1,3 +1,6 @@
+require 'metadata/ingest/translators/form_to_attributes'
+require 'metadata/ingest/translators/attributes_to_form'
+
 # All-in-one form object for managing our forms and their translations while making it seem like
 # a more standard single-object-as-model approach
 class OregonDigital::Metadata::FormContainer
@@ -35,7 +38,10 @@ class OregonDigital::Metadata::FormContainer
 
   # Stores the asset with any uploaded file attached
   def save
-    process_upload if has_upload?
+    if has_upload?
+      @asset = Ingest::AssetFileAttacher.call(@asset, @upload)
+    end
+
     @asset.save
   end
 
@@ -77,7 +83,7 @@ class OregonDigital::Metadata::FormContainer
 
   # Loads the given asset and populates the form with its data
   def load_asset(id)
-    @asset = GenericAsset.find(id)
+    @asset = GenericAsset.find(id, cast: true)
     Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(@translation_map).
         using_translator(OregonDigital::Metadata::AttributeTranslator).to(@form)
   end
@@ -89,20 +95,5 @@ class OregonDigital::Metadata::FormContainer
     if @form.valid?
       OregonDigital::Metadata::FormToAttributes.from(@form).using_map(@translation_map).to(@asset)
     end
-  end
-
-  # Sets up content datastream on asset with uploaded file
-  #
-  # TODO: Move this into a service or something - the magic here will likely be
-  # needed on bulk ingest, too
-  def process_upload
-    # If we don't explicitly process the file, its content type can be all messed up
-    @upload.file.process!
-
-    # Set data on the asset's content datastream
-    mimetype = @upload.file.file.content_type
-    @asset.content.content = @upload.file.read
-    @asset.content.dsLabel = @upload.file.filename
-    @asset.content.mimeType = mimetype
   end
 end

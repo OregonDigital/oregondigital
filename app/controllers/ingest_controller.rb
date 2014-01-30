@@ -1,6 +1,3 @@
-require 'metadata/ingest/translators/form_to_attributes'
-require 'metadata/ingest/translators/attributes_to_form'
-
 class IngestController < ApplicationController
   before_filter :build_controlled_vocabulary_map
   before_filter :setup_resources, only: [:new, :create, :edit, :update]

@@ -34,7 +34,7 @@ describe IngestController do
     GenericAsset.stub(:new => new_asset)
     new_asset.stub(:save)
     new_asset.stub(:save!)
-    GenericAsset.stub(:find).with("1").and_return(existing_asset)
+    GenericAsset.stub(:find).with("1", cast: true).and_return(existing_asset)
     existing_asset.stub(:save)
     existing_asset.stub(:save!)
 

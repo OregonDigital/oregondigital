@@ -32,6 +32,10 @@ shared_examples 'an ingest controller uploader' do |action|
     asset.stub(:save)
     asset.stub(:save!)
 
+    # Make sure we don't create a new asset that hits AF and does lovely things
+    # like running derivatives
+    asset.stub(:adapt_to).and_return(asset)
+
     @upload = IngestFileUpload.new
     IngestFileUpload.stub(:new).and_return(@upload)
     @upload.stub(:file=)
@@ -64,6 +68,11 @@ shared_examples 'an ingest controller uploader' do |action|
 
     params.delete("upload")
     params.delete("upload_cache")
+    post action, params
+  end
+
+  it "should switch to an Image class" do
+    expect(asset).to receive(:adapt_to).with(Image).once.and_return(asset)
     post action, params
   end
 end

@@ -222,23 +222,34 @@ describe "(Ingest Form)", :js => true do
   end
 
   context "(file uploads)" do
-    it "saves uploaded files on new assets" do
+    before(:each) do
       visit_ingest_url
       submit_ingest_form_with_upload(:pdf)
-      asset = GenericAsset.find(@pid)
-      expect(asset.content.content == IO.binread(upload_path(:pdf))).to be_true
+      @asset = GenericAsset.find(@pid, cast: true)
+    end
+
+    it "saves uploaded files on new assets" do
+      expect(@asset.content.content == IO.binread(upload_path(:pdf))).to be_true
     end
 
     it "overwrites asset data with uploaded files" do
-      visit_ingest_url
-      submit_ingest_form_with_upload(:pdf)
+      visit_edit_form_url(@pid)
+      submit_ingest_form_with_upload(:jpg)
+      expect(@asset.content.content == IO.binread(upload_path(:jpg))).to be_true
+    end
 
-      # Grab asset up here so we're sure the file is changing on the original asset
-      asset = GenericAsset.find(@pid)
+    it "sets asset type based on mime type" do
+      expect(@asset.class).to eq(Document)
 
       visit_edit_form_url(@pid)
       submit_ingest_form_with_upload(:jpg)
-      expect(asset.content.content == IO.binread(upload_path(:jpg))).to be_true
+      @asset = GenericAsset.find(@pid, cast: true)
+      expect(@asset.class).to eq(Image)
+
+      visit_edit_form_url(@pid)
+      submit_ingest_form_with_upload(:xml)
+      @asset = GenericAsset.find(@pid, cast: true)
+      expect(@asset.class).to eq(GenericAsset)
     end
   end
 end
