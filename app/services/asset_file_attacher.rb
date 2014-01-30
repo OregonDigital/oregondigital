@@ -46,14 +46,14 @@ class AssetFileAttacher
     return @file.file.file.content_type
   end
 
+  # Returns our standard lookup.  Consider making this a DB pull or something if we find we need
+  # to configure classes without deploying new code.
+  def asset_class_lookup
+    return ASSET_CLASS_LOOKUP
+  end
+
   # Determines asset class based on file's mimetype
   def set_asset_class
-    # TODO: Make this external!
-    asset_class_lookup = {
-      %r|\Aimage/.*| => Image,
-      "application/pdf" => Document,
-    }
-
     for pattern, klass in asset_class_lookup
       if pattern === mimetype
         new_klass = klass
