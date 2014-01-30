@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe AssetFileAttacher do
+describe Ingest::AssetFileAttacher do
   # Why use a real uploader?  That class contains core magic the attacher
   # relies on (mimetype detection), and doesn't have its own isolated testing.
   # It's also a very simple class.  I'm also lazy.
@@ -13,28 +13,28 @@ describe AssetFileAttacher do
   describe ".call" do
     let(:asset) { double("asset") }
     let(:file) { double("file") }
-    let(:afa) { AssetFileAttacher.new(asset, file) }
+    let(:afa) { Ingest::AssetFileAttacher.new(asset, file) }
 
     before(:each) do
-      AssetFileAttacher.stub(:new => afa)
+      Ingest::AssetFileAttacher.stub(:new => afa)
       afa.stub(:attach_file_to_asset)
     end
 
     it "instantiates a new object and calls attach_file_to_asset" do
-      expect(AssetFileAttacher).to receive(:new).with(asset, file).and_return(afa)
+      expect(Ingest::AssetFileAttacher).to receive(:new).with(asset, file).and_return(afa)
       expect(afa).to receive(:attach_file_to_asset)
-      AssetFileAttacher.call(asset, file)
+      Ingest::AssetFileAttacher.call(asset, file)
     end
 
     it "returns the modified asset" do
-      expect(AssetFileAttacher.call(asset, file)).to eq(asset)
+      expect(Ingest::AssetFileAttacher.call(asset, file)).to eq(asset)
     end
   end
 
   describe "#attach_file_to_asset" do
     let(:asset) { double("ActiveFedora asset") }
     let(:content) { double("content datastream") }
-    let(:attacher) { AssetFileAttacher.new(asset, upload) }
+    let(:attacher) { Ingest::AssetFileAttacher.new(asset, upload) }
 
     before(:each) do
       asset.stub(:content => content)
@@ -72,7 +72,7 @@ describe AssetFileAttacher do
   # this logic into AF
   describe "#transmogrify_asset" do
     let(:asset) { FactoryGirl.create(:generic_asset, title: "Testing stuffs") }
-    let(:attacher) { AssetFileAttacher.new(asset, upload) }
+    let(:attacher) { Ingest::AssetFileAttacher.new(asset, upload) }
 
     it "should change @asset into an instance of the given class" do
       expect(attacher.asset).to be_kind_of(GenericAsset)

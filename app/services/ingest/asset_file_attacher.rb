@@ -8,10 +8,10 @@
 #
 # After initializing an instance, call `process` to set up the asset's content
 # datastream, and REPLACE your asset with the return from
-# `AssetFileAttacher#asset`!  This is VERY important.  The mime type of the
+# `Ingest::AssetFileAttacher#asset`!  This is VERY important.  The mime type of the
 # file determines the class of the asset, but Ruby doesn't have actual casting,
 # so the "cast" is done by returning a new object with the same data.
-class AssetFileAttacher
+class Ingest::AssetFileAttacher
   attr_reader :asset
 
   def initialize(asset, file)
@@ -20,7 +20,7 @@ class AssetFileAttacher
     @upload_processed = false
   end
 
-  # Creates an AssetFileAttacher, attaches the file to the asset, and returns
+  # Creates an Ingest::AssetFileAttacher, attaches the file to the asset, and returns
   # the modified asset
   def self.call(asset, file)
     afa = self.new(asset, file)
