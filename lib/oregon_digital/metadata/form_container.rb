@@ -38,7 +38,12 @@ class OregonDigital::Metadata::FormContainer
 
   # Stores the asset with any uploaded file attached
   def save
-    process_upload if has_upload?
+    if has_upload?
+      attacher = AssetFileAttacher.new(@asset, @upload)
+      attacher.attach_file_to_asset
+      @asset = attacher.asset
+    end
+
     @asset.save
   end
 
@@ -92,57 +97,5 @@ class OregonDigital::Metadata::FormContainer
     if @form.valid?
       OregonDigital::Metadata::FormToAttributes.from(@form).using_map(@translation_map).to(@asset)
     end
-  end
-
-  # Gets the mime type of the uploaded file.  This should be used ONLY when
-  # @upload is present, and ONLY after @upload has been processed!
-  def uploaded_mimetype
-    return @upload.file.file.content_type
-  end
-
-  # Sets up content datastream on asset with uploaded file
-  #
-  # TODO: Move this into a service or something - the magic here will likely be
-  # needed on bulk ingest, too
-  def process_upload
-    # If we don't explicitly process the file, its content type can be all messed up
-    @upload.file.process!
-
-    # Set data on the asset's content datastream
-    @asset.content.content = @upload.file.read
-    @asset.content.dsLabel = @upload.file.filename
-    @asset.content.mimeType = uploaded_mimetype
-
-    # Make @asset the right class based on the upload
-    set_asset_class
-  end
-
-  # Determines asset class based on uploaded file's mimetype
-  def set_asset_class
-    # TODO: Make this external!
-    asset_class_lookup = {
-      %r|\Aimage/.*| => Image,
-      "application/pdf" => Document,
-    }
-
-    for pattern, klass in asset_class_lookup
-      if pattern === uploaded_mimetype
-        transmogrify_asset(klass)
-        return
-      end
-    end
-
-    # If we didn't find a matching mimetype, force it to be a GenericAsset
-    transmogrify_asset(GenericAsset)
-  end
-
-  # Replaces @asset with an identical object of the given class
-  def transmogrify_asset(klass)
-    old_class = @asset.class
-    return if old_class == klass
-
-    @asset = @asset.adapt_to(klass)
-    @asset.clear_relationship(:has_model)
-    @asset.assert_content_model
   end
 end
