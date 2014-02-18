@@ -17,12 +17,14 @@ module IngestHelper
     controls << f.input(
       :type,
       :collection => INGEST_MAP[f.object.group.to_sym].keys,
-      :input_html => {:class => "input-medium type-selector"}
+      :input_html => {:class => "input-medium type-selector"},
+      :label_html => {:class => "sr-only"}
     )
 
     controls << f.input(
       :value,
-      :input_html => {:class => "input-xxlarge value-field"}
+      :input_html => {:class => "input-xxlarge value-field"},
+      :label_html => {:class => "sr-only"}
     )
 
     controls << f.hidden_field(:internal, :class => "internal-field")
