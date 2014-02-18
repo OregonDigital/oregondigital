@@ -2,7 +2,7 @@ module IngestHelper
   # Renders the ingest form for the given form object
   def ingest_form_for(ingest_form)
     url = ingest_path(ingest_form)
-    html_options = {:multipart => true, :class => "form-horizontal form-inline"}
+    html_options = {:multipart => true, :class => "form-inline"}
 
     simple_form_for(ingest_form, {:url => url, :html => html_options}) do |f|
       yield(f)
@@ -18,13 +18,15 @@ module IngestHelper
       :type,
       :collection => INGEST_MAP[f.object.group.to_sym].keys,
       :input_html => {:class => "input-medium type-selector"},
-      :label_html => {:class => "sr-only"}
+      :label_html => {:class => "sr-only"},
+      :wrapper_html => {:class => "ingest-control type"}
     )
 
     controls << f.input(
       :value,
       :input_html => {:class => "input-xxlarge value-field"},
-      :label_html => {:class => "sr-only"}
+      :label_html => {:class => "sr-only"},
+      :wrapper_html => {:class => "ingest-control value"}
     )
 
     controls << f.hidden_field(:internal, :class => "internal-field")
