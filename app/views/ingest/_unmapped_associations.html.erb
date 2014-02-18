@@ -2,7 +2,7 @@
   <%# Unknown predicates are displayed, but not editable  %>
   <% group = "unmapped_association" %>
   <div id="<%= group %>" class="well">
-    <h3 class="inverse"><%= I18n.t("ingest_form.#{group}.group_header", :default => group.humanize.pluralize) %></h3>
+    <h3 class="header"><%= I18n.t("ingest_form.#{group}.group_header", :default => group.humanize.pluralize) %></h3>
 
     <% for association in form.unmapped_associations %>
       <div class="row">

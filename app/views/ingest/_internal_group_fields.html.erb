@@ -1,6 +1,6 @@
 <% for group in form.internal_groups %>
   <div class="multi-fields well">
-    <h3 class="inverse"><%= I18n.t("ingest_form.#{group}.group_header", :default => group.humanize.pluralize) %></h3>
+    <h3 class="header"><%= I18n.t("ingest_form.#{group}.group_header", :default => group.humanize.pluralize) %></h3>
 
     <%= f.simple_fields_for group.pluralize.to_sym do |f| %>
       <%= render "ingest/ingest_fields", :f => f %>

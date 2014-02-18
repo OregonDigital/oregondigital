@@ -1,6 +1,8 @@
-// Place all the styles related to the Ingest controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/**
+ * Styles for the ingest form (which includes the template editor since it's
+ * just using a slightly modified version of the same HTML elements)
+ */
+
 .tt-dropdown-menu {
   background: #fff;
   border: 1px solid black;
@@ -20,4 +22,11 @@
   font-size: small;
   padding-left: 16px;
   color: rgb(64, 32, 32);
+}
+
+#ingest-form-container {
+  .header {
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
