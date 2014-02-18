@@ -2,8 +2,11 @@
   <%= ingest_form_for(@form.form) do |f| %>
     <%= form_errors(f) %>
 
-    <%= f.label :template_name %>
-    <%= f.text_field :template_name, :value => @form.asset.name %>
+    <div class="template-name-wrapper">
+      <%= f.label :template_name %>
+      <%= f.text_field :template_name, :value => @form.asset.name %>
+    </div>
+
     <%= render "ingest/internal_group_fields", :form => @form.form, :f => f %>
 
     <%= form_submit(f) %>
