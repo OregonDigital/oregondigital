@@ -9,6 +9,27 @@ module IngestHelper
     end
   end
 
+  # Spits out all necessary fields for an ingest form "field group", adding
+  # classes for styling and controlled vocab magic
+  def type_value_fields(f)
+    controls = []
+
+    controls << f.input(
+      :type,
+      :collection => INGEST_MAP[f.object.group.to_sym].keys,
+      :input_html => {:class => "input-medium type-selector"}
+    )
+
+    controls << f.input(
+      :value,
+      :input_html => {:class => "input-xxlarge value-field"}
+    )
+
+    controls << f.hidden_field(:internal, :class => "internal-field")
+
+    return controls.reduce { |list, next_control| list << next_control }
+  end
+
   # Centralizes remove link logic for the ingest form
   def link_to_remove_ingest_association(f)
     label = I18n.t("ingest_form.#{f.object.group}.remove", :default => "Remove this #{f.object.group}")
