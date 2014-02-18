@@ -27,4 +27,9 @@ class IngestController < FormControllerBase
   def ingest_map
     return INGEST_MAP
   end
+
+  # Asset class used to instantiate a new object or load an existing one
+  def asset_class
+    return GenericAsset
+  end
 end

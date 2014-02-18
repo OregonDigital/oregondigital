@@ -8,6 +8,10 @@ class TemplatesController < FormControllerBase
     end
   end
 
+  def new
+    @form.add_blank_groups
+  end
+
   private
 
   # Chooses the ingest map to be used for grouping form elements and
@@ -15,5 +19,10 @@ class TemplatesController < FormControllerBase
   # things like user groups or collection info or who knows what.
   def ingest_map
     return INGEST_MAP
+  end
+
+  # Asset class used to instantiate a new object or load an existing one
+  def asset_class
+    return Template
   end
 end

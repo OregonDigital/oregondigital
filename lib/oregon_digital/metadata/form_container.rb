@@ -8,6 +8,7 @@ class OregonDigital::Metadata::FormContainer
 
   def initialize(params = {})
     @translation_map = params.delete(:map)
+    @asset_class = params.delete(:asset_class)
     raise "Translation map must be specified" unless @translation_map
 
     prepare_data(params)
@@ -73,7 +74,7 @@ class OregonDigital::Metadata::FormContainer
 
   def build_asset(id = nil)
     load_asset(id) if id
-    @asset ||= GenericAsset.new
+    @asset ||= @asset_class.new
   end
 
   def assign_form_attributes(params)
@@ -83,7 +84,7 @@ class OregonDigital::Metadata::FormContainer
 
   # Loads the given asset and populates the form with its data
   def load_asset(id)
-    @asset = GenericAsset.find(id, cast: true)
+    @asset = @asset_class.find(id, cast: true)
     Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(@translation_map).
         using_translator(OregonDigital::Metadata::AttributeTranslator).to(@form)
   end

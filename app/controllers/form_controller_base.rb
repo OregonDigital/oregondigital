@@ -11,6 +11,12 @@ class FormControllerBase < ApplicationController
     raise NotImplementedError
   end
 
+  # Asset class used to instantiate a new object or load an existing one -
+  # must be implemented by the subclass for setup_resources
+  def asset_class
+    raise NotImplementedError
+  end
+
   # Attempts to save the asset, merging errors with the ingest form since the
   # form elements aren't mapped 1:1 to the asset fields. (type + value +
   # internal represent a single property).
@@ -29,7 +35,8 @@ class FormControllerBase < ApplicationController
 
   # Sets up a form container for actions which use a form object
   def setup_resources
-    @form = OregonDigital::Metadata::FormContainer.new(params.merge(map: ingest_map))
+    defaults = {map: ingest_map, asset_class: asset_class}
+    @form = OregonDigital::Metadata::FormContainer.new(params.merge(defaults))
   end
 
   # Iterates over the ingest map, and looks up properties in the datastream
