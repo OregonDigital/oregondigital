@@ -3,7 +3,7 @@ class IngestController < ApplicationController
   before_filter :setup_resources, only: [:new, :create, :edit, :update]
 
   def index
-    @templates = []
+    @templates = Template.all
   end
 
   def new

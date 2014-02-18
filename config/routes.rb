@@ -18,6 +18,7 @@ Oregondigital::Application.routes.draw do
 
   # Ingest form routes
   resources :ingest
+  resources :templates
 
   # Reviewer Controller Routes
   resources :reviewer, :only => [:index, :show, :update]
