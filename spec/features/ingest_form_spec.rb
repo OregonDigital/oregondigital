@@ -252,4 +252,59 @@ describe "(Ingest Form)", :js => true do
       expect(@asset.class).to eq(GenericAsset)
     end
   end
+
+  context "(when ingesting from a template)" do
+    before(:each) do
+      template = Template.new
+      template.name = "Test template"
+      template.descMetadata.title = ["Test title", "Another"]
+      template.descMetadata.created = ["2011-01-01"]
+      template.save!
+
+      visit "/ingest"
+      select("Test template", :from => "Template:")
+      click_button("Go")
+    end
+
+    it "should display the template's data" do
+      expect(page).to include_ingest_fields_for("title", "title", "Test title")
+      expect(page).to include_ingest_fields_for("title", "title", "Another")
+      expect(page).to include_ingest_fields_for("date", "created", "2011-01-01")
+    end
+
+    it "should create a new record" do
+      expect {
+        click_the_ingest_button
+        expect(page).to have_content("Ingested new object")
+      }.to change {GenericAsset.count}.by(1)
+    end
+
+    it "shouldn't modify the template" do
+      fill_in_ingest_data("description", "description", "This is not a useful description")
+      fill_in_ingest_data("title", "title", "Third title!")
+      click_the_ingest_button
+
+      # Sanity check - data is being deleted between tests, right?
+      expect(Template.count).to eq(1)
+
+      template = Template.first
+      expect(template.descMetadata.description).to be_blank
+      expect(template.descMetadata.title).to eq(["Test title", "Another"])
+      expect(template.descMetadata.created).to eq(["2011-01-01"])
+    end
+
+    it "should store all data" do
+      fill_in_ingest_data("description", "description", "This is not a useful description")
+
+      click_the_ingest_button
+      expect(page).to have_content("Ingested new object")
+
+      # Verify on the edit view
+      visit_edit_form_url(@pid)
+      expect(page).to include_ingest_fields_for("title", "title", "Test title")
+      expect(page).to include_ingest_fields_for("title", "title", "Another")
+      expect(page).to include_ingest_fields_for("date", "created", "2011-01-01")
+      expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
+    end
+  end
 end
