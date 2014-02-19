@@ -1,7 +1,14 @@
 # Special subclass of assets specifically built to hold pre-filled form data
 class Template < GenericAsset
+  has_metadata :name => 'templateMetadata', :type => Datastream::Yaml
+  validates :name, presence: true
+
   def name
-    return title
+    return @name || templateMetadata.name || title
+  end
+
+  def name=(val)
+    templateMetadata.name = @name = val
   end
 
   private
