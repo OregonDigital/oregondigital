@@ -32,4 +32,9 @@ class IngestController < FormControllerBase
   def asset_class
     return GenericAsset
   end
+
+  # Path to ingest index
+  def index_path
+    return ingest_index_path
+  end
 end

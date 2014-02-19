@@ -17,6 +17,12 @@ class FormControllerBase < ApplicationController
     raise NotImplementedError
   end
 
+  # Path to the index for validate_and_save's redirect - must be implemented by
+  # the subclass
+  def index_path
+    raise NotImplementedError
+  end
+
   # Attempts to save the asset, merging errors with the ingest form since the
   # form elements aren't mapped 1:1 to the asset fields. (type + value +
   # internal represent a single property).
@@ -30,7 +36,7 @@ class FormControllerBase < ApplicationController
     end
 
     @form.save
-    redirect_to ingest_index_path, :notice => success_message
+    redirect_to index_path, :notice => success_message
   end
 
   # Sets up a form container for actions which use a form object

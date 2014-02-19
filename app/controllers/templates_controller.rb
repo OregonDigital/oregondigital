@@ -36,4 +36,9 @@ class TemplatesController < FormControllerBase
   def asset_class
     return Template
   end
+
+  # Path to template index
+  def index_path
+    return templates_path
+  end
 end
