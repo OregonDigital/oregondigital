@@ -3,8 +3,10 @@
     <%= form_errors(f) %>
 
     <div class="template-name-wrapper">
-      <%= f.label :template_name %>
-      <%= f.text_field :template_name, :value => @form.asset.name %>
+      <h3 class="header">Template Name</h3>
+      <%= f.input(:template_name,
+                  :input_html => {:class => "input-xxlarge", :value => @form.asset.name},
+                  :label_html => {:class => "sr-only"}) %>
     </div>
 
     <%= render "ingest/internal_group_fields", :form => @form.form, :f => f %>
