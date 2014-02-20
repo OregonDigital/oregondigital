@@ -7,6 +7,42 @@ Capybara.javascript_driver = :poltergeist
 # re-tested.  If we ever make templates rely on their own logic instead of
 # piggybacking off ingest form stuff, this will have to change.
 describe "(Administration of templates)", :js => true do
+  context "The template index" do
+    before(:each) do
+      template = Template.new
+      template.name = "Test template"
+      template.save!
+      template = Template.new
+      template.name = "Test template 2"
+      template.save!
+
+      visit "/templates"
+    end
+
+    it "should render a list of templates" do
+      expect(page.all("table tr")[1].all("td").first.text).to eq("Edit Test template")
+      expect(page.all("table tr")[2].all("td").first.text).to eq("Edit Test template 2")
+
+      # 3 because of the table header row
+      expect(page.all("table tr").length).to eq(3)
+    end
+
+    context "(when deleting a template)" do
+      before(:each) do
+        click_link("Delete Test template 2")
+      end
+
+      it "should remove the template from the list" do
+        expect(page.all("table tr")[1].all("td").first.text).to eq("Edit Test template")
+        expect(page.all("table tr").length).to eq(2)
+      end
+
+      it "should give me a notice that the template was deleted" do
+        expect(page).to have_content("Deleted template 'Test template 2'")
+      end
+    end
+  end
+
   context "The 'new template' form" do
     before(:each) do
       visit "/templates"
@@ -52,7 +88,7 @@ describe "(Administration of templates)", :js => true do
       template.save!
 
       visit "/templates"
-      click_link "Test template"
+      click_link "Edit Test template"
     end
 
     it "should render the form with data" do
@@ -80,7 +116,7 @@ describe "(Administration of templates)", :js => true do
 
       it "should have the new data if we revisit the form" do
         find(:css, 'input[type=submit]').click
-        click_link "Test template"
+        click_link "Edit Test template"
 
         expect(page).to include_ingest_fields_for("title", "title", "Test title")
         expect(page).to include_ingest_fields_for("title", "title", "Another")

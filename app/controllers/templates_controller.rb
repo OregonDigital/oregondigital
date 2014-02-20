@@ -19,6 +19,13 @@ class TemplatesController < FormControllerBase
     validate_and_save("Updated Template", :edit)
   end
 
+  def destroy
+    template = Template.find(params[:id])
+    name = template.name
+    template.destroy
+    redirect_to index_path, notice: "Deleted template '#{name}'"
+  end
+
   private
 
   # Overrides base behavior to handle the magic template varible (name) which
