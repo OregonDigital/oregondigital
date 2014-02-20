@@ -18,3 +18,5 @@ before_install:
   - bundle_cache_install
 after_script:
   - bundle_cache
+notifications:
+  irc: "irc.freenode.org#oregonhydra"
