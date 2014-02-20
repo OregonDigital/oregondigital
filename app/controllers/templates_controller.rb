@@ -11,6 +11,14 @@ class TemplatesController < FormControllerBase
     validate_and_save("Created Template", :new)
   end
 
+  def edit
+    @form.add_blank_groups
+  end
+
+  def update
+    validate_and_save("Updated Template", :edit)
+  end
+
   private
 
   # Overrides base behavior to handle the magic template varible (name) which

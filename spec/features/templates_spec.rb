@@ -42,4 +42,52 @@ describe "(Administration of templates)", :js => true do
       end
     end
   end
+
+  context "The 'edit template' form" do
+    before(:each) do
+      template = Template.new
+      template.name = "Test template"
+      template.descMetadata.title = ["Test title", "Another"]
+      template.descMetadata.created = ["2011-01-01"]
+      template.save!
+
+      visit "/templates"
+      click_link "Test template"
+    end
+
+    it "should render the form with data" do
+      expect(page).to include_ingest_fields_for("title", "title", "Test title")
+      expect(page).to include_ingest_fields_for("title", "title", "Another")
+      expect(page).to include_ingest_fields_for("date", "created", "2011-01-01")
+      expect(page).to have_selector("input[type=submit]")
+    end
+
+    context "when submitted with data" do
+      before(:each) do
+        fill_in_ingest_data("description", "description", "This is not a useful description")
+      end
+
+      it "should give me a notification that the template was updated" do
+        find(:css, 'input[type=submit]').click
+        expect(page).to have_content("Updated Template")
+      end
+
+      it "should redirect to the template listings with the template shown" do
+        find(:css, 'input[type=submit]').click
+        expect(page.find("table > caption")).to have_content("Available Templates")
+        expect(page.find("table a[href$=edit]")).to have_content("Test template")
+      end
+
+      it "should have the new data if we revisit the form" do
+        find(:css, 'input[type=submit]').click
+        click_link "Test template"
+
+        expect(page).to include_ingest_fields_for("title", "title", "Test title")
+        expect(page).to include_ingest_fields_for("title", "title", "Another")
+        expect(page).to include_ingest_fields_for("date", "created", "2011-01-01")
+        expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
+        expect(page).to have_selector("input[type=submit]")
+      end
+    end
+  end
 end
