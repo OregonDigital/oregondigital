@@ -1,6 +1,6 @@
 class TemplatesController < FormControllerBase
   def index
-    @templates = Template.all
+    @templates = Template.all_sorted
   end
 
   def new

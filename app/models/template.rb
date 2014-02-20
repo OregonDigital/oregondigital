@@ -3,6 +3,10 @@ class Template < GenericAsset
   has_metadata :name => 'templateMetadata', :type => Datastream::Yaml
   validates :name, presence: true
 
+  def self.all_sorted
+    return all.sort_by {|t| t.name.downcase}
+  end
+
   def name
     return @name || templateMetadata.name || title
   end
