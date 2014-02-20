@@ -1,6 +1,6 @@
 <% group = "file" %>
-<div id="<%= group %>" class="multi-fields well">
-  <h3 class="inverse"><%= I18n.t("ingest_form.#{group}.group_header", :default => group.humanize) %></h3>
+<div id="<%= group %>" class="multi-fields">
+  <h3 class="header"><%= I18n.t("ingest_form.#{group}.group_header", :default => group.humanize) %></h3>
 
   <% if upload.file_cache %>
     <p>
