@@ -2,11 +2,12 @@
 class ImageDecorator < GenericAssetDecorator
 
   def view_partial
-    if self.title =~ /iip/i
-      "large_image_viewer"
-    else
-      "small_image_viewer"
+    small_image_mime_types = ["image/jpeg"]
+    if small_image_mime_types.include?(self.content.mimeType)
+      return "small_image_viewer"
     end
+
+    return "large_image_viewer"
   end
 
 end
