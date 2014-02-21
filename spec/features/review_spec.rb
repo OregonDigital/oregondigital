@@ -68,6 +68,17 @@ describe "item review behavior" do
         end
       end
     end
+
+    context "with a template item" do
+      before(:each) do
+        FactoryGirl.create(:template)
+        visit reviewer_index_path
+      end
+      it "should not show the item" do
+        expect(page).not_to have_selector('.document')
+      end
+    end
+
     context "with a reviewed item" do
       before(:each) do
         FactoryGirl.create(:generic_asset)
