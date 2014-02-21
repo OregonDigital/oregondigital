@@ -7,16 +7,16 @@ describe "Asset viewer logic" do
   end
 
   it "should use the small image viewer for small images" do
-    image = FactoryGirl.create(:image, title: "Small image")
+    image = FactoryGirl.create(:image, :with_jpeg_datastream)
     click_button "Search"
-    click_link "Small image"
+    click_link image.title
     expect(page).to have_selector("#small-image-viewer > img[src$='#{image.pid}']")
   end
 
   it "should use the large image viewer for large images" do
-    FactoryGirl.create(:image, title: "Use iip for this")
+    image = FactoryGirl.create(:image, :with_tiff_datastream)
     click_button "Search"
-    click_link "Use iip for this"
+    click_link image.title
     expect(page).to have_selector("#large-image-viewer")
   end
 

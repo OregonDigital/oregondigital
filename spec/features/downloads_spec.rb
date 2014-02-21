@@ -5,7 +5,7 @@ require "spec_helper"
 # TODO: Test this properly when we have more of the system built!  It should click to get to the
 # downloads, not just visit the URL directly.
 describe "Downloads" do
-  let(:image) { image = FactoryGirl.create(:image, :with_image_datastream) }
+  let(:image) { image = FactoryGirl.create(:image, :with_jpeg_datastream) }
   let(:document) { document = FactoryGirl.create(:document, :with_pdf_datastream) }
 
   describe "Visit download location directly" do
