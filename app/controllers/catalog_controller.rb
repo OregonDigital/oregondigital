@@ -40,7 +40,8 @@ class CatalogController < ApplicationController
   # Array of models to exclude from catalog results.
   def unwanted_models
     [
-      GenericCollection
+      GenericCollection,
+      Template
     ]
   end
 
