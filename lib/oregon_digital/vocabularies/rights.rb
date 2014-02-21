@@ -3,11 +3,10 @@ require 'rdf'
 module OregonDigital::Vocabularies
   class RIGHTS < ::RDF::Vocabulary("http://opaquenamespace.org/rights/")
 
-    # Concept terms
+    # Other terms
     property :allRightsReserved, :label => 'All Rights Reserved'
+    property :unknown, :label => 'Copyright Status Unknown'
     property :educationalUse, :label => 'Educational Use Permitted'
     property :publicDomainAcknowledgement, :label => 'Public Domain; Acknowledgement Requested.'
-
-    # Other terms
   end
 end
