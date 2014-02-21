@@ -8,22 +8,18 @@ Capybara.javascript_driver = :poltergeist
 # piggybacking off ingest form stuff, this will have to change.
 describe "(Administration of templates)", :js => true do
   context "The template index" do
-    before(:each) do
-      template = Template.new
-      template.name = "Test template"
-      template.save!
-      template = Template.new
-      template.title = ["Test title", "Another"]
-      template.description = ["Foo"]
-      template.name = "Test template 2"
-      template.save!
+    let(:template_1) { FactoryGirl.create(:template) }
+    let(:template_2) { FactoryGirl.create(:template, :with_description) }
 
+    before(:each) do
+      template_1
+      template_2
       visit "/templates"
     end
 
     it "should render a list of templates" do
-      expect(page.all("table tr")[1].all("td").first.text).to eq("Edit Test template")
-      expect(page.all("table tr")[2].all("td").first.text).to eq("Edit Test template 2")
+      expect(page.all("table tr")[1].all("td").first.text).to eq("Edit #{template_1.name}")
+      expect(page.all("table tr")[2].all("td").first.text).to eq("Edit #{template_2.name}")
 
       # 3 because of the table header row
       expect(page.all("table tr").length).to eq(3)
@@ -31,37 +27,40 @@ describe "(Administration of templates)", :js => true do
 
     context "(when deleting a template)" do
       before(:each) do
-        click_link("Delete Test template 2")
+        click_link("Delete #{template_2.name}")
       end
 
       it "should remove the template from the list" do
-        expect(page.all("table tr")[1].all("td").first.text).to eq("Edit Test template")
+        expect(page.all("table tr")[1].all("td").first.text).to eq("Edit #{template_1.name}")
         expect(page.all("table tr").length).to eq(2)
       end
 
       it "should give me a notice that the template was deleted" do
-        expect(page).to have_content("Deleted template 'Test template 2'")
+        expect(page).to have_content("Deleted template '#{template_2.name}'")
       end
     end
 
     context "(when cloning a template)" do
       before(:each) do
-        click_link("Clone Test template 2")
+        click_link("Clone #{template_2.name}")
       end
 
       it "should present a pre-filled form" do
-        expect(page).to include_ingest_fields_for("title", "title", "Test title")
-        expect(page).to include_ingest_fields_for("title", "title", "Another")
-        expect(page).to include_ingest_fields_for("description", "description", "Foo")
+        expect(page).to include_ingest_fields_for("title", "title", template_2.descMetadata.title[0])
+        expect(page).to include_ingest_fields_for("title", "title", template_2.descMetadata.title[1])
+        expect(page).to include_ingest_fields_for("description", "description", template_2.description)
       end
 
       it "should create a new template" do
-        fill_in "Template name", with: "Test template 3"
+        # This name isn't trying to suggest templates will destroy the world;
+        # it was actually chosen to ensure the new template is pushed to the
+        # top of the list.
+        fill_in "Template name", with: "Apocalypse template"
         find(:css, 'input[type=submit]').click
 
-        expect(page.all("table tr")[1].all("td").first.text).to eq("Edit Test template")
-        expect(page.all("table tr")[2].all("td").first.text).to eq("Edit Test template 2")
-        expect(page.all("table tr")[3].all("td").first.text).to eq("Edit Test template 3")
+        expect(page.all("table tr")[1].all("td").first.text).to eq("Edit Apocalypse template")
+        expect(page.all("table tr")[2].all("td").first.text).to eq("Edit #{template_1.name}")
+        expect(page.all("table tr")[3].all("td").first.text).to eq("Edit #{template_2.name}")
         expect(page.all("table tr").length).to eq(4)
       end
     end
@@ -104,21 +103,18 @@ describe "(Administration of templates)", :js => true do
   end
 
   context "The 'edit template' form" do
-    before(:each) do
-      template = Template.new
-      template.name = "Test template"
-      template.descMetadata.title = ["Test title", "Another"]
-      template.descMetadata.created = ["2011-01-01"]
-      template.save!
+    let(:template) { FactoryGirl.create(:template) }
 
+    before(:each) do
+      template
       visit "/templates"
       click_link "Edit Test template"
     end
 
     it "should render the form with data" do
-      expect(page).to include_ingest_fields_for("title", "title", "Test title")
-      expect(page).to include_ingest_fields_for("title", "title", "Another")
-      expect(page).to include_ingest_fields_for("date", "created", "2011-01-01")
+      expect(page).to include_ingest_fields_for("title", "title", template.descMetadata.title[0])
+      expect(page).to include_ingest_fields_for("title", "title", template.descMetadata.title[1])
+      expect(page).to include_ingest_fields_for("date", "created", template.created)
       expect(page).to have_selector("input[type=submit]")
     end
 
@@ -135,16 +131,16 @@ describe "(Administration of templates)", :js => true do
       it "should redirect to the template listings with the template shown" do
         find(:css, 'input[type=submit]').click
         expect(page.find("table > caption")).to have_content("Available Templates")
-        expect(page.find("table a[href$=edit]")).to have_content("Test template")
+        expect(page.find("table a[href$=edit]")).to have_content(template.name)
       end
 
       it "should have the new data if we revisit the form" do
         find(:css, 'input[type=submit]').click
         click_link "Edit Test template"
 
-        expect(page).to include_ingest_fields_for("title", "title", "Test title")
-        expect(page).to include_ingest_fields_for("title", "title", "Another")
-        expect(page).to include_ingest_fields_for("date", "created", "2011-01-01")
+        expect(page).to include_ingest_fields_for("title", "title", template.descMetadata.title[0])
+        expect(page).to include_ingest_fields_for("title", "title", template.descMetadata.title[1])
+        expect(page).to include_ingest_fields_for("date", "created", template.created)
         expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
         expect(page).to have_selector("input[type=submit]")
       end
