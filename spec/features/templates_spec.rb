@@ -13,6 +13,8 @@ describe "(Administration of templates)", :js => true do
       template.name = "Test template"
       template.save!
       template = Template.new
+      template.title = ["Test title", "Another"]
+      template.description = ["Foo"]
       template.name = "Test template 2"
       template.save!
 
@@ -39,6 +41,28 @@ describe "(Administration of templates)", :js => true do
 
       it "should give me a notice that the template was deleted" do
         expect(page).to have_content("Deleted template 'Test template 2'")
+      end
+    end
+
+    context "(when cloning a template)" do
+      before(:each) do
+        click_link("Clone Test template 2")
+      end
+
+      it "should present a pre-filled form" do
+        expect(page).to include_ingest_fields_for("title", "title", "Test title")
+        expect(page).to include_ingest_fields_for("title", "title", "Another")
+        expect(page).to include_ingest_fields_for("description", "description", "Foo")
+      end
+
+      it "should create a new template" do
+        fill_in "Template name", with: "Test template 3"
+        find(:css, 'input[type=submit]').click
+
+        expect(page.all("table tr")[1].all("td").first.text).to eq("Edit Test template")
+        expect(page.all("table tr")[2].all("td").first.text).to eq("Edit Test template 2")
+        expect(page.all("table tr")[3].all("td").first.text).to eq("Edit Test template 3")
+        expect(page.all("table tr").length).to eq(4)
       end
     end
   end

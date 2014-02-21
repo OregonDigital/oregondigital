@@ -28,6 +28,12 @@
               Delete <span class="sr-only"><%= template.name %></span>
             </span>
           </a>
+          <a href="<%= new_template_path(template_id: template.id) %>">
+            <span class="btn btn-inverse">
+              <i class="icon-plus icon-white"></i>
+              Clone <span class="sr-only"><%= template.name %></span>
+            </span>
+          </a>
         </td>
       </tr>
     <% end %>

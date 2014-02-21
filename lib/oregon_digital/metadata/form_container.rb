@@ -78,12 +78,12 @@ class OregonDigital::Metadata::FormContainer
       return
     end
 
+    @asset = @asset_class.new
+
     if template_id
       load_template(template_id)
       return
     end
-
-    @asset = @asset_class.new
   end
 
   def assign_form_attributes(params)
