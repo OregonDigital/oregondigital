@@ -28,7 +28,7 @@ describe "(Ingest Form)", :js => true do
 
   def visit_ingest_url
     visit('/ingest')
-    click_link "start from scratch"
+    click_link "Start from scratch"
 
     expect(page).to have_selector("input[type=submit]")
   end
@@ -262,8 +262,7 @@ describe "(Ingest Form)", :js => true do
       template.save!
 
       visit "/ingest"
-      select("Test template", :from => "Template:")
-      click_button("Go")
+      click_link("Test template")
     end
 
     it "should display the template's data" do
