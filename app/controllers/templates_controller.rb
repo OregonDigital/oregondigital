@@ -21,14 +21,14 @@ class TemplatesController < FormControllerBase
 
   def destroy
     template = Template.find(params[:id])
-    name = template.name
+    title = template.title
     template.destroy
-    redirect_to index_path, notice: "Deleted template '#{name}'"
+    redirect_to index_path, notice: "Deleted template '#{title}'"
   end
 
   private
 
-  # Overrides base behavior to handle the magic template varible (name) which
+  # Overrides base behavior to handle the magic template varible (title) which
   # goes directly onto the template object, not the form object
   def setup_resources
     if params[:metadata_ingest_form]
@@ -37,7 +37,7 @@ class TemplatesController < FormControllerBase
 
     super
 
-    @form.asset.name = template_name if template_name
+    @form.asset.title = template_name if template_name
   end
 
   # Map for translating from asset to form.  All assets here are templates, so

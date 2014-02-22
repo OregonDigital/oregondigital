@@ -6,18 +6,10 @@ class Template < GenericAsset
                  :reverse_transform => Proc.new {|x| "info:fedora/#{x}"}
   end
 
-  validates :name, presence: true
+  validates :title, presence: true
 
   def self.all_sorted
-    return all.sort_by {|t| t.name.downcase}
-  end
-
-  def name
-    return @name || title
-  end
-
-  def name=(val)
-    self.title = @name = val
+    return all.sort_by {|t| t.title.downcase}
   end
 
   private

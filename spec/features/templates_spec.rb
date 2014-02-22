@@ -18,8 +18,8 @@ describe "(Administration of templates)", :js => true do
     end
 
     it "should render a list of templates" do
-      expect(page.all("table tr")[1].all("td").first.text).to eq("Edit #{template_1.name}")
-      expect(page.all("table tr")[2].all("td").first.text).to eq("Edit #{template_2.name}")
+      expect(page.all("table tr")[1].all("td").first.text).to eq("Edit #{template_1.title}")
+      expect(page.all("table tr")[2].all("td").first.text).to eq("Edit #{template_2.title}")
 
       # 3 because of the table header row
       expect(page.all("table tr").length).to eq(3)
@@ -27,22 +27,22 @@ describe "(Administration of templates)", :js => true do
 
     context "(when deleting a template)" do
       before(:each) do
-        click_link("Delete #{template_2.name}")
+        click_link("Delete #{template_2.title}")
       end
 
       it "should remove the template from the list" do
-        expect(page.all("table tr")[1].all("td").first.text).to eq("Edit #{template_1.name}")
+        expect(page.all("table tr")[1].all("td").first.text).to eq("Edit #{template_1.title}")
         expect(page.all("table tr").length).to eq(2)
       end
 
       it "should give me a notice that the template was deleted" do
-        expect(page).to have_content("Deleted template '#{template_2.name}'")
+        expect(page).to have_content("Deleted template '#{template_2.title}'")
       end
     end
 
     context "(when cloning a template)" do
       before(:each) do
-        click_link("Clone #{template_2.name}")
+        click_link("Clone #{template_2.title}")
       end
 
       it "should present a pre-filled form" do
@@ -59,8 +59,8 @@ describe "(Administration of templates)", :js => true do
         find(:css, 'input[type=submit]').click
 
         expect(page.all("table tr")[1].all("td").first.text).to eq("Edit Apocalypse template")
-        expect(page.all("table tr")[2].all("td").first.text).to eq("Edit #{template_1.name}")
-        expect(page.all("table tr")[3].all("td").first.text).to eq("Edit #{template_2.name}")
+        expect(page.all("table tr")[2].all("td").first.text).to eq("Edit #{template_1.title}")
+        expect(page.all("table tr")[3].all("td").first.text).to eq("Edit #{template_2.title}")
         expect(page.all("table tr").length).to eq(4)
       end
     end
@@ -131,7 +131,7 @@ describe "(Administration of templates)", :js => true do
       it "should redirect to the template listings with the template shown" do
         find(:css, 'input[type=submit]').click
         expect(page.find("table > caption")).to have_content("Available Templates")
-        expect(page.find("table a[href$=edit]")).to have_content(template.name)
+        expect(page.find("table a[href$=edit]")).to have_content(template.title)
       end
 
       it "should have the new data if we revisit the form" do

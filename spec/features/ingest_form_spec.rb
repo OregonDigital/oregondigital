@@ -259,7 +259,7 @@ describe "(Ingest Form)", :js => true do
     before(:each) do
       template
       visit "/ingest"
-      click_link(template.name)
+      click_link(template.title)
     end
 
     it "should display the template's data" do

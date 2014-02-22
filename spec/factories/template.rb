@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :template, parent: :active_fedora_base, class: Template do
-    sequence(:name) { |n| "Test template %04d" % n }
+    sequence(:title) { |n| "Test template %04d" % n }
 
     after(:build) do |template|
       template.templateMetadata.title = ["Test title", "Another"]
