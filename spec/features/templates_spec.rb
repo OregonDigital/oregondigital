@@ -46,9 +46,9 @@ describe "(Administration of templates)", :js => true do
       end
 
       it "should present a pre-filled form" do
-        expect(page).to include_ingest_fields_for("title", "title", template_2.descMetadata.title[0])
-        expect(page).to include_ingest_fields_for("title", "title", template_2.descMetadata.title[1])
-        expect(page).to include_ingest_fields_for("description", "description", template_2.description)
+        expect(page).to include_ingest_fields_for("title", "title", template_2.templateMetadata.title[0])
+        expect(page).to include_ingest_fields_for("title", "title", template_2.templateMetadata.title[1])
+        expect(page).to include_ingest_fields_for("description", "description", template_2.templateMetadata.description[0])
       end
 
       it "should create a new template" do
@@ -112,9 +112,9 @@ describe "(Administration of templates)", :js => true do
     end
 
     it "should render the form with data" do
-      expect(page).to include_ingest_fields_for("title", "title", template.descMetadata.title[0])
-      expect(page).to include_ingest_fields_for("title", "title", template.descMetadata.title[1])
-      expect(page).to include_ingest_fields_for("date", "created", template.created)
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[0])
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[1])
+      expect(page).to include_ingest_fields_for("date", "created", template.templateMetadata.created[0])
       expect(page).to have_selector("input[type=submit]")
     end
 
@@ -138,9 +138,9 @@ describe "(Administration of templates)", :js => true do
         find(:css, 'input[type=submit]').click
         click_link "Edit Test template"
 
-        expect(page).to include_ingest_fields_for("title", "title", template.descMetadata.title[0])
-        expect(page).to include_ingest_fields_for("title", "title", template.descMetadata.title[1])
-        expect(page).to include_ingest_fields_for("date", "created", template.created)
+        expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[0])
+        expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[1])
+        expect(page).to include_ingest_fields_for("date", "created", template.templateMetadata.created[0])
         expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
         expect(page).to have_selector("input[type=submit]")
       end

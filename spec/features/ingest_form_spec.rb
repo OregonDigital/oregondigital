@@ -254,21 +254,18 @@ describe "(Ingest Form)", :js => true do
   end
 
   context "(when ingesting from a template)" do
-    before(:each) do
-      template = Template.new
-      template.name = "Test template"
-      template.descMetadata.title = ["Test title", "Another"]
-      template.descMetadata.created = ["2011-01-01"]
-      template.save!
+    let(:template) { FactoryGirl.create(:template) }
 
+    before(:each) do
+      template
       visit "/ingest"
-      click_link("Test template")
+      click_link(template.name)
     end
 
     it "should display the template's data" do
-      expect(page).to include_ingest_fields_for("title", "title", "Test title")
-      expect(page).to include_ingest_fields_for("title", "title", "Another")
-      expect(page).to include_ingest_fields_for("date", "created", "2011-01-01")
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[0])
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[1])
+      expect(page).to include_ingest_fields_for("date", "created", template.templateMetadata.created[0])
     end
 
     it "should create a new record" do
@@ -286,10 +283,10 @@ describe "(Ingest Form)", :js => true do
       # Sanity check - data is being deleted between tests, right?
       expect(Template.count).to eq(1)
 
-      template = Template.first
-      expect(template.descMetadata.description).to be_blank
-      expect(template.descMetadata.title).to eq(["Test title", "Another"])
-      expect(template.descMetadata.created).to eq(["2011-01-01"])
+      new_template = Template.first
+      expect(new_template.templateMetadata.description).to be_blank
+      expect(new_template.templateMetadata.title).to eq(template.templateMetadata.title)
+      expect(new_template.templateMetadata.created).to eq(template.templateMetadata.created)
     end
 
     it "should store all data" do
@@ -300,9 +297,9 @@ describe "(Ingest Form)", :js => true do
 
       # Verify on the edit view
       visit_edit_form_url(@pid)
-      expect(page).to include_ingest_fields_for("title", "title", "Test title")
-      expect(page).to include_ingest_fields_for("title", "title", "Another")
-      expect(page).to include_ingest_fields_for("date", "created", "2011-01-01")
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[0])
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[1])
+      expect(page).to include_ingest_fields_for("date", "created", template.templateMetadata.created[0])
       expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
     end
   end

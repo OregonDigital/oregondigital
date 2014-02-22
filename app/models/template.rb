@@ -1,6 +1,11 @@
 # Special subclass of assets specifically built to hold pre-filled form data
 class Template < GenericAsset
-  has_metadata :name => 'templateMetadata', :type => Datastream::Yaml
+  has_metadata :name => 'templateMetadata', :type => Datastream::OregonRDF do |ds|
+    ds.crosswalk :field => :set, :to => :is_member_of_collection, :in => "RELS-EXT",
+                 :transform => Proc.new {|x| x.gsub('info:fedora/','')},
+                 :reverse_transform => Proc.new {|x| "info:fedora/#{x}"}
+  end
+
   validates :name, presence: true
 
   def self.all_sorted
@@ -8,11 +13,11 @@ class Template < GenericAsset
   end
 
   def name
-    return @name || templateMetadata.name || title
+    return @name || title
   end
 
   def name=(val)
-    templateMetadata.name = @name = val
+    self.title = @name = val
   end
 
   private
