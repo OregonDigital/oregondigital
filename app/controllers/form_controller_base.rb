@@ -5,9 +5,17 @@ class FormControllerBase < ApplicationController
 
   protected
 
-  # Method defines what the ingest form object's structure will look like -
-  # must be implemented by the subclass in order for other methods to work
-  def ingest_map
+  # Method defines what the ingest form object's structure will look like when
+  # converting the controller's asset into a form (asset_class) - must be
+  # implemented by the subclass in order for other methods to work
+  def asset_map
+    raise NotImplementedError
+  end
+
+  # Defines what the ingest form object's structure will look like when
+  # creating an asset from a template - must be implemented by the subclass in
+  # order for other methods to work
+  def template_map
     raise NotImplementedError
   end
 
@@ -41,7 +49,7 @@ class FormControllerBase < ApplicationController
 
   # Sets up a form container for actions which use a form object
   def setup_resources
-    defaults = {map: ingest_map, asset_class: asset_class}
+    defaults = {asset_map: asset_map, template_map: template_map, asset_class: asset_class}
     @form = OregonDigital::Metadata::FormContainer.new(params.merge(defaults))
   end
 
@@ -50,7 +58,7 @@ class FormControllerBase < ApplicationController
   def build_controlled_vocabulary_map
     @controlled_vocab_map = {}
 
-    for group, type_map in ingest_map
+    for group, type_map in asset_map
       @controlled_vocab_map[group.to_s] = {}
       for type, attribute in type_map
         # We are assuming that a new-style datastream is going to be the final
@@ -60,7 +68,7 @@ class FormControllerBase < ApplicationController
         # figure out how to set up a controlled vocabulary query URI.
         objects = attribute.to_s.split(".")
         attribute = objects.pop
-        property = objects.reduce(GenericAsset.new, :send).class.properties[attribute]
+        property = objects.reduce(asset_class.new, :send).class.properties[attribute]
 
         # TODO: What does it mean if we have no property for a mapped
         # attribute?  Likely a misconfiguration that the user cannot control.

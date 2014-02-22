@@ -65,3 +65,6 @@ INGEST_MAP = {
     location: "descMetadata.location",
   },
 }
+
+# Temporary hack to verify separation of maps works
+TEMPLATE_MAP = INGEST_MAP

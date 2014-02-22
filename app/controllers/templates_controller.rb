@@ -40,11 +40,16 @@ class TemplatesController < FormControllerBase
     @form.asset.name = template_name if template_name
   end
 
-  # Chooses the ingest map to be used for grouping form elements and
-  # translating data.  This is hard-coded for now, but may eventually use
-  # things like user groups or collection info or who knows what.
-  def ingest_map
-    return INGEST_MAP
+  # Map for translating from asset to form.  All assets here are templates, so
+  # we're just hard-coding the template map.
+  def asset_map
+    return TEMPLATE_MAP
+  end
+
+  # Map for translating from template to form.  I don't know if this will ever
+  # need to change, but for now it's always the template map.
+  def template_map
+    return TEMPLATE_MAP
   end
 
   # Asset class used to instantiate a new object or load an existing one
