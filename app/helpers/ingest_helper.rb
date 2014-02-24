@@ -1,7 +1,8 @@
 module IngestHelper
   # Renders the ingest form for the given form object
-  def ingest_form_for(ingest_form)
-    url = ingest_path(ingest_form)
+  def ingest_form_for(form_container)
+    ingest_form = form_container.form
+    url = form_container.asset.kind_of?(Template) ? template_path(ingest_form) : ingest_path(ingest_form)
     html_options = {:multipart => true, :class => "form-inline"}
 
     simple_form_for(ingest_form, {:url => url, :html => html_options}) do |f|

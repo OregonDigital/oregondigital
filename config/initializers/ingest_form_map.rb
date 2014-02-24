@@ -65,3 +65,15 @@ INGEST_MAP = {
     location: "descMetadata.location",
   },
 }
+
+# XXX HACK: we just duplicate and modify the INGEST_MAP data to ensure we're in
+# sync.  But long-term, we may want a separate map that just has to be kept
+# partially synced or something, so for now this is the quick fix.
+#
+# We use JSON to dup here because dup is shallow
+TEMPLATE_MAP = JSON.load(INGEST_MAP.to_json)
+for group, types_map in TEMPLATE_MAP
+  for type, property in types_map
+    property.gsub!("descMetadata", "templateMetadata")
+  end
+end

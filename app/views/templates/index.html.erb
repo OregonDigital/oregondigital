@@ -1,0 +1,45 @@
+<h2>Template Administration</h2>
+
+<p>
+  <%= link_to "Create new template", new_template_path %>
+</p>
+
+<table class="table table-striped table-bordered table-condensed">
+  <caption class="sr-only">Available Templates</caption>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Set</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% for template in @templates %>
+      <tr>
+        <td>
+          <a href="<%= edit_template_path(template.id) %>">
+            <span class="sr-only">Edit</span>
+            <%= template.title %>
+          </a>
+        </td>
+        <td><%= template.set %></td>
+        <td class="button-cell">
+          <a href="<%= template_path(template.id) %>" data-method="delete"
+             data-confirm="Are you sure you want to remove '<%= template.title %>'?">
+            <span class="btn btn-danger">
+              <i class="icon-remove icon-white"></i>
+              Delete <span class="sr-only"><%= template.title %></span>
+            </span>
+          </a>
+          <a href="<%= new_template_path(template_id: template.id) %>">
+            <span class="btn btn-inverse">
+              <i class="icon-plus icon-white"></i>
+              Clone <span class="sr-only"><%= template.title %></span>
+            </span>
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
