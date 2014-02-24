@@ -22,3 +22,6 @@
 //
 // Gotta have typeahead for ingest form
 //= require twitter/typeahead.min
+//
+// OpenSeaDragon for image viewers.
+//= require openseadragon
