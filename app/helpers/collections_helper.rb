@@ -3,7 +3,11 @@ module CollectionsHelper
   include Blacklight::FacetsHelperBehavior
 
   def collection_name(pid)
-    GenericCollection.load_instance_from_solr(pid).decorate.title
+    begin
+      GenericCollection.load_instance_from_solr(pid).decorate.title
+    rescue StandardError
+      pid
+    end
   end
 
   def render_set(set)
