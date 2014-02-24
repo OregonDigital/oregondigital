@@ -1,0 +1,73 @@
+		config.vm.box = "Ubuntu Server 12.04 Chef"
+		config.vm.box_url = "https://dl.dropbox.com/u/1543052/Boxes/UbuntuServer12.04amd64.box"
+		config.vm.forward_port 80, 80
+		config.vm.forward_port 8983, 8983
+		config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+		config.vm.share_folder "hybag", "/hybag", 'C:\Projects\hybag'
+    chefjson = {
+      "mysql" => {
+        "server_root_password" => "vagrant",
+        "server_repl_password" => "vagrant",
+        "server_debian_password" => "vagrant"
+      },
+      :project => {
+        :name => "hydra",
+        #Relative to /vagrant.
+        :docroot => "/public",
+        :railsenv => "development",
+        :packages => %w{libyaml-dev libxml2 libxml2-dev libxslt1.1 libxslt1-dev libmagickcore-dev libmagickwand-dev libvips-dev libmagic-dev redis-server graphicsmagick poppler-utils poppler-data ghostscript pdftk libreoffice},
+        :environment => {
+              "SPRING_TMP_PATH" => "/tmp"
+            },
+        :post => {
+          "Prepare Test DB" => {
+            :group => "rvm",
+            :code =>
+              "source /home/vagrant/.bashrc\n"+
+              "cd vagrant\n"+
+              "bundle exec rake db:test:prepare"
+          },
+          "Configure Jetty" => {
+            :group => "rvm",
+            :code =>
+              "source /home/vagrant/.bashrc\n"+
+              "cd vagrant\n"+
+              "bundle exec rake hydra:jetty:config"
+          },
+          "Restart Jetty" => {
+            :group => "rvm",
+            :code =>
+              "source /home/vagrant/.bashrc\n"+
+              "cd vagrant\n"+
+              "bundle exec rake jetty:restart"
+          }
+        }
+      },
+      "rvm" => {
+        "default_ruby" => "ruby-2.0.0-p353",
+        "user_default_ruby" => "ruby-2.0.0-p353",
+        "version" => "1.25.14",
+        "branch" => "none",
+        "rvmrc" => {
+          "rvm_gemset_create_on_use_flag" => 1,
+          "rvm_install_on_use_flag" => 1,
+          "rvm_trust_rvmrcs_flag" => 1
+        },
+        "global_gems" => [{'name' => 'bundler'}, {'name' => 'chef'}]
+      },
+      :passenger => {
+        :rvm_ruby_version => "ruby-2.0.0-p353",
+        #:rvm_ruby_gemset => "oregondigital",
+        #:rvm_gemset => "oregondigital",
+        :version => "4.0.33",
+        :module_path => "/usr/local/rvm/gems/ruby-2.0.0-p353@global/gems/passenger-4.0.33/buildout/apache2/mod_passenger.so"
+      },
+      "apache" => {
+        "listen_ports" => ["80","8000"],
+        "default_site_enabled" => false
+      },
+      "phantomjs" => {
+        "version" => "1.9.0"
+      }
+    }
+    recipes = ["apt","main","java","iip","phantomjs","main::rails","main::post"]
