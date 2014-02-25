@@ -8,5 +8,17 @@ FactoryGirl.define do
         user.roles << FactoryGirl.build(:role, name: "admin")
       end
     end
+
+    factory :submitter do
+      after(:build) do |user|
+        user.roles << FactoryGirl.build(:role, name: "submitter")
+      end
+    end
+
+    factory :archivist do
+      after(:build) do |user|
+        user.roles << FactoryGirl.build(:role, name: "archivist")
+      end
+    end
   end
 end

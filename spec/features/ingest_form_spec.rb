@@ -9,8 +9,11 @@ describe "(Ingest Form)", :js => true do
   let(:label1) { "Canned foods industry--Accidents" }
   let(:subject2) { "http://id.loc.gov/authorities/subjects/sh85050282" }
   let(:label2) { "Food industry and trade" }
+  let(:admin) {FactoryGirl.create(:admin)}
 
   before(:each) do
+    capybara_login(admin)
+
     # Ensure ingested objects create predictable and unique pids
     OregonDigital::IdService.stub(:namespace).and_return("spec-feature-ingestform")
     OregonDigital::IdService.stub(:next_id) do
@@ -27,7 +30,8 @@ describe "(Ingest Form)", :js => true do
   end
 
   def visit_ingest_url
-    visit('/ingest')
+    visit('/')
+    click_link "Ingest"
     click_link "Start from scratch"
 
     expect(page).to have_selector("input[type=submit]")
