@@ -2,7 +2,11 @@ class Image < GenericAsset
   has_file_datastream :name => 'thumbnail', :control_group => "E"
   has_file_datastream :name => 'pyramidal', :control_group => "E"
 
-  makes_derivatives :create_thumbnail, :create_pyramidal
+  makes_derivatives do |obj|
+    obj.create_thumbnail
+    obj.create_pyramidal
+    obj.save
+  end
 
 
   # Derivative Creation Methods

@@ -36,6 +36,7 @@ class Hydra::Derivatives::DocsplitProcessor < Hydra::Derivatives::Processor
           page_path = Pathname.new(file)
           new_path = File.join(output_path, "page-#{page}#{page_path.extname}")
           File.rename(file, new_path.to_s)
+          output_datastream("page-#{page}").content = "external"
           output_datastream("page-#{page}").dsLocation = "file://#{new_path.to_s}"
         end
       ensure

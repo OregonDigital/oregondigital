@@ -1,0 +1,12 @@
+#document-viewer {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  #BRnav {
+    position: absolute;
+  }
+  #BRcontainer {
+    margin-top: 41px;
+  }
+}
