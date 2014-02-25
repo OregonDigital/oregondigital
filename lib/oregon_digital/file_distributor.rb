@@ -25,6 +25,6 @@ class OregonDigital::FileDistributor
   def path
     reversed = (filename.rjust(@depth, "0")).reverse.split(//)
     bucket_path = (["%s"] * @depth).join("/") % reversed
-    return @base_path.join(bucket_path, filename).to_s
+    return base_path.join(bucket_path, filename).to_s
   end
 end

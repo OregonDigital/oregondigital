@@ -226,6 +226,8 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.2.0)
+      railties (>= 3.2.16)
     json (1.8.1)
     json-ld (1.1.0)
       rdf (>= 1.0.8)
@@ -515,6 +517,7 @@ DEPENDENCIES
   jettywrapper
   jquery-fileupload-rails (~> 0.4.1)
   jquery-rails (~> 3.0.4)
+  jquery-ui-rails
   linkeddata
   metadata-ingest-form (~> 2.2)
   mini_magick
