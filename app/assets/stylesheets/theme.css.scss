@@ -71,7 +71,7 @@ p {
       width: 300px;
     }
     .span9 .span5 {
-      width: auto;      
+      width: auto;
     }
     .span9 .span3 {
       display: none;
@@ -85,7 +85,7 @@ p {
         margin-left: 20px;
       }
     }
-    
+
     @media (min-width: 769px) {
       .span3 {
         width: 172px;
@@ -128,7 +128,7 @@ p {
 
 
   .brand {
-    background: url("/assets/oregondigital/logo.png") no-repeat scroll left top / 100% transparent;
+    background: url(image_path("oregondigital/logo.png")) no-repeat scroll left top / 100% transparent;
     padding: 0;
     text-indent: 100%;
     overflow: hidden;
@@ -187,7 +187,7 @@ p {
       width:  90px;
       height:  28px;
       overflow: hidden;
-      background: url(/assets/oregondigital/selectarrow.png) no-repeat right #fff;
+      background: url(image_path("oregondigital/selectarrow.png")) no-repeat right #fff;
       border: 1px solid #ccc;
       border-radius: 4px;
       margin-right: 5px;
