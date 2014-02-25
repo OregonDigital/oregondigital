@@ -6,3 +6,15 @@ RSpec::Matchers.define :show_ingest_link do
     page.has_link?("Ingest")
   end
 end
+
+RSpec::Matchers.define :have_permissions_error do |suffix = ""|
+  match do |page|
+    begin
+      page.within("#main-flashes") do
+        page.has_content?(/do not have permission to #{suffix}/i)
+      end
+    rescue Capybara::ElementNotFound
+      false
+    end
+  end
+end

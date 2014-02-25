@@ -1,4 +1,8 @@
 class IngestController < FormControllerBase
+  include Hydra::Controller::ControllerBehavior
+
+  before_filter :check_permissions
+
   def index
     @templates = Template.all_sorted
   end
@@ -20,6 +24,12 @@ class IngestController < FormControllerBase
   end
 
   private
+
+  def check_permissions
+    unless can? :ingest, GenericAsset
+      raise Hydra::AccessDenied.new "You do not have permission to ingest."
+    end
+  end
 
   # Chooses the ingest map to be used for grouping form elements and
   # translating data.  This is hard-coded for now, but may eventually use

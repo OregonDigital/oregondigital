@@ -44,6 +44,9 @@ describe IngestController do
       s.set_value(RDF::SKOS.prefLabel, label)
       s.persist!
     end
+
+    # Hack an admin user - permissions are tested elsewhere
+    ActionController::Base.any_instance.stub(:can? => true)
   end
 
   describe "#index" do
