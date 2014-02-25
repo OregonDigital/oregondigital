@@ -1,0 +1,491 @@
+
+$background: #F1ECE3;
+$accent-bg: #DAC582;
+$highlight-bg: #1FA1BF;
+
+$color: #144651;
+$highlight-color: #ffffff;
+
+$font-stack:    Helvetica, sans-serif;
+
+body {
+  font: 100% $font-stack;
+  background-color: $background;
+  color:  #000000;
+  padding-top: 0;
+}
+
+/* font */
+h1 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $color;
+}
+
+@media (min-width: 980px) {
+  body {
+    padding-top: 8.5em;
+  }
+}
+
+p {
+  line-height: 20px;
+}
+
+
+//Oregon Digital header
+
+#header-navbar-fixed-top, .navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
+  box-shadow: none;
+  background: none no-repeat $accent-bg;
+
+  .navbar-inner {
+    padding: 0 0 10px 0;
+    min-height: 0;
+
+    .black {
+      background: #000000;
+      margin-bottom: 10px;
+    }
+    .btn-navbar {
+      position: absolute;
+      right: 0;
+      top: 50px;
+    }
+    .span3, .span9, .span9 .span5, .span9 .span3 {
+      display: inline-block !important;
+      vertical-align: middle !important;
+      float: none !important;
+      width: auto;
+    }
+    .span3 {
+      width: 60px;
+    }
+    .span9 {
+      width: 300px;
+    }
+    .span9 .span5 {
+      width: auto;      
+    }
+    .span9 .span3 {
+      display: none;
+    }
+    @media (min-width: 480px) {
+      .span3 {
+        width: 70px;
+      }
+      .span9 {
+        width: 370px;
+        margin-left: 20px;
+      }
+    }
+    
+    @media (min-width: 769px) {
+      .span3 {
+        width: 172px;
+      }
+      .span9 {
+        width: 550px;
+        .span5 {
+          width: 500px;
+        }
+      }
+      .btn-navbar {
+        top: auto;
+      }
+    }
+    @media (min-width: 980px) {
+      .span3 {
+        width: 220px;
+      }
+      .span9 {
+        width: 600px;
+        margin-left: 30px;
+        .span5 {
+            width: 423px;
+        }
+      }
+    }
+    @media (min-width: 1200px) {
+      .span3 {
+        width: 270px;
+      }
+      .span9 {
+        width: 860px;
+      }
+      .span9 .span5 {
+        width: 463px;
+
+      }
+    }
+  }
+
+
+  .brand {
+    background: url("/assets/oregondigital/logo.png") no-repeat scroll left top / 100% transparent;
+    padding: 0;
+    text-indent: 100%;
+    overflow: hidden;
+    height: 24px;
+    width: 60px;
+    margin-right: 0;
+    float: right;
+  }
+
+  @media (min-width: 769px) {
+    .brand {
+      height: 46px;
+      width: 116px;
+    }
+  }
+  @media (min-width: 980px) {
+    .brand {
+      height: 69px;
+      width: 172px;
+      float: right;
+    }
+  }
+
+  #searchbar {
+    padding-top: 0;
+
+    form {
+      width:  270px;
+      display: inline-block;
+      white-space: nowrap;
+      /*margin-right: 150px;   */
+      margin-bottom: 0;
+      line-height: 12px;
+    }
+    @media (min-width: 490px) {
+      form {
+        margin-right: 0;
+        width: 300px;
+      }
+    }
+    @media (min-width: 770px) {
+      form {
+        margin-right: 0;
+        width: 350px;
+      }
+    }
+    @media (min-width: 979px) {
+      form {
+        margin-right: 0;
+        width: 350px;
+      }
+    }
+
+    .styled-select {
+
+      width:  90px;
+      height:  28px;
+      overflow: hidden;
+      background: url(/assets/oregondigital/selectarrow.png) no-repeat right #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 5px;
+
+      #search_field {
+
+        width:  112px;
+        height:  28px;
+        background: transparent;
+        -webkit-appearance: none;
+        line-height: 1;
+        border:  0;
+        border-radius: 0;
+        display: block;
+      }
+
+    }
+    /*.input-wrapper {
+      width: 100%;
+
+      input.search_q {
+        width: 100%;
+      }
+    }
+    @media (max-width: 479px) {
+      .input-wrapper {
+        width: auto;
+
+        input.search_q {
+          width: auto;
+
+        }
+      } */
+    }
+
+
+    .btn {
+      vertical-align: middle;
+    }
+  }
+  /*@media (min-width: 480px) and (max-width: 767px) {
+    #searchbar {
+      width:  290px;
+    }
+  }
+  @media (max-width: 479px) {
+    #searchbar {
+      width:  auto;
+    }
+  } */
+
+  .nav-collapse {
+    min-height: 0;
+  }
+  .utils {
+    border-left: 1px solid $color;
+    width: 0;
+    padding: 0;
+
+    a {
+      color: $color;
+      display: block;
+      line-height: 22px;
+    }
+  }
+  @media (min-width: 980px) {
+    .utils {
+      width: auto;
+      padding: 2px 0 2px 20px;
+    }
+}
+
+/* main-container */
+
+#main-container {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+@media (min-width: 767px) and (max-width:979px) {
+  #main-container {
+    width:  auto;
+    margin: 10px;
+  }
+}
+
+@media (min-width: 767px) {
+  #main-container {
+    .span9 {
+      width: 545px;
+
+      .span5 {
+        width: 305px;
+      }
+      .span3 {
+        width: 220px;
+      }
+    }
+  }
+}
+@media (min-width: 872px) {
+  #main-container {
+    .span9 {
+      width: 650px;
+
+      .span5 {
+        width: 355px;
+      }
+      .span3 {
+        width: 270px;
+      }
+    }
+  }
+}
+@media (min-width: 980px) {
+  #main-container {
+    .span9 {
+      width: 700px;
+
+      .span5 {
+        width: 440px;
+      }
+      .span3 {
+        width: 230px;
+      }
+    }
+  }
+}
+@media (min-width: 1200px) {
+  #main-container {
+    .span9 {
+      width: 870px;
+      .span5 {
+        width: 470px;
+      }
+      .span3 {
+        width: 270px;
+      }
+    }
+  }
+}
+/* facets */
+
+#facets {
+  background:  #ffffff;
+  color: $color;
+
+  a {
+    color: $color;
+  }
+  span.selected {
+    color: #888888;
+  }
+
+  h4 {
+    background: $accent-bg;
+  }
+
+  h5.twiddle-open {
+    background: $highlight-bg;
+    color: #ffffff;
+
+    a {
+      color: $highlight-color;
+      outline: none;
+    }
+
+    a:hover {
+      background: transparent;
+    }
+  }
+  .facet_select, .count, span.selected {
+    font-size: .85em;
+  }
+  ul {
+    padding-bottom: 0;
+  }
+}
+
+
+
+/* footer */
+
+.footer {
+  font-size: .75em;
+  line-height: 25px;
+
+  .right {
+    text-align: right;
+
+    li.last {
+      padding-right: 0;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+  li {
+    list-style: none;
+    display: inline-block;
+    margin: none;
+    padding: 0 12px;
+    border-right: 1px solid $color;
+  }
+
+  li.first {
+    padding-left: 0;
+  }
+  li.last {
+    border: none
+  }
+
+  a {
+    color:  $color;
+
+  }
+
+}
+
+/* home  */
+
+.welcome, .imagecolumn {
+
+  .collections-link {
+    border-top:  1px solid $accent-bg;
+    border-bottom: 1px solid $accent-bg;
+    padding: 1em;
+  }
+
+  & > * {
+    margin-bottom: 1em;
+  }
+}
+
+/* search results */
+
+.results {
+  background: #fff;
+
+  .well, .constraints-container, #sortAndPerPage {
+    border:  none;
+    box-shadow: none;
+    background: none;
+
+  }
+  #appliedParams, #sortAndPerPage {
+    border-radius: 0;
+  }
+  #appliedParams {
+    background: #F5F5F5;
+    border-top: 1px solid $accent-bg;
+    border-bottom:  1px solid #E3E3E3;
+  }
+  #sortAndPerPage {
+    padding: 0 19px;
+  }
+
+  #documents {
+    padding-left: 19px;
+  }
+  .document {
+    border-bottom: 1px solid #E3E3E3;
+    font-size: 14px;
+  }
+}
+
+
+/* misc bits */
+
+.form-actions {
+  background:  transparent;
+  border-top:  none;
+}
+.btn {
+  background-color: $highlight-bg;
+  background-image: none;
+  color: $highlight-color;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: $highlight-bg;
+}
+
+.table-striped {
+  background: #ffffff;
+}
+
+/* sidebar mini-menus */
+.nav-list .nav-header {
+  border-bottom:  1px solid #E3E3E3;
+  margin-bottom: 8px;
+
+}
+.nav-list > li > a, label.toggle_bookmark {
+  font-size: 13px;
+  line-height: 22px;
+
+}
+
+
