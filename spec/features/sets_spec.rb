@@ -80,7 +80,7 @@ describe "SetsController /index" do
       end
       context "when you search" do
         before(:each) do
-          click_button "Search"
+          click_button "search"
         end
         it "should keep in the sets controller" do
           expect(current_path).to include collection.pid.split(':').last
