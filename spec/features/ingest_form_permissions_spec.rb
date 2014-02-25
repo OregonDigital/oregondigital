@@ -11,6 +11,7 @@ describe "Ingest form authorization rules" do
       }
     }
   end
+  let(:asset) { asset = FactoryGirl.create(:generic_asset) }
 
   subject { page }
 
@@ -118,6 +119,71 @@ describe "Ingest form authorization rules" do
 
       it "should create an object" do
         expect(GenericAsset.count).to eq(1)
+      end
+    end
+  end
+
+  context "when visiting an edit form" do
+    before(:each) do
+      capybara_login(user)
+      visit edit_ingest_path(asset.pid)
+    end
+
+    context "for a regular user", role: nil do
+      it { should have_permissions_error("edit") }
+    end
+
+    context "for a submitter", role: :submitter do
+      it { should have_permissions_error("edit") }
+    end
+
+    context "for an archivist", role: :archivist do
+      it { should_not have_permissions_error }
+    end
+
+    context "for an admin", role: :admin do
+      it { should_not have_permissions_error }
+    end
+  end
+
+  context "when manually submitting an update" do
+    before(:each) do
+      capybara_login(user)
+      page.driver.browser.process_and_follow_redirects(:patch, "/ingest/#{asset.pid}", attrs)
+      @new_asset = GenericAsset.find(asset.pid)
+    end
+
+    context "for a regular user", role: nil do
+      it { should have_permissions_error("edit") }
+
+      it "shouldn't modify the object" do
+        expect(@new_asset.descMetadata.title.length).to eq(1)
+        expect(@new_asset.descMetadata.title.first).to match(/\AGeneric Asset \d+\Z/)
+      end
+    end
+
+    context "for a submitter", role: :submitter do
+      it { should have_permissions_error("edit") }
+
+      it "shouldn't modify the object" do
+        expect(@new_asset.descMetadata.title.length).to eq(1)
+        expect(@new_asset.descMetadata.title.first).to match(/\AGeneric Asset \d+\Z/)
+      end
+    end
+
+    context "for an archivist", role: :archivist do
+      it { should_not have_permissions_error }
+
+      it "should modify the object" do
+        expect(@new_asset.descMetadata.title).to eq(["test title", "test title number 2"])
+      end
+    end
+
+    context "for an admin", role: :admin do
+      it { should_not have_permissions_error }
+
+      it "should modify the object" do
+        expect(@new_asset.descMetadata.title).to eq(["test title", "test title number 2"])
       end
     end
   end
