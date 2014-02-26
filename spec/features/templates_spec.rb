@@ -7,6 +7,12 @@ Capybara.javascript_driver = :poltergeist
 # re-tested.  If we ever make templates rely on their own logic instead of
 # piggybacking off ingest form stuff, this will have to change.
 describe "(Administration of templates)", :js => true do
+  let(:admin) {FactoryGirl.create(:admin)}
+
+  before(:each) do
+    capybara_login(admin)
+  end
+
   context "The template index" do
     let(:template_1) { FactoryGirl.create(:template) }
     let(:template_2) { FactoryGirl.create(:template, :with_description) }
@@ -14,7 +20,8 @@ describe "(Administration of templates)", :js => true do
     before(:each) do
       template_1
       template_2
-      visit "/templates"
+      visit "/"
+      click_link "Templates"
     end
 
     it "should render a list of templates" do
