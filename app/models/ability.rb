@@ -15,15 +15,15 @@ class Ability
   end
 
   def ingest_permissions
-    # Forcibly deny ingest and edit permissions to override built-in Hydra rules
-    cannot [:ingest, :edit], GenericAsset
+    # Forcibly deny create and update permissions to override built-in Hydra rules
+    cannot [:create, :update], GenericAsset
 
     if current_user.submitter? || current_user.archivist? || current_user.admin?
-      can :ingest, GenericAsset
+      can [:create], GenericAsset
     end
 
     if current_user.archivist? || current_user.admin?
-      can :edit, GenericAsset
+      can [:update], GenericAsset
     end
   end
 end

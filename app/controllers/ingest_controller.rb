@@ -26,10 +26,10 @@ class IngestController < FormControllerBase
   private
 
   def check_permissions
-    permission_map = Hash.new(:ingest)
-    permission_map["edit"] = :edit
-    permission_map["update"] = :edit
-    permission = permission_map[action_name]
+    permission = :create
+    if ["edit", "update"].include?(action_name)
+      permission = :update
+    end
 
     unless can? permission, GenericAsset
       raise Hydra::AccessDenied.new "You do not have permission to #{permission}."

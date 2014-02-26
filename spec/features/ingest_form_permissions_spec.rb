@@ -45,7 +45,7 @@ describe "Ingest form authorization rules" do
     end
 
     context "for a regular user", role: nil do
-      it { should have_permissions_error("ingest") }
+      it { should have_permissions_error("create") }
     end
 
     context "for a submitter", role: :submitter do
@@ -68,7 +68,7 @@ describe "Ingest form authorization rules" do
     end
 
     context "for a regular user", role: nil do
-      it { should have_permissions_error("ingest") }
+      it { should have_permissions_error("create") }
     end
 
     context "for a submitter", role: :submitter do
@@ -91,7 +91,7 @@ describe "Ingest form authorization rules" do
     end
 
     context "for a regular user", role: nil do
-      it { should have_permissions_error("ingest") }
+      it { should have_permissions_error("create") }
 
       it "shouldn't create an object" do
         expect(GenericAsset.count).to eq(0)
@@ -130,11 +130,11 @@ describe "Ingest form authorization rules" do
     end
 
     context "for a regular user", role: nil do
-      it { should have_permissions_error("edit") }
+      it { should have_permissions_error("update") }
     end
 
     context "for a submitter", role: :submitter do
-      it { should have_permissions_error("edit") }
+      it { should have_permissions_error("update") }
     end
 
     context "for an archivist", role: :archivist do
@@ -154,7 +154,7 @@ describe "Ingest form authorization rules" do
     end
 
     context "for a regular user", role: nil do
-      it { should have_permissions_error("edit") }
+      it { should have_permissions_error("update") }
 
       it "shouldn't modify the object" do
         expect(@new_asset.descMetadata.title.length).to eq(1)
@@ -163,7 +163,7 @@ describe "Ingest form authorization rules" do
     end
 
     context "for a submitter", role: :submitter do
-      it { should have_permissions_error("edit") }
+      it { should have_permissions_error("update") }
 
       it "shouldn't modify the object" do
         expect(@new_asset.descMetadata.title.length).to eq(1)

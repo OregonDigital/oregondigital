@@ -28,7 +28,7 @@
     <%= link_to "Review", reviewer_index_path %>
   <% end -%>
 
-  <% if can?(:ingest, GenericAsset) %>
+  <% if can?(:create, GenericAsset) %>
     | <%= link_to "Ingest", ingest_index_path %>
   <% end %>
 </div>
