@@ -97,7 +97,7 @@ describe OregonDigital::IdService do
       a.uniq.count.should == a.count
     end
 
-    it "should create many unique ids when hit by multiple processes " do
+    xit "should create many unique ids when hit by multiple processes " do
       rd, wr = IO.pipe
       2.times do
         pid = fork do

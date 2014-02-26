@@ -117,4 +117,7 @@ group :development, :test do
 
   # Factories to make our "let" blocks DRY
   gem "factory_girl_rails", :require => false
+
+  # Make JS testing work while keeping the DB clean
+  gem "database_cleaner"
 end
