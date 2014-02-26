@@ -44,6 +44,7 @@ p {
 #header-navbar-fixed-top, .navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
   box-shadow: none;
   background: none no-repeat $accent-bg;
+  min-width: inherit;
 
   .navbar-inner {
     padding: 0 0 10px 0;
@@ -52,12 +53,27 @@ p {
     .black {
       background: #000000;
       margin-bottom: 10px;
+
+      img {
+        height: 30px;
+        width: auto;
+      }
     }
     .btn-navbar {
       position: absolute;
       right: 0;
-      top: 50px;
+      top: 35px;
     }
+    @media (min-width: 481px) {
+      .black img {
+        height: 100%;
+      }
+      .btn-navbar {
+        top: 50px;
+      }
+    }
+
+
     .span3, .span9, .span9 .span5, .span9 .span3 {
       display: inline-block !important;
       vertical-align: middle !important;
@@ -68,10 +84,10 @@ p {
       width: 60px;
     }
     .span9 {
-      width: 300px;
+      width: 200px;
     }
     .span9 .span5 {
-      width: auto;
+      width: 130px;
     }
     .span9 .span3 {
       display: none;
@@ -83,6 +99,9 @@ p {
       .span9 {
         width: 370px;
         margin-left: 20px;
+      }
+      .span9 .span5 {
+        width: 130px;
       }
     }
 
@@ -156,7 +175,7 @@ p {
     padding-top: 0;
 
     form {
-      width:  270px;
+      width:  150px;
       display: inline-block;
       white-space: nowrap;
       /*margin-right: 150px;   */
@@ -205,14 +224,15 @@ p {
       }
 
     }
-    /*.input-wrapper {
-      width: 100%;
+
+    .input-wrapper {
+      width: 110px;
 
       input.search_q {
-        width: 100%;
+        width: 55px;
       }
     }
-    @media (max-width: 479px) {
+    @media (min-width: 481px) {
       .input-wrapper {
         width: auto;
 
@@ -220,7 +240,13 @@ p {
           width: auto;
 
         }
-      } */
+      }
+    }
+    @media (min-width: 768px) {
+      .input-wrapper input.search_q {
+        width: 270px;
+      }
+    }
     }
 
 
