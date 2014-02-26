@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.slider
+//= require jquery.ui.draggable
+//= require jquery.ui.effect.all
 //
 // Required by Blacklight
 //= require blacklight/blacklight
@@ -25,3 +28,10 @@
 //
 // OpenSeaDragon for image viewers.
 //= require openseadragon
+//
+// BookReader
+//= require bookreader/dragscrollable
+//= require bookreader/jquery.colorbox
+//= require bookreader/jquery.ui.ipad
+//= require bookreader/jquery.bt.min
+//= require bookreader/BookReader

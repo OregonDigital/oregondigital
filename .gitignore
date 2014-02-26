@@ -52,6 +52,7 @@ braceros-tiffs
 # Ignore derived tiffs - in production they probably won't live here, but we still don't want
 # to accidentally push any up during dev/test
 /media
+/public/media
 
 # Ignore deploy configuration files for God and Unicorn
 # These sit on our production server and are symlinked in.
