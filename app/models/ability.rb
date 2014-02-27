@@ -29,6 +29,9 @@ class Ability
   end
 
   def template_permissions
+    # Forcibly deny permissions to override built-in Hydra rules
+    cannot [:manage], Template
+
     if current_user.archivist? || current_user.admin?
       can [:manage], Template
     end

@@ -1,4 +1,7 @@
 class TemplatesController < FormControllerBase
+  include Hydra::Controller::ControllerBehavior
+  before_filter :check_permissions
+
   def index
     @templates = Template.all_sorted
   end
@@ -27,6 +30,18 @@ class TemplatesController < FormControllerBase
   end
 
   private
+
+  def check_permissions
+    permission = case action_name
+      when "edit", "update" then :update
+      when "destroy"        then :delete
+      else                       :create
+    end
+
+    unless can? permission, Template
+      raise Hydra::AccessDenied.new "You do not have permission to #{permission} templates."
+    end
+  end
 
   # Overrides base behavior to handle the magic template varible (title) which
   # goes directly onto the template object, not the form object
