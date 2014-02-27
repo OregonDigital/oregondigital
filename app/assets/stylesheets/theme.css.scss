@@ -1,4 +1,3 @@
-
 $background: #F1ECE3;
 $accent-bg: #DAC582;
 $highlight-bg: #1FA1BF;
@@ -6,12 +5,12 @@ $highlight-bg: #1FA1BF;
 $color: #144651;
 $highlight-color: #ffffff;
 
-$font-stack:    Helvetica, sans-serif;
+$font-stack: Helvetica, sans-serif;
 
 body {
   font: 100% $font-stack;
   background-color: $background;
-  color:  #000000;
+  color: #000000;
   padding-top: 0;
 }
 
@@ -38,7 +37,6 @@ p {
   line-height: 20px;
 }
 
-
 //Oregon Digital header
 
 #header-navbar-fixed-top, .navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
@@ -47,12 +45,12 @@ p {
   min-width: inherit;
 
   .navbar-inner {
-    padding: 0 0 10px 0;
+    padding: 0;
     min-height: 0;
 
     .black {
       background: #000000;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
 
       img {
         height: 30px;
@@ -60,38 +58,90 @@ p {
       }
     }
     .btn-navbar {
-      position: absolute;
-      right: 0;
-      top: 35px;
+      margin-top: 0;
     }
     @media (min-width: 481px) {
       .black img {
         height: 100%;
       }
+    }
+    @media (min-width: 769px) {
       .btn-navbar {
-        top: 50px;
+        margin-top: 5px;
       }
     }
+    @media (min-width: 980px) {
+      .black {
+        margin-bottom: 10px;
+      }
 
+    }
 
-    .span3, .span9, .span9 .span5, .span9 .span3 {
-      display: inline-block !important;
+    .span3, .span9, .span5, .span9 .span5, span9 .span3 {
+      display: inline-block;
       vertical-align: middle !important;
-      float: none !important;
-      width: auto;
+      float: none;
+      /* width: auto;   */
     }
     .span3 {
       width: 60px;
+      margin-bottom: 5px;
     }
     .span9 {
       width: 200px;
     }
-    .span9 .span5 {
+    .span5 {
       width: 130px;
+      margin-bottom: 6px;
     }
-    .span9 .span3 {
-      display: none;
+    .span3.nav-collapse {
+      float: left;
+      margin-bottom: 0;
+      -moz-box-shadow: -15px 7px 15px -15px rgba(0, 0, 0, 0.8);
+      -webkit-box-shadow: -15px 7px 15px -15px rgba(0, 0, 0, 0.8);
+      box-shadow: -15px 7px 15px -15px rgba(0, 0, 0, 0.8);
+      width: 100%;
+
+      .utils {
+        border-left: none;
+        display: inline-block;
+        padding-left: 60px;
+        width: 100%;
+        border-top: 1px solid #EBDAA7;
+        padding-top: 6px;
+
+        a {
+          padding-bottom: 8px;
+          padding-top: 8px;
+          color: $color;
+          display: block;
+          line-height: 22px;
+        }
+      }
+
     }
+    @media (min-width: 980px) {
+      .span3.nav-collapse {
+        width: auto;
+        float: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+
+        .utils {
+          border-left: 1px solid $color;
+          border-top: none;
+          width: auto;
+          padding: 2px 0 2px 20px;
+          a {
+            padding-bottom: 0;
+            padding-top: 0;
+          }
+        }
+
+      }
+    }
+
     @media (min-width: 480px) {
       .span3 {
         width: 70px;
@@ -100,8 +150,11 @@ p {
         width: 370px;
         margin-left: 20px;
       }
-      .span9 .span5 {
+      .span5 {
         width: 130px;
+      }
+      span3.nav-collapse {
+        margin-bottom: 0;
       }
     }
 
@@ -109,26 +162,28 @@ p {
       .span3 {
         width: 172px;
       }
-      .span9 {
-        width: 550px;
-        .span5 {
-          width: 500px;
-        }
+
+      .span5 {
+        width: 450px;
+        margin-bottom: 10px;
       }
-      .btn-navbar {
-        top: auto;
+      span3.nav-collapse {
+        margin-bottom: 0;
       }
     }
     @media (min-width: 980px) {
       .span3 {
         width: 220px;
+        margin-bottom: 0;
       }
-      .span9 {
-        width: 600px;
+
+      .span5 {
         margin-left: 30px;
-        .span5 {
-            width: 423px;
-        }
+        width: 423px;
+      }
+      .span3.nav-collapse {
+        margin-bottom: 10px;
+        float: none;
       }
     }
     @media (min-width: 1200px) {
@@ -138,13 +193,12 @@ p {
       .span9 {
         width: 860px;
       }
-      .span9 .span5 {
+      .span5 {
         width: 463px;
 
       }
     }
   }
-
 
   .brand {
     background: url(image_path("oregondigital/logo.png")) no-repeat scroll left top / 100% transparent;
@@ -161,6 +215,7 @@ p {
     .brand {
       height: 46px;
       width: 116px;
+      margin-bottom: 0;
     }
   }
   @media (min-width: 980px) {
@@ -168,6 +223,7 @@ p {
       height: 69px;
       width: 172px;
       float: right;
+      margin-bottom: 10px;
     }
   }
 
@@ -175,10 +231,9 @@ p {
     padding-top: 0;
 
     form {
-      width:  150px;
+      width: 150px;
       display: inline-block;
       white-space: nowrap;
-      /*margin-right: 150px;   */
       margin-bottom: 0;
       line-height: 12px;
     }
@@ -203,8 +258,8 @@ p {
 
     .styled-select {
 
-      width:  90px;
-      height:  28px;
+      width: 90px;
+      height: 28px;
       overflow: hidden;
       background: url(image_path("oregondigital/selectarrow.png")) no-repeat right #fff;
       border: 1px solid #ccc;
@@ -213,12 +268,12 @@ p {
 
       #search_field {
 
-        width:  112px;
-        height:  28px;
+        width: 112px;
+        height: 28px;
         background: transparent;
         -webkit-appearance: none;
         line-height: 1;
-        border:  0;
+        border: 0;
         border-radius: 0;
         display: block;
       }
@@ -247,43 +302,12 @@ p {
         width: 270px;
       }
     }
-    }
-
-
-    .btn {
-      vertical-align: middle;
-    }
   }
-  /*@media (min-width: 480px) and (max-width: 767px) {
-    #searchbar {
-      width:  290px;
-    }
-  }
-  @media (max-width: 479px) {
-    #searchbar {
-      width:  auto;
-    }
-  } */
 
-  .nav-collapse {
-    min-height: 0;
+  .btn {
+    vertical-align: middle;
   }
-  .utils {
-    border-left: 1px solid $color;
-    width: 0;
-    padding: 0;
 
-    a {
-      color: $color;
-      display: block;
-      line-height: 22px;
-    }
-  }
-  @media (min-width: 980px) {
-    .utils {
-      width: auto;
-      padding: 2px 0 2px 20px;
-    }
 }
 
 /* main-container */
@@ -292,9 +316,10 @@ p {
   margin-top: 20px;
   margin-bottom: 50px;
 }
-@media (min-width: 767px) and (max-width:979px) {
+
+@media (min-width: 767px) and (max-width: 979px) {
   #main-container {
-    width:  auto;
+    width: auto;
     margin: 10px;
   }
 }
@@ -313,6 +338,7 @@ p {
     }
   }
 }
+
 @media (min-width: 872px) {
   #main-container {
     .span9 {
@@ -327,6 +353,7 @@ p {
     }
   }
 }
+
 @media (min-width: 980px) {
   #main-container {
     .span9 {
@@ -335,29 +362,34 @@ p {
       .span5 {
         width: 440px;
       }
+
       .span3 {
         width: 230px;
       }
     }
   }
 }
+
 @media (min-width: 1200px) {
   #main-container {
     .span9 {
       width: 870px;
+
       .span5 {
         width: 470px;
       }
+
       .span3 {
         width: 270px;
       }
     }
   }
 }
+
 /* facets */
 
 #facets {
-  background:  #ffffff;
+  background: #ffffff;
   color: $color;
 
   a {
@@ -391,8 +423,6 @@ p {
     padding-bottom: 0;
   }
 }
-
-
 
 /* footer */
 
@@ -428,8 +458,7 @@ p {
   }
 
   a {
-    color:  $color;
-
+    color: $color;
   }
 
 }
@@ -439,7 +468,7 @@ p {
 .welcome, .imagecolumn {
 
   .collections-link {
-    border-top:  1px solid $accent-bg;
+    border-top: 1px solid $accent-bg;
     border-bottom: 1px solid $accent-bg;
     padding: 1em;
   }
@@ -455,7 +484,7 @@ p {
   background: #fff;
 
   .well, .constraints-container, #sortAndPerPage {
-    border:  none;
+    border: none;
     box-shadow: none;
     background: none;
 
@@ -466,7 +495,7 @@ p {
   #appliedParams {
     background: #F5F5F5;
     border-top: 1px solid $accent-bg;
-    border-bottom:  1px solid #E3E3E3;
+    border-bottom: 1px solid #E3E3E3;
   }
   #sortAndPerPage {
     padding: 0 19px;
@@ -481,13 +510,13 @@ p {
   }
 }
 
-
 /* misc bits */
 
 .form-actions {
-  background:  transparent;
-  border-top:  none;
+  background: transparent;
+  border-top: none;
 }
+
 .btn {
   background-color: $highlight-bg;
   background-image: none;
@@ -504,14 +533,14 @@ p {
 
 /* sidebar mini-menus */
 .nav-list .nav-header {
-  border-bottom:  1px solid #E3E3E3;
+  border-bottom: 1px solid #E3E3E3;
   margin-bottom: 8px;
 
 }
+
 .nav-list > li > a, label.toggle_bookmark {
   font-size: 13px;
   line-height: 22px;
-
 }
 
 
