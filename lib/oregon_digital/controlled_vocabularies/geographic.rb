@@ -1,7 +1,7 @@
 require 'rest_client'
 
 module OregonDigital::ControlledVocabularies
-  class Geographic < OregonDigital::RDF::RdfResource
+  class Geographic < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :geonames

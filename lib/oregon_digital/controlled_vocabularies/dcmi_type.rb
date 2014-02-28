@@ -1,5 +1,5 @@
 module OregonDigital::ControlledVocabularies
-  class DCMIType < OregonDigital::RDF::RdfResource
+  class DCMIType < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :dcmitype

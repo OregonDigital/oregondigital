@@ -1,6 +1,5 @@
 ##
-# This module is included to allow for an ActiveFedora::Base object to be set as the class_name for an
-# RdfResource.
+# This module is included to allow for an ActiveFedora::Base object to be set as the class_name for a Resource.
 # Enables functionality like:
 #   base = ActiveFedora::Base.new('oregondigital:1')
 #   base.title = 'test'
@@ -8,8 +7,9 @@
 #   subject.descMetadata.set = base
 #   subject.descMetadata.set # => <ActiveFedora::Base>
 #   subject.descMetadata.set.title # => 'test'
-module OregonDigital::RDF::RdfIdentifiable
+module ActiveFedora::Rdf::Identifiable
   extend ActiveSupport::Concern
+  delegate :parent, :dump, :query, :rdf_type, :to => :resource
   ##
   # Defines which resource defines this ActiveFedora object.
   # This is required for OregonDigital::RDF::RdfResource#set_value to append graphs.
@@ -25,7 +25,7 @@ module OregonDigital::RDF::RdfIdentifiable
     # @see OregonDigital::RDF::RdfResource.from_uri
     # @param [RDF::URI] uri URI that is being looked up.
     def from_uri(uri,_)
-      uri = uri.to_s.gsub(OregonDigital::RDF::ObjectResource.base_uri,"")
+      uri = uri.to_s.gsub(ActiveFedora::Rdf::ObjectResource.base_uri,"")
       return self.find(uri)
     end
   end

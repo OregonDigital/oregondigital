@@ -1,5 +1,5 @@
 module OregonDigital::ControlledVocabularies
-  class Format < OregonDigital::RDF::RdfResource
+  class Format < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :mimetype
