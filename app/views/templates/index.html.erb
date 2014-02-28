@@ -18,20 +18,26 @@
     <% for template in @templates %>
       <tr>
         <td>
-          <a href="<%= edit_template_path(template.id) %>">
-            <span class="sr-only">Edit</span>
+          <% if can?(:update, ::Template) %>
+            <a href="<%= edit_template_path(template.id) %>">
+              <span class="sr-only">Edit</span>
+              <%= template.title %>
+            </a>
+          <% else %>
             <%= template.title %>
-          </a>
+          <% end %>
         </td>
         <td><%= template.set %></td>
         <td class="button-cell">
-          <a href="<%= template_path(template.id) %>" data-method="delete"
-             data-confirm="Are you sure you want to remove '<%= template.title %>'?">
-            <span class="btn btn-danger">
-              <i class="icon-remove icon-white"></i>
-              Delete <span class="sr-only"><%= template.title %></span>
-            </span>
-          </a>
+          <% if can?(:delete, ::Template) %>
+            <a href="<%= template_path(template.id) %>" data-method="delete"
+               data-confirm="Are you sure you want to remove '<%= template.title %>'?">
+              <span class="btn btn-danger">
+                <i class="icon-remove icon-white"></i>
+                Delete <span class="sr-only"><%= template.title %></span>
+              </span>
+            </a>
+          <% end %>
           <a href="<%= new_template_path(template_id: template.id) %>">
             <span class="btn btn-inverse">
               <i class="icon-plus icon-white"></i>

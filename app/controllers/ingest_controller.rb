@@ -32,7 +32,7 @@ class IngestController < FormControllerBase
     end
 
     unless can? permission, GenericAsset
-      raise Hydra::AccessDenied.new "You do not have permission to #{permission}."
+      raise Hydra::AccessDenied.new "You do not have permission to #{permission} assets."
     end
   end
 

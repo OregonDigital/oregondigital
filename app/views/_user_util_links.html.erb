@@ -31,4 +31,8 @@
   <% if can?(:create, GenericAsset) %>
     | <%= link_to "Ingest", ingest_index_path %>
   <% end %>
+
+  <% if can?(:create, ::Template) %>
+    | <%= link_to "Templates", templates_path %>
+  <% end %>
 </div>
