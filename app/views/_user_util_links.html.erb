@@ -24,6 +24,7 @@
     <div class="admin">
       <% if can?(:show, Role) -%>
         <%= link_to "Roles", role_management.roles_path %>
+        <% content_for :body_class, "admins" %>
       <% end -%>
       <% if can?(:review, GenericAsset) -%>
         -
