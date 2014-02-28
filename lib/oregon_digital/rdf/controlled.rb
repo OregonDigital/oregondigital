@@ -105,7 +105,7 @@ module OregonDigital::RDF
 
       def load_vocab(name)
         return nil unless RDF_VOCABS[name.to_sym].include? :source
-        cache = OregonDigital::RDF::RdfRepositories.repositories[repository]
+        cache = ActiveFedora::Rdf::Repositories.repositories[repository]
         graph = RDF::Graph.new(:data => cache, :context => RDF_VOCABS[name.to_sym][:source])
         graph.load(RDF_VOCABS[name.to_sym][:source])
         graph
@@ -129,7 +129,7 @@ module OregonDigital::RDF
         # better as a baseline RDF vocab search.
         def search(q, sub_authority=nil)
           solutions = []
-          cache = OregonDigital::RDF::RdfRepositories.repositories[@parent.repository]
+          cache = ActiveFedora::Rdf::Repositories.repositories[@parent.repository]
           cache.query(:object => RDF::Literal(q)).each_statement do |solution|
             solutions << { :id => solution.subject, :label => solution.object } if uses_vocab_prefix? solution.subject
           end

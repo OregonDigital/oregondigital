@@ -1,5 +1,5 @@
 module OregonDigital::ControlledVocabularies
-  class Organization < OregonDigital::RDF::RdfResource
+  class Organization < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
     use_vocabulary :oregon_universities
     

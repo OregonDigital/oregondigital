@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe OregonDigital::RdfResourceDatastream do
+describe ActiveFedora::RDFDatastream do
   before(:each) do
-    class DummySubnode < OregonDigital::RDF::RdfResource
+    class DummySubnode < ActiveFedora::Rdf::Resource
       property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal
       property :relation, :predicate => RDF::DC[:relation]
     end
     class DummyAsset < ActiveFedora::Base; end;
-    class DummyResource < OregonDigital::RdfResourceDatastream
+    class DummyResource < ActiveFedora::RDFDatastream
       property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal do |index|
         index.as :searchable, :displayable
       end
@@ -22,10 +22,11 @@ describe OregonDigital::RdfResourceDatastream do
       end
     end
     class DummyAsset < ActiveFedora::Base
-      include OregonDigital::RDF::RdfIdentifiable
+      include ActiveFedora::Rdf::Identifiable
       has_metadata :name => 'descMetadata', :type => DummyResource
-      delegate :title, :to => :descMetadata, :multiple => true
-      delegate :license, :to => :descMetadata, :multiple => true
+      #delegate :title, :to => :descMetadata, :multiple => true
+      delegate :title, :to => 'descMetadata', :multiple => true
+      delegate :license, :to => 'descMetadata', :multiple => true
       delegate :relation, :to => 'descMetadata', :at => [:license, :relation], :multiple => false
     end
   end
@@ -87,6 +88,9 @@ describe OregonDigital::RdfResourceDatastream do
           subject.save
           subject.reload
         end
+        it "should be persisted" do
+          expect(subject.descMetadata.resource.persisted?).to be_true
+        end
         context "and it's reloaded" do
           before(:each) do
             subject.reload
@@ -131,6 +135,7 @@ describe OregonDigital::RdfResourceDatastream do
       context "persisted to repository" do
         before(:each) do
           DummySubnode.configure :repository => :default
+          DummySubnode.any_instance.stub(:repository).and_return(RDF::Repository.new)
           dummy = DummySubnode.new(RDF::URI('http://example.org/dummy/blah'))
           dummy.title = 'subbla'
           # We want to have to manually persist to the repository.

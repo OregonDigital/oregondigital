@@ -1,7 +1,9 @@
 class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
-  # TODO: use an http URI instead of the PID as a subject
-  # rdf_subject { |ds| Utils.rdf_subject(ds.pid) }
   include ActiveFedora::Crosswalks::Crosswalkable
+
+  def resource_class
+    OregonResource
+  end
 
   map_predicates do |map|
 
@@ -110,7 +112,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     property :institution, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.contributingInstitution, :class_name => OregonDigital::ControlledVocabularies::Organization do |index|
       index.as :searchable, :facetable, :displayable
     end
-
   end
 
   def to_solr(doc = {})
@@ -118,6 +119,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     # Magic mystery fun code for making marc act like solr
     # doc["dc_contributor_t"] = doc["dc_photographer"] + ...
     doc
+  end
+
+  class OregonResource < ActiveFedora::Rdf::ObjectResource
+    configure :base_uri => 'http://oregondigital.org/resource/'
   end
 
 end

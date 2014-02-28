@@ -1,39 +1,41 @@
-module OregonDigital::RDF
+module ActiveFedora::Rdf
   ##
-  # Implements property configuration common to RdfResource and
-  # RdfResourceDatastream.  It does its work at the class level, and
-  # is meant to be extended.
+  # Implements property configuration common to Rdf::Resource,
+  # RDFDatastream, and others.  It does its work at the class level,
+  # and is meant to be extended.
   #
   # Define properties at the class level with:
   #
   #    property :title, :predicate => RDF::DC.title, :class_name => ResourceClass
   #
-  # or with the 'old' ActiveFedora::RDFDatastream style:
+  # or with the 'old' style:
   #
   #    map_predicates do |map|
   #      map.title(:in => RDF::DC)
   #    end
   #
   # You can pass a block to either to set index behavior.
-  module RdfProperties
+  module Properties
+    extend Deprecation
     attr_accessor :properties
 
     ##
-    # Registers properties for RdfResource like classes
+    # Registers properties for Resource-like classes
     # @param [Symbol]  name of the property (and its accessor methods)
     # @param [Hash]  opts for this property, must include a :predicate
     # @yield [index] index sets solr behaviors for the property
     def property(name, opts={}, &block)
-      config = ActiveFedora::Rdf::NodeConfig.new(name, opts[:predicate], :class_name => opts[:class_name]).tap do |config|
+      config[name] = ActiveFedora::Rdf::NodeConfig.new(name, opts[:predicate], opts.except(:predicate)).tap do |config|
         config.with_index(&block) if block_given?
       end
-      behaviors = config.behaviors.flatten if config.behaviors and not config.behaviors.empty?
+      behaviors = config[name].behaviors.flatten if config[name].behaviors and not config[name].behaviors.empty?
       self.properties[name] = {
         :behaviors => behaviors,
-        :type => config.type,
-        :class_name => config.class_name,
-        :predicate => config.predicate,
-        :term => config.term
+        :type => config[name].type,
+        :class_name => config[name].class_name,
+        :predicate => config[name].predicate,
+        :term => config[name].term,
+        :multivalue => config[name].multivalue
       }
       register_property(name)
     end
@@ -44,6 +46,23 @@ module OregonDigital::RDF
       else
         {}.with_indifferent_access
       end
+    end
+
+    def config
+      @config ||= if superclass.respond_to? :config
+        superclass.properties.dup
+      else
+        {}.with_indifferent_access
+      end
+    end
+
+    def config_for_term_or_uri(term)
+      return config[term.to_sym] unless term.kind_of? RDF::Resource
+      config.each { |k, v| return v if v.predicate == term.to_uri }
+    end
+
+    def fields
+      properties.keys.map(&:to_sym)
     end
 
     private
@@ -79,6 +98,7 @@ module OregonDigital::RDF
       end
     end
     def map_predicates
+      Deprecation.warn Properties, "map_predicates is deprecated and will be removed in active-fedora 8.0.0. Use property :name, :predicate => predicate instead.", caller
       mapper = Mapper.new(self)
       yield(mapper)
     end
