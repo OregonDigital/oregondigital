@@ -32,7 +32,7 @@ gem 'rdf-redis', '~>0.0.2', :git => 'git://github.com/no-reply/rdf-redis.git'
 
 gem 'noid', '~>0.6.6'
 gem 'hybag'
-gem 'qa', '~>0.0.3', :git => "git://github.com/jechols/questioning_authority"
+gem 'qa', '~>0.0.3', :git => "git://github.com/jechols/questioning_authority", :branch => "feature/od-fixes"
 
 gem 'resque', '~>1.25.0'
 
