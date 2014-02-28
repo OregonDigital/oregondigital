@@ -12,28 +12,31 @@
 
   <div class="util-links-other">
     <% if current_or_guest_user %>
-      <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path %>
+      <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path, :class => 'bookmarks' %>
+    <% end %>
+    <% if has_user_authentication_provider? and current_user %>
+      -
+      <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path, :class => 'saved-searches' %>
     <% end %>
     <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
   </div>
   <div class="util-links-auth">
-    <% if has_user_authentication_provider? and current_user %>
-      <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path %>
-    <% end %>
-    <% if can?(:show, Role) -%>
-      <br>
-      <%= link_to "Roles", role_management.roles_path %>
-    <% end -%>
-    <% if can?(:review, GenericAsset) -%>
-      <%= link_to "Review", reviewer_index_path %>
-    <% end -%>
+    <div class="admin">
+      <% if can?(:show, Role) -%>
+        <%= link_to "Roles", role_management.roles_path %>
+      <% end -%>
+      <% if can?(:review, GenericAsset) -%>
+        -
+        <%= link_to "Review", reviewer_index_path %>
+      <% end -%>
 
-    <% if can?(:create, GenericAsset) %>
-      | <%= link_to "Ingest", ingest_index_path %>
-    <% end %>
+      <% if can?(:create, GenericAsset) %>
+        - <%= link_to "Ingest", ingest_index_path %>
+      <% end %>
 
-    <% if can?(:create, ::Template) %>
-      | <%= link_to "Templates", templates_path %>
-    <% end %>
+      <% if can?(:create, ::Template) %>
+        - <%= link_to "Templates", templates_path %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -109,6 +109,18 @@ p {
         width: 100%;
         border-top: 1px solid #EBDAA7;
         padding-top: 6px;
+        font-size: 13px;
+
+        .util-links-login, .util-links-other {
+          font-size: inherit;
+          .bookmarks, .saved-searches {
+            display: inline;
+          }
+        }
+
+        .util-links-login a, .util-links-auth .admin a {
+          display: inline;
+        }
 
         a {
           padding-bottom: 8px;
