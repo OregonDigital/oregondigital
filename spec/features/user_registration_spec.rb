@@ -4,7 +4,9 @@ require 'spec_helper'
 describe "user registration" do
   it "should allow a new user to be created and user for logging in" do
     visit root_path
-    click_link "Login"
+    within(".navbar") do
+      click_link "Login"
+    end
     click_link "Sign up"
 
     # Using ids as the password field is ambiguous to Capybara...
@@ -13,8 +15,12 @@ describe "user registration" do
     fill_in "user_password_confirmation", :with => "testtest"
     click_button "Sign up"
 
-    click_link "Log Out"
-    click_link "Login"
+    within(".navbar") do
+      click_link "Log Out"
+    end
+    within(".navbar") do
+      click_link "Login"
+    end
     fill_in "user_email", :with => "fakey@example.com"
     fill_in "user_password", :with => "testtest"
     click_button "Sign in"
