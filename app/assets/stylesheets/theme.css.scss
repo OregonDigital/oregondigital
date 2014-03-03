@@ -107,27 +107,28 @@ p {
 
       .utils {
         border-left: none;
-        display: inline-block;
+        display: block;
         padding-left: 60px;
         width: 100%;
         border-top: 1px solid #EBDAA7;
         padding-top: 6px;
+        padding-bottom: 6px;
         font-size: 13px;
 
         .util-links-login, .util-links-other {
           font-size: inherit;
           .bookmarks, .saved-searches {
-            display: inline;
+            display: inline-block;
           }
         }
 
         .util-links-login a, .util-links-auth .admin a {
-          display: inline;
+          display: inline-block;
         }
 
         a {
-          padding-bottom: 8px;
-          padding-top: 8px;
+          padding-bottom: 6px;
+          padding-top: 6px;
           color: $color;
           display: block;
           line-height: 22px;
