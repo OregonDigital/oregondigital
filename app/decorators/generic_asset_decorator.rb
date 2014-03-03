@@ -9,7 +9,7 @@ class GenericAssetDecorator < Draper::Decorator
   end
 
   def sorted_show_fields
-    (configured_show_keys | resource.send(:properties).keys).select{|x| display_field?(x)}
+    (configured_show_keys | property_keys).compact.select{|x| display_field?(x)}
   end
 
   def display_field?(field)
@@ -36,7 +36,7 @@ class GenericAssetDecorator < Draper::Decorator
   private
 
   def property_keys
-    resource.send(:properties).keys.map{|x| x.to_s.downcase}
+    r = resource.send(:properties).keys
   end
 
   def configured_show_keys
