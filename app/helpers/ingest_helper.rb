@@ -57,9 +57,24 @@ module IngestHelper
     )
   end
 
+  # Returns a default value based largely on simple form's I18n rules, but
+  # using the controller name since the ingest form's object name isn't unique
+  # amongst all uses (ingest vs. templates).
+  def submit_default_value(form)
+    key = form.object ? (form.object.persisted? ? :update : :create) : :submit
+    defaults = []
+    defaults << "%s.%s" % [controller_name.singularize, key]
+    defaults << "metadata_ingest_form.%s" % key
+    defaults << key
+    defaults << "Submit"
+
+    return I18n.t(defaults.shift, scope: [:helpers, :submit], default: defaults)
+  end
+
   # Spits out a form button with classes to use bootstrap styling
   def form_submit(form, opts = {})
     opts[:class] ||= "btn btn-primary"
+    opts[:value] ||= submit_default_value(form)
     content_tag(:div, :class => "form-actions") do
       form.submit(opts)
     end
