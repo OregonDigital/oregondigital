@@ -77,10 +77,14 @@ gem 'metadata-ingest-form', '~>2.2'
 gem 'mysql2'
 
 # Unicorn for web server
-gem 'unicorn', '~>4.6.3'
+gem 'puma'
 
 # OAI
 gem 'oai'
+
+# Old Asset Precompile Behavior for Stylesheets
+gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-fix"
+
 
 group :development do
   gem 'pry'
