@@ -1,4 +1,13 @@
 en:
+  helpers:
+    submit:
+      template:
+        create: Create Template
+        update: Update Template
+      ingest:
+        create: Ingest Asset
+        update: Update Asset
+
   simple_form:
     "yes": 'Yes'
     "no": 'No'

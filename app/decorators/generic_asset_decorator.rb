@@ -7,4 +7,42 @@ class GenericAssetDecorator < Draper::Decorator
   def view_partial
     "generic_viewer"
   end
+
+  def sorted_show_fields
+    (configured_show_keys | property_keys).compact.select{|x| display_field?(x)}
+  end
+
+  def display_field?(field)
+    return false if field_value(field).blank?
+    true
+  end
+
+  def field_label(field)
+    I18n.t("oregondigital.catalog.show.#{field.downcase}", :default => field.humanize)
+  end
+
+  def field_value(field)
+    results = resource.get_values(field)
+    results.map do |r|
+      if r.respond_to?(:rdf_label)
+        r.rdf_label.to_s
+      else
+        r.to_s
+      end
+    end
+    results.join(", ")
+  end
+
+  private
+
+  def property_keys
+    r = resource.send(:properties).keys
+  end
+
+  def configured_show_keys
+    r = I18n.t("oregondigital.catalog.show")
+    r = {} unless r.kind_of?(Hash)
+    r.keys.map{|x| x.to_s.downcase}
+  end
+
 end

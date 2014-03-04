@@ -107,6 +107,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
       index.as :searchable, :facetable, :displayable
     end
 
+    property :institution, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.contributingInstitution, :class_name => OregonDigital::ControlledVocabularies::Organization do |index|
+      index.as :searchable, :facetable, :displayable
+    end
+
   end
 
   def to_solr(doc = {})

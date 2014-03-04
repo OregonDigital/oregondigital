@@ -11,6 +11,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails', '~>3.0.4'
+gem 'jquery-ui-rails'
 gem 'cocoon', '~>1.2.0'
 
 # Nicer form development
@@ -31,7 +32,7 @@ gem 'rdf-redis', '~>0.0.2', :git => 'git://github.com/no-reply/rdf-redis.git'
 
 gem 'noid', '~>0.6.6'
 gem 'hybag'
-gem 'qa', '~>0.0.3', :git => "git://github.com/jechols/questioning_authority"
+gem 'qa', '~>0.0.3', :git => "git://github.com/jechols/questioning_authority", :branch => "feature/od-fixes"
 
 gem 'resque', '~>1.25.0'
 
@@ -116,4 +117,7 @@ group :development, :test do
 
   # Factories to make our "let" blocks DRY
   gem "factory_girl_rails", :require => false
+
+  # Make JS testing work while keeping the DB clean
+  gem "database_cleaner"
 end

@@ -1,0 +1,20 @@
+<div id="ingest-form-container">
+  <%= ingest_form_for(@form) do |f| %>
+    <%= form_errors(f) %>
+
+    <div class="template-name-wrapper">
+      <h3 class="header">Template Name</h3>
+      <%= f.input(:template_name,
+                  :input_html => {:class => "input-xxlarge", :value => @form.asset.title},
+                  :label_html => {:class => "sr-only"}) %>
+    </div>
+
+    <%= render "ingest/internal_group_fields", :form => @form.form, :f => f %>
+
+    <%= form_submit(f) %>
+  <% end %>
+</div>
+
+<script>
+  var controlledVocabMap = <%= raw(@controlled_vocab_map.to_json) %>;
+</script>

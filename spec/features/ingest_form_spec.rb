@@ -9,8 +9,11 @@ describe "(Ingest Form)", :js => true do
   let(:label1) { "Canned foods industry--Accidents" }
   let(:subject2) { "http://id.loc.gov/authorities/subjects/sh85050282" }
   let(:label2) { "Food industry and trade" }
+  let(:admin) {FactoryGirl.create(:admin)}
 
   before(:each) do
+    capybara_login(admin)
+
     # Ensure ingested objects create predictable and unique pids
     OregonDigital::IdService.stub(:namespace).and_return("spec-feature-ingestform")
     OregonDigital::IdService.stub(:next_id) do
@@ -27,8 +30,9 @@ describe "(Ingest Form)", :js => true do
   end
 
   def visit_ingest_url
-    visit('/ingest')
-    click_link "start from scratch"
+    visit('/')
+    click_link "Ingest"
+    click_link "Start from scratch"
 
     expect(page).to have_selector("input[type=submit]")
   end
@@ -250,6 +254,57 @@ describe "(Ingest Form)", :js => true do
       submit_ingest_form_with_upload(:xml)
       @asset = GenericAsset.find(@pid, cast: true)
       expect(@asset.class).to eq(GenericAsset)
+    end
+  end
+
+  context "(when ingesting from a template)" do
+    let(:template) { FactoryGirl.create(:template) }
+
+    before(:each) do
+      template
+      visit "/ingest"
+      click_link(template.title)
+    end
+
+    it "should display the template's data" do
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[0])
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[1])
+      expect(page).to include_ingest_fields_for("date", "created", template.templateMetadata.created[0])
+    end
+
+    it "should create a new record" do
+      expect {
+        click_the_ingest_button
+        expect(page).to have_content("Ingested new object")
+      }.to change {GenericAsset.count}.by(1)
+    end
+
+    it "shouldn't modify the template" do
+      fill_in_ingest_data("description", "description", "This is not a useful description")
+      fill_in_ingest_data("title", "title", "Third title!")
+      click_the_ingest_button
+
+      # Sanity check - data is being deleted between tests, right?
+      expect(Template.count).to eq(1)
+
+      new_template = Template.first
+      expect(new_template.templateMetadata.description).to be_blank
+      expect(new_template.templateMetadata.title).to eq(template.templateMetadata.title)
+      expect(new_template.templateMetadata.created).to eq(template.templateMetadata.created)
+    end
+
+    it "should store all data" do
+      fill_in_ingest_data("description", "description", "This is not a useful description")
+
+      click_the_ingest_button
+      expect(page).to have_content("Ingested new object")
+
+      # Verify on the edit view
+      visit_edit_form_url(@pid)
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[0])
+      expect(page).to include_ingest_fields_for("title", "title", template.templateMetadata.title[1])
+      expect(page).to include_ingest_fields_for("date", "created", template.templateMetadata.created[0])
+      expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
     end
   end
 end

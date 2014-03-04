@@ -1,0 +1,49 @@
+<div class="footer container">
+  <div class="row">
+    <div class="span6 left">
+      <ul>
+        <li class="first">
+          <% if current_user %>
+            <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
+          <% else %>
+            <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
+          <% end %>
+        </li>
+        <li>
+          <% if current_or_guest_user %>
+            <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
+        </li>
+        <li><a href="#">Copyright</a></li>
+        <li><a href="#">Contact</a></li>
+        <li class="last"><a href="#">Help</a></li>
+      </ul>
+      <ul>
+        <li class="first">
+          <% if has_user_authentication_provider? and current_user %>
+            <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path %>
+          <% end %>
+        </li>
+        <li>
+          <% if can?(:show, Role) -%>
+            <%= link_to "Roles", role_management.roles_path %>
+          <% end -%>
+        </li>
+        <li>
+          <% if can?(:review, GenericAsset) -%>
+            <%= link_to "Review", reviewer_index_path %>
+          <% end -%>
+        </li>
+      </ul>
+    </div>
+    <div class="span6 right">
+      <ul>
+        <li class="first"><a href="http://library.uoregon.edu">University of Oregon Libraries</a></li>
+        <li class="last"><a href="http://osulibrary.oregonstate.edu">Oregon State University Libraries</li>
+      </ul>
+    </div>
+  </div>
+</div>

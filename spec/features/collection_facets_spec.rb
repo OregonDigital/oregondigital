@@ -49,6 +49,15 @@ describe 'collection facets' do
         end
       end
     end
+    context "and the collection object doesn't exist" do
+      before(:each) do
+        collection.destroy
+        visit root_path
+      end
+      it "should display the collection pid as a facet" do
+        expect(page).to have_content(collection.pid)
+      end
+    end
     context "and it does not have a title" do
       before(:each) do
         collection.title = ""
