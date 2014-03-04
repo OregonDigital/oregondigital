@@ -106,7 +106,7 @@ a {
     /* border: 1px solid rgb(68, 25, 17); */
     /* background-color: #663929; */
     position: absolute;
-    background-image: url(images/bookreader/back_pages.png);
+    background-image: url(bookreader/images/back_pages.png);
     -moz-box-shadow: 1px 0 10px #111;
     -webkit-box-shadow: 1px 0 10px #111;
     box-shadow: 1px 0 10px #111;
@@ -132,7 +132,7 @@ a {
     border-color: rgb(51, 51, 34);
     border-width: 1px 1px 1px 0px;
     */
-    background: transparent url(images/bookreader/back_pages.png) repeat scroll 0% 0%;
+    background: transparent url(bookreader/images/back_pages.png) repeat scroll 0% 0%;
     position: absolute;
 }
 
@@ -143,7 +143,7 @@ a {
     border-width: 1px 0px 1px 1px;
     */
     /* background: transparent url(images/left_edges.png) repeat scroll 0% 0%; */
-    background: transparent url(images/bookreader/back_pages.png) repeat scroll 0% 0%; /* XXXmang replace file */
+    background: transparent url(bookreader/images/back_pages.png) repeat scroll 0% 0%; /* XXXmang replace file */
     position: absolute;
 }
 
@@ -152,7 +152,7 @@ a {
     border-color: rgb(51, 51, 34);
     border-width: 1px 0px 1px 1px;
     /* background: transparent url(images/left_edges.png) repeat scroll 0% 0%; */
-    background: transparent url(images/bookreader/back_pages.png) repeat scroll 0% 0%; /* XXXmang replace file */
+    background: transparent url(bookreader/images/back_pages.png) repeat scroll 0% 0%; /* XXXmang replace file */
     position: absolute;
 }
 
@@ -160,7 +160,7 @@ a {
     /* border: 1px solid rgb(68, 25, 17); */
     position: absolute;
     z-index: 6;
-    background: transparent url(images/bookreader/booksplit.png) repeat scroll 0% 0%;
+    background: transparent url(bookreader/images/booksplit.png) repeat scroll 0% 0%;
 }
 
 .BookReaderSearchHilite {
@@ -218,7 +218,7 @@ a {
     border: none;
     cursor: pointer;
     background-color: transparent;
-    background-image: url(images/bookreader/BRicons.png);
+    background-image: url(bookreader/images/BRicons.png);
     background-repeat: no-repeat;
 }
 
@@ -261,7 +261,7 @@ a.logo {
     width: 40px;
     height: 40px;
     margin: 0 5px;
-    background: transparent url(images/bookreader/icon_home.png) no-repeat 0 0;
+    background: transparent url(bookreader/images/icon_home.png) no-repeat 0 0;
 }
 a.popOff {
     position: absolute;
@@ -269,7 +269,7 @@ a.popOff {
     right: 5px;
     width: 24px;
     height: 24px;
-    background-image: url(images/bookreader/BRicons.png);
+    background-image: url(bookreader/images/BRicons.png);
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: -1050px 0;
@@ -368,7 +368,7 @@ a.BRgrey:visited   { color: #666; }
 
 .BRfliparea {
     /* Required to capture mouse on IE */
-    background-image: url(images/bookreader/transparent.png);
+    background-image: url(bookreader/images/transparent.png);
 }
 
 .BRtwoPagePopUp {
@@ -438,7 +438,7 @@ a.BRgrey:visited   { color: #666; }
     font-weight: 700;
     color: #fff;
 }
-.BRfloat a.floatShut {position:absolute;top:0;right:0;display:block;width:32px;height:32px;background-image:url("images/bookreader/icon_close-pop.png");background-position:0 0;background-repeat:no-repeat;}
+.BRfloat a.floatShut {position:absolute;top:0;right:0;display:block;width:32px;height:32px;background-image:url("bookreader/images/icon_close-pop.png");background-position:0 0;background-repeat:no-repeat;}
 .BRfloat a.floatShut:hover {background-position:0 -32px;}
 .BRfloat fieldset {
     margin-top: 20px;
@@ -529,7 +529,7 @@ a.BRgrey:visited   { color: #666; }
     margin-top: 30px;
 }
 .BRfloatMeta p.moreInfo span {
-    background: url("images/bookreader/icon_OL-logo-xs.png") no-repeat;
+    background: url("bookreader/images/icon_OL-logo-xs.png") no-repeat;
     display: block;
     float: left;
     width: 26px;
@@ -563,7 +563,7 @@ a.BRgrey:visited   { color: #666; }
     margin: 0 0 10px 10px;
 }
 .BRfloatFoot a.problem {
-    background: url("images/bookreader/icon_alert-xs.png") no-repeat;
+    background: url("bookreader/images/icon_alert-xs.png") no-repeat;
     padding-left: 20px;
 }
 div#BRpage {
@@ -612,7 +612,7 @@ div#BRslider {
     height: 27px;
     top: 13px;
     margin-left: -12px; /* Center icon */
-    background: url(images/bookreader/slider.png);
+    background: url(bookreader/images/slider.png);
     z-index: 103;
 }
 #BRpager a {
@@ -653,7 +653,7 @@ div#pager {
     height: 27px;
     top: 0;
     left: 8px;
-    background: url(images/bookreader/slider.png);
+    background: url(bookreader/images/slider.png);
     z-index: 103;
 }
 div#pagenum {
@@ -702,11 +702,11 @@ div.chapter {
     width: 18px;
     margin-left: -9px; /* Center marker triangle */
     height: 27px;
-    background: transparent url(images/bookreader/marker_chap-off.png) no-repeat;
+    background: transparent url(bookreader/images/marker_chap-off.png) no-repeat;
     cursor: pointer;
 }
 div.chapter.front {
-    background: transparent url(images/bookreader/marker_chap-on.png) no-repeat;
+    background: transparent url(bookreader/images/marker_chap-on.png) no-repeat;
 }
 div.chapter div.title {
     display: none;
@@ -722,12 +722,12 @@ div.search {
     height: 27px;
     bottom: 0;  /* Relative to nav line */
     background-color: transparent;
-    background-image: url(images/bookreader/marker_srch-off.png);
+    background-image: url(bookreader/images/marker_srch-off.png);
     background-repeat: no-repeat;
     cursor: pointer;
 }
 div.search.front {
-    background: transparent url(images/bookreader/marker_srch-on.png) no-repeat;
+    background: transparent url(bookreader/images/marker_srch-on.png) no-repeat;
 }
 div.search div.query,div.searchChap div.query {
     display: none;
@@ -768,7 +768,7 @@ div.search div.pointer {
     bottom: -14px;
     width: 18px;
     height: 27px;
-    background: transparent url(images/bookreader/marker_srch-on.png) no-repeat;
+    background: transparent url(bookreader/images/marker_srch-on.png) no-repeat;
 }
 div.searchChap {
     position: absolute;
@@ -776,12 +776,12 @@ div.searchChap {
     width: 18px;
     height: 27px;
     background-color: transparent;
-    background-image: url(images/bookreader/marker_srchchap-off.png);
+    background-image: url(bookreader/images/marker_srchchap-off.png);
     background-repeat: no-repeat;
     cursor: pointer;
 }
 div.searchChap.front {
-    background-image: url(images/bookreader/marker_srchchap-on.png);
+    background-image: url(bookreader/images/marker_srchchap-on.png);
 }
 #BRnav .front {
     z-index: 10001;
@@ -850,7 +850,7 @@ div#BRzoombtn {
     height: 23px;
     top: 0;
     left: 0;
-    background: url("images/bookreader/icon_zoomer.png");
+    background: url("bookreader/images/icon_zoomer.png");
 }
 
 .BRprogresspopup {
@@ -870,7 +870,7 @@ div#BRzoombtn {
 }
 
 .BRprogressbar {
-    background-image: url("images/bookreader/progressbar.gif");
+    background-image: url("bookreader/images/progressbar.gif");
     background-repeat:no-repeat;
     background-position:center top;
 }
@@ -899,11 +899,11 @@ div#BRzoombtn {
     display: none;
 }
 .BRup {
-    background-image: url("images/bookreader/nav_control-up.png");
+    background-image: url("bookreader/images/nav_control-up.png");
     background-repeat: no-repeat;
 }
 .BRdn {
-    background-image: url("images/bookreader/nav_control-dn.png");
+    background-image: url("bookreader/images/nav_control-dn.png");
     background-repeat: no-repeat;
 }
 #BRnavCntlBtm.BRup,#BRnavCntlBtm.BRdn {
