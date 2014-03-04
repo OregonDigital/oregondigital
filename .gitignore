@@ -56,5 +56,6 @@ braceros-tiffs
 
 # Ignore deploy configuration files for God and Unicorn
 # These sit on our production server and are symlinked in.
-config/god.conf
-config/unicorn.rb
+/config/god.conf
+/config/unicorn.rb
+/config/puma.rb
