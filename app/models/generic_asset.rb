@@ -26,8 +26,8 @@ class GenericAsset < ActiveFedora::Base
     OregonDigital::IdService.mint
   end
 
-  delegate_to :descMetadata, [:hasFormat, :type, :location, :created, :description, :rights, :title, :modified, :date], :multiple => false
-  delegate_to :descMetadata, [:identifier, :subject, :set, :creator, :contributor], :multiple => true
+  has_attributes :hasFormat, :type, :location, :created, :description, :rights, :title, :modified, :date, :datastream => :descMetdata, :multiple => false
+  has_attributes :identifier, :subject, :set, :creator, :contributor, :datastream => :descMetadata, :multiple => true
 
   private
 

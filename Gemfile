@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.0.0'
 gem 'blacklight'
-gem 'hydra-head', '6.4.0'
+gem 'hydra-head', '6.4.0', :git => 'https://github.com/no-reply/hydra-head.git', :branch => 'AF7-RDF'
+gem 'active-fedora', :git => 'https://github.com/no-reply/active_fedora.git', :branch => 'rdf'
 
 # Gems used only for assets and not required
 # in production environments by default.
