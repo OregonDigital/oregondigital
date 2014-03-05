@@ -14,7 +14,7 @@ class GenericAsset < ActiveFedora::Base
                  :reverse_transform => Proc.new {|x| "info:fedora/#{x}"}
   end
   has_metadata :name => 'rightsMetadata', :type =>
-    Hydra::Datastream::RightsMetadata
+    Datastream::RightsMetadata
 
   has_file_datastream name: 'content', type: Datastream::Content
 
