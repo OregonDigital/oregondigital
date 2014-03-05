@@ -26,22 +26,6 @@ GIT
     sprockets-digest-assets-fix (1.0.0)
 
 GIT
-  remote: https://github.com/no-reply/active_fedora.git
-  revision: b6d4bf58a621385b146c39db7a6faa17390e5d6c
-  branch: rdf
-  specs:
-    active-fedora (7.0.0.rc2)
-      activesupport (>= 3.0.0)
-      deprecation
-      linkeddata
-      mediashelf-loggable
-      nom-xml (>= 0.5.1)
-      om (~> 3.0.0)
-      rdf-rdfxml (~> 1.1.0)
-      rsolr (~> 1.0.10.pre1)
-      rubydora (~> 1.7.0)
-
-GIT
   remote: https://github.com/no-reply/hydra-head.git
   revision: bca8881b54af81dae02b659036481474089834e1
   branch: AF7-RDF
@@ -64,6 +48,22 @@ GIT
       hydra-access-controls (= 6.4.0)
       hydra-core (= 6.4.0)
       rails (>= 3.2.6)
+
+GIT
+  remote: https://github.com/terrellt/active_fedora.git
+  revision: de57ed5005f6d6a0e68ca32661f832ad36852cbb
+  branch: rdf
+  specs:
+    active-fedora (7.0.0.rc2)
+      activesupport (>= 3.0.0)
+      deprecation
+      linkeddata
+      mediashelf-loggable
+      nom-xml (>= 0.5.1)
+      om (~> 3.0.0)
+      rdf-rdfxml (~> 1.1.0)
+      rsolr (~> 1.0.10.pre1)
+      rubydora (~> 1.7.0)
 
 GEM
   remote: https://rubygems.org/

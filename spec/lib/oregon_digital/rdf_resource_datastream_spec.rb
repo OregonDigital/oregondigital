@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe OregonDigital::RdfResourceDatastream do
   before(:each) do
-    class DummySubnode < OregonDigital::RDF::RdfResource
+    class DummySubnode < ActiveFedora::Rdf::Resource
       property :title, :predicate => RDF::DC[:title], :class_name => RDF::Literal
       property :relation, :predicate => RDF::DC[:relation]
     end
@@ -22,7 +22,8 @@ describe OregonDigital::RdfResourceDatastream do
       end
     end
     class DummyAsset < ActiveFedora::Base
-      include OregonDigital::RDF::RdfIdentifiable
+      include ActiveFedora::Rdf::Identifiable
+      include OregonDigital::RDF::Identifiable
       has_metadata :name => 'descMetadata', :type => DummyResource
       has_attributes :title, :license, :relation, :datastream => :descMetadata, :multiple => true
     end
