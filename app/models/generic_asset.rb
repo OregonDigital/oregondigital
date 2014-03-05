@@ -26,7 +26,7 @@ class GenericAsset < ActiveFedora::Base
     OregonDigital::IdService.mint
   end
 
-  has_attributes :hasFormat, :type, :location, :created, :description, :rights, :title, :modified, :date, :datastream => :descMetdata, :multiple => false
+  has_attributes :hasFormat, :type, :location, :created, :description, :rights, :title, :modified, :date, :datastream => :descMetadata, :multiple => false
   has_attributes :identifier, :subject, :set, :creator, :contributor, :datastream => :descMetadata, :multiple => true
 
   private

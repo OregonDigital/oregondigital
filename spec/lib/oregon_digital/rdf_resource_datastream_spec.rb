@@ -24,9 +24,7 @@ describe OregonDigital::RdfResourceDatastream do
     class DummyAsset < ActiveFedora::Base
       include OregonDigital::RDF::RdfIdentifiable
       has_metadata :name => 'descMetadata', :type => DummyResource
-      delegate :title, :to => :descMetadata, :multiple => true
-      delegate :license, :to => :descMetadata, :multiple => true
-      delegate :relation, :to => 'descMetadata', :at => [:license, :relation], :multiple => false
+      has_attributes :title, :license, :relation, :datastream => :descMetadata, :multiple => true
     end
   end
   after(:each) do
