@@ -8,7 +8,7 @@ http://library.uoregon.edu/sites/all/themes/library_v2/images/bg_image_pan1.jpg
 body {
     margin:0; padding:0;
     color: rgb(46, 46, 46);
-	background-image: image-url('uo_bg_image_pan1.jpg');
+	background-image: image-url('sets/uo_bg_image_pan1.jpg');
     background-repeat: no-repeat;
     background-position: center top;
     font-family: tahoma,arial,helvetica,sans-serif;
@@ -47,7 +47,7 @@ body {
 
 
 #header {
-    background: image-url('uo_bg_header_wave.jpg') no-repeat scroll 0% 0% transparent;
+    background: image-url('sets/uo_bg_header_wave.jpg') no-repeat scroll 0% 0% transparent;
     height: 100px;
     padding: 10px 15px 0px;
 }
@@ -92,7 +92,7 @@ ul.inline li {
 
 .region-footer {
     background-color: rgb(248, 247, 247);
-    background-image: image-url('uo_bg_footer.jpg');
+    background-image: image-url('sets/uo_bg_footer.jpg');
     background-repeat: no-repeat;
     height: 92px;
     padding: 20px 20px 0px;
@@ -170,7 +170,7 @@ div#footer_icons {
 
 #uobanner-container-black {
     background-color: rgb(0, 0, 0);
-    background-image: image-url('uo_banner_black.png');
+    background-image: image-url('sets/uo_banner_black.png');
     background-repeat: repeat-x;
 }
 
