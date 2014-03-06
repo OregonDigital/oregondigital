@@ -1,8 +1,5 @@
 require 'spec_helper'
 
-# runs all tests using poltergeist, could use :js => true do, to switch between drivers
-Capybara.javascript_driver = :poltergeist
-
 describe "item review behavior" do
   before(:each) do
     capybara_login(user)

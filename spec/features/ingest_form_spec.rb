@@ -1,8 +1,5 @@
 require 'spec_helper'
 
-# runs all tests using poltergeist, could use :js => true do, to switch between drivers
-Capybara.javascript_driver = :poltergeist
-
 $pid_counter = 0
 describe "(Ingest Form)", :js => true do
   let(:subject1) { "http://id.loc.gov/authorities/subjects/sh2007009834" }
