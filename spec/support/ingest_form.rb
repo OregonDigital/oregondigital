@@ -22,7 +22,9 @@ def ingest_group_nodes(group)
 end
 
 def fill_in_ingest_data(group, type, value, position = 0)
-  within(ingest_group_nodes(group)[position]) do
+  nodes = ingest_group_nodes(group)
+  node = nodes[position]
+  within(node) do
     select(type, :from => "Type")
     fill_in("Value", :with => value)
   end
