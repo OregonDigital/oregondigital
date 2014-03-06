@@ -1,8 +1,5 @@
 require 'spec_helper'
 
-# runs all tests using poltergeist, could use :js => true do, to switch between drivers
-Capybara.javascript_driver = :poltergeist
-
 $pid_counter = 0
 describe "(Ingest Form)", :js => true do
   let(:subject1) { "http://id.loc.gov/authorities/subjects/sh2007009834" }
@@ -29,29 +26,9 @@ describe "(Ingest Form)", :js => true do
     end
   end
 
-  def visit_ingest_url
-    visit('/')
-    click_link "Ingest"
-    click_link "Start from scratch"
-
-    expect(page).to have_selector("input[type=submit]")
-  end
-
   def visit_edit_form_url(pid)
     visit("/ingest/#{pid}/edit")
     expect(page).to have_selector("input[type=submit]")
-  end
-
-  def fill_out_dummy_data
-    fill_in_ingest_data("title", "title", "First Title")
-    click_link 'Add title'
-    fill_in_ingest_data("title", "title", "Second Title", 1)
-    fill_in_ingest_data("date", "created", "2014-01-07")
-  end
-
-  def click_the_ingest_button
-    button = all(:css, 'input[type=submit]').first
-    button.click
   end
 
   def mark_as_reviewed

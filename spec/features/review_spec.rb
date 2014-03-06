@@ -18,6 +18,25 @@ describe "item review behavior" do
   context "when logged in as an admin" do
     let(:user) {FactoryGirl.create(:admin)}
 
+    context "when an item was just ingested", :js => true do
+      before(:each) do
+        visit_ingest_url
+        fill_out_dummy_data
+        click_the_ingest_button
+        visit reviewer_index_path
+      end
+
+      it "should be visible in the list of reviewable assets" do
+        expect(page).to have_selector('.document', :count => 1)
+      end
+
+      it "should have visible metadata" do
+        click_link "First Title, Second Title"
+        expect(page).to have_content("First Title, Second Title")
+        expect(page).to have_content("2014-01-07")
+      end
+    end
+
     context "with an unreviewed item" do
       before(:each) do
         FactoryGirl.create(:generic_asset, :pending_review)
