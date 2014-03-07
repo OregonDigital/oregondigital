@@ -2,8 +2,6 @@ def visit_ingest_url
   visit('/')
   click_link "Ingest"
   click_link "Start from scratch"
-
-  expect(page).to have_selector("input[type=submit]")
 end
 
 def fill_out_dummy_data
