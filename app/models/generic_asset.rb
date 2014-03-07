@@ -7,7 +7,6 @@ class GenericAsset < ActiveFedora::Base
   include OregonDigital::Workflow
   include OregonDigital::OAI::Concern
   include ActiveFedora::Rdf::Identifiable
-  include OregonDigital::RDF::Identifiable
 
   has_metadata :name => 'descMetadata', :type => Datastream::OregonRDF do |ds|
     ds.crosswalk :field => :set, :to => :is_member_of_collection, :in => "RELS-EXT",

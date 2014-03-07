@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: https://github.com/no-reply/active_fedora.git
-  revision: f3dba28b02550e47739360a86e5d9d4882f6012b
+  revision: b4931482009fadff91e16a8aa0cc028295e1fd0c
   branch: rdf
   specs:
     active-fedora (7.0.0.rc2)
