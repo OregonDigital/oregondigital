@@ -18,7 +18,7 @@ describe "item review behavior" do
   context "when logged in as an admin" do
     let(:user) {FactoryGirl.create(:admin)}
 
-    context "when an item was just ingested", :js => true do
+    context "when an item was just ingested" do
       before(:each) do
         visit_ingest_url
         fill_out_dummy_data
@@ -31,8 +31,8 @@ describe "item review behavior" do
       end
 
       it "should have visible metadata" do
-        click_link "First Title, Second Title"
-        expect(page).to have_content("First Title, Second Title")
+        click_link "Asset Title"
+        expect(page).to have_content("Asset Title")
         expect(page).to have_content("2014-01-07")
       end
     end
