@@ -26,6 +26,22 @@ GIT
     sprockets-digest-assets-fix (1.0.0)
 
 GIT
+  remote: https://github.com/no-reply/active_fedora.git
+  revision: f3dba28b02550e47739360a86e5d9d4882f6012b
+  branch: rdf
+  specs:
+    active-fedora (7.0.0.rc2)
+      activesupport (>= 3.0.0)
+      deprecation
+      linkeddata
+      mediashelf-loggable
+      nom-xml (>= 0.5.1)
+      om (~> 3.0.0)
+      rdf-rdfxml (~> 1.1.0)
+      rsolr (~> 1.0.10.pre1)
+      rubydora (~> 1.7.0)
+
+GIT
   remote: https://github.com/no-reply/hydra-head.git
   revision: bca8881b54af81dae02b659036481474089834e1
   branch: AF7-RDF
@@ -48,22 +64,6 @@ GIT
       hydra-access-controls (= 6.4.0)
       hydra-core (= 6.4.0)
       rails (>= 3.2.6)
-
-GIT
-  remote: https://github.com/terrellt/active_fedora.git
-  revision: de57ed5005f6d6a0e68ca32661f832ad36852cbb
-  branch: rdf
-  specs:
-    active-fedora (7.0.0.rc2)
-      activesupport (>= 3.0.0)
-      deprecation
-      linkeddata
-      mediashelf-loggable
-      nom-xml (>= 0.5.1)
-      om (~> 3.0.0)
-      rdf-rdfxml (~> 1.1.0)
-      rsolr (~> 1.0.10.pre1)
-      rubydora (~> 1.7.0)
 
 GEM
   remote: https://rubygems.org/
@@ -214,7 +214,8 @@ GEM
     haml (4.0.5)
       tilt
     hike (1.2.3)
-    hooks (0.3.3)
+    hooks (0.3.4)
+      uber (~> 0.0.2)
     htmlentities (4.3.1)
     hybag (0.2.0)
       active-fedora
@@ -486,6 +487,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
+    uber (0.0.2)
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
