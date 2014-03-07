@@ -141,6 +141,6 @@ module OregonDigital::RDF
       end
     end
 
-    class ControlledVocabularyError < Exception; end
+    class ControlledVocabularyError < StandardError; end
   end
 end
