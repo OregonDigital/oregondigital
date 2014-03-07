@@ -3,7 +3,7 @@ require "spec_helper"
 
 describe OregonDigital::RDF::Controlled do
   before(:each) do
-    class DummyAuthority < OregonDigital::RDF::RdfResource
+    class DummyAuthority < ActiveFedora::Rdf::Resource
       include OregonDigital::RDF::Controlled
       use_vocabulary :dcmitype
       property :title, :predicate => RDF::DC.title

@@ -1,4 +1,4 @@
-class OregonDigital::QuadResourceDatastream < OregonDigital::RdfResourceDatastream
+class OregonDigital::QuadResourceDatastream < ActiveFedora::RDFDatastream
   def self.default_attributes
     super.merge(:controlGroup => 'M', :mimeType => 'text/plain')
   end

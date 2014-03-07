@@ -1,5 +1,5 @@
 module OregonDigital::ControlledVocabularies
-  class Language < OregonDigital::RDF::RdfResource
+  class Language < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :iso_639_2
