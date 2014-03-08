@@ -1,5 +1,5 @@
 module OregonDigital::ControlledVocabularies
-  class Subject < OregonDigital::RDF::RdfResource
+  class Subject < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :lcsh

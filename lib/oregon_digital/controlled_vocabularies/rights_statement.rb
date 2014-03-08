@@ -1,5 +1,5 @@
 module OregonDigital::ControlledVocabularies
-  class RightsStatement < OregonDigital::RDF::RdfResource
+  class RightsStatement < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :rights

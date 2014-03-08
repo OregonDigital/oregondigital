@@ -8,6 +8,7 @@ module OregonDigital
     end
 
     def reset_workflow
+      self.read_groups = ["admin", "archivist"]
       workflowMetadata.reviewed = false
     end
 
