@@ -1,18 +1,22 @@
-body {background-color:#9cae87;}
+
+body.University_of_Oregon {background-color:#9cae87;}
+
+body.University_of_Oregon {
+    margin:0; padding:0;
+    color: rgb(46, 46, 46);
+    background-image: image-url('sets/uo_bg_image_pan1.jpg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    font-family: tahoma,arial,helvetica,sans-serif;
+}
+
+
+.University_of_Oregon {
 
 /*
 http://library.uoregon.edu/sites/all/themes/library_v2/images/bg_image_pan1.jpg
 */
 
-
-body {
-    margin:0; padding:0;
-    color: rgb(46, 46, 46);
-	background-image: image-url('sets/uo_bg_image_pan1.jpg');
-    background-repeat: no-repeat;
-    background-position: center top;
-    font-family: tahoma,arial,helvetica,sans-serif;
-}
 
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
 .clearfix{height:1%;}
@@ -205,4 +209,6 @@ a.uobanner-uonav:link, a.uobanner-uonav:visited {
     font-size: 0.8em;
     line-height: 1em;
     text-decoration: none;
+}
+
 }
