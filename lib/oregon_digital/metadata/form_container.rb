@@ -15,14 +15,17 @@ class OregonDigital::Metadata::FormContainer
     prepare_data(params)
   end
 
-  # Returns the composite validity of the form and the asset
-  def valid?
-    return true if @form.valid? && @asset.valid?
-    return false unless @form.valid?
+  # Checks validity of @asset and propogates errors up to @form if any exist
+  def asset_valid?
+    return true if @asset.valid?
 
-    # If the asset is invalid, we need to copy up all the errors
     @asset.errors.each {|key, val| @form.errors.add(key, val)}
     return false
+  end
+
+  # Returns the composite validity of the form and asset
+  def valid?
+    return @form.valid? && asset_valid?
   end
 
   # Ensures form has at least one visible entry for each group
