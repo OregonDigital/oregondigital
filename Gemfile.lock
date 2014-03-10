@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/jechols/questioning_authority
-  revision: a49f5fe83a5507558a21ecdcd0f5590e01cbce53
+  revision: d22e9abe10fde69eaa07d7698edfb09fb98785c2
   branch: feature/od-fixes
   specs:
     qa (0.0.3)
