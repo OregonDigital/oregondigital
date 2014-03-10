@@ -2,13 +2,14 @@ class OregonDigital::Metadata::FormToAttributes < Metadata::Ingest::Translators:
   # Calls superclass to set data, then stores labels for associations that had
   # internal data
   def store_associations_on_object(object, attribute, associations)
-    super(object, attribute, associations)
-
     for assoc in associations
-      if assoc.internal
+      unless assoc.internal.blank?
         cache_label(object, attribute, assoc)
+        assoc.internal = RDF::URI.new(assoc.internal)
       end
     end
+
+    super(object, attribute, associations)
   end
 
   def cache_label(object, attribute, association)
@@ -24,7 +25,15 @@ class OregonDigital::Metadata::FormToAttributes < Metadata::Ingest::Translators:
 
     return unless klass.respond_to?(:from_uri)
 
-    vocab_object = klass.from_uri(uri)
+    begin
+      vocab_object = klass.from_uri(uri)
+    rescue OregonDigital::RDF::Controlled::ControlledVocabularyError
+      # This can happen if we're setting invalid data - the form still needs
+      # to work without crashing so we can show errors to the user
+      Rails.logger.error "Invalid URI: #{uri.inspect} set on #{attribute}"
+      return
+    end
+
     vocab_object.set_value(RDF::SKOS.hiddenLabel, label)
     vocab_object.persist!
   end

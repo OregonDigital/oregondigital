@@ -196,7 +196,7 @@ describe "(Ingest Form)" do
       it "should store the internal URI, not the label" do
         click_the_ingest_button
         asset = GenericAsset.find(@pid)
-        expect(asset.subject).to eq([subject1, subject2])
+        expect(asset.subject.collect {|s| s.rdf_subject}).to eq([subject1, subject2])
       end
 
       it "should display the label on a subsequent edit" do
