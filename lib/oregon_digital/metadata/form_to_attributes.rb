@@ -8,9 +8,12 @@ class OregonDigital::Metadata::FormToAttributes < Metadata::Ingest::Translators:
   # Checks to see if the given object and attribute need a converted
   # association object, modifying it if so.  If the association needs a
   # conversion, but can't convert due to controlled vocabulary failure,
-  # the conversion is aborted.
+  # association.errors is given an explanation for use in the UI.
   def process_association(object, attribute, association)
-    return if association.marked_for_destruction?
+    # This currently happens after translation, which converts deleted records
+    # into blank records.  We need to be able to prevent both from causing
+    # errors when we try to create RDF objects below.
+    return if association.marked_for_destruction? || association.blank?
 
     rdf_class = get_rdf_class(object, attribute)
     return if !rdf_class
@@ -21,8 +24,8 @@ class OregonDigital::Metadata::FormToAttributes < Metadata::Ingest::Translators:
 
     begin
       vocab_object = rdf_class.from_uri(uri)
-    rescue OregonDigital::RDF::Controlled::ControlledVocabularyError
-      Rails.logger.error "Invalid URI: #{uri.inspect} set on #{attribute}"
+    rescue OregonDigital::RDF::Controlled::ControlledVocabularyError => error
+      association.manual_errors.add(:value, error.message)
       return
     end
 
