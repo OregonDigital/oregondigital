@@ -196,7 +196,7 @@ describe "(Ingest Form)" do
       it "should store the internal URI, not the label" do
         click_the_ingest_button
         asset = GenericAsset.find(@pid)
-        expect(asset.subject).to eq([subject1, subject2])
+        expect(asset.subject.collect {|s| s.rdf_subject}).to eq([subject1, subject2])
       end
 
       it "should display the label on a subsequent edit" do
@@ -238,7 +238,12 @@ describe "(Ingest Form)" do
         expect(value_field.value).to eq(label1)
       end
 
-      it "should fail when a non-URI is freely typed in"
+      it "should fail when a non-URI is freely typed in" do
+        click_link "Add subject"
+        fill_in_ingest_data("subject", "subject", "Invalid subject", 2)
+        click_the_ingest_button
+        expect(page).to have_content("Term not in controlled vocabularies: Invalid subject")
+      end
 
       it "should cache the label returned by QA" do
         # Make sure all known labels we could have set are cleared
