@@ -31,6 +31,13 @@ class FormControllerBase < ApplicationController
     raise NotImplementedError
   end
 
+  # Returns true if the created form should display the "clone" checkbox.  This
+  # defaults to false so the subclass only needs to override in the case
+  # cloning of fields is necessary.
+  def cloneable?
+    return false
+  end
+
   # Attempts to save the asset, merging errors with the ingest form since the
   # form elements aren't mapped 1:1 to the asset fields. (type + value +
   # internal represent a single property).
@@ -49,7 +56,12 @@ class FormControllerBase < ApplicationController
 
   # Sets up a form container for actions which use a form object
   def setup_resources
-    defaults = {asset_map: asset_map, template_map: template_map, asset_class: asset_class}
+    defaults = {
+      :asset_map => asset_map,
+      :template_map => template_map,
+      :asset_class => asset_class,
+      :cloneable => cloneable?
+    }
     @form = OregonDigital::Metadata::FormContainer.new(params.merge(defaults))
   end
 

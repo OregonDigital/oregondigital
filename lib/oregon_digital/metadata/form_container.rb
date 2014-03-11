@@ -4,12 +4,13 @@ require 'metadata/ingest/translators/attributes_to_form'
 # All-in-one form object for managing our forms and their translations while making it seem like
 # a more standard single-object-as-model approach
 class OregonDigital::Metadata::FormContainer
-  attr_reader :asset, :form, :upload, :raw_statements
+  attr_reader :asset, :form, :upload, :raw_statements, :cloneable
 
   def initialize(params = {})
     @asset_map = params.delete(:asset_map)
     @template_map = params.delete(:template_map)
     @asset_class = params.delete(:asset_class)
+    @cloneable = params.delete(:cloneable)
     raise "Translation map must be specified" unless @asset_map
 
     prepare_data(params)
@@ -64,6 +65,8 @@ class OregonDigital::Metadata::FormContainer
   def build_ingest_form
     @form = Metadata::Ingest::Form.new
     @form.internal_groups = @asset_map.keys.collect {|key| key.to_s}
+    @form.association_class = @cloneable ? OregonDigital::Metadata::CloneableAssociation
+                                         : OregonDigital::Metadata::Association
   end
 
   def build_uploader(upload, upload_cache)
