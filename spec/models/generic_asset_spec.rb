@@ -68,6 +68,24 @@ describe GenericAsset do
     end
   end
 
+  describe 'indexing of deep nodes' do
+    context 'when the object has a deep node with an rdf_subject' do
+      let(:subject_1) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
+      subject(:generic_asset) do
+        g = FactoryGirl.build(:generic_asset)
+        g.descMetadata.subject = subject_1
+        g.descMetadata.subject.first.set_value(RDF::SKOS.prefLabel, "Test Subject")
+        g.descMetadata.subject.first.persist!
+        g
+      end
+      it "should index it" do
+        name = subject.solr_name('desc_metadata__subject_label',:facetable)
+        expect(subject.to_solr).to include name
+        expect(subject.to_solr[name]).to eq ["Test Subject"]
+      end
+    end
+  end
+
   describe 'pid assignment' do
     context 'before the object is saved' do
       it 'should be nil' do

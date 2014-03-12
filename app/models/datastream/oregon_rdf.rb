@@ -106,4 +106,24 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
 
+  def to_solr(solr_doc = Hash.new)
+    fields.each do |field_key, field_info|
+      values = resource.get_values(field_key)
+      if values
+        Array.wrap(values).each do |val|
+          val = val.to_s if val.kind_of? ::RDF::URI
+          val = val.solrize if val.kind_of? ActiveFedora::Rdf::Resource
+          Array.wrap(val).each do |solr_val|
+            if solr_val.kind_of?(Hash)
+              field_key = "#{field_key}_#{solr_val.to_a.first.first}"
+              solr_val = solr_val.to_a.first.last
+            end
+            self.class.create_and_insert_terms(apply_prefix(field_key), solr_val, field_info[:behaviors], solr_doc)
+          end
+        end
+      end
+    end
+    solr_doc
+  end
+
 end

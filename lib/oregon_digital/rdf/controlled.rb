@@ -11,6 +11,17 @@ module OregonDigital::RDF
       klass.extend ClassMethods
       klass.configure :repository => :vocabs
       klass.property :hiddenLabel, :predicate => RDF::SKOS.hiddenLabel
+      klass.send(:prepend, PrependFunctions)
+    end
+
+    module PrependFunctions
+      def solrize
+        if node?
+          rdf_label
+        else
+          [rdf_subject.to_s, {:label => rdf_label.first.to_s}]
+        end
+      end
     end
 
     ##
