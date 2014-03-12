@@ -115,8 +115,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
           val = val.solrize if val.kind_of? ActiveFedora::Rdf::Resource
           Array.wrap(val).each do |solr_val|
             if solr_val.kind_of?(Hash)
-              field_key = "#{field_key}_#{solr_val.to_a.first.first}"
-              solr_val = solr_val.to_a.first.last
+              key, solr_val = solr_val.first
+              field_key = "#{field_key}_#{key}"
             end
             self.class.create_and_insert_terms(apply_prefix(field_key), solr_val, field_info[:behaviors], solr_doc)
           end
