@@ -1,0 +1,11 @@
+<ul class="nav nav-list">
+  <% if can?(:update, decorated_object) %>
+    <li class="nav-header">Admin</li>
+    <li>
+      <a href="<%= edit_ingest_path(decorated_object) %>">
+        <span>Edit</span>
+        <span class="sr-only"><%= decorated_object.title %></span>
+      </a>
+    </li>
+  <% end %>
+</ul>

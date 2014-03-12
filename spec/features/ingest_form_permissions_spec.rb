@@ -38,6 +38,29 @@ describe "Ingest form authorization rules" do
     end
   end
 
+  context "on an asset page" do
+    before(:each) do
+      capybara_login(user)
+      visit catalog_path(asset.pid)
+    end
+
+    context "for a regular user", role: nil do
+      it { should_not show_edit_link(asset) }
+    end
+
+    context "for a submitter", role: :submitter do
+      it { should_not show_edit_link(asset) }
+    end
+
+    context "for an archivist", role: :archivist do
+      it { should show_edit_link(asset) }
+    end
+
+    context "for an admin", role: :admin do
+      it { should show_edit_link(asset) }
+    end
+  end
+
   context "when visiting the ingest index" do
     before(:each) do
       capybara_login(user)

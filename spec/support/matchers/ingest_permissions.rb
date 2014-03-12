@@ -13,6 +13,12 @@ RSpec::Matchers.define :show_ingest_link do
   end
 end
 
+RSpec::Matchers.define :show_edit_link do |asset|
+  match do |page|
+    page.has_link?("Edit #{asset.title}")
+  end
+end
+
 RSpec::Matchers.define :have_permissions_error do |suffix = ""|
   match do |page|
     begin
