@@ -97,9 +97,6 @@ class OregonDigital::Metadata::FormContainer
   end
 
   def find_unmapped_rdf
-    # Short-circuit for new assets that won't have any data
-    return unless @asset.descMetadata.content
-
     @raw_statements = RDF::Graph.new
     mapped_predicates = []
 
