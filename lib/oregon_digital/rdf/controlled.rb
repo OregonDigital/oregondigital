@@ -11,11 +11,7 @@ module OregonDigital::RDF
       klass.extend ClassMethods
       klass.configure :repository => :vocabs
       klass.property :hiddenLabel, :predicate => RDF::SKOS.hiddenLabel
-    end
-
-    def solrize
-      return super if node?
-      [rdf_subject.to_s, {:label => rdf_label.first.to_s}]
+      klass.send(:include, OregonDigital::RDF::DeepIndex) # Force deep indexing for controlled vocabs? Or keep seperate?
     end
 
     ##

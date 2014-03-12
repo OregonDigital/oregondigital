@@ -43,6 +43,46 @@ describe GenericAsset do
     end
   end
 
+  describe "fetching data" do
+    let(:subject_1) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
+    subject(:generic_asset) do
+      g = FactoryGirl.build(:generic_asset)
+      g.descMetadata.subject = subject_1
+      g.save
+      g
+    end
+    context "when a new object asset has a subject that is fetched" do
+      let(:asset_2) {
+        g = FactoryGirl.build(:generic_asset)
+        g.descMetadata.subject = subject_1
+        g
+      }
+      before(:each) do
+        subject
+        expect(GenericAsset.where("desc_metadata__subject_label_sim" => "Food industry and trade").length).to eq 0
+        asset_2.descMetadata.fetch_external
+      end
+      it "should set that object's label" do
+        expect(asset_2.descMetadata.subject.first.rdf_label.first).to eq "Food industry and trade"
+      end
+      it "should fix the label on other objects" do
+        subject.reload
+        expect(subject.descMetadata.subject.first.rdf_label.first).to eq "Food industry and trade"
+      end
+      it "should not call fetch again when run again within 7 days" do
+        expect(asset_2.descMetadata.subject.first).not_to receive(:fetch)
+        asset_2.descMetadata.fetch_external
+      end
+      it "should not update other objects if a correct label is set already" do
+        expect(asset_2.descMetadata).not_to receive(:fix_fedora_index)
+        asset_2.descMetadata.fetch_external
+      end
+      it "should persist the label to solr for other objects" do
+        expect(GenericAsset.where("desc_metadata__subject_label_sim" => "Food industry and trade").length).to eq 1
+      end
+    end
+  end
+
   describe 'collection metadata crosswalking' do
     context 'when the asset is a member of a collection' do
       subject(:generic_asset) { FactoryGirl.create(:generic_asset, :in_collection!) }
