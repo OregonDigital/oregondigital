@@ -1,15 +1,10 @@
 <% if form.raw_statements.any? %>
-  <%# Statements with unknown subjects are displayed as triples (again, not editable) %>
-  <% group = "unknown_statement" %>
+  <% group = "raw_statement" %>
   <div id="<%= group %>">
     <h3 class="header"><%= I18n.t("ingest_form.#{group}.group_header", :default => group.humanize.pluralize) %></h3>
 
-    <% for obj in form.raw_statements %>
-      <div class="row">
-        <div class="span3"><%= obj[:subject] %></div>
-        <div class="span4"><%= obj[:predicate] %></div>
-        <div class="span4"><%= obj[:object] %></div>
-      </div>
+    <% for statement in form.raw_statements %>
+      <div class="ntriple"><%= statement.to_ntriples %></div>
     <% end %>
   </div>
 <% end %>

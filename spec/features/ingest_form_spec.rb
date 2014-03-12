@@ -299,5 +299,27 @@ describe "(Ingest Form)" do
         expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
       end
     end
+
+    context "for an object with unmapped data" do
+      let(:asset) { FactoryGirl.create(:generic_asset, title: "Testing stuffs") }
+      let(:pid) { asset.pid }
+      let(:statement) do
+        RDF::Statement.new(
+          asset.descMetadata.rdf_subject,
+          RDF::URI.new("http://rdf.example.com/thing"),
+          RDF::Literal.new("Blargh")
+        )
+      end
+
+      before(:each) do
+        asset.descMetadata.graph << statement
+        asset.save!
+        visit_edit_form_url(pid)
+      end
+
+      it "should show the unmapped triples" do
+        expect(page).to have_content(statement.to_ntriples)
+      end
+    end
   end
 end
