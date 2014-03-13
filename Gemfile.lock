@@ -282,7 +282,7 @@ GEM
     map (4.7.1)
     marc (0.7.1)
     mediashelf-loggable (0.4.9)
-    metadata-ingest-form (2.3.0)
+    metadata-ingest-form (2.4.0)
       activemodel (>= 3.0)
     method_source (0.8.2)
     mime-types (1.25)
@@ -542,7 +542,7 @@ DEPENDENCIES
   jquery-rails (~> 3.0.4)
   jquery-ui-rails
   linkeddata
-  metadata-ingest-form (~> 2.2)
+  metadata-ingest-form (~> 2.4)
   mini_magick
   mysql2
   noid (~> 0.6.6)
