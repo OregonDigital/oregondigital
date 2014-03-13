@@ -1,25 +1,13 @@
 module OregonDigital::RDF
   module DeepFetch
     def fetch_external
-      controlled_properties = self.class.properties.each_with_object([]) do |(key, value), arr|
-        if value["class_name"] && value["class_name"] < ActiveFedora::Rdf::Resource
-          arr << key
-        end
-      end
-      redis = Redis.new
       controlled_properties.each do |property|
-        values = get_values(property)
-        values.each do |value|
-          if value.kind_of?(ActiveFedora::Rdf::Resource)
-            old_label = value.rdf_label
-            redis.cache("fetch-cache:#{value.rdf_subject.to_s}", 7.days) do
-              value.fetch
-              Time.current.to_s
-            end
-            if value.rdf_label.first != value.rdf_subject && old_label != value.rdf_label
-              value.persist!
-              fix_fedora_index(property, value)
-            end
+        get_values(property).each do |value|
+          old_label = value.rdf_label
+          fetch_value(value) if value.kind_of? ActiveFedora::Rdf::Resource
+          if value_changed?(value, old_label)
+            value.persist!
+            fix_fedora_index(property, value)
           end
         end
       end
@@ -31,6 +19,31 @@ module OregonDigital::RDF
       assets.each do |a|
         a.update_index
       end
+    end
+
+    protected
+
+    def value_changed?(value, old_label)
+      value.rdf_label.first.to_s != value.rdf_subject.to_s && old_label != value.rdf_label
+    end
+
+    def controlled_properties
+      @controlled_properties ||= self.class.properties.each_with_object([]) do |(key, value), arr|
+        if value["class_name"] && value["class_name"] < ActiveFedora::Rdf::Resource
+          arr << key
+        end
+      end
+    end
+
+    def fetch_value(value)
+      redis_connection.cache("fetch-cache:#{value.rdf_subject.to_s}", 7.days) do
+        value.fetch
+        Time.current.to_s
+      end
+    end
+
+    def redis_connection
+      @redis ||= Redis.new
     end
   end
 end
