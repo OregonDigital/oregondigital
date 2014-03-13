@@ -20,6 +20,7 @@ class GenericAsset < ActiveFedora::Base
 
   before_save :check_derivatives
   after_save :queue_derivatives
+  after_save :queue_fetch
 
 
   def self.assign_pid(_)
@@ -30,6 +31,10 @@ class GenericAsset < ActiveFedora::Base
   has_attributes :identifier, :subject, :set, :creator, :contributor, :datastream => :descMetadata, :multiple => true
 
   private
+
+  def queue_fetch
+    Resque.enqueue(FetchAllJob, pid)
+  end
 
   def check_derivatives
     @needs_derivatives = (content.content_changed? && !content.content.blank?)

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'collection facets' do
   context "when there is an item in a collection" do
     let(:item) do
-      g = FactoryGirl.build(:generic_asset, :in_collection!, subject: RDF::URI.new("http://id.loc.gov/authorities/subjects/sh96005121"))
+      g = FactoryGirl.build(:generic_asset, :in_collection!, subject: RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282"))
       g.descMetadata.subject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
       g.descMetadata.subject.first.persist!
       g.save
@@ -12,6 +12,7 @@ describe 'collection facets' do
     let(:collection) { item.collections.first }
 
     before(:each) do
+      GenericAsset.any_instance.stub(:queue_fetch).and_return(true)
       item
     end
 

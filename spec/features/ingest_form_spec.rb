@@ -10,7 +10,8 @@ describe "(Ingest Form)" do
 
   before(:each) do
     capybara_login(admin)
-
+    # Pretend that auto fetching doesn't happen.
+    GenericAsset.any_instance.stub(:queue_fetch).and_return(true)
     # Ensure ingested objects create predictable and unique pids
     OregonDigital::IdService.stub(:namespace).and_return("spec-feature-ingestform")
     OregonDigital::IdService.stub(:next_id) do

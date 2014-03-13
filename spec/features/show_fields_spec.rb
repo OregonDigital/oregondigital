@@ -5,6 +5,7 @@ describe "show fields" do
   let(:stub_setup) {nil}
   before(:each) do
     stub_setup
+    GenericAsset.any_instance.stub(:queue_fetch).and_return(true)
     visit catalog_path(asset.pid)
   end
   context "when it has a title" do

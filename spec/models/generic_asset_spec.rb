@@ -42,7 +42,6 @@ describe GenericAsset do
       end
     end
   end
-
   describe "fetching data" do
     let(:subject_1) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
     subject(:generic_asset) do
@@ -51,6 +50,10 @@ describe GenericAsset do
       g.save
       g
     end
+    it "should fetch on save" do
+      subject.reload
+      expect(subject.descMetadata.subject.first.rdf_label.first).to eq "Food industry and trade"
+    end
     context "when a new object asset has a subject that is fetched" do
       let(:asset_2) {
         g = FactoryGirl.build(:generic_asset)
@@ -58,6 +61,8 @@ describe GenericAsset do
         g
       }
       before(:each) do
+        # Stop auto reload
+        GenericAsset.any_instance.stub(:queue_fetch).and_return(true)
         subject
         expect(GenericAsset.where("desc_metadata__subject_label_sim" => "Food industry and trade").length).to eq 0
         asset_2.descMetadata.fetch_external
