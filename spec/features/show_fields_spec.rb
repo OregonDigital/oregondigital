@@ -5,7 +5,6 @@ describe "show fields" do
   let(:stub_setup) {nil}
   before(:each) do
     stub_setup
-    GenericAsset.any_instance.stub(:queue_fetch).and_return(true)
     visit catalog_path(asset.pid)
   end
   context "when it has a title" do
@@ -24,14 +23,17 @@ describe "show fields" do
       g.save
       g
     end
-    it "should not have an RDF label" do
-      expect(asset.subject.first.rdf_label.first).to eq subject.to_s
-    end
-    it "should pretend the subject field is empty" do
-      expect(page).not_to have_content("Subject")
-    end
-    it "should not show URI subjects" do
-      expect(page).not_to have_content(subject.to_s)
+    context "which is a URI" do
+      let(:stub_setup) {GenericAsset.any_instance.stub(:queue_fetch).and_return(true)}
+      it "should not have an RDF label" do
+        expect(asset.subject.first.rdf_label.first).to eq subject.to_s
+      end
+      it "should pretend the subject field is empty" do
+        expect(page).not_to have_content("Subject")
+      end
+      it "should not show URI subjects" do
+        expect(page).not_to have_content(subject.to_s)
+      end
     end
     context "which has an rdf_label set up" do
       let(:asset) do

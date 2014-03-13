@@ -12,7 +12,6 @@ describe 'collection facets' do
     let(:collection) { item.collections.first }
 
     before(:each) do
-      GenericAsset.any_instance.stub(:queue_fetch).and_return(true)
       item
     end
 
