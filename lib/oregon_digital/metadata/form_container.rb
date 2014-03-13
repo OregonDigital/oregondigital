@@ -51,6 +51,36 @@ class OregonDigital::Metadata::FormContainer
     @asset.save
   end
 
+  # Returns true if this was a cloneable form and any of @form's associations
+  # were marked cloned
+  def has_cloned_associations?
+    return false if !@cloneable
+
+    for assoc in @form.associations
+      return true if assoc.clone
+    end
+
+    return false
+  end
+
+  # Returns a new FormContainer with an ingest form containing all associations
+  # marked for cloning
+  def clone_associations
+    new_form = OregonDigital::Metadata::FormContainer.new(
+      :asset_map => @asset_map,
+      :template_map => @template_map,
+      :asset_class => @asset_class,
+      :cloneable => true
+    )
+    for assoc in @form.associations.select {|assoc| assoc.clone == true}
+      new_form.form.add_association(assoc) if assoc.clone
+    end
+
+    new_form.add_blank_groups
+
+    return new_form
+  end
+
   private
 
   # Sets up all internal objects based on parameters

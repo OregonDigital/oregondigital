@@ -51,6 +51,14 @@ class FormControllerBase < ApplicationController
     end
 
     @form.save
+
+    if @form.has_cloned_associations?
+      @form = @form.clone_associations
+      flash.now[:notice] = success_message
+      render :new
+      return
+    end
+
     redirect_to index_path, :notice => success_message
   end
 
