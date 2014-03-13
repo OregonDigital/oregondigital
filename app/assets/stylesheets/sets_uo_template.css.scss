@@ -1,7 +1,10 @@
 
-body.University_of_Oregon {background-color:#9cae87;}
+.University_of_Oregon {
 
-body.University_of_Oregon {
+#sets-page-container {background-color:#9cae87;}
+
+#sets-page-container {
+    width: 100%;
     margin:0; padding:0;
     color: rgb(46, 46, 46);
     background-image: image-url('sets/uo_bg_image_pan1.jpg');
@@ -11,11 +14,15 @@ body.University_of_Oregon {
 }
 
 
-.University_of_Oregon {
+#main-container {
+    width: 100%;
+    background-color: #ffffff;
 
-/*
-http://library.uoregon.edu/sites/all/themes/library_v2/images/bg_image_pan1.jpg
-*/
+    margin-top: -60px;
+    padding-top: 60px;
+    margin-bottom: -60px;
+    padding-bottom: 60px;
+}
 
 
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
@@ -43,12 +50,24 @@ http://library.uoregon.edu/sites/all/themes/library_v2/images/bg_image_pan1.jpg
 
 #main-wrapper {
     position: relative;
-    background:#fff
+    background: #fff; 
 }
 
 
+/* Force sizes to not be too responsive and small. */
+#main-container .span8 .span5 {
+    width: 380px !important;
+}
+
+#main-container .span8 {
+    width: 620px !important;
+}
 
 
+[class*="span"] {
+    margin-left: 0px !important;
+    padding-left: 20px !important;
+}
 
 #header {
     background: image-url('sets/uo_bg_header_wave.jpg') no-repeat scroll 0% 0% transparent;
