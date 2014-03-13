@@ -36,6 +36,12 @@ class IngestController < FormControllerBase
     end
   end
 
+  # We allow cloning for new resources only
+  def cloneable?
+    return true if ["new", "create"].include?(action_name)
+    return false
+  end
+
   # Chooses the ingest map to be used for grouping form elements and
   # translating data.  This is hard-coded for now, but may eventually use
   # things like user groups or collection info or who knows what.

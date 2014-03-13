@@ -30,6 +30,17 @@ module IngestHelper
       :wrapper_html => {:class => "ingest-control value"}
     )
 
+    if f.object.cloneable?
+      controls << f.input(
+        :clone,
+        :as => :boolean,
+        :input_html => {:class => "input-xxlarge clone-field"},
+        :label_html => {:class => "sr-only"},
+        :wrapper_html => {:class => "ingest-control clone"},
+        :label => "Clone this #{f.object.group}"
+      )
+    end
+
     controls << f.hidden_field(:internal, :class => "internal-field")
 
     return controls.reduce { |list, next_control| list << next_control }
