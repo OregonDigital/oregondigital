@@ -19,6 +19,7 @@
 	
 	<div id="page-wrapper">
 	    <div id="page">
+
 	        <div id="header">
 	            <div class="section clearfix">
 	                <div id="libraries_pageheader" class="clear">
@@ -48,4 +49,8 @@
 	                </div> <!-- /libraries pageheader-->
 	            </div>
 	        </div><!-- end header-->
+
+            <% if @set %>
+            <h1><%= @set.title %></h1>
+            <% end %>
 
