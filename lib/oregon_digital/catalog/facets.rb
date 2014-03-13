@@ -25,7 +25,7 @@ module OregonDigital
           # facet bar
           config.add_facet_field solr_name('desc_metadata__hasFormat',:facetable), :label => 'Format'
           config.add_facet_field solr_name('desc_metadata__date', :facetable), :label => 'Publication Year', :single => true
-          config.add_facet_field solr_name('desc_metadata__subject', :facetable), :label => 'Topic', :limit => 20
+          config.add_facet_field solr_name('desc_metadata__subject_label', :facetable), :label => 'Topic', :limit => 20
           config.add_facet_field solr_name('desc_metadata__location', :facetable), :label => 'Region'
           config.add_facet_field solr_name('desc_metadata__set', :facetable), :label => 'Collection', :helper_method => :collection_name
           config.add_facet_fields_to_solr_request!

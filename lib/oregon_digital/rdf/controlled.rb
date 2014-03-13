@@ -11,6 +11,7 @@ module OregonDigital::RDF
       klass.extend ClassMethods
       klass.configure :repository => :vocabs
       klass.property :hiddenLabel, :predicate => RDF::SKOS.hiddenLabel
+      klass.send(:include, OregonDigital::RDF::DeepIndex) # Force deep indexing for controlled vocabs? Or keep seperate?
     end
 
     ##

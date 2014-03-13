@@ -3,8 +3,22 @@ require 'spec_helper'
 describe "SetsController /index" do
   let(:collection_pid) {'oregondigital:monkeys'}
   let(:collection) { FactoryGirl.create(:generic_collection, :has_pid, pid: collection_pid) }
-  let(:item) { FactoryGirl.create(:generic_asset, subject: "Test Facet") }
-  let(:item2) { FactoryGirl.create(:generic_asset, subject: "Other Facet") }
+  let(:subject_1) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
+  let(:subject_2) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85123395")}
+  let(:item) do
+    g = FactoryGirl.build(:generic_asset, subject: subject_1)
+    g.descMetadata.subject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
+    g.descMetadata.subject.first.persist!
+    g.save
+    g
+  end
+  let(:item2) do
+    g = FactoryGirl.build(:generic_asset, subject: subject_2)
+    g.descMetadata.subject.first.set_value(RDF::SKOS.prefLabel, "Other Facet")
+    g.descMetadata.subject.first.persist!
+    g.save
+    g
+  end
 
   before(:each) do
     collection
@@ -24,8 +38,8 @@ describe "SetsController /index" do
       visit sets_path
     end
     it "should show the facets" do
-      expect(page).to have_content(item.subject.join)
-      expect(page).to have_content(item2.subject.join)
+      expect(page).to have_content(item.subject.map(&:rdf_label).join)
+      expect(page).to have_content(item2.subject.map(&:rdf_label).join)
     end
   end
   context "when requesting a collection sub-page" do
