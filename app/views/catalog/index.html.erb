@@ -4,18 +4,7 @@
  <% if @set and lookup_context.exists?('pages', ["sets/#{@set.pid.split(':').last}"], true) %> <%= render :partial => "sets/#{@set.pid.split(':').last()}/pages" %> <% end %>
 </div><!--/well -->
 
-<%# set content block span to be smaller for UO set template %>
-  <% if @set %>
-  <% case %>
-    <% when @set.institution_class === "University_of_Oregon" %>
-      <div id="content" class="span8">
-    <% when @set.institution_class === "Oregon_State_University" %>
-      <div id="content" class="span9">
-    <% end %>
-  <% else %>
-      <div id="content" class="span9">
-  <% end %>
-
+<div id="content" class="span9">
 
     <% unless has_search_parameters? %>
 	    <%# if there are no input/search related params, display the "home" partial -%>
