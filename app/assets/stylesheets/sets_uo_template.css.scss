@@ -16,13 +16,17 @@
 
 
 #main-container {
-    width: 100%;
+/*
+    width: auto;
+*/
     background-color: #ffffff;
 
-    margin-top: -60px;
-    padding-top: 60px;
-    margin-bottom: -60px;
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+/*
     padding-bottom: 60px;
+*/
 }
 
 
@@ -40,11 +44,16 @@
 #page-wrapper {
     margin-left: auto;
     margin-right: auto;
+/*
     width: 960px;
+*/
 }
 
 #page {
+/* Removed shadow for now, was too wide, could set on main-container instead. */
+/*
     box-shadow: 0px 0px 8px rgb(204, 204, 204);
+*/
     font-size: 0.875em;
     line-height: 1.5em;
 }
@@ -56,24 +65,33 @@
 
 
 /* Force sizes to not be too responsive and small. */
+/*
 #main-container .span8 .span5 {
     width: 380px !important;
 }
+*/
 
+/*
 #main-container .span8 {
     width: 620px !important;
 }
+*/
 
 
+/*
 [class*="span"] {
     margin-left: 0px !important;
     padding-left: 20px !important;
 }
+*/
 
 #header {
     background: image-url('sets/uo_bg_header_wave.jpg') no-repeat scroll 0% 0% transparent;
     height: 100px;
     padding: 10px 15px 0px;
+
+    margin: 0 auto;
+    width: 960px;
 }
 
 #logo {
@@ -118,6 +136,10 @@ ul.inline li {
     background-color: rgb(248, 247, 247);
     background-image: image-url('sets/uo_bg_footer.jpg');
     background-repeat: no-repeat;
+
+    width: 920px;
+    margin: 0 auto;
+
     height: 92px;
     padding: 20px 20px 0px;
 }
