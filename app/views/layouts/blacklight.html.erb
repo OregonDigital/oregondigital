@@ -65,9 +65,14 @@
                       </div>    
                   </div>              
 
+                  <% if @set %>
+                    <h1><a href="<%= "/sets/#{@set.pid.split(':').last}" %>"><%= @set.title %></a></h1>
+                  <% end %>
+
                   <div class="row">
-                       <%= yield %>
-                       </div>   
+
+                  <%= yield %>
+                  </div>   
 </div>
 
 
