@@ -26,7 +26,10 @@ def fill_in_ingest_data(group, type, value, position = 0, clone = false)
     fill_in("Value", :with => value)
 
     if clone
-      find("input.clone-field").click
+      # This is unfortunate, but in some cases we have checkboxes on the form,
+      # but under the header, so JS-enabled capybara tests click the spot where
+      # the checkbox exists, but get the header element.
+      find("input.clone-field").trigger('click')
     end
   end
 end
