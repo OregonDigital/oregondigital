@@ -3,117 +3,107 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   # rdf_subject { |ds| Utils.rdf_subject(ds.pid) }
   include ActiveFedora::Crosswalks::Crosswalkable
 
-  map_predicates do |map|
+  def self.resource_class
+    OregonDigital::RDF::ObjectResource
+  end
+  property :title, :predicate => RDF::DC.title do |index|
+    index.as :searchable, :displayable
+  end
+  property :creator, :predicate => RDF::DC11.creator do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :contributor, :predicate => RDF::DC11.contributor do |index|
+    index.as :searchable, :displayable
+  end
+  property :abstract, :predicate => RDF::DC.abstract do |index|
+    index.as :searchable, :displayable
+  end
+  property :description, :predicate => RDF::DC.description do |index|
+    index.as :searchable, :displayable
+  end
+  property :subject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
+      index.as :searchable, :facetable, :displayable
+  end
+  property :source, :predicate => RDF::DC.source do |index|
+    index.as :displayable
+  end
+  property :type, :predicate => RDF::DC.type, :class_name => OregonDigital::ControlledVocabularies::DCMIType do |index|
+    index.as :facetable, :displayable
+  end
+  property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :rights, :predicate => RDF::DC.rights, :class_name => OregonDigital::ControlledVocabularies::RightsStatement do |index|
+    index.as :displayable
+  end
+  property :language, :predicate => RDF::DC.language, :class_name => OregonDigital::ControlledVocabularies::Language do |index|
+    index.as :displayable, :facetable
+  end
+  property :identifier, :predicate => RDF::DC.identifier do |index|
+    index.as :searchable, :displayable
+  end
+  property :created, :predicate => RDF::DC.created do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :modified, :predicate => RDF::DC.modified do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :submissionDate, :predicate => RDF::DC.dateSubmitted do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :date, :predicate => RDF::DC.date do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :format, :predicate => RDF::DC.format,  :class_name => OregonDigital::ControlledVocabularies::Format do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :localCollection, :predicate => RDF::DC.isPartOf do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :replacesUrl, :predicate => RDF::DC.replaces
 
-    # Core Properties
-    map.title(:in => RDF::DC) do |index|
-      index.as :searchable, :displayable
-    end
-    map.creator(:in => RDF::DC11) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.contributor(:in => RDF::DC11) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.abstract(:in => RDF::DC) do |index|
-      index.as :searchable, :displayable
-    end
-    map.description(:in => RDF::DC) do |index|
-      index.as :searchable, :displayable
-    end
-    map.subject(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Subject) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.source(:in => RDF::DC) do |index|
-      index.as :displayable
-    end
-    map.type(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::DCMIType) do |index|
-      index.as :facetable, :displayable
-    end
-    map.location(:to => 'spatial', :in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Geographic) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.rights(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::RightsStatement) do |index|
-      index.as :displayable
-    end
-    map.language(:in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Language) do |index|
-      index.as :displayable, :facetable
-    end
-    map.identifier(:in => RDF::DC) do |index|
-      index.as :searchable, :displayable
-    end
-    map.created(:in => RDF::DC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.modified(:in => RDF::DC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.submissionDate(:to => 'dateSubmitted', :in => RDF::DC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.date(:in => RDF::DC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.format(:to => 'format', :in => RDF::DC, :class_name => OregonDigital::ControlledVocabularies::Format) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.localCollection(:to => 'isPartOf', :in => RDF::DC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-
-    map.replacesUrl(:to => 'replaces', :in => RDF::DC) # do not index
-
-    # MARCRel
-    # These fields should all be searchable as equivalent to dc.contributor
-  # map.contributor[?](:to => "*", :in => RDF::MARCRel) do |index|
-  #   index.as :searchable, :facetable, :displayable
-  # end
-    map.photographer(:to => 'pht', :in => OregonDigital::Vocabularies::MARCREL) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-
-    # Darwin Core
-    map.taxonClass(:to => 'class', :in => OregonDigital::Vocabularies::DWC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.order(:in => OregonDigital::Vocabularies::DWC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.family(:in => OregonDigital::Vocabularies::DWC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.genus(:in => OregonDigital::Vocabularies::DWC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.phylum(:in => OregonDigital::Vocabularies::DWC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.higherClassification(:in => OregonDigital::Vocabularies::DWC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.commonNames(:to => 'vernacularName', :in => OregonDigital::Vocabularies::DWC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-    map.identificationVerificationStatus(:in => OregonDigital::Vocabularies::DWC) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-
-    # PREMIS
-    map.preservation(:to => 'hasOriginalName', :in => OregonDigital::Vocabularies::PREMIS)
-    map.hasFixity(:in => OregonDigital::Vocabularies::PREMIS) # don't index
-
-    # Oregon Digital
-    map.set(:in => OregonDigital::Vocabularies::OREGONDIGITAL) do |index|
-      index.as :searchable, :facetable, :displayable
-    end
-
+  # MARCRel
+  property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
+    index.as :searchable, :facetable, :displayable
   end
 
-  def to_solr(doc = {})
-    doc = super
-    # Magic mystery fun code for making marc act like solr
-    # doc["dc_contributor_t"] = doc["dc_photographer"] + ...
-    doc
+  # Darwin Core
+  property :taxonClass, :predicate => OregonDigital::Vocabularies::DWC.class do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :order, :predicate => OregonDigital::Vocabularies::DWC.order do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :family, :predicate => OregonDigital::Vocabularies::DWC.family do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :genus, :predicate => OregonDigital::Vocabularies::DWC.genus do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :phylum, :predicate => OregonDigital::Vocabularies::DWC.phylum do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :higherClassification, :predicate => OregonDigital::Vocabularies::DWC.higherClassification do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :commonNames, :predicate => OregonDigital::Vocabularies::DWC.vernacularName do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :identificationVerificationStatus, :predicate => OregonDigital::Vocabularies::DWC.identificationVerificationStatus do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+
+  # PREMIS
+  property :preservation, :predicate => OregonDigital::Vocabularies::PREMIS.hasOriginalName
+  property :hasFixity, :predicate => OregonDigital::Vocabularies::PREMIS.hasFixity
+
+  # Oregon Digital
+  property :set, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.set do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+
+  property :institution, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.contributingInstitution, :class_name => OregonDigital::ControlledVocabularies::Organization do |index|
+    index.as :searchable, :facetable, :displayable
   end
 
 end

@@ -13,7 +13,7 @@ describe "Asset viewer logic" do
     click_link "Small image"
 =======
     image = FactoryGirl.create(:image, :with_jpeg_datastream)
-    click_button "Search"
+    click_button "search"
     click_link image.title
 >>>>>>> feature/uolibrary_set_template
     expect(page).to have_selector("#small-image-viewer > img[src$='#{image.pid}']")
@@ -26,7 +26,7 @@ describe "Asset viewer logic" do
     click_link "Use iip for this"
 =======
     image = FactoryGirl.create(:image, :with_tiff_datastream)
-    click_button "Search"
+    click_button "search"
     click_link image.title
 >>>>>>> feature/uolibrary_set_template
     expect(page).to have_selector("#large-image-viewer")

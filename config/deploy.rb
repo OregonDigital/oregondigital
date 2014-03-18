@@ -18,7 +18,7 @@ set :deploy_via, :remote_cache
 set :deploy_to, config['deploy_to']
 set :use_sudo, false
 set :keep_releases, 5
-set :shared_children, shared_children + %w{pids sockets tmp media set_content}
+set :shared_children, shared_children + %w{pids sockets tmp media set_content public/media}
 
 # if you want to clean up old releases on each deploy uncomment this:
 after 'deploy:restart', 'deploy:cleanup'
@@ -31,7 +31,7 @@ after 'deploy:restart', 'deploy:cleanup'
 namespace :deploy do
   desc "Symlinks required configuration files"
   task :symlink_config, :roles => :app do
-    %w{app.yml unicorn.rb god.conf}.each do |config_file|
+    %w{app.yml unicorn.rb god.conf puma.rb}.each do |config_file|
       run "ln -nfs #{deploy_to}/shared/config/#{config_file} #{release_path}/config/#{config_file}"
     end
   end

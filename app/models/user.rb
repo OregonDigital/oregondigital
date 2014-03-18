@@ -18,4 +18,12 @@ class User < ActiveRecord::Base
   def to_s
     email
   end
+
+  def archivist?
+    roles.where(name: "archivist").exists?
+  end
+
+  def submitter?
+    roles.where(name: "submitter").exists?
+  end
 end

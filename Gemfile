@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.0.0'
 gem 'blacklight'
-gem 'hydra-head', '6.4.0'
+gem 'hydra-head', '6.4.0', :git => 'https://github.com/no-reply/hydra-head.git', :branch => 'AF7-RDF'
+gem 'active-fedora', :git => 'https://github.com/no-reply/active_fedora.git', :branch => 'rdf'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -11,6 +12,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails', '~>3.0.4'
+gem 'jquery-ui-rails'
 gem 'cocoon', '~>1.2.0'
 
 # Nicer form development
@@ -31,7 +33,7 @@ gem 'rdf-redis', '~>0.0.2', :git => 'git://github.com/no-reply/rdf-redis.git'
 
 gem 'noid', '~>0.6.6'
 gem 'hybag'
-gem 'qa', '~>0.0.3', :git => "git://github.com/jechols/questioning_authority"
+gem 'qa', '~>0.0.3', :git => "git://github.com/jechols/questioning_authority", :branch => "feature/od-fixes"
 
 gem 'resque', '~>1.25.0'
 
@@ -76,10 +78,14 @@ gem 'metadata-ingest-form', '~>2.2'
 gem 'mysql2'
 
 # Unicorn for web server
-gem 'unicorn', '~>4.6.3'
+gem 'puma'
 
 # OAI
 gem 'oai'
+
+# Old Asset Precompile Behavior for Stylesheets
+gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-fix"
+
 
 group :development do
   gem 'pry'
@@ -116,4 +122,7 @@ group :development, :test do
 
   # Factories to make our "let" blocks DRY
   gem "factory_girl_rails", :require => false
+
+  # Make JS testing work while keeping the DB clean
+  gem "database_cleaner"
 end

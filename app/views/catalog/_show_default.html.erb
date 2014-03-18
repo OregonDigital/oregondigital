@@ -2,10 +2,8 @@
 <%= render :partial => decorated_object.view_partial, :locals => {:document => document} %>
 
 <dl class="dl-horizontal  dl-invert">
-  <% document_show_fields(document).each do |solr_fname, field| -%>
-    <% if should_render_show_field? document, field %>
-	    <dt class="blacklight-<%= solr_fname.parameterize %>"><%= render_document_show_field_label document, :field => solr_fname %></dt>
-	    <dd class="blacklight-<%= solr_fname.parameterize %>"><%= render_document_show_field_value document, :field => solr_fname %></dd>
-    <% end -%>
+  <% decorated_object.sorted_show_fields.each do |field| -%>
+    <dt class="blacklight-<%= field.parameterize %>"><%= decorated_object.field_label(field) %></dt>
+    <dd class="blacklight-<%= field.parameterize %>"><%= decorated_object.field_value(field) %></dt>
   <% end -%>
 </dl>

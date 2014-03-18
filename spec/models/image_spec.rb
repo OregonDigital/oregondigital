@@ -32,8 +32,8 @@ describe Image do
         FileUtils.rm(image.thumbnail_location) if File.exists?(image.thumbnail_location)
       end
       it 'should populate the external thumbnail datastream' do
-        expect(image.thumbnail.content).to be_nil
         expect(image.thumbnail.dsLocation).to eq("file://#{image.thumbnail_location}")
+        expect(Image.find(image.pid).thumbnail.dsLocation).to eq("file://#{image.thumbnail_location}")
       end
       it "should save the external thumbnail" do
         mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(image.thumbnail_location).split(';')[0]
@@ -46,7 +46,7 @@ describe Image do
       end
       it 'should populate the external pyramidal datastream' do
         expect(image.pyramidal.dsLocation).to eq("file://" + image.pyramidal_tiff_location)
-        expect(image.pyramidal.content).to be_nil
+        expect(Image.find(image.pid).pyramidal.dsLocation).to eq("file://#{image.pyramidal_tiff_location}")
       end
       it 'should save the external pyramidal datastream' do
         mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(image.pyramidal_tiff_location).split(';')[0]

@@ -14,3 +14,7 @@ oai:
   record_prefix: ""
   admin_email: "admin@oregondigital.org"
   sample_id: "oregondigital:h989r3203"
+
+# IIP server configuration
+iip_server:
+  location: http://localhost/iip/iipsrv.fcgi

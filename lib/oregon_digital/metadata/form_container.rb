@@ -7,8 +7,10 @@ class OregonDigital::Metadata::FormContainer
   attr_reader :asset, :form, :upload
 
   def initialize(params = {})
-    @translation_map = params.delete(:map)
-    raise "Translation map must be specified" unless @translation_map
+    @asset_map = params.delete(:asset_map)
+    @template_map = params.delete(:template_map)
+    @asset_class = params.delete(:asset_class)
+    raise "Translation map must be specified" unless @asset_map
 
     prepare_data(params)
   end
@@ -51,13 +53,13 @@ class OregonDigital::Metadata::FormContainer
   def prepare_data(params)
     build_ingest_form
     build_uploader(params[:upload], params[:upload_cache])
-    build_asset(params[:id])
+    build_asset(params[:id], params[:template_id])
     assign_form_attributes(params)
   end
 
   def build_ingest_form
     @form = Metadata::Ingest::Form.new
-    @form.internal_groups = @translation_map.keys.collect {|key| key.to_s}
+    @form.internal_groups = @asset_map.keys.collect {|key| key.to_s}
   end
 
   def build_uploader(upload, upload_cache)
@@ -71,9 +73,18 @@ class OregonDigital::Metadata::FormContainer
     end
   end
 
-  def build_asset(id = nil)
-    load_asset(id) if id
-    @asset ||= GenericAsset.new
+  def build_asset(id, template_id)
+    if id
+      load_asset(id)
+      return
+    end
+
+    @asset = @asset_class.new
+
+    if template_id
+      load_template(template_id)
+      return
+    end
   end
 
   def assign_form_attributes(params)
@@ -83,9 +94,18 @@ class OregonDigital::Metadata::FormContainer
 
   # Loads the given asset and populates the form with its data
   def load_asset(id)
-    @asset = GenericAsset.find(id, cast: true)
-    Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(@translation_map).
+    @asset = @asset_class.find(id, cast: true)
+    Metadata::Ingest::Translators::AttributesToForm.from(@asset).using_map(@asset_map).
         using_translator(OregonDigital::Metadata::AttributeTranslator).to(@form)
+  end
+
+  # Loads the given template and populates the form with its data, killing the
+  # id value since template id isn't what we want there
+  def load_template(id)
+    template = Template.find(id)
+    Metadata::Ingest::Translators::AttributesToForm.from(template).using_map(@template_map).
+        using_translator(OregonDigital::Metadata::AttributeTranslator).to(@form)
+    @form.id = nil
   end
 
   # Sets attributes on @form and pushes the data onto @asset if valid
@@ -93,7 +113,7 @@ class OregonDigital::Metadata::FormContainer
     attrs = attrs.to_hash
     @form.attributes = attrs
     if @form.valid?
-      OregonDigital::Metadata::FormToAttributes.from(@form).using_map(@translation_map).to(@asset)
+      OregonDigital::Metadata::FormToAttributes.from(@form).using_map(@asset_map).to(@asset)
     end
   end
 end

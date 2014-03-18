@@ -1,9 +1,27 @@
+def visit_ingest_url
+  visit('/')
+  click_link "Ingest"
+  click_link "Start from scratch"
+end
+
+def fill_out_dummy_data
+  fill_in_ingest_data("title", "title", "Asset Title")
+  fill_in_ingest_data("date", "created", "2014-01-07")
+  fill_in_ingest_data("description", "description", "This is an asset")
+end
+
+def click_the_ingest_button
+  find(:css, 'input.btn-primary').click
+end
+
 def ingest_group_nodes(group)
   return all(:css, ".nested-fields[data-group=#{group}]")
 end
 
 def fill_in_ingest_data(group, type, value, position = 0)
-  within(ingest_group_nodes(group)[position]) do
+  nodes = ingest_group_nodes(group)
+  node = nodes[position]
+  within(node) do
     select(type, :from => "Type")
     fill_in("Value", :with => value)
   end
@@ -44,7 +62,6 @@ def upload_path(type)
 end
 
 def submit_ingest_form_with_upload(filetype = :pdf)
-  fill_out_dummy_data
   attach_file("Upload", upload_path(filetype))
   click_the_ingest_button
 end

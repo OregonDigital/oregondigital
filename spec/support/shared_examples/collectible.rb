@@ -9,7 +9,7 @@ shared_examples 'a collectible item' do
     class TestCollection < ActiveFedora::Base
       include OregonDigital::Collection
       has_metadata 'descMetadata', type: TestDatastream
-      delegate_to :descMetadata, [:title], :multiple => true
+      has_attributes :title, :datastream => :descMetadata, :multiple => true
     end
   end
   subject(:item) { described_class.new }

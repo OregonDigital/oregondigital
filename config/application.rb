@@ -55,6 +55,8 @@ module Oregondigital
     # Default SASS Configuration, check out https://github.com/rails/sass-rails for details
     config.assets.compress = !Rails.env.development?
 
+    # Vendor Assets
+    config.assets.paths << Rails.root.join("app", "vendor", "assets", "images")
     # add app/assets/fonts to the asset path
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
