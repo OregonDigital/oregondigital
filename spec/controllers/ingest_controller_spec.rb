@@ -10,9 +10,9 @@ describe IngestController do
   let(:existing_asset) { GenericAsset.new }
   let(:ds_exist) { existing_asset.descMetadata }
   let(:form) { Metadata::Ingest::Form.new }
-  let(:subject1) { "http://id.loc.gov/authorities/subjects/sh85050282" }
+  let(:subject1) { RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282") }
   let(:label1) { "Food industry and trade" }
-  let(:subject2) { "http://id.loc.gov/authorities/subjects/sh96005121" }
+  let(:subject2) { RDF::URI.new("http://id.loc.gov/authorities/subjects/sh96005121") }
   let(:label2) { "Combinatorial chemistry" }
 
   # This is ugly but it mimics exactly what Rails params look like

@@ -10,7 +10,8 @@ describe "(Ingest Form)" do
 
   before(:each) do
     capybara_login(admin)
-
+    # Pretend that auto fetching doesn't happen.
+    GenericAsset.any_instance.stub(:queue_fetch).and_return(true)
     # Ensure ingested objects create predictable and unique pids
     OregonDigital::IdService.stub(:namespace).and_return("spec-feature-ingestform")
     OregonDigital::IdService.stub(:next_id) do
@@ -183,6 +184,48 @@ describe "(Ingest Form)" do
       end
     end
 
+    context "when fields are selected for cloning", :js => true do
+      before(:each) do
+        visit_ingest_url
+
+        fill_in_ingest_data("title", "title", "Test title", 0, false)
+
+        fill_in_ingest_data("date", "created", "2001-01-01", 0, true)
+        click_link "Add date"
+        fill_in_ingest_data("date", "modified", "2001-01-02", 1, false)
+        click_link "Add date"
+        fill_in_ingest_data("date", "date", "2001-01-03", 2, true)
+
+        fill_in_ingest_data("description", "description", "This is a great description", 0, true)
+
+        click_the_ingest_button
+      end
+
+      it "should create a new asset" do
+        expect(GenericAsset.count).to eq(1)
+      end
+
+      it "should show a success message" do
+        expect(page).to have_content("Ingested new object")
+      end
+
+      it "should show the checked fields on the form" do
+        expect(page).to include_ingest_fields_for("date", "created", "2001-01-01")
+        expect(page).to include_ingest_fields_for("date", "date", "2001-01-03")
+        expect(page).to include_ingest_fields_for("description", "description", "This is a great description")
+      end
+
+      it "shouldn't show the unchecked fields on the form" do
+        expect(page).not_to include_ingest_fields_for("title", "title", /\w+/)
+        expect(page).not_to include_ingest_fields_for("date", "modified", /\w+/)
+      end
+
+      it "should render a form which can be submitted to create a second object" do
+        click_the_ingest_button
+        expect(GenericAsset.count).to eq(2)
+      end
+    end
+
     context "with controlled vocabulary data", :js => true do
       before(:each) do
         visit_ingest_url
@@ -196,7 +239,7 @@ describe "(Ingest Form)" do
       it "should store the internal URI, not the label" do
         click_the_ingest_button
         asset = GenericAsset.find(@pid)
-        expect(asset.subject).to eq([subject1, subject2])
+        expect(asset.subject.collect {|s| s.rdf_subject}).to eq([subject1, subject2])
       end
 
       it "should display the label on a subsequent edit" do
@@ -238,7 +281,12 @@ describe "(Ingest Form)" do
         expect(value_field.value).to eq(label1)
       end
 
-      it "should fail when a non-URI is freely typed in"
+      it "should fail when a non-URI is freely typed in" do
+        click_link "Add subject"
+        fill_in_ingest_data("subject", "subject", "Invalid subject", 2)
+        click_the_ingest_button
+        expect(page).to have_content("Term not in controlled vocabularies: Invalid subject")
+      end
 
       it "should cache the label returned by QA" do
         # Make sure all known labels we could have set are cleared
@@ -292,6 +340,28 @@ describe "(Ingest Form)" do
         expect(page).not_to include_ingest_fields_for("title", "title", "Testing stuffs")
         expect(page).to include_ingest_fields_for("date", "created", "2001-01-01")
         expect(page).to include_ingest_fields_for("description", "description", "This is not a useful description")
+      end
+    end
+
+    context "for an object with unmapped data" do
+      let(:asset) { FactoryGirl.create(:generic_asset, title: "Testing stuffs") }
+      let(:pid) { asset.pid }
+      let(:statement) do
+        RDF::Statement.new(
+          asset.descMetadata.rdf_subject,
+          RDF::URI.new("http://rdf.example.com/thing"),
+          RDF::Literal.new("Blargh")
+        )
+      end
+
+      before(:each) do
+        asset.descMetadata.graph << statement
+        asset.save!
+        visit_edit_form_url(pid)
+      end
+
+      it "should show the unmapped triples" do
+        expect(page).to have_content(statement.to_ntriples)
       end
     end
   end

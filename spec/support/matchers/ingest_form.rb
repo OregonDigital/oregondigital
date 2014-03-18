@@ -1,4 +1,7 @@
-def page_includes_ingest_fields_for?(group, type, value)
+# Checks the page for the given group, type, and value.  Type and value can be
+# strings for an exact match or patterns if regex matching is required, e.g.,
+# in order to verify that a given group/type doesn't appear at all.
+def page_includes_ingest_fields_for?(group, type_pattern, value_pattern)
   # Can't nest "all" and "find" - "all" returns an Enumerator, not a scoped
   # nodeset of some kind.  So we have to do this nonsense.
   nodes = ingest_group_nodes(group)
@@ -7,7 +10,7 @@ def page_includes_ingest_fields_for?(group, type, value)
       type_field = find("select.type-selector")
       value_field = find("input.value-field")
 
-      return true if type_field.value == type && value_field.value == value
+      return true if type_pattern === type_field.value && value_pattern === value_field.value
     end
   end
 

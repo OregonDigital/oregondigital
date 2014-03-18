@@ -4,25 +4,29 @@ require 'metadata/ingest/translators/attributes_to_form'
 # All-in-one form object for managing our forms and their translations while making it seem like
 # a more standard single-object-as-model approach
 class OregonDigital::Metadata::FormContainer
-  attr_reader :asset, :form, :upload
+  attr_reader :asset, :form, :upload, :raw_statements, :cloneable
 
   def initialize(params = {})
     @asset_map = params.delete(:asset_map)
     @template_map = params.delete(:template_map)
     @asset_class = params.delete(:asset_class)
+    @cloneable = params.delete(:cloneable)
     raise "Translation map must be specified" unless @asset_map
 
     prepare_data(params)
   end
 
-  # Returns the composite validity of the form and the asset
-  def valid?
-    return true if @form.valid? && @asset.valid?
-    return false unless @form.valid?
+  # Checks validity of @asset and propogates errors up to @form if any exist
+  def asset_valid?
+    return true if @asset.valid?
 
-    # If the asset is invalid, we need to copy up all the errors
     @asset.errors.each {|key, val| @form.errors.add(key, val)}
     return false
+  end
+
+  # Returns the composite validity of the form and asset
+  def valid?
+    return @form.valid? && asset_valid?
   end
 
   # Ensures form has at least one visible entry for each group
@@ -47,6 +51,36 @@ class OregonDigital::Metadata::FormContainer
     @asset.save
   end
 
+  # Returns true if this was a cloneable form and any of @form's associations
+  # were marked cloned
+  def has_cloned_associations?
+    return false if !@cloneable
+
+    for assoc in @form.associations
+      return true if assoc.clone
+    end
+
+    return false
+  end
+
+  # Returns a new FormContainer with an ingest form containing all associations
+  # marked for cloning
+  def clone_associations
+    new_form = OregonDigital::Metadata::FormContainer.new(
+      :asset_map => @asset_map,
+      :template_map => @template_map,
+      :asset_class => @asset_class,
+      :cloneable => true
+    )
+    for assoc in @form.associations.select {|assoc| assoc.clone == true}
+      new_form.form.add_association(assoc) if assoc.clone
+    end
+
+    new_form.add_blank_groups
+
+    return new_form
+  end
+
   private
 
   # Sets up all internal objects based on parameters
@@ -55,11 +89,14 @@ class OregonDigital::Metadata::FormContainer
     build_uploader(params[:upload], params[:upload_cache])
     build_asset(params[:id], params[:template_id])
     assign_form_attributes(params)
+    find_unmapped_rdf
   end
 
   def build_ingest_form
     @form = Metadata::Ingest::Form.new
     @form.internal_groups = @asset_map.keys.collect {|key| key.to_s}
+    @form.association_class = @cloneable ? OregonDigital::Metadata::CloneableAssociation
+                                         : OregonDigital::Metadata::Association
   end
 
   def build_uploader(upload, upload_cache)
@@ -90,6 +127,34 @@ class OregonDigital::Metadata::FormContainer
   def assign_form_attributes(params)
     attrs = params[:metadata_ingest_form]
     set_attributes(attrs) if attrs
+  end
+
+  def find_unmapped_rdf
+    @raw_statements = RDF::Graph.new
+    mapped_predicates = []
+
+    # Iterate over the asset map and inspect each delegated attribute, building
+    # a list of raw predicates we've mapped to the form
+    for group, type_maps in @asset_map
+      for type, attr_definition in type_maps
+        object, attribute = extract_delegation_data(attr_definition)
+        mapped_predicates << object.class.properties[attribute]["predicate"]
+      end
+    end
+
+    asset_subject = @asset.descMetadata.rdf_subject
+    for statement in @asset.descMetadata.graph
+      is_mapped = mapped_predicates.include?(statement.predicate)
+      is_same_subject = statement.subject == asset_subject
+      @raw_statements << statement unless is_mapped && is_same_subject
+    end
+  end
+
+  def extract_delegation_data(attr_definition)
+    objects = attr_definition.to_s.split(".")
+    attribute = objects.pop
+    object = objects.reduce(@asset, :send)
+    return [object, attribute]
   end
 
   # Loads the given asset and populates the form with its data

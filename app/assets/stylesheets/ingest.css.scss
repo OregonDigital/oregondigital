@@ -37,6 +37,7 @@
   .ingest-control {
     display: inline-block;
     margin-left: 20px;
+    vertical-align: top;
   }
 
   .add-link-wrapper {
@@ -49,4 +50,9 @@
       display: block;
     }
   }
+}
+
+.ntriple {
+  padding-left: 20px;
+  font-family: monospace;
 }

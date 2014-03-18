@@ -20,31 +20,23 @@ INGEST_MAP = {
   title: {
     title: "descMetadata.title",
   },
+  
+  description: {
+    description: "descMetadata.description"
+  },
 
   subject: {
     subject: "descMetadata.subject",
   },
-
-  type: {
-    type: "descMetadata.type",
-  },
-
-  format: {
-    format: "descMetadata.format",
+  
+  geographic: {
+    location: "descMetadata.location",
   },
 
   date: {
     created: "descMetadata.created",
     modified: "descMetadata.modified",
     date: "descMetadata.date",
-  },
-
-  description: {
-    description: "descMetadata.description"
-  },
-
-  grouping: {
-    set: "descMetadata.set"
   },
 
   identifier: {
@@ -57,13 +49,22 @@ INGEST_MAP = {
 
   publisher: {
   },
+  
+  type: {
+    type: "descMetadata.type",
+  },
+
+  format: {
+    format: "descMetadata.format",
+  },
+  
+  grouping: {
+    set: "descMetadata.set"
+  },
 
   administrative: {
   },
 
-  geographic: {
-    location: "descMetadata.location",
-  },
 }
 
 # XXX HACK: we just duplicate and modify the INGEST_MAP data to ensure we're in

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/jechols/questioning_authority
-  revision: a49f5fe83a5507558a21ecdcd0f5590e01cbce53
+  revision: d22e9abe10fde69eaa07d7698edfb09fb98785c2
   branch: feature/od-fixes
   specs:
     qa (0.0.3)
@@ -195,6 +195,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    fakeredis (0.4.3)
+      redis (~> 3.0.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     faraday_middleware (0.9.0)
@@ -280,7 +282,7 @@ GEM
     map (4.7.1)
     marc (0.7.1)
     mediashelf-loggable (0.4.9)
-    metadata-ingest-form (2.2.0)
+    metadata-ingest-form (2.4.0)
       activemodel (>= 3.0)
     method_source (0.8.2)
     mime-types (1.25)
@@ -527,6 +529,7 @@ DEPENDENCIES
   draper
   exifr (~> 1.1.3)
   factory_girl_rails
+  fakeredis
   guard (~> 1.0)
   guard-rspec (~> 3.0)
   hybag
@@ -539,7 +542,7 @@ DEPENDENCIES
   jquery-rails (~> 3.0.4)
   jquery-ui-rails
   linkeddata
-  metadata-ingest-form (~> 2.2)
+  metadata-ingest-form (~> 2.4)
   mini_magick
   mysql2
   noid (~> 0.6.6)

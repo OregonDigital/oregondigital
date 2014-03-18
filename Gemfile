@@ -72,7 +72,7 @@ gem 'hydra-role-management'
 gem 'draper'
 
 # Ingest form FBOs
-gem 'metadata-ingest-form', '~>2.2'
+gem 'metadata-ingest-form', '~>2.4'
 
 # mysql gem
 gem 'mysql2'
@@ -101,6 +101,7 @@ end
 
 group :test do
   gem 'webmock'
+  gem 'fakeredis', :require => 'fakeredis/rspec'
 end
 
 group :development, :test do
