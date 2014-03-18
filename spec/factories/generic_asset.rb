@@ -9,13 +9,24 @@ FactoryGirl.define do
 
     after(:build) {|obj| obj.review}
 
-    trait :with_image_datastream do
+    trait :with_jpeg_datastream do
       after(:build) do |obj|
         obj.add_file_datastream(
           File.open("#{ROOT}/spec/fixtures/fixture_image.jpg", "rb").read,
           dsid: "content",
           mimeType: "image/jpeg",
           label: "image.jpg"
+        )
+      end
+    end
+
+    trait :with_tiff_datastream do
+      after(:build) do |obj|
+        obj.add_file_datastream(
+          File.open("#{ROOT}/spec/fixtures/fixture_image.tiff", "rb").read,
+          dsid: "content",
+          mimeType: "image/tiff",
+          label: "image.tiff"
         )
       end
     end

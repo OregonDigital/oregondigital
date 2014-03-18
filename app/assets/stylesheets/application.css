@@ -11,3 +11,15 @@
  *= require_self
  *= require_tree .
  */
+
+/* Port of Bootstrap 3's "hidden except for screen readers" styling */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0px, 0px, 0px, 0px);
+  border: 0px none;
+}

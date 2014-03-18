@@ -58,6 +58,11 @@ attachControlledVocabularyTypeahead = (option, input, uri) ->
     template: controlledVocabularySuggestionHTML
   }])
 
+  # Typeahead's styling makes things awful - vertical align and background
+  # color really screw up the UI in odd ways.  But position: relative seems to
+  # be a must-have, so we just put in that one and leave the others off.
+  input.attr("style", "position: relative")
+
   # Handle selections so we can populate hidden fields and lock the form down
   input.on 'typeahead:selected', (object, datum) ->
     storeControlledVocabularyData(input, datum)
