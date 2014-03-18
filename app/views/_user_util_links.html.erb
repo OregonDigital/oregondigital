@@ -1,36 +1,37 @@
-<% if has_user_authentication_provider? %>
-  <div class="utils">
-  <div class="util-links-login">
-    <% if current_user %>
-      <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
-      <%-# = "[#{ link_to current_user, edit_user_registration_path }]".html_safe unless current_user.to_s.blank?- %>
-    <% else %>
-      <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
+<div class="utils">
+  <% if has_user_authentication_provider? %>
+    <div class="util-links-login">
+      <% if current_user %>
+        <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %> <%= "[#{ link_to current_user, edit_user_registration_path }]".html_safe unless current_user.to_s.blank? %>
+      <% else %>
+        <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
+      <% end %>
+    </div>
+
+  <% end %>
+
+  <div class="util-links-other">
+    <% if current_or_guest_user %>
+      <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path, :class => 'bookmarks' %>
     <% end %>
+    <% if has_user_authentication_provider? and current_user %>
+      -
+      <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path, :class => 'saved-searches' %>
+    <% end %>
+    <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
   </div>
+  <div class="util-links-auth">
+    <div class="admin">
+      <% if can?(:show, Role) -%>
+        <%= link_to "Roles", role_management.roles_path %>
+        <% content_for :body_class, "admins" %>
+      <% end -%>
+      <% if can?(:review, GenericAsset) -%>
+        -
+        <%= link_to "Review", reviewer_index_path %>
+      <% end -%>
 
-<% end %>
 
-<div class="util-links-other">
-  <% if current_or_guest_user %>
-    <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path, :class => 'bookmarks' %>
-  <% end %>
-  <% if has_user_authentication_provider? and current_user %>
-    -
-    <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path, :class => 'saved-searches' %>
-  <% end %>
-  <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
-</div>
-<div class="util-links-auth">
-  <div class="admin">
-    <% if can?(:show, Role) -%>
-      <%= link_to "Roles", role_management.roles_path %>
-      <% content_for :body_class, "admins" %>
-    <% end -%>
-    <% if can?(:review, GenericAsset) -%>
-       -
-      <%= link_to "Review", reviewer_index_path %>
-    <% end -%>
+    </div>
   </div>
-</div>
 </div>

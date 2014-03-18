@@ -1,0 +1,1139 @@
+@font-face{font-family:'EksjaExtremesRegular';
+  src: url(fonts/Eksja-regular-webfont.eot);
+  src:local('?'),
+  url(fonts/Eksja-regular-webfont.woff) format('woff'),
+  url(fonts/Eksja-regular-webfont.ttf) format('truetype'),
+  url(fonts/Eksja-regular-webfont.svg#webfont) format('svg');
+  font-weight:normal;font-style:normal;}
+@font-face {
+  font-family: 'FontAwesome';
+  src: url(fonts/fontawesome-webfont.eot);
+  src: url(fonts/fontawesome-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/fontawesome-webfont.woff) format("woff"), url(fonts/fontawesome-webfont.ttf) format("truetype"), url(fonts/fontawesome-webfont.svg#FontAwesome) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 10, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul [class^="icon-"]:before, ._osul [class*=" icon-"]:before {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+}
+/* line 11, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul a [class^="icon-"], ._osul a [class*=" icon-"] {
+  display: inline-block;
+  text-decoration: inherit;
+}
+/* line 12, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul .icon-large:before {
+  vertical-align: middle;
+  font-size: 1.3333333333333333em;
+}
+/* line 13, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul .btn [class^="icon-"], ._osul .nav-tabs [class^="icon-"], ._osul .btn [class*=" icon-"], ._osul .nav-tabs [class*=" icon-"] {
+  line-height: .9em;
+}
+/* line 14, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul li [class^="icon-"], ._osul li [class*=" icon-"] {
+  display: inline-block;
+  width: 1.25em;
+  text-align: center;
+}
+/* line 15, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul li .icon-large:before, ._osul li .icon-large:before {
+  width: 1.875em;
+}
+/* line 16, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul ul.icons {
+  list-style-type: none;
+  margin-left: 2em;
+  text-indent: -0.8em;
+}
+/* line 17, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul ul.icons li [class^="icon-"], ._osul ul.icons li [class*=" icon-"] {
+  width: .8em;
+}
+/* line 18, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul ul.icons li .icon-large:before, ._osul ul.icons li .icon-large:before {
+  vertical-align: initial;
+}
+/* line 20, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul .icon-search:before {
+  content: "\f002";
+}
+/* line 21, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul .icon-reorder:before {
+  content: "\f0c9";
+}
+/* line 22, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul [class^="icon-"], ._osul [class*=" icon-"] {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+}
+/* line 23, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul .btn.dropdown-toggle [class^="icon-"], ._osul .btn.dropdown-toggle [class*=" icon-"] {
+  line-height: 1.4em;
+}
+/* line 24, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul .icon-large {
+  font-size: 1.3333em;
+}
+/* line 26, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul .icon-search {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1',this.innerHTML = '&#xf002;&nbsp;');
+}
+/* line 27, /vagrant/app/assets/stylesheets/00-osul-font-icons.css.scss */
+._osul .icon-reorder {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1',this.innerHTML = '&#xf0c9;&nbsp;');
+}
+/* line 1, /vagrant/app/assets/stylesheets/00-osul-footer.css.scss */
+#footer {
+  color: #fff;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 20px 0 20px 20px;
+  background: #39393a;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzM5MzkzYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyNTI1MjUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #39393a 0%, #252525 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #39393a), color-stop(100%, #252525));
+  background: -webkit-linear-gradient(top, #39393a 0%, #252525 100%);
+  background: -o-linear-gradient(top, #39393a 0%, #252525 100%);
+  background: -ms-linear-gradient(top, #39393a 0%, #252525 100%);
+  background: linear-gradient(top, #39393a 0%, #252525 100%);
+  min-height: 148px;
+  border-top: 4px solid #DBD6D0;
+}
+/* line 12, /vagrant/app/assets/stylesheets/00-osul-footer.css.scss */
+#footer a {
+  color: #fff;
+}
+/* line 13, /vagrant/app/assets/stylesheets/00-osul-footer.css.scss */
+#footer a:hover, #footer a:active, #footer a:focus {
+  background-color: #666;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+/* line 16, /vagrant/app/assets/stylesheets/00-osul-footer.css.scss */
+.social-media {
+  position: relative;
+  top:4px;
+}
+/* line 18, /vagrant/app/assets/stylesheets/00-osul-footer.css.scss */
+.social-media a {
+  background-image: url(//osulibrary.oregonstate.edu/sites/all/themes/doug_fir_library/images/socialnetworks.png);
+  display: block;
+  width: 16px;
+  height: 16px;
+  text-indent: -100px;
+  overflow: hidden;
+  margin: 2px 0;
+}
+/* line 21, /vagrant/app/assets/stylesheets/00-osul-footer.css.scss */
+.social-media .fb {
+  background-position: 0 32px;
+}
+/* line 22, /vagrant/app/assets/stylesheets/00-osul-footer.css.scss */
+.social-media .twitter {
+  background-position: 0 16px;
+}
+
+/* line 25, /vagrant/app/assets/stylesheets/00-osul-footer.css.scss */
+.ie #footer {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#39393a',endColorstr='#252525',GradientType=0);
+}
+
+div.content {
+  margin: 0.4em 0px 1em;
+}/* line 3, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#mobile-menu {
+  display: none;
+}
+@media (max-width: 480px) {
+  /* line 3, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+  #mobile-menu {
+    position: absolute;
+    z-index: 999;
+    top: 40px;
+    padding: 0px 8px;
+  }
+  /* line 8, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+  #mobile-menu .menu {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+  }
+}
+
+/* line 13, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#main-menu .form-actions {
+  background-color: transparent;
+  padding: 0;
+}
+/* line 14, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#main-menu .menu {
+  margin: 1em 0;
+  float: none;
+  background-color: #373737;
+  z-index: 200;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+/* line 15, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#main-menu .content {
+  padding: 0;
+}
+
+/* line 18, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu {
+  overflow: visible;
+  padding: 3px 0px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  z-index: 10;
+  background-color: #373737;
+  margin: 0;
+}
+/* line 32, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu *,
+.megamenu-menu .megamenu-parent,
+.megamenu-menu .megamenu-parent-title,
+.megamenu-menu .megamenu-bin,
+.megamenu-menu .megamenu-slot,
+.megamenu-menu .megamenu-slot-title,
+.megamenu-menu .megamenu-items {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  background: transparent;
+}
+/* line 33, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu, .megamenu-menu ul.megamenu-items {
+  list-style: none;
+}
+/* line 34, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-parent {
+  display: inline;
+  position: relative;
+  z-index: 99;
+}
+/* line 35, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-parent-title {
+  display: inline;
+}
+/* line 36, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-bin {
+  position: absolute;
+  left: 0;
+  top: -9000px;
+  z-index: 10000;
+  overflow: hidden;
+}
+/* line 37, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-bin-right {
+  left: auto;
+  right: -500px;
+}
+/* line 38, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-links-horizontal {
+  overflow: hidden;
+}
+/* line 40, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-links-horizontal li,
+.megamenu-menu .megamenu-links-horizontal li a {
+  float: left;
+}
+/* line 41, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-menu-vertical .megamenu-parent {
+  display: block;
+}
+/* line 42, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu ul a {
+  text-decoration: none;
+}
+/* line 43, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu ul a:hover {
+  text-decoration: underline;
+}
+/* line 44, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-bin {
+  padding: 0.5em;
+}
+/* line 45, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-slot {
+  width: 200px;
+  margin-bottom: 0.5em;
+  margin-right: 0.5em;
+}
+/* line 46, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-slots-columnar {
+  overflow: hidden;
+  background-color: #5C5C5C;
+}
+/* line 47, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu .megamenu-parent {
+  z-index: 11 !important;
+}
+
+/* line 51, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .first h2 a {
+  background-image: none;
+  padding-right: 17px;
+}
+/* line 52, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .first h2 a:hover {
+  background-image: none;
+  padding-right: 17px;
+}
+/* line 53, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul li.active-trail a {
+  background-image: none;
+}
+/* line 54, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul h2 a {
+  text-decoration: none;
+  display: inline;
+  color: #fff;
+  font-size: 14px;
+  margin: 0;
+  padding: 10px 47px 10px 31px;
+  background: url(//osulibrary.oregonstate.edu/sites/all/themes/doug_fir_library/images/h-menu-arrow-down.png) no-repeat right center;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  font-variant: none;
+}
+/* line 64, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul h2 a:hover {
+  background-color: #4B4B4B;
+}
+/* line 68, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-bin {
+  -webkit-border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
+  list-style: none outside none;
+}
+/* line 69, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-slot {
+  margin-right: 4px;
+  list-style: none outside none;
+  width: 200px;
+}
+/* line 70, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-slot-title a {
+  letter-spacing: normal;
+}
+/* line 71, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-item {
+  color: #fff;
+  border: none;
+}
+/* line 73, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .nolink {
+  background: #2F2A2B;
+  background-repeat: no-repeat;
+  color: #fff;
+  width: 165px;
+  padding: 2px 6px;
+  font-weight: normal;
+  clear: both;
+}
+/* line 74, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-items {
+  letter-spacing: normal;
+  line-height: 1.5em;
+  margin: 0;
+  padding: 0 1.45em 0 0;
+}
+/* line 75, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-item {
+  list-style: none outside none;
+  padding: 0.3em 0 0.3em 8px;
+}
+/* line 76, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-item a {
+  color: #fff;
+  white-space: nowrap;
+}
+/* line 79, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-item a.menu-185301,
+.megamenu-skin-osul .megamenu-item a.menu-229581,
+.megamenu-skin-osul .megamenu-item a.menu-229501 {
+  white-space: normal;
+}
+/* line 80, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-item a:hover {
+  color: #d85a1a;
+  background-image: none;
+}
+/* line 81, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-item a.active {
+  color: #ccc;
+}
+/* line 82, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-item a.active:hover {
+  color: #ccc;
+  text-decoration: none;
+  cursor: text;
+}
+/* line 83, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-items .last {
+  border: none;
+}
+/* line 85, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-skin-osul .megamenu-bin {
+  margin-top: 3px;
+  border: none;
+}
+
+/* line 92, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+h2.pane-title {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/* line 93, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#backgroundcolor h2.pane-title {
+  color: #fff;
+  background: #561F4B;
+  -moz-box-shadow: -1px 1.5px 3px 0.25px #ccc;
+  -webkit-box-shadow: -1px 1.5px 3px 0.25px #ccc;
+  box-shadow: -1px 1.5px 3px 0.25px #ccc;
+  padding-left: 5px;
+  margin-bottom: 2px;
+}
+
+/* line 94, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.span3 .panel-separator {
+  border: 1px dashed #CCC;
+}
+
+/* line 95, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.link_description:before {
+  content: ' - ';
+}
+
+/* line 96, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#megamenu-mlid-182176 .megamenu-bin {
+  padding: 1.5em 0 0 0;
+}
+
+/* line 97, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#megamenu-mlid-185326 {
+  clear: both;
+  float: left;
+  margin-bottom: 0;
+  width: 100%;
+  background: repeat-x scroll left top #2F2A2B;
+  background: -moz-linear-gradient(top, #5c5c5c 0%, #252525 100%);
+  background: -webkit-linear-gradient(top, #5c5c5c 0%, #252525 100%);
+  background: -o-linear-gradient(top, #5c5c5c 0%, #252525 100%);
+  background: -ms-linear-gradient(top, #5c5c5c 0%, #252525 100%);
+  background: linear-gradient(top, #5c5c5c 0%, #252525 100%);
+  -webkit-border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+/* line 106, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#megamenu-mlid-182176 .megamenu-slot-0 {
+  margin-left: 1em;
+}
+
+/* line 107, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#megamenu-mlid-185326 h3 {
+  margin: .5em 0 .5em 1.6em;
+  font-family: 'trebuchet ms', Arial, sans-serif;
+  color: #b3ba35;
+  letter-spacing: normal;
+  font-size: 1em;
+}
+
+/* line 110, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#megamenu-mlid-185326 h3 a {
+  color: #fff;
+}
+
+/* line 112, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs .ui-widget-header {
+  border: 0;
+  background: transparent;
+}
+
+/* line 113, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs.ui-tabs .ui-tabs-panel {
+  padding: 0;
+  border-left: 1px solid #4B4B4B;
+  height: 39px;
+  background: #561F4B;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* line 114, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs .ui-corner-bottom {
+  border: 0;
+}
+
+/* line 117, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-items li:hover {
+  background-color: #4B4B4B;
+  color: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 118, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-items .megamenu-item a {
+  white-space: normal;
+  border: none;
+}
+
+/* line 119, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-items .megamenu-item a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* line 120, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-parent {
+  margin: 0.1em 1em;
+}
+
+/* line 121, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-slot-title span.nolink {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 4px 20px;
+}
+
+/* line 122, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu-vertical {
+  width: 8em;
+}
+
+/* line 123, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-menu-vertical .megamenu-parent {
+  margin-top: 1em;
+}
+
+/* line 124, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-slots.flyright {
+  left: 7em;
+  top: 0;
+}
+
+/* line 125, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-slots.flyleft {
+  left: -16.2em;
+  top: 0;
+}
+
+/* line 126, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+.megamenu-slots-columnar li.megamenu-slot {
+  float: left;
+}
+
+/* line 128, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs-search {
+  float: right;
+  margin-top: -24px;
+  padding: 0;
+}
+/* line 132, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs-search a {
+  font-size: 14px;
+  height: 13px;
+  padding: 4px 15px 7px 10px;
+  -webkit-border-radius: 8px 8px 0 0;
+  -moz-border-radius: 8px 8px 0 0;
+  border-radius: 8px 8px 0 0;
+}
+/* line 139, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs-search form {
+  margin: 0;
+}
+/* line 141, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs-search form input {
+  margin: 0;
+}
+/* line 145, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs-search .tab-content {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 148, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs-search .tab-pane {
+  padding: 4px;
+  width: 265px;
+}
+/* line 153, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs-search .form-submit {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #b13f00;
+  background-image: -moz-linear-gradient(top, #c34500, #983600);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c34500), to(#983600));
+  background-image: -webkit-linear-gradient(top, #c34500, #983600);
+  background-image: -o-linear-gradient(top, #c34500, #983600);
+  background-image: linear-gradient(to bottom, #c34500, #983600);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFC34500', endColorstr='#FF983600', GradientType=0);
+  background: #c34500;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  background: url(//osulibrary.oregonstate.edu/sites/all/themes/doug_fir_library/images/search_icon_white.png) no-repeat scroll 10px 5px #c34500;
+  box-shadow: none;
+  float: right;
+  height: 30px;
+  margin: 0;
+  width: 40px;
+  float: right;
+}
+/* line 169, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs-search .nav-tabs {
+  margin: 0 4px;
+}
+/* line 173, /vagrant/app/assets/stylesheets/10-osul-megamenu.css.scss */
+#tabs-search .nav-tabs a {
+  border: 0;
+}
+/* line 3, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat {
+  width: 100%;
+  height: 55px;
+  border-bottom: 3px solid #dbd6d0;
+  font-family: Gudea,Arial,Helvetica,Verdana,sans-serif;
+  background-color: #424242;
+  background-image: -moz-linear-gradient(top, #565656, #252525);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#565656), to(#252525));
+  background-image: -webkit-linear-gradient(top, #565656, #252525);
+  background-image: -o-linear-gradient(top, #565656, #252525);
+  background-image: linear-gradient(to bottom, #565656, #252525);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF565656', endColorstr='#FF252525', GradientType=0);
+}
+/* line 10, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat ul.menu {
+  float: left;
+  margin: 1.5em 0 0;
+  padding: 0;
+  width: auto;
+}
+/* line 16, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat ul.menu li.leaf {
+  float: left;
+  list-style-type: none;
+  list-style-image: none;
+  font-size: 12px;
+  margin: 0;
+  padding: 0 .5em;
+}
+/* line 24, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat ul.menu li.first {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-top: -3px;
+  padding: 3px 5px 3px 37px;
+  background: url(//osulibrary.oregonstate.edu/sites/all/themes/doug_fir_library/images/askus.png) 10% 50% no-repeat transparent;
+}
+/* line 31, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat ul.menu li.last {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin-top: -3px;
+  padding: 3px 5px 3px 24px;
+  background: url(//osulibrary.oregonstate.edu/sites/all/themes/doug_fir_library/images/foundation.png) 10% 50% no-repeat transparent;
+}
+/* line 38, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat ul.menu li.first:hover, #osu-top-hat ul.menu li.first:active, #osu-top-hat ul.menu li.first:focus, #osu-top-hat ul.menu li.last:hover, #osu-top-hat ul.menu li.last:active, #osu-top-hat ul.menu li.last:focus {
+  background-color: #555;
+}
+/* line 39, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat ul.menu li.first a:hover, #osu-top-hat ul.menu li.first a:active, #osu-top-hat ul.menu li.first a:focus, #osu-top-hat ul.menu li.last a:hover, #osu-top-hat ul.menu li.last a:active, #osu-top-hat ul.menu li.last a:focus {
+  background-color: transparent;
+}
+/* line 41, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat ul.menu li a {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+/* line 47, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat ul.menu li a:hover, #osu-top-hat ul.menu li a:active, #osu-top-hat ul.menu li a:focus {
+  background-color: #555;
+}
+/* line 52, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat .tag {
+  float: left;
+  margin-left: 1.231em;
+  margin-right: 1.5em;
+  position: relative;
+  border: none;
+  z-index: 51;
+  padding: 0;
+}
+/* line 61, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#osu-top-hat .tag .mobile-header {
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  display: none;
+}
+@media (max-width: 767px) {
+  /* line 3, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+  #osu-top-hat {
+    height: 40px;
+  }
+  /* line 71, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+  #osu-top-hat ul.menu {
+    display: none;
+  }
+  /* line 74, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+  #osu-top-hat #mobile-icon-menu {
+    background: transparent;
+    color: #fff;
+    display: block;
+    position: absolute;
+    right: 4%;
+    text-decoration: none;
+    top: 10px;
+    z-index: 300;
+  }
+  /* line 84, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+  #osu-top-hat #mobile-icon-menu .icon-search {
+    font-size: 18px;
+  }
+}
+@media (max-width: 480px) {
+  /* line 3, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+  #osu-top-hat {
+    background-color: #ba4100;
+    background-image: -moz-linear-gradient(top, #c34500, #ae3d00);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c34500), to(#ae3d00));
+    background-image: -webkit-linear-gradient(top, #c34500, #ae3d00);
+    background-image: -o-linear-gradient(top, #c34500, #ae3d00);
+    background-image: linear-gradient(to bottom, #c34500, #ae3d00);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFC34500', endColorstr='#FFAE3D00', GradientType=0);
+    background-repeat: repeat-x;
+    height: auto;
+    border-bottom: none;
+    text-align: left;
+  }
+  /* line 95, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+  #osu-top-hat .container {
+    padding: 10px 0 0 10px;
+  }
+  /* line 96, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+  #osu-top-hat .tag {
+    margin-left: 0;
+    float: none;
+  }
+  /* line 99, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+  #osu-top-hat .tag .logo {
+    display: none;
+  }
+  /* line 100, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+  #osu-top-hat .tag .mobile-header {
+    display: inline-block;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+/* line 104, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#mobile-icon-menu {
+  display: none;
+}
+
+/* line 108, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#common-header {
+  color: #252525;
+  font-size: 16px;
+  line-height: 22px;
+}
+/* line 110, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#common-header a:focus {
+  outline: none;
+}
+/* line 111, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#common-header h1, #common-header h2, #common-header h1 a {
+  font-weight: 400;
+}
+/* line 112, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#common-header h1 a {
+  text-decoration: none;
+  color: #c34500;
+}
+/* line 113, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#common-header h1, #common-header h2 {
+  font-family: "EksjaExtremesRegular", "Arial", "Helvetica", "Verdana", sans-serif;
+}
+/* line 114, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#common-header h1 {
+  font-size: 30px;
+  line-height: 44px;
+  margin: 0px;
+  padding: 1em 0px 0px;
+}
+/* line 115, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#common-header h2 {
+  line-height: 32px;
+}
+/* line 116, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#common-header .tab-content {
+  overflow: hidden;
+}
+
+/* line 119, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+#header a:hover, a:active, a:focus {
+  color: #615042;
+}
+
+/* line 120, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+.word-hide {
+  text-indent: -9999em;
+}
+
+/* line 122, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+.form-submit {
+  margin-bottom: 1em;
+}
+
+/* line 123, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+body {
+  font-family: "Gudea", "Arial", "Verdana", sans-serif;
+}
+
+/* line 126, /vagrant/app/assets/stylesheets/10-osul-tophat.css.scss */
+.element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  overflow: hidden;
+  height: 1px;
+}
+@media (max-width:480px) {
+  body {
+    padding: 0;
+  }
+  #main-menu {
+    display: none;
+  }
+  #header h1 {
+    font-size: 24px;
+    line-height: 24px;
+    padding: 4px 8px 2px 10px;
+  }
+  #footer .block-menu {
+    float: none;
+  }
+  #footer .content > .menu > li {
+    display: block;
+    float: none;
+    max-width: 90%;
+    width: 95%;
+  }
+  .parent {
+    padding-left: 10px;
+  }
+  .content {
+    padding: .4em;
+  }
+}
+@media (min-width:481px) and (max-width:767px) {
+  #osu-top-hat ul.menu {
+    margin-left: -24px;
+    margin-top: 34px !important;
+  }
+  #osu-top-hat ul.menu li.leaf {
+    padding: 0 .3em;
+  }
+  #header {
+    margin-bottom: 10px;
+  }
+  #header h1 {
+    padding-left: 135px;
+    padding-top: .1em;
+  }
+}
+@media (max-width:767px) {
+  #main-menu {
+    display: none;
+  }
+  a.m-icon-link {
+    color: #fff;
+    padding: 11px 13px 9px;
+    text-decoration: none;
+  }
+  a.m-icon-link:hover,a.m-icon-link:active,a.m-icon-link:focus {
+    background-color: #373737;
+  }
+  #osu-top-hat {
+    height: 40px;
+  }
+  #osu-top-hat ul.menu {
+    display: none;
+  }
+  #osu-top-hat ul.menu li a.campaign {
+    background-image: none;
+    padding-left: .2em;
+  }
+  #osu-top-hat .utility,#osu-top-hat form.search {
+    display: none;
+  }
+  #mobile-icon-menu {
+    background: transparent;
+    color: #fff;
+    display: block;
+    position: absolute;
+    right: 4%;
+    text-decoration: none;
+    top: 10px;
+    z-index: 300;
+  }
+  #mobile-icon-menu .icon-search {
+    font-size: 18px;
+  }
+  #mobile-menu {
+    background: #373737;
+    margin-left: 0;
+  }
+  #mobile-menu li {
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+  }
+  #mobile-menu ul {
+    margin-left: 0;
+  }
+  #mobile-menu ul li a {
+    color: #fff;
+    display: block;
+    line-height: 40px;
+    padding-left: 10px;
+    text-decoration: none;
+  }
+  #mobile-menu ul li a + ul {
+    display: none;
+  }
+  #mobile-menu ul li a.active {
+    font-weight: bold;
+  }
+  #mobile-menu ul li a.active + ul {
+    display: block;
+  }
+  #mobile-menu #mobile-main-menu > ul > li + li {
+    border-top: 1px solid #474747;
+  }
+  #mobile-menu #mobile-main-menu .active + .menu {
+    background-color: #303030;
+    background-image: linear-gradient(top,#373737,#252525);
+    background-image: -moz-linear-gradient(top,#373737,#252525);
+    background-image: -ms-linear-gradient(top,#373737,#252525);
+    background-image: -o-linear-gradient(top,#373737,#252525);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#373737),to(#252525));
+    background-image: -webkit-linear-gradient(top,#373737,#252525);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#373737',endColorstr='#252525',GradientType=0);
+  }
+  #mobile-menu #mobile-osu-top-hat {
+    background: #1b1b1b;
+    padding-top: 10px;
+  }
+  #mobile-menu #mobile-osu-top-hat li {
+    display: inline-block;
+    padding: 0;
+    text-align: center;
+    vertical-align: top;
+    width: 18.2%;
+  }
+  #mobile-menu #mobile-osu-top-hat li a {
+    font-size: 12px;
+    line-height: 12px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+  #mobile-menu #mobile-osu-top-hat li i {
+    color: #acacac;
+    font-size: 40px;
+    line-height: 35px;
+    margin-bottom: 4px;
+  }
+  #mobile-menu #mobile-osu-top-hat li:last-child i {
+    color: #d85a1a;
+  }
+  #main-menu,.tag + .menu {
+    display: none;
+  }
+  #main-menu .menu li,#main-menu .nice-menu > li {
+    float: none;
+  }
+  #main-menu .menu li a,#main-menu .nice-menu > li > a {
+    border-bottom: 1px dotted #666;
+    display: block;
+  }
+  #main-menu .menu li:last-child a,#main-menu .nice-menu > li:last-child > a {
+    border-bottom: none;
+  }
+  #main-menu .nice-menu > li > a:hover ul,#main-menu .nice-menu > li:hover ul,#main-menu .nice-menu li:hover ul,#main-menu .nice-menu li ul {
+    display: none !important;
+  }
+  #main-menu .nice-menu > li.menuparent > a,.classic #main-menu .nice-menu > li.menuparent > a {
+    background-image: none;
+  }
+  #main-column1 > div,#main-column2 > div {
+    margin: 0;
+  }
+  #footer {
+    background: #e5e2dd;
+    color: #252525;
+    padding: 12px;
+  }
+  #footer h2,#footer h3 {
+    color: #252525;
+  }
+  #footer a {
+    color: #252525;
+  }
+  #footer a:hover,#footer a:active,#footer a:focus {
+    color: #fff;
+  }
+  #footer .content > .menu {
+    background: #575757;
+    border-radius: 4px;
+    margin-top: 20px;
+    moz-border-radius: 4px;
+    webkit-border-radius: 4px;
+  }
+  #footer .content > .menu > li {
+    display: block;
+    margin-left: 0;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-top: 0;
+    width: 100%;
+  }
+  #footer .content > .menu > li > a {
+    background: #373737;
+    line-height: 28px;
+    padding-left: 10px;
+  }
+  #footer .content > .menu > li.expanded {
+    margin-bottom: 12px;
+  }
+  #footer .content .menu li {
+    margin: 0;
+    padding: 0;
+  }
+  #footer .content .menu a {
+    color: #fff;
+    line-height: 22px;
+    padding-left: 10px;
+  }
+  .classic #main-menu .nice-menu > li.menuparent:hover > a,.classic #main-menu .nice-menu > li.menuparent > a:hover,.classic #main-menu .nice-menu > li.menuparent > a:active,.classic #main-menu .nice-menu > li.menuparent > a:focus {
+    background-color: #eee;
+    background-image: none;
+  }
+  .science #main-menu .nice-menu > li + li,.science #main-menu .menu li + li {
+    border-left: none;
+  }
+}
+@media (min-width:768px) {
+  #main-menu {
+    display: block !important;
+  }
+  #mobile-menu {
+    display: none !important;
+  }
+}
+@media (min-width:768px) and (max-width:979px) {
+  #osu-top-hat .utility {
+    display: none;
+  }
+  #osu-top-hat ul.menu {
+    margin: 0.8em 0 0 -2em;
+  }
+  .megamenu-skin-osul h2 a {
+    padding:10px 32px 10px 16px;
+  }
+
+}
+@media (max-width:979px) {
+  body:before {
+    display: none;
+  }
+  #features .content {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+}
+@media (max-width:979px) {
+  body {
+    padding: 0;
+  }
+}/* line 14, /vagrant/app/assets/stylesheets/5-osu-purple.css.scss */
+.osu-purple {
+  /*.nav-tabs > li {
+    margin: 0 10px;
+  }*/
+}
+/* line 16, /vagrant/app/assets/stylesheets/5-osu-purple.css.scss */
+.osu-purple .title,
+.osu-purple .widget-title {
+  background-color: #561f4b;
+  color: white;
+}
+/* line 23, /vagrant/app/assets/stylesheets/5-osu-purple.css.scss */
+.osu-purple .nav-tabs > li > a, .osu-purple .nav-tabs > li > a:hover, .osu-purple .nav-tabs > li > a:focus {
+  background-color: #4b4b4b;
+  color: white;
+  transition: all 0.25s ease-in-out;
+  border: none;
+}
+/* line 29, /vagrant/app/assets/stylesheets/5-osu-purple.css.scss */
+.osu-purple .nav-tabs > li > a:hover, .osu-purple .nav-tabs > li > a:focus {
+  box-shadow: 0 0 5px #212121;
+}
+/* line 34, /vagrant/app/assets/stylesheets/5-osu-purple.css.scss */
+.osu-purple .nav-tabs > li.active > a, .osu-purple .nav-tabs > li.active > a:hover, .osu-purple .nav-tabs > li.active > a:focus {
+  background-color: #561f4b;
+  color: white;
+  box-shadow: none;
+}
+/* line 44, /vagrant/app/assets/stylesheets/5-osu-purple.css.scss */
+.osu-purple .nav-tabs {
+  border-bottom: 1px solid #561f4b;
+}
+/* line 48, /vagrant/app/assets/stylesheets/5-osu-purple.css.scss */
+.osu-purple .osu-background {
+  background-color: #561f4b;
+  color: white;
+}
