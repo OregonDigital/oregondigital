@@ -7,7 +7,6 @@ shared_examples 'a collectible item' do
       end
     end
     class TestCollection < ActiveFedora::Base
-      include OregonDigital::Collection
       has_metadata 'descMetadata', type: TestDatastream
       has_attributes :title, :datastream => :descMetadata, :multiple => true
     end
@@ -29,6 +28,8 @@ shared_examples 'a collectible item' do
       expect(item.set).to eq []
     end
     it 'should return multiple sets' do
+      collection.save
+      other_collection.save
       item.set << collection
       item.set << other_collection
       item.save

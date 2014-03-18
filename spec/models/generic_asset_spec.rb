@@ -42,6 +42,48 @@ describe GenericAsset do
       end
     end
   end
+
+  describe '#set' do
+    context "when it has an assigned set" do
+      let(:collection) {FactoryGirl.create(:generic_collection)}
+      let(:assigned_object) {collection}
+      before(:each) do
+        subject.set = assigned_object
+      end
+
+      context "by assigning it a collection object" do
+        it "should return the set" do
+          expect(subject.set).to eq [collection]
+        end
+        it "should return the set (after reload)" do
+          subject.save
+          subject.reload
+          expect(subject.set).to eq [collection]
+        end
+        it "should index the rdf label" do
+          expect(subject.to_solr[Solrizer.solr_name("desc_metadata__set_label", :facetable)]).to eq collection.resource.rdf_label
+        end
+        it "should update the RDF label when the set is updated" do
+          subject.save
+          expect(subject.class.where(Solrizer.solr_name("desc_metadata__set_label", :facetable) => collection.title).length).to eq 1
+          #collection.reload
+          collection.title = "AnotherTitle"
+          collection.save
+          expect(subject.class.where(Solrizer.solr_name("desc_metadata__set_label", :facetable) => collection.title).length).to eq 1
+        end
+      end
+
+      context "by assigning it a URI" do
+        let(:assigned_object) {collection.resource.rdf_subject}
+        it "should return the set (after reload)" do
+          subject.save
+          subject.reload
+          expect(subject.set).to eq [collection]
+        end
+      end
+    end
+  end
+
   describe "fetching data" do
     let(:subject_1) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
     subject(:generic_asset) do
@@ -76,10 +118,6 @@ describe GenericAsset do
       end
       it "should not call fetch again when run again within 7 days" do
         expect(asset_2.descMetadata.subject.first).not_to receive(:fetch)
-        asset_2.descMetadata.fetch_external
-      end
-      it "should not update other objects if a correct label is set already" do
-        expect(asset_2.descMetadata).not_to receive(:fix_fedora_index)
         asset_2.descMetadata.fetch_external
       end
       it "should persist the label to solr for other objects" do

@@ -12,5 +12,6 @@ RDF_VOCABS = {
   :rights               =>  { :prefix => 'http://opaquenamespace.org/rights/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/rights.jsonld', :strict => true },
   :mimetype             =>  { :prefix => 'http://purl.org/NET/mediatypes/', :source => 'http://mediatypes.appspot.com/dump.rdf' },
   :oregondigital        =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/opaquenamespace.jsonld', :strict => true },
-  :oregon_universities   =>  { :prefix => 'http://dbpedia.org/resource/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/oregon_universities.jsonld', :strict => true }
+  :oregon_universities  =>  { :prefix => 'http://dbpedia.org/resource/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/oregon_universities.jsonld', :strict => true },
+  :set                  =>  { :prefix => 'http://oregondigital.org/resource/', :strict => false }
 }

@@ -3,11 +3,16 @@ module CollectionsHelper
   include Blacklight::FacetsHelperBehavior
 
   def collection_name(pid)
-    begin
-      GenericCollection.load_instance_from_solr(pid).decorate.title
-    rescue StandardError
-      pid
-    end
+    document = @document_list.find{|x| x[Solrizer.solr_name("desc_metadata__set", :displayable)].to_a.include? pid}
+    return "" if !document
+    # NOTE - THIS MAKES A HUGE ASSUMPTION - labels must be indexed in the same order as the set it's with.
+    index = document[Solrizer.solr_name("desc_metadata__set", :displayable)].index(pid)
+    label = document[Solrizer.solr_name("desc_metadata__set_label", :displayable)].to_a[index]
+  end
+
+  def should_render_facet? display_facet
+    display = facet_configuration_for_field(display_facet.name).show != false
+    return display && display_facet.items.map{|x| facet_display_value(display_facet.name, x)}.select{|x| !x.blank?}.present?
   end
 
   def render_set(set)

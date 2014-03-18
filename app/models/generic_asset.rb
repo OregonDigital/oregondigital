@@ -15,6 +15,7 @@ class GenericAsset < ActiveFedora::Base
 
   before_save :check_derivatives
   after_save :queue_derivatives
+  attr_accessor :skip_queue
   after_save :queue_fetch
 
 
@@ -28,7 +29,7 @@ class GenericAsset < ActiveFedora::Base
   private
 
   def queue_fetch
-    Resque.enqueue(FetchAllJob, pid)
+    skip_queue ? self.skip_queue = nil : Resque.enqueue(FetchAllJob,pid)
   end
 
   def check_derivatives
@@ -37,7 +38,7 @@ class GenericAsset < ActiveFedora::Base
   end
 
   def queue_derivatives
-    Resque.enqueue(CreateDerivativesJob,pid) if @needs_derivatives
+    ::Resque.enqueue(::CreateDerivativesJob,pid) if @needs_derivatives
   end
 
 end
