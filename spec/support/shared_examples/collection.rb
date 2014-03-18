@@ -19,10 +19,10 @@ shared_examples 'a collection' do
   end
 
   describe '.members' do
-    it 'should be empty when no items belong' do
+    xit 'should be empty when no items belong' do
       expect(generic_collection.members).to eq []
     end
-    it 'should return collected items' do
+    xit 'should return collected items' do
       generic_collection.members << item
       generic_collection.reload
       generic_collection.save
@@ -35,7 +35,7 @@ shared_examples 'a collection' do
     end
   end
   describe '.delete' do
-    it 'should remove relationships from items' do
+    xit 'should remove relationships from items' do
       generic_collection.members << item
       generic_collection.save
       expect(item.reload.collections).to include generic_collection

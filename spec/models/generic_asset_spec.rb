@@ -88,31 +88,6 @@ describe GenericAsset do
     end
   end
 
-  describe 'collection metadata crosswalking' do
-    context 'when the asset is a member of a collection' do
-      subject(:generic_asset) { FactoryGirl.create(:generic_asset, :in_collection!) }
-      let(:collection) { subject.collections.first }
-
-      it 'should populate od:set' do
-        expect(subject.descMetadata.set).to eq [collection.pid]
-      end
-      it "should populate od:set after being reloaded" do
-        item = GenericAsset.find(subject.pid)
-        expect(item.descMetadata.set).to eq [collection.pid]
-      end
-    end
-    context "when the asset is imported with set information" do
-      before(:each) do
-        subject.descMetadata.set_value(subject.descMetadata.rdf_subject, :set, "oregondigital:testing")
-        subject.save
-        @item = GenericAsset.find(subject.pid)
-      end
-      it "should set the rels" do
-        expect(@item.relationships(:is_member_of_collection).to_a).to eq ["info:fedora/oregondigital:testing"]
-      end
-    end
-  end
-
   describe 'indexing of deep nodes' do
     context 'when the object has a deep node with an rdf_subject' do
       let(:subject_1) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}

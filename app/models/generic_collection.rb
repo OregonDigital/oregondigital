@@ -1,5 +1,4 @@
 class GenericCollection < GenericAsset
-  include OregonDigital::Collection
 
   def to_param
     self.class.id_param(pid)
