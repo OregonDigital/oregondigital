@@ -4,6 +4,7 @@ module OregonDigital::ControlledVocabularies
   class Geographic < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
+    configure :rdf_label => RDF::URI('http://www.geonames.org/ontology#name')
     use_vocabulary :geonames
 
     class QaGeonames < OregonDigital::RDF::Controlled::ClassMethods::QaRDF
