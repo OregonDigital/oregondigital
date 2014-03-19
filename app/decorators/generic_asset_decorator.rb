@@ -24,6 +24,7 @@ class GenericAssetDecorator < Draper::Decorator
   def field_value(field)
     results = resource.get_values(field)
     results = results.map do |r|
+      r = r.resource if r.respond_to? :resource
       if r.respond_to?(:rdf_label)
         if r.rdf_label.first.to_s == r.rdf_subject
           ""

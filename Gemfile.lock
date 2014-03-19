@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: https://github.com/no-reply/active_fedora.git
-  revision: 723224da541ba6a0f140c318b8b803340fc0645f
+  revision: 154e22ba6941a15353d8197bb2e4e84d4ca67eda
   branch: oregon-af7
   specs:
     active-fedora (7.0.0.rc2)

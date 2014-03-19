@@ -5,7 +5,7 @@ module OregonDigital
       # Fix deep indexes on members when a set changes.
       before_save :check_update_members
       after_save :update_members
-      after_destroy :update_members
+      after_destroy :update_members!
     end
 
     def members
@@ -20,6 +20,11 @@ module OregonDigital
     def check_update_members
       @check_update_members = descMetadata.content_changed?
       true
+    end
+
+    def update_members!
+      @check_update_members = true
+      update_members
     end
 
     def update_members
