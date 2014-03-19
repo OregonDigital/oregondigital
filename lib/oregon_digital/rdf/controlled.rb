@@ -31,7 +31,7 @@ module OregonDigital::RDF
           uri_or_str = uri_or_str.to_s.gsub(config[:prefix], '')
           if config[:class].respond_to? uri_or_str
             uri_or_str = config[:class].send(uri_or_str)
-            return super
+            return super(uri_or_str)
           end
         else
           # this only matches if the term is explictly defined
