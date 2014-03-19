@@ -61,15 +61,15 @@ describe GenericAsset do
           expect(subject.set).to eq [collection]
         end
         it "should index the rdf label" do
-          expect(subject.to_solr[Solrizer.solr_name("desc_metadata__set_label", :facetable)]).to eq collection.resource.rdf_label
+          expect(subject.to_solr[Solrizer.solr_name("desc_metadata__set_label", :facetable)]).to eq ["#{collection.resource.rdf_label.first}$#{collection.resource.rdf_subject.to_s}"]
         end
         it "should update the RDF label when the set is updated" do
           subject.save
-          expect(subject.class.where(Solrizer.solr_name("desc_metadata__set_label", :facetable) => collection.title).length).to eq 1
+          expect(subject.class.where(Solrizer.solr_name("desc_metadata__set_label", :facetable) => "#{collection.title}$#{collection.resource.rdf_subject.to_s}").length).to eq 1
           #collection.reload
           collection.title = "AnotherTitle"
           collection.save
-          expect(subject.class.where(Solrizer.solr_name("desc_metadata__set_label", :facetable) => collection.title).length).to eq 1
+          expect(subject.class.where(Solrizer.solr_name("desc_metadata__set_label", :facetable) => "#{collection.title}$#{collection.resource.rdf_subject.to_s}").length).to eq 1
         end
       end
 
@@ -106,7 +106,7 @@ describe GenericAsset do
         # Stop auto reload
         GenericAsset.any_instance.stub(:queue_fetch).and_return(true)
         subject
-        expect(GenericAsset.where("desc_metadata__subject_label_sim" => "Food industry and trade").length).to eq 0
+        expect(GenericAsset.where("desc_metadata__subject_label_sim" => "Food industry and trade#{subject_1.to_s}").length).to eq 0
         asset_2.descMetadata.fetch_external
       end
       it "should set that object's label" do
@@ -121,7 +121,7 @@ describe GenericAsset do
         asset_2.descMetadata.fetch_external
       end
       it "should persist the label to solr for other objects" do
-        expect(GenericAsset.where("desc_metadata__subject_label_sim" => "Food industry and trade").length).to eq 1
+        expect(GenericAsset.where("desc_metadata__subject_label_sim" => "Food industry and trade$#{subject_1.to_s}").length).to eq 1
       end
     end
   end
@@ -143,7 +143,7 @@ describe GenericAsset do
       it "should index it" do
         name = subject.solr_name('desc_metadata__subject_label',:facetable)
         expect(subject.to_solr).to include name
-        expect(subject.to_solr[name]).to eq ["Test Subject", "Dogs"]
+        expect(subject.to_solr[name]).to eq ["Test Subject$#{subject_1.to_s}", "Dogs$#{subject_2.to_s}"]
       end
     end
   end
