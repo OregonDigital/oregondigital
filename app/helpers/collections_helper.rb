@@ -12,8 +12,19 @@ module CollectionsHelper
     return "" if !label_facet
     new_pid_item = label_facet.items.find{|x| x.value.include?(pid)}
     return "" if !new_pid_item
-    new_pid = new_pid_item.value.split("$").first.strip
-    new_pid == pid ? "" : new_pid
+    controlled_view_label(new_pid_item.value).first
+  end
+
+  def controlled_view_label(label)
+    return controlled_view_label(label[:document][label[:field]]) if label.kind_of?(Hash)
+    Array.wrap(label).map do |x|
+      new_label = x.split("$")
+      if new_label.first == new_label.last
+        ""
+      else
+        new_label.first.strip
+      end
+    end
   end
 
   def should_render_facet? display_facet
