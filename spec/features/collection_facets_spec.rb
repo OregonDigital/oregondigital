@@ -52,7 +52,7 @@ describe 'collection facets' do
           click_link collection.title
         end
         it "should not go to the collection landing page" do
-          expect(page).to have_selector(".filter-desc_metadata__set_label_sim")
+          expect(page).to have_selector(".filter-desc_metadata__set_sim")
           expect(current_path).not_to eq "/sets/#{collection.pid.split(':').last}"
         end
       end
