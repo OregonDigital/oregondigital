@@ -2,12 +2,8 @@ module CollectionsHelper
   # Force Blacklight's facet stuff to load first so we can override its methods
   include Blacklight::FacetsHelperBehavior
 
-  def collection_name(pid)
-    document = @document_list.find{|x| x[Solrizer.solr_name("desc_metadata__set", :displayable)].to_a.include? pid}
-    return "" if !document
-    # NOTE - THIS MAKES A HUGE ASSUMPTION - labels must be indexed in the same order as the set it's with.
-    index = document[Solrizer.solr_name("desc_metadata__set", :displayable)].index(pid)
-    label = document[Solrizer.solr_name("desc_metadata__set_label", :displayable)].to_a[index]
+  def controlled_view(pid)
+    pid.split("$").first
   end
 
   def should_render_facet? display_facet
@@ -21,11 +17,11 @@ module CollectionsHelper
   end
 
   def add_facet_params_and_redirect(field, item)
-    if field == ActiveFedora::SolrService.solr_name("desc_metadata__set", :facetable) && params[:search_field].blank? && params[:f].blank?
+    if field == ActiveFedora::SolrService.solr_name("desc_metadata__set_label", :facetable) && params[:search_field].blank? && params[:f].blank?
       {
           :controller => "sets",
           :action => "index",
-          :set => GenericCollection.id_param(item)
+          :set => GenericCollection.id_param(item.split("$").last)
       }
     else
       super
