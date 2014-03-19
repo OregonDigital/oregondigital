@@ -3,16 +3,11 @@ class GenericAsset < ActiveFedora::Base
   include Hydra::ModelMethods
   include Hydra::Derivatives
   include Hybag::Baggable
-  include OregonDigital::Collectible
   include OregonDigital::Workflow
   include OregonDigital::OAI::Concern
   include ActiveFedora::Rdf::Identifiable
 
-  has_metadata :name => 'descMetadata', :type => Datastream::OregonRDF do |ds|
-    ds.crosswalk :field => :set, :to => :is_member_of_collection, :in => "RELS-EXT",
-                 :transform => Proc.new {|x| x.gsub('info:fedora/','')},
-                 :reverse_transform => Proc.new {|x| "info:fedora/#{x}"}
-  end
+  has_metadata :name => 'descMetadata', :type => Datastream::OregonRDF
   has_metadata :name => 'rightsMetadata', :type =>
     Datastream::RightsMetadata
 
@@ -20,6 +15,7 @@ class GenericAsset < ActiveFedora::Base
 
   before_save :check_derivatives
   after_save :queue_derivatives
+  attr_accessor :skip_queue
   after_save :queue_fetch
 
 
@@ -33,7 +29,7 @@ class GenericAsset < ActiveFedora::Base
   private
 
   def queue_fetch
-    Resque.enqueue(FetchAllJob, pid)
+    skip_queue ? self.skip_queue = nil : Resque.enqueue(FetchAllJob,pid)
   end
 
   def check_derivatives
@@ -42,7 +38,7 @@ class GenericAsset < ActiveFedora::Base
   end
 
   def queue_derivatives
-    Resque.enqueue(CreateDerivativesJob,pid) if @needs_derivatives
+    ::Resque.enqueue(::CreateDerivativesJob,pid) if @needs_derivatives
   end
 
 end

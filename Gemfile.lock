@@ -27,8 +27,8 @@ GIT
 
 GIT
   remote: https://github.com/no-reply/active_fedora.git
-  revision: b4931482009fadff91e16a8aa0cc028295e1fd0c
-  branch: rdf
+  revision: 154e22ba6941a15353d8197bb2e4e84d4ca67eda
+  branch: oregon-af7
   specs:
     active-fedora (7.0.0.rc2)
       activesupport (>= 3.0.0)
@@ -39,7 +39,7 @@ GIT
       om (~> 3.0.0)
       rdf-rdfxml (~> 1.1.0)
       rsolr (~> 1.0.10.pre1)
-      rubydora (~> 1.7.0)
+      rubydora (~> 1.7.4)
 
 GIT
   remote: https://github.com/no-reply/hydra-head.git
@@ -185,7 +185,7 @@ GEM
     ebnf (0.3.2)
       rdf
       sxp
-    equivalent-xml (0.4.0)
+    equivalent-xml (0.4.2)
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -216,8 +216,8 @@ GEM
     haml (4.0.5)
       tilt
     hike (1.2.3)
-    hooks (0.3.4)
-      uber (~> 0.0.2)
+    hooks (0.3.6)
+      uber (~> 0.0.4)
     htmlentities (4.3.1)
     hybag (0.2.0)
       active-fedora
@@ -489,7 +489,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    uber (0.0.2)
+    uber (0.0.4)
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)

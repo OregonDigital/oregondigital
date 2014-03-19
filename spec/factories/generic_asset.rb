@@ -50,7 +50,7 @@ FactoryGirl.define do
 
     trait :in_collection! do
       after(:build) do |obj|
-        obj.collections << build(:generic_collection)
+        obj.set << create(:generic_collection)
 
         # ActiveFedora sort of requires this, so unfortunately there's no build-only option here :(
         obj.save

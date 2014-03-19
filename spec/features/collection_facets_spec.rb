@@ -9,7 +9,7 @@ describe 'collection facets' do
       g.save
       g
     end
-    let(:collection) { item.collections.first }
+    let(:collection) { item.set.first }
 
     before(:each) do
       item
@@ -20,7 +20,9 @@ describe 'collection facets' do
         visit root_path
       end
       it "should display the collection title as a facet" do
-        expect(page).to have_content(collection.title)
+        within '#facets' do
+          expect(page).to have_content(collection.title)
+        end
       end
       it "should go to the landing page when clicked" do
         click_link collection.title
@@ -60,8 +62,10 @@ describe 'collection facets' do
         collection.destroy
         visit root_path
       end
-      it "should display the collection pid as a facet" do
-        expect(page).to have_content(collection.pid)
+      it "should display nothing" do
+        within '#facets' do
+          expect(page).not_to have_content("Collection")
+        end
       end
     end
     context "and it does not have a title" do
@@ -70,8 +74,10 @@ describe 'collection facets' do
         collection.save
         visit root_path
       end
-      it "should display the collection pid as a facet" do
-        expect(page).to have_content(collection.pid)
+      it "should not display anything" do
+        within '#facets' do
+          expect(page).not_to have_content("Collection")
+        end
       end
     end
   end
