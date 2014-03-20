@@ -24,9 +24,14 @@ class OregonDigital::Metadata::FormContainer
     return false
   end
 
+  # Checks validity of @form
+  def form_valid?
+    return @form.valid?
+  end
+
   # Returns the composite validity of the form and asset
   def valid?
-    return @form.valid? && asset_valid?
+    return form_valid? && asset_valid?
   end
 
   # Ensures form has at least one visible entry for each group
@@ -177,7 +182,7 @@ class OregonDigital::Metadata::FormContainer
   def set_attributes(attrs)
     attrs = attrs.to_hash
     @form.attributes = attrs
-    if @form.valid?
+    if form_valid?
       OregonDigital::Metadata::FormToAttributes.from(@form).using_map(@asset_map).to(@asset)
     end
   end
