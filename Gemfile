@@ -86,6 +86,7 @@ gem 'oai'
 # Old Asset Precompile Behavior for Stylesheets
 gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-fix"
 
+gem 'rdf-mongo'
 
 group :development do
   gem 'pry'

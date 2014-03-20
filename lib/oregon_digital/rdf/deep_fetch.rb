@@ -5,6 +5,7 @@ module OregonDigital::RDF
       controlled_properties.each do |property|
         get_values(property).each do |value|
           resource = value.respond_to?(:resource) ? value.resource : value
+          next unless resource.kind_of?(ActiveFedora::Rdf::Resource)
           old_label = resource.rdf_label
           fetch_value(resource) if resource.kind_of? ActiveFedora::Rdf::Resource
           resource.persist! unless value.kind_of?(ActiveFedora::Base)
@@ -18,7 +19,10 @@ module OregonDigital::RDF
       if resource.rdf_label.first.blank?
         assets = ActiveFedora::Base.where("#{Solrizer.solr_name(apply_prefix(property), :facetable)}:#{RSolr.escape(resource.rdf_subject.to_s)} AND #{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}:[\"\" TO *]")
       else
-        assets = ActiveFedora::Base.where(Solrizer.solr_name(apply_prefix(property), :facetable) => resource.rdf_subject.to_s, "-#{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}" => resource.rdf_label.first.to_s).to_a
+        assets = ActiveFedora::Base.where(
+            Solrizer.solr_name(apply_prefix(property), :facetable) => resource.rdf_subject.to_s,
+            "-#{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}" => "#{resource.rdf_label.first}$#{resource.rdf_subject.to_s}"
+        ).where("#{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}:*$#{RSolr.escape(resource.rdf_subject.to_s)}")
       end
       assets.each do |a|
         a.skip_queue = 1 if a.respond_to?(:skip_queue=)
