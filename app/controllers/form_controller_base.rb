@@ -1,7 +1,6 @@
 # Common elements needed for the form-manipulating controllers (ingest and template)
 class FormControllerBase < ApplicationController
   before_filter :build_controlled_vocabulary_map
-  before_filter :setup_resources, only: [:new, :create, :edit, :update]
 
   protected
 
@@ -9,13 +8,6 @@ class FormControllerBase < ApplicationController
   # converting the controller's asset into a form (asset_class) - must be
   # implemented by the subclass in order for other methods to work
   def asset_map
-    raise NotImplementedError
-  end
-
-  # Defines what the ingest form object's structure will look like when
-  # creating an asset from a template - must be implemented by the subclass in
-  # order for other methods to work
-  def template_map
     raise NotImplementedError
   end
 
@@ -29,13 +21,6 @@ class FormControllerBase < ApplicationController
   # the subclass
   def index_path
     raise NotImplementedError
-  end
-
-  # Returns true if the created form should display the "clone" checkbox.  This
-  # defaults to false so the subclass only needs to override in the case
-  # cloning of fields is necessary.
-  def cloneable?
-    return false
   end
 
   # Attempts to save the asset, merging errors with the ingest form since the
@@ -60,17 +45,6 @@ class FormControllerBase < ApplicationController
     end
 
     redirect_to index_path, :notice => success_message
-  end
-
-  # Sets up a form container for actions which use a form object
-  def setup_resources
-    defaults = {
-      :asset_map => asset_map,
-      :template_map => template_map,
-      :asset_class => asset_class,
-      :cloneable => cloneable?
-    }
-    @form = OregonDigital::Metadata::FormContainer.new(params.merge(defaults))
   end
 
   # Iterates over the ingest map, and looks up properties in the datastream

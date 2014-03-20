@@ -1,6 +1,7 @@
 class IngestController < FormControllerBase
   include Hydra::Controller::ControllerBehavior
 
+  before_filter :setup_resources, only: [:new, :create, :edit, :update]
   before_filter :check_permissions
 
   def index
@@ -34,6 +35,17 @@ class IngestController < FormControllerBase
     unless can? permission, GenericAsset
       raise Hydra::AccessDenied.new "You do not have permission to #{permission} assets."
     end
+  end
+
+  # Sets up a form container for actions which use a form object
+  def setup_resources
+    defaults = {
+      :asset_map => asset_map,
+      :template_map => template_map,
+      :asset_class => asset_class,
+      :cloneable => cloneable?
+    }
+    @form = OregonDigital::Metadata::FormContainer.new(params.merge(defaults))
   end
 
   # We allow cloning for new resources only
