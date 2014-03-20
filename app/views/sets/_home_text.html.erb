@@ -2,7 +2,7 @@
 
 <ul>
   <% @collections.each do |collection| -%>
-    <li><a href="<%= "/sets/#{collection.pid.split(':').last}" %>"><%= collection.title %></a></li>
+    <li><%= link_to collection.title, sets_path(collection.pid.split(':').last) %></li>
   <% end -%>
 </ul>
 
