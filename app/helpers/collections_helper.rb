@@ -10,9 +10,9 @@ module CollectionsHelper
     label_key = label_key.join("_")
     label_facet = @response.facets.find{|x| x.name == label_key}
     return "" if !label_facet
-    new_pid_item = label_facet.items.find{|x| x.value.include?(pid)}
-    return "" if !new_pid_item
-    controlled_view_label(new_pid_item.value).first
+    new_pid_item = label_facet.items.select{|x| x.value.include?(pid)}
+    return "" if !new_pid_item || new_pid_item.blank?
+    controlled_view_label(new_pid_item.map(&:value)).find{|x| !x.blank?}.to_s
   end
 
   def controlled_view_label(label)
