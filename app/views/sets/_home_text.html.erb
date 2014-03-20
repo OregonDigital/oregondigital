@@ -1,5 +1,10 @@
+<h2>Digital Collections</h2>
+
 <ul>
   <% @collections.each do |collection| -%>
-    <li><%= collection.title %></li>
+    <li><%= link_to collection.title, sets_path(collection.pid.split(':').last) %></li>
   <% end -%>
 </ul>
+
+
+<p>For more digital collections, please visit our old <a href="http://oregondigital.org/digcol/a2z.php">Digital Collections A-Z list</a>.</p>
