@@ -5,6 +5,7 @@ module OregonDigital::RDF
       controlled_properties.each do |property|
         get_values(property).each do |value|
           resource = value.respond_to?(:resource) ? value.resource : value
+          next unless resource.kind_of?(ActiveFedora::Rdf::Resource)
           old_label = resource.rdf_label
           fetch_value(resource) if resource.kind_of? ActiveFedora::Rdf::Resource
           resource.persist! unless value.kind_of?(ActiveFedora::Base)
