@@ -23,15 +23,22 @@ module OregonDigital
           #
           # :show may be set to false if you don't want the facet to be drawn in the
           # facet bar
-          config.add_facet_field solr_name('desc_metadata__hasFormat',:facetable), :label => 'Format'
-          config.add_facet_field solr_name('desc_metadata__date', :facetable), :label => 'Publication Year', :single => true
-          config.add_facet_field solr_name('desc_metadata__subject', :facetable), :label => 'Topic', :limit => 20, :helper_method => :controlled_view
-          config.add_facet_field solr_name('desc_metadata__subject_label', :facetable), :show => false
-          config.add_facet_field solr_name('desc_metadata__location', :facetable), :label => 'Region', :helper_method => :controlled_view
-          config.add_facet_field solr_name('desc_metadata__location_label', :facetable), :show => false
-          config.add_facet_field solr_name('desc_metadata__set', :facetable), :label => 'Collection', :helper_method => :controlled_view
-          config.add_facet_field solr_name('desc_metadata__set_label', :facetable), :show => false
+          controlled_vocabularies.each do |key|
+            config.add_facet_field solr_name("desc_metadata__#{key}", :facetable), :helper_method => :controlled_view, :label => I18n.t("oregondigital.catalog.facet.#{key}",:default => key.humanize)
+            config.add_facet_field solr_name("desc_metadata__#{key}_label", :facetable), :show => false
+          end
           config.add_facet_fields_to_solr_request!
+        end
+      end
+
+      module ClassMethods
+        def controlled_vocabularies
+          Datastream::OregonRDF.properties.map do |key, property|
+            instance = property[:class_name].new if property[:class_name]
+            if instance && (instance.class.ancestors.include?(OregonDigital::RDF::Controlled) || (instance.respond_to?(:resource) && instance.resource.class.ancestors.include?(OregonDigital::RDF::Controlled)))
+              key
+            end
+          end.compact
         end
       end
     end
