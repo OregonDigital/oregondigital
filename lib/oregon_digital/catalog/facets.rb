@@ -24,7 +24,7 @@ module OregonDigital
           # :show may be set to false if you don't want the facet to be drawn in the
           # facet bar
           controlled_vocabularies.each do |key|
-            config.add_facet_field solr_name("desc_metadata__#{key}", :facetable), :helper_method => :controlled_view, :label => I18n.t("oregondigital.catalog.facet.#{key}",key.humanize)
+            config.add_facet_field solr_name("desc_metadata__#{key}", :facetable), :helper_method => :controlled_view, :label => I18n.t("oregondigital.catalog.facet.#{key}",:default => key.humanize)
             config.add_facet_field solr_name("desc_metadata__#{key}_label", :facetable), :show => false
           end
           config.add_facet_fields_to_solr_request!
