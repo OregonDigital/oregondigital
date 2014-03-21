@@ -32,6 +32,12 @@ class Image < GenericAsset
     }, :processor => :pyramidal_processor
   end
 
+  # File locations
+
+  def self.thumbnail_base_path
+    return APP_CONFIG.try(:thumbnail_path) || Rails.root.join("media", "thumbnails")
+  end
+
   def pyramidal_tiff_location
     fd = OregonDigital::FileDistributor.new(pid)
     fd.base_path = APP_CONFIG.pyramidal_tiff_path || Rails.root.join("media", "pyramidal-tiffs")
@@ -41,7 +47,7 @@ class Image < GenericAsset
 
   def thumbnail_location
     fd = OregonDigital::FileDistributor.new(pid)
-    fd.base_path = APP_CONFIG.try(:thumbnail_path) || Rails.root.join("media", "thumbnails")
+    fd.base_path = ::Image.thumbnail_base_path
     fd.extension = ".jpg"
     return fd.path
   end
