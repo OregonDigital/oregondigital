@@ -10,7 +10,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :title, :predicate => RDF::DC.title do |index|
     index.as :searchable, :displayable
   end
-  property :alternative, :predicate => RDF:DC11.alternative do |index|
+  property :alternative, :predicate => RDF::DC.alternative do |index|
     index.as :searchable, :displayable
   end
   property :creator, :predicate => RDF::DC11.creator do |index|
@@ -61,14 +61,14 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :submissionDate, :predicate => RDF::DC.dateSubmitted do |index|
     index.as :searchable, :displayable
   end
-  property :issued, :predicate => RDF:DC11.issued do |index|
+  property :issued, :predicate => RDF::DC.issued do |index|
     index.as :searchable, :displayable
   end
   property :date, :predicate => RDF::DC.date do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :publisher, :predicate => RDF:DC.publisher do |index|
-    inex.as :searchable, :facetable,  :displayable
+  property :publisher, :predicate => RDF::DC.publisher do |index|
+    index.as :searchable, :facetable,  :displayable
   end
   property :format, :predicate => RDF::DC.format,  :class_name => OregonDigital::ControlledVocabularies::Format do |index|
     index.as :searchable, :facetable, :displayable
@@ -76,10 +76,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :localCollection, :predicate => RDF::DC.isPartOf do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :hasPart, :predicate => RDF:DC11.hasPart do |index|
+  property :hasPart, :predicate => RDF::DC.hasPart do |index|
     index.as :displayable
   end
-  property :provenance, :predicate => RDF::DC11.provenance do |index|
+  property :provenance, :predicate => RDF::DC.provenance do |index|
     index.as :displayable
   end
   property :replacesUrl, :predicate => RDF::DC.replaces
@@ -141,13 +141,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :hasFixity, :predicate => OregonDigital::Vocabularies::PREMIS.hasFixity
   
   # MODS RDF
-  property :physicalExtent, :predicate => RDF('http://www.loc.gov/standards/mods/modsrdf/v1/#physicalExtent') do |index|
+  property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#physicalExtent') do |index|
     index.as :displayable
   end
-  property :locationCopySublocation, :predicate => RDF('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopySublocation') do |index|
+  property :locationCopySublocation, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopySublocation') do |index|
      index.as :displayable
   end
-  property :locationCopyShelfLocator, :predicate => RDF('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopyShelfLocatort') do |index|
+  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopyShelfLocatort') do |index|
        index.as :displayable
          end
   
@@ -157,19 +157,19 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # VRA
-  property :earliestDate :predicate => RDF('http://www.loc.gov/standards/vracore/vocab/earliestDate') do |index|
+  property :earliestDate, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/earliestDate') do |index|
     index.as :searchable, :displayable
   end
-  property :latestDate :predicate => RDF('http://www.loc.gov/standards/vracore/vocab/latestDate') do |index|
+  property :latestDate, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/latestDate') do |index|
     index.as :searchable, :displayable
   end
-  property :culturalContext :predicate => RDF('http://www.loc.gov/standards/vracore/vocab/culturalContext') do |index|
+  property :culturalContext, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/culturalContext') do |index|
     index.as :displayable
   end
-  property :measurements, :predicate => RDF('http://www.loc.gov/standards/vracrore/vocab/measurements') do |index|
+  property :measurements, :predicate => RDF::URI('http://www.loc.gov/standards/vracrore/vocab/measurements') do |index|
     index.as :displayable
   end
-  property :inscription, :predicate => RDF('http://www.loc.gov/standards/vracore/vocab/inscription') do |index|
+  property :inscription, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/inscription') do |index|
     index.as :searchable, :displayable
   end
   property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::AAT do |index|
