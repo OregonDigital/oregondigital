@@ -35,8 +35,21 @@ class Image < GenericAsset
 
   # File locations
 
-  def self.thumbnail_base_path
-    return APP_CONFIG.try(:thumbnail_path) || Rails.root.join("media", "thumbnails")
+  class << self
+    def thumbnail_base_path
+      return APP_CONFIG.try(:thumbnail_path) || Rails.root.join("media", "thumbnails")
+    end
+
+    def thumbnail_location(pid)
+      fd = OregonDigital::FileDistributor.new(pid)
+      fd.base_path = thumbnail_base_path
+      fd.extension = ".jpg"
+      return fd.path
+    end
+
+    def relative_thumbnail_location(pid)
+      return Pathname.new(thumbnail_location(pid).to_s).relative_path_from(thumbnail_base_path)
+    end
   end
 
   def pyramidal_tiff_location
@@ -47,10 +60,7 @@ class Image < GenericAsset
   end
 
   def thumbnail_location
-    fd = OregonDigital::FileDistributor.new(pid)
-    fd.base_path = ::Image.thumbnail_base_path
-    fd.extension = ".jpg"
-    return fd.path
+    return ::Image.thumbnail_location(pid)
   end
 
 end

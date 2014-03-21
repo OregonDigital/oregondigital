@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="span2">
+    <% if document["has_thumbnail_bs"] %>
+      <img src="/thumbnails/<%= Image.relative_thumbnail_location(document["id"]) %>"
+           alt="<%= document["descMetadata__title_ssm"] %>"
+           title="<%= document["descMetadata__title_ssm"] %>"
+          />
+    <% end %>
+  </div>
+
+  <div class="span6">
+    <dl class="document-metadata dl-horizontal dl-invert">
+      <% index_fields(document).each do |solr_fname, field| -%>
+        <% if should_render_index_field? document, field %>
+          <dt class="blacklight-<%= solr_fname.parameterize %>"><%= render_index_field_label document, :field => solr_fname %></dt>
+          <dd class="blacklight-<%= solr_fname.parameterize %>"><%= render_index_field_value document, :field => solr_fname %></dd>
+        <% end -%>
+      <% end -%>
+    </dl>
+  </div>
+</div>
