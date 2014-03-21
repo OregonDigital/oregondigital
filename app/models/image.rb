@@ -4,6 +4,7 @@ class Image < GenericAsset
 
   makes_derivatives do |obj|
     obj.create_thumbnail
+    obj.workflowMetadata.has_thumbnail = true
     obj.create_pyramidal
     obj.save
   end
