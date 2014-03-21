@@ -1,8 +1,7 @@
 
 shared_examples 'a collection' do
   before(:each) do
-    class TestItem < ActiveFedora::Base
-      include OregonDigital::Collectible
+    class TestItem < GenericAsset
     end
   end
   subject(:generic_collection) { described_class.new }
@@ -10,9 +9,9 @@ shared_examples 'a collection' do
   subject(:other_item) { TestItem.new }
 
   before(:each) do
-    generic_collection.save
-    item.save
-    other_item.save
+    generic_collection.save!
+    item.save!
+    other_item.save!
   end
   after(:each) do
     Object.send(:remove_const, :TestItem) if Object.const_defined?(:TestItem)
@@ -23,24 +22,15 @@ shared_examples 'a collection' do
       expect(generic_collection.members).to eq []
     end
     it 'should return collected items' do
-      generic_collection.members << item
+      item.set = generic_collection
+      item.save
       generic_collection.reload
-      generic_collection.save
       expect(generic_collection.members).to eq [item]
-      generic_collection.members << other_item
-      expect(generic_collection.members).to include item
-      expect(item.reload.collections).to include generic_collection
-      expect(generic_collection.members).to include other_item
-      expect(other_item.reload.collections).to include generic_collection
-    end
-  end
-  describe '.delete' do
-    it 'should remove relationships from items' do
-      generic_collection.members << item
-      generic_collection.save
-      expect(item.reload.collections).to include generic_collection
-      generic_collection.delete
-      expect(item.reload.collections).to eq []
+      other_item.set = generic_collection
+      other_item.save
+      generic_collection.reload
+      expect(generic_collection.members).to include(item)
+      expect(generic_collection.members).to include(other_item)
     end
   end
 end

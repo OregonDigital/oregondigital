@@ -4,7 +4,16 @@ module OregonDigital::ControlledVocabularies
   class Geographic < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
+    configure :rdf_label => RDF::URI('http://www.geonames.org/ontology#name')
     use_vocabulary :geonames
+
+    property :latitude, :predicate => RDF::URI('http://www.w3.org/2003/01/geo/wgs84_pos#lat')
+    property :longitude, :predicate => RDF::URI('http://www.w3.org/2003/01/geo/wgs84_pos#long')
+    property :population, :predicate => RDF::URI('http://www.geonames.org/ontology#population')
+    property :countryCode, :predicate => RDF::URI('http://www.geonames.org/ontology#countryCode')
+    property :wikipedia, :predicate => RDF::URI('http://www.geonames.org/ontology#wikipediaArticle')
+
+
 
     class QaGeonames < OregonDigital::RDF::Controlled::ClassMethods::QaRDF
       GEONAMES_PREFIX   = 'http://sws.geonames.org/'

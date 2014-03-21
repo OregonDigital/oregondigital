@@ -3,3 +3,7 @@ en:
     catalog:
       show:
         title: Title
+      facet:
+        subject: Topic
+        location: Region
+        set: Collection

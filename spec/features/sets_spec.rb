@@ -44,7 +44,7 @@ describe "SetsController /index" do
   end
   context "when requesting a collection sub-page" do
     before(:each) do
-      item.collections << collection
+      item.set << collection
       item.save
       item2
       visit sets_path(:set => collection, :page => "related")
@@ -68,7 +68,7 @@ describe "SetsController /index" do
   end
   context "when requesting a specific collection" do
     before(:each) do
-      item.collections << collection
+      item.set << collection
       item.save
       item2
       visit sets_path(:set => collection)

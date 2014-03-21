@@ -19,6 +19,11 @@ module OregonDigital::RDF
     # exist in the vocabulary
     def set_subject!(uri_or_str)
       vocab_matches = []
+      begin
+        uri = get_uri(uri_or_str)
+        uri_or_str = uri
+      rescue RuntimeError
+      end
       self.class.vocabularies.each do |vocab, config|
         if uri_or_str.start_with? config[:prefix]
           # @TODO: is it good to need a full URI for a non-strict vocab?
@@ -26,7 +31,7 @@ module OregonDigital::RDF
           uri_or_str = uri_or_str.to_s.gsub(config[:prefix], '')
           if config[:class].respond_to? uri_or_str
             uri_or_str = config[:class].send(uri_or_str)
-            return super
+            return super(uri_or_str)
           end
         else
           # this only matches if the term is explictly defined

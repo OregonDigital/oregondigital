@@ -99,7 +99,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :hasFixity, :predicate => OregonDigital::Vocabularies::PREMIS.hasFixity
 
   # Oregon Digital
-  property :set, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.set do |index|
+  property :set, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.set, :class_name => "GenericCollection" do |index|
     index.as :searchable, :facetable, :displayable
   end
 
@@ -109,7 +109,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
   def to_solr(solr_doc = Hash.new)
     fields.each do |field_key, field_info|
-      values = resource.get_values(field_key)
+      values = resource.get_values(field_key).map{|x| x.respond_to?(:resource) ? x.resource : x}
       Array.wrap(values).each do |val|
         val = val.to_s if val.kind_of? ::RDF::URI
         val = val.solrize if val.kind_of? ActiveFedora::Rdf::Resource

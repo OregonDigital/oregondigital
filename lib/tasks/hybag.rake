@@ -8,6 +8,8 @@ task :bag_ingest, [:directory, :collection, :model] => [:environment] do |t, arg
   collection = GenericCollection.find(:pid => "oregondigital:#{args[:collection]}").first
   if collection.nil?
     collection = GenericCollection.new(:pid => "oregondigital:#{args[:collection]}")
+    collection.title = args[:collection]
+    collection.review!
     collection.save
   end
   Hybag::BulkIngester.new(args[:directory]).each do |ingester|
@@ -21,8 +23,8 @@ task :bag_ingest, [:directory, :collection, :model] => [:environment] do |t, arg
 
       end
     end
-    object.descMetadata.set = collection
+    object.review!
     object.save
     print '.'
-  end
+ end
 end
