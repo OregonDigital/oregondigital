@@ -11,5 +11,20 @@ describe 'catalog' do
         expect(page).not_to have_selector('.document')
       end
     end
+
+    context "when there is an asset with a thumbnails" do
+      let(:image) { FactoryGirl.create(:image, :with_tiff_datastream) }
+
+      before(:each) do
+        image
+        image.create_derivatives
+        visit root_path(:search_field => "all_field")
+      end
+
+      it "should show the thumbnail in search results" do
+        expect(page).to have_selector(".document img")
+        expect(page).to have_selector(".document img[src^='/thumbnails']")
+      end
+    end
   end
 end
