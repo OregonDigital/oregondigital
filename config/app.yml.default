@@ -18,3 +18,4 @@ oai:
 # IIP server configuration
 iip_server:
   location: http://localhost/iip/iipsrv.fcgi
+default_url_host: localhost:3000
