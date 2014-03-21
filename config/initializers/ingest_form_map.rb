@@ -19,10 +19,23 @@
 INGEST_MAP = {
   title: {
     title: "descMetadata.title",
+    alternative: "descMetadata.alternative",
+  },
+
+  creators: {
+    creator: "descMetadata.creator",
+    contributor: "descMetadata.contributor",
+    photographer: "descMetadata.photographer",
+    illustrator: "descMetadata.illustrator",
   },
   
   description: {
-    description: "descMetadata.description"
+    description: "descMetadata.description",
+    abstract: "descMetadata.abstract",
+    view: "descMetadata.view",
+    culturalContext: "descMetadata.culturalContext",
+    inscription: "descMetadata.inscription",
+    cover: "descMetadata.cover",
   },
 
   subject: {
@@ -37,32 +50,52 @@ INGEST_MAP = {
     created: "descMetadata.created",
     modified: "descMetadata.modified",
     date: "descMetadata.date",
+    dateSubmitted: "descMetadata.dateSubmitted",
+    issued: "descMetadata.issued",
+    earliestDate: "descMetadata.earliestDate",
+    latestDate: "descMetadata.latestDate",
   },
 
   identifier: {
     identifier: "descMetadata.identifier",
+    locationCopyShelfLocator: "descMetadata.locationCopyShelfLocator",
   },
 
   right: {
-    rights: "descMetadata.rights"
+    rights: "descMetadata.rights",
+    copyrightClaimant: "descMetadata.copyrightClaimant",
   },
 
-  publisher: {
+  publishing: {
+    source: "descMetadata.source",
+    language: "descMetadata.language",
+    publisher: "descMetadata.publisher",
+    placeOfPublication: "descMetadata.placeOfPublication",
+    provenace: "descMetadata.provenance",
   },
   
   type: {
     type: "descMetadata.type",
+    workType: "descMetadata.workType",
   },
 
   format: {
     format: "descMetadata.format",
+    physicalExtent: "descMetadata.physicalExtent",
+    measurements: "descMetadata.measurements",
+    hasPart: "descMetadata.hasPart",
   },
-  
+
   grouping: {
-    set: "descMetadata.set"
+    set: "descMetadata.set",
+    localCollection: "descMetadata.localCollection",
+    exhibit: "descMetadata.exhibit",
   },
 
   administrative: {
+    locationCopySublocation: "descMetadata.localCopySublocation",
+    institution: "descMetadata.institution",
+    conversion: "descMetadata.conversion",
   },
 
 }
