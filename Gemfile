@@ -89,6 +89,9 @@ gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-f
 gem 'rdf-mongo'
 gem 'bson_ext'
 
+# Send email from form
+gem 'mail_form'
+
 group :development do
   gem 'pry'
   gem 'pry-doc'
