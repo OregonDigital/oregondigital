@@ -87,6 +87,7 @@ gem 'oai'
 gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-fix"
 
 gem 'rdf-mongo'
+gem 'bson_ext'
 
 group :development do
   gem 'pry'
