@@ -280,6 +280,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mail_form (1.5.0)
+      actionmailer (>= 3.2, < 5)
+      activemodel (>= 3.2, < 5)
     map (4.7.1)
     marc (0.7.1)
     mediashelf-loggable (0.4.9)
@@ -548,6 +551,7 @@ DEPENDENCIES
   jquery-rails (~> 3.0.4)
   jquery-ui-rails
   linkeddata
+  mail_form
   metadata-ingest-form (~> 2.4)
   mini_magick
   mysql2
