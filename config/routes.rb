@@ -23,6 +23,11 @@ Oregondigital::Application.routes.draw do
   # Reviewer Controller Routes
   resources :reviewer, :only => [:index, :show, :update]
 
+  post '/contact' => 'contact_form#create', :as => :contact_form_index
+  get '/contact' => 'contact_form#new'
+
+#  resources 'contact', :only => [:new, :create] 
+
   # Generic Asset
   resources :generic_asset, :only => [] do
     member do
