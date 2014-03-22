@@ -19,14 +19,14 @@ describe "show fields" do
     let(:subject) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
     let(:asset) do
       g = FactoryGirl.build(:generic_asset)
-      g.descMetadata.subject = subject
+      g.descMetadata.lcsubject = subject
       g.save
       g
     end
     context "which is a URI" do
       let(:stub_setup) {GenericAsset.any_instance.stub(:queue_fetch).and_return(true)}
       it "should not have an RDF label" do
-        expect(asset.subject.first.rdf_label.first).to eq subject.to_s
+        expect(asset.descMetadata.lcsubject.first.rdf_label.first).to eq subject.to_s
       end
       it "should pretend the subject field is empty" do
         expect(page).not_to have_content("Subject")
@@ -38,14 +38,14 @@ describe "show fields" do
     context "which has an rdf_label set up" do
       let(:asset) do
         g = FactoryGirl.build(:generic_asset)
-        g.descMetadata.subject = subject
-        g.descMetadata.subject.first.set_value(RDF::SKOS.prefLabel, "Test Subject")
-        g.descMetadata.subject.first.persist!
+        g.descMetadata.lcsubject = subject
+        g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Subject")
+        g.descMetadata.lcsubject.first.persist!
         g.save
         g
       end
       it "should have an RDF label" do
-        expect(asset.subject.first.rdf_label.first).to eq "Test Subject"
+        expect(asset.lcsubject.first.rdf_label.first).to eq "Test Subject"
       end
       it "should show it" do
         expect(page).to have_content("Test Subject")

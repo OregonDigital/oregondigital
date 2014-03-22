@@ -88,18 +88,18 @@ describe GenericAsset do
     let(:subject_1) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
     subject(:generic_asset) do
       g = FactoryGirl.build(:generic_asset)
-      g.descMetadata.subject = subject_1
+      g.descMetadata.lcsubject = subject_1
       g.save
       g
     end
     it "should fetch on save" do
       subject.reload
-      expect(subject.descMetadata.subject.first.rdf_label.first).to eq "Food industry and trade"
+      expect(subject.descMetadata.lcsubject.first.rdf_label.first).to eq "Food industry and trade"
     end
     context "when a new object asset has a subject that is fetched" do
       let(:asset_2) {
         g = FactoryGirl.build(:generic_asset)
-        g.descMetadata.subject = subject_1
+        g.descMetadata.lcsubject = subject_1
         g
       }
       before(:each) do
@@ -110,18 +110,18 @@ describe GenericAsset do
         asset_2.descMetadata.fetch_external
       end
       it "should set that object's label" do
-        expect(asset_2.descMetadata.subject.first.rdf_label.first).to eq "Food industry and trade"
+        expect(asset_2.descMetadata.lcsubject.first.rdf_label.first).to eq "Food industry and trade"
       end
       it "should fix the label on other objects" do
         subject.reload
-        expect(subject.descMetadata.subject.first.rdf_label.first).to eq "Food industry and trade"
+        expect(subject.descMetadata.lcsubject.first.rdf_label.first).to eq "Food industry and trade"
       end
       it "should not call fetch again when run again within 7 days" do
-        expect(asset_2.descMetadata.subject.first).not_to receive(:fetch)
+        expect(asset_2.descMetadata.lcsubject.first).not_to receive(:fetch)
         asset_2.descMetadata.fetch_external
       end
       it "should persist the label to solr for other objects" do
-        expect(GenericAsset.where("desc_metadata__subject_label_sim" => "Food industry and trade$#{subject_1.to_s}").length).to eq 1
+        expect(GenericAsset.where("desc_metadata__lcsubject_label_sim" => "Food industry and trade$#{subject_1.to_s}").length).to eq 1
       end
     end
   end
@@ -132,16 +132,16 @@ describe GenericAsset do
       let(:subject_2) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85123395")}
       subject(:generic_asset) do
         g = FactoryGirl.build(:generic_asset)
-        g.descMetadata.subject = subject_1
-        g.descMetadata.subject.first.set_value(RDF::SKOS.prefLabel, "Test Subject")
-        g.descMetadata.subject.first.persist!
-        g.descMetadata.subject << subject_2
-        g.descMetadata.subject.last.set_value(RDF::SKOS.prefLabel, "Dogs")
-        g.descMetadata.subject.first.persist!
+        g.descMetadata.lcsubject = subject_1
+        g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Subject")
+        g.descMetadata.lcsubject.first.persist!
+        g.descMetadata.lcsubject << subject_2
+        g.descMetadata.lcsubject.last.set_value(RDF::SKOS.prefLabel, "Dogs")
+        g.descMetadata.lcsubject.first.persist!
         g
       end
       it "should index it" do
-        name = subject.solr_name('desc_metadata__subject_label',:facetable)
+        name = subject.solr_name('desc_metadata__lcsubject_label',:facetable)
         expect(subject.to_solr).to include name
         expect(subject.to_solr[name]).to eq ["Test Subject$#{subject_1.to_s}", "Dogs$#{subject_2.to_s}"]
       end
