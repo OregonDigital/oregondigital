@@ -10,6 +10,7 @@ module OregonDigital
     def reset_workflow
       self.read_groups = ["admin", "archivist"]
       workflowMetadata.reviewed = false
+      workflowMetadata.has_thumbnail = false
     end
 
     def reset_workflow!
@@ -33,6 +34,7 @@ module OregonDigital
 
     def to_solr(solr_doc={})
       Solrizer.set_field(solr_doc, :reviewed, (!!workflowMetadata.reviewed).to_s, :symbol)
+      solr_doc["has_thumbnail_bs"] = !!workflowMetadata.has_thumbnail
       super
     end
   end
