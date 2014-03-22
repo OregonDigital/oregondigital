@@ -6,16 +6,16 @@ describe "SetsController /index" do
   let(:subject_1) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
   let(:subject_2) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85123395")}
   let(:item) do
-    g = FactoryGirl.build(:generic_asset, subject: subject_1)
-    g.descMetadata.subject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
-    g.descMetadata.subject.first.persist!
+    g = FactoryGirl.build(:generic_asset, lcsubject: subject_1)
+    g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
+    g.descMetadata.lcsubject.first.persist!
     g.save
     g
   end
   let(:item2) do
-    g = FactoryGirl.build(:generic_asset, subject: subject_2)
-    g.descMetadata.subject.first.set_value(RDF::SKOS.prefLabel, "Other Facet")
-    g.descMetadata.subject.first.persist!
+    g = FactoryGirl.build(:generic_asset, lcsubject: subject_2)
+    g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Other Facet")
+    g.descMetadata.lcsubject.first.persist!
     g.save
     g
   end
@@ -38,8 +38,8 @@ describe "SetsController /index" do
       visit sets_path
     end
     it "should show the facets" do
-      expect(page).to have_content(item.subject.map(&:rdf_label).join)
-      expect(page).to have_content(item2.subject.map(&:rdf_label).join)
+      expect(page).to have_content(item.lcsubject.map(&:rdf_label).join)
+      expect(page).to have_content(item2.lcsubject.map(&:rdf_label).join)
     end
   end
   context "when requesting a collection sub-page" do

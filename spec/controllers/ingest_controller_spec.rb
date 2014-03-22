@@ -22,8 +22,8 @@ describe IngestController do
         "0" => {"type" => "title", "value" => "test title", "internal" => "", "_destroy" => "false"}
       },
       "subjects_attributes" => {
-        "0" => {"type" => "subject", "value" => "foo", "internal" => subject1, "_destroy" => "false"},
-        "1" => {"type" => "subject", "value" => "bar", "internal" => subject2, "_destroy" => "false"}
+        "0" => {"type" => "lcsubject", "value" => "foo", "internal" => subject1, "_destroy" => "false"},
+        "1" => {"type" => "lcsubject", "value" => "bar", "internal" => subject2, "_destroy" => "false"}
       }
     }
   end
@@ -87,7 +87,7 @@ describe IngestController do
   describe "#edit" do
     before(:each) do
       existing_asset.title = "Title"
-      existing_asset.descMetadata.subject = [subject1, subject2]
+      existing_asset.descMetadata.lcsubject = [subject1, subject2]
       existing_asset.descMetadata.created = Date.today.to_s
 
       get :edit, id: 1
@@ -117,7 +117,7 @@ describe IngestController do
         expect(subject.subjects.length).to eq(2)
         for assoc in subject.subjects
           expect(assoc.group).to eq("subject")
-          expect(assoc.type).to eq("subject")
+          expect(assoc.type).to eq("lcsubject")
         end
       end
 
@@ -142,7 +142,7 @@ describe IngestController do
     end
 
     it "should set multiple-value attributes to arrays" do
-      expect(ds_new).to receive(:subject=).with([subject1, subject2])
+      expect(ds_new).to receive(:lcsubject=).with([subject1, subject2])
       post :create, :metadata_ingest_form => attrs
     end
 
@@ -168,7 +168,7 @@ describe IngestController do
       form.stub(:valid? => false)
       expect(new_asset).not_to receive(:save)
       expect(new_asset).not_to receive(:save!)
-      expect(ds_new).not_to receive(:subject=)
+      expect(ds_new).not_to receive(:lcsubject=)
       expect(ds_new).not_to receive(:title=)
       post :update, id: 1, metadata_ingest_form: attrs
     end
@@ -178,7 +178,7 @@ describe IngestController do
     it_should_behave_like "an ingest controller uploader", :update
 
     it "should modify the existing asset" do
-      expect(ds_exist).to receive(:subject=).with([subject1, subject2])
+      expect(ds_exist).to receive(:lcsubject=).with([subject1, subject2])
       post :update, id: 1, metadata_ingest_form: attrs
     end
 
@@ -221,10 +221,10 @@ describe IngestController do
       # This is a tricky case - by default, if there's no data for a group,
       # it won't be sent to the object, so removals are only handled well
       # when a single removal happens....
-      existing_asset.descMetadata.subject = [subject1, subject2]
+      existing_asset.descMetadata.lcsubject = [subject1, subject2]
       attrs["subjects_attributes"].each {|index, data| data["_destroy"] = "1"}
 
-      expect(ds_exist).to receive(:subject=).with(nil)
+      expect(ds_exist).to receive(:lcsubject=).with(nil)
       post :update, id: 1, metadata_ingest_form: attrs
     end
 
@@ -232,7 +232,7 @@ describe IngestController do
       form.stub(:valid? => false)
       expect(existing_asset).not_to receive(:save)
       expect(existing_asset).not_to receive(:save!)
-      expect(ds_exist).not_to receive(:subject=)
+      expect(ds_exist).not_to receive(:lcsubject=)
       expect(ds_exist).not_to receive(:title=)
       post :update, id: 1, metadata_ingest_form: attrs
     end

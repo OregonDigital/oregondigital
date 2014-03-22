@@ -22,7 +22,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :description, :predicate => RDF::DC.description do |index|
     index.as :searchable, :displayable
   end
-  property :subject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
+  property :lcsubject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
       index.as :searchable, :facetable, :displayable
   end
   property :source, :predicate => RDF::DC.source do |index|
