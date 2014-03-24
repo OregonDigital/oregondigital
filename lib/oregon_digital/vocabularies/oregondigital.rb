@@ -14,7 +14,11 @@ module OregonDigital::Vocabularies
     property :set, :label => 'set', :comment =>
       %(Defines a relationship between an object and a group or
         collection of objects to which it belongs.)
-
+    property :conversionSpecification, :label => 'Conversion Specification'
+    property :captionTitle, :label => 'Caption Title'
+    property :cover, :label => 'Cover'
+    property :exhibit, :label => 'Exhibit'
+    property :dateDigitized, :label => 'Date Digitized'
     # Other terms
   end
 end

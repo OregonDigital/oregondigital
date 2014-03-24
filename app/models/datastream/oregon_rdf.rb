@@ -152,7 +152,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
          end
   
   # CCO
-  property :view, :predicate => OregonDigital::Vocabularies::CCO.viewDescription do |index|
+  property :view, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDescription') do |index|
     index.as :displayable
   end
 
@@ -183,7 +183,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :institution, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.contributingInstitution, :class_name => OregonDigital::ControlledVocabularies::Organization do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :conversion, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.convsersionSpecifications
+  property :conversion, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.conversionSpecification
   property :captionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.captionTitle do |index|
     index.as :searchable, :displayable
   end
