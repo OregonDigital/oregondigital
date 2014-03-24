@@ -1,0 +1,24 @@
+<h2>Contact</h2>
+
+<p>Oregon Digital is a joint collaboration between the <a href="http://library.uoregon.edu/">University of Oregon Libraries</a> and <a href="http://osulibrary.oregonstate.edu/">Oregon State University Libraries & Press</a>. Oregon Digital hosts materials from both institutions, as well as collaborating partners.</p>
+
+<p>Please use the following form to send us feedback:</p>
+
+<%= simple_form_for @contact_form, :url => contact_form_index_path, :html => {:class => 'form-horizontal well' } do |f| %>
+  <%= f.input :name, :required => true %>
+  <%= f.input :email, :required => true %>
+  <%= f.input :phone %>
+  <%= f.input :location, label: 'Location (city, state, or country)' %>
+  <%= f.input :item, label: 'Item (identifier, title, other identifing information)' %>
+
+  <%= f.input :message, :as => 'text', :required => true, label: 'Comments' %>
+
+  <div class= "hidden">
+    <%= f.input :contact_method, :hint => 'Leave this field blank!' %>
+  </div>
+
+  <div>
+    <%= f.button :submit, 'Send Message', :class => "btn btn-primary" %>
+  </div>
+
+<% end %>

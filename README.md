@@ -17,6 +17,12 @@ Development Setup
 	git submodule update
 	rake hydra:jetty:config
 
+Symlink media directories:
+
+```bash
+ln -s /path/to/rails/media public/media
+ln -s /path/to/rails/media/thumbnails public/thumbnails
+```
 
 Start the servers:
 

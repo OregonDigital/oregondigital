@@ -231,22 +231,22 @@ describe "(Ingest Form)" do
         visit_ingest_url
 
         # Choose two subjects to ensure both static and dynamic fields work
-        choose_controlled_vocabulary_item("subject", "subject", "food", label1, subject1)
+        choose_controlled_vocabulary_item("subject", "lcsubject", "food", label1, subject1)
         click_link 'Add subject'
-        choose_controlled_vocabulary_item("subject", "subject", "food", label2, subject2, 1)
+        choose_controlled_vocabulary_item("subject", "lcsubject", "food", label2, subject2, 1)
       end
 
       it "should store the internal URI, not the label" do
         click_the_ingest_button
         asset = GenericAsset.find(@pid)
-        expect(asset.subject.collect {|s| s.rdf_subject}).to eq([subject1, subject2])
+        expect(asset.descMetadata.lcsubject.collect {|s| s.rdf_subject}).to eq([subject1, subject2])
       end
 
       it "should display the label on a subsequent edit" do
         click_the_ingest_button
         visit_edit_form_url(@pid)
-        expect(page).to include_ingest_fields_for("subject", "subject", label1)
-        expect(page).to include_ingest_fields_for("subject", "subject", label2)
+        expect(page).to include_ingest_fields_for("subject", "lcsubject", label1)
+        expect(page).to include_ingest_fields_for("subject", "lcsubject", label2)
       end
 
       it "should display the label to the public" do
@@ -272,7 +272,7 @@ describe "(Ingest Form)" do
         expect(value_field.value).to eq("blargh")
 
         # After choosing an item, however...
-        choose_controlled_vocabulary_item("subject", "subject", "food", label1, subject1, 2)
+        choose_controlled_vocabulary_item("subject", "lcsubject", "food", label1, subject1, 2)
 
         # ...the empty selector is gone and we can no longer alter the value
         expect(subject_div).not_to have_selector(selector)
@@ -283,7 +283,7 @@ describe "(Ingest Form)" do
 
       it "should fail when a non-URI is freely typed in" do
         click_link "Add subject"
-        fill_in_ingest_data("subject", "subject", "Invalid subject", 2)
+        fill_in_ingest_data("subject", "lcsubject", "Invalid subject", 2)
         click_the_ingest_button
         expect(page).to have_content("Term not in controlled vocabularies: Invalid subject")
       end
@@ -299,11 +299,11 @@ describe "(Ingest Form)" do
         sub = OregonDigital::ControlledVocabularies::Subject.from_uri(subject1)
         expect(sub.rdf_label).to eq([subject1])
         visit_ingest_url
-        choose_controlled_vocabulary_item("subject", "subject", "food", label1, subject1)
+        choose_controlled_vocabulary_item("subject", "lcsubject", "food", label1, subject1)
         click_the_ingest_button
 
         visit_edit_form_url(@pid)
-        expect(page).to include_ingest_fields_for("subject", "subject", label1)
+        expect(page).to include_ingest_fields_for("subject", "lcsubject", label1)
       end
     end
   end

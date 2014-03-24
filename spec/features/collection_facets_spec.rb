@@ -3,9 +3,9 @@ require 'spec_helper'
 describe 'collection facets' do
   context "when there is an item in a collection" do
     let(:item) do
-      g = FactoryGirl.build(:generic_asset, :in_collection!, subject: RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282"))
-      g.descMetadata.subject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
-      g.descMetadata.subject.first.persist!
+      g = FactoryGirl.build(:generic_asset, :in_collection!, lcsubject: RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282"))
+      g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
+      g.descMetadata.lcsubject.first.persist!
       g.save
       g
     end
@@ -45,7 +45,7 @@ describe 'collection facets' do
     context "when the subject is clicked" do
       before(:each) do
         visit root_path
-        click_link item.subject.first.rdf_label.first
+        click_link item.lcsubject.first.rdf_label.first
       end
       context "and then the collection facet is clicked" do
         before(:each) do

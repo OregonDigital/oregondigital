@@ -26,7 +26,7 @@ INGEST_MAP = {
   },
 
   subject: {
-    subject: "descMetadata.subject",
+    lcsubject: "descMetadata.lcsubject",
   },
   
   geographic: {
