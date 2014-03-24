@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="span2">
+<div class="row search-result">
+  <div class="span thumbnail-container">
     <% if document["has_thumbnail_bs"] %>
       <img src="/thumbnails/<%= Image.relative_thumbnail_location(document["id"]) %>"
            alt="<%= document["descMetadata__title_ssm"] %>"
@@ -8,8 +8,8 @@
     <% end %>
   </div>
 
-  <div class="span6">
-    <dl class="document-metadata dl-horizontal dl-invert">
+  <div class="span metadata-container">
+    <dl class="document-metadata dl-invert">
       <% index_fields(document).each do |solr_fname, field| -%>
         <% if should_render_index_field? document, field %>
           <dt class="blacklight-<%= solr_fname.parameterize %>"><%= render_index_field_label document, :field => solr_fname %></dt>
