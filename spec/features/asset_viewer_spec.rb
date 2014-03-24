@@ -10,7 +10,7 @@ describe "Asset viewer logic" do
     image = FactoryGirl.create(:image, :with_jpeg_datastream)
     click_button "search"
     click_link image.title
-    expect(page).to have_selector("#small-image-viewer > img[src$='#{image.pid}']")
+    expect(page).to have_selector("#small-image-viewer > img[src$='#{image.pid.gsub(':', '-')}.jpg']")
   end
 
   it "should use the large image viewer for large images" do
