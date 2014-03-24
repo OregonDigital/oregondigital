@@ -1,10 +1,12 @@
 class Image < GenericAsset
   has_file_datastream :name => 'thumbnail', :control_group => "E"
+  has_file_datastream :name => 'medium', :control_group => "E"
   has_file_datastream :name => 'pyramidal', :control_group => "E"
 
   makes_derivatives do |obj|
     obj.create_thumbnail
     obj.workflowMetadata.has_thumbnail = true
+    obj.create_medium
     obj.create_pyramidal
     obj.save
   end
@@ -18,6 +20,18 @@ class Image < GenericAsset
             :datastream => 'thumbnail',
             :size => '120x120>',
             :file_path => thumbnail_location,
+            :format => 'jpeg',
+            :quality => '75'
+        }
+    }, :processor => :image_filesystem_processor
+  end
+
+  def create_medium
+    transform_datastream :content, {
+        :thumb => {
+            :datastream => 'medium',
+            :size => '680x680>',
+            :file_path => medium_image_location,
             :format => 'jpeg',
             :quality => '75'
         }
@@ -56,6 +70,13 @@ class Image < GenericAsset
     fd = OregonDigital::FileDistributor.new(pid)
     fd.base_path = APP_CONFIG.pyramidal_tiff_path || Rails.root.join("media", "pyramidal-tiffs")
     fd.extension = ".tiff"
+    return fd.path
+  end
+
+  def medium_image_location
+    fd = OregonDigital::FileDistributor.new(pid)
+    fd.base_path = APP_CONFIG.try(:medium_image_path) || Rails.root.join("media", "medium-images")
+    fd.extension = ".jpg"
     return fd.path
   end
 

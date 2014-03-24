@@ -1,5 +1,7 @@
 <div align="center">
   <div id="small-image-viewer">
-    <%= image_tag download_path(:id => document.id) %>
+    <img src="/media/medium-images/<%= decorated_object.relative_medium_image_location %>"
+        alt=<%= decorated_object.title %>
+        title=<%= decorated_object.title %>>
   </div>
 </div>
