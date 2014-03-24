@@ -1,0 +1,42 @@
+/* Hacks for making nice grid-like columns with more specific sizing we need */
+.search-result.row {
+  .thumbnail-container {
+    width: 120px;
+  }
+
+  .metadata-container {
+    width: 460px;
+  }
+
+  @media (max-width: 767px) {
+    .thumbnail-container {
+      width: auto;
+    }
+
+    .metadata-container {
+      width: auto;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 979px) {
+    .thumbnail-container {
+      margin-left: 30px;
+    }
+
+    .metadata-container {
+      margin-left: 10px;
+      width: 300px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .thumbnail-container {
+      margin-left: 30px;
+    }
+
+    .metadata-container {
+      margin-left: 10px;
+      width: 500px;
+    }
+  }
+}
