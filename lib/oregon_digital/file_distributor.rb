@@ -15,16 +15,26 @@ class OregonDigital::FileDistributor
     @base_path = Pathname.new(val)
   end
 
+  # Sanitizes @identifier (converts all non-alphanumerics to hyphens) to return
+  # a filesystem-safe identifier
+  def identifier
+    return @identifier.gsub(/\W/, '-')
+  end
+
   # Sanitizes @identifier (converts all non-alphanumerics to hyphens) and returns a "safe" filename
   def filename
-    return @identifier.gsub(/\W/, '-')+extension
+    return identifier + extension
+  end
+
+  # Reverses the identifier and creates a zero-padded "bucket"-style directory structure
+  def bucket_path
+    reversed = (identifier.rjust(@depth, "0")).reverse.split(//)
+    bucket_path = (["%s"] * @depth).join("/") % reversed
   end
 
   # Creates a path @depth subdirectories deep to represent a "bucket"-style directory structure,
   # prefixing with base_path.  Zero-pads the identifier if it's too short.
   def path
-    reversed = (filename.rjust(@depth, "0")).reverse.split(//)
-    bucket_path = (["%s"] * @depth).join("/") % reversed
     return base_path.join(bucket_path, filename).to_s
   end
 end
