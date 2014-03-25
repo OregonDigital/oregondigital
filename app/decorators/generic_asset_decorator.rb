@@ -23,7 +23,7 @@ class GenericAssetDecorator < Draper::Decorator
 
   def field_values(field)
     results = resource.get_values(field)
-    results.map {|r| field_value_to_string(field, r)}
+    results.map {|r| field_value_to_string(field, r)}.reject {|val| val.blank?}
   end
 
   private
