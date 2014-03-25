@@ -19,6 +19,7 @@ def ingest_group_nodes(group)
 end
 
 def fill_in_ingest_data(group, type, value, position = 0, clone = false)
+  type = OregonDigital::Metadata::FieldTypeLabel.for(type)
   nodes = ingest_group_nodes(group)
   node = nodes[position]
   within(node) do
@@ -37,6 +38,8 @@ end
 def choose_controlled_vocabulary_item(group, type, search, pick, internal, position = 0)
   # Expectations are here to ensure tests for CV stuff stay solid
   expect(page).not_to have_content(pick)
+
+  type = OregonDigital::Metadata::FieldTypeLabel.for(type)
 
   group_div = ingest_group_nodes(group)[position]
   group_div.select(type, :from => "Type")

@@ -64,8 +64,7 @@ describe "show fields" do
     end
     context "and a label is configured" do
       let(:stub_setup) do
-        I18n.stub(:t).and_call_original
-        I18n.stub(:t).with("oregondigital.catalog.show.title", {:default => "Title"}).and_return("Test Title")
+        I18n.backend.send(:translations)[:en][:oregondigital][:metadata][:title] = "Test Title"
       end
       it "should display it" do
         expect(page).to have_content("Test Title")
