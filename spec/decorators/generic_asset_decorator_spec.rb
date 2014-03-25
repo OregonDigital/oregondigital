@@ -27,7 +27,7 @@ describe GenericAssetDecorator do
         end
         before(:each) do
           I18n.stub(:t).and_call_original
-          I18n.stub(:t).with("oregondigital.catalog.show").and_return({:photographer => "photographer", :created => "created"})
+          I18n.stub(:t).with("oregondigital.metadata").and_return({:photographer => "photographer", :created => "created"})
         end
         it "should organize those fields at the top in the given order" do
           expect(result).to eq ["photographer", "created", "title"]

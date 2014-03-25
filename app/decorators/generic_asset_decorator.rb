@@ -18,7 +18,7 @@ class GenericAssetDecorator < Draper::Decorator
   end
 
   def field_label(field)
-    I18n.t("oregondigital.catalog.show.#{field.downcase}", :default => field.humanize)
+    OregonDigital::Metadata::FieldTypeLabel.for(field)
   end
 
   def field_values(field)
@@ -47,7 +47,7 @@ class GenericAssetDecorator < Draper::Decorator
   end
 
   def configured_show_keys
-    r = I18n.t("oregondigital.catalog.show")
+    r = I18n.t("oregondigital.metadata")
     r = {} unless r.kind_of?(Hash)
     r.keys.map{|x| x.to_s.downcase}
   end
