@@ -23,22 +23,19 @@ class GenericAssetDecorator < Draper::Decorator
 
   def field_value(field)
     results = resource.get_values(field)
-    results = results.map do |r|
-      r = r.resource if r.respond_to? :resource
-      if r.respond_to?(:rdf_label)
-        if r.rdf_label.first.to_s == r.rdf_subject
-          ""
-        else
-          r.rdf_label.first.to_s
-        end
-      else
-        r.to_s
-      end
-    end
+    results = results.map { |r| field_value_to_string(r) }
     results.join(", ")
   end
 
   private
+
+  def field_value_to_string(value)
+    value = value.resource if value.respond_to?(:resource)
+    return value.to_s unless value.respond_to?(:rdf_label)
+    return "" if value.rdf_label.first.to_s == value.rdf_subject
+
+    return value.rdf_label.first.to_s
+  end
 
   def property_keys
     r = resource.send(:properties).keys
