@@ -13,7 +13,7 @@ class GenericAssetDecorator < Draper::Decorator
   end
 
   def display_field?(field)
-    return false if field_value(field).blank?
+    return false if field_values(field).blank?
     true
   end
 
@@ -21,10 +21,9 @@ class GenericAssetDecorator < Draper::Decorator
     I18n.t("oregondigital.catalog.show.#{field.downcase}", :default => field.humanize)
   end
 
-  def field_value(field)
+  def field_values(field)
     results = resource.get_values(field)
-    results = results.map { |r| field_value_to_string(r) }
-    results.join(", ")
+    results.map {|r| field_value_to_string(field, r)}
   end
 
   private
