@@ -29,7 +29,7 @@ describe "show fields" do
         expect(asset.descMetadata.lcsubject.first.rdf_label.first).to eq subject.to_s
       end
       it "should pretend the subject field is empty" do
-        expect(page).not_to have_content("Subject")
+        expect(page).not_to have_content("subject")
       end
       it "should not show URI subjects" do
         expect(page).not_to have_content(subject.to_s)
