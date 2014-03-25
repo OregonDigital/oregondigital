@@ -26,5 +26,23 @@ describe 'catalog' do
         expect(page).to have_selector(".document img[src^='/thumbnails']")
       end
     end
+
+    context "when an asset has CV fields" do
+      let(:asset) do
+        asset = FactoryGirl.build(:generic_asset, lcsubject: RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282"))
+        asset.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
+        asset.descMetadata.lcsubject.first.persist!
+        asset.save
+        asset
+      end
+
+      before(:each) do
+        visit catalog_path(:id => asset.pid)
+      end
+
+      it "should show links to the CV facets" do
+        expect(page).to have_link("Test Facet")
+      end
+    end
   end
 end
