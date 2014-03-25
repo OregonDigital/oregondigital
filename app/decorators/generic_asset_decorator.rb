@@ -28,11 +28,17 @@ class GenericAssetDecorator < Draper::Decorator
 
   private
 
-  def field_value_to_string(value)
+  def field_value_to_string(field, value)
+    # CV fields will always have a resource and the resource will always have a
+    # label, so we can safely assume we have no CV field unless those exist
     value = value.resource if value.respond_to?(:resource)
     return value.to_s unless value.respond_to?(:rdf_label)
     return "" if value.rdf_label.first.to_s == value.rdf_subject
 
+    # Figure out the CV facet to use here
+    facet_field_name = Solrizer.solr_name("desc_metadata__#{field}", :facetable)
+    path = h.root_path(:f => {facet_field_name => [value.rdf_subject]})
+    return h.link_to(value.rdf_label.first.to_s, path)
     return value.rdf_label.first.to_s
   end
 
