@@ -1,3 +1,14 @@
+/* Make the metadata display nicely on the show page */
+.field-values {
+  .value:after {
+    content: ", ";
+  }
+
+  .value:last-child:after {
+    content: "";
+  }
+}
+
 /* Hacks for making nice grid-like columns with more specific sizing we need */
 .search-result.row {
   .thumbnail-container {
