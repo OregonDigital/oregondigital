@@ -10,7 +10,7 @@ describe 'collection facets' do
       g.save
       g
     end
-    let(:new_collection) {create(:generic_collection)}
+    let(:new_collection) {FactoryGirl.create(:generic_collection)}
     let(:collection) { item.set.first }
 
     before(:each) do
