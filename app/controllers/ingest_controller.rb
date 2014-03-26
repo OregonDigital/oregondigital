@@ -45,7 +45,7 @@ class IngestController < FormControllerBase
       :asset_class => asset_class,
       :cloneable => cloneable?
     }
-    @form = OregonDigital::Metadata::FormContainer.new(params.merge(defaults))
+    @form = OregonDigital::Metadata::IngestFormContainer.new(params.merge(defaults))
   end
 
   # We allow cloning for new resources only

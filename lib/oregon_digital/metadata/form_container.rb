@@ -1,21 +1,10 @@
 require 'metadata/ingest/translators/form_to_attributes'
 require 'metadata/ingest/translators/attributes_to_form'
 
-# All-in-one form object for managing our forms and their translations while making it seem like
-# a more standard single-object-as-model approach
+# Base class for all-in-one form objects needed by templates and ingest forms
+# to make the controller simpler - i.e., a facade class that wraps up all the
+# weird translation magic and other irregularities.
 class OregonDigital::Metadata::FormContainer
-  attr_reader :asset, :form, :upload, :raw_statements, :cloneable
-
-  def initialize(params = {})
-    @asset_map = params.delete(:asset_map)
-    @template_map = params.delete(:template_map)
-    @asset_class = params.delete(:asset_class)
-    @cloneable = params.delete(:cloneable)
-    raise "Translation map must be specified" unless @asset_map
-
-    prepare_data(params)
-  end
-
   # Checks validity of @asset and propogates errors up to @form if any exist
   def asset_valid?
     return true if @asset.valid?
@@ -43,78 +32,17 @@ class OregonDigital::Metadata::FormContainer
     end
   end
 
-  def has_upload?
-    return @has_upload
-  end
-
-  # Stores the asset with any uploaded file attached
-  def save
-    if has_upload?
-      @asset = Ingest::AssetFileAttacher.call(@asset, @upload)
-    end
-
-    @asset.save
-  end
-
-  # Returns true if this was a cloneable form and any of @form's associations
-  # were marked cloned
-  def has_cloned_associations?
-    return false if !@cloneable
-
-    for assoc in @form.associations
-      return true if assoc.clone
-    end
-
-    return false
-  end
-
-  # Returns a new FormContainer with an ingest form containing all associations
-  # marked for cloning
-  def clone_associations
-    new_form = OregonDigital::Metadata::FormContainer.new(
-      :asset_map => @asset_map,
-      :template_map => @template_map,
-      :asset_class => @asset_class,
-      :cloneable => true
-    )
-    for assoc in @form.associations.select {|assoc| assoc.clone == true}
-      new_form.form.add_association(assoc) if assoc.clone
-    end
-
-    new_form.add_blank_groups
-
-    return new_form
-  end
-
   private
 
-  # Sets up all internal objects based on parameters
-  def prepare_data(params)
-    build_ingest_form
-    build_uploader(params[:upload], params[:upload_cache])
-    build_asset(params[:id], params[:template_id])
-    assign_form_attributes(params)
-    find_unmapped_rdf
-  end
-
+  # Creates an ingest form with map-based internal groups and our internal
+  # association class
   def build_ingest_form
     @form = Metadata::Ingest::Form.new
     @form.internal_groups = @asset_map.keys.collect {|key| key.to_s}
-    @form.association_class = @cloneable ? OregonDigital::Metadata::CloneableAssociation
-                                         : OregonDigital::Metadata::Association
+    @form.association_class = OregonDigital::Metadata::Association
   end
 
-  def build_uploader(upload, upload_cache)
-    @upload = IngestFileUpload.new
-    @has_upload = false
-
-    if upload || upload_cache
-      @has_upload = true
-      @upload.file = upload
-      @upload.file_cache = upload_cache
-    end
-  end
-
+  # Creates a new asset from the given id, if present, or from a template
   def build_asset(id, template_id)
     if id
       load_asset(id)
@@ -132,34 +60,6 @@ class OregonDigital::Metadata::FormContainer
   def assign_form_attributes(params)
     attrs = params[:metadata_ingest_form]
     set_attributes(attrs) if attrs
-  end
-
-  def find_unmapped_rdf
-    @raw_statements = RDF::Graph.new
-    mapped_predicates = []
-
-    # Iterate over the asset map and inspect each delegated attribute, building
-    # a list of raw predicates we've mapped to the form
-    for group, type_maps in @asset_map
-      for type, attr_definition in type_maps
-        object, attribute = extract_delegation_data(attr_definition)
-        mapped_predicates << object.class.properties[attribute]["predicate"]
-      end
-    end
-
-    asset_subject = @asset.descMetadata.rdf_subject
-    for statement in @asset.descMetadata.graph
-      is_mapped = mapped_predicates.include?(statement.predicate)
-      is_same_subject = statement.subject == asset_subject
-      @raw_statements << statement unless is_mapped && is_same_subject
-    end
-  end
-
-  def extract_delegation_data(attr_definition)
-    objects = attr_definition.to_s.split(".")
-    attribute = objects.pop
-    object = objects.reduce(@asset, :send)
-    return [object, attribute]
   end
 
   # Loads the given asset and populates the form with its data

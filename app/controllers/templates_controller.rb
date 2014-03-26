@@ -56,7 +56,7 @@ class TemplatesController < FormControllerBase
       :template_map => template_map,
       :asset_class => asset_class,
     }
-    @form = OregonDigital::Metadata::FormContainer.new(params.merge(defaults))
+    @form = OregonDigital::Metadata::TemplateFormContainer.new(params.merge(defaults))
     @form.asset.title = template_name if template_name
   end
 
