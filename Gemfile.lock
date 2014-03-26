@@ -27,10 +27,10 @@ GIT
 
 GIT
   remote: https://github.com/no-reply/active_fedora.git
-  revision: 154e22ba6941a15353d8197bb2e4e84d4ca67eda
+  revision: 84ae2802b1b9d9a1d92cd3fd5806fa1bc77e7023
   branch: oregon-af7
   specs:
-    active-fedora (7.0.0.rc2)
+    active-fedora (7.0.0.rc3)
       activesupport (>= 3.0.0)
       deprecation
       linkeddata

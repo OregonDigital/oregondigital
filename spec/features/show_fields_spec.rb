@@ -39,7 +39,7 @@ describe "show fields" do
       let(:asset) do
         g = FactoryGirl.build(:generic_asset)
         g.descMetadata.lcsubject = subject
-        g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Subject")
+        g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("Test Subject", :language => :en))
         g.descMetadata.lcsubject.first.persist!
         g.save
         g

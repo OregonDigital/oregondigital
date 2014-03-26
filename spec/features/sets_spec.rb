@@ -7,14 +7,14 @@ describe "SetsController /index" do
   let(:subject_2) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85123395")}
   let(:item) do
     g = FactoryGirl.build(:generic_asset, lcsubject: subject_1)
-    g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
+    g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("Test Facet", :language => :en))
     g.descMetadata.lcsubject.first.persist!
     g.save
     g
   end
   let(:item2) do
     g = FactoryGirl.build(:generic_asset, lcsubject: subject_2)
-    g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Other Facet")
+    g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("Other Facet", :language => :en))
     g.descMetadata.lcsubject.first.persist!
     g.save
     g
