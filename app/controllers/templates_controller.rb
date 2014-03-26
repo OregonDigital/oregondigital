@@ -81,4 +81,17 @@ class TemplatesController < FormControllerBase
   def index_path
     return templates_path
   end
+
+  # Saves the ingested asset, cloning associations and re-rendering the form
+  # if cloned associations exist, otherwise redirecting to the index
+  def validate_and_save(success_message, failure_template)
+    unless @form.valid?
+      render failure_template
+      return
+    end
+
+    @form.save
+
+    redirect_to index_path, :notice => success_message
+  end
 end

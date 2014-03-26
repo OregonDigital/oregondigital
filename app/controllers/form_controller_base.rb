@@ -23,30 +23,6 @@ class FormControllerBase < ApplicationController
     raise NotImplementedError
   end
 
-  # Attempts to save the asset, merging errors with the ingest form since the
-  # form elements aren't mapped 1:1 to the asset fields. (type + value +
-  # internal represent a single property).
-  #
-  # Note that fedora object errors won't necessarily make sense to the form if
-  # they're too low-level, so custom validations should be carefully worded.
-  def validate_and_save(success_message, failure_template)
-    unless @form.valid?
-      render failure_template
-      return
-    end
-
-    @form.save
-
-    if @form.has_cloned_associations?
-      @form = @form.clone_associations
-      flash.now[:notice] = success_message
-      render :new
-      return
-    end
-
-    redirect_to index_path, :notice => success_message
-  end
-
   # Iterates over the ingest map, and looks up properties in the datastream
   # definition to see where we need controlled vocab and what the URL will be
   def build_controlled_vocabulary_map

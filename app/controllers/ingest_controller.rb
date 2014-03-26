@@ -76,4 +76,23 @@ class IngestController < FormControllerBase
   def index_path
     return ingest_index_path
   end
+
+  # Saves the ingested template
+  def validate_and_save(success_message, failure_template)
+    unless @form.valid?
+      render failure_template
+      return
+    end
+
+    @form.save
+
+    if @form.has_cloned_associations?
+      @form = @form.clone_associations
+      flash.now[:notice] = success_message
+      render :new
+      return
+    end
+
+    redirect_to index_path, :notice => success_message
+  end
 end
