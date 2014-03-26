@@ -15,9 +15,14 @@ module IngestHelper
   def type_value_fields(f)
     controls = []
 
+    options_values = INGEST_MAP[f.object.group.to_sym].keys
+    options = options_values.collect do |val|
+      [OregonDigital::Metadata::FieldTypeLabel.for(val.to_s), val]
+    end
+
     controls << f.input(
       :type,
-      :collection => INGEST_MAP[f.object.group.to_sym].keys,
+      :collection => options,
       :input_html => {:class => "input-medium type-selector"},
       :label_html => {:class => "sr-only"},
       :wrapper_html => {:class => "ingest-control type"}

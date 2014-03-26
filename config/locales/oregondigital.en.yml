@@ -1,9 +1,11 @@
 en:
   oregondigital:
+    metadata:
+      title: Title
+      lcsubject: LC Subject
+
     catalog:
-      show:
-        title: Title
       facet:
-        subject: Topic
+        lcsubject: Topic
         location: Region
         set: Collection
