@@ -40,6 +40,17 @@ describe 'collection facets' do
         it "should not go to the collection landing page" do
           expect(current_path).not_to eq "/sets/#{collection.pid.split(':').last}"
         end
+        context "and then a more precise search is done" do
+          before do
+            fill_in "Search...", :with => "Return Nothing"
+            click_button "search"
+          end
+          it "should still show the facet" do
+            within("#appliedParams") do
+              expect(page).to have_content(collection.title)
+            end
+          end
+        end
       end
     end
     context "when the subject is clicked" do
