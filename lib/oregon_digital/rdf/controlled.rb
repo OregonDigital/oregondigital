@@ -48,6 +48,17 @@ module OregonDigital::RDF
       return super if self.class.uses_vocab_prefix?(uri_or_str) and not uri_or_str.kind_of? RDF::Node
     end
 
+    def rdf_label
+      labels = Array(self.class.rdf_label)
+      labels += default_labels
+      labels.each do |label|
+        values = get_values(label, :language => :en)
+        values = get_values(label) if values.blank?
+        return values unless values.empty?
+      end
+      node? ? [] : [rdf_subject.to_s]
+    end
+
     ##
     #  Class methods for adding and using controlled vocabularies
     module ClassMethods
