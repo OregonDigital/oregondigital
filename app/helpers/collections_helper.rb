@@ -2,17 +2,21 @@ module CollectionsHelper
   # Force Blacklight's facet stuff to load first so we can override its methods
   include Blacklight::FacetsHelperBehavior
 
+  # TODO: We need to find a better way to do this - this means a solr call per facet. Fortunately, solr's fast.
   def controlled_view(pid)
-    facet = @response.facets.find{|x| x.items.find{|y| y.value == pid}}
-    return "" if !facet
-    label_key = facet.name.split("_")
+    # Find documents which have info about this pid.
+    documents = (Blacklight.solr.get "select", :qt => "search", :q => "desc_metadata__*:#{pid}")["response"]["docs"]
+    # Get the relevant fields only.
+    documents.map!{|x| x.select{|key, value| value.to_s.include?(pid)}}.reject!{|x| x.blank?}
+    return "" if documents.blank?
+    facet_name = documents.first.find{|key, value| Array.wrap(value).include?(pid)}.first
+    return "" if !facet_name
+    label_key = facet_name.split("_")
     label_key[label_key.length-1] = "label_#{label_key.last}"
     label_key = label_key.join("_")
-    label_facet = @response.facets.find{|x| x.name == label_key}
-    return "" if !label_facet
-    new_pid_item = label_facet.items.select{|x| x.value.include?(pid)}
-    return "" if !new_pid_item || new_pid_item.blank?
-    controlled_view_label(new_pid_item.map(&:value)).find{|x| !x.blank?}.to_s
+    label_facet = documents.map{|x| x[label_key]}.flatten.compact
+    return "" if label_facet.blank?
+    controlled_view_label(label_facet).find{|x| !x.blank?}.to_s
   end
 
   def controlled_view_label(label)
