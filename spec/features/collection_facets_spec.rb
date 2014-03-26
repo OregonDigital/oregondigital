@@ -6,9 +6,11 @@ describe 'collection facets' do
       g = FactoryGirl.build(:generic_asset, :in_collection!, lcsubject: RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282"))
       g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
       g.descMetadata.lcsubject.first.persist!
+      g.descMetadata.set << new_collection
       g.save
       g
     end
+    let(:new_collection) {create(:generic_collection)}
     let(:collection) { item.set.first }
 
     before(:each) do
@@ -21,6 +23,7 @@ describe 'collection facets' do
       end
       it "should display the collection title as a facet" do
         within '#facets' do
+          expect(page).to have_content(new_collection.title)
           expect(page).to have_content(collection.title)
         end
       end
