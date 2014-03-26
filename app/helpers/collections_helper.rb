@@ -14,7 +14,7 @@ module CollectionsHelper
     label_key = facet_name.split("_")
     label_key[label_key.length-1] = "label_#{label_key.last}"
     label_key = label_key.join("_")
-    label_facet = documents.map{|x| x[label_key]}.flatten.select{|x| x.include? "$#{pid}"}
+    label_facet = documents.map{|x| x[label_key]}.flatten.select{|x| x.to_s.include? "$#{pid}"}
     return "" if label_facet.blank?
     controlled_view_label(label_facet).find{|x| !x.blank?}.to_s
   end
