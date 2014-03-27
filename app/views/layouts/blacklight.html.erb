@@ -13,7 +13,16 @@
       <meta http-equiv="cleartype" content="on">
     <![endif]-->
 
-    <title><%= h(@page_title || application_name) %></title>
+    <title>
+    <% if @set %>
+        <% content_for :page_title, @set.title %>
+    <% end %>
+    <% if content_for?(:page_title) %>
+        <%= h(yield(:page_title)) %> | <%= h(application_name) %>
+    <% else %>
+        <%= h(application_name) %>
+    <% end %>
+    </title>
     <link href="<%= opensearch_catalog_path(:format => 'xml', :only_path => false) %>" title="<%= application_name%>" type="application/opensearchdescription+xml" rel="search"/>
 
     <%= stylesheet_link_tag "application", "//fonts.googleapis.com/css?family=Gudea:400,400italic,700" %>

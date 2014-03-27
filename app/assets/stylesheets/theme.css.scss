@@ -349,36 +349,21 @@ p {
 
 @media (min-width: 767px) and (max-width: 979px) {
   #main-container {
-    width: auto;
-    margin: 10px;
+  /*  width: auto;
+    margin: 10px; */
   }
 }
 
 @media (min-width: 767px) {
   #main-container {
     .span9 {
-      width: 545px;
+      width: 535px;
 
       .span5 {
-        width: 305px;
+        width: 295px;
       }
       .span3 {
         width: 220px;
-      }
-    }
-  }
-}
-
-@media (min-width: 872px) {
-  #main-container {
-    .span9 {
-      width: 650px;
-
-      .span5 {
-        width: 355px;
-      }
-      .span3 {
-        width: 270px;
       }
     }
   }
@@ -528,7 +513,7 @@ p {
     border-bottom: 1px solid #E3E3E3;
   }
   #sortAndPerPage {
-    padding: 0 25px;
+    padding: 5px 25px;
   }
 
   #documents {
@@ -536,10 +521,53 @@ p {
     padding-right: 25px;
   }
   .document {
-    border-bottom: 1px solid #E3E3E3;
+    border-top: 1px solid #E3E3E3;
     font-size: 14px;
   }
+  .document:first-child {
+    border-top: none;
+  }
+  .search-result.row .thumbnail-container  {
+    width: auto;
+
+    img {
+      display: block;
+    }
+  }
 }
+/*item view */
+#large-image-viewer {
+  margin-top: 10px;
+}
+.openseadragon-container {
+  background: #B7B7B7 !important;
+  border: 1px solid #B7B7B7 !important;
+}
+.document .dl-invert dl {
+  background: #ffffff;
+  margin-top: 30px;
+  padding:  20px;
+
+  dt.blacklight-desc_metadata__description_ssm {
+    display: none;
+    color: #000000;
+  }
+
+  .blacklight-desc_metadata__modified_ssm {
+    display: inline-block;
+
+    dd {
+      margin-left: .25em;
+    }
+  }
+
+  dt, dd {
+    border-top: 1px solid #e3e3e3;
+    padding-bottom: .5em;
+    padding-top: .5em;
+  }
+}
+
 
 /* misc bits */
 
@@ -559,6 +587,22 @@ p {
   a {
     color: $highlight-color;
   }
+  a:hover {
+    color: $color;
+  }
+}
+.css-dropdown {
+  .btn:hover, .btn.hovering {
+    background-color: $highlight-bg;
+    color: $highlight-color;
+
+  }
+  .btn a:hover, .btn a:active, .btn a:focus {
+    color: $highlight-color;
+  }
+  .btn ul li a, .btn.hovering ul li a {
+    color: $color;
+  }
 }
 
 .table-striped {
@@ -577,4 +621,7 @@ p {
   line-height: 22px;
 }
 
+#ingest-form-container .header {
+  margin-left: 20px;
+}
 

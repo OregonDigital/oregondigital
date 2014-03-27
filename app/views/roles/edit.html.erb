@@ -1,6 +1,8 @@
-<div class='span3'></div>
-<div class='span6'>
-  <h2 class='text-center'>Role:</h2>
+
+
+<div class='span4'><%= render 'user_form' %></div>
+<div class='span4'>
+  <h3>Role:</h3>
   <%= bootstrap_form_for @role, :url=>role_management.role_path(@role) do |f| %>
     <%= f.text_field :name, :label=> 'Role name', :class => :inline %>
     <%= bootstrap_actions do %>
@@ -11,6 +13,7 @@
     <% end %>
   <% end %>
 </div>
-<div class='span3'></div>
-<%= render 'user_form' %>
-<%= render 'ip_form' %>
+
+<div class='span4'><%= render 'ip_form' %></div>
+
+
