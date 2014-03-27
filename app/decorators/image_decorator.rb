@@ -20,6 +20,11 @@ class ImageDecorator < GenericAssetDecorator
     "#{APP_CONFIG.iip_server.location}?DeepZoom=/#{relative_pyramidal_tiff_location}.dzi"
   end
 
+  def relative_medium_image_location
+    base_path = APP_CONFIG.try(:medium_image_path) || Rails.root.join("media", "medium-images")
+    Pathname.new(medium_image_location.to_s).relative_path_from(base_path)
+  end
+
   private
 
   def relative_pyramidal_tiff_location

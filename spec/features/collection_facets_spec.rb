@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'collection facets' do
-  context "when there is an item in a collection" do
+  context "when there is an item in a collection", :resque => true do
     let(:item) do
       g = FactoryGirl.build(:generic_asset, :in_collection!, lcsubject: RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282"))
       g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
@@ -39,6 +39,17 @@ describe 'collection facets' do
         end
         it "should not go to the collection landing page" do
           expect(current_path).not_to eq "/sets/#{collection.pid.split(':').last}"
+        end
+        context "and then a more precise search is done" do
+          before do
+            fill_in "Search...", :with => "Return Nothing"
+            click_button "search"
+          end
+          it "should still show the facet" do
+            within("#appliedParams") do
+              expect(page).to have_content(collection.title)
+            end
+          end
         end
       end
     end

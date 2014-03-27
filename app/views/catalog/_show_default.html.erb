@@ -4,6 +4,10 @@
 <dl class="dl-horizontal  dl-invert">
   <% decorated_object.sorted_show_fields.each do |field| -%>
     <dt class="blacklight-<%= field.parameterize %>"><%= decorated_object.field_label(field) %></dt>
-    <dd class="blacklight-<%= field.parameterize %>"><%= decorated_object.field_value(field) %></dt>
+    <dd class="field-values blacklight-<%= field.parameterize %>">
+      <% for value in decorated_object.field_values(field) %>
+        <span class="value"><%= value %></span>
+      <% end %>
+    </dt>
   <% end -%>
 </dl>

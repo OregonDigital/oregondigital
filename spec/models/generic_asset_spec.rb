@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GenericAsset do
+describe GenericAsset, :resque => true do
   it_behaves_like 'a baggable item'
   it_behaves_like 'a collectible item'
 

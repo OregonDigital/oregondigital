@@ -29,7 +29,7 @@ describe "show fields" do
         expect(asset.descMetadata.lcsubject.first.rdf_label.first).to eq subject.to_s
       end
       it "should pretend the subject field is empty" do
-        expect(page).not_to have_content("Subject")
+        expect(page).not_to have_content("subject")
       end
       it "should not show URI subjects" do
         expect(page).not_to have_content(subject.to_s)
@@ -39,7 +39,7 @@ describe "show fields" do
       let(:asset) do
         g = FactoryGirl.build(:generic_asset)
         g.descMetadata.lcsubject = subject
-        g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Subject")
+        g.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("Test Subject", :language => :en))
         g.descMetadata.lcsubject.first.persist!
         g.save
         g
@@ -64,8 +64,7 @@ describe "show fields" do
     end
     context "and a label is configured" do
       let(:stub_setup) do
-        I18n.stub(:t).and_call_original
-        I18n.stub(:t).with("oregondigital.catalog.show.title", {:default => "Title"}).and_return("Test Title")
+        I18n.backend.send(:translations)[:en][:oregondigital][:metadata][:title] = "Test Title"
       end
       it "should display it" do
         expect(page).to have_content("Test Title")
