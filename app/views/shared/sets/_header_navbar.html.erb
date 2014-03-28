@@ -1,0 +1,46 @@
+<div class="navbar navbar-fixed-top">
+  <div class="_osul">
+    <div id="osu-top-hat">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <% if @set.institution_class %>
+          <% case @set.institution_class %>
+            <% when "Oregon_State_University" %>
+              <a href="//oregonstate.edu" class="tag">
+                <img class="logo" alt="Oregon State University" src="<%= image_path('sets/osulogo.png') %>" />
+          <% when "University_of_Oregon" %>
+            <a href="//library.uoregon.edu/" class="tag">
+              <img class="logo" alt="University of Oregon Libraries" src="<%= image_path('sets/uologo.png') %>" />
+          <% end %>
+        <% end %>
+          <span class="mobile-header">OREGON DIGITAL</span>
+        </a>
+        <div class="nav-collapse">
+          <%= render :partial=>'/shared/sets/user_util_links' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="common-header" class="_osul">
+    <div class="container">
+      <div id="header">
+        <h1>
+          <a href="//oregondigital.org/">
+            <img class="site-logo" alt="Oregon Digital" src="<%= image_path('oregondigital/logo.png') %>" />
+            <span class="site-header">Oregon Digital</span></a>
+        </h1>
+      </div>
+      <div id="searchbar">
+        <%= render_search_bar  %>
+      </div>
+    </div>
+  </div>
+
+</div>  <!-- close navbar-fixed-top -->
+
