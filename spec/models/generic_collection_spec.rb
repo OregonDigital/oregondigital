@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe GenericCollection do
   it_behaves_like 'a collection'
+  it_behaves_like 'a controlled vocabulary'
   subject {FactoryGirl.build(:generic_collection)}
-
 
   describe '#resource' do
     before do
