@@ -8,7 +8,7 @@ module OregonDigital
 
       class << self
         def reviewed
-          all.select { |o| o.reviewed? }
+          where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true")
         end
       end
     end
