@@ -121,3 +121,23 @@ describe "item review behavior" do
     end
   end
 end
+
+describe '#reviewed' do
+  before do
+    10.times { FactoryGirl.create(:generic_asset) }
+    FactoryGirl.create(:generic_asset, :pending_review)
+  end
+  it 'should return only reviewed items' do
+    GenericAsset.reviewed.each do |i|
+      expect(i.reviewed?).to eq true
+    end
+  end
+  it 'should return all reviewed items' do
+    reviewed = GenericAsset.reviewed
+    GenericAsset.all do |i|
+      if i.reviewed?
+        expect(reviewed).to include i
+      end
+    end
+  end
+end
