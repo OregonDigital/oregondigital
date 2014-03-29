@@ -128,11 +128,8 @@ module OregonDigital::RDF
         graph
       end
 
-      ######
-      #
+      ##
       # Implement QuestioningAuthority API
-      #
-      ######
       class QaRDF
         attr_accessor :response, :raw_response
 
@@ -146,9 +143,10 @@ module OregonDigital::RDF
         # better as a baseline RDF vocab search.
         def search(q, sub_authority=nil)
           solutions = []
-          cache = ActiveFedora::Rdf::Repositories.repositories[@parent.repository]
-          cache.query(:object => RDF::Literal(q)).each_statement do |solution|
-            solutions << { :id => solution.subject, :label => solution.object } if uses_vocab_prefix? solution.subject
+          sparql = SPARQL::Client.new(ActiveFedora::Rdf::Repositories.repositories[@parent.repository])
+          query = sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(strstarts(?o, '#{q}'))}")
+          query.each_solution do |solution|
+            solutions << { :id => solution[:s], :label => solution[:o] } if @parent.uses_vocab_prefix? solution[:s]
           end
           self.response = solutions
         end

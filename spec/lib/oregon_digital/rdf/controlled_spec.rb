@@ -1,6 +1,5 @@
 require "spec_helper"
 
-
 describe OregonDigital::RDF::Controlled do
   before(:each) do
     class DummyAuthority < ActiveFedora::Rdf::Resource
@@ -86,12 +85,6 @@ describe OregonDigital::RDF::Controlled do
     it 'should load data' do
       subject.load_vocabularies
       expect(subject.new('Image').has_subject?(RDF::URI('http://purl.org/dc/dcmitype/Image'))).to be_true
-    end
-  end
-
-  describe 'questioning authority' do
-    it 'should have a qa interface' do
-      expect(subject.qa_interface).to respond_to :search
     end
   end
 

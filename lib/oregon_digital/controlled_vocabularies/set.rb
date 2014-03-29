@@ -20,7 +20,7 @@ module OregonDigital::ControlledVocabularies
       def search(q, sub_authority=nil)
         self.response = []
         field = Solrizer.solr_name("desc_metadata__title", :searchable)
-        for set in GenericCollection.reviewed.where("#{field}:*#{q}*").to_a
+        for set in GenericCollection.where("#{field}:*#{q}*").to_a
           resource = set.resource
           response << {:id => resource.rdf_subject.to_s, :label => resource.rdf_label.first}
         end
