@@ -92,6 +92,8 @@ gem 'bson_ext'
 # Send email from form
 gem 'mail_form'
 
+gem 'newrelic_rpm'
+
 group :development do
   gem 'pry'
   gem 'pry-doc'
