@@ -25,7 +25,7 @@ after 'deploy:restart', 'deploy:cleanup'
 
 after 'deploy:finalize_update', 'deploy:symlink_config'
 after 'deploy:update_code', 'deploy:migrate'
-before 'deploy:restart', 'sets:sync'
+before 'deploy:assets:precompile', 'sets:sync'
 after 'deploy:restart', 'deploy:cleanup'
 
 namespace :deploy do
