@@ -17,7 +17,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
   def find(selector, options = {})
     query = form_query(options)
-    result = inner_model.where(query)
+    result = inner_model.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true").where(query)
     result = result.where("id:#{RSolr.escape(selector)}") unless selector.blank? || selector == :all
     result = result.order("#{updated_at_field} desc")
     return result.to_a
