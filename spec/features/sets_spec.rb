@@ -55,7 +55,7 @@ describe "SetsController /index" do
         expect(page).to have_content("Additional Braceros Resources")
       end
       it "should have a readable path" do
-        expect(current_path).to eq "/sets/braceros/related"
+        expect(current_path).to eq "/sets/braceros/page/related"
       end
     end
     context "when it does not exist" do
