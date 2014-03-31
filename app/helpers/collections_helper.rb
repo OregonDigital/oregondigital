@@ -5,7 +5,8 @@ module CollectionsHelper
   # TODO: We need to find a better way to do this - this means a solr call per facet. Fortunately, solr's fast.
   def controlled_view(pid)
     # Find documents which have info about this pid.
-    documents = (Blacklight.solr.get "select", :qt => "search", :q => "desc_metadata__*:#{pid}")["response"]["docs"]
+    fields = CatalogController.controlled_vocabularies.map{|key| CatalogController.solr_name("desc_metadata__#{key}", :facetable)}
+    documents = (Blacklight.solr.get "select", :params => {:qt => "search", :q => "#{RSolr.escape(pid)}", :qf => fields.join(" ")})["response"]["docs"]
     # Get the relevant fields only.
     documents.map!{|x| x.select{|key, value| value.to_s.include?(pid)}}.reject!{|x| x.blank?}
     return "" if documents.blank?
@@ -14,7 +15,7 @@ module CollectionsHelper
     label_key = facet_name.split("_")
     label_key[label_key.length-1] = "label_#{label_key.last}"
     label_key = label_key.join("_")
-    label_facet = documents.map{|x| x[label_key]}.flatten.compact
+    label_facet = documents.map{|x| x[label_key]}.flatten.select{|x| x.to_s.include? "$#{pid}"}
     return "" if label_facet.blank?
     controlled_view_label(label_facet).find{|x| !x.blank?}.to_s
   end
