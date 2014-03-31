@@ -74,6 +74,7 @@ describe 'collection facets' do
     context "and the collection object doesn't exist" do
       before(:each) do
         collection.destroy
+        new_collection.destroy
         visit root_path
       end
       it "should display nothing" do
@@ -85,7 +86,9 @@ describe 'collection facets' do
     context "and it does not have a title" do
       before(:each) do
         collection.title = ""
+        new_collection.title = ""
         collection.save
+        new_collection.save
         visit root_path
       end
       it "should not display anything" do
