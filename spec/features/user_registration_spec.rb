@@ -24,7 +24,7 @@ describe "user registration" do
     fill_in "user_email", :with => "fakey@example.com"
     fill_in "user_password", :with => "testtest"
     click_button "Sign in"
-    within(".alert-info") do
+    within(".flash_messages") do
       expect(page).to have_content("Signed in successfully")
     end
   end

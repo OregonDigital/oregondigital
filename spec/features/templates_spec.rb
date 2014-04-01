@@ -21,7 +21,9 @@ describe "(Administration of templates)", :js => true do
       template_1
       template_2
       visit "/"
+      within(".navbar") do
       click_link "Templates"
+      end
     end
 
     it "should render a list of templates" do

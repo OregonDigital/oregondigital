@@ -13,7 +13,12 @@ Oregondigital::Application.routes.draw do
 
   # Downloads controller route
   resources :downloads, :only => "show"
-  get '/sets(/:set(/:page))', :to => 'sets#index', :as => :sets
+  get '/sets', :to => 'sets#index', :as => :sets_index
+  # Display a set landing page - restrict so that facets don't hit this route.
+  get '/sets/(:set(/page/:page))', :to => 'sets#index', :as => :sets, :constraints => {:set => /[A-Za-z0-9\-]*/}, :as => :sets
+  # Facets limitations
+  get '/sets/:id', :to => 'sets#facet'
+  get '/sets/:set/:id', :to => 'sets#facet', :as => :sets_facet
   get '/oai', :to => 'oai#index'
 
   # Ingest form routes
