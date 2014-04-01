@@ -136,6 +136,7 @@ module OregonDigital::RDF
 
         def initialize(parent=nil)
           @parent = parent
+          @sparql = SPARQL::Client.new(ActiveFedora::Rdf::Repositories.repositories[@parent.repository])
         end
 
         ##
@@ -143,19 +144,9 @@ module OregonDigital::RDF
         # overridden in subclasses, but it could also stand to be a bit
         # better as a baseline RDF vocab search.
         def search(q, sub_authority=nil)
-          solutions = []
-          sparql = SPARQL::Client.new(ActiveFedora::Rdf::Repositories.repositories[@parent.repository])
-          query = sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(strstarts(lcase(?o), '#{q.downcase}'))}")
-          query.each_solution do |solution|
-            solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } if @parent.uses_vocab_prefix? solution[:s]
-          end
-          return self.response = solutions unless solutions.empty?
-
-          query = sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(contains(lcase(?o), '#{q.downcase}'))}")
-          query.each_solution do |solution|
-            solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } if @parent.uses_vocab_prefix? solution[:s]
-          end
-          self.response = solutions 
+          self.response = sparql_starts_search(q)
+          return response unless response.empty?
+          self.response = sparql_contains_search(q)
         end
 
         def results
@@ -164,6 +155,25 @@ module OregonDigital::RDF
 
         def get_full_record(id, sub_authority)
         end
+        
+        private
+          def sparql_starts_search(q)
+            query = @sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(strstarts(lcase(?o), '#{q.downcase}'))}")
+            solutions_from_sparql_query(query)
+          end
+
+          def sparql_contains_search(q)
+            query = @sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(contains(lcase(?o), '#{q.downcase}'))}")
+            solutions_from_sparql_query(query)
+          end
+          
+          def solutions_from_sparql_query(query)
+            solutions = []
+            query.each_solution do |solution|
+              solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } if @parent.uses_vocab_prefix? solution[:s]
+            end
+            solutions
+          end
       end
     end
 
