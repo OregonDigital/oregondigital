@@ -108,6 +108,45 @@ describe "(Administration of templates)", :js => true do
         expect(page.find("table > caption")).to have_content("Available Templates")
         expect(page.find("table a[href$=edit]")).to have_content("My First Template (tm)")
       end
+
+      context "on partially filled forms" do
+        let(:title_nodes) { ingest_group_nodes("title") }
+        let(:first_title_node) { title_nodes[0] }
+
+        context "when a type is filled in but its value isn't" do
+          before(:each) do
+            within(first_title_node) do
+              fill_in("Value", :with => "")
+            end
+          end
+
+          it "shouldn't give errors" do
+            find(:css, 'input[type=submit]').click
+            expect(page).to have_content("Created Template")
+          end
+
+          it "should preserve the empty value when re-editing the template" do
+            find(:css, 'input[type=submit]').click
+            expect(page).to have_content("Created Template")
+
+            click_link "Edit My First Template (tm)"
+            expect(page).to include_ingest_fields_for("title", "title", "")
+          end
+        end
+
+        context "when a value is filled in but its type isn't" do
+          before(:each) do
+            within(first_title_node) do
+              select("", :from => "Type")
+            end
+          end
+
+          it "should still give errors when a type is invalid but value is filled in" do
+            find(:css, 'input[type=submit]').click
+            expect(page).to have_content("Title type cannot be blank")
+          end
+        end
+      end
     end
   end
 

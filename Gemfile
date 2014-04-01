@@ -28,8 +28,8 @@ gem 'therubyracer'
 gem 'ruby-filemagic', '~>0.4.2'
 
 gem 'rdf', '~>1.1.2.1'
-gem 'linkeddata'
-gem 'rdf-redis', '~>0.0.2', :git => 'git://github.com/no-reply/rdf-redis.git'
+gem 'sparql'
+gem 'sparql-client'
 
 gem 'noid', '~>0.6.6'
 gem 'hybag'
@@ -91,6 +91,8 @@ gem 'bson_ext'
 
 # Send email from form
 gem 'mail_form'
+
+gem 'newrelic_rpm'
 
 group :development do
   gem 'pry'

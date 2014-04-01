@@ -1,6 +1,7 @@
 class IngestController < FormControllerBase
   include Hydra::Controller::ControllerBehavior
 
+  before_filter :setup_resources, only: [:new, :create, :edit, :update]
   before_filter :check_permissions
 
   def index
@@ -36,6 +37,17 @@ class IngestController < FormControllerBase
     end
   end
 
+  # Sets up a form container for actions which use a form object
+  def setup_resources
+    defaults = {
+      :asset_map => asset_map,
+      :template_map => template_map,
+      :asset_class => asset_class,
+      :cloneable => cloneable?
+    }
+    @form = OregonDigital::Metadata::IngestFormContainer.new(params.merge(defaults))
+  end
+
   # We allow cloning for new resources only
   def cloneable?
     return true if ["new", "create"].include?(action_name)
@@ -63,5 +75,24 @@ class IngestController < FormControllerBase
   # Path to ingest index
   def index_path
     return ingest_index_path
+  end
+
+  # Saves the ingested template
+  def validate_and_save(success_message, failure_template)
+    unless @form.valid?
+      render failure_template
+      return
+    end
+
+    @form.save
+
+    if @form.has_cloned_associations?
+      @form = @form.clone_associations
+      flash.now[:notice] = success_message
+      render :new
+      return
+    end
+
+    redirect_to index_path, :notice => success_message
   end
 end

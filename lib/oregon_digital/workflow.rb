@@ -5,6 +5,12 @@ module OregonDigital
     included do
       has_metadata :name => 'workflowMetadata', :type => Datastream::Yaml
       after_initialize :reset_workflow, :if => :new_record?
+
+      class << self
+        def reviewed
+          where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true")
+        end
+      end
     end
 
     def reset_workflow

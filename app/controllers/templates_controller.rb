@@ -1,5 +1,7 @@
 class TemplatesController < FormControllerBase
   include Hydra::Controller::ControllerBehavior
+
+  before_filter :setup_resources, only: [:new, :create, :edit, :update]
   before_filter :check_permissions
 
   def index
@@ -43,15 +45,18 @@ class TemplatesController < FormControllerBase
     end
   end
 
-  # Overrides base behavior to handle the magic template varible (title) which
-  # goes directly onto the template object, not the form object
+  # Sets up a form container for actions which use a form object
   def setup_resources
     if params[:metadata_ingest_form]
       template_name = params[:metadata_ingest_form].delete(:template_name)
     end
 
-    super
-
+    defaults = {
+      :asset_map => asset_map,
+      :template_map => template_map,
+      :asset_class => asset_class,
+    }
+    @form = OregonDigital::Metadata::TemplateFormContainer.new(params.merge(defaults))
     @form.asset.title = template_name if template_name
   end
 
@@ -75,5 +80,18 @@ class TemplatesController < FormControllerBase
   # Path to template index
   def index_path
     return templates_path
+  end
+
+  # Saves the ingested asset, cloning associations and re-rendering the form
+  # if cloned associations exist, otherwise redirecting to the index
+  def validate_and_save(success_message, failure_template)
+    unless @form.valid?
+      render failure_template
+      return
+    end
+
+    @form.save
+
+    redirect_to index_path, :notice => success_message
   end
 end
