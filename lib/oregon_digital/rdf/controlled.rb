@@ -14,6 +14,11 @@ module OregonDigital::RDF
       klass.send(:include, OregonDigital::RDF::DeepIndex) # Force deep indexing for controlled vocabs? Or keep seperate?
     end
 
+    def qa_interface
+      self.class.qa_interface
+    end
+    delegate :search, :get_full_record, :response, :results, :to => :qa_interface
+
     ##
     # Override set_subject! to find terms when (and only when) they
     # exist in the vocabulary
@@ -110,10 +115,6 @@ module OregonDigital::RDF
         @qa_interface ||= QaRDF.new(self)
       end
 
-      def search(q, subauthority=nil)
-        qa_interface.search(q, subauthority=nil)
-      end
-
       private
 
       def name_to_class(name)
@@ -144,11 +145,21 @@ module OregonDigital::RDF
         def search(q, sub_authority=nil)
           solutions = []
           sparql = SPARQL::Client.new(ActiveFedora::Rdf::Repositories.repositories[@parent.repository])
-          query = sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(strstarts(?o, '#{q}'))}")
+          query = sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(strstarts(lcase(?o), '#{q.downcase}'))}")
           query.each_solution do |solution|
-            solutions << { :id => solution[:s], :label => solution[:o] } if @parent.uses_vocab_prefix? solution[:s]
+            solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } if @parent.uses_vocab_prefix? solution[:s]
           end
-          self.response = solutions
+          return self.response = solutions unless solutions.empty?
+
+          query = sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(contains(lcase(?o), '#{q.downcase}'))}")
+          query.each_solution do |solution|
+            solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } if @parent.uses_vocab_prefix? solution[:s]
+          end
+          self.response = solutions 
+        end
+
+        def results
+          response
         end
 
         def get_full_record(id, sub_authority)
