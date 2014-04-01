@@ -136,7 +136,6 @@ module OregonDigital::RDF
 
         def initialize(parent=nil)
           @parent = parent
-          @sparql = SPARQL::Client.new(ActiveFedora::Rdf::Repositories.repositories[@parent.repository])
         end
 
         ##
@@ -144,6 +143,7 @@ module OregonDigital::RDF
         # overridden in subclasses, but it could also stand to be a bit
         # better as a baseline RDF vocab search.
         def search(q, sub_authority=nil)
+          @sparql = SPARQL::Client.new(ActiveFedora::Rdf::Repositories.repositories[@parent.repository])
           self.response = sparql_starts_search(q)
           return response unless response.empty?
           self.response = sparql_contains_search(q)
