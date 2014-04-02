@@ -24,7 +24,7 @@ class GenericAsset < ActiveFedora::Base
   end
 
   has_attributes :format, :type, :location, :created, :description, :rights, :title, :modified, :date, :datastream => :descMetadata, :multiple => false
-  has_attributes :identifier, :lcsubject, :set, :creator, :contributor, :datastream => :descMetadata, :multiple => true
+  has_attributes :identifier, :lcsubject, :set, :creator, :contributor, :institution, :datastream => :descMetadata, :multiple => true
 
   private
 
