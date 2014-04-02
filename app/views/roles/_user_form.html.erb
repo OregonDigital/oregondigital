@@ -1,5 +1,5 @@
-<div class="span6">
-  <h3 class="text-center">Accounts:</h3>
+
+  <h3>Accounts:</h3>
   <ul>
     <% @role.users.each do |user| %>
       <li><%= user.user_key %>
@@ -17,4 +17,3 @@
       <%= bootstrap_cancel_tag %>
     <% end %>
   <% end %>
-</div>

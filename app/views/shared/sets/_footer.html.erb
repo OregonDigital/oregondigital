@@ -1,0 +1,104 @@
+
+<div id="footer">
+  <div class="footer container">
+    <div class="row">
+      <div class="span6 left">
+        <ul>
+          <li class="first">
+            <% if current_user %>
+              <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
+            <% else %>
+              <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
+            <% end %>
+          </li>
+          <li>
+            <% if current_or_guest_user %>
+              <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
+          </li>
+
+          <% if has_user_authentication_provider? and current_user %>
+            <li class="last">
+              <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path %>
+            </li>
+          <% end %>
+        </ul>
+        <ul>
+          <li class="first"><a href="#">Copyright</a></li>
+          <li><a href="#">Contact</a></li>
+          <li class="last"><a href="#">Help</a></li>
+        </ul>
+        <ul>
+          <li class="first">
+            <% if can?(:show, Role) -%>
+              <%= link_to "Roles", role_management.roles_path %>
+            <% end -%>
+          </li>
+          <li>
+            <% if can?(:review, GenericAsset) -%>
+              <%= link_to "Review", reviewer_index_path %>
+            <% end -%>
+          </li>
+          <li>
+            <% if can?(:create, GenericAsset) %>
+              <%= link_to "Ingest", ingest_index_path %>
+            <% end %>
+          </li>
+          <li class="last">
+            <% if can?(:create, ::Template) %>
+              <%= link_to "Templates", templates_path %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="span6 contact">
+        <% if @set %>
+          <% case @set.institution_class %>
+          <% when "University_of_Oregon" %>
+            <a href="//library.uoregon.edu/" class="tag">University of Oregon</a><br>
+            501 Kincaid Street, Eugene, OR 97403-1299 | T: (541) 346-3053 | F: (541) 346-3485
+
+            <a href="http://library.uoregon.edu/general/tellus.html">Contact Us</a>
+            <a href="http://library.uoregon.edu/giving/index.html">Make a Gift</a>
+            <a href="http://library.uoregon.edu/mobile/index.html">Mobile Site</a>
+            <a href="http://library.uoregon.edu/policies/patronprivacy.html">Privacy Policy</a>
+            <div class="footer-icons">
+              <a href="http://www.facebook.com/uolibraries">
+                <%= image_tag("uo_facebook.png", size: "30x31", alt: "University of Oregon Library Facebook Fan Page Link", style: "border: 0") %>
+              </a>
+              <a href="http://twitter.com/uoregonlibnews">
+                <%= image_tag("uo_twitter.png", size: "30x31", alt: "University of Oregon Library Twitter Page Link", style: "border: 0") %>
+              </a>
+              <a href="http://library.uoregon.edu/news/rss.xml">
+                <%= image_tag("uo_rss.png", size: "30x31", alt: "University of Oregon Library News and RSS Feed Link", style: "border: 0") %>
+              </a>
+              <a href="http://instagram.com/uoregonlibraries#">
+                <%= image_tag("uo_instagram.png", size: "30x31", alt: "University of Oregon Library Instagram Link", style: "border: 0") %>
+              </a>
+            </div>
+
+          <% when "Oregon_State_University" %>
+            <a href="http://osulibrary.oregonstate.edu">Oregon State University Libraries</a><br>
+            121 The Valley Library, Corvallis OR 97331-4501 | Phone: (541) 737-3331
+            <br>
+            <a href="http://osulibrary.oregonstate.edu/hours">Hours</a> |
+            <a href="javascript:mobileOptIn();">Mobile site</a> |
+            <a href="//osulibrary.oregonstate.edu/accessibility-services">Services for Persons with Disabilities</a> |
+            <a href="//osulibrary.oregonstate.edu/contact-us">Contact Us</a>
+            <br>
+            <a href="http://oregonstate.edu/copyright">Copyright</a>
+            &copy;2013 Oregon State University |
+            <a href="http://oregonstate.edu/disclaimer">Disclaimer</a>
+          <% end %>
+
+        <% else %>
+          <%= render :partial => 'shared/footer' %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
-<div class="span6" id="ip-ranges">
-  <h3 class="text-center">IP Ranges:</h3>
+<div id="ip-ranges">
+  <h3>IP Ranges:</h3>
   <ul>
     <% @role.ip_ranges.each do |range| %>
       <li><%= range.ip_start %> - <%= range.ip_end %></li>
@@ -8,7 +8,7 @@
       <% end %>
     <% end %>
   </ul>
-  <h3 class="text-center">Add a new IP Range</h3>
+  <h3>Add a new IP Range</h3>
   <%= bootstrap_form_tag role_ip_ranges_path(@role) do %>
     <%= bootstrap_text_field_tag 'ip_range_start', '', :label => "IP Start" %>
     <%= bootstrap_text_field_tag 'ip_range_end', '', :label => "IP End" %>

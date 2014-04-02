@@ -1,6 +1,8 @@
 def visit_ingest_url
   visit('/')
-  click_link "Ingest"
+  within(".navbar") do
+    click_link "Ingest"
+  end
   click_link "Start from scratch"
 end
 

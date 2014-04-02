@@ -13,9 +13,19 @@
       <meta http-equiv="cleartype" content="on">
     <![endif]-->
 
-    <title><%= h(@page_title || application_name) %></title>
+    <title>
+    <% if @set %>
+        <% content_for :page_title, @set.title %>
+    <% end %>
+    <% if content_for?(:page_title) %>
+        <%= h(yield(:page_title)) %> | <%= h(application_name) %>
+    <% else %>
+        <%= h(application_name) %>
+    <% end %>
+    </title>
     <link href="<%= opensearch_catalog_path(:format => 'xml', :only_path => false) %>" title="<%= application_name%>" type="application/opensearchdescription+xml" rel="search"/>
-    <%= favicon_link_tag asset_path('favicon.ico') %>
+
+    <%= stylesheet_link_tag "application", "//fonts.googleapis.com/css?family=Gudea:400,400italic,700" %>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -27,34 +37,48 @@
     <![endif]-->
 
   </head>
-  <% if can?(:show, Role) -%>
-  <% content_for :body_class, "admins" %>
-<% end -%>
-  <body class="<%= render_body_class %> <%= yield (:body_class) %>">
-  <%= render :partial => 'shared/header_navbar' %>
 
-  <div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
+<% if @set %>
+  <% content_for(:body_class, ["sets", @set.institution_class].join(' ')) %>
+    <body class="<%= render_body_class %> <%= yield (:body_class) %>">
+    <%= render :partial => '/shared/sets/header_navbar' %>
+<% else %>
+  <% if can?(:show, Role) -%>
+    <% content_for :body_class, "admin " %>
+  <% end -%>
+  <body class="<%= render_body_class %> <%= yield (:body_class) %>">
+    <%= render :partial => '/shared/header_navbar' %>
+<% end %>
+
+<div id="ajax-modal" class="modal hide fade" tabindex="-1"></div>
 
 <!-- /container -->
-  <div id="main-container" class="container">
-            <!-- Top bar -->
-            <div id="search-found" class="row hidden-phone">
-              <%= topbar_items.join('').html_safe %>
-            </div>
-            <!-- /Top bar -->
-                  <div class="row">
-                      <div class="span12">
-                        <div id="main-flashes">
-                          <%= render :partial=>'/flash_msg' %>
-                        </div>
-                      </div>    
-                  </div>              
-
-                  <div class="row">
-                       <%= yield %>
-                       </div>   
+<div id="main-container" class="container">
+  <!-- Top bar -->
+  <div id="search-found" class="row hidden-phone">
+    <%= topbar_items.join('').html_safe %>
+  </div>
+  <!-- /Top bar -->
+  <div class="row">
+    <div class="span12">
+      <div id="main-flashes">
+        <%= render :partial=>'/flash_msg' %>
+      </div>
+    </div>    
+  </div>              
+  <% if @set %>
+    <h1><a href="<%= "/sets/#{@set.pid.split(':').last}" %>"><%= @set.title %></a></h1>
+  <% end %>
+  <div class="row">
+   <%= yield %>
+  </div>   
 </div>
 
-<%= render :partial => 'shared/footer' %>
-    </body>
+<% if @set %>
+  <%= render :partial => '/shared/sets/footer' %>
+<% else %>
+  <%= render :partial => '/shared/footer' %>
+<% end %>
+
+</body>
 </html>

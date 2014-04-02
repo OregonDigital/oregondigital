@@ -1,5 +1,7 @@
 <div id="sidebar" class="span3">
  <%= render :partial=>'facets' %>
+
+ <% if @set and lookup_context.exists?('pages', ["sets/#{@set.pid.split(':').last}"], true) %> <%= render :partial => "sets/#{@set.pid.split(':').last()}/pages" %> <% end %>
 </div><!--/well -->
 
 <div id="content" class="span9">
@@ -13,7 +15,7 @@
       <h2 class="hide-text top-content-title"><%= t('blacklight.search.search_results_header') %></h2>
 
       <% @page_title = t('blacklight.search.title', :application_name => application_name) %>
-
+      <% content_for :page_title, t('blacklight.search.title') %>
 
       <% extra_head_content << render_opensearch_response_metadata.html_safe %>
 

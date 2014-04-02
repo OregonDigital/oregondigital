@@ -1,0 +1,69 @@
+
+<div class="utils" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <ul class="menu">
+    <li class="leaf">
+      <% if has_user_authentication_provider? %>
+        <% if current_user %>
+          <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
+          <%- # = "[#{ link_to current_user, edit_user_registration_path }]".html_safe unless current_user.to_s.blank?-  %>
+        <% else %>
+          <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
+        <% end %>
+      <% end %>
+    </li>
+    <% if current_or_guest_user %>
+      <li class="leaf">
+        <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path, :class => 'bookmarks' %>
+      </li>
+    <% end %>
+    <% if has_user_authentication_provider? and current_user %>
+      <li class="leaf">
+        <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path, :class => 'saved-searches' %>
+      </li>
+    <% end %>
+    <li class="leaf">
+      <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
+    </li>
+
+    <% if can?(:show, Role) -%>
+      <li class="leaf">
+        <%= link_to "Roles", role_management.roles_path %>
+      </li>
+    <% end -%>
+    <% if can?(:review, GenericAsset) -%>
+      <li class="leaf">
+        <%= link_to "Review", reviewer_index_path %>
+    <% end -%>
+    </li>
+    <li class="leaf">
+    <% if can?(:create, GenericAsset) %>
+      <%= link_to "Ingest", ingest_index_path %>
+    <% end %>
+    </li>
+    <li class="leaf">
+    <% if can?(:create, ::Template) %>
+      <%= link_to "Templates", templates_path %>
+    <% end %>
+    </li>
+    <% if can?(:show, Role) -%>
+    <% else %>
+      <li class="leaf">
+        <a href="//oregondigital.org">Oregon Digital</a>
+      </li>
+
+      <% if @set.institution_class %>
+        <% case @set.institution_class %>
+          <% when "Oregon_State_University" %>
+            <li class="last leaf">
+              <a href="//osulibrary.oregonstate.edu">OSU Libraries</a>
+            </li>
+          <% when "University_of_Oregon" %>
+             <li class="last leaf">
+                <a href="//library.uoregon.edu/">UO Libraries</a>
+            </li>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  </ul>
+</div>

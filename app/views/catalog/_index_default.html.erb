@@ -1,5 +1,7 @@
+
 <div class="row search-result">
   <div class="span thumbnail-container">
+
     <% if document["has_thumbnail_bs"] %>
       <img src="/thumbnails/<%= Image.relative_thumbnail_location(document["id"]) %>"
            alt="<%= document["descMetadata__title_ssm"] %>"

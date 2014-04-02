@@ -14,6 +14,13 @@
             <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path %>
           <% end %>
         </li>
+
+          <% if has_user_authentication_provider? and current_user %>
+          <li>
+            <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path %>
+          </li>
+          <% end %>
+
         <li>
           <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
         </li>
@@ -21,11 +28,7 @@
         <li class="last"><%= link_to "Contact", contact_path %></li>
       </ul>
       <ul>
-        <li class="first">
-          <% if has_user_authentication_provider? and current_user %>
-            <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path %>
-          <% end %>
-        </li>
+
         <li>
           <% if can?(:show, Role) -%>
             <%= link_to "Roles", role_management.roles_path %>
@@ -35,6 +38,16 @@
           <% if can?(:review, GenericAsset) -%>
             <%= link_to "Review", reviewer_index_path %>
           <% end -%>
+        </li>
+        <li>
+        <% if can?(:create, GenericAsset) %>
+          <%= link_to "Ingest", ingest_index_path %>
+        <% end %>
+        </li>
+        <li>
+        <% if can?(:create, ::Template) %>
+          <%= link_to "Templates", templates_path %>
+        <% end %>
         </li>
       </ul>
     </div>

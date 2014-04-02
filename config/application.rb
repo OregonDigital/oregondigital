@@ -57,6 +57,9 @@ module Oregondigital
 
     # Vendor Assets
     config.assets.paths << Rails.root.join("app", "vendor", "assets", "images")
+    # add app/assets/fonts to the asset path
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
 
 
     # Version of your assets, change this if you want to expire all your assets
