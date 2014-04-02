@@ -22,7 +22,7 @@ INGEST_MAP = {
     alternative: "descMetadata.alternative",
   },
 
-  creators: {
+  creator: {
     creator: "descMetadata.creator",
     contributor: "descMetadata.contributor",
     photographer: "descMetadata.photographer",
@@ -50,7 +50,7 @@ INGEST_MAP = {
     created: "descMetadata.created",
     modified: "descMetadata.modified",
     date: "descMetadata.date",
-    dateSubmitted: "descMetadata.dateSubmitted",
+    dateSubmitted: "descMetadata.submissionDate",
     issued: "descMetadata.issued",
     earliestDate: "descMetadata.earliestDate",
     latestDate: "descMetadata.latestDate",
@@ -71,7 +71,7 @@ INGEST_MAP = {
     language: "descMetadata.language",
     publisher: "descMetadata.publisher",
     placeOfPublication: "descMetadata.placeOfPublication",
-    provenace: "descMetadata.provenance",
+    provenance: "descMetadata.provenance",
   },
   
   type: {
@@ -93,7 +93,7 @@ INGEST_MAP = {
   },
 
   administrative: {
-    locationCopySublocation: "descMetadata.localCopySublocation",
+    locationCopySublocation: "descMetadata.locationCopySublocation",
     institution: "descMetadata.institution",
     conversion: "descMetadata.conversion",
   },
