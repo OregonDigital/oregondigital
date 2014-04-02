@@ -23,5 +23,8 @@ describe GenericCollection do
       subject.save
       expect(subject.resource.rdf_subject.to_s).to start_with "http://oregondigital.org/resource/"
     end
+    it "should have an insitution attribute" do
+      expect(subject).to respond_to :institution
+    end
   end
 end
