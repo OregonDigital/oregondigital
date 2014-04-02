@@ -10,6 +10,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :title, :predicate => RDF::DC.title do |index|
     index.as :searchable, :displayable
   end
+  property :alternative, :predicate => RDF::DC.alternative do |index|
+    index.as :searchable, :displayable
+  end
   property :creator, :predicate => RDF::DC11.creator do |index|
     index.as :searchable, :facetable, :displayable
   end
@@ -24,7 +27,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :lcsubject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
       index.as :searchable, :facetable, :displayable
-  end
+ end
+  property :subject, :predicate => RDF::DC11.subject do |index|
+      index.as :searchable, :facetable, :displayable
+ end
   property :source, :predicate => RDF::DC.source do |index|
     index.as :displayable
   end
@@ -33,6 +39,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
     index.as :searchable, :facetable, :displayable
+  end
+  property :coverage, :predicate => RDF::DC11.coverage do |index|
+    index.as :searchable, :facetable, :displayable  
   end
   property :rights, :predicate => RDF::DC.rights, :class_name => OregonDigital::ControlledVocabularies::RightsStatement do |index|
     index.as :displayable
@@ -47,13 +56,19 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
   property :modified, :predicate => RDF::DC.modified do |index|
-    index.as :searchable, :facetable, :displayable
+    index.as :searchable, :displayable
   end
   property :submissionDate, :predicate => RDF::DC.dateSubmitted do |index|
-    index.as :searchable, :facetable, :displayable
+    index.as :searchable, :displayable
+  end
+  property :issued, :predicate => RDF::DC.issued do |index|
+    index.as :searchable, :displayable
   end
   property :date, :predicate => RDF::DC.date do |index|
     index.as :searchable, :facetable, :displayable
+  end
+  property :publisher, :predicate => RDF::DC.publisher do |index|
+    index.as :searchable, :facetable,  :displayable
   end
   property :format, :predicate => RDF::DC.format,  :class_name => OregonDigital::ControlledVocabularies::Format do |index|
     index.as :searchable, :facetable, :displayable
@@ -61,11 +76,38 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :localCollection, :predicate => RDF::DC.isPartOf do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :hasPart, :predicate => RDF::DC.hasPart do |index|
+    index.as :displayable
+  end
+  property :provenance, :predicate => RDF::DC.provenance do |index|
+    index.as :displayable
+  end
   property :replacesUrl, :predicate => RDF::DC.replaces
-
+  
   # MARCRel
   property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
     index.as :searchable, :facetable, :displayable
+  end
+  property :composer, :predicate => OregonDigital::Vocabularies::MARCREL.cmp do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :lyricist, :predicate => OregonDigital::Vocabularies::MARCREL.lyr do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup do |index|
+    index.as :displayable
+  end
+  property :copyrightClaimant, :predicate => OregonDigital::Vocabularies::MARCREL.cpc do |index|
+    index.as :displayable
+  end
+  property :illustrator, :predicate => OregonDigital::Vocabularies::MARCREL.ill do |index|
+    index.as :displayable
+  end
+  property :printMaker, :predicate => OregonDigital::Vocabularies::MARCREL.prm do |index|
+    index.as :displayable
   end
 
   # Darwin Core
@@ -97,14 +139,77 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   # PREMIS
   property :preservation, :predicate => OregonDigital::Vocabularies::PREMIS.hasOriginalName
   property :hasFixity, :predicate => OregonDigital::Vocabularies::PREMIS.hasFixity
+  
+  # MODS RDF
+  property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#physicalExtent') do |index|
+    index.as :displayable
+  end
+  property :locationCopySublocation, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopySublocation') do |index|
+     index.as :displayable
+  end
+  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopyShelfLocator') do |index|
+       index.as :displayable
+         end
+  
+  # CCO
+  property :view, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDescription') do |index|
+    index.as :displayable
+  end
 
-  # Oregon Digital
-  property :set, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.set, :class_name => "GenericCollection" do |index|
+  # VRA
+  property :earliestDate, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/earliestDate') do |index|
+    index.as :searchable, :displayable
+  end
+  property :latestDate, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/latestDate') do |index|
+    index.as :searchable, :displayable
+  end
+  property :culturalContext, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/culturalContext') do |index|
+    index.as :displayable
+  end
+  property :measurements, :predicate => RDF::URI('http://www.loc.gov/standards/vracrore/vocab/measurements') do |index|
+    index.as :displayable
+  end
+  property :inscription, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/inscription') do |index|
+    index.as :searchable, :displayable
+  end
+  property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::AAT do |index|
     index.as :searchable, :facetable, :displayable
   end
 
+# Oregon Digital
+  property :set, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.set, :class_name => "GenericCollection" do |index|
+    index.as :searchable, :facetable, :displayable
+  end
   property :institution, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.contributingInstitution, :class_name => OregonDigital::ControlledVocabularies::Organization do |index|
     index.as :searchable, :facetable, :displayable
+  end
+  property :conversion, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.conversionSpecification
+  property :captionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.captionTitle do |index|
+    index.as :searchable, :displayable
+  end
+  property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.cover do |index|
+    index.as :searchable, :displayable
+  end
+  property :exhibit, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.exhibit do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :dateDigitized, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.dateDigitized
+
+# Oregon Digital Sheet Music
+  property :instrumentation, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.instrumentation do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :firstLine, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.firstLine do |index|
+    index.as :searchable, :displayable
+  end 
+  property :firstLineChorus, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.firstLineChorus do |index|
+    index.as :searchable, :displayable
+  end 
+  property :largerWork, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.largerWork do |index|
+    index.as :searchable, :displayable
+  end   
+  property :hostItem, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.hostItem do |index|
+    index.as  :displayable
   end
 
   def to_solr(solr_doc = Hash.new)
