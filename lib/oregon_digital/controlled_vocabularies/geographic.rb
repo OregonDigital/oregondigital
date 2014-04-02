@@ -22,14 +22,14 @@ module OregonDigital::ControlledVocabularies
     # Overrides rdf_label to recursively add location disambiguation when available.
     def rdf_label
       label = super
-      unless parentFeature.empty?
+      unless parentFeature.empty? or RDF::URI(label.first).valid?
         #TODO: Identify more featureCodes that should cause us to terminate the sequence
         top_level_codes = [RDF::URI('http://www.geonames.org/ontology#A.PCLI')]
-        return label if top_level_codes.include? featureCode.first.rdf_subject
+        return label if featureCode.first.respond_to? :rdf_subject and top_level_codes.include?(featureCode.first.rdf_subject)
 
-        parent_label = parentFeature.first.rdf_label.first
-        label = "#{label.first} >> #{parent_label}" unless 
-          parent_label.empty? or RDF::URI(parent_label).valid? or parent_label.starts_with? '_:'
+        parent_label = (parentFeature.first.kind_of? ActiveFedora::Rdf::Resource) ? parentFeature.first.rdf_label.first : []
+        return label if parent_label.empty? or RDF::URI(parent_label).valid? or parent_label.starts_with? '_:'
+        label = "#{label.first} >> #{parent_label}" 
       end
       Array(label)
     end
