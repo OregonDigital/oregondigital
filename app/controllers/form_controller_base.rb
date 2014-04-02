@@ -55,7 +55,7 @@ class FormControllerBase < ApplicationController
 
         # This is ugly - maybe we should have something more directly exposing the QA-friendly vocab parameter
         # (or create a map of param-to-class that each controlled vocab class registers and exposes)
-        qa_class = property[:class_name].qa_interface.class
+        qa_class = property[:class_name]
         vocab_param = qa_class.to_s.sub(/^OregonDigital::ControlledVocabularies::/, "")
         next if vocab_param.blank?
 
