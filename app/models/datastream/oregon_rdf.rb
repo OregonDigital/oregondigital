@@ -147,7 +147,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :locationCopySublocation, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopySublocation') do |index|
      index.as :displayable
   end
-  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopyShelfLocatort') do |index|
+  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopyShelfLocator') do |index|
        index.as :displayable
          end
   
