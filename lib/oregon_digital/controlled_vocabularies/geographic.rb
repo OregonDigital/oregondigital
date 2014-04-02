@@ -7,13 +7,32 @@ module OregonDigital::ControlledVocabularies
     configure :rdf_label => RDF::URI('http://www.geonames.org/ontology#name')
     use_vocabulary :geonames
 
+    property :name, :predicate => RDF::URI('http://www.geonames.org/ontology#name')
     property :latitude, :predicate => RDF::URI('http://www.w3.org/2003/01/geo/wgs84_pos#lat')
     property :longitude, :predicate => RDF::URI('http://www.w3.org/2003/01/geo/wgs84_pos#long')
+    property :parentFeature, :predicate => RDF::URI('http://www.geonames.org/ontology#parentFeature'), :class_name => 'OregonDigital::ControlledVocabularies::Geographic'
+    property :parentCountry, :predicate => RDF::URI('http://www.geonames.org/ontology#parentCountry'), :class_name => 'OregonDigital::ControlledVocabularies::Geographic'
+    property :featureCode, :predicate => RDF::URI('http://www.geonames.org/ontology#featureCode')
+    property :featureClass, :predicate => RDF::URI('http://www.geonames.org/ontology#featureClass')
     property :population, :predicate => RDF::URI('http://www.geonames.org/ontology#population')
     property :countryCode, :predicate => RDF::URI('http://www.geonames.org/ontology#countryCode')
     property :wikipedia, :predicate => RDF::URI('http://www.geonames.org/ontology#wikipediaArticle')
 
+    ##
+    # Overrides rdf_label to recursively add location disambiguation when available.
+    def rdf_label
+      label = super
+      unless parentFeature.empty?
+        #TODO: Identify more featureCodes that should cause us to terminate the sequence
+        top_level_codes = [RDF::URI('http://www.geonames.org/ontology#A.PCLI')]
+        return label if top_level_codes.include? featureCode.first.rdf_subject
 
+        parent_label = parentFeature.first.rdf_label.first
+        label = "#{label.first} >> #{parent_label}" unless 
+          parent_label.empty? or RDF::URI(parent_label).valid? or parent_label.starts_with? '_:'
+      end
+      Array(label)
+    end
 
     class QaGeonames < OregonDigital::RDF::Controlled::ClassMethods::QaRDF
       GEONAMES_PREFIX   = 'http://sws.geonames.org/'
