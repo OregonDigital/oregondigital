@@ -75,8 +75,22 @@ describe "SetsController /index" do
     end
     context "that does have a set page" do
       let(:collection_pid) {'oregondigital:braceros'}
+      let(:collection) do
+        g = FactoryGirl.create(:generic_collection, :has_pid, pid: collection_pid)
+        g.institution = OregonDigital::ControlledVocabularies::Organization.new('Oregon_State_University')
+        g.institution.first.set_value(RDF::SKOS.prefLabel, "Oregon State University")
+        g.institution.first.persist!
+        g.save
+        g
+      end
       it "should show the facets" do
         expect(page).to have_content("Test Facet")
+      end
+      it "should show the appropriate institution layout" do
+        expect(collection.resource.institution.first.rdf_label.first).to eq "Oregon State University"
+        within("#footer .contact") do
+          expect(page).to have_content("Oregon State University")
+        end
       end
       it "should not show the collection facets" do
         within("#facets") do

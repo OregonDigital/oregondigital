@@ -10,6 +10,6 @@ class GenericCollectionDecorator < Draper::Decorator
   end
 
   def institution_class
-    descMetadata.institution.first.try(:rdf_label).try(:first).to_s.split('/').last
+    resource.institution.first.try(:rdf_subject).to_s.split('/').last
   end
 end
