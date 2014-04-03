@@ -27,9 +27,8 @@
           <% end %>
         </ul>
         <ul>
-          <li class="first"><a href="#">Copyright</a></li>
-          <li><a href="#">Contact</a></li>
-          <li class="last"><a href="#">Help</a></li>
+          <li class="first"><a href="/copyright">Copyright</a></li>
+          <li class="last"><%= link_to "Contact", contact_path %></li>
         </ul>
         <ul>
           <li class="first">
@@ -85,12 +84,12 @@
             121 The Valley Library, Corvallis OR 97331-4501 | Phone: (541) 737-3331
             <br>
             <a href="http://osulibrary.oregonstate.edu/hours">Hours</a> |
-            <a href="javascript:mobileOptIn();">Mobile site</a> |
-            <a href="//osulibrary.oregonstate.edu/accessibility-services">Services for Persons with Disabilities</a> |
-            <a href="//osulibrary.oregonstate.edu/contact-us">Contact Us</a>
+            <a href="http://m.library.oregonstate.edu">Mobile site</a> |
+            <a href="http://osulibrary.oregonstate.edu/accessibility-services">Services for Persons with Disabilities</a> |
+            <a href="http://osulibrary.oregonstate.edu/contact-us">Contact Us</a>
             <br>
             <a href="http://oregonstate.edu/copyright">Copyright</a>
-            &copy;2013 Oregon State University |
+            &copy; <%= Time.now.year %> Oregon State University |
             <a href="http://oregonstate.edu/disclaimer">Disclaimer</a>
           <% end %>
 
