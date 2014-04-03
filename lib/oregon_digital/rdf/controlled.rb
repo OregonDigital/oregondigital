@@ -157,21 +157,32 @@ module OregonDigital::RDF
         end
         
         private
+
           def sparql_starts_search(q)
-            query = @sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(strstarts(lcase(?o), '#{q.downcase}'))}")
+            query = @sparql.query("SELECT DISTINCT ?s ?p ?o WHERE { ?s ?p ?o. FILTER(strstarts(lcase(?o), '#{q.downcase}'))}")
             solutions_from_sparql_query(query)
           end
 
           def sparql_contains_search(q)
-            query = @sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(contains(lcase(?o), '#{q.downcase}'))}")
+            query = @sparql.query("SELECT DISTINCT ?s ?p ?o WHERE { ?s ?p ?o. FILTER(contains(lcase(?o), '#{q.downcase}'))}")
             solutions_from_sparql_query(query)
           end
           
           def solutions_from_sparql_query(query)
             solutions = []
+            label_solutions = []
+            labels = [RDF::SKOS.prefLabel,
+                      RDF::DC.title,
+                      RDF::RDFS.label]
+            labels << @parent.rdf_label unless @parent.rdf_label.nil?
+
             query.each_solution do |solution|
-              solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } if @parent.uses_vocab_prefix? solution[:s]
+              if @parent.uses_vocab_prefix? solution[:s]
+                label_solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } if labels.include? solution[:p]
+                solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } 
+              end
             end
+            return label_solutions unless label_solutions.empty?
             solutions
           end
       end
