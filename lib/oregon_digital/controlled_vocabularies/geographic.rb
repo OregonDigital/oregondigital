@@ -24,7 +24,6 @@ module OregonDigital::ControlledVocabularies
       label = super
       unless parentFeature.empty? or RDF::URI(label.first).valid?
         #TODO: Identify more featureCodes that should cause us to terminate the sequence
-        top_level_codes = [RDF::URI('http://www.geonames.org/ontology#A.PCLI')]
         return label if top_level_element? 
 
         parent_label = (parentFeature.first.kind_of? ActiveFedora::Rdf::Resource) ? parentFeature.first.rdf_label.first : []
