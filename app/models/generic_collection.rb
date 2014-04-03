@@ -2,12 +2,10 @@ class GenericCollection < GenericAsset
   include OregonDigital::Set
   after_initialize :redefine_resource_class
 
-  class << self
-    def qa_interface
-      OregonDigital::ControlledVocabularies::Set.qa_interface
-    end
+  def self.qa_interface
+    OregonDigital::ControlledVocabularies::Set.qa_interface
   end
-
+  
   def qa_interface
     self.class.qa_interface
   end
