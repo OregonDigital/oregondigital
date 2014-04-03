@@ -41,4 +41,20 @@ describe OregonDigital::ControlledVocabularies::Geographic do
       end
     end
   end
+
+  describe '#fetch' do
+    before do
+      subject.name = 'Klamath Falls'
+    end
+    context "with parent features" do
+      before do
+        subject.parentFeature = OregonDigital::ControlledVocabularies::Geographic.new('http://sws.geonames.org/4735237/')
+      end
+      it "should call fetch on those features" do
+        expect(subject.parentFeature.first).to receive(:fetch).and_return(true)
+        subject.fetch
+      end
+    end
+  end
+
 end
