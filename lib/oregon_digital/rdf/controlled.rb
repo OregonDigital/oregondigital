@@ -169,21 +169,19 @@ module OregonDigital::RDF
           end
           
           def solutions_from_sparql_query(query)
-            solutions = []
-            label_solutions = []
             labels = [RDF::SKOS.prefLabel,
                       RDF::DC.title,
                       RDF::RDFS.label]
             labels << @parent.rdf_label unless @parent.rdf_label.nil?
 
-            query.each_solution do |solution|
-              if @parent.uses_vocab_prefix? solution[:s]
-                label_solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } if labels.include? solution[:p]
-                solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } 
-              end
-            end
+            solutions = query.select { |solution| @parent.uses_vocab_prefix? solution[:s] }
+            label_solutions = solutions.map { |solution| build_hit(solution) if labels.include? solution[:p] }
             return label_solutions unless label_solutions.empty?
-            solutions
+            solutions.map { |solution| build_hit(solution) }
+          end
+           
+          def build_hit(solution)
+            { :id => solution[:s].to_s, :label => solution[:o].to_s }
           end
       end
     end
