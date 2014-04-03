@@ -25,13 +25,29 @@ module OregonDigital::ControlledVocabularies
       unless parentFeature.empty? or RDF::URI(label.first).valid?
         #TODO: Identify more featureCodes that should cause us to terminate the sequence
         top_level_codes = [RDF::URI('http://www.geonames.org/ontology#A.PCLI')]
-        return label if featureCode.first.respond_to? :rdf_subject and top_level_codes.include?(featureCode.first.rdf_subject)
+        return label if top_level_element? 
 
         parent_label = (parentFeature.first.kind_of? ActiveFedora::Rdf::Resource) ? parentFeature.first.rdf_label.first : []
         return label if parent_label.empty? or RDF::URI(parent_label).valid? or parent_label.starts_with? '_:'
         label = "#{label.first} >> #{parent_label}" 
       end
       Array(label)
+    end
+
+    # Fetch parent features if they exist. Necessary for automatic population of rdf label.
+    def fetch
+      result = super
+      return result if top_level_element?
+      parentFeature.each do |feature|
+        feature.fetch
+      end
+      result
+    end
+
+    def top_level_element?
+      featureCode = self.featureCode.first
+      top_level_codes = [RDF::URI('http://www.geonames.org/ontology#A.PCLI')]
+      featureCode.respond_to?(:rdf_subject) && top_level_codes.include?(featureCode.rdf_subject)
     end
 
     class QaGeonames < OregonDigital::RDF::Controlled::ClassMethods::QaRDF
