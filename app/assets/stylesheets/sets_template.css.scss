@@ -1,3 +1,5 @@
+@import "bootstrap/mixins";
+
 html {
   background: none repeat scroll 0 0 #252525;
 }
@@ -367,7 +369,7 @@ body.sets {
     }
 
     #footer {
-      background: -moz-linear-gradient(center top , #39393A 0%, #252525 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+      @include gradient-vertical(#39393A, #252525);
       border-top-color: #F1ECE3;
       color: #FFFFFF;
       padding: 5px 0;
