@@ -26,6 +26,10 @@ describe 'catalog' do
         expect(page).to have_selector(".document img[src^='/thumbnails']")
       end
       
+      it "should set an alt value on the thumbnail" do
+        expect(page).to have_selector(".document img[src^='/thumbnails'][alt='#{image.title}'][title='#{image.title}']")
+      end
+
       context "when the thumbnails are clicked" do
         it "should have clickable thumbnails", :js => true do
           expect(page).to have_selector(".document img[src^='/thumbnails']")
