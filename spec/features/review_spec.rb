@@ -67,7 +67,8 @@ describe "item review behavior" do
             Role.destroy_all
           end
           it "should not allow them access" do
-            expect{click_button "Mark as Reviewed"}.to raise_error(CanCan::AccessDenied)
+            click_button "Mark as Reviewed"
+            expect(page).to have_content("You are not authorized to access this page.")
           end
         end
         context "when the mark as reviewed button is clicked" do

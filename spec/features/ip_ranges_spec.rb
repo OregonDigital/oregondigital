@@ -12,7 +12,8 @@ describe "IP Range Administration" do
       end
       context "and they are a user" do
         it "should not let them to the role admin page" do
-          expect{visit role_management.edit_role_path(role)}.to raise_error(CanCan::AccessDenied)
+          visit role_management.edit_role_path(role)
+          expect(page).to have_content("You are not authorized to access this page.")
         end
       end
       context "and they are an admin" do
