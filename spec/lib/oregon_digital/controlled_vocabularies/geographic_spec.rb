@@ -54,6 +54,10 @@ describe OregonDigital::ControlledVocabularies::Geographic do
         expect(subject.parentFeature.first).to receive(:fetch).and_return(true)
         subject.fetch
       end
+      it "should persist parent features" do
+        expect(subject.parentFeature.first).to receive(:persist!)
+        subject.persist!
+      end
     end
   end
 

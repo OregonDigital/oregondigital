@@ -43,6 +43,16 @@ module OregonDigital::ControlledVocabularies
       result
     end
 
+    # Persist parent features.
+    def persist!
+      result = super
+      return result if top_level_element?
+      parentFeature.each do |feature|
+        feature.persist!
+      end
+      result
+    end
+
     def top_level_element?
       featureCode = self.featureCode.first
       top_level_codes = [RDF::URI('http://www.geonames.org/ontology#A.PCLI')]
