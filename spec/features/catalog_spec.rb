@@ -25,6 +25,14 @@ describe 'catalog' do
         expect(page).to have_selector(".document img")
         expect(page).to have_selector(".document img[src^='/thumbnails']")
       end
+      
+      context "when the thumbnails are clicked" do
+        it "should have clickable thumbnails", :js => true do
+          expect(page).to have_selector(".document img[src^='/thumbnails']")
+          find(".document img[src^='/thumbnails']").click
+          expect(current_path).to eq catalog_path(:id => image.pid)
+        end
+      end
     end
 
     context "when an asset has CV fields" do
