@@ -3,10 +3,12 @@
   <div class="span thumbnail-container">
 
     <% if document["has_thumbnail_bs"] %>
-      <img src="/thumbnails/<%= Image.relative_thumbnail_location(document["id"]) %>"
-           alt="<%= document["descMetadata__title_ssm"] %>"
-           title="<%= document["descMetadata__title_ssm"] %>"
-          />
+      <%= link_to catalog_path(:id => document["id"]) do %>
+        <img src="/thumbnails/<%= Image.relative_thumbnail_location(document["id"]) %>"
+             alt="<%= document["desc_metadata__title_ssm"].first %>"
+             title="<%= document["desc_metadata__title_ssm"].first %>"
+        />
+      <% end %>
     <% end %>
   </div>
 

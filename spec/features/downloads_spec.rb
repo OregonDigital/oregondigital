@@ -31,7 +31,8 @@ describe "Downloads" do
         image.save
       end
       it "should fail if the user does not have access" do
-        expect{visit download_path(:id => image.pid)}.to raise_error(CanCan::AccessDenied)
+        visit download_path(:id => image.pid)
+        expect(page).to have_content("You do not have sufficient access privileges to read this document")
       end
     end
   end
