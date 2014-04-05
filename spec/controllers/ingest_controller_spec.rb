@@ -194,12 +194,13 @@ describe IngestController do
       GenericAsset.unstub(:new)
       asset = FactoryGirl.build(:image, title: "Testing stuffs")
       unknown_statement = RDF::Statement.new(
-        RDF::URI.new("subject"),
+        asset.resource.rdf_subject,
         RDF::URI.new("predicate"),
         RDF::Literal.new("object")
       )
       asset.descMetadata.graph << unknown_statement
       asset.save
+      unknown_statement.subject = asset.resource.rdf_subject
 
       pid = asset.pid
       post :update, id: pid, metadata_ingest_form: attrs
