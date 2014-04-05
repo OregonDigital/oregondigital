@@ -245,8 +245,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   def save(*args)
-    resource.persist!
-    super(*args)
+    result = super(*args)
+    resource.persist! if result
+    return result
   end
 
 end

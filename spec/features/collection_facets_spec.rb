@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe 'collection facets' do
   context "when there is an item in a collection", :resque => true do
