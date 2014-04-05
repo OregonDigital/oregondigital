@@ -4,9 +4,14 @@ module OregonDigital::RDF
   # with a Datastream and ActiveFedora::Base object.
   #
   # @see OregonDigital::RdfResourceDatastream
-  class ObjectResource < ActiveFedora::Rdf::ObjectResource
+  class ObjectResource < ActiveFedora::Rdf::Resource
     configure :base_uri => "http://oregondigital.org/resource/"
+    configure :repository => :vocabs
+    attr_accessor :datastream
 
+    def persisted?
+      @persisted ||= (not datastream.new?)
+    end
     # No point in fetching - everything comes from Fedora and is loaded by the datastream.
     def fetch
     end
