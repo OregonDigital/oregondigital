@@ -1,11 +1,7 @@
 # Special subclass of assets specifically built to hold pre-filled form data
 class Template < GenericAsset
-  has_metadata :name => 'templateMetadata', :type => Datastream::OregonRDF do |ds|
-    ds.crosswalk :field => :set, :to => :is_member_of_collection, :in => "RELS-EXT",
-                 :transform => Proc.new {|x| x.gsub('info:fedora/','')},
-                 :reverse_transform => Proc.new {|x| "info:fedora/#{x}"}
-  end
-
+  has_metadata :name => 'templateMetadata', :type => Datastream::OregonRDF
+  after_initialize :redefine_resource_class
   validates :title, presence: true
 
   def self.all_sorted
@@ -19,5 +15,11 @@ class Template < GenericAsset
   def check_derivatives
     @needs_derivatives = false
     return true
+  end
+
+  def redefine_resource_class
+    templateMetadata.singleton_class.define_singleton_method :resource_class do
+      OregonDigital::RDF::TemplateResource
+    end
   end
 end
