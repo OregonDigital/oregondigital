@@ -17,7 +17,15 @@ class SetsController < CatalogController
   private
 
   def sets
-    @sets ||= GenericCollectionDecorator.decorate_collection(GenericCollection.all)
+    @sets ||= GenericCollectionDecorator.decorate_collection(collections)
+  end
+
+  def collections
+    set_pids.map{|pid| GenericCollection.load_instance_from_solr(pid)}
+  end
+
+  def set_pids
+    Blacklight.solr.get("select", :params => {:qt => "search", :q => "has_model_ssim:#{RSolr.escape("info:fedora/afmodel:GenericCollection")}", :fl => "id"})["response"]["docs"].map{|x| x["id"]}
   end
 
   def set
