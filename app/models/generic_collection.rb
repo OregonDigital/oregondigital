@@ -5,6 +5,11 @@ class GenericCollection < GenericAsset
   def self.qa_interface
     OregonDigital::ControlledVocabularies::Set.qa_interface
   end
+  
+  def qa_interface
+    self.class.qa_interface
+  end
+  delegate :search, :get_full_record, :response, :results, :to => :qa_interface
 
   def to_param
     self.class.id_param(pid)
