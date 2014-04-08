@@ -497,6 +497,7 @@ p {
 
 .results {
   background: #fff;
+  border-top: 1px solid $accent-bg;
 
   .well, .constraints-container, #sortAndPerPage {
     border: none;
@@ -509,11 +510,15 @@ p {
   }
   #appliedParams {
     background: #F5F5F5;
-    border-top: 1px solid $accent-bg;
     border-bottom: 1px solid #E3E3E3;
   }
   #sortAndPerPage {
     padding: 5px 25px;
+
+    .page_links, #per_page-dropdown {
+      margin-top: 10px;
+    }
+
   }
 
   #documents {
