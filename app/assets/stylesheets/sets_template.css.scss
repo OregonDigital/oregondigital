@@ -36,21 +36,9 @@ body.sets {
     }
 
     h1, h1 a, h2, h3, h4 {
-
-      font-weight: normal;
-      padding-left: 12px;
       display: block;
     }
-    h1 {
-      font-size: 26px;
-      line-height: 32px;
-      margin: 18px 0 10px;
-    }
-    h2 {
-      font-size: 20px;
-      line-height: 30px;
 
-    }
     h3, h4, #sidebar-nav .nav-header {
       font-weight: normal;
     }
@@ -268,6 +256,37 @@ body.sets {
       #common-header #searchbar input.search_q {
         width: 150px;
       }
+
+    @media (min-width: 400px) {
+      form {
+
+        .styled-select {
+
+          width: 90px;
+          height: 28px;
+          overflow: hidden;
+          background: url(image_path("oregondigital/selectarrow.png")) no-repeat right #fff;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          margin-right: 5px;
+          display: block;
+
+          #search_field {
+
+            width: 112px;
+            height: 28px;
+            background: transparent;
+            -webkit-appearance: none;
+            line-height: 1;
+            border: 0;
+            border-radius: 0;
+            display: block;
+          }
+
+        }
+      }
+    }
+
     @media (min-width: 480px) {
       #common-header #searchbar input.search_q {
         width: 300px;
@@ -315,6 +334,8 @@ body.sets {
     }
     #sidebar #pages {
       list-style: none;
+
+
       li {
         list-style-image: none;
         line-height: 30px;
@@ -409,4 +430,43 @@ body.sets {
     .results .document {
       border-bottom-color: #DBD6D0;
     }
+}
+   /*   Landing pages */
+
+.left-image{
+  display: block;
+  max-width: 500px;
+  float: left;
+  margin:  0 40px 10px 0;
+  position: relative;
+
+  .overlay{
+    width: 100%;
+    background-color:rgba(0,0,0,0.6);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    .caption {
+      display: block;
+      margin: 20px 15px;
+      color: #ffffff;
+      font-size: .8em;
+
+      a {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+ul.sidenav {
+  list-style-type: none;
+  padding: 8px 14px;
+  border-radius: 0;
+  margin-left: 0;
+
+  li {
+    list-style-image:none;
+  }
 }

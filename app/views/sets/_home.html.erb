@@ -1,5 +1,11 @@
 <% if @collection %>
+  <div id="main-wrapper">
+
+    <div id="<%= params[:set] %>">
   <%= render_set @collection %>
+
+    </div> <!-- /main-wrapper -->
+  </div><!-- /page -->
 <% else %>
   <%= render :partial => '/sets/home_text' %>
 <% end %>

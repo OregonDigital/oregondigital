@@ -625,3 +625,45 @@ p {
   margin-left: 20px;
 }
 
+.carousel-inner {
+  text-align: center;
+
+  .carousel-indicators {
+    position: static;
+    float: none;
+    margin: 3px auto;
+    display: inline-block;
+
+    li {
+      border: 1px solid #ccc;
+    }
+
+    li.active {
+      background-color: #ccc;
+    }
+
+  }
+  .carousel-caption {
+    text-align: left;
+
+    a {
+      color: #ffffff;
+    }
+  }
+}
+.carousel-control {
+  font-size:  20px;
+  color:  #fff;
+  top: 45%;
+  left: 0;
+  border: 0;
+  background: #c3c3c3;
+}
+
+.carousel-control.right {
+  right: 0;
+}
+.glyphicon {
+  top: 9px;
+  color: #fff;
+}

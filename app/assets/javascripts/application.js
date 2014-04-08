@@ -35,3 +35,6 @@
 //= require bookreader/jquery.ui.ipad
 //= require bookreader/jquery.bt.min
 //= require bookreader/BookReader
+//
+// Adding bootstrap for carousel
+//= require bootstrap
