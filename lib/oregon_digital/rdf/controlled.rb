@@ -169,15 +169,17 @@ module OregonDigital::RDF
           end
           
           def solutions_from_sparql_query(query)
+            # @TODO: labels should be taken from ActiveFedora::Rdf::Resource.
+            # However, the default labels there are hidden behind a private method. 
             labels = [RDF::SKOS.prefLabel,
                       RDF::DC.title,
                       RDF::RDFS.label]
             labels << @parent.rdf_label unless @parent.rdf_label.nil?
 
-            solutions = query.select { |solution| @parent.uses_vocab_prefix? solution[:s] }
-            label_solutions = solutions.map { |solution| build_hit(solution) if labels.include? solution[:p] }
-            return label_solutions unless label_solutions.empty?
-            solutions.map { |solution| build_hit(solution) }
+            solutions = query.map { |solution| solution if @parent.uses_vocab_prefix? solution[:s] }.compact
+            label_solutions = solutions.map { |solution| build_hit(solution) if labels.include? solution[:p] }.compact
+            return label_solutions.uniq unless label_solutions.empty?
+            solutions.map { |solution| build_hit(solution) }.compact.uniq
           end
            
           def build_hit(solution)

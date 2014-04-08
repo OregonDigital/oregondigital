@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe OregonDigital::RDF::Controlled do
+
   before(:each) do
     class DummyAuthority < ActiveFedora::Rdf::Resource
       include OregonDigital::RDF::Controlled
@@ -85,6 +86,38 @@ describe OregonDigital::RDF::Controlled do
     it 'should load data' do
       subject.load_vocabularies
       expect(subject.new('Image').has_subject?(RDF::URI('http://purl.org/dc/dcmitype/Image'))).to be_true
+    end
+  end
+
+  describe '#search' do
+    before do
+      image = subject.new('Image')
+      image << RDF::Statement(image.rdf_subject, RDF::SKOS.prefLabel, "Image")
+      image.persist!
+    end
+
+    it 'should return matches' do
+      expect(subject.new.search('Image').first[:id]).to eq RDF::URI('http://purl.org/dc/dcmitype/Image')
+    end
+    it 'should search case insensitively' do
+      expect(subject.new.search('ima').first[:id]).to eq RDF::URI('http://purl.org/dc/dcmitype/Image')
+    end
+    describe 'non-label matches' do
+      before do
+        doc = subject.new('Text')
+        doc << RDF::Statement(doc.rdf_subject, RDF::DC.description, "This is not an image!")
+        doc.persist!
+      end
+
+      it 'should return non-label matches if no label matches exist' do
+        image = subject.new('Image')
+        image.clear
+        image.persist!
+        expect(subject.new.search('ima').map { |result| result[:id] } ).to include subject.new('Text').rdf_subject
+      end
+      it 'should not return non-label matches if label matches exist' do
+        expect(subject.new.search('ima').map { |result| result[:id] } ).not_to include subject.new('Text').rdf_subject
+      end
     end
   end
 

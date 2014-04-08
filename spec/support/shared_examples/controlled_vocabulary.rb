@@ -1,5 +1,6 @@
 shared_examples 'a controlled vocabulary' do
   subject { described_class }
+  it_behaves_like 'a Questioning Authority interface'
 
   it 'should have at least one vocabulary' do
     expect(subject.vocabularies.length).to be >= 1
@@ -12,7 +13,10 @@ shared_examples 'a controlled vocabulary' do
       end
     end
   end
+end
 
+shared_examples 'a Questioning Authority interface' do
+  subject { described_class }
   describe '#qa_interface' do
     it 'should have a qa_interface' do
       expect(subject.qa_interface).to respond_to :search
