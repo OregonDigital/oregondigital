@@ -157,22 +157,33 @@ module OregonDigital::RDF
         end
         
         private
+
           def sparql_starts_search(q)
-            query = @sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(strstarts(lcase(?o), '#{q.downcase}'))}")
+            query = @sparql.query("SELECT DISTINCT ?s ?p ?o WHERE { ?s ?p ?o. FILTER(strstarts(lcase(?o), '#{q.downcase}'))}")
             solutions_from_sparql_query(query)
           end
 
           def sparql_contains_search(q)
-            query = @sparql.query("SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o. FILTER(contains(lcase(?o), '#{q.downcase}'))}")
+            query = @sparql.query("SELECT DISTINCT ?s ?p ?o WHERE { ?s ?p ?o. FILTER(contains(lcase(?o), '#{q.downcase}'))}")
             solutions_from_sparql_query(query)
           end
           
           def solutions_from_sparql_query(query)
-            solutions = []
-            query.each_solution do |solution|
-              solutions << { :id => solution[:s].to_s, :label => solution[:o].to_s } if @parent.uses_vocab_prefix? solution[:s]
-            end
-            solutions
+            # @TODO: labels should be taken from ActiveFedora::Rdf::Resource.
+            # However, the default labels there are hidden behind a private method. 
+            labels = [RDF::SKOS.prefLabel,
+                      RDF::DC.title,
+                      RDF::RDFS.label]
+            labels << @parent.rdf_label unless @parent.rdf_label.nil?
+
+            solutions = query.map { |solution| solution if @parent.uses_vocab_prefix? solution[:s] }.compact
+            label_solutions = solutions.map { |solution| build_hit(solution) if labels.include? solution[:p] }.compact
+            return label_solutions.uniq unless label_solutions.empty?
+            solutions.map { |solution| build_hit(solution) }.compact.uniq
+          end
+           
+          def build_hit(solution)
+            { :id => solution[:s].to_s, :label => solution[:o].to_s }
           end
       end
     end
