@@ -27,10 +27,6 @@ describe Image do
         image.save
         image.create_derivatives
       end
-      after(:each) do
-        FileUtils.rm(image.pyramidal_tiff_location) if File.exists?(image.pyramidal_tiff_location)
-        FileUtils.rm(image.thumbnail_location) if File.exists?(image.thumbnail_location)
-      end
       it 'should populate the external thumbnail datastream' do
         expect(image.thumbnail.dsLocation).to eq("file://#{image.thumbnail_location}")
         expect(Image.find(image.pid).thumbnail.dsLocation).to eq("file://#{image.thumbnail_location}")
@@ -52,6 +48,23 @@ describe Image do
         mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(image.pyramidal_tiff_location).split(';')[0]
         expect(mime_type).to eq 'image/tiff'
       end
+    end
+    context "when an image is a 16 bit Tiff" do
+      before do
+        file = File.open(File.join(fixture_path, 'tiff_16.tif'),'rb')
+        image.add_file_datastream(file, :dsid => 'content')
+        expect(image.content).not_to be_blank
+        image.save
+        image.create_derivatives
+      end
+      it "should save the pyramidal datastream" do
+        mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(image.pyramidal_tiff_location).split(';')[0]
+        expect(mime_type).to eq 'image/tiff'
+      end
+    end
+    after(:each) do
+      FileUtils.rm(image.pyramidal_tiff_location) if File.exists?(image.pyramidal_tiff_location)
+      FileUtils.rm(image.thumbnail_location) if File.exists?(image.thumbnail_location)
     end
   end
 
