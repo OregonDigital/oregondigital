@@ -16,6 +16,9 @@
 //= require jquery.ui.draggable
 //= require jquery.ui.effect.all
 //
+// Adding bootstrap for carousel
+//= require bootstrap-carousel
+//
 // Required by Blacklight
 //= require blacklight/blacklight
 //= require_tree .
@@ -35,3 +38,5 @@
 //= require bookreader/jquery.ui.ipad
 //= require bookreader/jquery.bt.min
 //= require bookreader/BookReader
+//
+

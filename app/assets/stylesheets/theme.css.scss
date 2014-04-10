@@ -497,6 +497,7 @@ p {
 
 .results {
   background: #fff;
+  border-top: 1px solid $accent-bg;
 
   .well, .constraints-container, #sortAndPerPage {
     border: none;
@@ -509,11 +510,15 @@ p {
   }
   #appliedParams {
     background: #F5F5F5;
-    border-top: 1px solid $accent-bg;
     border-bottom: 1px solid #E3E3E3;
   }
   #sortAndPerPage {
     padding: 5px 25px;
+
+    .page_links, #per_page-dropdown {
+      margin-top: 10px;
+    }
+
   }
 
   #documents {
@@ -618,3 +623,42 @@ p {
   margin-left: 20px;
 }
 
+.carousel-inner {
+  text-align: center;
+
+  .carousel-indicators {
+    position: static;
+    float: none;
+    margin: 3px auto;
+    display: inline-block;
+
+    li {
+      border: 1px solid #ccc;
+    }
+
+    li.active {
+      background-color: #ccc;
+    }
+
+  }
+  .carousel-caption {
+    text-align: left;
+
+    a {
+      color: #ffffff;
+    }
+  }
+}
+.carousel-control {
+  font-size:  80px;
+  line-height: 38px;
+  color:  #fff !important;
+  top: 45%;
+  left: 0;
+  border: 0;
+  background: #c3c3c3;
+}
+
+.carousel-control.right {
+  right: 0;
+}
