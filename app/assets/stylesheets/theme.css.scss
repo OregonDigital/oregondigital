@@ -657,8 +657,9 @@ p {
   }
 }
 .carousel-control {
-  font-size:  20px;
-  color:  #fff;
+  font-size:  80px;
+  line-height: 38px;
+  color:  #fff !important;
   top: 45%;
   left: 0;
   border: 0;
@@ -667,8 +668,4 @@ p {
 
 .carousel-control.right {
   right: 0;
-}
-.glyphicon {
-  top: 9px;
-  color: #fff;
 }
