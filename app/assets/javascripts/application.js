@@ -17,7 +17,7 @@
 //= require jquery.ui.effect.all
 //
 // Adding bootstrap for carousel
-//= require bootstrap
+//= require bootstrap-carousel
 //
 // Required by Blacklight
 //= require blacklight/blacklight
