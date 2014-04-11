@@ -1,7 +1,26 @@
 class Document < GenericAsset
+  has_file_datastream :name => 'thumbnail', :control_group => "E"
   makes_derivatives do |obj|
     obj.transform_datastream :content, {:pages => {:output_path => obj.pages_location}}, :processor => :docsplit_processor
+    obj.create_thumbnail
+    obj.workflowMetadata.has_thumbnail = true
     obj.save
+  end
+
+  def create_thumbnail
+    transform_datastream :"page-1", {
+        :thumb => {
+            :datastream => 'thumbnail',
+            :size => '120x120>',
+            :file_path => thumbnail_location,
+            :format => 'jpeg',
+            :quality => '75'
+        }
+    }, :processor => :image_filesystem_processor
+  end
+  
+  def thumbnail_location
+    return ::Image.thumbnail_location(pid)
   end
 
   def pages_location
