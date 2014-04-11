@@ -13,28 +13,22 @@ describe 'catalog' do
     end
 
     context "when there is an asset with a thumbnails" do
-      let(:image) { FactoryGirl.create(:image, :with_tiff_datastream) }
-
-      before(:each) do
-        image
-        image.create_derivatives
-        visit root_path(:search_field => "all_field")
+      context "when the asset is an image" do
+        it_should_behave_like "a thumbnail asset" do
+          let(:asset) {FactoryGirl.create(:image, :with_tiff_datastream)}
+        end
       end
-
-      it "should show the thumbnail in search results" do
-        expect(page).to have_selector(".document img")
-        expect(page).to have_selector(".document img[src^='/thumbnails']")
-      end
-      
-      it "should set an alt value on the thumbnail" do
-        expect(page).to have_selector(".document img[src^='/thumbnails'][alt='#{image.title}'][title='#{image.title}']")
-      end
-
-      context "when the thumbnails are clicked" do
-        it "should have clickable thumbnails", :js => true do
-          expect(page).to have_selector(".document img[src^='/thumbnails']")
-          find(".document img[src^='/thumbnails']").click
-          expect(current_path).to eq catalog_path(:id => image.pid)
+      context "when the asset is a document" do
+        it_should_behave_like "a thumbnail asset" do
+          let(:asset) do
+            document = Document.new
+            file = File.open(File.join(fixture_path, 'fixture_pdf.pdf'), 'rb')
+            document.add_file_datastream(file, :dsid => 'content')
+            OregonDigital::FileDistributor.any_instance.stub(:base_path).and_return(Rails.root.join("media","test"))
+            document.title = "Filler Title"
+            document.review!
+            document
+          end 
         end
       end
     end

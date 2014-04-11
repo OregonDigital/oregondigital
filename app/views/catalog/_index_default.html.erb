@@ -5,8 +5,8 @@
     <% if document["has_thumbnail_bs"] %>
       <%= link_to catalog_path(:id => document["id"]) do %>
         <img src="/thumbnails/<%= Image.relative_thumbnail_location(document["id"]) %>"
-             alt="<%= document["desc_metadata__title_ssm"].first %>"
-             title="<%= document["desc_metadata__title_ssm"].first %>"
+             alt="<%= document["desc_metadata__title_ssm"].try(:first) %>"
+             title="<%= document["desc_metadata__title_ssm"].try(:first) %>"
         />
       <% end %>
     <% end %>

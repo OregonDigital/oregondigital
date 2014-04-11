@@ -9,6 +9,15 @@ class Hydra::Derivatives::ImageFilesystemProcessor < Hydra::Derivatives::Image
     end
   end
 
+  def source_datastream
+    result = super
+    return result if result.controlGroup != "E"
+    if result.content == "external"
+      @source_datastream = OpenStruct.new("controlGroup" => "M","content" => File.open(result.dsLocation.gsub('file://',''),'rb'))
+    end
+    return @source_datastream
+  end
+
   protected
 
   def create_resized_image(output_datastream, size, format, quality=nil,file_path=nil)
