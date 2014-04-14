@@ -1,16 +1,8 @@
 <%= form_tag search_action_url, :method => :get, :class => 'search-query-form form-inline clearfix' do %>
   <%= search_as_hidden_fields(:omit_keys => [:q, :search_field, :qt, :page]).html_safe %>
 
-
-  <% unless search_fields.empty? %>
-    <div class="pull-left">
-      <div class="styled-select">
-      <label for="search_field" class="hide-text"><%= t('blacklight.search.form.search_field.label') %></label>
-      <%= select_tag(:search_field, options_for_select(search_fields, h(params[:search_field])), :title => t('blacklight.search.form.search_field.title'), :class=>"search_field input-small") %>
-      <span class="hide-text"><%= t('blacklight.search.form.search_field.post_label') %></span>
-    </div>
-    </div>
-  <% end %>
+  <!-- This had to be set explicitly when the the select dropdown was removed. -->
+  <%= search_as_hidden_fields(:search_field => "all_fields") %>
 
   <div class="input-append input-wrapper">
     <label for="q" class="hide-text"><%= t('blacklight.search.form.q') %></label>
