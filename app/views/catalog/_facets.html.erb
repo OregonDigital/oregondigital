@@ -17,4 +17,8 @@
     </div>
   </div>
 <% end %>&nbsp;
-<%= link_to "Browse Items", params.merge(:search_field => "all_fields", :q => "") %>
+<ul class="sidenav">
+  <li>
+    <%= link_to "Browse Items", params.merge(:search_field => "all_fields", :q => "") %>
+  </li>
+</ul>
