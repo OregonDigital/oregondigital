@@ -106,11 +106,11 @@ describe "SetsController /index" do
       it "should not show facets for items not in the collection" do
         expect(page).not_to have_content("Other Facet")
       end
-      it "should have a working browse items button", :focus => true do
+      it "should have a working browse items button" do
         click_link "Browse Items"
         expect(page).to have_selector('.document', :count => 1)
       end
-      context "when you search for a string", :focus => true do
+      context "when you search for a string" do
         before do
           fill_in "Search...", :with => "Blablabla"
           click_button "search"
