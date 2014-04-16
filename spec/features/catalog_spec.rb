@@ -1,6 +1,19 @@
 require 'spec_helper'
 
 describe 'catalog' do
+  describe 'index' do
+    before do
+      visit root_path
+    end
+    context "when the browse items link is clicked" do
+      before do
+        click_link "Browse Items"
+      end
+      it "should go to the search page" do
+        expect(page).to have_content("No entries found")
+      end
+    end
+  end
   describe 'search results' do
     context "when there is a collection" do
       before(:each) do

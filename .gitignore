@@ -60,3 +60,5 @@ braceros-tiffs
 /config/god.conf
 /config/unicorn.rb
 /config/puma.rb
+# Ignore Vagrant
+/.vagrant/*
