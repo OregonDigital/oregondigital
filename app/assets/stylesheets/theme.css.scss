@@ -584,35 +584,6 @@ ul.sidenav {
   border-top: none;
 }
 
-.btn {
-  background-color: $highlight-bg;
-  background-image: none;
-  color: $highlight-color;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  border-color: #0044cc #0044cc #002a80;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-
-  a {
-    color: $highlight-color;
-  }
-  a:hover {
-    color: $color;
-  }
-}
-.css-dropdown {
-  .btn:hover, .btn.hovering {
-    background-color: $highlight-bg;
-    color: $highlight-color;
-
-  }
-  .btn a:hover, .btn a:active, .btn a:focus {
-    color: $highlight-color;
-  }
-  .btn ul li a, .btn.hovering ul li a {
-    color: $color;
-  }
-}
-
 .table-striped {
   background: #ffffff;
 }
