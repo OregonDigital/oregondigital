@@ -88,13 +88,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :composer, :predicate => OregonDigital::Vocabularies::MARCREL.cmp do |index|
+  property :composer, :predicate => OregonDigital::Vocabularies::MARCREL.cmp, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :lyricist, :predicate => OregonDigital::Vocabularies::MARCREL.lyr do |index|
+  property :lyricist, :predicate => OregonDigital::Vocabularies::MARCREL.lyr, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr do |index|
+  property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup do |index|
