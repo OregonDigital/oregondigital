@@ -1,0 +1,37 @@
+@import "bootstrap/variables";
+
+/** 
+ * This file should contain only those overrides we need to undo some
+ * inaccessible Blacklight settings or conflicts with blacklight and the
+ * various theming layers.  This style is named as it is to ensure it is
+ * included *first*, which ensures that over-reaching rules can still be
+ * overridden elsewhere.  If a rule here isn't applying and absolutely has to,
+ * try a more specific CSS selector.  Please don't use !important unless it is
+ * truly necessary to override all uses of a given selector, ignoring theme
+ * rules, set rules, etc.
+ */
+
+/* Make metadata field names easier to read */
+.document-metadata.dl-invert dt {
+  color: #666;
+}
+
+/**
+ * This stuff shouldn't be visible, but forcing a visible color ensures that
+ * if we do add text, it's already accessible.  Also makes it tougher to
+ * accidentally drop in text that's "invisible".
+ */
+#header-navbar-fixed-top {
+  .navbar-inner {
+    .black, .black a {
+      color: #FFF;
+    }
+    .brand, .brand a {
+      color: #000;
+    }
+  }
+}
+
+.sets #osu-top-hat {
+  color: #FFF;
+}
