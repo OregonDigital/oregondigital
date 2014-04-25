@@ -3,7 +3,15 @@ module OregonDigital
     module Facets
       extend ActiveSupport::Concern
       included do
-        configure_blacklight do |config|
+        def initialize(*args)
+          result = super
+          configure_facets
+          return result
+        end
+      end
+      def configure_facets
+        return unless self.class.blacklight_config.facet_fields.blank?
+        self.class.configure_blacklight do |config|
           # solr fields that will be treated as facets by the blacklight application
           #   The ordering of the field names is the order of the display
           #
@@ -23,8 +31,8 @@ module OregonDigital
           #
           # :show may be set to false if you don't want the facet to be drawn in the
           # facet bar
-          controlled_vocabularies.each do |key|
-            config.add_facet_field solr_name("desc_metadata__#{key}_label", :facetable), :helper_method => :controlled_view, :label => I18n.t("oregondigital.catalog.facet.#{key}", :default => key.humanize), :limit => 10
+          self.class.controlled_vocabularies.each do |key|
+            config.add_facet_field self.class.solr_name("desc_metadata__#{key}_label", :facetable), :helper_method => :controlled_view, :label => I18n.t("oregondigital.catalog.facet.#{key}", :default => key.humanize), :limit => 10
           end
           config.add_facet_fields_to_solr_request!
         end

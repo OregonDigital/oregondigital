@@ -8,7 +8,6 @@ def prepare_repositories
     ActiveFedora::Rdf::Repositories.add_repository :vocabs, RDF::Mongo::Repository.new(:collection => 'vocabs')
   end
 end
-prepare_repositories
 Rails.application.config.to_prepare do
   prepare_repositories
 end
