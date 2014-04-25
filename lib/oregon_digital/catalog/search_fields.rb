@@ -26,6 +26,7 @@ module OregonDigital
           # since we aren't specifying it otherwise.
 
           config.add_search_field 'all_fields', :label => 'All Fields'
+          config.add_search_field Solrizer.solr_name('desc_metadata__title', :searchable), :label => 'Title'
         end
       end
     end

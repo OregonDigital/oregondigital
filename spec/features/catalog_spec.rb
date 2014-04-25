@@ -13,6 +13,14 @@ describe 'catalog' do
         expect(page).to have_content("No entries found")
       end
     end
+    context "when advanced search is clicked" do
+      before do
+        click_link "Advanced Search"
+      end
+      it "should go to the advanced search" do
+        expect(page).to have_content("More Search Options")
+      end
+    end
   end
   describe 'search results' do
     context "when there is a collection" do
