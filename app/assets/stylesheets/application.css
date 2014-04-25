@@ -11,8 +11,9 @@
  *= require_self
  *= require jquery.ui.slider
  *= require bookreader/bookreader
+ *= require 'blacklight_advanced_search'
  *= require_tree .
- */
+*/
 
 /* Port of Bootstrap 3's "hidden except for screen readers" styling */
 .sr-only {

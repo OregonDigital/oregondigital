@@ -89,6 +89,9 @@ gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-f
 gem 'rdf-mongo'
 gem 'bson_ext'
 
+# Blacklight Advanced Search
+gem 'blacklight_advanced_search', '~> 2.2.0'
+
 # Send email from form
 gem 'mail_form'
 
