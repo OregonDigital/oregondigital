@@ -3,34 +3,35 @@ module OregonDigital
     module Facets
       extend ActiveSupport::Concern
       included do
-        configure_blacklight do |config|
-          # solr fields that will be treated as facets by the blacklight application
-          #   The ordering of the field names is the order of the display
-          #
-          # Setting a limit will trigger Blacklight's 'more' facet values link.
-          # * If left unset, then all facet values returned by solr will be displayed.
-          # * If set to an integer, then "f.somefield.facet.limit" will be added to
-          # solr request, with actual solr request being +1 your configured limit --
-          # you configure the number of items you actually want _tsimed_ in a page.
-          # * If set to 'true', then no additional parameters will be sent to solr,
-          # but any 'sniffed' request limit parameters will be used for paging, with
-          # paging at requested limit -1. Can sniff from facet.limit or
-          # f.specific_field.facet.limit solr request params. This 'true' config
-          # can be used if you set limits in :default_solr_params, or as defaults
-          # on the solr side in the request handler itself. Request handler defaults
-          # sniffing requires solr requests to be made with "echoParams=all", for
-          # app code to actually have it echo'd back to see it.
-          #
-          # :show may be set to false if you don't want the facet to be drawn in the
-          # facet bar
-          controlled_vocabularies.each do |key|
-            config.add_facet_field solr_name("desc_metadata__#{key}_label", :facetable), :helper_method => :controlled_view, :label => I18n.t("oregondigital.catalog.facet.#{key}", :default => key.humanize), :limit => 10
-          end
-          config.add_facet_fields_to_solr_request!
+        ##
+        # TODO: Fix this.
+        # Blacklight advanced search loads CatalogController before I18n rules are in place.
+        # So we need to load the facet labels AFTER initialization.
+        # In the long term we should patch Facet objects in BL to accept a proc which it caches the result of.
+        def initialize(*args)
+          result = super
+          self.class.configure_facets
+          return result
         end
       end
 
       module ClassMethods
+        ##
+        # Configures facets for all controlled vocabularies.
+        # Pulls labels from I18n configuration if possible
+        def configure_facets
+          return unless blacklight_config.facet_fields.blank?
+          configure_blacklight do |config|
+            controlled_vocabularies.each do |key|
+              config.add_facet_field solr_name("desc_metadata__#{key}_label", :facetable), :helper_method => :controlled_view, :label => I18n.t("oregondigital.catalog.facet.#{key}", :default => key.humanize), :limit => 10
+            end
+            config.add_facet_fields_to_solr_request!
+          end
+        end
+
+        ##
+        # Returns an array of all controlled vocabulary properties.
+        # TODO: Move this to ControlledVocabulary class.
         def controlled_vocabularies
           Datastream::OregonRDF.properties.map do |key, property|
             instance = property[:class_name].new if property[:class_name]

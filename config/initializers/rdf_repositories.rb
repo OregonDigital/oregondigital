@@ -1,4 +1,4 @@
-def prepare_repositories
+Rails.application.config.to_prepare do
   ActiveFedora::Rdf::Repositories.clear_repositories!
   if Rails.env.test?
     ActiveFedora::Rdf::Repositories.add_repository :default, RDF::Repository.new
@@ -7,8 +7,4 @@ def prepare_repositories
     ActiveFedora::Rdf::Repositories.add_repository :default, RDF::Mongo::Repository.new
     ActiveFedora::Rdf::Repositories.add_repository :vocabs, RDF::Mongo::Repository.new(:collection => 'vocabs')
   end
-end
-prepare_repositories
-Rails.application.config.to_prepare do
-  prepare_repositories
 end
