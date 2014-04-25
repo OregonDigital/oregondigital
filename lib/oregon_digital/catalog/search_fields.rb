@@ -25,8 +25,13 @@ module OregonDigital
           # solr request handler? The one set in config[:default_solr_parameters][:qt],
           # since we aren't specifying it otherwise.
 
-          config.add_search_field 'all_fields', :label => 'All Fields'
-          config.add_search_field Solrizer.solr_name('desc_metadata__title', :searchable), :label => 'Title'
+          config.add_search_field 'all_fields', :label => 'All Fields' do |field|
+            field.include_in_advanced_search = false
+          end
+          config.add_search_field("title") do |field|
+            field.solr_parameters = {:qf => 'desc_metadata__title_teim'}
+            field.label = "Title"
+          end
         end
       end
     end

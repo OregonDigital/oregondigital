@@ -1,0 +1,12 @@
+<div class="advanced_facet_limit">
+  <div class="inclusive_or">
+    <h4>Any of:</h4>
+    <ul>
+      <% @advanced_query.filters[solr_field].each do |value| %>
+        <li><span class="selected"><%= h(controlled_view(value)) %></span> <%= link_to(content_tag(:i, '', :class => "icon-remove") + content_tag(:span, '[remove]', :class => 'hide-text'), remove_advanced_facet_param(solr_field, value, params), :class=>"remove") %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%= render_facet_limit display_facet, :layout => nil, :partial => 'catalog/facet_limit' %>
+</div>
