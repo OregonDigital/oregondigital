@@ -11,10 +11,12 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require 'blacklight_advanced_search'
-
-
 //= require jquery_ujs
+//
+// Advanced Search
+//= require 'blacklight_advanced_search'
+//
+// jQuery UI
 //= require jquery.ui.slider
 //= require jquery.ui.draggable
 //= require jquery.ui.effect.all
