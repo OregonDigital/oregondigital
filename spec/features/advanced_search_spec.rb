@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Advanced Search', :focus => true do
+describe 'Advanced Search' do
   let(:item) do
     i = FactoryGirl.build(:generic_asset)
     i.title = "Test Title"
