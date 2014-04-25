@@ -106,6 +106,10 @@ GEM
       rails (>= 3.2.6, < 5)
       rsolr (~> 1.0.6)
       sass-rails
+    blacklight_advanced_search (2.2.0)
+      blacklight (~> 4.0)
+      parslet
+    blankslate (2.1.2.4)
     block_helpers (0.3.3)
       activesupport (>= 2.0)
     bootstrap-sass (2.3.2.2)
@@ -316,6 +320,8 @@ GEM
       nokogiri (>= 1.4.2)
       solrizer (~> 3.1.0)
     orm_adapter (0.4.0)
+    parslet (1.5.0)
+      blankslate (~> 2.0)
     poltergeist (1.5.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -534,6 +540,7 @@ DEPENDENCIES
   active-fedora!
   active_fedora-crosswalks
   blacklight
+  blacklight_advanced_search (~> 2.2.0)
   bootstrap-sass (~> 2.3.2.0)
   bson_ext
   capybara (~> 2.1)

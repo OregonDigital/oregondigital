@@ -12,9 +12,15 @@
  *= require jquery.ui.slider
  *= require bookreader/bookreader
  *= require_tree .
- */
+ 
+ *= require 'blacklight_advanced_search'
 
-/* Port of Bootstrap 3's "hidden except for screen readers" styling */
+*/
+
+/* Port of Bootstrap 3's "hidden except for screen readers" styling 
+ *= require 'blacklight_advanced_search'
+
+*/
 .sr-only {
   position: absolute;
   width: 1px;
