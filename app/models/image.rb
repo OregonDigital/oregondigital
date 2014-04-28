@@ -64,6 +64,10 @@ class Image < GenericAsset
     def relative_thumbnail_location(pid)
       return Pathname.new(thumbnail_location(pid).to_s).relative_path_from(thumbnail_base_path)
     end
+
+    def default_content_ds
+      "medium"
+    end
   end
 
   def pyramidal_tiff_location

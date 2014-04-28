@@ -25,6 +25,13 @@ class ImageDecorator < GenericAssetDecorator
     Pathname.new(medium_image_location.to_s).relative_path_from(base_path)
   end
 
+  # TODO: Make this more manageable.
+  def derivative_redirects
+    { "medium" => "/media/medium-images/#{relative_medium_image_location}",
+      "thumbnail" => "/thumbnails/#{Image.relative_thumbnail_location(pid)}"
+    }
+  end
+
   private
 
   def relative_pyramidal_tiff_location

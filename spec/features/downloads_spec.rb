@@ -7,14 +7,19 @@ require "spec_helper"
 describe "Downloads" do
   let(:image) { image = FactoryGirl.create(:image, :with_jpeg_datastream) }
   let(:document) { document = FactoryGirl.create(:document, :with_pdf_datastream) }
+  before do
+    image.create_derivatives
+  end
 
   describe "Visit download location directly" do
     context "(when the user has permission)" do
-      it "should give us the proper image file" do
+      let(:user) { FactoryGirl.create(:admin) }
+      before do
+        capybara_login(user)
+      end
+      it "should redirect" do
         visit download_path(:id => image.pid)
-        headers = page.response_headers
-        headers['Content-Type'].should eq "image/jpeg"
-        headers['Content-Length'].should eq File.size(fixture_path + "/fixture_image.jpg").to_s
+        expect(page.current_path).to eq "/media/medium-images/#{image.decorate.relative_medium_image_location}"
       end
 
       it "should give us the proper pdf file" do
