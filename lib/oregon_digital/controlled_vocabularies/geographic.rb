@@ -60,12 +60,10 @@ module OregonDigital::ControlledVocabularies
     end
 
     class QaGeonames < OregonDigital::RDF::Controlled::ClassMethods::QaRDF
-      GEONAMES_PREFIX   = 'http://sws.geonames.org/'
-      GEONAMES_API_USER = 'johnson.tom@gmail.com'
 
       def search(q, sub_authority = nil)
         q = URI.escape(q)
-        uri = "http://api.geonames.org/searchJSON?q=#{q}&maxRows=20&username=#{GEONAMES_API_USER}"
+        uri = "http://api.geonames.org/searchJSON?q=#{q}&maxRows=20&username=#{APP_CONFIG['geonames']['username']}"
         json_terms = get_json(uri)["geonames"]
         self.response = build_response(json_terms)
       end
@@ -86,7 +84,7 @@ module OregonDigital::ControlledVocabularies
       end
 
       def geo_json_to_qa_item(geo)
-        item = { id: GEONAMES_PREFIX + geo['geonameId'].to_s }
+        item = { id: APP_CONFIG['geonames']['prefix'] + geo['geonameId'].to_s }
         item[:label] = geo["toponymName"]
         unless geo["countryName"].blank?
           if geo["adminName1"].blank?
