@@ -31,6 +31,18 @@ describe 'collection facets' do
         click_link collection.title
         expect(current_path).to eq "/sets/#{collection.pid.split(':').last}"
       end
+      context "and then a search is done" do
+        before do
+          click_link collection.title
+          expect(current_path).to eq "/sets/#{collection.pid.split(':').last}"
+          fill_in "Search...", :with => "Test"
+          click_button "search"
+          expect(page).to have_content("No entries found")
+        end
+        it "should have an appropriate title" do
+          expect(page.title.strip).to eq "Search Results | #{collection.title} | Oregon Digital"
+        end
+      end
     end
     context "and search results are being displayed" do
       before(:each) do
