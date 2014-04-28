@@ -1,6 +1,6 @@
 class Image < GenericAsset
   has_file_datastream :name => 'thumbnail', :control_group => "E"
-  has_file_datastream :name => 'medium', :control_group => "E", :mime_type => "image/jpeg" 
+  has_file_datastream :name => 'medium', :control_group => "E"
   has_file_datastream :name => 'pyramidal', :control_group => "E"
 
   makes_derivatives do |obj|
