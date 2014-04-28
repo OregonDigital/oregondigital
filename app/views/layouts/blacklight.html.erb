@@ -15,7 +15,7 @@
 
     <title>
     <% if @set %>
-      <% content_for :page_title, [yield(:page_title),@set.title].join(" | "), :flush => true %>
+      <% content_for :page_title, [yield(:page_title),@set.title].select(&:present?).join(" | "), :flush => true %>
     <% end %>
     <% if content_for?(:page_title) %>
         <%= h(yield(:page_title)) %> | <%= h(application_name) %>

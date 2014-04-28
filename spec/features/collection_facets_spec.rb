@@ -27,20 +27,26 @@ describe 'collection facets' do
           expect(page).to have_content(collection.title)
         end
       end
-      it "should go to the landing page when clicked" do
-        click_link collection.title
-        expect(current_path).to eq "/sets/#{collection.pid.split(':').last}"
-      end
-      context "and then a search is done" do
+      context "and the facet is clicked" do
         before do
           click_link collection.title
           expect(current_path).to eq "/sets/#{collection.pid.split(':').last}"
-          fill_in "Search...", :with => "Test"
-          click_button "search"
-          expect(page).to have_content("No entries found")
+        end
+        it "should redirect to the collection landing page" do
+          expect(current_path).to eq "/sets/#{collection.pid.split(':').last}"
         end
         it "should have an appropriate title" do
-          expect(page.title.strip).to eq "Search Results | #{collection.title} | Oregon Digital"
+          expect(page.title.strip).to eq "#{collection.title} | Oregon Digital"
+        end
+        context "and then a search is done" do
+          before do
+            fill_in "Search...", :with => "Test"
+            click_button "search"
+            expect(page).to have_content("No entries found")
+          end
+          it "should have an appropriate title" do
+            expect(page.title.strip).to eq "Search Results | #{collection.title} | Oregon Digital"
+          end
         end
       end
     end
