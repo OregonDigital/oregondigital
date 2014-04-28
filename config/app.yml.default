@@ -19,3 +19,8 @@ oai:
 iip_server:
   location: http://localhost/iip/iipsrv.fcgi
 default_url_host: localhost:3000
+
+# Geonames Configuration
+geonames:
+  prefix: http://sws.geonames.org/
+  username: oregondigital
