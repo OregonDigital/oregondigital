@@ -72,4 +72,19 @@ describe 'catalog' do
       end
     end
   end
+
+  context "when an asset has metadata" do
+    let(:asset) do
+      FactoryGirl.create(:generic_asset, :title => "bla")
+    end
+    context "(when requesting ntriples)" do
+      before do
+        visit catalog_path(:id => asset.pid, :format => :nt)
+      end
+      it "should show the ntriples" do
+        expect(page.html).to include(asset.resource.dump(:ntriples))
+      end
+    end
+  end
+
 end
