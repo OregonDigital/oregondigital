@@ -1,5 +1,13 @@
 <div id="ingest-form-container">
   <%= ingest_form_for(@form) do |f| %>
+    <div class="ingest-tips">
+      <h3>Tips:</h3>
+      <ul>
+        <li>All items must have a title</li>
+        <li>Check the box next to a field to save metadata for next record</li>
+      </ul>
+    </div>
+
     <%= form_errors(f) %>
     <%= render "file_upload_field", :asset => @form.asset, :upload => @form.upload, :f => f %>
     <%= render "internal_group_fields", :form => @form.form, :f => f %>
