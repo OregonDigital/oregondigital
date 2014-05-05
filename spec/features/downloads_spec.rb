@@ -11,6 +11,36 @@ describe "Downloads" do
     image.create_derivatives
   end
 
+  describe 'downloading'  do
+    context "(when the user has permission)" do
+      let(:user) {FactoryGirl.create(:admin)}
+      before do
+        capybara_login(user)
+        visit catalog_path(:id => image.id)
+      end
+      it "should have a download button for standard resolution" do
+        expect(page).to have_link("Standard")
+        click_link "Standard"
+        expect(current_path).to eq "/media/medium-images/#{image.decorate.relative_medium_image_location}"
+      end
+      it "should have a download button for high resolution" do
+        expect(page).to have_link("High Resolution")
+      end
+    end
+    context "(when the user has no permission)" do
+      before do
+        visit catalog_path(:id => image.id)
+      end
+      it "should have a download button for standard resolution" do
+        expect(page).to have_link("Download")
+        expect(page).not_to have_link("Standard")
+      end
+      it "should NOT have a download button for high resolution" do
+        expect(page).not_to have_link("High Resolution")
+      end
+    end
+  end
+
   describe "Visit download location directly" do
     context "(when the user has permission)" do
       let(:user) { FactoryGirl.create(:admin) }

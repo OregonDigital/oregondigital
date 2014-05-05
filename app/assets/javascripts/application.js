@@ -23,6 +23,7 @@
 //
 // Adding bootstrap for carousel
 //= require bootstrap-carousel
+//= require bootstrap-dropdown
 //
 // Required by Blacklight
 //= require blacklight/blacklight
