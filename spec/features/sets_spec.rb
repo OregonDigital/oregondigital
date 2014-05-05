@@ -92,6 +92,18 @@ describe "SetsController /index" do
           expect(page).to have_content("Oregon State University")
         end
       end
+      context "and then an item is clicked" do
+        before do
+          click_button "search"
+          expect(page).to have_selector('.document', :count => 1)
+          click_link item.title
+        end
+        it "should maintain context" do
+          within("#footer .contact") do
+            expect(page).to have_content("Oregon State University")
+          end
+        end
+      end
       it "should not show the collection facets" do
         within("#facets") do
           expect(page).not_to have_content("Test Collection")

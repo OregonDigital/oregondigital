@@ -1,6 +1,7 @@
 module CollectionsHelper
   # Force Blacklight's facet stuff to load first so we can override its methods
   include Blacklight::FacetsHelperBehavior
+  include Blacklight::BlacklightHelperBehavior
 
   def controlled_view(pid)
     # Find documents which have info about this pid.
@@ -34,6 +35,14 @@ module CollectionsHelper
     else
       super
     end
+  end
+  def link_to_document(doc, opts={:label => nil, :counter => nil})
+    opts[:label] ||= blacklight_config.index.show_link.to_sym
+    label = render_document_index_label doc, opts
+    if params[:controller] == "sets"
+      doc = {:controller => "sets", :action => "show", :set => params[:set], :id => doc["id"]}
+    end
+    link_to label, doc, { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
   end
 
 end
