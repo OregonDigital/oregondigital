@@ -1,0 +1,12 @@
+<div class="btn-group">
+  <a href='#' class='btn dropdown-toggle' data-toggle='dropdown'>
+    Download <span class="caret"></span>
+  </a>
+  <ul class='dropdown-menu'>
+    <% download_links(@document).each do |title, link| %>
+      <li>
+        <%= link_to title, link %>
+      </li>
+    <% end %>
+  </ul>
+</div>
