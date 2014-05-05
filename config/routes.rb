@@ -20,8 +20,8 @@ Oregondigital::Application.routes.draw do
   get '/sets/facet/:id', :to => 'sets#facet'
   get '/sets/:set/facet/:id', :to => 'sets#facet', :as => :sets_facet
   get '/sets/:set/:id', :to => 'sets#show'
-  put '/sets/:set/:id', :to => 'sets#show'
-  patch '/sets/:set/:id', :to => 'sets#show'
+  put '/sets/:set/:id', :to => 'sets#update'
+  patch '/sets/:set/:id', :to => 'sets#update'
 
   get '/oai', :to => 'oai#index'
 
