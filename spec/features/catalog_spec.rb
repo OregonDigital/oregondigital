@@ -59,16 +59,44 @@ describe 'catalog' do
         asset = FactoryGirl.build(:generic_asset, lcsubject: RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282"))
         asset.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, "Test Facet")
         asset.descMetadata.lcsubject.first.persist!
-        asset.save
+        asset.review!
         asset
       end
+      context "(when viewing the item page)" do
+        before(:each) do
+          visit catalog_path(:id => asset.pid)
+        end
 
-      before(:each) do
-        visit catalog_path(:id => asset.pid)
+        it "should show links to the CV facets" do
+          expect(page).to have_link("Test Facet")
+        end
       end
-
-      it "should show links to the CV facets" do
-        expect(page).to have_link("Test Facet")
+      context "(and you click it as a facet)" do
+        before do
+          asset.review!
+          visit root_path
+          click_link "Test Facet"
+          expect(page).to have_content("You searched for")
+        end
+        context "(and then check the search history)" do
+          before do
+            within("#header-navbar-fixed-top") do
+              click_link "History"
+            end
+            expect(page).to have_content("Search History")
+          end
+          it "should show the facet label" do
+            within("#content") do
+              expect(page).to have_content("Topic")
+              expect(page).to have_content("Test Facet")
+            end
+          end
+          it "should not show the facet URI" do
+            within("#content") do
+              expect(page).not_to have_content(asset.resource.lcsubject.first.rdf_subject.to_s)
+            end
+          end
+        end
       end
     end
   end
