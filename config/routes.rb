@@ -17,8 +17,12 @@ Oregondigital::Application.routes.draw do
   # Display a set landing page - restrict so that facets don't hit this route.
   get '/sets/(:set(/page/:page))', :to => 'sets#index', :as => :sets, :constraints => {:set => /[A-Za-z0-9\-]*/}, :as => :sets
   # Facets limitations
-  get '/sets/:id', :to => 'sets#facet'
-  get '/sets/:set/:id', :to => 'sets#facet', :as => :sets_facet
+  get '/sets/facet/:id', :to => 'sets#facet'
+  get '/sets/:set/facet/:id', :to => 'sets#facet', :as => :sets_facet
+  get '/sets/:set/:id', :to => 'sets#show'
+  put '/sets/:set/:id', :to => 'sets#update'
+  patch '/sets/:set/:id', :to => 'sets#update'
+
   get '/oai', :to => 'oai#index'
 
   # Ingest form routes

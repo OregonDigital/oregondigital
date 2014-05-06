@@ -92,6 +92,51 @@ describe "SetsController /index" do
           expect(page).to have_content("Oregon State University")
         end
       end
+      context "and then an item is clicked" do
+        let(:collection) do
+          g = FactoryGirl.create(:generic_collection, :has_pid, pid: collection_pid)
+          g.institution = OregonDigital::ControlledVocabularies::Organization.new('Oregon_State_University')
+          g.institution.first.set_value(RDF::SKOS.prefLabel, "Oregon State University")
+          g.institution.first.persist!
+          g.save
+          item2.set = g
+          item2.save
+          g
+        end
+        before do
+          click_button "search"
+          expect(page).to have_selector('.document', :count => 2)
+          click_link item.title
+        end
+        it "should maintain context" do
+          within("#footer .contact") do
+            expect(page).to have_content("Oregon State University")
+          end
+        end
+        context "and start over is clicked", :js => true do
+          before do
+            find("#startOverLink").click
+          end
+          it "should go to the root of the set page" do
+            expect(current_path).to eq sets_path(:set => collection.to_param)
+          end
+        end
+        it "should show the previous document link", :js => true do
+          expect(page).to have_selector("a.previous")
+        end
+        context "then previous link is clicked", :js => true do
+          before do
+            find("a.previous").click
+          end
+          it "should maintain context" do
+            expect(page).to have_content(item2.title)
+            within("#footer .contact") do
+              expect(page).to have_content("Oregon State University")
+            end
+          end
+
+        end
+      end
       it "should not show the collection facets" do
         within("#facets") do
           expect(page).not_to have_content("Test Collection")
