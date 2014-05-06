@@ -38,13 +38,17 @@ module CollectionsHelper
   end
 
   # Maintain context when linking to documents
-  def link_to_document(doc, opts={:label => nil, :counter => nil})
+  def link_to_document(doc, opts={:label => nil, :counter => nil}, &block)
     opts[:label] ||= blacklight_config.index.show_link.to_sym
     label = render_document_index_label doc, opts
     if params[:controller] == "sets"
       doc = {:controller => "sets", :action => "show", :set => params[:set], :id => doc["id"]}
     end
-    link_to label, doc, { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
+    if block_given?
+      link_to doc, { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  }), &block
+    else
+      link_to label, doc, { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
+    end
   end
 
   def link_to_previous_document(previous_document)
