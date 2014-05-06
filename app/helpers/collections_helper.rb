@@ -36,6 +36,8 @@ module CollectionsHelper
       super
     end
   end
+
+  # Maintain context when linking to documents
   def link_to_document(doc, opts={:label => nil, :counter => nil})
     opts[:label] ||= blacklight_config.index.show_link.to_sym
     label = render_document_index_label doc, opts
@@ -43,6 +45,30 @@ module CollectionsHelper
       doc = {:controller => "sets", :action => "show", :set => params[:set], :id => doc["id"]}
     end
     link_to label, doc, { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
+  end
+
+  def link_to_previous_document(previous_document)
+    if params[:controller] == "sets" && previous_document.present?
+      previous_document = {:controller => "sets", :action => "show", :set => params[:set], :id => previous_document["id"]}
+    end
+    super
+  end
+
+  def link_to_next_document(next_document)
+    if params[:controller] == "sets" && next_document.present?
+      next_document = {:controller => "sets", :action => "show", :set => params[:set], :id => next_document["id"]}
+    end
+    super
+  end
+
+  ##
+  # This isn't particularly pretty - this was added as an alternative to overriding more Blacklight views.
+  # TODO: Improve me.
+  def catalog_index_path(*args)
+    if params[:controller] == "sets"
+      return sets_path(*(args << {:set => params[:set]}))
+    end
+    super
   end
 
 end
