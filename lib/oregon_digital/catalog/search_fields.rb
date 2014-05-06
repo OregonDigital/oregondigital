@@ -26,11 +26,12 @@ module OregonDigital
           # since we aren't specifying it otherwise.
 
           config.add_search_field 'all_fields', :label => 'All Fields' do |field|
-            field.include_in_advanced_search = false
+            field.solr_parameters = {:qf => "all_text_timv"}
           end
-          config.add_search_field("title") do |field|
-            field.solr_parameters = {:qf => 'desc_metadata__title_teim'}
-            field.label = "Title"
+          %w{title description institution}.each do |field_name|
+            config.add_search_field(field_name) do |field|
+              field.solr_parameters = {:qf => Solrizer.solr_name("desc_metadata__#{field_name}", :searchable)}
+            end
           end
         end
       end
