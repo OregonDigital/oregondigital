@@ -45,7 +45,7 @@ module CollectionsHelper
       doc = {:controller => "sets", :action => "show", :set => params[:set], :id => doc["id"]}
     end
     if block_given?
-      link_to doc, { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  }), &block
+      link_to url_for(doc), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  }), &block
     else
       link_to label, doc, { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
     end
