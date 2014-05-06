@@ -38,8 +38,9 @@ describe "item review behavior" do
     end
 
     context "with an unreviewed item" do
+      let(:asset) {FactoryGirl.create(:generic_asset, :pending_review)}
       before(:each) do
-        FactoryGirl.create(:generic_asset, :pending_review)
+        asset
       end
       context "on the catalog page" do
         before(:each) do
@@ -55,6 +56,16 @@ describe "item review behavior" do
       context "on the review page" do
         before(:each) do
           visit reviewer_index_path
+        end
+        context "when the item has a thumbnail" do
+          let(:asset) do
+            i = FactoryGirl.create(:image, :pending_review, :with_tiff_datastream)
+            i.create_derivatives
+          end
+          it "should show the item" do
+            expect(page).to have_selector(".document", :count => 1)
+            expect(page).to have_selector(".document img[src^='/thumbnails']")
+          end
         end
         it "should let them in" do
           expect(page).not_to have_content("You do not have permission to review.")
