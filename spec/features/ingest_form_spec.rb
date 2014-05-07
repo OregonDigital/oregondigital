@@ -226,6 +226,23 @@ describe "(Ingest Form)" do
       end
     end
 
+    context "with set controlled vocabulary", :js => true do
+      let(:collection) do
+        c = FactoryGirl.create(:generic_collection, :title => "Alabama")
+        c.review!
+        c
+      end
+      before do
+        collection
+        visit_ingest_url
+        choose_controlled_vocabulary_item("grouping", "set","Ala",collection.title, collection.resource.rdf_subject.to_s) 
+      end
+      it "should store the internal URI" do
+        click_the_ingest_button
+        asset = GenericAsset.find(@pid)
+        expect(asset.descMetadata.set.first.resource.rdf_subject).to eq collection.resource.rdf_subject
+      end 
+    end
     context "with controlled vocabulary data", :js => true do
       before(:each) do
         visit_ingest_url

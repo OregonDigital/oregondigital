@@ -19,6 +19,10 @@ module OregonDigital::Qa
         test = pattern % replacement
         return test if valid_const?(test)
       end
+      # Return the class if it constantizes and has a qa_interface
+      if valid_const?(replacement) && replacement.constantize.respond_to?(:qa_interface)
+        return replacement
+      end
 
       # None worked, default to Qa::Authorities:: prefix
       return super
