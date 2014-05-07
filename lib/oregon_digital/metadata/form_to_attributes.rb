@@ -24,6 +24,8 @@ class OregonDigital::Metadata::FormToAttributes < Metadata::Ingest::Translators:
 
     begin
       vocab_object = rdf_class.from_uri(uri)
+      # Support for objects which HAVE resources (AF::Base objects)
+      vocab_object = vocab_object.resource if vocab_object.respond_to?(:resource)
     rescue OregonDigital::RDF::Controlled::ControlledVocabularyError => error
       association.manual_errors.add(:value, error.message)
       return
