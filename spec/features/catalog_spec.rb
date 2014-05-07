@@ -70,6 +70,18 @@ describe 'catalog' do
         it "should show links to the CV facets" do
           expect(page).to have_link("Test Facet")
         end
+        context "(and you click a CV facet)" do
+          before do
+            click_link "Test Facet"
+            expect(page).to have_content("You searched for")
+          end
+          it "should show the facet" do
+            within("#content") do
+              expect(page).to have_content("Topic")
+              expect(page).to have_content("Test Facet")
+            end
+          end
+        end
       end
       context "(and you click it as a facet)" do
         before do
