@@ -41,7 +41,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
   property :coverage, :predicate => RDF::DC11.coverage do |index|
-    index.as :searchable, :facetable, :displayable  
+    index.as :searchable, :facetable, :displayable
   end
   property :rights, :predicate => RDF::DC.rights, :class_name => OregonDigital::ControlledVocabularies::RightsStatement do |index|
     index.as :displayable
@@ -83,7 +83,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
   property :replacesUrl, :predicate => RDF::DC.replaces
-  
+
   # MARCRel
   property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
     index.as :searchable, :facetable, :displayable
@@ -139,7 +139,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   # PREMIS
   property :preservation, :predicate => OregonDigital::Vocabularies::PREMIS.hasOriginalName
   property :hasFixity, :predicate => OregonDigital::Vocabularies::PREMIS.hasFixity
-  
+
   # MODS RDF
   property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#physicalExtent') do |index|
     index.as :displayable
@@ -150,7 +150,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopyShelfLocator') do |index|
        index.as :displayable
          end
-  
+
   # CCO
   property :view, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDescription') do |index|
     index.as :displayable
@@ -201,13 +201,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :firstLine, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.firstLine do |index|
     index.as :searchable, :displayable
-  end 
+  end
   property :firstLineChorus, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.firstLineChorus do |index|
     index.as :searchable, :displayable
-  end 
+  end
   property :largerWork, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.largerWork do |index|
     index.as :searchable, :displayable
-  end   
+  end
   property :hostItem, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.hostItem do |index|
     index.as  :displayable
   end
@@ -229,6 +229,25 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
       end
     end
     solr_doc
+  end
+
+  def resource
+    @resource ||= begin
+      r = self.singleton_class.resource_class.new(digital_object ? self.class.rdf_subject.call(self) : nil)
+      r.singleton_class.properties = self.class.properties
+      r.singleton_class.properties.keys.each do |property|
+        r.singleton_class.send(:register_property, property)
+      end
+      r.datastream = self
+      r.singleton_class.accepts_nested_attributes_for(*nested_attributes_options.keys) unless nested_attributes_options.blank?
+      r
+    end
+  end
+
+  def save(*args)
+    result = super(*args)
+    resource.persist! if result
+    return result
   end
 
 end

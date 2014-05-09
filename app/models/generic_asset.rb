@@ -17,6 +17,7 @@ class GenericAsset < ActiveFedora::Base
   after_save :queue_derivatives
   attr_accessor :skip_queue
   after_save :queue_fetch
+  after_destroy :clean_repositories
 
 
   def self.assign_pid(_)
@@ -27,6 +28,15 @@ class GenericAsset < ActiveFedora::Base
   has_attributes :identifier, :lcsubject, :set, :creator, :contributor, :institution, :datastream => :descMetadata, :multiple => true
 
   private
+
+  def clean_repositories
+    resource.send(:repository).delete [resource.rdf_subject, nil, nil]
+    #
+    #ActiveFedora::Rdf::Repositories.repositories.each do |repo|
+    #  puts "Deleting #{resource.rdf_subject.to_s}"
+    #  repo.last.delete [resource.rdf_subject, nil, nil]
+    #end
+  end
 
   def queue_fetch
     skip_queue ? self.skip_queue = nil : Resque.enqueue(FetchAllJob,pid)
