@@ -9,14 +9,16 @@ module OregonDigital
     end
 
     def replace_strings
-      @replaces_strings ||= replaces_hash.map{|id, value| build_replace_string(id,value)}
+      @replaces_strings ||= replaces_hash.map{|id, value| build_replace_string(id,value)}.flatten
     end
 
     def write_file
       return if replace_strings.blank?
       File.open(output_directory.join(file_name), 'w') do |file|
-        replace_strings.each do |string|
-          file.puts string
+        replace_strings.each do |strings|
+          Array(strings).each do |string|
+            file.puts string
+          end
         end
       end
       puts "Wrote #{replace_strings.length} rewrite rules to #{output_directory.join(file_name)}"
@@ -34,7 +36,15 @@ module OregonDigital
 
     def build_replace_string(id, value)
       root, pointer = value.split(",")
+      [viewer_string(root,pointer,id), persistent_url_string(root, pointer, id)]
+    end
+
+    def viewer_string(root, pointer,id)
       "if ($request_uri = /cdm4/item_viewer.php?CISOROOT=#{root}&CISOPTR=#{pointer}&CISOBOX=1&REC=1 ) { rewrite ^ /catalog/#{id}? permanent; }"
+    end
+
+    def persistent_url_string(root, pointer, id)
+      "if ($request_uri = /u?#{root},#{pointer}) { rewrite ^ /catalog/#{id}? permanent;  }"
     end
 
     def replaces_objects

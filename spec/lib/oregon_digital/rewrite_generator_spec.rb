@@ -37,7 +37,9 @@ describe OregonDigital::RewriteGenerator do
         end
         it "should create a rewrite conf file" do
           expect(File.exist?(file_path)).to be_true
-          expect(File.read(file_path)).to eq OregonDigital::RewriteGenerator.new.replace_strings.first+"\n"
+          strings = OregonDigital::RewriteGenerator.new.replace_strings
+          expect(strings.length).to eq 2
+          expect(File.read(file_path)).to eq strings.first+"\n"+strings.last+"\n"
         end
       end
     end
