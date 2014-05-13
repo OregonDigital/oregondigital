@@ -40,7 +40,7 @@ module OregonDigital
     end
 
     def viewer_string(root, pointer,id)
-      "if ($request_uri ~ /cdm4/item_viewer\.php\?CISOROOT=#{root}&CISOPTR=#{pointer}(.*)$ ) { rewrite ^ /catalog/#{id}? permanent; }"
+      "if ($request_uri ~ /cdm4/item_viewer\\.php\\?CISOROOT=#{root}&CISOPTR=#{pointer}(.*)$ ) { rewrite ^ /catalog/#{id}? permanent; }"
     end
 
     def persistent_url_string(root, pointer, id)
