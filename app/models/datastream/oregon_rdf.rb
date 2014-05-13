@@ -82,7 +82,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :provenance, :predicate => RDF::DC.provenance do |index|
     index.as :displayable
   end
-  property :replacesUrl, :predicate => RDF::DC.replaces
+  property :replacesUrl, :predicate => RDF::DC.replaces do |index|
+    index.as :symbol
+  end
   
   # MARCRel
   property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
