@@ -3,6 +3,11 @@ require 'spec_helper'
 describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
   context "when initiated with a generic asset" do
     subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset)}
+    let(:collection_1) do
+      f = FactoryGirl.build(:generic_collection)
+      f.save
+      f
+    end
     let(:generic_asset_1) do
       f = FactoryGirl.build(:generic_asset)
       f.save
@@ -32,6 +37,15 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
           expect(subject.find(generic_asset_1.pid).first).to eq generic_asset_1
         end
       end
+      context "when given a set" do
+        before do
+          generic_asset_1.set = collection_1
+          generic_asset_1.save
+        end
+        it "should return records belonging to set " do
+          expect(subject.find('', :set => collection_1.pid).first).to eq generic_asset_1
+        end
+      end
     end
     describe "#earliest" do
       it "should return the earliest modified_date timestamp" do
@@ -41,6 +55,11 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
     describe "#latest" do
       it "should return the latest modified_date timestamp" do
         expect(subject.latest).to eq generic_asset_2.modified_date
+      end
+    end
+    describe "#sets" do
+      it "should return an array" do
+        expect(subject.sets).to be_a Array
       end
     end
   end

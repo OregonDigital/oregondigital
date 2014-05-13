@@ -16,8 +16,14 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def find(selector, options = {})
+    set = GenericCollection.find(:pid => options[:set]).first
+    if options.delete(:set)
+      return [] unless set
+      model = set.members
+    end
+    model ||= inner_model
     query = form_query(options)
-    result = inner_model.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true").where(query)
+    result = model.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true").where(query)
     result = result.where("id:#{RSolr.escape(selector)}") unless selector.blank? || selector == :all
     result = result.order("#{updated_at_field} desc")
     return result.to_a
@@ -25,6 +31,12 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
   def timestamp_field
     :parsed_modified_date
+  end
+
+  def sets
+    result = GenericCollection.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true")
+    result = result.order("id desc")
+    result.map { |col| ::OAI::Set.new(:name => col.title, :spec => col.pid, :description => col.description) }
   end
 
   private
