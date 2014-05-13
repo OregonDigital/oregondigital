@@ -110,7 +110,7 @@ describe OregonDigital::RewriteGenerator do
         asset
       end
       it "should return a rewrite string" do
-        expect(subject.first).to eq "if ($request_uri = /cdm4/item_viewer.php?CISOROOT=/bracero&CISOPTR=62&CISOBOX=1&REC=1 ) { rewrite ^ /catalog/#{asset.pid}? permanent; }"
+        expect(subject.first).to eq "if ($request_uri ~ ^/cdm4/item_viewer.php?CISOROOT=/bracero&CISOPTR=62.*$ ) { rewrite ^ /catalog/#{asset.pid}? permanent; }"
       end
     end
   end
