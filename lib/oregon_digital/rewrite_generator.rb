@@ -19,6 +19,7 @@ module OregonDigital
           file.puts string
         end
       end
+      puts "Wrote #{replace_strings.length} rewrite rules to #{output_directory.join(file_name)}"
     end
 
     private
