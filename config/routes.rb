@@ -1,6 +1,5 @@
 Oregondigital::Application.routes.draw do
-  root :to => "catalog#index"
-
+  root :to => redirect { |params, request| "/catalog?#{request.params.to_query}"}
   Blacklight.add_routes(self)
   HydraHead.add_routes(self)
 
