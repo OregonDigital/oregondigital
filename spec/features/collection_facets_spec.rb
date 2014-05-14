@@ -79,6 +79,9 @@ describe 'collection facets' do
         visit root_path
         click_link item.lcsubject.first.rdf_label.first
       end
+      it "should go to /catalog" do
+        expect(current_path).to include "catalog"
+      end
       context "and then the collection facet is clicked" do
         before(:each) do
           click_link collection.title
