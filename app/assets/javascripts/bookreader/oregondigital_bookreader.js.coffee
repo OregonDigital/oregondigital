@@ -5,9 +5,6 @@ class BookReaderManager
     return unless $("#BookReader").length > 0
     @element = $("#BookReader")
     this.get_metadata($.proxy(this.initialize_bookreader, this))
-    $('#BRtoolbar').find('.read').hide()
-    $('#textSrch').hide()
-    $('#btnSrch').hide()
   get_metadata: (callback) ->
     pid = @element.data("pid")
     $.getJSON("/document/#{pid}.json", (data) =>
@@ -28,6 +25,9 @@ class BookReaderManager
     @br.bookUrl = ''
     @br.getEmbedCode = -> return "Embedding is disabled."
     @br.init()
+    $('#BRtoolbar').find('.read').hide()
+    $('#textSrch').hide()
+    $('#btnSrch').hide()
     return @br
   getPageURI: (index, reduce, rotate) =>
     "#{@element.data("root")}/page-#{index+1}.png"
