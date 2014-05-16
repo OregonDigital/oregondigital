@@ -41,6 +41,8 @@ Oregondigital::Application.routes.draw do
       put '/review', :to => 'generic_asset#review'
     end
   end
+  # Document Metadata
+  resources :document, :only => [:show]
 
   # Static Pages
   get ':action' => 'static#:action', :constraints => { :action => /copyright|help/ }, :as => :static
