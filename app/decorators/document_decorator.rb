@@ -22,7 +22,8 @@ class DocumentDecorator < GenericAssetDecorator
     {
       :pages => pages,
       :title => title,
-      :root => root
+      :root => root,
+      :pid => pid
     }
   end
 
