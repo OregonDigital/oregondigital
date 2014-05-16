@@ -58,8 +58,8 @@ describe Datastream::Yaml do
   end
   describe ".content" do
     context "before content is set" do
-      it "should be blank" do
-        expect(subject.content).to be_blank
+      it "should be blank yaml" do
+        expect(YAML.load(subject.content)).to eq ""
       end
     end
     context "when a setter was used to add content" do

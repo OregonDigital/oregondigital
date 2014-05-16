@@ -7,6 +7,13 @@ class DocumentMetadataGenerator
 
   def initialize(document)
     @document = document
+    preload_metadata
+  end
+
+  def preload_metadata
+    unless document.leafMetadata.inner_hash.to_h.blank?
+      @document_metadata = document.leafMetadata.inner_hash.to_h.stringify_keys
+    end
   end
 
   def metadata

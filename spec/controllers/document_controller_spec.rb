@@ -13,6 +13,10 @@ describe DocumentController do
         before do
           get :show, :id => document.pid, :format => :json
         end
+        it "should not load up the image" do
+          expect(MiniMagick::Image).not_to receive(:open)
+          get :show, :id => document.pid, :format => :json
+        end
         it "should have pages" do
           expect(json['pages'].length).to eq 2
         end
