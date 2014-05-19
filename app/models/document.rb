@@ -1,10 +1,17 @@
 class Document < GenericAsset
   has_file_datastream :name => 'thumbnail', :control_group => "E"
+  has_metadata :name => 'leafMetadata', :type => Datastream::Yaml
   makes_derivatives do |obj|
     obj.transform_datastream :content, {:pages => {:output_path => obj.pages_location}}, :processor => :docsplit_processor
     obj.create_thumbnail
     obj.workflowMetadata.has_thumbnail = true
+    obj.update_leaf_metadata
     obj.save
+  end
+
+  def update_leaf_metadata
+    leafMetadata_content = DocumentMetadataGenerator.call(self.decorate).to_yaml
+    leafMetadata.content = leafMetadata_content unless leafMetadata_content.blank?
   end
 
   def create_thumbnail

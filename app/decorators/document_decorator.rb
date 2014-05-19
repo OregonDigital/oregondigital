@@ -11,13 +11,19 @@ class DocumentDecorator < GenericAssetDecorator
     end
   end
 
+  def page_datastreams
+    datastreams.select{|key, value| key.start_with?("page")}
+  end
+
+
   private
 
   def data_hash
     {
       :pages => pages,
       :title => title,
-      :root => root
+      :root => root,
+      :pid => pid
     }
   end
 

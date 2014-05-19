@@ -18,8 +18,8 @@ class Datastream::Yaml < ActiveFedora::Datastream
   end
 
   def serialize
-    serialization = inner_hash.to_h.stringify_keys
-    serialization.blank? ? "" : serialization.to_yaml
+    serialization = inner_hash.to_h.stringify_keys if inner_hash.respond_to?(:to_h)
+    serialization.blank? ? "".to_yaml : serialization.to_yaml
   end
 
   def deserialize(data=nil)
