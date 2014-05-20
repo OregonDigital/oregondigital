@@ -1,9 +1,10 @@
 
 require 'hybag'
+require 'filemagic'
 
 desc 'Ingest content from Bags'
 
-task :bag_ingest, [:directory, :collection, :model] => [:environment] do |t, args|
+task :bag_ingest, [:directory, :collection, :model] => :environment do |t, args|
   raise "Please include a directory, collection id, and model: `rake bag_ingest[./bags,bag-collection,Model]`" if args[:directory].nil? or args[:collection].nil? or args[:model].nil?
   collection = GenericCollection.find(:pid => "oregondigital:#{args[:collection]}").first
   if collection.nil?
@@ -14,17 +15,25 @@ task :bag_ingest, [:directory, :collection, :model] => [:environment] do |t, arg
   end
   Hybag::BulkIngester.new(args[:directory]).each do |ingester|
     # TODO: determine model from content type!
-    ingester.model_name = args[:model].capitalize   
+    ingester.model_name = args[:model].capitalize
     object = ingester.ingest
     object.descMetadata.resource.each_statement do |s|
       if s.subject.to_s.start_with? 'http://example.org'
         object.descMetadata.resource.delete s
         object.descMetadata.resource << RDF::Statement.new(object.descMetadata.rdf_subject, s.predicate, s.object)
-
       end
     end
-    object.review!
+    # set the mime type to the actual type of the content datastream
+    mime = FileMagic.new(FileMagic::MAGIC_MIME).buffer(ingester.bag.bag_files.first).split(';')[0]
+    object.format = RDF::URI("http://purl.org/NET/mediatypes/#{mime}")
+    object.set = collection
     object.save
     print '.'
  end
+end
+
+task :review_collection, [:collection_slug] => [:environment] do |t, args|
+  raise "Please include a collection identifer: `rake review_collection[braceros]`" if args[:collection_slug].nil?
+  col = GenericCollection.find(:pid => "oregondigital:#{args[:collection_slug]}")
+  col.memebers.each { |item| item.review! }
 end
