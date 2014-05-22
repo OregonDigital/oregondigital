@@ -41,6 +41,14 @@ Oregondigital::Application.routes.draw do
       put '/review', :to => 'generic_asset#review'
     end
   end
+
+  # Destroyed Object Management
+  resources :destroyed, :only => [:index] do
+    member do
+      put '/undelete', :to => 'destroyed#undelete'
+    end
+  end
+
   # Document Metadata
   resources :document, :only => [:show]
 

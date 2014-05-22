@@ -27,7 +27,72 @@ describe 'soft delete' do
         visit root_path(:search_field => "all_fields")
         expect(page).not_to have_selector(".document")
       end
-      
+    end
+  end
+  context "when a user is not an admin" do
+    it "should not show a destroy button" do
+      expect(page).not_to have_link("Delete")
+    end
+  end
+end
+
+describe 'Destroyed Objects View' do
+  let(:user) {FactoryGirl.create(:user)}
+  let(:asset) {FactoryGirl.create(:image)}
+  before do
+    capybara_login(user)
+    asset
+    visit destroyed_index_path
+  end
+  context"when a user is not an admin" do
+    it "should not allow access" do
+      expect(page).to have_content("You do not have permission to manage destroyed objects.")
+    end
+  end
+  context "when a user is an admin" do
+    let(:user) {FactoryGirl.create(:admin)}
+    context "and there are no destroyed items" do
+      it "should not show any items" do
+        expect(page).not_to have_selector('.document')
+      end
+    end
+    context "and there are destroyed items" do
+      before do
+        asset.soft_destroy
+        visit destroyed_index_path
+      end
+      it "should show them" do
+        expect(page).to have_selector('.document')
+      end
+      context "and the Undelete button is clicked" do
+        before do
+          click_link "Undelete"
+          within("#main-flashes") do
+            expect(page).to have_content("Successfully restored object.")
+          end
+        end
+        it "should undelete the item" do
+          expect(asset.reload).not_to be_soft_destroyed
+        end
+        it "should no longer show it" do
+          expect(current_path).to eq destroyed_index_path
+          expect(page).not_to have_selector('.document')
+        end
+      end
+      context "and the item is unreviewed" do
+        before do
+          asset.reset_workflow!
+          visit destroyed_index_path
+        end
+        it "should show it" do
+          expect(page).to have_selector('.document')
+        end
+      end
+    end
+    context "and there are non-destroyed items" do
+      it "should not show them" do
+        expect(page).not_to have_selector('.document')
+      end
     end
   end
 end

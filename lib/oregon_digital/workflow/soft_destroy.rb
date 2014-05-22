@@ -6,7 +6,16 @@ module OregonDigital::Workflow
       save
     end
 
-    def destroyed?
+    def undelete
+      workflowMetadata.destroyed = false
+    end
+
+    def undelete!
+      undelete
+      save
+    end
+
+    def soft_destroyed?
       !!workflowMetadata.destroyed
     end
   end

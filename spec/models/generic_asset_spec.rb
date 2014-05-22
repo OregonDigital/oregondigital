@@ -61,7 +61,28 @@ describe GenericAsset, :resque => true do
     end
   end
 
-  describe "#destroyed?" do
+  describe "#undelete" do
+    before do
+      subject.save
+    end
+    context "when the item is not deleted" do
+      it "should not do anything" do
+        subject.undelete
+        expect(subject).not_to be_soft_destroyed
+      end
+    end
+    context "when the item is deleted" do
+      before do
+        subject.soft_destroy
+      end
+      it "should restore the item" do
+        subject.undelete
+        expect(subject).not_to be_soft_destroyed
+      end
+    end
+  end
+
+  describe "#soft_destroyed?" do
     before do
       subject.save
     end
@@ -70,7 +91,7 @@ describe GenericAsset, :resque => true do
         subject.soft_destroy
       end
       it "should be destroyed" do
-        expect(subject).to be_destroyed
+        expect(subject).to be_soft_destroyed
       end
     end
     context "when an object is destroyed, then undestroyed" do
@@ -79,14 +100,14 @@ describe GenericAsset, :resque => true do
         subject.workflowMetadata.destroyed = false
       end
       it "should not be destroyed" do
-        expect(subject).not_to be_destroyed
+        expect(subject).not_to be_soft_destroyed
       end
       context "and then destroyed" do
         before do
           subject.soft_destroy
         end
         it "should be destroyed" do
-          expect(subject).to be_destroyed
+          expect(subject).to be_soft_destroyed
         end
       end
     end
