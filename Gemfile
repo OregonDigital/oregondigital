@@ -135,6 +135,6 @@ group :development, :test do
 
   gem 'pry'
   gem 'pry-doc'
-  gem 'pry-debugger'
+  gem 'pry-byebug'
   gem 'pry-rails'
 end
