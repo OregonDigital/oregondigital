@@ -9,4 +9,11 @@ class GenericAssetController < ApplicationController
     redirect_to reviewer_path
   end
 
+  def destroy
+    authorize! :destroy, @generic_asset
+    @generic_asset.soft_destroy
+    flash[:notice] = "Successfully deleted asset."
+    redirect_to catalog_path
+  end
+
 end

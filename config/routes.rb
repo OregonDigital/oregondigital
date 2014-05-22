@@ -36,7 +36,7 @@ Oregondigital::Application.routes.draw do
   get '/contact' => 'contact_form#new'
 
   # Generic Asset
-  resources :generic_asset, :only => [] do
+  resources :generic_asset, :only => [:destroy] do
     member do
       put '/review', :to => 'generic_asset#review'
     end

@@ -3,6 +3,7 @@ module OregonDigital
     extend ActiveSupport::Concern
 
     included do
+      include SoftDestroy
       has_metadata :name => 'workflowMetadata', :type => Datastream::Yaml
       after_initialize :reset_workflow, :if => :new_record?
 

@@ -7,5 +7,13 @@
         <span class="sr-only"><%= decorated_object.title %></span>
       </a>
     </li>
+    <% if can?(:destroy, decorated_object) %>
+    <li>
+    <%= link_to(generic_asset_path, :method => :delete) do %>
+        <span>Delete</span>
+        <span class="sr-only"><%= decorated_object.title %></span>
+      <% end %>
+    </li>
+    <% end %>
   <% end %>
 </ul>

@@ -73,6 +73,15 @@ describe "item review behavior" do
         it "should show the item" do
           expect(page).to have_selector('.document', :count => 1)
         end
+        context "when the item is soft destroyed" do
+          before do
+            asset.soft_destroy
+            visit reviewer_index_path
+          end
+          it "should not show the item" do
+            expect(page).not_to have_selector('.document')
+          end
+        end
         context "when they are no longer an admin and they try to review" do
           before(:each) do
             Role.destroy_all
