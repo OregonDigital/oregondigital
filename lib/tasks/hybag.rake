@@ -24,8 +24,8 @@ task :bag_ingest, [:directory, :collection, :model] => :environment do |t, args|
       end
     end
     # set the mime type to the actual type of the content datastream
-    mime = FileMagic.new(FileMagic::MAGIC_MIME).buffer(ingester.bag.bag_files.first).split(';')[0]
-    object.format = RDF::URI("http://purl.org/NET/mediatypes/#{mime}")
+    object.content.mimeType = FileMagic.new(FileMagic::MAGIC_MIME).file(ingester.bag.bag_files.first).split(';')[0]
+    object.format = RDF::URI("http://purl.org/NET/mediatypes/#{object.content.mimeType}")
     object.set = collection
     object.save
     print '.'
