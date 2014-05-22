@@ -39,9 +39,8 @@ class GenericAssetDecorator < Draper::Decorator
     facet_field_name = Solrizer.solr_name("desc_metadata__#{field}_label", :facetable)
     facet_label = value.solrize.find{|x| x.kind_of?(Hash) && x.include?(:label)}
     facet_label = facet_label[:label] if facet_label
-    path = h.root_path(:f => {facet_field_name => [facet_label]})
+    path = h.catalog_index_path(:f => {facet_field_name => [facet_label]})
     return h.link_to(value.rdf_label.first.to_s, path)
-    return value.rdf_label.first.to_s
   end
 
   def property_keys
