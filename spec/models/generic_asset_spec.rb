@@ -43,6 +43,79 @@ describe GenericAsset, :resque => true do
     end
   end
 
+  describe "#soft_destroy" do
+    before do
+      # Stub current time - replace with timecop?
+      @time = Time.current
+      Time.stub(:current).and_return(@time)
+      # Save generic asset.
+      subject.save
+      # Soft delete
+      subject.soft_destroy
+    end
+    it "should be marked as destroyed" do
+      expect(subject.workflowMetadata.destroyed).to eq true
+    end
+    it "should mark the destroyed_at time" do
+      expect(subject.workflowMetadata.destroyed_at).to eq @time.iso8601
+    end
+  end
+
+  describe "#destroyed?" do
+    before do
+      subject.save
+    end
+    context "when an object is destroyed" do
+      before do
+        subject.soft_destroy
+      end
+      it "should be destroyed" do
+        expect(subject).to be_destroyed
+      end
+    end
+    context "when an object is destroyed, then undestroyed" do
+      before do
+        subject.soft_destroy
+        subject.workflowMetadata.destroyed = false
+      end
+      it "should not be destroyed" do
+        expect(subject).not_to be_destroyed
+      end
+      context "and then destroyed" do
+        before do
+          subject.soft_destroy
+        end
+        it "should be destroyed" do
+          expect(subject).to be_destroyed
+        end
+      end
+    end
+  end
+
+  describe ".destroyed" do
+    before do
+      subject.title = "bla"
+      subject.save
+    end
+    context "when an asset is destroyed" do
+      before do
+        subject.soft_destroy
+      end
+      it "should return all destroyed objects" do
+        expect(subject.class.destroyed.to_a).to eq [subject]
+      end
+      it "should chain" do
+        expect(subject.class.destroyed.where("desc_metadata__title_teim" => "test")).to eq []
+        expect(subject.class.destroyed.where("desc_metadata__title_teim" => "bla")).to eq [subject]
+      end
+    end
+    context "when an asset is not destroyed" do
+      it "should not return non-destroyed objects" do
+        expect(subject.class.destroyed.to_a).to eq []
+      end
+    end
+  end
+
   describe '#set' do
     context "when it has an assigned set" do
       let(:collection) {FactoryGirl.create(:generic_collection)}
