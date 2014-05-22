@@ -90,7 +90,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :donor, :predicate => OregonDigital::Vocabularies::MARCREL.dnr, do |index|
+  property :donor, :predicate => OregonDigital::Vocabularies::MARCREL.dnr do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :composer, :predicate => OregonDigital::Vocabularies::MARCREL.cmp, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
@@ -153,6 +153,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
   property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#locationCopyShelfLocator') do |index|
+    index.as :displayable
+  end
+  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#note') do |index|
     index.as :displayable
   end
   
