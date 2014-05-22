@@ -3,6 +3,7 @@ module OregonDigital::ControlledVocabularies
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :rights
+    use_vocabulary :eurights
     use_vocabulary :cclicenses
     use_vocabulary :ccpublic
 
