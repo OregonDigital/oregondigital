@@ -3,7 +3,7 @@ module OregonDigital::Workflow
     def soft_destroy
       workflowMetadata.destroyed = true
       workflowMetadata.destroyed_at = Time.current.iso8601
-      save
+      reset_workflow!
     end
 
     def undelete

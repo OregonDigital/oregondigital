@@ -13,6 +13,20 @@ describe 'soft delete' do
     it "should show a destroy button" do
       expect(page).to have_link("Delete")
     end
+    context "and the item is already destroyed" do
+      before do
+        asset.soft_destroy
+        visit catalog_path(:id => asset.pid)
+      end
+      it "should not show a destroy button" do
+        expect(page).not_to have_link("Delete")
+      end
+      it "should have a working Undelete button" do
+        click_link "Undelete"
+        expect(page).to have_content("restored")
+        expect(asset.reload).not_to be_soft_destroyed
+      end
+    end
     context "and the destroy button is clicked" do
       before do
         click_link "Delete"
@@ -32,6 +46,15 @@ describe 'soft delete' do
   context "when a user is not an admin" do
     it "should not show a destroy button" do
       expect(page).not_to have_link("Delete")
+    end
+    context "and there is a soft destroyed item" do
+      before do
+        asset.soft_destroy
+        visit catalog_path(:id => asset.pid)
+      end
+      it "should not let them see it" do
+        expect(page).to have_content("You do not have sufficient")
+      end
     end
   end
 end
@@ -74,8 +97,11 @@ describe 'Destroyed Objects View' do
         it "should undelete the item" do
           expect(asset.reload).not_to be_soft_destroyed
         end
+        it "should go to the show view" do
+          expect(current_path).to eq catalog_path(:id => asset.pid)
+        end
         it "should no longer show it" do
-          expect(current_path).to eq destroyed_index_path
+          visit destroyed_index_path
           expect(page).not_to have_selector('.document')
         end
       end

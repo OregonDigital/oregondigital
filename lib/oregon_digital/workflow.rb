@@ -15,9 +15,13 @@ module OregonDigital
     end
 
     def reset_workflow
-      self.read_groups = ["admin", "archivist"]
+      reset_read_permissions
       workflowMetadata.reviewed = false
       workflowMetadata.has_thumbnail = false
+    end
+
+    def reset_read_permissions
+      self.read_groups = ["admin", "archivist"]
     end
 
     def reset_workflow!

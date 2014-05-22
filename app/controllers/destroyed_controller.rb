@@ -15,7 +15,7 @@ class DestroyedController < CatalogController
     asset = GenericAsset.find(params[:id])
     asset.undelete!
     flash[:notice] = "Successfully restored object."
-    redirect_to destroyed_index_path
+    redirect_to catalog_path(asset) 
   end
 
   private
