@@ -197,6 +197,11 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :dateDigitized, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.dateDigitized
 
+# Oregon Digital Rights
+  property :rightsHolder, :predicate => RDF::URI('http://opaquenamespace.org/rights/rightsHolder') do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+
 # Oregon Digital Sheet Music
   property :instrumentation, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.instrumentation do |index|
     index.as :searchable, :facetable, :displayable
