@@ -106,7 +106,7 @@ module OregonDigital::RDF
 
       def uses_vocab_prefix?(str)
         vocabularies.each do |vocab, config|
-          return true if str.start_with? config[:prefix]
+          return true if str.to_s.start_with? config[:prefix]
         end
         false
       end
