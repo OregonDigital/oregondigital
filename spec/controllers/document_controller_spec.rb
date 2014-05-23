@@ -21,7 +21,7 @@ describe DocumentController do
           expect(json['pages'].length).to eq 2
         end
         it "should have size data" do
-          expect(json['pages']).to eq [{"size" => {"width" => 1000, "height" => 1254}}, {"size" => {"width" => 1000, "height" => 1254}}]
+          expect(json['pages']).to eq [{"size" => {"width" => 500, "height" => 627}}, {"size" => {"width" => 500, "height" => 627}}]
         end
       end
     end

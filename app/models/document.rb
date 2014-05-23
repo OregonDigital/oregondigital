@@ -10,7 +10,7 @@ class Document < GenericAsset
   end
 
   def update_leaf_metadata
-    leafMetadata_content = DocumentMetadataGenerator.call(self.decorate).to_yaml
+    leafMetadata_content = DocumentMetadataGenerator.call(self.decorate, :skip_preload => true).to_yaml
     leafMetadata.content = leafMetadata_content unless leafMetadata_content.blank?
   end
 

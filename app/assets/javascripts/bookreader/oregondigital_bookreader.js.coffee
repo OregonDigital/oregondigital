@@ -11,11 +11,12 @@ class BookReaderManager
       @page_info = data["pages"]
       callback()
     )
-  initialize_bookreader: ->
+  initialize_bookreader: =>
     @br = new BookReader()
     @br.imagesBaseURL = "/assets/bookreader/images/"
-    @br.getPageWidth = (index) => @page_info[index]["size"]["width"]
-    @br.getPageHeight = (index) => @page_info[index]["size"]["height"]
+    @br.page_info = @page_info
+    @br.getPageWidth = (index) -> @page_info[index]?["size"]?["width"]
+    @br.getPageHeight = (index) -> @page_info[index]?["size"]?["height"]
     @br.getPageURI = this.getPageURI
     @br.getPageSide = this.getPageSide
     @br.getSpreadIndices = this.getSpreadIndices
@@ -24,13 +25,28 @@ class BookReaderManager
     @br.bookTitle = @element.data("title")
     @br.bookUrl = ''
     @br.getEmbedCode = -> return "Embedding is disabled."
+    @br.reductionFactors = this.reductionFactors()
     @br.init()
     $('#BRtoolbar').find('.read').hide()
     $('#textSrch').hide()
     $('#btnSrch').hide()
+    $('button.share').hide()
+    $('button.info').hide()
     return @br
+  reductionFactors: ->
+    [{reduce: 0.25, autofit: null},
+      {reduce: 0.5, autofit: null},
+        {reduce: 1, autofit: null},
+        {reduce: 2, autofit: null},
+        {reduce: 3, autofit: null},
+        {reduce: 4, autofit: null},
+        {reduce: 6, autofit: null} ];
   getPageURI: (index, reduce, rotate) =>
-    "#{@element.data("root")}/page-#{index+1}.png"
+    reduce_factor = "small" if reduce >= 4
+    reduce_factor ||= "normal" if reduce >= 1
+    reduce_factor ||= "large" if reduce > 0.5
+    reduce_factor ||= "x-large"
+    "#{@element.data("root")}/#{reduce_factor}-page-#{index+1}.jpg"
   getPageSide: (index) ->
     if 0 == (index & 0x1)
       return'R'
