@@ -3,6 +3,8 @@ class OregonDigital::Metadata::AttributeTranslator < Metadata::Ingest::Translato
   # the attribute being assigned has an RDF resource backing it
   def build_association(value)
     assoc = super(value)
+    # Use resource for AF::Base objects.
+    assoc.value = assoc.value.resource if assoc.value.respond_to?(:resource)
 
     if assoc.value.is_a?(ActiveFedora::Rdf::Resource)
       assoc.internal = assoc.value.rdf_subject.to_s

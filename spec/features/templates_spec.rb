@@ -98,6 +98,32 @@ describe "(Administration of templates)", :js => true do
         fill_in_ingest_data("date", "created", "2014-01-07")
       end
 
+      context "with a set" do
+        let(:collection) do
+          c = FactoryGirl.create(:generic_collection, :title => "Alabama")
+          c.review!
+          c
+        end
+        before do
+          collection
+          choose_controlled_vocabulary_item("grouping", "set","Ala",collection.title, collection.resource.rdf_subject.to_s) 
+        end
+        it "should succeed" do
+          find(:css, 'input[type=submit]').click
+          expect(page).to have_content("Created Template")
+        end
+        context "and then it's edited" do
+          before do
+            find(:css, 'input[type=submit]').click
+            expect(page).to have_content("Created Template")
+            click_link "Edit My First Template (tm)"
+          end
+          it "should show that set's value" do
+            expect(page).to include_ingest_fields_for("grouping", "set", collection.title)
+          end
+        end
+      end
+
       it "should give me a notification that the template was created" do
         find(:css, 'input[type=submit]').click
         expect(page).to have_content("Created Template")
