@@ -11,11 +11,12 @@ class BookReaderManager
       @page_info = data["pages"]
       callback()
     )
-  initialize_bookreader: ->
+  initialize_bookreader: =>
     @br = new BookReader()
     @br.imagesBaseURL = "/assets/bookreader/images/"
-    @br.getPageWidth = (index) => @page_info[index]["size"]["width"]
-    @br.getPageHeight = (index) => @page_info[index]["size"]["height"]
+    @br.page_info = @page_info
+    @br.getPageWidth = (index) -> @page_info[index]?["size"]?["width"]
+    @br.getPageHeight = (index) -> @page_info[index]?["size"]?["height"]
     @br.getPageURI = this.getPageURI
     @br.getPageSide = this.getPageSide
     @br.getSpreadIndices = this.getSpreadIndices
@@ -28,6 +29,8 @@ class BookReaderManager
     $('#BRtoolbar').find('.read').hide()
     $('#textSrch').hide()
     $('#btnSrch').hide()
+    $('button.share').hide()
+    $('button.info').hide()
     return @br
   getPageURI: (index, reduce, rotate) =>
     "#{@element.data("root")}/page-#{index+1}.png"
