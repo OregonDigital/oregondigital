@@ -90,6 +90,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :donor, :predicate => OregonDigital::Vocabularies::MARCREL.dnr do |index|
+    index.as :searchable, :facetable, :displayable
+  end
   property :composer, :predicate => OregonDigital::Vocabularies::MARCREL.cmp, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
     index.as :searchable, :facetable, :displayable
   end
@@ -143,15 +146,18 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :hasFixity, :predicate => OregonDigital::Vocabularies::PREMIS.hasFixity
   
   # MODS RDF
-  property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#physicalExtent') do |index|
+  property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#physicalExtent') do |index|
     index.as :displayable
   end
-  property :locationCopySublocation, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopySublocation') do |index|
-     index.as :displayable
+  property :locationCopySublocation, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#locationCopySublocation') do |index|
+    index.as :displayable
   end
-  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopyShelfLocator') do |index|
-       index.as :displayable
-         end
+  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#locationCopyShelfLocator') do |index|
+    index.as :displayable
+  end
+  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#note') do |index|
+    index.as :displayable
+  end
   
   # CCO
   property :view, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDescription') do |index|
@@ -196,6 +202,11 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
   property :dateDigitized, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.dateDigitized
+
+# Oregon Digital Rights
+  property :rightsHolder, :predicate => RDF::URI('http://opaquenamespace.org/rights/rightsHolder') do |index|
+    index.as :searchable, :facetable, :displayable
+  end
 
 # Oregon Digital Sheet Music
   property :instrumentation, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.instrumentation do |index|
