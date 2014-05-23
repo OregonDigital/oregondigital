@@ -27,7 +27,7 @@ describe Document do
       it "should create a derivative per page" do
         (1..2).each do |page|
           expect(document.datastreams.keys).to include("page-#{page}")
-          expect(document.datastreams["page-#{page}"].dsLocation).to eq "file://#{document.pages_location}/page-#{page}.png"
+          expect(document.datastreams["page-#{page}"].dsLocation).to eq "file://#{document.pages_location}/normal-page-#{page}.jpg"
           expect(Document.find(document.pid).datastreams.keys).to include("page-#{page}")
         end
       end

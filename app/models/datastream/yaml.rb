@@ -40,6 +40,7 @@ class Datastream::Yaml < ActiveFedora::Datastream
   end
 
   def to_solr(solr_doc = Hash.new,item=nil,term_prefix=nil)
+    item ||= {} if inner_hash.kind_of?(String)
     item ||= inner_hash.to_h
     item.each do |key, value|
       term_key = prefix(key,term_prefix)

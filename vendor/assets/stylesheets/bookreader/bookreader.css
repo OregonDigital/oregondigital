@@ -899,11 +899,11 @@ div#BRzoombtn {
     display: none;
 }
 .BRup {
-    background-image: url("bookreader/images/nav_control-up.png");
+    background-image: url("/assets/bookreader/images/nav_control-up.png");
     background-repeat: no-repeat;
 }
 .BRdn {
-    background-image: url("bookreader/images/nav_control-dn.png");
+    background-image: url("/assets/bookreader/images/nav_control-dn.png");
     background-repeat: no-repeat;
 }
 #BRnavCntlBtm.BRup,#BRnavCntlBtm.BRdn {

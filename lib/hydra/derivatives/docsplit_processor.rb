@@ -5,7 +5,7 @@ class Hydra::Derivatives::DocsplitProcessor < Hydra::Derivatives::Processor
   def process
     directives.each do |name, args|
       opts = args.kind_of?(Hash) ? args : {}
-      format = opts.fetch(:format, 'png')
+      format = opts.fetch(:format, 'jpg')
       sizes = opts.fetch(:sizes, default_sizes)
       output_path = Pathname.new(opts.fetch(:output_path, File.join(Hydra::Derivatives.temp_file_base,source_datastream.pid.split(":").last)))
       split_images(format, sizes, output_path)
@@ -14,8 +14,9 @@ class Hydra::Derivatives::DocsplitProcessor < Hydra::Derivatives::Processor
 
   def default_sizes
     {
+        'x-large' => '1500x',
         'large' => '1000x',
-        'normal' => '700x',
+        'normal' => '500x',
         'small' => '180x'
     }
   end
@@ -30,15 +31,20 @@ class Hydra::Derivatives::DocsplitProcessor < Hydra::Derivatives::Processor
         f = File.open(new_path)
         FileUtils.rm_rf(output_path)
         FileUtils.mkdir_p(output_path)
-        Docsplit.extract_images(f.path, :size => default_sizes['large'], :format => format, :output => output_path)
-        Dir["#{output_path.join('*')}"].each do |file|
-          page = Pathname.new(file.split('_').last).sub_ext('').to_s
-          page_path = Pathname.new(file)
-          new_path = File.join(output_path, "page-#{page}#{page_path.extname}")
-          File.rename(file, new_path.to_s)
-          output_datastream("page-#{page}").controlGroup = "E"
-          output_datastream("page-#{page}").content = "external"
-          output_datastream("page-#{page}").dsLocation = "file://#{new_path.to_s}"
+        default_sizes.each do |key, size|
+          Docsplit.extract_images(f.path, :size => size, :format => format, :output => output_path)
+          Dir["#{output_path.join('*')}"].each do |file|
+            next if file.include?("page-")
+            page = Pathname.new(file.split('_').last).sub_ext('').to_s
+            page_path = Pathname.new(file)
+            new_path = File.join(output_path, "#{key}-page-#{page}#{page_path.extname}")
+            File.rename(file, new_path.to_s)
+            if key == "normal"
+              output_datastream("page-#{page}").controlGroup = "E"
+              output_datastream("page-#{page}").content = "external"
+              output_datastream("page-#{page}").dsLocation = "file://#{new_path.to_s}"
+            end
+          end
         end
       ensure
         File.unlink(f.path) if File.exist?(f.path)

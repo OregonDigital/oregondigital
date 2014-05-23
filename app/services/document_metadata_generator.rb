@@ -1,19 +1,25 @@
 class DocumentMetadataGenerator
   attr_accessor :document
   
-  def self.call(document)
-    new(document).metadata
+  def self.call(document, opts={})
+    new(document, opts).metadata
   end
 
-  def initialize(document)
+  def initialize(document, opts={})
     @document = document
-    preload_metadata
+    preload_metadata unless opts[:skip_preload]
   end
 
   def preload_metadata
-    unless document.leafMetadata.inner_hash.to_h.blank?
+    unless preloaded_data.to_h.blank?
       @document_metadata = document.leafMetadata.inner_hash.to_h.stringify_keys
     end
+  end
+
+  def preloaded_data
+    preloaded_data = document.leafMetadata.inner_hash
+    return {} if preloaded_data.blank?
+    preloaded_data
   end
 
   def metadata
@@ -58,7 +64,7 @@ class DocumentMetadataGenerator
     end
 
     def page_path
-      document.pages_location.join(page[0]+".png")
+      document.pages_location.join("normal-"+page[0]+".jpg")
     end
   end
 end
