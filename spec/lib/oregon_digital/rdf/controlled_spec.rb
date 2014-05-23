@@ -96,6 +96,10 @@ describe OregonDigital::RDF::Controlled do
       image.persist!
     end
 
+    it 'should not fail on bnodes' do
+      ActiveFedora::Rdf::Repositories.repositories[subject.repository] << RDF::Statement(RDF::Node.new, RDF::SKOS.prefLabel, "Image")
+      expect(subject.new.search('Image').first[:id]).not_to raise_error
+    end
     it 'should return matches' do
       expect(subject.new.search('Image').first[:id]).to eq RDF::URI('http://purl.org/dc/dcmitype/Image')
     end
