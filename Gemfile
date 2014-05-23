@@ -98,10 +98,6 @@ gem 'mail_form'
 gem 'newrelic_rpm'
 
 group :development do
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'pry-debugger'
-  gem 'pry-rails'
   # Spring as Rails preloader
   gem 'spring'
   # Guard for auto-test running
@@ -136,4 +132,9 @@ group :development, :test do
 
   # Make JS testing work while keeping the DB clean
   gem "database_cleaner"
+
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end

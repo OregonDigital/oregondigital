@@ -22,6 +22,8 @@ class CatalogController < ApplicationController
   self.solr_search_params_logic += [:exclude_unwanted_models]
   # Filter out unreviewed items.
   self.solr_search_params_logic += [:exclude_unreviewed_items]
+  # Filter out destroyed items.
+  self.solr_search_params_logic += [:exclude_destroyed_items]
 
   private
 
@@ -35,6 +37,11 @@ class CatalogController < ApplicationController
   def exclude_unreviewed_items(solr_parameters, user_parameters)
     solr_parameters[:fq] ||= []
     solr_parameters[:fq] << "-#{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:\"false\""
+  end
+
+  def exclude_destroyed_items(solr_parameters, user_parameters)
+    solr_parameters[:fq] ||= []
+    solr_parameters[:fq] << "-#{ActiveFedora::SolrService.solr_name("workflow_metadata__destroyed", :symbol)}:\"true\""
   end
 
   # Array of models to exclude from catalog results.

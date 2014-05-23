@@ -23,6 +23,10 @@ class GenericAsset < ActiveFedora::Base
     OregonDigital::IdService.mint
   end
 
+  def self.destroyed
+    where(Solrizer.solr_name("workflow_metadata__destroyed", :symbol) => "true")
+  end
+
   has_attributes :format, :type, :location, :created, :description, :rights, :title, :modified, :date, :datastream => :descMetadata, :multiple => false
   has_attributes :identifier, :lcsubject, :set, :creator, :contributor, :institution, :datastream => :descMetadata, :multiple => true
 

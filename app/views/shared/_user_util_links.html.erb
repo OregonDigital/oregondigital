@@ -38,6 +38,10 @@
       <% if can?(:create, ::Template) %>
         - <%= link_to "Templates", templates_path %>
       <% end %>
+
+      <% if can?(:destroy, GenericAsset) %>
+        - <%= link_to "Destroyed Items", destroyed_index_path %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -7,5 +7,28 @@
         <span class="sr-only"><%= decorated_object.title %></span>
       </a>
     </li>
+    <% if can?(:destroy, decorated_object) %>
+    <li>
+      <% if decorated_object.soft_destroyed? %>
+        <%= link_to(undelete_destroyed_path(decorated_object), :method => :put) do %>
+          <span>Undelete</span>
+          <span class="sr-only"><%= decorated_object.title %></span>
+        <% end %>
+      <% else %>
+        <%= link_to(generic_asset_path(decorated_object), :method => :delete) do %>
+          <span>Delete</span>
+          <span class="sr-only"><%= decorated_object.title %></span>
+        <% end %>
+      <% end %>
+    </li>
+    <% end %>
+  <% end %>
+  <% if can?(:review, decorated_object) && !decorated_object.reviewed? && !decorated_object.soft_destroyed? %>
+    <li>
+      <%= link_to(review_generic_asset_path(decorated_object), :method => :put) do %>
+        <span>Mark as Reviewed</span>
+        <span class="sr-only"><%= decorated_object.title %></span>
+      <% end %>
+    </li>
   <% end %>
 </ul>

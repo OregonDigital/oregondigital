@@ -3,6 +3,7 @@ module OregonDigital
     extend ActiveSupport::Concern
 
     included do
+      include SoftDestroy
       has_metadata :name => 'workflowMetadata', :type => Datastream::Yaml
       after_initialize :reset_workflow, :if => :new_record?
 
@@ -14,9 +15,13 @@ module OregonDigital
     end
 
     def reset_workflow
-      self.read_groups = ["admin", "archivist"]
+      reset_read_permissions
       workflowMetadata.reviewed = false
       workflowMetadata.has_thumbnail = false
+    end
+
+    def reset_read_permissions
+      self.read_groups = ["admin", "archivist"]
     end
 
     def reset_workflow!
