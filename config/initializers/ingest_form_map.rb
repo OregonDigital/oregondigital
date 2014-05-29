@@ -19,14 +19,38 @@
 INGEST_MAP = {
   title: {
     title: "descMetadata.title",
+    alternative: "descMetadata.alternative",
+    captionTitle: "descMetadata.captionTitle",
+    firstLine: "descMetadata.firstLine",
+    firstLineChorus: "descMetadata.firstLineChorus",
+  },
+
+  creator: {
+    creator: "descMetadata.creator",
+    contributor: "descMetadata.contributor",
+    photographer: "descMetadata.photographer",
+    illustrator: "descMetadata.illustrator",
+    composer: "descMetadata.composer",
+    lyricist: "descMetadata.lyricist",
+    arranger: "descMetadata.arranger",
+    printMaker: "descMetadata.printMaker",
   },
   
   description: {
-    description: "descMetadata.description"
+    description: "descMetadata.description",
+    abstract: "descMetadata.abstract",
+    view: "descMetadata.view",
+    culturalContext: "descMetadata.culturalContext",
+    inscription: "descMetadata.inscription",
+    cover: "descMetadata.cover",
+    note: "descMetadata.note",
+    instrumentation: "descMetadata.instrumentation",
   },
 
   subject: {
+    lcsubject: "descMetadata.lcsubject",
     subject: "descMetadata.subject",
+    ethnographicTerm: "descMetadata.ethnographicTerm",
   },
   
   geographic: {
@@ -37,32 +61,55 @@ INGEST_MAP = {
     created: "descMetadata.created",
     modified: "descMetadata.modified",
     date: "descMetadata.date",
+    dateSubmitted: "descMetadata.submissionDate",
+    issued: "descMetadata.issued",
+    earliestDate: "descMetadata.earliestDate",
+    latestDate: "descMetadata.latestDate",
   },
 
   identifier: {
     identifier: "descMetadata.identifier",
+    locationCopyShelfLocator: "descMetadata.locationCopyShelfLocator",
   },
 
   right: {
-    rights: "descMetadata.rights"
+    rights: "descMetadata.rights",
+    copyrightClaimant: "descMetadata.copyrightClaimant",
+    rightsHolder: "descMetadata.rightsHolder",
   },
 
-  publisher: {
+  publishing: {
+    source: "descMetadata.source",
+    language: "descMetadata.language",
+    publisher: "descMetadata.publisher",
+    placeOfPublication: "descMetadata.placeOfPublication",
+    provenance: "descMetadata.provenance",
+    largerWork: "descMetadata.largerWork",
+    hostItem: "descMetadata.hostItem",
   },
   
   type: {
     type: "descMetadata.type",
+    workType: "descMetadata.workType",
   },
 
   format: {
     format: "descMetadata.format",
+    physicalExtent: "descMetadata.physicalExtent",
+    measurements: "descMetadata.measurements",
+    hasPart: "descMetadata.hasPart",
   },
-  
+
   grouping: {
-    set: "descMetadata.set"
+    set: "descMetadata.set",
+    localCollection: "descMetadata.localCollection",
+    exhibit: "descMetadata.exhibit",
   },
 
   administrative: {
+    locationCopySublocation: "descMetadata.locationCopySublocation",
+    institution: "descMetadata.institution",
+    conversion: "descMetadata.conversion",
   },
 
 }
@@ -78,3 +125,4 @@ for group, types_map in TEMPLATE_MAP
     property.gsub!("descMetadata", "templateMetadata")
   end
 end
+
