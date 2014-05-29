@@ -12,7 +12,7 @@ class Ability
   end
 
   def review_permissions
-    can [:review], GenericAsset if current_user.admin?
+    can [:review], GenericAsset if current_user.admin? || current_user.archivist?
   end
 
   def ingest_permissions
