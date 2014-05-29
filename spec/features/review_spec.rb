@@ -15,6 +15,17 @@ describe "item review behavior" do
       end
     end
   end
+  context "when logged in as an archivist" do
+    let(:user) {FactoryGirl.create(:archivist)}
+    context "on the review page" do
+      before(:each) do
+        visit reviewer_index_path
+      end
+      it "should let them in" do
+        expect(page).not_to have_content("You do not have permission to review.")
+      end
+    end
+  end
   context "when logged in as an admin" do
     let(:user) {FactoryGirl.create(:admin)}
 
