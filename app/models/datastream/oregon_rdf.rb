@@ -155,7 +155,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#locationCopyShelfLocator') do |index|
     index.as :displayable
   end
-  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#note') do |index|
+  property :note, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#note') do |index|
     index.as :displayable
   end
   
@@ -196,6 +196,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.cover do |index|
+    index.as :searchable, :displayable
+  end
+  property :accessionNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.accessionNumber do |index|
     index.as :searchable, :displayable
   end
   property :exhibit, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.exhibit do |index|
