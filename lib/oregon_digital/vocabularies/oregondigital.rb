@@ -17,6 +17,8 @@ module OregonDigital::Vocabularies
     property :conversionSpecification, :label => 'Conversion Specification'
     property :captionTitle, :label => 'Caption Title'
     property :cover, :label => 'Cover'
+    property :viewDescription, :label => 'View Description'
+    property :accessionNumber, :label => 'Accession Number'
     property :exhibit, :label => 'Exhibit'
     property :dateDigitized, :label => 'Date Digitized'
     # Other terms

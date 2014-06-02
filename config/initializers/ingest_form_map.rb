@@ -20,6 +20,9 @@ INGEST_MAP = {
   title: {
     title: "descMetadata.title",
     alternative: "descMetadata.alternative",
+    captionTitle: "descMetadata.captionTitle",
+    firstLine: "descMetadata.firstLine",
+    firstLineChorus: "descMetadata.firstLineChorus",
   },
 
   creator: {
@@ -27,6 +30,10 @@ INGEST_MAP = {
     contributor: "descMetadata.contributor",
     photographer: "descMetadata.photographer",
     illustrator: "descMetadata.illustrator",
+    composer: "descMetadata.composer",
+    lyricist: "descMetadata.lyricist",
+    arranger: "descMetadata.arranger",
+    printMaker: "descMetadata.printMaker",
   },
   
   description: {
@@ -36,10 +43,14 @@ INGEST_MAP = {
     culturalContext: "descMetadata.culturalContext",
     inscription: "descMetadata.inscription",
     cover: "descMetadata.cover",
+    instrumentation: "descMetadata.instrumentation",
+    note: "descMetadata.note",
   },
 
   subject: {
     lcsubject: "descMetadata.lcsubject",
+    subject: "descMetadata.subject",
+    # ethnographicTerm: "descMetadata.ethnographicTerm",
   },
   
   geographic: {
@@ -47,31 +58,35 @@ INGEST_MAP = {
   },
 
   date: {
-    created: "descMetadata.created",
-    modified: "descMetadata.modified",
     date: "descMetadata.date",
     dateSubmitted: "descMetadata.submissionDate",
+    dateDigitized: "descMetadata.dateDigitized",
     issued: "descMetadata.issued",
     earliestDate: "descMetadata.earliestDate",
     latestDate: "descMetadata.latestDate",
+    created: "descMetadata.created",
+    modified: "descMetadata.modified",
   },
 
   identifier: {
     identifier: "descMetadata.identifier",
     locationCopyShelfLocator: "descMetadata.locationCopyShelfLocator",
+    accessionNumber: "descMetadata.accessionNumber",
   },
 
   right: {
     rights: "descMetadata.rights",
     copyrightClaimant: "descMetadata.copyrightClaimant",
+    rightsHolder: "descMetadata.rightsHolder",
   },
 
-  publishing: {
+  publisher: {
     source: "descMetadata.source",
-    language: "descMetadata.language",
     publisher: "descMetadata.publisher",
     placeOfPublication: "descMetadata.placeOfPublication",
     provenance: "descMetadata.provenance",
+    largerWork: "descMetadata.largerWork",
+    hostItem: "descMetadata.hostItem",
   },
   
   type: {
@@ -111,3 +126,4 @@ for group, types_map in TEMPLATE_MAP
     property.gsub!("descMetadata", "templateMetadata")
   end
 end
+
