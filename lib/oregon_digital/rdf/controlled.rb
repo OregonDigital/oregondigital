@@ -159,15 +159,35 @@ module OregonDigital::RDF
         private
 
           def sparql_starts_search(q)
-            query = @sparql.query("SELECT DISTINCT ?s ?p ?o WHERE { ?s ?p ?o. FILTER(strstarts(lcase(?o), '#{q.downcase}'))}")
+            query = mongo_starts_search(q) if mongo_repository?
+            query ||= @sparql.query("SELECT DISTINCT ?s ?p ?o WHERE { ?s ?p ?o. FILTER(strstarts(lcase(?o), '#{q.downcase}'))}")
             solutions_from_sparql_query(query)
           end
 
           def sparql_contains_search(q)
-            query = @sparql.query("SELECT DISTINCT ?s ?p ?o WHERE { ?s ?p ?o. FILTER(contains(lcase(?o), '#{q.downcase}'))}")
+            query = mongo_contains_search(q) if mongo_repository?
+            query ||= @sparql.query("SELECT DISTINCT ?s ?p ?o WHERE { ?s ?p ?o. FILTER(contains(lcase(?o), '#{q.downcase}'))}")
             solutions_from_sparql_query(query)
           end
-          
+
+          def mongo_repository?
+            @sparql.url.kind_of?(RDF::Mongo::Repository)
+          end
+
+          def mongo_starts_search(q)
+            @sparql.url.coll.find({"$or" => mongo_or_expression, :o => {"$regex" => /^#{q}/i}}).map{|x| x.symbolize_keys}
+          end
+
+          def mongo_contains_search(q)
+            @sparql.url.coll.find({"$or" => mongo_or_expression, :o => {"$regex" => /#{q}/i}}).map{|x| x.symbolize_keys}
+          end
+
+          def mongo_or_expression
+            @mongo_or_expression ||= @parent.vocabularies.map do |vocab, config|
+              {:s => {"$regex" => RSolr.escape(config[:prefix])}}
+            end
+          end
+
           def solutions_from_sparql_query(query)
             # @TODO: labels should be taken from ActiveFedora::Rdf::Resource.
             # However, the default labels there are hidden behind a private method. 
