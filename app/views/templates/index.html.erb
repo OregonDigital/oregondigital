@@ -10,7 +10,6 @@
   <thead>
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">Set</th>
       <th></th>
     </tr>
   </thead>
@@ -28,7 +27,6 @@
             <%= template.title %>
           <% end %>
         </td>
-        <td><%= template.set %></td>
         <td class="button-cell">
           <% if can?(:delete, ::Template) %>
             <a href="<%= template_path(template.id) %>" data-method="delete"
