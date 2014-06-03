@@ -60,7 +60,7 @@ module OregonDigital::ControlledVocabularies
     end
 
     class QaGeonames < OregonDigital::RDF::Controlled::ClassMethods::QaRDF
-      include OregonDigital::Qa::Caching
+      prepend OregonDigital::Qa::Caching
 
       def search(q, sub_authority = nil)
         q = URI.escape(q)
