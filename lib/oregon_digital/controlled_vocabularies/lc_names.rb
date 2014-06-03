@@ -5,6 +5,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :lcnames
 
     class QaLcNames < Qa::Authorities::Loc
+      include OregonDigital::Qa::Caching
       def search(q, sub_authority=nil)
         super(q, 'names')
       end

@@ -243,6 +243,28 @@ describe "(Ingest Form)" do
         expect(asset.descMetadata.set.first.resource.rdf_subject).to eq collection.resource.rdf_subject
       end 
     end
+    context "when a controlled vocabulary is picked", :js => true, :caching => true do
+      context "for the first time" do
+        before do
+          visit_ingest_url
+        end
+        it "should hit up the REST API" do
+          expect(RestClient).to receive(:get).and_call_original
+          choose_controlled_vocabulary_item("subject", "lcsubject", "food", label1, subject1)
+        end
+      end
+      context "for the second time" do
+        before do
+          visit_ingest_url
+          choose_controlled_vocabulary_item("subject", "lcsubject", "food", label1, subject1)
+          visit_ingest_url
+        end
+        it "should not hit the REST API" do
+          expect(RestClient).not_to receive(:get).and_call_original
+          choose_controlled_vocabulary_item("subject", "lcsubject", "food", label1, subject1)
+        end
+      end
+    end
     context "with controlled vocabulary data", :js => true do
       before(:each) do
         visit_ingest_url

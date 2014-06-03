@@ -5,6 +5,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :lcsh
 
     class QaLcsh < Qa::Authorities::Loc
+      include OregonDigital::Qa::Caching
       def search(q, sub_authority=nil)
         super(q, 'subjects')
       end
