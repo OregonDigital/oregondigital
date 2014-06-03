@@ -4,5 +4,5 @@ class OregonDigital::OAI::Provider < ::OAI::Provider::Base
   record_prefix APP_CONFIG['oai']['record_prefix']
   admin_email APP_CONFIG['oai']['admin_email']
   sample_id APP_CONFIG['oai']['sample_id']
-  source_model ::OregonDigital::OAI::Model::ActiveFedoraWrapper.new(::ActiveFedora::Base)
+  source_model ::OregonDigital::OAI::Model::ActiveFedoraWrapper.new(::ActiveFedora::Base, :limit => 10)
 end
