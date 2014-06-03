@@ -37,5 +37,6 @@ staging:
   username: <%= ENV['OREGONDIGITAL_DB_USERNAME'] %>
   password: <%= ENV['OREGONDIGITAL_DB_PASSWORD'] %>
   host: <%= ENV['OREGONDIGITAL_DB_HOST'] %>
+  port: <%= ENV['OREGONDIGITAL_DB_PORT'] || 3306 %>
   pool: 5
   timeout: 5000
