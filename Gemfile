@@ -97,6 +97,9 @@ gem 'mail_form'
 
 gem 'newrelic_rpm'
 
+# Dalli for memcache
+gem 'dalli'
+
 group :development do
   # Spring as Rails preloader
   gem 'spring'

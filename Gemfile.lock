@@ -158,6 +158,7 @@ GEM
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
     daemons (1.1.9)
+    dalli (2.7.2)
     database_cleaner (1.2.0)
     debugger-linecache (1.2.0)
     deep_merge (1.0.0)
@@ -549,6 +550,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   constantinople (~> 0.2.2)
   coveralls
+  dalli
   database_cleaner
   devise
   devise-guests (~> 0.3)
