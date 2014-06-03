@@ -28,3 +28,14 @@ production:
   host: <%= ENV['OREGONDIGITAL_DB_HOST'] %>
   pool: 5
   timeout: 5000
+
+staging:
+  adapter: <%= ENV['OREGONDIGITAL_ADAPTER'] || "sqlite3" %>
+  database: <%= ENV['OREGONDIGITAL_DB'] || 'db/production.sqlite3' %>
+  encoding: utf8
+  reconnect: false
+  username: <%= ENV['OREGONDIGITAL_DB_USERNAME'] %>
+  password: <%= ENV['OREGONDIGITAL_DB_PASSWORD'] %>
+  host: <%= ENV['OREGONDIGITAL_DB_HOST'] %>
+  pool: 5
+  timeout: 5000

@@ -8,3 +8,5 @@ cucumber:
   <<: *TEST
 production:
   url: <%= ENV['OREGONDIGITAL_SOLR_HOST'] || "http://your.production.server:8080/bl_solr/core0" %>
+staging:
+  url: <%= ENV['OREGONDIGITAL_SOLR_HOST'] || "http://your.production.server:8080/bl_solr/core0" %>
