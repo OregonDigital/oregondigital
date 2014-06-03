@@ -113,6 +113,16 @@ describe "SetsController /index" do
             expect(page).to have_content("Oregon State University")
           end
         end
+        context "and a facet is clicked" do
+          before do
+            click_link "Test Facet"
+          end
+          it "should stay in set context" do
+            within("#footer .contact") do
+              expect(page).to have_content("Oregon State University")
+            end
+          end
+        end
         context "and start over is clicked", :js => true do
           before do
             find("#startOverLink").click

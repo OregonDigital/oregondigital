@@ -70,7 +70,12 @@ module CollectionsHelper
   # TODO: Improve me.
   def catalog_index_path(*args)
     if params[:controller] == "sets"
-      return sets_path(*(args << {:set => params[:set]}))
+      if args.last.kind_of?(Hash)
+        args.last.merge!({:set => params[:set]})
+      else
+        args << {:set => params[:set]}
+      end
+      return sets_path(*(args))
     end
     super
   end
