@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/no-reply/active_fedora.git
-  revision: b83dedc77da6c23e41c1ce768306115ad3aa8382
+  revision: 3ee384fd3e3fcd83b226bf2840ad23788f157b11
   branch: oregon-af7
   specs:
     active-fedora (7.0.0.rc3)
@@ -214,7 +214,7 @@ GEM
     hike (1.2.3)
     hooks (0.3.6)
       uber (~> 0.0.4)
-    htmlentities (4.3.1)
+    htmlentities (4.3.2)
     hybag (0.2.0)
       active-fedora
       activesupport (>= 3.2.0, < 5.0)
@@ -514,7 +514,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    uber (0.0.4)
+    uber (0.0.6)
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
