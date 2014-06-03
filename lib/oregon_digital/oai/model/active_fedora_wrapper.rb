@@ -1,8 +1,14 @@
 class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   attr_accessor :inner_model
 
-  def initialize(model)
+  def initialize(model, options={})
     self.inner_model = model
+    @limit = options.delete(:limit)
+    unless options.empty?
+      raise ArgumentError.new(
+        "Unsupported options [#{options.keys.join(', ')}]"
+      )
+    end
   end
 
   def earliest
@@ -25,8 +31,31 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     query = form_query(options)
     result = model.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true").where(query)
     result = result.where("id:#{RSolr.escape(selector)}") unless selector.blank? || selector == :all
+    result = result.limit(@limit) if @limit
     result = result.order("#{updated_at_field} desc")
+    return next_set(result, options[:resumption_token]) if options[:resumption_token]
+    if @limit && result.count > @limit
+      return partial_result(result, OAI::Provider::ResumptionToken.new(options.merge({:last => 0}))) 
+    end
     return result.to_a
+  end
+
+  def next_set(result, token_string)
+    raise OAI::ResumptionTokenException.new unless @limit
+    token = OAI::Provider::ResumptionToken.parse(token_string)
+    result = result.offset(token.last)
+    # End of result set
+    if token.last+@limit == result.count
+      return result
+    else
+      return partial_result(result, token)
+    end
+  end
+
+  def partial_result(result, token)
+    raise OAI::ResumptionTokenException.new unless result
+    offset = token.last+@limit
+    OAI::Provider::PartialResult.new(result, token.next(offset))
   end
 
   def timestamp_field

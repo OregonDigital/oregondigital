@@ -18,6 +18,7 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
       f.save
       f
     end
+    let(:generic_asset_3) {FactoryGirl.create(:generic_asset)}
     before(:each) do
       generic_asset_1
       sleep(1)
@@ -30,6 +31,25 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
       context "when given :all" do
         it "should return all records" do
           expect(subject.find(:all).length).to eq 2
+        end
+      end
+      context "when given a limit" do
+        before do
+          sleep(1)
+          generic_asset_3
+        end
+        subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset, :limit => 1)}
+        it "should return only that many" do
+          expect(subject.find(:all).records.length).to eq 1
+        end
+        it "should provide a token" do
+          expect(subject.find(:all).token.last).to eq 1
+        end
+        it "should provide a usable token" do
+          token = subject.find(:all, :metadata_prefix => 'oai_dc').token.send(:encode_conditions)
+          middle_result = subject.find(:all, :resumption_token => token)
+          expect(middle_result.records).to eq [generic_asset_2]
+          expect(subject.find(:all, :resumption_token => middle_result.token.send(:encode_conditions))).to eq [generic_asset_1]
         end
       end
       context "when given an id" do
