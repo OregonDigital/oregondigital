@@ -10,5 +10,9 @@ production:
   user: <%= ENV['OREGONDIGITAL_FEDORA_USER'] || "fedoraAdmin" %>
   password: <%= ENV['OREGONDIGITAL_FEDORA_PASSWORD'] || "fedoraAdmin" %>
   url: <%= ENV['OREGONDIGITAL_FEDORA_HOST'] || "http://your.production.server:8080/fedora" %>
+staging:
+  user: <%= ENV['OREGONDIGITAL_FEDORA_USER'] || "fedoraAdmin" %>
+  password: <%= ENV['OREGONDIGITAL_FEDORA_PASSWORD'] || "fedoraAdmin" %>
+  url: <%= ENV['OREGONDIGITAL_FEDORA_HOST'] || "http://your.production.server:8080/fedora" %>
 cucumber:
   <<: *TEST
