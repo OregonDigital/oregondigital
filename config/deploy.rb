@@ -18,7 +18,7 @@ set :branch, config['branch']
 set :deploy_via, :remote_cache
 set :use_sudo, false
 set :keep_releases, 5
-set :shared_children, shared_children + %w{pids sockets tmp media set_content public/media public/thumbnails}
+set :shared_children, shared_children + %w{pids sockets tmp media set_content public/media public/thumbnails jetty}
 
 # if you want to clean up old releases on each deploy uncomment this:
 after 'deploy:restart', 'deploy:cleanup'

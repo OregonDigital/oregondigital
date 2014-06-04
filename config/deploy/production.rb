@@ -10,7 +10,7 @@ role :db,  config['hosts']['db'], :primary => true # This is where Rails migrati
 # Git Config
 set :branch, config['branch']
 # God Settings
-set :god_app_path, "#{current_path}/#{config['god']['app_path']}"
+set(:god_app_path) {"#{current_path}/#{config['god']['app_path']}"}
 set :god_sites_path,  config['god']['sites_path']
 set :deploy_to, config['deploy_to']
 # Deploy Commands
