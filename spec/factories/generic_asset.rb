@@ -65,5 +65,13 @@ FactoryGirl.define do
     factory :document, class: Document do
       sequence(:title) {|n| "Document #{n}"}
     end
+
+    factory :video, :class => Video do
+      sequence(:title) {|n| "Video #{n}"}
+    end
+
+    factory :audio, :class => Audio do
+      sequence(:title) {|n| "Audio #{n}"}
+    end
   end
 end
