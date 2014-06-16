@@ -52,6 +52,9 @@ Oregondigital::Application.routes.draw do
   # Document Metadata
   resources :document, :only => [:show]
 
+  # Resource routes
+  resources :resource, :only => [:show]
+
   # Static Pages
   get ':action' => 'static#:action', :constraints => { :action => /copyright|help/ }, :as => :static
 end
