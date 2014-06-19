@@ -4,6 +4,7 @@ class Ability
   self.ability_logic += [:review_permissions]
   self.ability_logic += [:ingest_permissions]
   self.ability_logic += [:template_permissions]
+  self.ability_logic += [:download_permissions]
 
   def role_permissions
     if current_user.admin?
@@ -13,6 +14,10 @@ class Ability
 
   def review_permissions
     can [:review], GenericAsset if current_user.admin? || current_user.archivist?
+  end
+
+  def download_permissions
+    can [:download], Document
   end
 
   def ingest_permissions
