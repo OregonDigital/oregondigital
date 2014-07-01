@@ -1,9 +1,7 @@
 module OregonDigital::RDF
   ##
-  # A class of RdfResources to act as the primary/root resource associated
-  # with a Datastream and ActiveFedora::Base object.
-  #
-  # @see OregonDigital::RdfResourceDatastream
+  # Override default List implementation to fix some bugs with appending to a list.
+  # TODO: Move this up and analyze the resulting n-triples.
   class List < ActiveFedora::Rdf::List
     class << self
       def from_uri(uri, vals)
