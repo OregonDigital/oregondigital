@@ -205,7 +205,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
   property :dateDigitized, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.dateDigitized
-  property :od_content, :predicate => RDF::URI('http://opaquenamespace.org/ns/contents'), :class_name => OregonDigital::RDF::List
+  property :od_content, :predicate => RDF::URI('http://opaquenamespace.org/ns/contents'), :class_name => OregonDigital::RDF::List do |index|
+    index.as :symbol
+  end
 
 # Oregon Digital Rights
   property :rightsHolder, :predicate => RDF::URI('http://opaquenamespace.org/rights/rightsHolder') do |index|
