@@ -276,6 +276,9 @@ describe GenericAsset, :resque => true do
       it "should return nil" do
         expect(generic_asset.compound_parent).to be_nil
       end
+      it "should not be compounded" do
+        expect(generic_asset).not_to be_compounded
+      end
     end
     context "when it does have a parent" do
       let(:parent) {FactoryGirl.create(:generic_asset)}
@@ -287,8 +290,12 @@ describe GenericAsset, :resque => true do
       it "should return the parent" do
         expect(generic_asset.compound_parent).to eq parent
       end
+      it "should be compounded" do
+        expect(generic_asset).to be_compounded
+      end
     end
   end
+
 
   describe '#od_content' do
     let(:asset_2) {FactoryGirl.create(:generic_asset)}

@@ -11,7 +11,11 @@ module OregonDigital
     end
 
     def compound_parent
-      @compound_parent ||= GenericAsset.where(Solrizer.solr_name("desc_metadata__od_content", :symbol).to_sym => resource.rdf_subject.to_s).first.adapt_to_cmodel
+      @compound_parent ||= GenericAsset.where(Solrizer.solr_name("desc_metadata__od_content", :symbol).to_sym => resource.rdf_subject.to_s).first.try(:adapt_to_cmodel)
+    end
+
+    def compounded?
+      compound_parent.present?
     end
 
   end
