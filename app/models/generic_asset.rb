@@ -5,6 +5,7 @@ class GenericAsset < ActiveFedora::Base
   include Hybag::Baggable
   include OregonDigital::Workflow
   include OregonDigital::OAI::Concern
+  include OregonDigital::Compound
   include ActiveFedora::Rdf::Identifiable
 
   has_metadata :name => 'descMetadata', :type => Datastream::OregonRDF

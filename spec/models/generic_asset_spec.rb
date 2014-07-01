@@ -270,4 +270,38 @@ describe GenericAsset, :resque => true do
       end
     end
   end
+  describe '#od_content' do
+    let(:asset_2) {FactoryGirl.create(:generic_asset)}
+    let(:asset_3) {FactoryGirl.create(:generic_asset)}
+    context "when there are no entries" do
+      it "should not be a compound object" do
+        expect(generic_asset).not_to be_compound
+      end
+    end
+    context "when appending" do
+      before do
+        generic_asset.od_content << asset_2
+        generic_asset.od_content << asset_3
+      end
+      it "should be gettable" do
+        expect(generic_asset.od_content.to_a).to eq [asset_2, asset_3]
+      end
+      it "should be a compound object" do
+        expect(generic_asset).to be_compound
+      end
+      context "and it's persisted" do
+        let(:asset_4) {FactoryGirl.create(:generic_asset)}
+        before do
+          generic_asset.save
+        end
+        it "be able to get its content back" do
+          expect(GenericAsset.find(generic_asset.pid).od_content.to_a).to eq [asset_2, asset_3]
+        end
+        it "should be able to append more objects" do
+          generic_asset.od_content << asset_4
+          expect(generic_asset.od_content.to_a).to eq [asset_2, asset_3, asset_4]
+        end
+      end
+    end
+  end
 end
