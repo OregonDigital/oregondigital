@@ -10,6 +10,28 @@ describe "compound objects" do
       parent.od_content << object_2
       parent.save
     end
+    context "and the root page is visited" do
+      before do
+        visit catalog_path(parent.pid)
+      end
+      context "and it has no content" do
+        it "should redirect to the first item page" do
+          expect(current_path).to eq catalog_path(object.pid)
+        end
+      end
+      context "and it has content" do
+        let(:parent) {FactoryGirl.create(:generic_asset, :with_tiff_datastream)}
+        it "should not redirect" do
+          expect(current_path).not_to eq catalog_path(object.pid)
+          expect(current_path).to eq catalog_path(parent.pid)
+        end
+        it "should show a link to the root item in contents" do
+          within("#contents") do
+            expect(page).to have_content(parent.title)
+          end
+        end
+      end
+    end
     context "and the page is visited" do
       before do
         visit catalog_path(object.pid)

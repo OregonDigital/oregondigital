@@ -3,8 +3,12 @@
 
 <ul class="nav nav-list">
     <li class="nav-header">Contents</li>
-    <% decorated_object.compound_parent.od_content.each do |item| %>
-      <li><%= link_to_unless item.pid == decorated_object.pid, item.title, catalog_path(item.pid) %></li>
+      <% if decorated_object.compound? %>
+        <%= link_to decorated_object.title, catalog_path(decorated_object.pid) %>
+      <% else %>
+        <% decorated_object.compound_parent.od_content.each do |item| %>
+        <li><%= link_to_unless item.pid == decorated_object.pid, item.title, catalog_path(item.pid) %></li>
+      <% end %>
     <% end %>
 </ul>
 
