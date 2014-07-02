@@ -270,4 +270,73 @@ describe GenericAsset, :resque => true do
       end
     end
   end
+
+  describe '#compound_parent' do
+    context "when it doesn't have a parent" do
+      it "should return nil" do
+        expect(generic_asset.compound_parent).to be_nil
+      end
+      it "should not be compounded" do
+        expect(generic_asset).not_to be_compounded
+      end
+    end
+    context "when it does have a parent" do
+      let(:parent) {FactoryGirl.create(:generic_asset)}
+      before do
+        generic_asset.save
+        parent.od_content << generic_asset
+        parent.save
+      end
+      it "should return the parent" do
+        expect(generic_asset.compound_parent).to eq parent
+      end
+      it "should be compounded" do
+        expect(generic_asset).to be_compounded
+      end
+    end
+  end
+
+
+  describe '#od_content' do
+    let(:asset_2) {FactoryGirl.create(:generic_asset)}
+    let(:asset_3) {FactoryGirl.create(:generic_asset)}
+    context "when there are no entries" do
+      it "should not be a compound object" do
+        expect(generic_asset).not_to be_compound
+      end
+    end
+    context "when appending" do
+      before do
+        generic_asset.od_content << asset_2
+        generic_asset.od_content << asset_3
+      end
+      context "when appending an unsaved object" do
+        it "should error" do
+          expect{generic_asset.od_content << GenericAsset.new}.to raise_error
+        end
+      end
+      it "should be gettable" do
+        expect(generic_asset.od_content.to_a).to eq [asset_2, asset_3]
+      end
+      it "should index" do
+        expect(generic_asset.to_solr[Solrizer.solr_name("desc_metadata__od_content", :symbol)]).to eq [asset_2.resource.rdf_subject.to_s, asset_3.resource.rdf_subject.to_s]
+      end
+      it "should be a compound object" do
+        expect(generic_asset).to be_compound
+      end
+      context "and it's persisted" do
+        let(:asset_4) {FactoryGirl.create(:generic_asset)}
+        before do
+          generic_asset.save
+        end
+        it "be able to get its content back" do
+          expect(GenericAsset.find(generic_asset.pid).od_content.to_a).to eq [asset_2, asset_3]
+        end
+        it "should be able to append more objects" do
+          generic_asset.od_content << asset_4
+          expect(generic_asset.od_content.to_a).to eq [asset_2, asset_3, asset_4]
+        end
+      end
+    end
+  end
 end
