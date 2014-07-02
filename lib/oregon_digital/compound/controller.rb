@@ -2,7 +2,7 @@ module OregonDigital::Compound
   module Controller
     extend ActiveSupport::Concern
     included do
-      before_filter :compound_parent_redirect
+      before_filter :compound_parent_redirect, :only => :show
     end
 
     def compound_parent_redirect
