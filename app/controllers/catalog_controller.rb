@@ -12,8 +12,6 @@ class CatalogController < ApplicationController
   include OregonDigital::Catalog::IndexFields
   include OregonDigital::Catalog::SearchFields
   include OregonDigital::Catalog::Decorators
-  # Compound object logic
-  include OregonDigital::Compound::Controller
 
   # These before_filters apply the hydra access controls
   before_filter :enforce_show_permissions, :only=>:show

@@ -26,6 +26,14 @@ class GenericAssetDecorator < Draper::Decorator
     results.map {|r| field_value_to_string(field, r)}.reject {|val| val.blank?}
   end
 
+  def compound_list
+    list = []
+    list << self if compound?
+    list |= od_content.to_a
+    list |= compound_parent.decorate.compound_list if compound_parent
+    list
+  end
+
   private
 
   def field_value_to_string(field, value)
@@ -33,7 +41,7 @@ class GenericAssetDecorator < Draper::Decorator
     # label, so we can safely assume we have no CV field unless those exist
     value = value.resource if value.respond_to?(:resource)
     return value.to_s unless value.respond_to?(:rdf_label)
-    return "" if value.rdf_label.first.to_s == value.rdf_subject
+    return "" if value.rdf_label.first.to_s == value.rdf_subject || value.rdf_label.first.blank?
 
     # Figure out the CV facet to use here
     facet_field_name = Solrizer.solr_name("desc_metadata__#{field}_label", :facetable)
