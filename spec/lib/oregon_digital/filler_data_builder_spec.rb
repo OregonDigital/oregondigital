@@ -4,12 +4,31 @@ describe OregonDigital::FillerDataBuilder do
   subject {OregonDigital::FillerDataBuilder}
   let(:arguments) {}
   describe "#call" do
+    let(:default_options) do
+      {:collections => [
+        {
+          :institution => "University_of_Oregon",
+          :model => "document",
+          :elements => 3,
+          :traits => [:with_pdf_datastream]
+        },
+        {
+          :institution => "Oregon_State_University",
+          :model => "image",
+          :elements => 3,
+          :traits => [:with_tiff_datastream ]
+        },
+      ]}
+    end
     before do
+      # Hack the defaults so we aren't trying to create and ingest 90 items
+      subject.any_instance.stub(:default_options => default_options)
       subject.call(arguments)
     end
     context "when given no arguments" do
       describe "created collections" do
         let(:collections) {GenericCollection.all}
+
         before do
           Image.stub(:create_derivatives)
           Document.stub(:create_derivatives)

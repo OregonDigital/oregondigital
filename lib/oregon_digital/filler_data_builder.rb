@@ -49,14 +49,19 @@ module OregonDigital
             {
               :institution => "University_of_Oregon",
               :model => "document",
-              :elements => 3,
+              :elements => 30,
               :traits => [:with_pdf_datastream]
             },
             {
               :institution => "Oregon_State_University",
               :model => "image",
-              :elements => 3,
+              :elements => 30,
               :traits => [:with_tiff_datastream ]
+            },
+            {
+              :model => "image",
+              :elements => 30,
+              :traits => [:with_jpeg_datastream ]
             }
           ]
         }
