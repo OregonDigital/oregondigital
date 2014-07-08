@@ -15,8 +15,21 @@ describe "compound objects" do
         visit catalog_path(parent.pid)
       end
       context "and it has no content" do
-        it "should redirect to the first item page" do
-          expect(current_path).to eq catalog_path(object.pid)
+        it "should show its metadata" do
+          expect(current_path).not_to eq catalog_path(object.pid)
+          expect(current_path).to eq catalog_path(parent.pid)
+          expect(page).to have_content(parent.title)
+        end
+        it "should not show the OD content in metadata" do
+          expect(page).not_to have_content("Od content")
+        end
+        it "should show a link to the root item in contents" do
+          within("#contents") do
+            expect(page).to have_content(parent.title)
+          end
+        end
+        it "should show a link to child items" do
+          expect(page).to have_link object.title
         end
       end
       context "and it has content" do
@@ -46,6 +59,10 @@ describe "compound objects" do
       it "should have a working link to other items" do
         click_link object_2.title
         expect(current_path).to eq catalog_path(object_2.pid)
+      end
+      it "should have a working link to the root item" do
+        click_link parent.title
+        expect(current_path).to eq catalog_path(parent.pid)
       end
     end
   end
