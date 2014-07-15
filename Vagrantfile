@@ -23,5 +23,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 8983, host: 8983
 
   config.vm.provision "shell",
-                      inline: "source /home/vagrant/.bashrc && sudo apt-get update -qq && sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev graphicsmagick poppler-utils poppler-data ghostscript pdftk libreoffice redis-server git gcc build-essential libmysqlclient-dev phantomjs mongodb memcached && cd /vagrant && rvm fix-permissions && bundle install && rake db:create && rake db:migrate && rake sets:content:sync && rake hydra:jetty:config && rake jetty:restart"
+                      inline: "source /home/vagrant/.bashrc && sudo apt-get update -qq && sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev graphicsmagick poppler-utils poppler-data ghostscript pdftk libreoffice redis-server git gcc build-essential libmysqlclient-dev phantomjs mongodb memcached ffmpeg libvorbis-dev libavcodec-extra-52 && cd /vagrant && rvm fix-permissions && bundle install && rake db:create && rake db:migrate && rake sets:content:sync && rake hydra:jetty:config && rake jetty:restart"
 end

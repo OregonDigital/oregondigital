@@ -33,4 +33,11 @@ describe "Asset viewer logic" do
     click_link "Generic thingy"
     expect(page).to have_selector("#generic-viewer")
   end
+
+  it "should use the audio viewer for audio files" do
+    FactoryGirl.create(:audio, :with_audio_datastream, :title => "Test Audio")
+    click_button "search"
+    click_link "Test Audio"
+    expect(page).to have_selector("audio")
+  end
 end

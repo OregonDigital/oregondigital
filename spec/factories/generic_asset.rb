@@ -42,6 +42,17 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_audio_datastream do
+      after(:build) do |obj|
+        obj.add_file_datastream(
+          File.open("#{ROOT}/spec/fixtures/fixture_sound.wav", "rb").read,
+          :dsid => "content",
+          :mimetype => "audio/wav",
+          :label => "audio.wav"
+        )
+      end
+    end
+
     trait :pending_review do
       after(:build) do |obj|
         obj.reset_workflow

@@ -13,7 +13,7 @@ env:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev graphicsmagick
-    poppler-utils poppler-data ghostscript pdftk libreoffice
+    poppler-utils poppler-data ghostscript pdftk libreoffice ffmpeg libvorbis-dev libavcodec-extra-53
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
   - gem install bundler bundle_cache
   - bundle_cache_install
