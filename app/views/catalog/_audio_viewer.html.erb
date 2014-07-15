@@ -1,0 +1,5 @@
+<audio controls>
+<% decorated_object.audio_files.each do |mime,file| %>
+    <source src="<%= file %>" type="<%= mime %>">
+<% end %>
+</audio>

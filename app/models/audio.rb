@@ -30,7 +30,7 @@ class Audio < GenericAsset
     }, :processor => :audio_filesystem
   end
 
-  private
+  protected
 
   def audio_location
     fd = OregonDigital::FileDistributor.new(pid)
@@ -39,7 +39,7 @@ class Audio < GenericAsset
   end
 
   def audio_base_path
-    return APP_CONFIG.try(:thumbnail_path) || Rails.root.join("media", "audio")
+    return APP_CONFIG.try(:audio_path) || Rails.root.join("media", "audio")
   end
 
 end
