@@ -254,7 +254,6 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    libv8 (3.16.14.3)
     linkeddata (1.1.0)
       json-ld (>= 1.1.0)
       rdf (>= 1.1.0)
@@ -408,7 +407,6 @@ GEM
     redis (3.0.6)
     redis-namespace (1.3.1)
       redis (~> 3.0.0)
-    ref (1.0.5)
     request_store (1.0.5)
     resque (1.25.1)
       mono_logger (~> 1.0)
@@ -503,9 +501,6 @@ GEM
       json (>= 1.1.1)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
-    therubyracer (0.12.0)
-      libv8 (~> 3.16.14.0)
-      ref
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
@@ -600,7 +595,6 @@ DEPENDENCIES
   spring
   sprockets-digest-assets-fix!
   sqlite3 (~> 1.3.7)
-  therubyracer
   uglifier (>= 1.3.0)
   unicode
   webmock

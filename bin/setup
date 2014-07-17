@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Source for RVM
+source ~/.bashrc
+# Install Dependencies
+echo "Updating System"
+sudo apt-get update -qq
+sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev \
+  graphicsmagick poppler-utils poppler-data ghostscript pdftk \
+  libreoffice redis-server git gcc build-essential libmysqlclient-dev \
+  phantomjs mongodb memcached libav-tools libvorbis-dev \
+  libavcodec-extra-54 nodejs
+# Symlinking ffmpeg...
+sudo ln -s /usr/bin/avconv /usr/bin/ffmpeg
+
+# Install RVM
+echo "Install RVM, Ruby, Gems"
+curl -sSL https://get.rvm.io | bash -s stable --ruby > /dev/null 2>&1
+source /usr/local/rvm/scripts/rvm
+echo "Installed `ruby --version`"
+source ~/.bashrc
+rvm fix-permissions
+
+# Run tasks for Oregon Digital
+cd /vagrant
+bundle install
+rake db:create db:migrate
+rake sets:content:sync
+rake hydra:jetty:config
+rake jetty:restart
+
+echo "Server set up"
