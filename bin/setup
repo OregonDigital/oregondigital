@@ -10,14 +10,19 @@ sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev \
   libreoffice redis-server git gcc build-essential libmysqlclient-dev \
   phantomjs mongodb memcached libav-tools libvorbis-dev \
   libavcodec-extra-54 nodejs
+
 # Symlinking ffmpeg...
-sudo ln -s /usr/bin/avconv /usr/bin/ffmpeg
+if [[ ! -e "/usr/bin/ffmpeg" ]]; then
+  sudo ln -s /usr/bin/avconv /usr/bin/ffmpeg
+fi
 
 # Install RVM
-echo "Install RVM, Ruby, Gems"
-curl -sSL https://get.rvm.io | bash -s stable --ruby > /dev/null 2>&1
-source /usr/local/rvm/scripts/rvm
-echo "Installed `ruby --version`"
+if [[ ! -e "/usr/local/rvm/scripts/rvm" ]]; then
+  echo "Install RVM, Ruby, Gems"
+  curl -sSL https://get.rvm.io | bash -s stable --ruby > /dev/null 2>&1
+  source /usr/local/rvm/scripts/rvm
+  echo "Installed `ruby --version`"
+fi
 source ~/.bashrc
 rvm fix-permissions
 
@@ -27,6 +32,6 @@ bundle install
 rake db:create db:migrate
 rake sets:content:sync
 rake hydra:jetty:config
-rake jetty:restart
+rake jetty:start
 
 echo "Server set up"
