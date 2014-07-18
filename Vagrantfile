@@ -20,6 +20,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.vm.network :forwarded_port, guest: 8983, host: 8983
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+  end
   config.vm.provision "shell",
                       path: "bin/setup",
                       run: "always"
