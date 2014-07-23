@@ -24,7 +24,7 @@
 #header-navbar-fixed-top {
   .navbar-inner {
     .black, .black a {
-      color: #FFF;
+      color: #fff;
     }
     .brand, .brand a {
       color: #000;
@@ -33,5 +33,14 @@
 }
 
 .sets #osu-top-hat {
-  color: #FFF;
+  color: #fff;
+}
+
+#header-navbar-fixed-top .navbar-inner .black {
+/*  background-color: red !important;*/
+}
+
+#searchbar span {
+  font-size: .8em;
+  top: 5em;
 }

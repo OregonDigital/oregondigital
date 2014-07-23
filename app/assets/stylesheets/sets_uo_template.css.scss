@@ -1,53 +1,27 @@
 .sets.University_of_Oregon {
   $background: #F1ECE3;
-  $accent-bg: #DAC582;
+  $accent-bg: #F5DBB2;
   $highlight-bg: #1FA1BF;
 
   $color: #008000;
   $highlight-color: #ffffff;
 
-  @font-face {
-    font-family: "EksjaExtremesRegular";
-    font-style: normal;
-    font-weight: normal;
-    src: font-url("Eksja-regular-webfont.woff") format("woff"), font-url("Eksja-regular-webfont.ttf") format("truetype"), font-url("Eksja-regular-webfont.svg#webfont") format("svg");
-  }
-
   body {
     font-family: "Gudea","Arial","Verdana",sans-serif;
   }
 
-  h1, h1 a, h2, h3, h4 {
-    color: $color;
-    font-family: 'EksjaExtremesRegular',Arial,Helvetica,Verdana,sans-serif;
-  }
-  h1, h1 a {
-    color: #004F27;
-  }
-  a {
-    color: $color;
-  }
-  @media (min-width: 768px) {
-    #osu-top-hat .tag {
-      background-color: #004F27;
-      padding: 15px;
-    }
-  }
   #facets h4, #sidebar-nav .nav-header {
-    background-color: #004F27;
+    background-color: #144651;
     color: #FFFFFF;
-    font-family: 'EksjaExtremesRegular',Arial,Helvetica,Verdana,sans-serif;
-
   }
 
   #facets h5.twiddle-open {
     background-color: #5D87A1;
   }
 
-#main-wrapper {
+  #main-wrapper {
     position: relative;
-    background: #fff; 
-}
+  }
 
   #navigation {
     clear: left;
@@ -57,23 +31,29 @@
     margin-right: -100%;
     padding: 0px;
     height: 3em;
-}
+  }
 
-#navigation ul.links, #navigation .content ul {
+  #navigation ul.links, #navigation .content ul {
     margin: 0px;
     padding: 10px 0px 0px;
     text-align: left;
-}
+  }
 
-#navigation ul.links li, #navigation .content li {
+  #navigation ul.links li, #navigation .content li {
     float: left;
     padding: 0px 20px 0px 0px;
-}
+  }
 
-ul.inline li {
+  ul.inline li {
     display: inline;
     list-style-type: none;
     padding: 0px 0.5em;
-}
+  }
 
+  @media (min-width: 768px) {
+    #osu-top-hat .tag {
+      background-color: #004F27;
+      padding: 15px;
+    }
+  }
 }
