@@ -50,7 +50,7 @@ describe OregonDigital::CsvBulkIngestible do
       Dir.stub(:glob).and_call_original
       Dir.stub(:glob).with(File.join(dir, '*.csv')).and_return([File.join(dir, 'test.csv')])
       CSV.stub(:foreach).with(File.join(dir, 'test.csv'), :headers => true, :header_converters => :symbol).
-        and_yield(CSV::Row.new((sym_headers << :not_real_field), ['1.txt', 'Fake 1', 'Moomin Pappa', 'moomin-collection', 'http://sws.geonames.org/5720727/', "not real field's value"]))
+        and_yield(CSV::Row.new((sym_headers << :not_real_field), ['1.txt', 'Fake 1', 'Moomin Pappa', 'moomin-collection', 'http://sws.geonames.org/5720727/', "Moomin Valley Historical Society", "not real field's value"]))
     end
   end
 
@@ -113,7 +113,7 @@ describe OregonDigital::CsvBulkIngestible do
       it 'should throw an error with list of bad fields' do
         expect { assets }.to raise_error { |error|
           expect(error).to be_a(OregonDigital::CsvBulkIngestible::CsvBatchError)
-          expect(error.field_errors).to eq [:not_real_field]
+          expect(error.field_errors).to eq ['notRealField']
         }
       end
     end
