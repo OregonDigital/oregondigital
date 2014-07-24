@@ -1,6 +1,6 @@
 .sets.Oregon_State_University {
   $background: #F1ECE3;
-  $accent-bg: #DAC582;
+  $accent-bg: #F5DBB2;
   $highlight-bg: #1FA1BF;
 
   $color: #561F4B;
@@ -17,22 +17,15 @@
     font-family: "Gudea","Arial","Verdana",sans-serif;
   }
 
-
-  h1, h1 a, h2, h3, h4 {
-    font-weight: normal;
-    color: $color;
+  h1, h2, h3, h4 {
+    //color: $color;
     font-family: 'EksjaExtremesRegular',Arial,Helvetica,Verdana,sans-serif;
-  }
-
-  a {
-    color: #C34500;
   }
 
   #facets h4, #sidebar-nav .nav-header {
-    background-color: #5C2651;
-    color: #FFFFFF;
+    background-color: #144651;
+    color: #fff;
     font-family: 'EksjaExtremesRegular',Arial,Helvetica,Verdana,sans-serif;
-
   }
 
   #facets h5.twiddle-open {

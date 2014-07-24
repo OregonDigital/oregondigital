@@ -1,6 +1,6 @@
 /* Accessibility tweaks to built-in variables to avoid crazy CSS overrides */
-$linkColor:             darken(#08c, 20%);
-$linkColorHover:        darken($linkColor, 15%);
+$linkColor:             #0f959a;//#1C88A4;
+$linkColorHover:        lighten($linkColor, 10%);
 $warningText:           darken(#c09853, 20%);
 $successText:           darken(#468847, 20%);
 $errorText:             darken(#b94a48, 20%);
@@ -8,7 +8,7 @@ $infoText:              darken(#3a87ad, 20%);
 
 /* Undo color changes for variables that bootstrap defines as being based on
  * those I just overrode */
-$btnPrimaryBackground:          #08c;
+$btnPrimaryBackground:          #0f959a;
 $dropdownLinkBackgroundActive:  #08c;
 
 @import 'bootstrap';
