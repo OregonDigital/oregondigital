@@ -98,6 +98,11 @@ class BulkTask < ActiveRecord::Base
     set_status(:deleted)
   end
 
+  def queue_delete
+    set_status(:processing)
+    Resque.enqueue(BulkIngest::Delete, self.id)
+  end
+
   def reset!
     delete_assets
     set_status :new
@@ -127,6 +132,11 @@ class BulkTask < ActiveRecord::Base
       asset.review
     end
     set_status(:reviewed)
+  end
+
+  def queue_review
+    set_status(:processing)
+    Resque.enqueue(BulkIngest::Review, self.id)
   end
 
   private

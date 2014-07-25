@@ -2,48 +2,42 @@ class BulkTasksController < ApplicationController
   before_filter :restrict_to_archivist
   
   def index
+    restrict_to_archivist
     BulkTask.refresh
     @tasks = BulkTask.all
   end
 
   def show
+    restrict_to_archivist
     @task = BulkTask.find(params[:id])
   end
 
   def ingest
+    restrict_to_archivist
     task = BulkTask.find(params[:id])
     task.enqueue
     redirect_to bulk_tasks_path, notice: "Added #{task.directory} to the ingest queue."
   end
 
-  def validate
-    task = BulkTask.find(params[:id])
-    task.queue_validation
-    redirect_to bulk_tasks_path, notice: "Added #{task.directory} to the validation queue."
-  end
-
   def reset_task
+    restrict_to_archivist
     task = BulkTask.find(params[:id])
     task.reset!
-    redirect_to bulk_tasks_path, notice: "Reset #{task.directory}."
+    redirect_to bulk_tasks_path, notice: "Reset job: #{task.directory}."
   end
 
   def review_all
+    restrict_to_archivist
     task = BulkTask.find(params[:id])
-    task.status = :processing
-    task.save
-    task.review_assets
-    Resque.enqueue(BulkReviewJob, task.id)
-    redirect_to bulk_tasks_path, notice: "Batch reviewed #{task.asset_ids.count} items from #{task.directory}."
+    task.queue_review
+    redirect_to bulk_tasks_path, notice: "Queued batch review of #{task.asset_ids.count} items from #{task.directory}."
   end
 
   def delete_all
+    restrict_to_archivist
     task = BulkTask.find(params[:id])
-    task.status = :processing
-    task.save
-    task.delete_assets
-    Resque.enqueue(BulkDeleteJob, task.id)
-    redirect_to bulk_tasks_path, notice: "Batch deleted #{task.asset_ids.count} items from #{task.directory}."
+    task.queue_delete
+    redirect_to bulk_tasks_path, notice: "Queued batch delete of #{task.asset_ids.count} items from #{task.directory}."
   end
 
   private
