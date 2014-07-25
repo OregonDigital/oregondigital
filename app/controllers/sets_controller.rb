@@ -5,7 +5,7 @@ class SetsController < CatalogController
   before_filter :strip_facets
 
   def index
-    @collections = sets
+    @collections = sets.sort_by {|s| s.title.sub(/^(the|a|an)\s+/i, '')}
     @collection = set
     super
   end
