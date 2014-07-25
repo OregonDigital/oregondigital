@@ -16,9 +16,15 @@ class BulkTasksController < ApplicationController
     redirect_to bulk_tasks_path, notice: "Added #{task.directory} to the ingest queue."
   end
 
+  def validate
+    task = BulkTask.find(params[:id])
+    task.queue_validation
+    redirect_to bulk_tasks_path, notice: "Added #{task.directory} to the validation queue."
+  end
+
   def reset_task
     task = BulkTask.find(params[:id])
-    task.reset
+    task.reset!
     redirect_to bulk_tasks_path, notice: "Reset #{task.directory}."
   end
 
@@ -26,7 +32,7 @@ class BulkTasksController < ApplicationController
     task = BulkTask.find(params[:id])
     task.status = :processing
     task.save
-    # task.review_assets
+    task.review_assets
     Resque.enqueue(BulkReviewJob, task.id)
     redirect_to bulk_tasks_path, notice: "Batch reviewed #{task.asset_ids.count} items from #{task.directory}."
   end
@@ -35,7 +41,7 @@ class BulkTasksController < ApplicationController
     task = BulkTask.find(params[:id])
     task.status = :processing
     task.save
-    # task.delete_assets
+    task.delete_assets
     Resque.enqueue(BulkDeleteJob, task.id)
     redirect_to bulk_tasks_path, notice: "Batch deleted #{task.asset_ids.count} items from #{task.directory}."
   end

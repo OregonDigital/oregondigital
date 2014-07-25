@@ -13,7 +13,11 @@ class BulkTask < ActiveRecord::Base
     folders.each do |dir| 
       dir = Pathname(dir).to_s
       next unless BulkTask.find_by(:directory => dir).nil?
-      BulkTask.new(:directory => dir).queue_validation
+      BulkTask.new(:directory => dir).save
+    end
+    # queue validation on tasks if they are new
+    BulkTask.all.each do |task|
+      task.queue_validation if task.new? 
     end
   end
 
@@ -88,6 +92,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def delete_assets
+    return status if asset_ids.nil?
     self.asset_ids.map { |pid| ActiveFedora::Base.find(:pid => pid).first.delete }
     self.asset_ids = nil
     set_status(:deleted)
@@ -113,13 +118,13 @@ class BulkTask < ActiveRecord::Base
     end
   end
 
-  def review_all
+  def review_assets
     raise 'Batch job has already been review.' if status == :reviewed
     raise 'Batch job has not yet been processed.' unless status == :ingested
+    raise 'No assets to review.' if asset_ids.nil? or asset_ids.empty?
     asset_ids.each do |asset_id|
       asset = ActiveFedora::Base.find(asset_id).adapt_to_cmodel
       asset.review
-      asset.save
     end
     set_status(:reviewed)
   end

@@ -48,10 +48,34 @@ describe BulkTask do
     end
   end
 
+  describe '.reset!' do
+    it 'deletes assets' do
+      subject.stub(:delete_assets)
+      expect(subject).to receive :delete_assets
+      subject.reset!
+    end
+    
+    it 'sets status to new' do
+      subject.status = :ingested
+      subject.reset!
+      expect(subject.status).to eq :new
+    end
+  end
+
+  describe '.review_assets' do
+    it 'reviews all assets' do
+      GenericAsset.stub(:ingest_from_csv).with(subject.absolute_path) { assets }
+      subject.ingest
+      subject.review_assets
+      expect(GenericAsset.any_instance).to receive(:review).exactly(3).times
+    end
+    
+    it 'raises an error if there are no assets' do
+      expect{ subject.review_all }.to raise_error 
+    end
+  end
+
   describe '.enqueue' do
-
-    let(:ingest_job) { double(BulkIngest::Ingest) }
-
     it 'raises an error when already processing' do
       subject.status = :processing
       expect{subject.enqueue}.to raise_error
@@ -105,7 +129,7 @@ describe BulkTask do
   end
 
   describe 'metadata validation' do
-    context 'when recieving valid assets' do
+    context 'when receiving valid assets' do
       before do
         GenericAsset.stub(:assets_from_csv).with(subject.absolute_path) { assets }
       end
@@ -156,13 +180,20 @@ describe BulkTask do
     it 'removes asset_ids' do
       expect(subject.asset_ids).to be_nil
     end
+
     it 'deletes objects in asset_ids' do
       pids.each do |pid|
         expect(GenericAsset.find(:pid => pid)).to be_empty
       end
     end
+
     it 'sets status to :deleted' do
       expect(subject.status).to eq :deleted
+    end
+
+    it 'returns current status when there are no assets' do
+      subject.asset_ids = nil
+      expect(subject.delete_assets).to eq subject.status
     end
   end
 
