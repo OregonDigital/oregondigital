@@ -24,11 +24,22 @@ describe "SetsController /index" do
     collection
   end
   context "when there are sets" do
+    let(:collection2_pid) {'oregondigital:photos'}                                                                           
+    let(:collection2) do                                                                                                       
+      g = FactoryGirl.create(:generic_collection, :has_pid, pid: collection2_pid)                                              
+      g.title = "A Photo Collection"
+      g.save                                                                                                                  
+      g 
+    end
     before(:each) do
+      collection2
       visit sets_path
     end
     it "should show a list of all the collections" do
       expect(page).to have_content(collection.title)
+    end
+    it "should sort the list of collections A-Z (ignoring 'A', 'An, and 'The')" do
+      expect(page.body.index(collection.title)).to be < page.body.index(collection2.title)
     end
   end
   context "when there are facetable items" do
