@@ -9,7 +9,6 @@ class GenericAsset < ActiveFedora::Base
   extend OregonDigital::CsvBulkIngestible
   extend OregonDigital::BagIngestible
 
-
   has_metadata :name => 'descMetadata', :type => Datastream::OregonRDF
   has_metadata :name => 'rightsMetadata', :type =>
     Datastream::RightsMetadata

@@ -25,7 +25,7 @@ module OregonDigital
         add_file_to_asset(File.join(directory, ingest_column[1]), asset) if ingest and ingest_column
         assets << asset
       end
-      raise CsvBatchError.new(@field_errors || nil, @value_errors || nil, @file_errors || nil) if csv_errors_exist?
+      raise CsvBatchError.new(@field_errors, @value_errors, @file_errors) if csv_errors_exist?
       assets
     end
 
@@ -43,17 +43,18 @@ module OregonDigital
       
       def asset_from_row(row, klass=self)
         asset = klass.new
+        asset_properties = asset.descMetadata.singleton_class.properties
         row.each do |field, values|
           next if values.nil?
           field = field.to_s.camelize(:lower)
-          unless asset.descMetadata.singleton_class.properties.keys.include?(field)
+          unless asset_properties.keys.include?(field)
             @field_errors ||= []
             @field_errors << field
             next
           end
           values = values.split('|').map(&:strip).select { |v| not v.empty? }
-          values.map! { |v| process_uri_value(v, asset.descMetadata.singleton_class.
-            properties[field].class_name) } unless asset.descMetadata.singleton_class.properties[field].class_name.nil?
+          values.map! { |v| process_uri_value(v, asset_properties[field].
+            class_name) } unless asset_properties[field].class_name.nil?
           begin
             asset.descMetadata.send("#{field}=".to_sym, values.compact)
           rescue Exception => e

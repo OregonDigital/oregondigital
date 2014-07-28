@@ -4,10 +4,6 @@ class BulkTask < ActiveRecord::Base
 
   validates_presence_of :directory
 
-  after_initialize do
-    set_status(:new) if status.nil?
-  end
-
   def self.refresh
     folders = Dir.glob(File.join(APP_CONFIG.batch_dir, '*')).select { |f| File.directory? f }
     (folders - BulkTask.pluck(:directory)).each do |dir|

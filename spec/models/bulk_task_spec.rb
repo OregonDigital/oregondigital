@@ -24,7 +24,6 @@ describe BulkTask do
 
   describe 'refresh' do
     before do
-      BulkTask.all.each { |task| task.delete }
       File.stub(:directory?).and_call_original
       File.stub(:directory?).with(File.join(APP_CONFIG.batch_dir, 'test1')).and_return true
       File.stub(:directory?).with(File.join(APP_CONFIG.batch_dir, 'test2')).and_return true
@@ -32,10 +31,6 @@ describe BulkTask do
       Dir.stub(:glob).with(File.join(APP_CONFIG.batch_dir, '*')).and_return([File.join(APP_CONFIG.batch_dir, 'test1'), File.join(APP_CONFIG.batch_dir, 'test2'), File.join(APP_CONFIG.batch_dir, 'test3')])
     end
 
-    after do
-      BulkTask.all.each { |task| task.delete }
-    end
-    
     it 'creates BulkTasks for folders found' do
       BulkTask.refresh
       expect(BulkTask.all).to have(3).items
@@ -65,9 +60,9 @@ describe BulkTask do
   describe '.review_assets' do
     it 'reviews all assets' do
       GenericAsset.stub(:ingest_from_csv).with(subject.absolute_path) { assets }
+      expect(GenericAsset.any_instance).to receive(:review).exactly(3).times
       subject.ingest
       subject.review_assets
-      expect(GenericAsset.any_instance).to receive(:review).exactly(3).times
     end
     
     it 'raises an error if there are no assets' do
