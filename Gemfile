@@ -24,7 +24,6 @@ gem 'constantinople', '~>0.2.2'
 gem "unicode", :platforms => [:mri_18, :mri_19]
 gem "bootstrap-sass", '~>2.3.2.0'
 
-gem 'therubyracer'
 gem 'ruby-filemagic', '~>0.4.2'
 
 gem 'rdf', '~>1.1.2.1'

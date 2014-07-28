@@ -10,18 +10,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "Ubuntu13Chef"
+  config.vm.box = "ubuntu/trusty64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "https://dl.dropboxusercontent.com/u/4387941/vagrant-boxes/ubuntu-13.04-mini-i386.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.vm.network :forwarded_port, guest: 8983, host: 8983
-
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+  end
   config.vm.provision "shell",
-                      inline: "source /home/vagrant/.bashrc && sudo apt-get update -qq && sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev graphicsmagick poppler-utils poppler-data ghostscript pdftk libreoffice redis-server git gcc build-essential libmysqlclient-dev phantomjs mongodb memcached ffmpeg libvorbis-dev libavcodec-extra-52 && cd /vagrant && rvm fix-permissions && bundle install && rake db:create && rake db:migrate && rake sets:content:sync && rake hydra:jetty:config && rake jetty:restart"
+                      path: "bin/setup",
+                      run: "always"
 end
