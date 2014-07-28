@@ -10,9 +10,8 @@ class BulkTask < ActiveRecord::Base
 
   def self.refresh
     folders = Dir.glob(File.join(APP_CONFIG.batch_dir, '*')).select { |f| File.directory? f }
-    folders.each do |dir| 
+    (folders - BulkTask.pluck(:directory)).each do |dir|
       dir = Pathname(dir).to_s
-      next unless BulkTask.find_by(:directory => dir).nil?
       BulkTask.new(:directory => dir).save
     end
     # queue validation on tasks if they are new
@@ -30,7 +29,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def new?
-    self.status.nil? or self.status == :new
+    self.status == :new
   end
 
   def processing?
@@ -62,8 +61,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def type
-    return @type if defined?(@type)
-    @type = :csv unless Dir.glob(File.join(absolute_path, '*.csv')).nil?
+    @type ||= :csv unless Dir.glob(File.join(absolute_path, '*.csv')).nil?
     @type ||= :bag
   end
 
@@ -72,16 +70,13 @@ class BulkTask < ActiveRecord::Base
     raise 'Already ingested batch job.' if ingested?
     Resque.enqueue(BulkIngest::Ingest, self.id)
     set_status(:processing)
+    save
   end
 
   def ingest
     raise 'Already ingested batch job.' if ingested?
     begin
-      if type == :csv
-        assets = ingest_csv
-      elsif type == :bag
-        assets = ingest_bags
-      end
+      assets = send("ingest_#{type}")
     rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e
       build_errors(e)
       raise e
@@ -89,6 +84,7 @@ class BulkTask < ActiveRecord::Base
     self.asset_ids = assets.map { |a| a.pid }
     clear_errors
     set_status(:ingested)
+    save
   end
 
   def delete_assets
@@ -96,16 +92,19 @@ class BulkTask < ActiveRecord::Base
     self.asset_ids.map { |pid| ActiveFedora::Base.find(:pid => pid).first.delete }
     self.asset_ids = nil
     set_status(:deleted)
+    save
   end
 
   def queue_delete
     set_status(:processing)
     Resque.enqueue(BulkIngest::Delete, self.id)
+    save
   end
 
   def reset!
     delete_assets
     set_status :new
+    save
   end
 
   def queue_validation
@@ -115,12 +114,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def validate_metadata
-    case type
-    when :csv
-      set_status(validate_csv)
-    when :bag
-      set_status(validate_bags)
-    end
+    set_status(send("validate_#{type}"))
   end
 
   def review_assets
@@ -137,6 +131,7 @@ class BulkTask < ActiveRecord::Base
   def queue_review
     set_status(:processing)
     Resque.enqueue(BulkIngest::Review, self.id)
+    save
   end
 
   private
@@ -156,7 +151,10 @@ class BulkTask < ActiveRecord::Base
       return :validated
     end
 
-    def validate_bags
+    # simply returns new status to indicate that 
+    # validation never took place
+    # TODO: implement bag validation
+    def validate_bag
       :new
     end
   
@@ -173,7 +171,6 @@ class BulkTask < ActiveRecord::Base
                  ]
       raise "Invalid status: #{status}" unless statuses.include? status
       self.status = status
-      self.save
     end
 
     def build_errors(e)
@@ -183,14 +180,13 @@ class BulkTask < ActiveRecord::Base
         :file => e.file_errors
       }
       set_status(:failed)
-      self.save
     end
 
     def ingest_csv
       assets = GenericAsset.ingest_from_csv(absolute_path)
     end
 
-    def ingest_bags
+    def ingest_bag
       GenericAsset.bulk_ingest_bags(absolute_path)
     end
 end
