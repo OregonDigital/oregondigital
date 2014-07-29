@@ -19,6 +19,16 @@ class BulkTask < ActiveRecord::Base
     end
   end
 
+  def assets
+    return nil if asset_ids.nil?
+    @assets ||= self.asset_ids.map { |pid| ActiveFedora::Base.find(:pid => pid).first }   
+  end
+
+  def assets=(as)
+    @assets = assets
+    self.asset_ids = as.map { |a| a.pid }
+  end
+
   def status
     ActiveSupport::StringInquirer.new(attributes['status'])
   end
@@ -55,12 +65,11 @@ class BulkTask < ActiveRecord::Base
   def ingest
     raise 'Already ingested batch job.' if ingested?
     begin
-      assets = send("ingest_#{type}")
+      self.assets = send("ingest_#{type}")
     rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e
       build_errors(e)
       raise e
     end
-    self.asset_ids = assets.map { |a| a.pid }
     clear_errors
     self.status = 'ingested'
     self.save
@@ -68,7 +77,9 @@ class BulkTask < ActiveRecord::Base
 
   def delete_assets
     return status if asset_ids.nil?
-    self.asset_ids.map { |pid| ActiveFedora::Base.find(:pid => pid).first.delete }
+    self.assets.each do |asset|
+      asset.delete
+    end
     self.asset_ids = nil
     self.status = 'deleted'
     self.save
@@ -147,7 +158,7 @@ class BulkTask < ActiveRecord::Base
     end
 
     def ingest_csv
-      assets = GenericAsset.ingest_from_csv(absolute_path)
+      GenericAsset.ingest_from_csv(absolute_path)
     end
 
     def ingest_bag

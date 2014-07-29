@@ -21,6 +21,29 @@ describe BulkTask do
       expect(subject).to be_new
     end
   end
+  
+  describe 'assets' do
+    before do
+      subject.assets = assets
+    end
+    
+    it 'has assets' do
+      expect(subject.assets).to eq assets
+    end
+    
+    it 'has asset ids' do
+      expect(subject.asset_ids).to eq pids
+    end
+    
+    context 'when resetting assets' do
+      before do
+        subject.assets = [GenericAsset.new, GenericAsset.new].map { |asset| asset.save; asset }
+      end
+      it 'overrides old assets' do
+        expect(subject.assets).to eq assets
+      end
+    end
+  end
 
   describe 'refresh' do
     before do
