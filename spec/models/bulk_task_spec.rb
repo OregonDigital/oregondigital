@@ -51,9 +51,9 @@ describe BulkTask do
     end
     
     it 'sets status to new' do
-      subject.status = :ingested
+      subject.status = 'ingested'
       subject.reset!
-      expect(subject.status).to eq :new
+      expect(subject.status).to eq 'new'
     end
   end
 
@@ -72,16 +72,16 @@ describe BulkTask do
 
   describe '.enqueue' do
     it 'raises an error when already processing' do
-      subject.status = :processing
+      subject.status = 'processing'
       expect{subject.enqueue}.to raise_error
     end
     it 'raises an error when already ingested' do
-      subject.status = :ingested
+      subject.status = 'ingested'
       expect{subject.enqueue}.to raise_error
     end
     it 'sets status to :processing' do
       subject.enqueue
-      expect(subject.status).to eq :processing
+      expect(subject.status).to eq 'processing'
     end
   end
 
@@ -91,7 +91,7 @@ describe BulkTask do
     end
 
     it 'raises an error when already ingested' do
-      subject.status = :ingested
+      subject.status = 'ingested'
       expect{subject.ingest}.to raise_error
     end
     it 'ingests items' do
@@ -118,7 +118,7 @@ describe BulkTask do
       end
       it 'has failed status' do
         begin; subject.ingest; rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e; end
-        expect(subject.status).to eq :failed
+        expect(subject.status).to eq 'failed'
       end
     end
   end
@@ -132,13 +132,13 @@ describe BulkTask do
       describe 'queued validation' do
         it 'sets status to :validating' do
           subject.queue_validation
-          expect(subject.status).to eq :validating
+          expect(subject.status).to eq 'validating'
         end
       end
 
       it 'sets status to :validated' do
         subject.validate_metadata
-        expect(subject.status).to eq :validated
+        expect(subject.status).to eq 'validated'
       end
     end
     
@@ -154,7 +154,7 @@ describe BulkTask do
       end
       it 'sets status to :invalid' do
         subject.validate_metadata
-        expect(subject.status).to eq :invalid
+        expect(subject.status).to eq 'invalid'
       end
       it 'sets bulk_errors with errors recieved' do
         subject.validate_metadata
@@ -168,7 +168,7 @@ describe BulkTask do
   describe '.delete_assets' do
     before do
       subject.asset_ids = pids
-      subject.status = :ingested
+      subject.status = 'ingested'
       subject.delete_assets
     end
 
@@ -183,7 +183,7 @@ describe BulkTask do
     end
 
     it 'sets status to :deleted' do
-      expect(subject.status).to eq :deleted
+      expect(subject.status).to eq 'deleted'
     end
 
     it 'returns current status when there are no assets' do

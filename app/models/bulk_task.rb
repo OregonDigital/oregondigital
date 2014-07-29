@@ -3,6 +3,9 @@ class BulkTask < ActiveRecord::Base
   serialize :asset_ids
 
   validates_presence_of :directory
+  validates :status, inclusion: { in: %w(new validating invalid validated processing ingested reviewed deleted failed), message: "%{value} is not a valid status" }
+
+  delegate :new?, :processing?, :validated?, :reviewed?, :validating?, :to => :status
 
   def self.refresh
     folders = Dir.glob(File.join(APP_CONFIG.batch_dir, '*')).select { |f| File.directory? f }
@@ -17,39 +20,15 @@ class BulkTask < ActiveRecord::Base
   end
 
   def status
-    self.attributes['status'].nil? ? nil : self.attributes['status'].to_sym
-  end
-
-  def absolute_path
-    File.join(APP_CONFIG.batch_dir, directory)
-  end
-
-  def new?
-    self.status == :new
-  end
-
-  def processing?
-    self.status == :processing
-  end
-
-  def validating?
-    self.status == :validating
+    ActiveSupport::StringInquirer.new(attributes['status'])
   end
 
   def ingested?
-    self.status == :ingested or self.status == :reviewed
-  end
-
-  def reviewed?
-    self.status == :reviewed
+    self.status.ingested? or self.status.reviewed?
   end
 
   def failed?
-    self.status == :failed or self.status == :invalid or self.status == :deleted 
-  end
-
-  def validating?
-    self.status == :validating
+    self.status.failed? or self.status.invalid? or self.status.deleted?
   end
 
   def ingestible?
@@ -61,12 +40,16 @@ class BulkTask < ActiveRecord::Base
     @type ||= :bag
   end
 
+  def absolute_path
+    File.join(APP_CONFIG.batch_dir, directory)
+  end
+
   def enqueue
     raise 'Batch job is already in queue.' if processing?
     raise 'Already ingested batch job.' if ingested?
     Resque.enqueue(BulkIngest::Ingest, self.id)
-    set_status(:processing)
-    save
+    self.status = 'processing'
+    self.save
   end
 
   def ingest
@@ -79,55 +62,55 @@ class BulkTask < ActiveRecord::Base
     end
     self.asset_ids = assets.map { |a| a.pid }
     clear_errors
-    set_status(:ingested)
-    save
+    self.status = 'ingested'
+    self.save
   end
 
   def delete_assets
     return status if asset_ids.nil?
     self.asset_ids.map { |pid| ActiveFedora::Base.find(:pid => pid).first.delete }
     self.asset_ids = nil
-    set_status(:deleted)
-    save
+    self.status = 'deleted'
+    self.save
   end
 
   def queue_delete
-    set_status(:processing)
+    self.status = 'processing'
     Resque.enqueue(BulkIngest::Delete, self.id)
-    save
+    self.save
   end
 
   def reset!
     delete_assets
-    set_status :new
-    save
+    self.status = 'new'
+    self.save
   end
 
   def queue_validation
     return false if type == :bag
-    set_status(:validating)
+    self.status = 'validating'
     Resque.enqueue(BulkIngest::Validation, self.id)
   end
 
   def validate_metadata
-    set_status(send("validate_#{type}"))
+    self.status = send("validate_#{type}")
   end
 
   def review_assets
-    raise 'Batch job has already been review.' if status == :reviewed
-    raise 'Batch job has not yet been processed.' unless status == :ingested
+    raise 'Batch job has already been review.' if reviewed?
+    raise 'Batch job has not yet been processed.' unless ingested?
     raise 'No assets to review.' if asset_ids.nil? or asset_ids.empty?
     asset_ids.each do |asset_id|
       asset = ActiveFedora::Base.find(asset_id).adapt_to_cmodel
       asset.review
     end
-    set_status(:reviewed)
+    status = 'reviewed'
   end
 
   def queue_review
-    set_status(:processing)
+    self.status = 'processing'
     Resque.enqueue(BulkIngest::Review, self.id)
-    save
+    self.save
   end
 
   private
@@ -137,45 +120,30 @@ class BulkTask < ActiveRecord::Base
     end
 
     def validate_csv
-      return :validated if status == :validated
+      return 'validated' if validated?
       begin
         GenericAsset.assets_from_csv(absolute_path)
       rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e
         build_errors(e)
-        return :invalid
+        return 'invalid'
       end
-      return :validated
+      return 'validated'
     end
 
     # simply returns new status to indicate that 
     # validation never took place
     # TODO: implement bag validation
     def validate_bag
-      :new
+      'new'
     end
   
-    def set_status(status)
-      statuses = [ :new, 
-                   :validating,
-                   :invalid,
-                   :validated,
-                   :processing,
-                   :ingested,
-                   :reviewed,
-                   :deleted,
-                   :failed,
-                 ]
-      raise "Invalid status: #{status}" unless statuses.include? status
-      self.status = status
-    end
-
     def build_errors(e)
       self.bulk_errors = { 
         :field => e.field_errors,
         :value => e.value_errors,
         :file => e.file_errors
       }
-      set_status(:failed)
+      self.status = 'failed'
     end
 
     def ingest_csv
