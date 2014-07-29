@@ -34,11 +34,11 @@ class BulkTask < ActiveRecord::Base
   end
 
   def ingested?
-    self.status.ingested? or self.status.reviewed?
+    self.status.ingested? or reviewed?
   end
 
   def failed?
-    self.status.failed? or self.status.invalid? or self.status.deleted?
+    self.status.failed? or invalid? or deleted?
   end
 
   def ingestible?
@@ -61,7 +61,7 @@ class BulkTask < ActiveRecord::Base
     self.status = 'processing'
   end
 
-  def ingest
+  def ingest!
     raise 'Already ingested batch job.' if ingested?
     begin
       self.assets = send("ingest_#{type}")
@@ -74,7 +74,7 @@ class BulkTask < ActiveRecord::Base
     self.save
   end
 
-  def delete_assets
+  def delete_assets!
     return status if asset_ids.nil?
     self.assets.each do |asset|
       asset.delete
@@ -90,7 +90,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def reset!
-    delete_assets
+    delete_assets!
     self.status = 'new'
     self.save
   end
@@ -105,12 +105,11 @@ class BulkTask < ActiveRecord::Base
     self.status = send("validate_#{type}")
   end
 
-  def review_assets
+  def review_assets!
     raise 'Batch job has already been review.' if reviewed?
     raise 'Batch job has not yet been processed.' unless ingested?
     raise 'No assets to review.' if asset_ids.nil? or asset_ids.empty?
-    asset_ids.each do |asset_id|
-      asset = ActiveFedora::Base.find(asset_id).adapt_to_cmodel
+    assets.each do |asset|
       asset.review
     end
     self.status = 'reviewed'

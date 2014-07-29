@@ -68,8 +68,8 @@ describe BulkTask do
 
   describe '.reset!' do
     it 'deletes assets' do
-      subject.stub(:delete_assets)
-      expect(subject).to receive :delete_assets
+      subject.stub(:delete_assets!)
+      expect(subject).to receive :delete_assets!
       subject.reset!
     end
     
@@ -80,16 +80,16 @@ describe BulkTask do
     end
   end
 
-  describe '.review_assets' do
+  describe '.review_assets!' do
     it 'reviews all assets' do
       GenericAsset.stub(:ingest_from_csv).with(subject.absolute_path) { assets }
       expect(GenericAsset.any_instance).to receive(:review).exactly(3).times
-      subject.ingest
-      subject.review_assets
+      subject.ingest!
+      subject.review_assets!
     end
     
     it 'raises an error if there are no assets' do
-      expect{ subject.review_all }.to raise_error 
+      expect{ subject.review_assets! }.to raise_error 
     end
   end
 
@@ -108,17 +108,17 @@ describe BulkTask do
     end
   end
 
-  describe '.ingest' do
+  describe '.ingest!' do
     before do
       GenericAsset.stub(:ingest_from_csv).with(subject.absolute_path) { assets }
     end
 
     it 'raises an error when already ingested' do
       subject.status = 'ingested'
-      expect{subject.ingest}.to raise_error
+      expect{subject.ingest!}.to raise_error
     end
     it 'ingests items' do
-      expect(subject.ingest).to be_true
+      expect(subject.ingest!).to be_true
       expect(subject.asset_ids).to eq pids
     end
 
@@ -130,17 +130,17 @@ describe BulkTask do
       let(:error) { OregonDigital::CsvBulkIngestible::CsvBatchError.new(['title'], ['blah', 'blah2', 'blah3'], ['/path/to/file.tif', 'path/to/file2.tif'] ) }
       
       it 'raises CsvBatchError' do
-        expect{ subject.ingest }.to raise_error OregonDigital::CsvBulkIngestible::CsvBatchError
+        expect{ subject.ingest! }.to raise_error OregonDigital::CsvBulkIngestible::CsvBatchError
       end
       
       it 'has errors' do
-        begin; subject.ingest; rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e; end
+        begin; subject.ingest!; rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e; end
         expect(subject.bulk_errors[:field]).to eq error.field_errors
         expect(subject.bulk_errors[:value]).to eq error.value_errors
         expect(subject.bulk_errors[:file]).to eq error.file_errors
       end
       it 'has failed status' do
-        begin; subject.ingest; rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e; end
+        begin; subject.ingest!; rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e; end
         expect(subject.status).to eq 'failed'
       end
     end
@@ -188,11 +188,11 @@ describe BulkTask do
     end
   end
 
-  describe '.delete_assets' do
+  describe '.delete_assets!' do
     before do
       subject.asset_ids = pids
       subject.status = 'ingested'
-      subject.delete_assets
+      subject.delete_assets!
     end
 
     it 'removes asset_ids' do
@@ -211,7 +211,7 @@ describe BulkTask do
 
     it 'returns current status when there are no assets' do
       subject.asset_ids = nil
-      expect(subject.delete_assets).to eq subject.status
+      expect(subject.delete_assets!).to eq subject.status
     end
   end
 
@@ -227,7 +227,7 @@ describe BulkTask do
     describe 'ingesting' do
       before do
         GenericAsset.stub(:bulk_ingest_bags).with(subject.absolute_path) { assets }
-        subject.ingest
+        subject.ingest!
       end
 
       it 'ingests items' do

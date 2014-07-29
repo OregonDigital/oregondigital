@@ -14,7 +14,7 @@
       <% for task in @tasks %>
       <tr>
 	<td>
-          <a href="<%= bulk_task_path(task.id) %>">
+          <a href="<%= link_to task.directory, bulk_task_path(task.id) %>">
 	    <%= task.directory %>
 	  </a>
 	</td>
