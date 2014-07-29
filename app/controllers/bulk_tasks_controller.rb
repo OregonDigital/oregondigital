@@ -13,6 +13,7 @@ class BulkTasksController < ApplicationController
   def ingest
     task = BulkTask.find(params[:id])
     task.enqueue
+    task.save
     redirect_to bulk_tasks_path, notice: "Added #{task.directory} to the ingest queue."
   end
 
@@ -25,12 +26,14 @@ class BulkTasksController < ApplicationController
   def review_all
     task = BulkTask.find(params[:id])
     task.queue_review
+    task.save
     redirect_to bulk_tasks_path, notice: "Queued batch review of #{task.asset_ids.count} items from #{task.directory}."
   end
 
-  def delete_all
+  def delete
     task = BulkTask.find(params[:id])
     task.queue_delete
+    task.save
     redirect_to bulk_tasks_path, notice: "Queued batch delete of #{task.asset_ids.count} items from #{task.directory}."
   end
 

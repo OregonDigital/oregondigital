@@ -51,7 +51,7 @@
 	    </span>
 	  </a>
 	  <% end %>
-          <a href="<%= delete_all_bulk_task_path(task.id) %>" data-method="put"
+          <a href="<%= delete_bulk_task_path(task.id) %>" data-method="put"
 	     data-confirm="Are you sure you want to remove all items from '<%= task.directory %>'?">
 	    <span class="btn btn-danger">
               <i class="icon-remove icon-white"></i>

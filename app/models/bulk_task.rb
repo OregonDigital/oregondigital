@@ -59,7 +59,6 @@ class BulkTask < ActiveRecord::Base
     raise 'Already ingested batch job.' if ingested?
     Resque.enqueue(BulkIngest::Ingest, self.id)
     self.status = 'processing'
-    self.save
   end
 
   def ingest
@@ -88,7 +87,6 @@ class BulkTask < ActiveRecord::Base
   def queue_delete
     self.status = 'processing'
     Resque.enqueue(BulkIngest::Delete, self.id)
-    self.save
   end
 
   def reset!
@@ -115,13 +113,13 @@ class BulkTask < ActiveRecord::Base
       asset = ActiveFedora::Base.find(asset_id).adapt_to_cmodel
       asset.review
     end
-    status = 'reviewed'
+    self.status = 'reviewed'
+    self.save
   end
 
   def queue_review
     self.status = 'processing'
     Resque.enqueue(BulkIngest::Review, self.id)
-    self.save
   end
 
   private

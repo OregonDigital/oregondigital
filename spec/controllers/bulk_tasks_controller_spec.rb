@@ -10,6 +10,7 @@ describe BulkTasksController do
     BulkTask.stub(:find).and_return(task)
     BulkTask.stub(:all).and_return([task, task2])
     task.stub(:directory).and_return('./tmp')
+    task.stub(:save).and_return(true)
   end
 
   describe '#index' do
@@ -60,12 +61,12 @@ describe BulkTasksController do
     end
   end
 
-  describe '#delete_all' do
+  describe '#delete' do
     it 'deletes all items in task' do
       task.stub(:queue_delete)
       task.stub(:asset_ids).and_return(['1', '2'])
       expect(task).to receive(:queue_delete).once
-      post :delete_all, :id => '1'
+      post :delete, :id => '1'
     end
   end
 end
