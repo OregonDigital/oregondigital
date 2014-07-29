@@ -83,9 +83,9 @@ describe BulkTask do
   describe '.review_assets!' do
     it 'reviews all assets' do
       GenericAsset.stub(:ingest_from_csv).with(subject.absolute_path) { assets }
-      expect(GenericAsset.any_instance).to receive(:review).exactly(3).times
       subject.ingest!
       subject.review_assets!
+      subject.assets.each { |a| expect(a).to be_reviewed }
     end
     
     it 'raises an error if there are no assets' do
