@@ -21,7 +21,7 @@ class BulkTask < ActiveRecord::Base
 
   def assets
     return nil if asset_ids.nil?
-    @assets ||= self.asset_ids.map { |pid| ActiveFedora::Base.find(:pid => pid).first }   
+    @assets ||= self.asset_ids.map { |pid| ActiveFedora::Base.find(:pid => pid).first.adapt_to_cmodel }   
   end
 
   def assets=(as)
