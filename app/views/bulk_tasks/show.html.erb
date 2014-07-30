@@ -19,28 +19,28 @@
   <% end %>
 
   <% unless @task.bulk_errors.nil? %>
-  <% if task.bulk_errors.keys.include? :fields %>
+  <% if task.bulk_errors.keys.include? :field %>
   <h3>Invalid Fields/Properties</h3>
   <ul>
-    <% for field in @task.bulk_errors[:fields] %>
+    <% for field in @task.bulk_errors[:field] %>
     <li><%= field %></li>
     <% end %>
   </ul>
   <% end %>
 
-  <% if task.bulk_errors.keys.include? :fields %>
+  <% if task.bulk_errors.keys.include? :value %>
   <h3>Invalid Values</h3>
   <ul>
-    <% for value in @task.bulk_errors[:fields] %>
+    <% for value in @task.bulk_errors[:value] %>
     <li><%= value %></li>
     <% end %>
   </ul>
   <% end %>
 
-  <% if task.bulk_errors.keys.include? :files %>
-  <h3>Missing Flies</h3>
+  <% if task.bulk_errors.keys.include? :file %>
+  <h3>Missing Files</h3>
   <ul>
-    <% for file in @task.bulk_errors[:files] %>
+    <% for file in @task.bulk_errors[:file] %>
     <li><%= file %></li>
     <% end %>
   </ul>
