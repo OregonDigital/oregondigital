@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140124230723) do
+ActiveRecord::Schema.define(version: 20140728173938) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id",     null: false
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20140124230723) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_type"
+  end
+
+  create_table "bulk_tasks", force: true do |t|
+    t.string "status",      default: "new"
+    t.text   "directory"
+    t.text   "asset_ids"
+    t.text   "bulk_errors"
   end
 
   create_table "ingest_file_uploads", force: true do |t|

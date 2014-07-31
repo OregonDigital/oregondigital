@@ -15,6 +15,9 @@ oai:
   admin_email: "admin@oregondigital.org"
   sample_id: "oregondigital:h989r3203"
 
+# Bulk Load Directory
+batch_dir: /data1/batch
+
 # IIP server configuration
 iip_server:
   location: http://localhost/iip/iipsrv.fcgi
