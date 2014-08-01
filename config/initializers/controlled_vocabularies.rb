@@ -12,6 +12,8 @@ RDF_VOCABS = {
   :aat                  =>  { :prefix => 'http://vocab.getty.edu/aat/', :strict => false, :fetch => false },
   :cclicenses           =>  { :prefix => 'http://creativecommons.org/licenses/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/cclicenses/cclicenses.nt'},
   :ccpublic             =>  { :prefix => 'http://creativecommons.org/publicdomain/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/cclicenses/cclicenses.nt'},
+  :uonames              =>  { :prefix => 'http://opaquenamespace.org/ns/uo-names/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/uo/names.jsonld'},
+  :percent_art_names    =>  { :prefix => 'http://opaquenamespace.org/ns/uo-names/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/uo/names_percent.jsonld'},
   :rights               =>  { :prefix => 'http://opaquenamespace.org/rights/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/rights.jsonld', :strict => true },
   :eurights             =>  { :prefix => 'http://www.europeana.eu/rights/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/eurights/rightsstatements.nt', :strict => true },
   :mimetype             =>  { :prefix => 'http://purl.org/NET/mediatypes/', :source => 'http://mediatypes.appspot.com/dump.rdf' },
