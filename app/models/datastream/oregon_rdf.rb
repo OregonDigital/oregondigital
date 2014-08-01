@@ -85,6 +85,20 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :replacesUrl, :predicate => RDF::DC.replaces do |index|
     index.as :symbol
   end
+
+  # Schema.org
+  property :citation, :predicate => RDF::SCHEMA.citation do |index|
+    index.as :searchable, :displayable
+  end
+  property :editor, :predicate => RDF::SCHEMA.editor do |index|
+    index.as :searchable, :displayable
+  end
+  property :numberOfPages, :predicate => RDF::SCHEMA.numberOfPages do |index|
+    index.as :facetable, :displayable
+  end
+  property :event, :predicate => RDF::SCHEMA.event do |index|
+    index.as :facetable, :displayable
+  end
   
   # MARCRel
   property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
