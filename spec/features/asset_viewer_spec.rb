@@ -40,4 +40,11 @@ describe "Asset viewer logic" do
     click_link "Test Audio"
     expect(page).to have_selector("audio")
   end
+  
+  it "should use the video viewer for video files" do
+    FactoryGirl.create(:video, :with_video_datastream, :title => "Test Video")
+    click_button "search"
+    click_link "Test Video"
+    expect(page).to have_selector("video")
+  end
 end

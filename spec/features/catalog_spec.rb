@@ -39,6 +39,11 @@ describe 'catalog' do
           let(:asset) {FactoryGirl.create(:image, :with_tiff_datastream)}
         end
       end
+      context "when the asset is a video" do
+        it_should_behave_like "a thumbnail asset" do
+          let(:asset) {FactoryGirl.create(:video, :with_video_datastream)}
+        end
+      end
       context "when the asset is a document" do
         it_should_behave_like "a thumbnail asset" do
           let(:asset) do
