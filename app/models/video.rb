@@ -3,7 +3,8 @@ class Video < GenericAsset
   has_file_datastream :name => 'content_mp4', :control_group => "E"
 
   makes_derivatives do |obj|
-    obj.create_ogg
+    obj.create_video_files
+    obj.workflowMetadata.has_thumbnail = true
     obj.save
   end
 
@@ -18,8 +19,13 @@ class Video < GenericAsset
     fd.extension = ".mp4"
     return fd.path
   end
+
+  def thumbnail_location
+    return ::Image.thumbnail_location(pid)
+  end
+  alias_method :jpg_location, :thumbnail_location
   
-  def create_ogg
+  def create_video_files
     transform_datastream :content, {
         :webm => {
           :format => "webm"
@@ -27,6 +33,9 @@ class Video < GenericAsset
         :mp4 => {
           :format => "mp4"
         },
+        :jpg => {
+          :format => "jpg"
+        }
     }, :processor => :video_filesystem
   end
 

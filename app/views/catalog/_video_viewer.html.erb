@@ -1,0 +1,5 @@
+<video controls>
+<% decorated_object.video_files.each do |mime,file| %>
+    <source src="<%= file %>" type="<%= mime %>">
+<% end %>
+</audio>
