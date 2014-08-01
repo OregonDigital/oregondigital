@@ -141,6 +141,11 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
 
+  # Holding Ontology
+  property :itemLocator, :predicate => OregonDigital::Vocabularies::HOLDING.label do |index|
+    index.as :displayable
+  end
+
   # Darwin Core
   property :taxonClass, :predicate => OregonDigital::Vocabularies::DWC.class do |index|
     index.as :searchable, :facetable, :displayable
