@@ -93,6 +93,15 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :donor, :predicate => OregonDigital::Vocabularies::MARCREL.dnr do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :cartographer, :predicate => OregonDigital::Vocabularies::MARCREL.ctg do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :artist, :predicate => OregonDigital::Vocabularies::MARCREL.art do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :scribe, :predicate => OregonDigital::Vocabularies::MARCREL.scr do |index|
+    index.as :searchable, :facetable, :displayable
+  end
   property :composer, :predicate => OregonDigital::Vocabularies::MARCREL.cmp, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
     index.as :searchable, :facetable, :displayable
   end
@@ -100,6 +109,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
   property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :author, :predicate => OregonDigital::Vocabularies::MARCREL.aut, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup do |index|
