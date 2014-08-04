@@ -2,12 +2,28 @@ module IngestHelper
   # Renders the ingest form for the given form object
   def ingest_form_for(form_container)
     ingest_form = form_container.form
-    url = form_container.asset.kind_of?(Template) ? template_path(ingest_form) : ingest_path(ingest_form)
+    url = ingest_form_url(form_container)
     html_options = {:multipart => true, :class => "form-inline"}
 
     simple_form_for(ingest_form, {:url => url, :html => html_options}) do |f|
       yield(f)
     end
+  end
+
+  def ingest_form_url(form_container)
+    if form_container.asset.kind_of?(Template)
+      ingest_template_url(form_container.form)
+    else
+      ingest_generic_asset_url(form_container.form)
+    end
+  end
+
+  def ingest_template_url(ingest_form)
+    ingest_form.new_record? ? templates_path(ingest_form) : template_path(ingest_form)
+  end
+
+  def ingest_generic_asset_url(ingest_form)
+    ingest_form.new_record? ? ingest_index_path(ingest_form) : ingest_path(ingest_form)
   end
 
   # Spits out all necessary fields for an ingest form "field group", adding

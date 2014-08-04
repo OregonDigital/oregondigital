@@ -13,6 +13,10 @@ class OregonDigital::Metadata::FormContainer
     return false
   end
 
+  def new_record?
+    !asset.persisted?
+  end
+
   # Checks validity of @form
   def form_valid?
     return @form.valid?
