@@ -18,15 +18,10 @@ body {
   $color: #561F4B;
   $highlight-color: #ffffff;
 
-  @font-face {
-    font-family: "EksjaExtremesRegular";
-    font-style: normal;
-    font-weight: normal;
-    src: font-url("Eksja-regular-webfont.woff") format("woff"), font-url("Eksja-regular-webfont.ttf") format("truetype"), font-url("Eksja-regular-webfont.svg#webfont") format("svg");
-  }
+  $font-stack: Gudea, Helvetica, Verdana, sans-serif;
 
     body, body.admins {
-      font-family: "Gudea","Arial","Verdana",sans-serif;
+      font-family: $font-stack;
       padding:0;
     }
 
@@ -392,6 +387,11 @@ body {
   border-radius: 0;
   padding-top: 0;
 }
+
+#sidebar .well .btn-group:first-child {
+  margin-bottom: 1.2rem;
+}
+
 .sidenav h5, .sidenav h4 {
   padding: 5px 14px;
 }

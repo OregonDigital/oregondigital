@@ -6,26 +6,15 @@
   $color: #561F4B;
   $highlight-color: #ffffff;
 
-  @font-face {
-    font-family: "EksjaExtremesRegular";
-    font-style: normal;
-    font-weight: normal;
-    src: font-url("Eksja-regular-webfont.woff") format("woff"), font-url("Eksja-regular-webfont.ttf") format("truetype"), font-url("Eksja-regular-webfont.svg#webfont") format("svg");
-  }
+  $font-stack: Gudea, Helvetica, Verdana, sans-serif;
 
   body {
-    font-family: "Gudea","Arial","Verdana",sans-serif;
-  }
-
-  h1, h2, h3, h4 {
-    //color: $color;
-    font-family: 'EksjaExtremesRegular',Arial,Helvetica,Verdana,sans-serif;
+    font-family: $font-stack;
   }
 
   #facets h4, #sidebar-nav .nav-header {
     background-color: #144651;
     color: #fff;
-    font-family: 'EksjaExtremesRegular',Arial,Helvetica,Verdana,sans-serif;
   }
 
   #facets h5.twiddle-open {
