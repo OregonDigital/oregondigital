@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.1.0'
 gem 'blacklight'
 gem 'hydra-head', '6.4.0', :git => 'https://github.com/no-reply/hydra-head.git', :branch => 'AF7-RDF'
 gem 'active-fedora', :git => 'https://github.com/no-reply/active_fedora.git', :branch => 'oregon-af7'
@@ -32,7 +32,7 @@ gem 'sparql-client'
 
 gem 'noid', '~>0.6.6'
 gem 'hybag'
-gem 'qa', '~>0.0.3', :git => "git://github.com/jechols/questioning_authority", :branch => "feature/od-fixes"
+gem 'qa', :github => "terrellt/questioning_authority", :branch => "feature/od-fixes"
 
 gem 'resque', '~>1.25.0'
 
@@ -80,7 +80,7 @@ gem 'mysql2'
 gem 'puma'
 
 # OAI
-gem 'oai'
+gem 'oai', :github => "code4lib/ruby-oai", :branch => :master
 
 # Old Asset Precompile Behavior for Stylesheets
 gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-fix"

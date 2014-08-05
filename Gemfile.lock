@@ -1,13 +1,23 @@
 GIT
-  remote: git://github.com/jechols/questioning_authority
-  revision: d22e9abe10fde69eaa07d7698edfb09fb98785c2
+  remote: git://github.com/code4lib/ruby-oai.git
+  revision: 2962523677f8619f646ea95ece490c8c3a43e742
+  branch: master
+  specs:
+    oai (0.3.1)
+      builder (>= 3.1.0)
+      faraday
+      faraday_middleware
+
+GIT
+  remote: git://github.com/terrellt/questioning_authority.git
+  revision: e54fa1e8079faa80e3e178e4184edff154756674
   branch: feature/od-fixes
   specs:
     qa (0.0.3)
       activerecord-import (>= 0.4.0)
       deprecation
       nokogiri (~> 1.6.0)
-      rails (~> 4.0.0)
+      rails (~> 4.0)
       rest-client
 
 GIT
@@ -59,40 +69,41 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.0.0)
-      actionpack (= 4.0.0)
-      mail (~> 2.5.3)
-    actionpack (4.0.0)
-      activesupport (= 4.0.0)
-      builder (~> 3.1.0)
-      erubis (~> 2.7.0)
+    actionmailer (4.1.4)
+      actionpack (= 4.1.4)
+      actionview (= 4.1.4)
+      mail (~> 2.5.4)
+    actionpack (4.1.4)
+      actionview (= 4.1.4)
+      activesupport (= 4.1.4)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    actionview (4.1.4)
+      activesupport (= 4.1.4)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
     active_fedora-crosswalks (0.0.7)
       active-fedora
       activesupport (>= 3.2.0, < 5.0)
       bagit
       mime-types
-    activemodel (4.0.0)
-      activesupport (= 4.0.0)
-      builder (~> 3.1.0)
-    activerecord (4.0.0)
-      activemodel (= 4.0.0)
-      activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.0)
-      arel (~> 4.0.0)
-    activerecord-deprecated_finders (1.0.3)
-    activerecord-import (0.4.1)
+    activemodel (4.1.4)
+      activesupport (= 4.1.4)
+      builder (~> 3.1)
+    activerecord (4.1.4)
+      activemodel (= 4.1.4)
+      activesupport (= 4.1.4)
+      arel (~> 5.0.0)
+    activerecord-import (0.5.0)
       activerecord (>= 3.0)
-    activesupport (4.0.0)
-      i18n (~> 0.6, >= 0.6.4)
-      minitest (~> 4.2)
-      multi_json (~> 1.3)
+    activesupport (4.1.4)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
       thread_safe (~> 0.1)
-      tzinfo (~> 0.3.37)
+      tzinfo (~> 1.1)
     addressable (2.3.5)
-    arel (4.0.0)
-    atomic (1.1.14)
+    arel (5.0.1.20140414130214)
     backports (3.3.5)
     bagit (0.3.2)
       docopt (~> 0.5.0)
@@ -118,7 +129,7 @@ GEM
     bson (1.9.2)
     bson_ext (1.9.2)
       bson (~> 1.9.2)
-    builder (3.1.4)
+    builder (3.2.2)
     byebug (2.7.0)
       columnize (~> 0.3)
       debugger-linecache (~> 1.2)
@@ -141,10 +152,10 @@ GEM
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
-    coffee-script (2.2.0)
+    coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.3)
+    coffee-script-source (1.7.1)
     columnize (0.8.9)
     constantinople (0.2.2)
       deep_merge (~> 1.0)
@@ -162,7 +173,7 @@ GEM
     database_cleaner (1.2.0)
     debugger-linecache (1.2.0)
     deep_merge (1.0.0)
-    deprecation (0.0.5)
+    deprecation (0.1.0)
       activesupport
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
@@ -185,7 +196,7 @@ GEM
     equivalent-xml (0.4.2)
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
-    execjs (2.0.2)
+    execjs (2.2.1)
     exifr (1.1.3)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
@@ -194,10 +205,10 @@ GEM
       railties (>= 3.0.0)
     fakeredis (0.4.3)
       redis (~> 3.0.0)
-    faraday (0.8.8)
-      multipart-post (~> 1.2.0)
-    faraday_middleware (0.9.0)
-      faraday (>= 0.7.4, < 0.9)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
     fastercsv (1.5.5)
     ffi (1.9.0)
     formatador (0.2.4)
@@ -231,7 +242,7 @@ GEM
     hydra-role-management (0.1.0)
       bootstrap_forms
       cancan
-    i18n (0.6.5)
+    i18n (0.6.11)
     ip-ranges (0.1.1)
       netaddr (~> 1.5.0)
     jettywrapper (1.4.2)
@@ -286,32 +297,29 @@ GEM
     metadata-ingest-form (2.4.0)
       activemodel (>= 3.0)
     method_source (0.8.2)
-    mime-types (1.25)
+    mime-types (1.25.1)
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
-    mini_portile (0.5.1)
-    minitest (4.7.5)
+    mini_portile (0.6.0)
+    minitest (5.4.0)
     mongo (1.9.2)
       bson (~> 1.9.2)
     mono_logger (1.1.0)
-    multi_json (1.8.2)
-    multipart-post (1.2.0)
+    multi_json (1.10.1)
+    multipart-post (2.0.0)
     mysql2 (0.3.14)
     net-http-persistent (2.9.4)
     netaddr (1.5.0)
+    netrc (0.7.7)
     newrelic_rpm (3.7.3.204)
     noid (0.6.6)
       backports
-    nokogiri (1.6.0)
-      mini_portile (~> 0.5.0)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     nom-xml (0.5.1)
       activesupport
       i18n
       nokogiri
-    oai (0.3.1)
-      builder (>= 2.0.0)
-      faraday
-      faraday_middleware
     om (3.0.4)
       activemodel
       activesupport
@@ -327,7 +335,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    polyglot (0.3.3)
+    polyglot (0.3.5)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -347,20 +355,22 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.0.0)
-      actionmailer (= 4.0.0)
-      actionpack (= 4.0.0)
-      activerecord (= 4.0.0)
-      activesupport (= 4.0.0)
+    rails (4.1.4)
+      actionmailer (= 4.1.4)
+      actionpack (= 4.1.4)
+      actionview (= 4.1.4)
+      activemodel (= 4.1.4)
+      activerecord (= 4.1.4)
+      activesupport (= 4.1.4)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.0)
-      sprockets-rails (~> 2.0.0)
-    railties (4.0.0)
-      actionpack (= 4.0.0)
-      activesupport (= 4.0.0)
+      railties (= 4.1.4)
+      sprockets-rails (~> 2.0)
+    railties (4.1.4)
+      actionpack (= 4.1.4)
+      activesupport (= 4.1.4)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.1.0)
+    rake (10.3.2)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.2)
       ffi (>= 0.5.0)
@@ -414,8 +424,9 @@ GEM
       redis-namespace (~> 1.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rmagick (2.13.2)
     rsolr (1.0.10.pre1)
       builder (>= 2.1.2)
@@ -447,14 +458,15 @@ GEM
       nokogiri
       rest-client
     safe_yaml (0.9.7)
-    sass (3.2.12)
-    sass-rails (4.0.1)
+    sass (3.2.19)
+    sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
-      sass (>= 3.1.10)
-      sprockets-rails (~> 2.0.0)
-    simple_form (3.0.0)
-      actionpack (>= 4.0.0, < 4.1)
-      activemodel (>= 4.0.0, < 4.1)
+      sass (~> 3.2.0)
+      sprockets (~> 2.8, <= 2.11.0)
+      sprockets-rails (~> 2.0)
+    simple_form (3.0.2)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
@@ -485,12 +497,12 @@ GEM
       net-http-persistent (>= 1.4)
       rdf (>= 1.1)
     spring (0.0.11)
-    sprockets (2.10.0)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.0.1)
+    sprockets-rails (2.1.3)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
@@ -501,15 +513,15 @@ GEM
       json (>= 1.1.1)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
-    thor (0.18.1)
-    thread_safe (0.1.3)
-      atomic
+    thor (0.19.1)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     tins (0.12.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.38)
+    tzinfo (1.2.1)
+      thread_safe (~> 0.1)
     uber (0.0.6)
     uglifier (2.2.1)
       execjs (>= 0.3.0)
@@ -571,15 +583,15 @@ DEPENDENCIES
   mysql2
   newrelic_rpm
   noid (~> 0.6.6)
-  oai
+  oai!
   poltergeist (~> 1.5.0)
   pry
   pry-byebug
   pry-doc
   pry-rails
   puma
-  qa (~> 0.0.3)!
-  rails (~> 4.0.0)
+  qa!
+  rails (~> 4.1.0)
   rdf (~> 1.1.2.1)
   rdf-mongo
   recursive-open-struct
