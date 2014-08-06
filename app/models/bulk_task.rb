@@ -5,7 +5,7 @@ class BulkTask < ActiveRecord::Base
   validates_presence_of :directory
   validates :status, inclusion: { in: %w(new validating invalid validated processing ingested reviewed deleted failed), message: "%{value} is not a valid status" }
 
-  delegate :new?, :processing?, :validated?, :reviewed?, :validating?, :to => :status
+  delegate :new?, :processing?, :validated?, :reviewed?, :validating?, :deleted?, :to => :status
 
   def self.refresh
     folders = Dir.glob(File.join(APP_CONFIG.batch_dir, '*')).select { |f| File.directory? f }
