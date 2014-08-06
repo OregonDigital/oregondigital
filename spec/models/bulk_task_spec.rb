@@ -188,6 +188,14 @@ describe BulkTask do
     end
   end
 
+  describe 'status inquirers' do
+    it 'responds to valid statuses' do
+      [:new?, :validating?, :invalid?, :validated?, :processing?, :ingested?, :reviewed?, :deleted?, :failed?].each do |status|
+        expect(subject).to respond_to status
+      end
+    end
+  end
+
   describe '.delete_assets!' do
     before do
       subject.asset_ids = pids
