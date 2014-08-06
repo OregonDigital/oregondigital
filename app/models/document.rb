@@ -1,8 +1,10 @@
 class Document < GenericAsset
   has_file_datastream :name => 'thumbnail', :control_group => "E"
+  has_file_datastream :name => 'content_ocr', :control_group => "E"
   has_metadata :name => 'leafMetadata', :type => Datastream::Yaml
   makes_derivatives do |obj|
     obj.transform_datastream :content, {:pages => {:output_path => obj.pages_location}}, :processor => :docsplit_processor
+    obj.extract_text
     obj.create_thumbnail
     obj.workflowMetadata.has_thumbnail = true
     obj.update_leaf_metadata
@@ -25,16 +27,35 @@ class Document < GenericAsset
         }
     }, :processor => :image_filesystem_processor
   end
+
+  def extract_text
+    transform_datastream :content, {
+      :ocr => {
+        :format => :html
+      }
+    },:processor => :pdf_text_processor
+  end
   
   def thumbnail_location
     return ::Image.thumbnail_location(pid)
   end
 
+  def ocr_location
+    fd = output_location
+    fd.extension = ""
+    return Pathname.new(fd.path).join("ocr.html")
+  end
+
   def pages_location
-    fd = OregonDigital::FileDistributor.new(pid)
-    fd.base_path = base_pages_path
+    fd = output_location
     fd.extension = ""
     return Pathname.new(fd.path)
+  end
+
+  def output_location
+    fd = OregonDigital::FileDistributor.new(pid)
+    fd.base_path = base_pages_path
+    fd
   end
 
   def base_pages_path
