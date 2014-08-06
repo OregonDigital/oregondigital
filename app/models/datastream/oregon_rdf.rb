@@ -192,11 +192,11 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :viewDate, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDate') do |index|
     index.as :displayable
   end
-  property :viewDescription, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDescription') do |index|
-    index.as :displayable
-  end
   property :creatorDisplay, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/creatorDisplay') do |index|
     index.as :displayable
+  end
+  property :accessionNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/accessionNumber'] do |index|
+    index.as :searchable, :displayable
   end
 
   # VRA
@@ -314,10 +314,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :captionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.captionTitle do |index|
     index.as :searchable, :displayable
   end
-  property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.cover do |index|
-    index.as :searchable, :displayable
-  end
-  property :accessionNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.accessionNumber do |index|
+  property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.hasCover do |index|
     index.as :searchable, :displayable
   end
   property :exhibit, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.exhibit do |index|
@@ -328,6 +325,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :symbol
   end
   property :compassDirection, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.compassDirection do |index|
+    index.as :displayable
+  end
+  property :canzonierePoems, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.canzonierePoems do |index|
     index.as :displayable
   end
 
@@ -362,16 +362,16 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # Oregon Digital Archives
-  property :collectionIdentifier, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['achives/collectionIdentifier'] do |index|
+  property :collectionIdentifier, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/collectionIdentifier'] do |index|
     index.as :displayable
   end
-  property :collectionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['achives/collectionTitle'] do |index|
+  property :collectionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/collectionTitle'] do |index|
     index.as :displayable
   end
-  property :boxNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['achives/boxNumber'] do |index|
+  property :boxNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/boxNumber'] do |index|
     index.as :displayable
   end
-  property :folderNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['achives/folderNumber'] do |index|
+  property :folderNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/folderNumber'] do |index|
     index.as :displayable
   end
 

@@ -9,6 +9,11 @@ module OregonDigital::Vocabularies
         acquisition)
     property :"archives/boxNumber", :label => 'Box Number', :comment =>
       %(Identifier on the box holding the physical archival item.)
+    property :canzonierePoems, :label => 'Canzoniere Poems', :comment =>
+      %(Poem numbers from the critical edition of the Canzoniere:
+        Petrarca, Francesco. Rerum vulgarium fragmenta. Edizione
+        critica di Giuseppe Savoca, Olschki, Firenze, 2008.)
+    property :captionTitle, :label => 'Caption Title'
     property :"archives/collectionIdentifier", :label => 'Collection Identifier', :comment =>
       %(Identifier given to a collection of archival material by the
         holding institution.)
@@ -34,12 +39,18 @@ module OregonDigital::Vocabularies
       %(A label identifying the person or corporate body in the work
         or image records by combining the preferred name and
         biographical information.)
+    property :dateDigitized, :label => 'Date Digitized', :comment =>
+      %(The date the object was initially converted into a digital
+        format.)
     property :exhibit, :label => 'Exhibit', :comment =>
       %(Curated set or grouping created for a special display or
         exhibit not related to a formal collection.)
     property :"archives/folderNumber", :label => 'Folder Number', :comment =>
       %(Identifier on the folder within the box holding the physical
         archival item.)
+    property :fullText, :label => 'Full Text', :comment =>
+      %(A complete textual representation or transcription of the item
+        content.)
     property :hasCover, :label => 'Has Cover', :comment =>
       %(Specifies a cover physically attached to the resource.)
     property :sourceCondition, :label => 'Source Condition', :comment =>
