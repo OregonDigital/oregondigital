@@ -1,10 +1,11 @@
 module PdfOcr
   class Page
     include PdfOcr::AttributeNode
-    attr_reader :document
+    attr_reader :document, :page_number
 
-    def initialize(page_node)
+    def initialize(page_node, page)
       @document = page_node
+      @page_number = page
     end
 
     def words

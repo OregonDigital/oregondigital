@@ -7,7 +7,7 @@ module PdfOcr
     end
 
     def pages
-      @pages ||= document_pages.map{|page_node| Page.new(page_node)}
+      @pages ||= document_pages.each_with_index.map{|page_node, index| Page.new(page_node, index+1)}
     end
 
     def words

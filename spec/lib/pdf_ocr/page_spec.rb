@@ -21,5 +21,12 @@ describe PdfOcr::Page do
         expect(subject.height).to eq 665.950700
       end
     end
+
+    describe "#page_number" do
+      it "should return the page number" do
+        expect(subject.page_number).to eq 1
+        expect(PdfOcr::Reader.new(content).pages.last.page_number).to eq 2
+      end
+    end
   end
 end
