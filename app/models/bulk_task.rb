@@ -10,7 +10,7 @@ class BulkTask < ActiveRecord::Base
   def self.refresh
     folders = Dir.glob(File.join(APP_CONFIG.batch_dir, '*')).select { |f| File.directory? f }
     (folders - BulkTask.pluck(:directory)).each do |dir|
-      dir = Pathname(dir).to_s
+      dir = Pathname(dir).relative_path_from(Pathname((APP_CONFIG.batch_dir))).to_s
       BulkTask.new(:directory => dir).save
     end
     # queue validation on tasks if they are new
@@ -46,12 +46,12 @@ class BulkTask < ActiveRecord::Base
   end
 
   def type
-    @type ||= :csv unless Dir.glob(File.join(absolute_path, '*.csv')).nil?
+    @type ||= :csv unless Dir.glob(File.join(absolute_path, '*.csv')).empty?
     @type ||= :bag
   end
 
   def absolute_path
-    File.join(APP_CONFIG.batch_dir, directory)
+    Pathname(directory).absolute? ? directory : File.join(APP_CONFIG.batch_dir, directory)
   end
 
   def enqueue
