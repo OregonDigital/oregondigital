@@ -85,12 +85,35 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :replacesUrl, :predicate => RDF::DC.replaces do |index|
     index.as :symbol
   end
+
+  # Schema.org
+  property :citation, :predicate => RDF::SCHEMA.citation do |index|
+    index.as :searchable, :displayable
+  end
+  property :editor, :predicate => RDF::SCHEMA.editor do |index|
+    index.as :searchable, :displayable
+  end
+  property :numberOfPages, :predicate => RDF::SCHEMA.numberOfPages do |index|
+    index.as :facetable, :displayable
+  end
+  property :event, :predicate => RDF::SCHEMA.event do |index|
+    index.as :facetable, :displayable
+  end
   
   # MARCRel
   property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :donor, :predicate => OregonDigital::Vocabularies::MARCREL.dnr do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :cartographer, :predicate => OregonDigital::Vocabularies::MARCREL.ctg do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :artist, :predicate => OregonDigital::Vocabularies::MARCREL.art do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :scribe, :predicate => OregonDigital::Vocabularies::MARCREL.scr do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :composer, :predicate => OregonDigital::Vocabularies::MARCREL.cmp, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
@@ -100,6 +123,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
   property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :author, :predicate => OregonDigital::Vocabularies::MARCREL.aut, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup do |index|
@@ -163,6 +189,15 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :view, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDescription') do |index|
     index.as :displayable
   end
+  property :viewDate, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDate') do |index|
+    index.as :displayable
+  end
+  property :creatorDisplay, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/creatorDisplay') do |index|
+    index.as :displayable
+  end
+  property :accessionNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/accessionNumber'] do |index|
+    index.as :searchable, :displayable
+  end
 
   # VRA
   property :earliestDate, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/earliestDate') do |index|
@@ -183,22 +218,103 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::AAT do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :stylePeriod, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/stylePeriod') do |index|
+    index.as :searchable, :displayable
+  end
+  property :materials, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/materials') do |index|
+    index.as :searchable, :displayable
+  end
+  property :medium, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/medium') do |index|
+    index.as :searchable, :displayable
+  end
+  property :culture, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/culture') do |index|
+    index.as :searchable, :displayable
+  end
+  property :idCurrentRepository, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/idCurrentRepository') do |index|
+    index.as :searchable, :displayable
+  end
+  property :stateEdition, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/stateEdition') do |index|
+    index.as :searchable, :displayable
+  end
+  property :technique, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/technique') do |index|
+    index.as :searchable, :displayable
+  end
 
-# Oregon Digital
+  # EXIF
+  property :imageWidth, :predicate => RDF::URI('http://www.w3.org/2003/12/exif/ns#width') do |index|
+    index.as :displayable
+  end
+  property :imageHeight, :predicate => RDF::URI('http://www.w3.org/2003/12/exif/ns#height') do |index|
+    index.as :displayable
+  end
+  property :imageResolution, :predicate => RDF::URI('http://www.w3.org/2003/12/exif/ns#resolution') do |index|
+    index.as :displayable
+  end
+  property :imageOrientation, :predicate => RDF::URI('http://www.w3.org/2003/12/exif/ns#orientation') do |index|
+    index.as :displayable
+  end
+  property :colorSpace, :predicate => RDF::URI('http://www.w3.org/2003/12/exif/ns#colorSpace') do |index|
+    index.as :displayable
+  end
+
+  # RDA
+  property :formOfWork, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/w/formOfWork.en') do |index|
+    index.as :displayable
+  end
+  property :fileSize, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/fileSize.en') do |index|
+    index.as :displayable
+  end
+  property :layout, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/layout.en') do |index|
+    index.as :displayable
+  end
+  property :containedInManifestation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/containedInManifestation.en') do |index|
+    index.as :displayable
+  end
+  property :modeOfIssuance, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/modeOfIssuance.en') do |index|
+    index.as :displayable
+  end
+  property :placeOfProduction, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/placeOfProduction.en') do |index|
+    index.as :displayable
+  end
+  property :descriptionOfManifestation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/descriptionOfManifestation.en') do |index|
+    index.as :displayable
+  end
+  property :colourContent, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/e/colourContent.en') do |index|
+    index.as :displayable
+  end
+  property :biographicalInformation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/a/biographicalInformation.en') do |index|
+    index.as :displayable
+  end
+
+  # SWPO
+  property :containedInJournal, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#containedInJournal') do |index|
+    index.as :displayable
+  end
+  property :isVolume, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#isVolume') do |index|
+    index.as :displayable
+  end
+  property :hasNumber, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#hasNumber') do |index|
+    index.as :displayable
+  end
+
+  # Oregon Digital
   property :set, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.set, :class_name => "GenericCollection" do |index|
     index.as :searchable, :facetable, :displayable
+  end
+  property :fullText, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.fullText do |index|
+    index.as :searchable, :displayable
+  end
+  property :conditionOfSource, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sourceCondition do |index|
+    index.as :searchable, :displayable
   end
   property :institution, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.contributingInstitution, :class_name => OregonDigital::ControlledVocabularies::Organization do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :conversion, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.conversionSpecification
+  property :conversion, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.conversionSpecifications
   property :captionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.captionTitle do |index|
     index.as :searchable, :displayable
   end
-  property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.cover do |index|
-    index.as :searchable, :displayable
-  end
-  property :accessionNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.accessionNumber do |index|
+  property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.hasCover do |index|
     index.as :searchable, :displayable
   end
   property :exhibit, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.exhibit do |index|
@@ -208,13 +324,27 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :od_content, :predicate => RDF::URI('http://opaquenamespace.org/ns/contents'), :class_name => OregonDigital::RDF::List do |index|
     index.as :symbol
   end
+  property :compassDirection, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.compassDirection do |index|
+    index.as :displayable
+  end
+  property :canzonierePoems, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.canzonierePoems do |index|
+    index.as :displayable
+  end
 
-# Oregon Digital Rights
+  # MISC
+  property :itemLocator, :predicate => OregonDigital::Vocabularies::HOLDING.label do |index|
+    index.as :displayable
+  end
+  property :findingAid, :predicate => RDF::URI('http://lod.xdams.org/reload/oad/has_findingAid') do |index|
+    index.as :displayable
+  end
+
+  # Oregon Digital Rights
   property :rightsHolder, :predicate => RDF::URI('http://opaquenamespace.org/rights/rightsHolder') do |index|
     index.as :searchable, :facetable, :displayable
   end
 
-# Oregon Digital Sheet Music
+  # Oregon Digital Sheet Music
   property :instrumentation, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.instrumentation do |index|
     index.as :searchable, :facetable, :displayable
   end
@@ -230,6 +360,21 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :hostItem, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.hostItem do |index|
     index.as  :displayable
   end
+
+  # Oregon Digital Archives
+  property :collectionIdentifier, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/collectionIdentifier'] do |index|
+    index.as :displayable
+  end
+  property :collectionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/collectionTitle'] do |index|
+    index.as :displayable
+  end
+  property :boxNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/boxNumber'] do |index|
+    index.as :displayable
+  end
+  property :folderNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/folderNumber'] do |index|
+    index.as :displayable
+  end
+
 
   def to_solr(solr_doc = Hash.new)
     fields.each do |field_key, field_info|

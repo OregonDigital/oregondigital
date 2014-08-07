@@ -3,6 +3,7 @@ module OregonDigital::ControlledVocabularies
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :lcnames
+    use_vocabulary :uonames
 
     class QaLcNames < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching
