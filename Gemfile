@@ -105,6 +105,7 @@ group :development do
   # Guard for auto-test running
   gem 'guard', '~>1.0'
   gem 'guard-rspec', '~>3.0'
+  gem 'pry-remote'
 end
 
 group :test do
