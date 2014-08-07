@@ -46,6 +46,14 @@ class Document < GenericAsset
     return Pathname.new(fd.path).join("ocr.html")
   end
 
+  def ocr_content
+    @ocr_content ||= File.read(ocr_location) if File.exist?(ocr_location)
+  end
+
+  def ocr_object
+    @ocr_object ||= PdfOcr::Reader.new(ocr_content) unless ocr_content.blank?
+  end
+
   def pages_location
     fd = output_location
     fd.extension = ""

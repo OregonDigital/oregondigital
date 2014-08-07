@@ -13,6 +13,7 @@ class BookReaderManager
     )
   initialize_bookreader: =>
     @br = new BookReader()
+    window.br = @br
     @br.imagesBaseURL = "/assets/bookreader/images/"
     @br.page_info = @page_info
     @br.getPageWidth = (index) -> @page_info[index]?["size"]?["width"]
@@ -23,16 +24,21 @@ class BookReaderManager
     @br.getPageNum = (index) -> index+1
     @br.numLeafs = @page_info.length
     @br.bookTitle = @element.data("title")
+    @br.bookId = @element.data("pid")
     @br.bookUrl = ''
     @br.getEmbedCode = -> return "Embedding is disabled."
     @br.reductionFactors = this.reductionFactors()
+    @br.search_url = this.search_url
+    @br.leafNumToIndex = (page) -> parseInt(page)-1
     @br.init()
     $('#BRtoolbar').find('.read').hide()
-    $('#textSrch').hide()
-    $('#btnSrch').hide()
+    #$('#textSrch').hide()
+    #$('#btnSrch').hide()
     $('button.share').hide()
     $('button.info').hide()
     return @br
+  search_url: (term) =>
+    "/document/#{@br.bookId}/fulltext/#{term}.json"
   reductionFactors: ->
     [{reduce: 0.25, autofit: null},
       {reduce: 0.5, autofit: null},

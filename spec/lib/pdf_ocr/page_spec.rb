@@ -10,6 +10,17 @@ describe PdfOcr::Page do
       end
     end
 
+    describe "#text" do
+      it "should return the combined text" do
+        expect(subject.text.split(" ").length).to eq 101
+      end
+      context "when given focus words" do
+        it "should add curly braces to focus on them" do
+          expect(subject.text([subject.words.first]).split(" ").first).to eq "{{{#{subject.words.first.text}}}}"
+        end
+      end
+    end
+
     describe "#width" do
       it "should return the width" do
         expect(subject.width).to eq 531.086990

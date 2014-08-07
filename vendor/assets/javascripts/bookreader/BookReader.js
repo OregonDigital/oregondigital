@@ -2726,19 +2726,23 @@ function BookReader() {
 
         $('#textSrch').blur(); //cause mobile safari to hide the keyboard
 
-        var url = 'https://'+this.server.replace(/:.+/, ''); //remove the port and userdir
-        url    += '/fulltext/inside.php?item_id='+this.bookId;
-        url    += '&doc='+this.subPrefix;   //TODO: test with subitem
-        url    += '&path='+this.bookPath.replace(new RegExp('/'+this.subPrefix+'$'), ''); //remove subPrefix from end of path
-        url    += '&q='+escape(term);
-        //console.log('search url='+url);
-
+        url = this.search_url(term);
         term = term.replace(/\//g, ' '); // strip slashes, since this goes in the url
         this.searchTerm = term;
 
         this.removeSearchResults();
         this.showProgressPopup('<img id="searchmarker" src="'+this.imagesBaseURL + 'marker_srch-on.png'+'"> Search results will appear below...');
         $.ajax({url:url, dataType:'jsonp', jsonpCallback:'br.BRSearchCallback'});
+    }
+
+    BookReader.prototype.search_url = function(term) {
+      var url = 'https://'+this.server.replace(/:.+/, ''); //remove the port and userdir
+      url    += '/fulltext/inside.php?item_id='+this.bookId;
+      url    += '&doc='+this.subPrefix;   //TODO: test with subitem
+      url    += '&path='+this.bookPath.replace(new RegExp('/'+this.subPrefix+'$'), ''); //remove subPrefix from end of path
+      url    += '&q='+escape(term);
+      //console.log('search url='+url);
+      return url;
     }
 
 // BRSearchCallback()

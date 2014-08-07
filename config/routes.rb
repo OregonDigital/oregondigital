@@ -60,7 +60,11 @@ Oregondigital::Application.routes.draw do
   end
 
   # Document Metadata
-  resources :document, :only => [:show]
+  resources :document, :only => [:show] do
+    member do
+      get 'fulltext/(:q)', :to => 'document#fulltext'
+    end
+  end
 
   # Resource routes
   resources :resource, :only => [:show]
