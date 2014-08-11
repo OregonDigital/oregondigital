@@ -31,6 +31,12 @@ describe Document do
           expect(Document.find(document.pid).datastreams.keys).to include("page-#{page}")
         end
       end
+      it "should create an OCR document" do
+        expect(document.content_ocr.content).not_to be_blank
+        mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(document.ocr_location.to_s).split(';')[0]
+        expect(mime_type).to eq 'text/html'
+        expect(document.ocr_content).to eq File.read(document.ocr_location)
+      end
       it "should create a thumbnail" do
         expect(document.datastreams["page-1"].content).not_to be_blank
         mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(document.thumbnail_location).split(';')[0]
