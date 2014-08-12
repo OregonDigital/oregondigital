@@ -58,6 +58,11 @@ describe BulkTask do
       BulkTask.refresh
       expect(BulkTask.all).to have(3).items
     end
+    
+    it 'assigns a relative directory' do
+      BulkTask.refresh
+      expect(Pathname(BulkTask.first.directory)).to be_relative
+    end
 
     it 'does not create duplicate BulkTasks' do
       BulkTask.new(:directory => File.join(APP_CONFIG.batch_dir, 'test1')).save
@@ -225,7 +230,7 @@ describe BulkTask do
 
   context 'with bag batch' do
     before do
-      Dir.stub(:glob).with(File.join(subject.absolute_path, '*.csv')).and_return(nil)
+      Dir.stub(:glob).with(File.join(subject.absolute_path, '*.csv')).and_return([])
     end
 
     it 'has bag type' do
