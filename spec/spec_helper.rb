@@ -24,7 +24,7 @@ require 'webmock/rspec'
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # Require all the webmocks
 Dir[Rails.root.join("spec/webmocks/**/*.rb")].each { |f| require f }
-ROOT_PATH = File.dirname(__FILE__)
+ROOT_PATH = Rails.root.join("spec")
 DUMMY_PATH = File.join(ROOT_PATH,"dummies")
 
 # Allow http connections on localhost

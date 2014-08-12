@@ -6,10 +6,14 @@ services:
   - redis-server
 env:
   global:
-  - BUNDLE_ARCHIVE="OregonDigital"
-  - AWS_S3_BUCKET="CI-Artifacts"
-  - secure: QClPwl358D90HQEl6B5UT2pDxdYJN48411wxre86rTFhWEi7socrnuUNL11ZnD16I6BBki3KWlcNo37tkP2H6Pl36g4hngpLNekipvxA3wRzHaHVcDj2NAASnZmo78YG8MJYwbPc0oFf/bp2F39GKEP9CkvsdSyCv4ydi+NV3Ao=
-  - NOKOGIRI_USE_SYSTEM_LIRARIES=1
+    - BUNDLE_ARCHIVE="OregonDigital"
+    - AWS_S3_BUCKET="CI-Artifacts"
+    - secure: QClPwl358D90HQEl6B5UT2pDxdYJN48411wxre86rTFhWEi7socrnuUNL11ZnD16I6BBki3KWlcNo37tkP2H6Pl36g4hngpLNekipvxA3wRzHaHVcDj2NAASnZmo78YG8MJYwbPc0oFf/bp2F39GKEP9CkvsdSyCv4ydi+NV3Ao=
+    - NOKOGIRI_USE_SYSTEM_LIRARIES=1
+  matrix:
+    - TESTFOLDER=spec/features
+    - TESTFOLDER=spec/models spec/services spec/decorators spec/controllers spec/helpers
+    - TESTFOLDER=spec/lib
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev graphicsmagick
@@ -17,6 +21,8 @@ before_install:
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
   - gem install bundler bundle_cache
   - bundle_cache_install
+script:
+  - "bundle exec rake jetty:start && bundle exec rake db:migrate && bundle exec rake sets:content:sync && bundle exec rspec $TESTFOLDER"
 after_script:
   - bundle_cache
 notifications:
