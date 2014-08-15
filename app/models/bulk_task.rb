@@ -8,9 +8,8 @@ class BulkTask < ActiveRecord::Base
   delegate :new?, :processing?, :validated?, :reviewed?, :validating?, :deleted?, :to => :status
 
   def self.refresh
-    folders = Dir.glob(File.join(APP_CONFIG.batch_dir, '*')).select { |f| File.directory? f }
-    (folders - BulkTask.pluck(:directory)).each do |dir|
-      dir = Pathname(dir).relative_path_from(Pathname((APP_CONFIG.batch_dir))).to_s
+    folders = Dir.glob(File.join(APP_CONFIG.batch_dir, '*')).select { |f| File.directory? f }.map{|x| Pathname.new(x).basename.to_s}
+    (folders - BulkTask.pluck(:directory).map{|x| Pathname.new(x).basename.to_s}).each do |dir|
       BulkTask.new(:directory => dir).save
     end
     # queue validation on tasks if they are new
