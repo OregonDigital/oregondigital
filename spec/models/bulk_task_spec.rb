@@ -4,6 +4,7 @@ describe BulkTask do
 
   before do
     Dir.stub(:glob).and_call_original
+    APP_CONFIG.stub(:batch_dir).and_return("/data1/batch")
     Dir.stub(:glob).with(File.join("/data1/batch/bulkloads", '*.csv')).and_return([File.join("/data1/batch/bulkloads", 'test.csv')])
   end
   
@@ -55,6 +56,12 @@ describe BulkTask do
     end
 
     it 'creates BulkTasks for folders found' do
+      BulkTask.refresh
+      expect(BulkTask.all).to have(3).items
+    end
+
+    it 'is idempotent' do
+      BulkTask.refresh
       BulkTask.refresh
       expect(BulkTask.all).to have(3).items
     end
