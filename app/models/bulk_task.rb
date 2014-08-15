@@ -8,14 +8,21 @@ class BulkTask < ActiveRecord::Base
   delegate :new?, :processing?, :validated?, :reviewed?, :validating?, :deleted?, :to => :status
 
   def self.refresh
-    folders = Dir.glob(File.join(APP_CONFIG.batch_dir, '*')).select { |f| File.directory? f }.map{|x| Pathname.new(x).basename.to_s}
-    (folders - BulkTask.pluck(:directory).map{|x| Pathname.new(x).basename.to_s}).each do |dir|
+    (disk_bulk_folders - relative_db_bulk_folders).each do |dir|
       BulkTask.new(:directory => dir).save
     end
     # queue validation on tasks if they are new
     BulkTask.all.each do |task|
       task.queue_validation if task.new? 
     end
+  end
+
+  def self.disk_bulk_folders
+    Dir.glob(File.join(APP_CONFIG.batch_dir, '*')).select { |f| File.directory? f }.map{|x| Pathname.new(x).basename.to_s}
+  end
+
+  def self.relative_db_bulk_folders
+    BulkTask.pluck(:directory).map{|x| Pathname.new(x).basename.to_s}
   end
 
   def assets
