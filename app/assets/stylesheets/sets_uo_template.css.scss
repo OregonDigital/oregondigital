@@ -6,8 +6,10 @@
   $color: #008000;
   $highlight-color: #ffffff;
 
+  $font-stack: Gudea, Helvetica, Verdana, sans-serif;
+
   body {
-    font-family: "Gudea","Arial","Verdana",sans-serif;
+    font-family: $font-stack;
   }
 
   #facets h4, #sidebar-nav .nav-header {
