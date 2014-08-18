@@ -231,8 +231,10 @@ a {
 .BRicon.read:hover {background-position:-240px 0;}
 .BRicon.unread {background-position:-280px 0;}
 .BRicon.unread:hover {background-position:-320px 0;}
-.BRicon.full {background-position:-360px 0;}
-.BRicon.full:hover {background-position:-400px 0;}
+.BRicon.full {background-position:-1160px 0;}
+.BRicon.full:hover {background-position:-1200px 0;}
+.BRicon.return {background-position: -1240px 0;}
+.BRicon.return:hover {background-position: -1280px 0;}
 .BRicon.book_left {background-position:-440px 0;}
 .BRicon.book_left:hover {background-position:-480px 0;}
 .BRicon.book_right {background-position:-520px 0;}
