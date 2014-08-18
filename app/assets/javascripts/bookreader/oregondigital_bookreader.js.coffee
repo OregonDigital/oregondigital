@@ -36,6 +36,21 @@ class BookReaderManager
     #$('#btnSrch').hide()
     $('button.share').hide()
     $('button.info').hide()
+    $('button.BRicon.play').after('<button class="BRicon full" title="Fullscreen"></button><button class="BRicon return" title="Exit Fullscreen"></button>')
+    $('button.return').hide()
+    $('button.full').click( ->
+      bookreader = document.getElementById('BookReader')
+      rfs = bookreader.requestFullscreen || bookreader.msRequestFullscreen || bookreader.webkitRequestFullscreen || bookreader.mozRequestFullScreen
+      rfs.call(bookreader)
+      $(this).hide()
+      $('button.return').show()
+    )
+    $('button.return').click( ->
+      efs = document.exitFullscreen || document.msExitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen
+      efs.call(document)
+      $(this).hide()
+      $('button.full').show()
+    )
     return @br
   search_url: (term) =>
     "/document/#{@br.bookId}/fulltext/#{term}.json"
