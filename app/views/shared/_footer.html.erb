@@ -1,6 +1,6 @@
 <div class="footer container">
   <div class="row">
-    <div class="span6 left">
+    <div class="span8 left">
       <ul>
         <li class="first">
           <% if current_user %>
@@ -24,34 +24,38 @@
         <li>
           <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
         </li>
+
+          <% if can?(:show, Role) -%>
+        <li>
+            <%= link_to "Roles", role_management.roles_path %>
+        </li>
+          <% end -%>
+
+          <% if can?(:review, GenericAsset) -%>
+        <li>
+            <%= link_to "Review", reviewer_index_path %>
+        </li>
+          <% end -%>
+
+
+        <% if can?(:create, GenericAsset) %>
+        <li>
+          <%= link_to "Ingest", ingest_index_path %>
+        </li>
+        <% end %>
+
+
+        <% if can?(:create, ::Template) %>
+        <li>
+          <%= link_to "Templates", templates_path %>
+        </li>
+        <% end %>
         <li><a href="/copyright">Copyright</a></li>
         <li class="last"><%= link_to "Contact", contact_path %></li>
-      </ul>
-      <ul>
 
-        <li>
-          <% if can?(:show, Role) -%>
-            <%= link_to "Roles", role_management.roles_path %>
-          <% end -%>
-        </li>
-        <li>
-          <% if can?(:review, GenericAsset) -%>
-            <%= link_to "Review", reviewer_index_path %>
-          <% end -%>
-        </li>
-        <li>
-        <% if can?(:create, GenericAsset) %>
-          <%= link_to "Ingest", ingest_index_path %>
-        <% end %>
-        </li>
-        <li>
-        <% if can?(:create, ::Template) %>
-          <%= link_to "Templates", templates_path %>
-        <% end %>
-        </li>
       </ul>
     </div>
-    <div class="span6 right">
+    <div class="span4 right">
       <ul>
         <li class="first"><a href="http://library.uoregon.edu">University of Oregon Libraries</a></li>
         <li class="last"><a href="http://osulibrary.oregonstate.edu">Oregon State University Libraries</li>
