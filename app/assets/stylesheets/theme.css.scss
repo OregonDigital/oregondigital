@@ -80,7 +80,7 @@ p {
 
     }
 
-    .span3, .span9, .span5, .span9 .span5, span9 .span3 {
+    .span3, .span9, .span5, .span9 .span5, .span9 .span3 {
       display: inline-block;
       vertical-align: middle !important;
       float: none;
@@ -220,7 +220,7 @@ p {
     background: url(image_path("oregondigital/logo.png")) no-repeat scroll left top / 100% transparent;
     padding: 0;
     text-indent: 100%;
-    overflow: hidden;
+/*    overflow: hidden;*/
     height: 24px;
     width: 60px;
     margin-right: 0;
@@ -603,6 +603,10 @@ ul.sidenav {
 .nav-list > li {
   font-size: 13px;
   line-height: 22px;
+}
+
+.btn-group:first-child {
+  padding-bottom: 20px;
 }
 
 #ingest-form-container .header {
