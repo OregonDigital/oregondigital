@@ -39,7 +39,11 @@ Oregondigital::Application.routes.draw do
   end
 
   # Reviewer Controller Routes
-  resources :reviewer, :only => [:index, :show, :update]
+  resources :reviewer, :only => [:index, :show, :update] do
+    collection do
+      get 'facet/:id', :to => "reviewer#facet"
+    end
+  end
 
   # Contact Form Routes
   post '/contact' => 'contact_form#create', :as => :contact_form_index
