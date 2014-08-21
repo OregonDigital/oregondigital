@@ -12,8 +12,16 @@ module OregonDigital::OCR
     end
 
     def result
+      return not_indexed if ocr_object.blank?
       {
         :matches => matches_hash
+      }
+    end
+
+    def not_indexed
+      {
+        :indexed => false,
+        :matches => []
       }
     end
 
