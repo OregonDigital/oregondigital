@@ -4,6 +4,8 @@ $highlight-bg: #1FA1BF;
 
 $color: #144651;
 $highlight-color: #ffffff;
+$linkColor: #0f959a;//#1C88A4;
+$linkColorHover: lighten($linkColor, 10%);
 
 $font-stack: Gudea, Helvetica, Verdana, sans-serif;
 
@@ -613,42 +615,116 @@ ul.sidenav {
   margin-left: 20px;
 }
 
-.carousel-inner {
-  text-align: center;
 
-  .carousel-indicators {
-    position: static;
-    float: none;
-    margin: 3px auto;
-    display: inline-block;
+/*
+ * jQuery Blueberry Slider v0.4 BETA
+ * http://marktyrrell.com/labs/blueberry/
+ *
+ * Copyright (C) 2011, Mark Tyrrell <me@marktyrrell.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.blueberry { 
+  margin: 0 auto; 
+
+  figure, ul {
+    margin: 0;
+  }
+
+  figcaption {
+    margin-top: .2rem;
+  }
+
+  .slides {
+    display: block;
+    position: relative;
+    overflow: hidden;
 
     li {
-      border: 1px solid #ccc;
-    }
+      position: absolute;
+      top: 0;
+      left: 0;
 
-    li.active {
-      background-color: #ccc;
-    }
+      figure {
+        width: 100%;
+        max-width: none;
+      }
 
+      figcaption {
+        position: absolute;
+        background: white;
+        background: rgba(245,245,245,0.85);
+        padding: 10px 20px;
+        opacity: 1;
+        width: 90%;
+        bottom: 0;
+      }
+
+      &.active { 
+        display: block; 
+        position: relative; 
+      }
+    }
   }
-  .carousel-caption {
-    text-align: left;
 
-    a {
-      color: #ffffff;
+  .crop li figure { 
+    width: auto; 
+  }
+
+  .pager {
+    height: 40px;
+    text-align: center;
+
+    li { 
+      display: inline-block; 
+
+      a, a span {
+        display: block;
+        height: 10px;
+        width: 10px;
+      }
+
+      a {
+        padding: 18px 8px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        border: 0;
+        width: .30em;
+        background-color: transparent;
+      }
+
+      a span {
+        overflow: hidden;
+        background: $linkColor;
+        text-indent: -9999px;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+      }
+
+      &.active a span { 
+        background: transparent;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px; 
+        border: 1px solid #aaa;
+        height: 8px;
+        width: 8px;
+      }
     }
   }
-}
-.carousel-control {
-  font-size:  80px;
-  line-height: 38px;
-  color:  #fff !important;
-  top: 45%;
-  left: 0;
-  border: 0;
-  background: #c3c3c3;
-}
-
-.carousel-control.right {
-  right: 0;
 }

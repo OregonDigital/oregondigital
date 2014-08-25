@@ -21,8 +21,7 @@
 //= require jquery.ui.draggable
 //= require jquery.ui.effect.all
 //
-// Adding bootstrap for carousel
-//= require bootstrap-carousel
+// Adding bootstrap for dropdown - is this used? 
 //= require bootstrap-dropdown
 //
 // Required by Blacklight
@@ -45,4 +44,6 @@
 //= require bookreader/jquery.bt.min
 //= require bookreader/BookReader
 //
-
+// Adding blueberry for carousel
+//= require jquery.blueberry.js
+//
