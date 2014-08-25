@@ -19,11 +19,17 @@ namespace :sets do
       sh "git clone #{APP_CONFIG.set_content_repo} #{REPO_PATH}"
     end
 
-    desc 'Sync to the latest version of set-specific content and assets'
-    task :sync => [:environment, GITFILE, :clean_links] do
-      # Grab the latest version of the repo
-      sh "cd #{REPO_PATH} && git pull origin master"
+    desc "Pull set-specific content into #{REPO_PATH}.  Use BRANCH=xxx to check out something other than 'master'"
+    task :pull => [:environment, GITFILE] do
+      branch = ENV["BRANCH"]
+      branch ||= "master"
 
+      # Grab the latest version of the repo
+      sh "cd #{REPO_PATH} && git fetch && git checkout #{branch} && git pull origin #{branch}"
+    end
+
+    desc 'Sync to the latest version of set-specific content and assets'
+    task :sync => [:pull, :clean_links] do
       Dir["#{REPO_PATH}/*"].each do |set_repo_path|
         next unless File.directory?(set_repo_path)
         next if set_repo_path =~ /^\./
