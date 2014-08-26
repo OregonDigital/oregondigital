@@ -1,7 +1,8 @@
 /* Make the metadata display nicely on the show page */
 .field-values {
   .value:after {
-    content: ", ";
+    content: "\A";
+    white-space: pre;
   }
 
   .value:last-child:after {
