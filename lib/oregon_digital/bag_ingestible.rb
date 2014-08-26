@@ -11,7 +11,6 @@ module OregonDigital
 
     def ingest_bag(ingester, assets)
       begin
-        sleep(2)
         first_file = ingester.bag.bag_files.first
         unless first_file.nil?
           mime = FileMagic.new(FileMagic::MAGIC_MIME).file(ingester.bag.bag_files.first).split(';')[0]
@@ -26,12 +25,17 @@ module OregonDigital
         end
 
         puts "Ingesting #{ingester.bag.bag_dir}"
+        if bag_exists?(ingester.bag)
+          puts "Content already exists - #{ingester.bag.bag_dir} - skipping."
+          return
+        end
         ingester.model_name = klass ? klass.to_s : self.to_s
         asset = ingester.ingest
         update_rdf_subject(asset)
         asset.content.mimeType = mime
         # Overwrite existing format with the actual content format
         asset.format = ::RDF::URI("http://purl.org/NET/mediatypes/#{asset.content.mimeType}") if mime
+        sleep(2)
         asset.save
       rescue Rubydora::FedoraInvalidRequest
         @fail_ingest += 1
@@ -46,6 +50,21 @@ module OregonDigital
     end
 
     private
+
+    def bag_exists?(bag)
+      ntriples = bag.tag_files.find{|x| x.include? "descMetadata.nt"}
+      graph = ::RDF::Graph.load(ntriples)
+      title = graph.query([nil, ::RDF::DC.title, nil]).map{|x| x.object.to_s}
+      identifier = graph.query([nil, ::RDF::DC.identifier, nil]).map{|x| x.object.to_s}
+      title_exists?(title.first, identifier)
+    end
+
+    def title_exists?(title, identifier)
+      documents = ActiveFedora::SolrService.query("desc_metadata__title_teim:#{RSolr.escape(title)}")
+      !documents.find do |x|
+        x["desc_metadata__title_ssm"].include?(title) && identifier == x["desc_metadata__identifier_ssm"]
+      end.nil?
+    end
 
     def update_rdf_subject(asset)
       asset.descMetadata.resource.each_statement do |s|
