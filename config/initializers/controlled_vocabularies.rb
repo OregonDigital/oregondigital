@@ -19,5 +19,19 @@ RDF_VOCABS = {
   :oregondigital        =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/opaquenamespace.jsonld', :strict => true },
   :oregon_universities  =>  { :prefix => 'http://dbpedia.org/resource/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/oregon_universities.jsonld', :strict => true },
   :set                  =>  { :prefix => 'http://oregondigital.org/resource/', :strict => false },
-  :holding              =>  { :prefix => 'http://purl.org/ontology/holding#' }
+  :holding              =>  { :prefix => 'http://purl.org/ontology/holding#' },
+  :creator              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/creator.jsonld', :strict => true },
+  :culutre              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/culture.jsonld', :strict => true },
+  :localcoll            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/localCollectionName.jsonld', :strict => true },
+  :institutions         =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/oregondigital_orgs.jsonld', :strict => true },
+  :people               =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/people.jsonld', :strict => true },
+  :repository           =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/repository.jsonld', :strict => true },
+  :sciclass             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_class.jsonld', :strict => true },
+  :scicommon            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_commonNames.jsonld', :strict => true },
+  :scigenus              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_genus.jsonld', :strict => true },
+  :sciphylum              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientfic_phylum.jsonld', :strict => true },
+  :styleperiod              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/stylePeriod.jsonld', :strict => true },
+  :subject              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/subject.jsonld', :strict => true },
+  :technique              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/technique.jsonld', :strict => true },
+  :workType              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/workType.jsonld', :strict => true }
 }
