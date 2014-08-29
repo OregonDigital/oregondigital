@@ -59,7 +59,7 @@ module OregonDigital
     end
 
     def item_exists?(replaces_url)
-      documents = ActiveFedora::SolrService.query("desc_metadata__replacesURL_ssim:#{RSolr.escape(replaces_url)}", :rows => 10000)
+      documents = ActiveFedora::SolrService.query("desc_metadata__replacesUrl_ssim:#{RSolr.escape(replaces_url)}", :rows => 10000)
       !documents.blank?
     end
 
