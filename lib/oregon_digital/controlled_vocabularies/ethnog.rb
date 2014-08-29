@@ -1,5 +1,5 @@
 module OregonDigital::ControlledVocabularies
-  class Subject < ActiveFedora::Rdf::Resource
+  class Ethnog < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :afs_ethn
