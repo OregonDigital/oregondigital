@@ -9,7 +9,11 @@ RDF_VOCABS = {
   :geonames             =>  { :prefix => 'http://sws.geonames.org/', :strict => false, :fetch => false },
   :lcsh                 =>  { :prefix => 'http://id.loc.gov/authorities/subjects/', :strict => false, :fetch => false },
   :lcnames              =>  { :prefix => 'http://id.loc.gov/authorities/names/', :strict => false, :fetch => false },
+  :tgm                  =>  { :prefix => 'http://id.loc.gov/vocabulary/graphicMaterials', :strict => false, :fetch => false },
+  :afs_ethn             =>  { :prefix => 'http://id.loc.gov/vocabulary/ethnographicTerms', :strict => false, :fetch => false },
+  :lc_orgs              =>  { :prefix => 'http://id.loc.gov/vocabulary/ethnographicTerms', :strict => false, :fetch => false },
   :aat                  =>  { :prefix => 'http://vocab.getty.edu/aat/', :strict => false, :fetch => false },
+  :getty_tgn            =>  { :prefix => 'http://vocab.getty.edu/tgn/', :strict => false, :fetch => false },
   :cclicenses           =>  { :prefix => 'http://creativecommons.org/licenses/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/cclicenses/cclicenses.nt'},
   :ccpublic             =>  { :prefix => 'http://creativecommons.org/publicdomain/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/cclicenses/cclicenses.nt'},
   :uonames              =>  { :prefix => 'http://opaquenamespace.org/ns/uo-names/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/uo/names.jsonld'},
@@ -28,10 +32,10 @@ RDF_VOCABS = {
   :repository           =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/repository.jsonld', :strict => true },
   :sciclass             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_class.jsonld', :strict => true },
   :scicommon            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_commonNames.jsonld', :strict => true },
-  :scigenus              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_genus.jsonld', :strict => true },
-  :sciphylum              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientfic_phylum.jsonld', :strict => true },
-  :styleperiod              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/stylePeriod.jsonld', :strict => true },
+  :scigenus             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_genus.jsonld', :strict => true },
+  :sciphylum            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientfic_phylum.jsonld', :strict => true },
+  :styleperiod          =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/stylePeriod.jsonld', :strict => true },
   :subject              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/subject.jsonld', :strict => true },
-  :technique              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/technique.jsonld', :strict => true },
-  :workType              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/workType.jsonld', :strict => true }
+  :technique            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/technique.jsonld', :strict => true },
+  :workType             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/workType.jsonld', :strict => true }
 }
