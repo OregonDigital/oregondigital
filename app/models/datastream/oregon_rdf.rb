@@ -314,7 +314,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :captionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.captionTitle do |index|
     index.as :searchable, :displayable
   end
-  property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.hasCover do |index|
+  property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.coverDescription do |index|
     index.as :searchable, :displayable
   end
   property :exhibit, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.exhibit do |index|
