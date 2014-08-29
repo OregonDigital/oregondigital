@@ -37,5 +37,5 @@ RDF_VOCABS = {
   :styleperiod          =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/stylePeriod.jsonld', :strict => true },
   :subject              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/subject.jsonld', :strict => true },
   :technique            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/technique.jsonld', :strict => true },
-  :workType             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/workType.jsonld', :strict => true }
+  :worktype             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/workType.jsonld', :strict => true }
 }
