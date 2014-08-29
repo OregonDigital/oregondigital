@@ -4,7 +4,7 @@ module OregonDigital::ControlledVocabularies
 
     use_vocabulary :afs_ethn
 
-    class QaLcsh < Qa::Authorities::Loc
+    class QaLcEth < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching
       def search(q, sub_authority=nil)
         super(q, 'ethnog')
@@ -19,6 +19,6 @@ module OregonDigital::ControlledVocabularies
       end
     end
 
-    @qa_interface = QaLcsh.new
+    @qa_interface = QaLcEth.new
   end
 end
