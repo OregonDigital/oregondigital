@@ -54,9 +54,13 @@ module OregonDigital
     def bag_exists?(bag)
       ntriples = bag.tag_files.find{|x| x.include? "descMetadata.nt"}
       graph = ::RDF::Graph.load(ntriples)
-      title = graph.query([nil, ::RDF::DC.title, nil]).map{|x| x.object.to_s}
-      identifier = graph.query([nil, ::RDF::DC.identifier, nil]).map{|x| x.object.to_s}
-      title_exists?(title.first, identifier)
+      replaces_url = graph.query([nil, ::RDF::DC.replaces, nil]).map{|x| x.object.to_s}.first
+      item_exists?(replaces_url)
+    end
+
+    def item_exists?(replaces_url)
+      documents = ActiveFedora::SolrService.query("desc_metadata__replacesURL_ssim:#{RSolr.escape(replaces_url)}", :rows => 10000)
+      !documents.blank?
     end
 
     def title_exists?(title, identifier)
