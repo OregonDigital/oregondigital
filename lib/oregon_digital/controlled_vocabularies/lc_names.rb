@@ -4,6 +4,7 @@ module OregonDigital::ControlledVocabularies
 
     use_vocabulary :lcnames
     use_vocabulary :uonames
+    use_vocabulary :creator
 
     class QaLcNames < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching
