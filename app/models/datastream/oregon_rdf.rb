@@ -361,21 +361,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as  :displayable
   end
 
-  # Oregon Digital Archives
-  property :collectionIdentifier, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/collectionIdentifier'] do |index|
-    index.as :displayable
-  end
-  property :collectionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/collectionTitle'] do |index|
-    index.as :displayable
-  end
-  property :boxNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/boxNumber'] do |index|
-    index.as :displayable
-  end
-  property :folderNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['archives/folderNumber'] do |index|
-    index.as :displayable
-  end
-
-
   def to_solr(solr_doc = Hash.new)
     fields.each do |field_key, field_info|
       values = resource.get_values(field_key).map{|x| x.respond_to?(:resource) ? x.resource : x}
