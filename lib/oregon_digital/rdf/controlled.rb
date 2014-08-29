@@ -58,6 +58,7 @@ module OregonDigital::RDF
       labels += default_labels
       labels.each do |label|
         values = get_values(label, :language => :en)
+        values = get_values(label, :language => :"en-us") if values.blank?
         values = get_values(label) if values.blank?
         return values unless values.empty?
       end
