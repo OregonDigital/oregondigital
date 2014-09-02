@@ -26,11 +26,11 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :lcsubject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
-      index.as :searchable, :facetable, :displayable
- end
+    index.as :searchable, :facetable, :displayable
+  end
   property :subject, :predicate => RDF::DC11.subject do |index|
-      index.as :searchable, :facetable, :displayable
- end
+    index.as :searchable, :facetable, :displayable
+  end
   property :source, :predicate => RDF::DC.source do |index|
     index.as :displayable
   end
