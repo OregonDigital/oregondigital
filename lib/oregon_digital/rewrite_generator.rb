@@ -48,7 +48,11 @@ module OregonDigital
     end
 
     def replaces_objects
-      Blacklight.solr.get("select", :params => {:fl => "id,#{replaces_key}", :q => "#{replaces_key}:[* TO *] #{reviewed_key}:true", :rows => 10000, :qt => "search"})["response"]["docs"]
+      Blacklight.solr.get("select", :params => {:fl => "id,#{replaces_key}", :q => "#{replaces_key}:[* TO *] #{reviewed_key}:true", :rows => max_item_count, :qt => "search"})["response"]["docs"]
+    end
+
+    def max_item_count
+      1000000
     end
 
     def reviewed_key
