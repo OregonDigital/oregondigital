@@ -35,7 +35,7 @@ INGEST_MAP = {
     arranger: "descMetadata.arranger",
     printMaker: "descMetadata.printMaker",
   },
-  
+
   description: {
     description: "descMetadata.description",
     abstract: "descMetadata.abstract",
@@ -52,7 +52,7 @@ INGEST_MAP = {
     subject: "descMetadata.subject",
     # ethnographicTerm: "descMetadata.ethnographicTerm",
   },
-  
+
   geographic: {
     location: "descMetadata.location",
   },
@@ -88,7 +88,7 @@ INGEST_MAP = {
     largerWork: "descMetadata.largerWork",
     hostItem: "descMetadata.hostItem",
   },
-  
+
   type: {
     type: "descMetadata.type",
     workType: "descMetadata.workType",
@@ -126,4 +126,3 @@ for group, types_map in TEMPLATE_MAP
     property.gsub!("descMetadata", "templateMetadata")
   end
 end
-
