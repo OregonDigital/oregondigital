@@ -80,6 +80,17 @@ describe OregonDigital::RewriteGenerator do
           a.save!
           a
         end
+        context "which is not reviewed" do
+          let(:asset) do
+            a = FactoryGirl.build(:generic_asset, :pending_review)
+            a.descMetadata.replacesUrl = replaces
+            a.save!
+            a
+          end
+          it "should be empty" do
+            expect(subject).to eq({})
+          end
+        end
         context "which is missing a slash" do
           it "should be a hash with that attribute" do
             expect(subject).to eq({asset.pid => "/bracero,62"})
