@@ -48,7 +48,11 @@ module OregonDigital
     end
 
     def replaces_objects
-      Blacklight.solr.get("select", :params => {:fl => "id,#{replaces_key}", :q => "#{replaces_key}:[* TO *]", :rows => 10000, :qt => "search"})["response"]["docs"]
+      Blacklight.solr.get("select", :params => {:fl => "id,#{replaces_key}", :q => "#{replaces_key}:[* TO *] #{reviewed_key}:true", :rows => 10000, :qt => "search"})["response"]["docs"]
+    end
+
+    def reviewed_key
+      ActiveFedora::SolrService.solr_name(:reviewed, :symbol)
     end
 
     def replaces_key
