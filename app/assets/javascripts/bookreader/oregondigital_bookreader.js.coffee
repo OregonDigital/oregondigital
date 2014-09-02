@@ -36,21 +36,31 @@ class BookReaderManager
     #$('#btnSrch').hide()
     $('button.share').hide()
     $('button.info').hide()
-    $('button.BRicon.play').after('<button class="BRicon full" title="Fullscreen"></button><button class="BRicon return" title="Exit Fullscreen"></button>')
+    $('button.play').after('<button class="BRicon full" title="Fullscreen"></button><button class="BRicon return" title="Exit Fullscreen"></button>')
     $('button.return').hide()
     $('button.full').click( ->
       bookreader = document.getElementById('BookReader')
-      rfs = bookreader.requestFullscreen || bookreader.msRequestFullscreen || bookreader.webkitRequestFullscreen || bookreader.mozRequestFullScreen
+      rfs = bookreader.requestFullscreen || bookreader.msRequestFullscreen
+      || bookreader.webkitRequestFullscreen || bookreader.mozRequestFullScreen
       rfs.call(bookreader)
-      $(this).hide()
-      $('button.return').show()
     )
     $('button.return').click( ->
-      efs = document.exitFullscreen || document.msExitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen
+      efs = document.exitFullscreen || document.msExitFullscreen
+      || document.webkitExitFullscreen || document.mozCancelFullScreen
       efs.call(document)
-      $(this).hide()
-      $('button.full').show()
     )
+    # add screen change event listeners for each of the specific browser types to toggle the show/hide buttons
+    listeners = ['fullscreenchange', 'mozfullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange']
+    for listener in listeners
+      document.addEventListener(listener, ->
+        if document.fullscreenElement || document.msFullscreenElement
+          || document.mozFullScreenElement || document.webkitFullscreenElement
+          $('button.full').hide()
+          $('button.return').show()
+        else
+          $('button.return').hide()
+          $('button.full').show()
+      )
     return @br
   search_url: (term) =>
     "/document/#{@br.bookId}/fulltext/#{term}.json"
