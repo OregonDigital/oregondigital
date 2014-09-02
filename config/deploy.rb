@@ -14,7 +14,7 @@ set :user, config['user']
 set :default_environment, config['default_environment'] || {}
 default_run_options[:pty] = true
 set :scm, :git
-set :branch, config['branch']
+set :branch, fetch(:branch, config["branch"] || "master")
 set :deploy_via, :remote_cache
 set :use_sudo, false
 set :keep_releases, 5

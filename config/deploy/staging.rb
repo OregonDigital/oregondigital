@@ -8,7 +8,7 @@ role :web, config['hosts']['web'] # Your HTTP server, Apache/etc
 role :app, config['hosts']['app'] # This may be the same as your `Web` server
 role :db,  config['hosts']['db'], :primary => true # This is where Rails migrations will run
 # Git Config
-set :branch, config['branch']
+set :branch, fetch(:branch, config["branch"] || "master")
 # God Settings
 set(:god_app_path) {"#{current_path}/#{config['god']['app_path']}"}
 set :god_sites_path,  config['god']['sites_path']
