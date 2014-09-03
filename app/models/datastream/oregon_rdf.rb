@@ -56,6 +56,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :scribe, :predicate => OregonDigital::Vocabularies::MARCREL.scr do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :transcriber, :predicate => OregonDigital::Vocabularies::MARCREL.trc do |index|
+    index.as :searchable, :displayable
+  end
   property :creatorDisplay, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/creatorDisplay') do |index|
     index.as :displayable
   end
@@ -73,6 +76,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :captionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.captionTitle do |index|
     index.as :searchable, :displayable
   end
+  property :artSeries, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.artSeries do |index|
+    index.as :searchable, :displayable
+  end
   property :view, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDescription') do |index|
     index.as :displayable
   end
@@ -85,6 +91,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :compassDirection, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.compassDirection do |index|
     index.as :displayable
   end
+  property :sportsTeam, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sportsTeam do |index|
+    index.as :searchable, :displayable
+  end
   property :conditionOfSource, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sourceCondition do |index|
     index.as :searchable, :displayable
   end
@@ -93,6 +102,15 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :od_content, :predicate => RDF::URI('http://opaquenamespace.org/ns/contents'), :class_name => OregonDigital::RDF::List do |index|
     index.as :symbol
+  end
+  property :militaryServiceLocation, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.militaryServiceLocation do |index|
+    index.as :searchable, :displayable
+  end
+  property :militaryHighestRank, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.militaryHighestRank do |index|
+    index.as :searchable, :displayable
+  end
+  property :militaryOccupation, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.militaryOccupation do |index|
+    index.as :searchable, :displayable
   end
   property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.coverDescription do |index|
     index.as :searchable, :displayable
@@ -120,10 +138,22 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::AAT do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :ethnographicTerm, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.ethnographic, :class_name => OregonDigital::ControlledVocabularies::Ethnog do |index|
+    index.as :searchable, :displayable
+  end
 
   # Geographics
   property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
     index.as :searchable, :facetable, :displayable
+  end
+  property :streetAddress, :predicate => RDF::URI('http://www.loc.gov/standards/mads/rdf/v1.html#streetAddress') do |index|
+    index.as :searchable, :displayable
+  end
+  property :rangerDistrict, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.rangerDistrict, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
+    index.as :searchable, :displayable
+  end
+  property :tgn, :predicate => RDF::URI('http://opaquenamespace.org/ns/tgn'), :class_name => OregonDigital::ControlledVocabularies::GettyTGN do |index|
+    index.as :searchable, :displayable
   end
 
   # Dates
@@ -142,6 +172,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :viewDate, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDate') do |index|
     index.as :displayable
+  end
+  property :awardDate, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/awardDate') do |index|
+    index.as :searchable, :displayable
   end
 
   # Identifiers
@@ -182,6 +215,27 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup do |index|
     index.as :displayable
   end
+  property :repository, :predicate => OregonDigital::Vocabularies::MARCREL.rps, :class_name => OregonDigital::ControlledVocabularies::Repos do |index|
+    index.as :searchable, :displayable
+  end
+  property :localCollectionID, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.localCollectionID do |index|
+    index.as :searchable, :displayable
+  end
+  property :localCollectionName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.localCollectionName, :class_name => OregonDigital::ControlledVocabularies::LocalCollection do |index|
+    index.as :searchable, :displayable
+  end
+  property :seriesName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.seriesName do |index|
+    index.as :searchable, :displayable
+  end
+  property :boxNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.boxNumber do |index|
+    index.as :searchable, :displayable
+  end
+  property :folderNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.folderNumber do |index|
+    index.as :searchable, :displayable
+  end
+  property :folderName, :predicate => RDF::URI('http://opaquenamespace.org/ns/folderName') do |index|
+    index.as :searchable, :displayable
+  end
 
   # Types
   property :type, :predicate => RDF::DC.type, :class_name => OregonDigital::ControlledVocabularies::DCMIType do |index|
@@ -199,6 +253,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
   property :materials, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/materials') do |index|
+    index.as :searchable, :displayable
+  end
+  property :support, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/support') do |index|
     index.as :searchable, :displayable
   end
   property :technique, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/technique') do |index|
