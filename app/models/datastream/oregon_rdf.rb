@@ -182,9 +182,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup do |index|
     index.as :displayable
   end
-  property :localCollection, :predicate => RDF::DC.isPartOf do |index|
-    index.as :searchable, :facetable, :displayable
-  end
 
   # Types
   property :type, :predicate => RDF::DC.type, :class_name => OregonDigital::ControlledVocabularies::DCMIType do |index|
