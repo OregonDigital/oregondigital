@@ -132,10 +132,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :stateEdition, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/stateEdition') do |index|
     index.as :searchable, :displayable
   end
-  property :stylePeriod, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/stylePeriod') do |index|
+  property :stylePeriod, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/stylePeriod'), :class_name => OregonDigital::ControlledVocabularies::StylePeriod do |index|
     index.as :searchable, :displayable
   end
-  property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::AAT do |index|
+  property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::WorkType do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :ethnographicTerm, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.ethnographic, :class_name => OregonDigital::ControlledVocabularies::Ethnog do |index|
