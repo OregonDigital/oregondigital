@@ -150,6 +150,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :ethnographicTerm, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.ethnographic, :class_name => OregonDigital::ControlledVocabularies::Ethnog do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :person, :predicate => RDF::URI('http://opaquenamespace.org/ns/people'), :class_name => OregonDigital::ControlledVocabularies::People do |index|
+    index.as :searchable, :facetable, :displayable
+  end
 
   # Geographics
   property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
