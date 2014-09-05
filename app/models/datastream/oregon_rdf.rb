@@ -218,6 +218,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :od_repository, :predicate => OregonDigital::Vocabularies::MARCREL.rps, :class_name => OregonDigital::ControlledVocabularies::Repos do |index|
     index.as :searchable, :displayable
   end
+  property :isPartOf, :predicate => RDF::DC.isPartOf do |index|
+    index.as :searchable, :displayable
+  end
   property :localCollectionID, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.localCollectionID do |index|
     index.as :searchable, :displayable
   end
