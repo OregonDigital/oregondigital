@@ -139,7 +139,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :stylePeriod, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/stylePeriod'), :class_name => OregonDigital::ControlledVocabularies::StylePeriod do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :facetable, :displayable
   end
   property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::WorkType do |index|
     index.as :searchable, :facetable, :displayable
@@ -148,7 +148,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
   property :ethnographicTerm, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.ethnographic, :class_name => OregonDigital::ControlledVocabularies::Ethnog do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :facetable, :displayable
   end
 
   # Geographics
@@ -159,10 +159,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :rangerDistrict, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.rangerDistrict, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :facetable, :displayable
   end
   property :tgn, :predicate => RDF::URI('http://opaquenamespace.org/ns/tgn'), :class_name => OregonDigital::ControlledVocabularies::GettyTGN do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :facetable, :displayable
   end
 
   # Dates
@@ -225,7 +225,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
   property :od_repository, :predicate => OregonDigital::Vocabularies::MARCREL.rps, :class_name => OregonDigital::ControlledVocabularies::Repos do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :facetable, :displayable
   end
   property :isPartOf, :predicate => RDF::DC.isPartOf do |index|
     index.as :searchable, :displayable
@@ -234,7 +234,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :localCollectionName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.localCollectionName, :class_name => OregonDigital::ControlledVocabularies::LocalCollection do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :facetable, :displayable
   end
   property :seriesName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.seriesName do |index|
     index.as :searchable, :displayable
