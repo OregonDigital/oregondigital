@@ -44,6 +44,12 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :illustrator, :predicate => OregonDigital::Vocabularies::MARCREL.ill do |index|
     index.as :displayable
   end
+  property :interviewee, :predicate => OregonDigital::Vocabularies::MARCREL.ive do |index|
+    index.as :searchable, :displayable
+  end
+  property :interviewer, :predicate => OregonDigital::Vocabularies::MARCREL.ivr do |index|
+    index.as :searchable, :displayable
+  end
   property :lyricist, :predicate => OregonDigital::Vocabularies::MARCREL.lyr, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
     index.as :searchable, :facetable, :displayable
   end
@@ -136,6 +142,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::WorkType do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :militaryBranch, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.militaryBranch, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :ethnographicTerm, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.ethnographic, :class_name => OregonDigital::ControlledVocabularies::Ethnog do |index|
