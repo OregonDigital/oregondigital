@@ -40,21 +40,18 @@ class BookReaderManager
     $('button.return').hide()
     $('button.full').click( ->
       bookreader = document.getElementById('BookReader')
-      rfs = bookreader.requestFullscreen || bookreader.msRequestFullscreen
-      || bookreader.webkitRequestFullscreen || bookreader.mozRequestFullScreen
+      rfs = bookreader.requestFullscreen || bookreader.msRequestFullscreen || bookreader.webkitRequestFullscreen || bookreader.mozRequestFullScreen
       rfs.call(bookreader)
     )
     $('button.return').click( ->
-      efs = document.exitFullscreen || document.msExitFullscreen
-      || document.webkitExitFullscreen || document.mozCancelFullScreen
+      efs = document.exitFullscreen || document.msExitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen
       efs.call(document)
     )
     # add screen change event listeners for each of the specific browser types to toggle the show/hide buttons
     listeners = ['fullscreenchange', 'mozfullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange']
     for listener in listeners
       document.addEventListener(listener, ->
-        if document.fullscreenElement || document.msFullscreenElement
-          || document.mozFullScreenElement || document.webkitFullscreenElement
+        if document.fullscreenElement || document.msFullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement
           $('button.full').hide()
           $('button.return').show()
         else
