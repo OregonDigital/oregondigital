@@ -30,31 +30,46 @@ INGEST_MAP = {
     contributor: "descMetadata.contributor",
     photographer: "descMetadata.photographer",
     illustrator: "descMetadata.illustrator",
+    interviewer: "descMetadata.interviewer",
+    interviewee: "descMetadata.interviewee",
     composer: "descMetadata.composer",
     lyricist: "descMetadata.lyricist",
     arranger: "descMetadata.arranger",
     printMaker: "descMetadata.printMaker",
+    transcriber: "descMetadata.transcriber",
   },
 
   description: {
     description: "descMetadata.description",
     abstract: "descMetadata.abstract",
     view: "descMetadata.view",
+    sportsTeam: "descMetadata.sportsTeam",
     culturalContext: "descMetadata.culturalContext",
     inscription: "descMetadata.inscription",
+    artSeries: "descMetadata.artSeries",
     cover: "descMetadata.cover",
     instrumentation: "descMetadata.instrumentation",
     note: "descMetadata.note",
+    militaryServiceLocation: "descMetadata.militaryServiceLocation",
+    militaryHighestRank: "descMetadata.militaryHighestRank",
+    militaryOccupation: "descMetadata.militaryOccupation",
   },
 
   subject: {
     lcsubject: "descMetadata.lcsubject",
     subject: "descMetadata.subject",
-    # ethnographicTerm: "descMetadata.ethnographicTerm",
+    stylePeriod: "descMetadata.stylePeriod",
+    workType: "descMetadata.workType",
+    militaryBranch: "descMetadata.militaryBranch",
+    ethnographicTerm: "descMetadata.ethnographicTerm",
+    person: "descMetadata.person",
   },
 
   geographic: {
     location: "descMetadata.location",
+    streetAddress: "descMetadata.streetAddress",
+    rangerDistrict: "descMetadata.rangerDistrict",
+    tgn: "descMetadata.tgn",
   },
 
   date: {
@@ -66,6 +81,7 @@ INGEST_MAP = {
     latestDate: "descMetadata.latestDate",
     created: "descMetadata.created",
     modified: "descMetadata.modified",
+    awardDate: "descMetadata.awardDate",
   },
 
   identifier: {
@@ -84,6 +100,14 @@ INGEST_MAP = {
     source: "descMetadata.source",
     publisher: "descMetadata.publisher",
     placeOfPublication: "descMetadata.placeOfPublication",
+    repository: "descMetadata.od_repository",
+    isPartOf: "descMetadata.isPartOf",
+    localCollectionID: "descMetadata.localCollectionID",
+    localCollectionName: "descMetadata.localCollectionName",
+    seriesName: "descMetadata.seriesName",
+    boxNumber: "descMetadata.boxNumber",
+    folderNumber: "descMetadata.folderNumber",
+    folderName: "descMetadata.folderName",
     provenance: "descMetadata.provenance",
     largerWork: "descMetadata.largerWork",
     hostItem: "descMetadata.hostItem",
@@ -98,6 +122,7 @@ INGEST_MAP = {
     format: "descMetadata.format",
     physicalExtent: "descMetadata.physicalExtent",
     measurements: "descMetadata.measurements",
+    support: "descMetadata.support",
     hasPart: "descMetadata.hasPart",
   },
 
