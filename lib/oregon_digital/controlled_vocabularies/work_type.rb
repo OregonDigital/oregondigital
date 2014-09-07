@@ -4,6 +4,7 @@ module OregonDigital::ControlledVocabularies
 
     use_vocabulary :aat
     use_vocabulary :worktype
+    use_vocabulary :lcsh
 
   end
 end
