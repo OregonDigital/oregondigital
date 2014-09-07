@@ -100,9 +100,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :compassDirection, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.compassDirection do |index|
     index.as :displayable
   end
-  property :sportsTeam, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sportsTeam do |index|
-    index.as :searchable, :displayable
-  end
   property :conditionOfSource, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sourceCondition do |index|
     index.as :searchable, :displayable
   end
@@ -155,6 +152,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :person, :predicate => RDF::URI('http://opaquenamespace.org/ns/people'), :class_name => OregonDigital::ControlledVocabularies::People do |index|
     index.as :searchable, :facetable, :displayable
+  end
+  property :sportsTeam, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sportsTeam do |index|
+    index.as :searchable, :displayable
   end
 
   # Geographics
