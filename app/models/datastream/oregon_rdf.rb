@@ -69,7 +69,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :transcriber, :predicate => OregonDigital::Vocabularies::MARCREL.trc do |index|
-    index.as :searchable, :displayable
+    index.as :displayable
   end
   property :creatorDisplay, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/creatorDisplay') do |index|
     index.as :displayable
