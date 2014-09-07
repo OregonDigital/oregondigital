@@ -56,7 +56,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :interviewer, :predicate => OregonDigital::Vocabularies::MARCREL.ivr do |index|
     index.as :searchable, :displayable
   end
-  property :lyricist, :predicate => OregonDigital::Vocabularies::MARCREL.lyr, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
+  property :lyricist, :predicate => OregonDigital::Vocabularies::MARCREL.lyr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
