@@ -41,7 +41,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :cartographer, :predicate => OregonDigital::Vocabularies::MARCREL.ctg do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :composer, :predicate => OregonDigital::Vocabularies::MARCREL.cmp, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
+  property :composer, :predicate => OregonDigital::Vocabularies::MARCREL.cmp, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :donor, :predicate => OregonDigital::Vocabularies::MARCREL.dnr do |index|
