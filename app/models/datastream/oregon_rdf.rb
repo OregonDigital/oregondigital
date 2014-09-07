@@ -23,7 +23,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # Creators
-  property :creator, :predicate => RDF::DC11.creator do |index|
+  property :creator, :predicate => RDF::DC11.creator, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :contributor, :predicate => RDF::DC11.contributor do |index|
