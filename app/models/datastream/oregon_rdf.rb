@@ -47,8 +47,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :donor, :predicate => OregonDigital::Vocabularies::MARCREL.dnr do |index|
     index.as :searchable, :displayable
   end
-  property :illustrator, :predicate => OregonDigital::Vocabularies::MARCREL.ill do |index|
-    index.as :displayable
+  property :illustrator, :predicate => OregonDigital::Vocabularies::MARCREL.ill, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
+    index.as :displayable, :facetable, :displayable
   end
   property :interviewee, :predicate => OregonDigital::Vocabularies::MARCREL.ive do |index|
     index.as :searchable, :displayable
