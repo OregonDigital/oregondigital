@@ -4,5 +4,7 @@ module OregonDigital::ControlledVocabularies
 
     use_vocabulary :styleperiod
     use_vocabulary :aat
+    use_vocabulary :lcsh
+
   end
 end
