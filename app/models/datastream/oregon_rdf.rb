@@ -29,13 +29,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :contributor, :predicate => RDF::DC11.contributor do |index|
     index.as :searchable, :displayable
   end
-  property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
+  property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :artist, :predicate => OregonDigital::Vocabularies::MARCREL.art do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :author, :predicate => OregonDigital::Vocabularies::MARCREL.aut, :class_name => OregonDigital::ControlledVocabularies::LCNames do |index|
+  property :author, :predicate => OregonDigital::Vocabularies::MARCREL.aut, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :cartographer, :predicate => OregonDigital::Vocabularies::MARCREL.ctg do |index|
