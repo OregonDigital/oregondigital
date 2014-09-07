@@ -3,6 +3,6 @@ module OregonDigital::ControlledVocabularies
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :styleperiod
-
+    use_vocabulary :aat
   end
 end
