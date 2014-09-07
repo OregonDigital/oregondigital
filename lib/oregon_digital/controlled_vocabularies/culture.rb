@@ -3,6 +3,8 @@ module OregonDigital::ControlledVocabularies
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :culture
+    use_vocabulary :lcsh
+    use_vocabulary :lcames
 
   end
 end
