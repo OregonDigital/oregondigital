@@ -305,6 +305,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :submissionDate, :predicate => RDF::DC.dateSubmitted do |index|
     index.as :searchable, :displayable
   end
+  property :replacesUrl, :predicate => RDF::DC.replaces do |index|
+    index.as :symbol
+  end
 
   # TODO: Are we using these?  If not, ditch them!  If so, they need to be in
   # the data dictionary document!
@@ -317,9 +320,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :provenance, :predicate => RDF::DC.provenance do |index|
     index.as :displayable
-  end
-  property :replacesUrl, :predicate => RDF::DC.replaces do |index|
-    index.as :symbol
   end
 
   # Schema.org
