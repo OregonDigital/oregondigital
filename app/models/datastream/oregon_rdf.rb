@@ -15,6 +15,12 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :alternative, :predicate => RDF::DC.alternative do |index|
     index.as :searchable, :displayable
   end
+  property :captionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.captionTitle do |index|
+    index.as :searchable, :displayable
+  end
+  property :tribalTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tribalTitle do |index|
+    index.as :searchable, :displayable
+  end
 
   # Creators
   property :creator, :predicate => RDF::DC11.creator do |index|
@@ -77,9 +83,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :inscription, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/inscription') do |index|
-    index.as :searchable, :displayable
-  end
-  property :captionTitle, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.captionTitle do |index|
     index.as :searchable, :displayable
   end
   property :artSeries, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.artSeries do |index|
