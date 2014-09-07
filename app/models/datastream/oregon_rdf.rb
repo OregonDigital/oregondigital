@@ -59,7 +59,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :lyricist, :predicate => OregonDigital::Vocabularies::MARCREL.lyr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht do |index|
+  property :photographer, :predicate => OregonDigital::Vocabularies::MARCREL.pht, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :printMaker, :predicate => OregonDigital::Vocabularies::MARCREL.prm do |index|
