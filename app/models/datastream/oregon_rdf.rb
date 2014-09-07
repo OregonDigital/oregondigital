@@ -32,7 +32,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :artist, :predicate => OregonDigital::Vocabularies::MARCREL.art do |index|
+  property :artist, :predicate => OregonDigital::Vocabularies::MARCREL.art, :class_name => OregonDigital::ControlledVocabularies::Creator ido |index|
     index.as :searchable, :facetable, :displayable
   end
   property :author, :predicate => OregonDigital::Vocabularies::MARCREL.aut, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
