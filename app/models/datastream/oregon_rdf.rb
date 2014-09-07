@@ -302,15 +302,15 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :fullText, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.fullText do |index|
     index.as :searchable, :displayable
   end
+  property :submissionDate, :predicate => RDF::DC.dateSubmitted do |index|
+    index.as :searchable, :displayable
+  end
 
   # TODO: Are we using these?  If not, ditch them!  If so, they need to be in
   # the data dictionary document!
 
   property :coverage, :predicate => RDF::DC11.coverage do |index|
     index.as :searchable, :facetable, :displayable
-  end
-  property :submissionDate, :predicate => RDF::DC.dateSubmitted do |index|
-    index.as :searchable, :displayable
   end
   property :hasPart, :predicate => RDF::DC.hasPart do |index|
     index.as :displayable
