@@ -1,5 +1,5 @@
 module OregonDigital::ControlledVocabularies
-  class LCNames < ActiveFedora::Rdf::Resource
+  class Creator < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :lcnames
