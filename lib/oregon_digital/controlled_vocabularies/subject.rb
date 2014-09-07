@@ -1,8 +1,13 @@
 module OregonDigital::ControlledVocabularies
   class Subject < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
-
+    
+    #metdata librarians want multiple authoritative sources with dct.subject
     use_vocabulary :lcsh
+    use_vocabulary :lcnames
+    use_vocabulary :tgm
+    use_vocabulary :aat
+    use_vocabulary :subject
 
     class QaLcsh < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching
