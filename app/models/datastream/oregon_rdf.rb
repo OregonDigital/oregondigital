@@ -121,12 +121,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.coverDescription do |index|
     index.as :searchable, :displayable
   end
-  property :largerWork, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.largerWork do |index|
-    index.as :searchable, :displayable
-  end
-  property :hostItem, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.hostItem do |index|
-    index.as  :displayable
-  end
 
   # Subjects
   property :lcsubject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
@@ -233,9 +227,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :od_repository, :predicate => OregonDigital::Vocabularies::MARCREL.rps, :class_name => OregonDigital::ControlledVocabularies::Repos do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :isPartOf, :predicate => RDF::DC.isPartOf do |index|
-    index.as :searchable, :displayable
-  end
   property :localCollectionID, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.localCollectionID do |index|
     index.as :searchable, :displayable
   end
@@ -286,6 +277,30 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # Relations  
+  property :relation, :predicate => RDF::DC.relation do |index|
+    index.as :displayable
+  end
+  property :largerWork, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.largerWork do |index|
+    index.as :searchable, :displayable
+  end   
+  property :hostItem, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.hostItem do |index|
+    index.as  :displayable
+  end
+  property :hasPart, :predicate => RDF::DC.hasPart do |index|
+    index.as :displayable
+  end
+  property :isPartOf, :predicate => RDF::DC.isPartOf do |index|
+    index.as :searchable, :displayable
+  end
+  property :hasVersion, :predicate => RDF::DC.hasVersion do |index|
+    index.as :displayable
+  end
+  property :isVersionOf, :predicate => RDF::DC.isVersionOf do |index|
+    index.as :displayable
+  end
+  property :findingAid, :predicate => RDF::URI('http://lod.xdams.org/reload/oad/has_findingAid') do |index|
+    index.as :displayable
+  end
 
   # Administrative
   property :institution, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.contributingInstitution, :class_name => OregonDigital::ControlledVocabularies::Organization do |index|
@@ -316,9 +331,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
   property :coverage, :predicate => RDF::DC11.coverage do |index|
     index.as :searchable, :facetable, :displayable
-  end
-  property :hasPart, :predicate => RDF::DC.hasPart do |index|
-    index.as :displayable
   end
   property :provenance, :predicate => RDF::DC.provenance do |index|
     index.as :displayable
@@ -450,10 +462,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
 
-  # MISC
-  property :findingAid, :predicate => RDF::URI('http://lod.xdams.org/reload/oad/has_findingAid') do |index|
-    index.as :displayable
-  end
 
   def to_solr(solr_doc = Hash.new)
     fields.each do |field_key, field_info|
