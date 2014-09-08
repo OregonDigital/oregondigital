@@ -22,8 +22,6 @@ INGEST_MAP = {
     alternative: "descMetadata.alternative",
     captionTitle: "descMetadata.captionTitle",
     tribalTitle: "descMetadata.tribalTitle",
-    firstLine: "descMetadata.firstLine",
-    firstLineChorus: "descMetadata.firstLineChorus",
   },
 
   creator: {
@@ -45,6 +43,8 @@ INGEST_MAP = {
     abstract: "descMetadata.abstract",
     view: "descMetadata.view",
     sportsTeam: "descMetadata.sportsTeam",
+    firstLine: "descMetadata.firstLine",
+    firstLineChorus: "descMetadata.firstLineChorus",
     culturalContext: "descMetadata.culturalContext",
     inscription: "descMetadata.inscription",
     artSeries: "descMetadata.artSeries",
