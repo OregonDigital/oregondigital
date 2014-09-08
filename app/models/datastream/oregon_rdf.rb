@@ -121,6 +121,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :cover, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.coverDescription do |index|
     index.as :searchable, :displayable
   end
+  property :canzonierePoems, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.canzonierePoems do |index|
+    index.as :displayable
+  end
 
   # Subjects
   property :lcsubject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
@@ -191,9 +194,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :itemLocator, :predicate => OregonDigital::Vocabularies::HOLDING.label do |index|
-    index.as :displayable
-  end
-  property :canzonierePoems, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.canzonierePoems do |index|
     index.as :displayable
   end
   property :accessionNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/accessionNumber'] do |index|
