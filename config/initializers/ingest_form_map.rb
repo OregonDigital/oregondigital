@@ -39,6 +39,7 @@ INGEST_MAP = {
     printMaker: "descMetadata.printMaker",
     cartographer: "descMetadata.cartographer",
     transcriber: "descMetadata.transcriber",
+    donor: "descMetadata.donor",
   },
 
   description: {
