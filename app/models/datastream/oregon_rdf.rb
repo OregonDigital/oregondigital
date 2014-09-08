@@ -193,7 +193,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :latestDate, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/latestDate') do |index|
     index.as :searchable, :displayable
   end
-  property :viewDate, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDate') do |index|
+  property :viewDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/viewDate'] do |index|
     index.as :displayable
   end
   property :awardDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/awardDate'] do |index|
