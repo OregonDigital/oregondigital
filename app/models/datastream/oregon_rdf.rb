@@ -127,6 +127,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :provenance, :predicate => RDF::DC.provenance do |index|
     index.as :displayable
   end
+  property :tableOfContents, :predicate => RDF::DC.tableOfContents do |index|
+    index.as :displayable
+  end
 
   # Subjects
   property :lcsubject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
