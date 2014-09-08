@@ -133,6 +133,7 @@ INGEST_MAP = {
     placeOfProduction: "descMetadata.placeOfProduction",
     language: "descMetadata.language",
     repository: "descMetadata.od_repository",
+    idCurrentRepository: "descMetadata.idCurrentRepository",
     localCollectionID: "descMetadata.localCollectionID",
     localCollectionName: "descMetadata.localCollectionName",
     seriesName: "descMetadata.seriesName",
