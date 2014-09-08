@@ -156,6 +156,7 @@ INGEST_MAP = {
     hasPart: "descMetadata.hasPart",
     hasVersion: "descMetadata.hasVersion",
     isVersionOf: "descMetadata.isVersionOf",
+    findingAid: "descMetadata.findingAid",
   },
 
   type: {
