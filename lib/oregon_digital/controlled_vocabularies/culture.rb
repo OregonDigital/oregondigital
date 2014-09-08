@@ -4,7 +4,7 @@ module OregonDigital::ControlledVocabularies
 
     use_vocabulary :culture
     use_vocabulary :lcsh
-    use_vocabulary :lcames
+    use_vocabulary :lcnames
 
   end
 end

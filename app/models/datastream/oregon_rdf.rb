@@ -414,7 +414,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :medium, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/medium') do |index|
     index.as :searchable, :displayable
   end
-  property :culture, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/culture'), :class_name => OregonDigital::ControlledVocabularies::Cultue do |index|
+  property :culture, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/culture'), :class_name => OregonDigital::ControlledVocabularies::Culture do |index|
     index.as :searchable, :displayable
   end
   property :idCurrentRepository, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/idCurrentRepository') do |index|

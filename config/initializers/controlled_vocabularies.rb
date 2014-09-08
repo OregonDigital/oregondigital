@@ -33,7 +33,7 @@ RDF_VOCABS = {
   :sciclass             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_class.jsonld', :strict => true },
   :scicommon            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_commonNames.jsonld', :strict => true },
   :scigenus             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientific_genus.jsonld', :strict => true },
-  :sciphylum            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/scientfic_phylum.jsonld', :strict => true },
+  :sciphylum            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.githubusercontent.com/OregonDigital/opaque_ns/master/scientific_phylum.jsonld', :strict => true },
   :styleperiod          =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/stylePeriod.jsonld', :strict => true },
   :subject              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/subject.jsonld', :strict => true },
   :technique            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/technique.jsonld', :strict => true },
