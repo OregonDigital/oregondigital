@@ -65,6 +65,7 @@ INGEST_MAP = {
     biographicalInformation: "descMetadata.biographicalInformation",
     compassDirection: "descMetadata.compassDirection",
     sourceCondition: "descMetadata.sourceCondition",
+    tableOfContents: "descMetadata.tableOfContents",
     contents: "descMetadata.contents",
     provenance: "descMetadata.provenance",
     temporal: "descMetadata.temporal",
