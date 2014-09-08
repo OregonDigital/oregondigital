@@ -47,7 +47,7 @@ module OregonDigital::Vocabularies
     property :dateDigitized, :label => 'Date Digitized', :comment =>
       %(The date the object was initially converted into a digital
         format.)
-    property :ethnographic, :label => 'Ethnographic', :comment =>
+    property :ethnographic, :label => 'Ethnographic Term', :comment =>
       %(Descriptive terms related to ethnographic subject matter like
         folklore, ethnomusicology, cultural anthropology, and related
         fields.)
@@ -67,6 +67,8 @@ module OregonDigital::Vocabularies
     property :fullText, :label => 'Full Text', :comment =>
       %(A complete textual representation or transcription of the item
         content.)
+    property :tgn, :label => 'Geographic Term', :comment =>
+      %(Geographic terms from the Getty Thesaurus of Geographic Names.)
     property :"sheetmusic/hostItem", :label => 'Host Item', :comment =>
       %(Identifier of the host item for the constituent unit in a
         vertical relationship. This information allows users to locate
@@ -95,10 +97,14 @@ module OregonDigital::Vocabularies
     property :militaryServiceLocation, :label => 'Military Service Location', :comment =>
       %(Description of the places of service within a branch of the
         U.S. military.)
+    property :people, :label => 'People', :comment =>
+      %(Subject term used specifically for individuals.)
     property :rightsHolder, :label => 'Rights Holder', :comment =>
       %(Current person or organization who maintains copyright.)
     property :seriesName, :label => 'Series Name', :comment =>
       %(Title of series within collection.)
+    property :seriesNumber, :label => 'Series Number', :comment =>
+      %(The official numbers of series within a collection.)
     property :sourceCondition, :label => 'Source Condition', :comment =>
       %(The physical condition of the source object.)
     property :sportsTeam, :label => 'Sports Team', :comment =>
@@ -107,8 +113,22 @@ module OregonDigital::Vocabularies
         together towards a shared objective.)
     property :tgm, :label => 'TGM', :comment =>
       %(Thesaurus of Graphic Materials.)
-    property :uoNames, :label => 'University of Oregon Names', :comment =>
-      %(For names of people associated with the University of Oregon.)
+    property :folderName, :label => 'foldername', :comment => %()
+    property :tribalClasses, :label => 'Tribal Classes', :comment =>
+      %(Classes assigned by the members of Native American tribal
+        authorities.)
+    property :tribalNotes, :label => 'Tribal Notes', :comment =>
+      %(Notes made by the members of Native American tribal
+        authorities.)
+    property :tribalStatus, :label => 'Tribal Status', :comment =>
+      %(Indication of completion of metadata entry by the members of
+        Native American tribal authorities.)
+    property :tribalTerms, :label => 'Tribal Terms', :comment =>
+      %(Terms assigned by the members of Native American tribal
+        authorities.)
+    property :tribalTitle, :label => 'Tribal Title', :comment =>
+      %(Title given by the members of Native American tribal
+        authorities.)
     property :"cco/viewDate", :label => 'View Date', :comment =>
       %(Includes any date or range of dates associated with the
         creation or production of the image.)

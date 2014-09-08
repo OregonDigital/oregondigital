@@ -359,7 +359,7 @@ module OregonDigital::Vocabularies
     property :"creator/AlkireDyann", :label => 'Alkire, Dyann', :comment =>
       %(Artist)
     property :"creator/AllaraMaxwell", :label => 'Allara, Maxwell', :comment =>
-      %(Artist)
+      %(UO VRC Slide Collections.)
     property :"creator/AllenandCollins", :label => 'Allen and Collins', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/AllenAbner", :label => 'Allen, Abner', :comment =>
@@ -371,6 +371,7 @@ module OregonDigital::Vocabularies
         School of Geography and the Environment, Oxford University)
     property :"creator/AllenBonnie", :label => 'Allen, Bonnie', :comment =>
       %(Artist)
+    property :"creator/AllenDonB", :label => 'Allen, Don B.,'
     property :"creator/AllenFrankPhillipsJr", :label => 'Allen, Frank Phillips, Jr.', :comment =>
       %(Greiff, Constance M.; Lost America, From the Mississippi to
         the Pacific, Princeton: Pyne Press, 1972. Worked in San Diego
@@ -383,6 +384,8 @@ module OregonDigital::Vocabularies
       %(Artist)
     property :"creator/AllenOG", :label => 'Allen, O. G.', :comment =>
       %(Photographer)
+    property :"creator/AllenOrlaG", :label => 'Allen, Orla G.'
+    property :"creator/AllenTerryD", :label => 'Allen, Terry D.'
     property :"contributor/AllmanJoseph", :label => 'Allman, Joseph'
     property :"creator/AlloraJennifer", :label => 'Allora, Jennifer', :comment =>
       %(Heartney, Eleanor; Art & Today, New York: Phaidon Press, Inc.,
@@ -483,6 +486,7 @@ module OregonDigital::Vocabularies
       %(Blackwell, Lewis; Twentieth-Century Type, New York: Rizzoli
         International Publications, 1992. Russian artist and graphic
         designer)
+    property :"creator/AndrewsClarenceLeroy", :label => 'Andrews, Clarence Leroy'
     property :"creator/AndrewsJohn", :label => 'Andrews, John', :comment =>
       %(Laughlin, Clarence John; Ghosts Along the Mississippi: an
         Essay in the Poetic Interpretation of Louisiana\'s Plantation
@@ -501,6 +505,8 @@ module OregonDigital::Vocabularies
       %(Professional architecture firm.)
     property :"photgrapher/AngelusBuildings", :label => 'Angelus Buildings'
     property :"photgrapher/AngelusStudio", :label => 'Angelus Studio'
+    property :"subject/AngelusStudio", :label => 'Angelus Studio', :comment =>
+      %(Professional photographic company located in Portland, Oregon)
     property :"creator/AnnDodds", :label => 'Ann Dodds'
     property :"creator/AnnanJohnDJr", :label => 'Annan, John D., Jr.'
     property :"creator/AnnandandKennedyArchitectsandEngineersandEngineers", :label => 'Annand & Kennedy Architects & Engineer', :comment =>
@@ -549,6 +555,8 @@ module OregonDigital::Vocabularies
       %(Fiell, Charlotte. Modern Furniture Classics since 1945.
         Washington, D.C. : American Institute of Architects Press,
         c1991..)
+    property :"creator/ApplegateLinsay18081892", :label => 'Applegate, Linsay, 1808-1892'
+    property :"creator/ApplegateOliverCromwell", :label => 'Applegate, Oliver Cromwell'
     property :"creator/AqaRiza", :label => 'Aqa Riza', :comment =>
       %(Name and dates derived from a website. Persian)
     property :"creator/AraiHirokata", :label => 'Arai Hirokata', :comment =>
@@ -565,6 +573,7 @@ module OregonDigital::Vocabularies
       %(Takeshina, Shuji, Horyuki Suzuki and Hiroshi Kashiwagi;
         Kenchiku to dezain, Nihon Bijutsu Zenshu, Tokyo: Kodansha,
         1993.)
+    property :"creator/ArcherJules", :label => 'Archer, Jules'
     property :"creator/ArchibaldJack", :label => 'Archibald, Jack', :comment =>
       %(Artist)
     property :"creator/ArchizoomAssociation", :label => 'Archizoom Association', :comment =>
@@ -925,6 +934,7 @@ module OregonDigital::Vocabularies
         1987.)
     property :"creator/BallWH", :label => 'Ball, W. H.', :comment =>
       %(Professional builder/contractor.)
+    property :"creator/BallardTodhunter", :label => 'Ballard, Todhunter'
     property :"creator/BalmoriAssociatesInc", :label => 'Balmori Associates, Inc.', :comment =>
       %(Name and dates derived from a website. New York-based urban
         and landscape design firm)
@@ -1018,6 +1028,7 @@ module OregonDigital::Vocabularies
       %(Hix, Charles; Man Alive! Dressing the Free Way, New York:
         Simon and Schuster, 1984. American fashion designer)
     property :"creator/BarnettDeborahJ", :label => 'Barnett, Deborah J.'
+    property :"creator/BarnettHGHomerGarner", :label => 'Barnett, H. G. ( Homer Garner)'
     property :"creator/BarnumPhotography", :label => 'Barnum Photography', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/BaroccioAmbrogio", :label => 'Baroccio, Ambrogio', :comment =>
@@ -1128,7 +1139,7 @@ module OregonDigital::Vocabularies
     property :"creator/BauerUteMate", :label => 'Bauer, Ute Mate', :comment =>
       %(Reckitt, Helena, ed.; Art and Feminism, London: Phaidon, 2001.)
     property :"creator/BauguessJohn", :label => 'Bauguess, John', :comment =>
-      %(Photographer)
+      %(Artist)
     property :"creator/BaumannandHuehl", :label => 'Baumann and Huehl', :comment =>
       %(Condit, Carl W.; Chicago School of Architecture: a history of
         commercial and public building in the Chicago area,
@@ -1233,7 +1244,7 @@ module OregonDigital::Vocabularies
     property :"creator/BeersWH", :label => 'Beers, W. H.', :comment =>
       %(Professional builder/contractor.)
     property :"creator/BeezerBrothers", :label => 'Beezer Brothers', :comment =>
-      %(Name and dates derived from a website.)
+      %(Professional architecture firm.)
     property :"creator/BeezerMichaelJ", :label => 'Beezer, Michael J.', :comment =>
       %(Professional architect.)
     property :"contributor/BeezleyNancy", :label => 'Beezley, Nancy'
@@ -1607,6 +1618,7 @@ module OregonDigital::Vocabularies
     property :"creator/BlechmanRO", :label => 'Blechman, R. O.', :comment =>
       %(Name and dates derived from a website. Born in New York City
         in 1930. American animator and illustrator.)
+    property :"creator/BleekerSonia", :label => 'Bleeker, Sonia'
     property :"creator/BlevinsMel", :label => 'Blevins, Mel', :comment =>
       %(UO AAA Library Architectural Drawing Collection. AAA
         Architecture student)
@@ -1767,9 +1779,7 @@ module OregonDigital::Vocabularies
         Beauty: Americans and the Aesthetic Movement, New York:
         Rizzoli, 1986. stained glass window maker)
     property :"creator/BoothbyWilburF", :label => 'Boothby, Wilbur F.', :comment =>
-      %(Name and dates derived from a website. American architect,
-        born in Maine, educated at Fulton College in New York; settled
-        in Salem, Oregon in 1864.)
+      %(Professional architect.)
     property :"creator/BorchAlbert", :label => 'Borch, Albert', :comment =>
       %(Artist)
     property :"creator/BorchertErich", :label => 'Borchert, Erich', :comment =>
@@ -1834,6 +1844,7 @@ module OregonDigital::Vocabularies
       %(Name and dates derived from a website. San Franciscan mining
         magnate and spouse)
     property :"creator/BourruH", :label => 'Bourru, H.'
+    property :"creator/BoutelleFrazierAugustus", :label => 'Boutelle, Frazier Augustus'
     property :"creator/BowditchErnest", :label => 'Bowditch, Ernest', :comment =>
       %(Name and dates derived from a website. American landscape
         designer)
@@ -1860,6 +1871,7 @@ module OregonDigital::Vocabularies
       %(Professional builder/contractor.)
     property :"creator/BowmanFredericE", :label => 'Bowman, Frederic E.', :comment =>
       %(Professional builder/contractor.)
+    property :"creator/BowmanWalterS", :label => 'Bowman, Walter S.'
     property :"creator/BowserKentN", :label => 'Bowser, Kent N.', :comment =>
       %(http://www.cantonart.org/ArtGateway/collection/b/bowser-newmexico.html.)
     property :"creator/BoyceJosephA", :label => 'Boyce, Joseph A.'
@@ -2070,8 +2082,10 @@ module OregonDigital::Vocabularies
       %(Name and dates derived from a website. Washington architect
         and architectural historian whose legacy includes his
         two-volume history of the United States Capitol)
+    property :"creator/BrownHenryW", :label => 'Brown, Henry W.'
     property :"creator/BrownJoseph", :label => 'Brown, Joseph', :comment =>
       %(UO VRC Slide Collections.)
+    property :"creator/BrownJosephHenry", :label => 'Brown, Joseph Henry'
     property :"creator/BrownWilliam", :label => 'Brown, William'
     property :"creator/BrowneJC", :label => 'Browne, J.C.'
     property :"creator/BrowneWilliam", :label => 'Browne, William', :comment =>
@@ -2104,7 +2118,7 @@ module OregonDigital::Vocabularies
         York; Syracuse: Harry N. Abrams, Inc., Publishers; Everson
         Museum of Art, 1987. mason)
     property :"creator/BuchananCaroline", :label => 'Buchanan, Caroline', :comment =>
-      %(Artist)
+      %(Pacific Northwest artist)
     property :"creator/BuchingerMatthias", :label => 'Buchinger, Matthias', :comment =>
       %(Name and dates derived from a website.)
     property :"creator/BuchmanandKahn", :label => 'Buchman & Kahn', :comment =>
@@ -2158,12 +2172,12 @@ module OregonDigital::Vocabularies
       %(Kleiner, Fred S. ; History of Roman Art, Instructor\'s
         edition, Victoria; Belmont, California: Thomas/Wadsworth,
         2007.)
+    property :"creator/BurgerCarl18881967", :label => 'Burger, Carl, 1888-1967'
     property :"creator/BurgessJames", :label => 'Burgess, James', :comment =>
       %(Artist)
+    property :"creator/BurgessJulia", :label => 'Burgess, Julia'
     property :"creator/BurggrafCharlesH", :label => 'Burggraf, Charles H.', :comment =>
-      %(Ritz, Richard Ellison. Architects of Oregon: a bibliographical
-        dictionary of architects deceased - 19th and 20th centuries.
-        Portland, Oregon: Lair Hill Publishing, 2002..)
+      %(Professional architect.)
     property :"creator/Burkan", :label => 'Burkan', :comment =>
       %(Calloway, Stephen; Aubrey Beardsley, American edition, New
         York: Harry N. Abrams, Publishers, 1998.)
@@ -2212,6 +2226,7 @@ module OregonDigital::Vocabularies
     property :"creator/BurtonJohn", :label => 'Burton, John', :comment =>
       %(David A. Bainbridge Gift Collection, Architecture and Allied
         Arts Library, University of Oregon.)
+    property :"creator/BurtonWilliamH", :label => 'Burton, William H.'
     property :"creator/Bury+Pittman", :label => 'Bury + Pittman', :comment =>
       %(Benedikt, Michael; Overland Partners: Building on Values:
         Costruire sui valori, Milan: L\'Arca Edizioni, 2002. landscape
@@ -2341,6 +2356,7 @@ module OregonDigital::Vocabularies
         by NASA for lunar and Martian construction, to housing design
         and development for the world\'s homeless for the United
         Nations.)
+    property :"creator/CalbreathFamily", :label => 'Calbreath Family'
     property :"creator/CalefIra", :label => 'Calef, Ira', :comment =>
       %(Professional builder/contractor.)
     property :"creator/CalhounPrint", :label => 'Calhoun Print', :comment =>
@@ -2661,6 +2677,7 @@ module OregonDigital::Vocabularies
       %(Professional interior design.)
     property :"creator/ChamblyE", :label => 'Chambly, E.', :comment =>
       %(Daniel, Noel; Magic: 1400s-1950s, Cologne: Taschen, 2009.)
+    property :"creator/ChambreauEdward", :label => 'Chambreau, Edward'
     property :"creator/ChanPeter", :label => 'Chan, Peter', :comment =>
       %(Gastman, Roger, Zio Fulcher and Jamie Rivadeneira; Hello
         Kitty, Hello Art!, New York: Abrams, 2012. active 2008
@@ -3129,6 +3146,7 @@ module OregonDigital::Vocabularies
     property :"creator/ClarkJoeL", :label => 'Clark, Joe L.', :comment =>
       %(Gilbert, Rita and William McCarter; Living With Art, 2nd
         edition, New York: Alfred A. Knopf, Inc., 1988.)
+    property :"creator/ClarkRobertD", :label => 'Clark, Robert D.'
     property :"contributor/ClarkRobertDonald19102005", :label => 'Clark, Robert Donald, 1910-2005'
     property :"creator/ClarkeJohn", :label => 'Clarke, John', :comment =>
       %(Girouard, Mark; Elizabethan Architecture: Its Rise and Fall,
@@ -3147,6 +3165,7 @@ module OregonDigital::Vocabularies
       %(Artist)
     property :"creator/ClayLangdon", :label => 'Clay, Langdon', :comment =>
       %(UO VRC Slide Collections. photographer)
+    property :"creator/CleatorFrederickWilliam", :label => 'Cleator, Frederick William'
     property :"creator/CleavelandHenryWilliam", :label => 'Cleaveland, Henry William', :comment =>
       %(AIA Historical Directory of American Architects: ahd1007978.)
     property :"creator/CleeRobert", :label => 'Clee, Robert', :comment =>
@@ -3253,6 +3272,8 @@ module OregonDigital::Vocabularies
     property :"creator/ColumbiaTriStarPictures", :label => 'Columbia Tri-Star Pictures', :comment =>
       %(American century : art & culture. New York : Whitney Museum of
         American Art in association with W.W. Norton, c1999. vol. 2.)
+    property :"creator/ColverLewellyn", :label => 'Colver, Lewellyn'
+    property :"creator/ColverSamuel", :label => 'Colver, Samuel'
     property :"creator/CombsCraigL", :label => 'Combs, Craig L.', :comment =>
       %(Committment to Vision, Eugene. OR: Photography at Oregon
         Gallery, 1986.)
@@ -3331,6 +3352,7 @@ module OregonDigital::Vocabularies
     property :"creator/CookLin", :label => 'Cook, Lin', :comment =>
       %(Artist)
     property :"creator/CookVern", :label => 'Cook, Vern'
+    property :"creator/CookWill", :label => 'Cook, Will'
     property :"creator/CookeJudy", :label => 'Cooke, Judy', :comment =>
       %(Artist)
     property :"creator/CookeLB", :label => 'Cooke, L. B.'
@@ -3512,6 +3534,7 @@ module OregonDigital::Vocabularies
     property :"creator/CravensDon", :label => 'Cravens, Don', :comment =>
       %(Benson, Elaine and John Eston; Unmentionables: A Brief History
         of Underwear, New York: Simon & Schuster, 1996. photographer)
+    property :"creator/CrawfordJamesG", :label => 'Crawford, James G.'
     property :"creator/CrawleyJudithLermer", :label => 'Crawley, Judith Lermer', :comment =>
       %(http://www.judithcrawley.ca/cv.php.)
     property :"creator/CreativeLithographicCo", :label => 'Creative Lithographic Co.', :comment =>
@@ -3521,12 +3544,14 @@ module OregonDigital::Vocabularies
     property :"creator/Creighton", :label => 'Creighton', :comment =>
       %(Tann, Jennifer; Development of the Factory, London: Cornmarket
         Press Limited, 1970.)
+    property :"creator/CressmanLuther", :label => 'Cressman, Luther'
     property :"contributor/CroftJames", :label => 'Croft, James'
     property :"contributor/CroftJamesChancy", :label => 'Croft, James Chancy'
     property :"creator/CromwellStevenJ", :label => 'Cromwell, Steven J.', :comment =>
       %(Committment to Vision, Eugene. OR: Photography at Oregon
         Gallery, 1986.)
     property :"photographer/CroniseRalphR", :label => 'Cronise, Ralph R.'
+    property :"creator/CrosbyAlexanderL", :label => 'Crosby, Alexander L.'
     property :"creator/CrosmanBetsy", :label => 'Crosman, Betsy', :comment =>
       %(Sprigg, June; Shaker Design, New York, London: Whitney Museum
         of American Art, W.W. Norton & Company, 1986. Shaker textile
@@ -3545,10 +3570,12 @@ module OregonDigital::Vocabularies
         of Art, New York: Harry N. Abrams, Inc., Publishers, 1995.)
     property :"creator/CrowdingPeter", :label => 'Crowding, Peter', :comment =>
       %(Name and dates derived from a website.)
+    property :"creator/CroweWilma", :label => 'Crowe, Wilma'
     property :"editor/CrumpJake", :label => 'Crump, Jake', :comment =>
       %(Editor in Chief of the Oregon Daily Emerald.)
     property :"creator/CrusonJonJay", :label => 'Cruson, Jon Jay', :comment =>
       %(Artist)
+    property :"creator/CrustWilliamS", :label => 'Crust, William S.'
     property :"creator/CrutchPeter", :label => 'Crutch, Peter', :comment =>
       %(Dormer, Peter. The New Furnitue: Trends + Traditions. New
         York: Thams and Hudson, 1987..)
@@ -3740,6 +3767,8 @@ module OregonDigital::Vocabularies
         Publishers, 1980.)
     property :"creator/DaveNovak", :label => 'Dave Novak'
     property :"creator/DaveSutherland", :label => 'Dave Sutherland'
+    property :"creator/DavenportHomer", :label => 'Davenport, Homer'
+    property :"creator/DavenportTimothyWoodbridge", :label => 'Davenport, Timothy Woodbridge'
     property :"creator/DavidAllenandSonsLtd", :label => 'David Allen & Sons, Ltd.', :comment =>
       %(Leboff, David and Tim Demuth; No Need to Ask! Early Maps of
         London\'s Underground Railways, Middlesex: Capital Transport
@@ -3753,6 +3782,7 @@ module OregonDigital::Vocabularies
     property :"creator/DavidSutherland", :label => 'David Sutherland'
     property :"photgrapher/Davidson", :label => 'Davidson', :comment =>
       %(Photographer, Oregon Historical Society.)
+    property :"creator/DavidsonCGirard", :label => 'Davidson, C. Girard'
     property :"creator/DavidsonDean", :label => 'Davidson, Dean', :comment =>
       %(UO AAA Library Architectural Drawing Collection. AAA
         Architecture student)
@@ -3778,7 +3808,7 @@ module OregonDigital::Vocabularies
     property :"creator/DavisMary", :label => 'Davis, Mary', :comment =>
       %(Pacific Northwest artist)
     property :"creator/DavisTS", :label => 'Davis, T. S.', :comment =>
-      %(Professional architect.)
+      %(UO VRC Mounted Photographs Collection.)
     property :"creator/DavisTim", :label => 'Davis, Tim', :comment =>
       %(Name and dates derived from a website. \(1969\) Born in
         Blantyre, Malawi. American photographer and poet. Lives and
@@ -3924,6 +3954,7 @@ module OregonDigital::Vocabularies
     property :"creator/DemingClarence", :label => 'Deming, Clarence', :comment =>
       %(Name and dates derived from a website. Conservatory director
         for the W.W. Seymour Botanical Conservatory, 1949-1971)
+    property :"creator/DemingEdwinWillard", :label => 'Deming, Edwin Willard'
     property :"creator/DenckerAndrea", :label => 'Dencker, Andrea', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/DengQichang", :label => 'Deng, Qichang', :comment =>
@@ -4208,14 +4239,12 @@ module OregonDigital::Vocabularies
       %(Professional architectural firm.)
     property :"creator/DowJohnK", :label => 'Dow, John K.', :comment =>
       %(Professional architect.)
+    property :"creator/DowellBenjaminFranklin", :label => 'Dowell, Benjamin Franklin'
     property :"creator/DowningThomasJ", :label => 'Downing, Thomas J.'
     property :"creator/DoyleandPatterson", :label => 'Doyle & Patterson', :comment =>
-      %(Name and dates derived from a website. American architecture
-        firm in Portland, Oregon, consisting of A.E. Doyle and William
-        B. Patterson; with the addition of partner James George Beach,
-        became Doyle, Patterson and Beach in 1911.)
-    property :"creator/DoylePattersonandBeach", :label => 'Doyle Patterson & Beach', :comment =>
       %(Professional architecture firm.)
+    property :"creator/DoylePattersonandBeach", :label => 'Doyle Patterson & Beach', :comment =>
+      %(Name and dates derived from a website.)
     property :"creator/DoyleAlbertE", :label => 'Doyle, Albert E.', :comment =>
       %(Professional architect.)
     property :"creator/DrAhlstrom", :label => 'Dr. Ahlstrom'
@@ -4227,6 +4256,7 @@ module OregonDigital::Vocabularies
     property :"creator/DrLuce", :label => 'Dr. Luce'
     property :"creator/DrMarkPowell", :label => 'Dr. Mark Powell'
     property :"creator/DrRudy", :label => 'Dr. Rudy'
+    property :"creator/DrakeLeeD", :label => 'Drake, Lee D.'
     property :"creator/DraytonJohn", :label => 'Drayton, John', :comment =>
       %(Craven, Wayne; American Art: History and Culture, 2003
         edition, London: Lawrence King Publishing Ltd., 2003.
@@ -4417,7 +4447,7 @@ module OregonDigital::Vocabularies
     property :"creator/EbitzDavid", :label => 'Ebitz, David'
     property :"creator/EckWilliam", :label => 'Eck, William'
     property :"creator/EcklandDon", :label => 'Eckland, Don', :comment =>
-      %(Professional artist.)
+      %(Artist)
     property :"creator/EckmanOtto", :label => 'Eckman, Otto', :comment =>
       %(Buddensieg, Tilmann. Industriekultur : Peter Behrens and the
         AEG, 1907 - 1914. Cambridge, MA: MIT Press, 1984.)
@@ -4525,6 +4555,7 @@ module OregonDigital::Vocabularies
         Dwelling and Structure in the Early Historic Period,
         Fairbanks: University of Alaska Press and University of Alaska
         Museum, 2003. illustrator)
+    property :"creator/EllsworthMatthewHarris", :label => 'Ellsworth, Matthew "Harris"'
     property :"creator/ElphinstoneM", :label => 'Elphinstone, M.', :comment =>
       %(Errington, Elizabeth and Joe Cribb; Crossroads of Asia:
         Transformation in Image and Symbol in the Art of Ancient
@@ -4629,6 +4660,7 @@ module OregonDigital::Vocabularies
       %(Daniel, Noel; Magic: 1400s-1950s, Cologne: Taschen, 2009.)
     property :"creator/ErixsonandLuker", :label => 'Erixson and Luker', :comment =>
       %(Professional builder/contractor.)
+    property :"creator/ErnstAliceHenson", :label => 'Ernst, Alice Henson'
     property :"creator/ErpVioletAgathavan", :label => 'Erp, Violet Agatha van', :comment =>
       %(Bowman, Leslie Green. American Arts & Crafts : Virtue in
         Design. Los Angeles, Calif. : Los Angeles County Museum of Art
@@ -4701,6 +4733,7 @@ module OregonDigital::Vocabularies
         been through the fashion and music media and preferred mode of
         transport has been the bicycle. He enjoys teaching at UCA
         Farnham.)
+    property :"creator/EvartsHalGeorgeJr", :label => 'Evarts, Hal George Jr.'
     property :"creator/EverettAl", :label => 'Everett, Al', :comment =>
       %(Pacific Northwest artist)
     property :"creator/EverettJulian", :label => 'Everett, Julian'
@@ -4888,7 +4921,8 @@ module OregonDigital::Vocabularies
         Gorter; Computer Image: Applications of Computer Graphics,
         Reading: Addison-Wesley Publishing Company, 1982.)
     property :"creator/FeigElmerE", :label => 'Feig, Elmer E', :comment =>
-      %(Professional architect.)
+      %(Name and dates derived from a website. American architect who
+        chiefly designed apartment buildings in Portland, Oregon.)
     property :"creator/FeinerS", :label => 'Feiner, S.', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/FeingoldKen", :label => 'Feingold, Ken', :comment =>
@@ -5003,6 +5037,7 @@ module OregonDigital::Vocabularies
       %(UO VRC Slide Collections. photographer)
     property :"creator/FieldDevinLaurence", :label => 'Field, Devin Laurence', :comment =>
       %(Artist)
+    property :"creator/FieldEugeneH", :label => 'Field, Eugene H'
     property :"creator/FieldGeraldC", :label => 'Field, Gerald C.', :comment =>
       %(Professional architect.)
     property :"creator/FieldMarshall", :label => 'Field, Marshall', :comment =>
@@ -5045,6 +5080,7 @@ module OregonDigital::Vocabularies
         Gallery, 1986.)
     property :"creator/FisherElmerH", :label => 'Fisher, Elmer H.', :comment =>
       %(Professional architect.)
+    property :"creator/FisherLeonardEverett", :label => 'Fisher, Leonard Everett'
     property :"creator/FisherThomas", :label => 'Fisher, Thomas', :comment =>
       %(Rieman, Timothy D. and Jean M. Burks; Complete Book of Shaker
         Furniture, New York: Harry N. Abrams, Inc. , Publishers, 1993.
@@ -5193,7 +5229,7 @@ module OregonDigital::Vocabularies
     property :"creator/FoulkesandHogue", :label => 'Foulkes & Hogue', :comment =>
       %(Professional architecture firm.)
     property :"creator/FoulkesEdwardT", :label => 'Foulkes, Edward T.', :comment =>
-      %(AIA Historical Directory of American Architects: ahd1014386.)
+      %(Professional architect.)
     property :"creator/FowkeFrances", :label => 'Fowke, Frances', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/FowlerConstance", :label => 'Fowler, Constance', :comment =>
@@ -5237,6 +5273,7 @@ module OregonDigital::Vocabularies
     property :"creator/FrankDouglas", :label => 'Frank, Douglas', :comment =>
       %(Frank, Douglas; Landscapes, Birmingham, MI: Halsted Gallery,
         1984.)
+    property :"creator/FrankeburgRobertC", :label => 'Frankeburg, Robert C.'
     property :"creator/FrankelR", :label => 'Frankel, R.', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/FranksEverettB", :label => 'Franks, Everett B.'
@@ -5414,6 +5451,7 @@ module OregonDigital::Vocabularies
       %(Takashina, Shuji; Edo kara Meiji e, Nihon Bijutsu Zenshu,
         Tokyo: Kodansha, 1991.)
     property :"photgrapher/FureyPatricia", :label => 'Furey, Patricia'
+    property :"creator/FurlongCharlesW", :label => 'Furlong, Charles W.'
     property :"creator/FurnessandEvans", :label => 'Furness and Evans', :comment =>
       %(O\'Gorman, James F.; Architecture of Frank Furness,
         Philadelphia: University of Pennsylvania Press, 1973.)
@@ -5571,6 +5609,7 @@ module OregonDigital::Vocabularies
         Gallery, 1986. American photographer based in Monterey,
         California. Studied under Ansel Adams, Brett Weston, and Minor
         White.)
+    property :"creator/GarryWJewett", :label => 'Garry W. Jewett'
     property :"creator/GarzaRafeal", :label => 'Garza, Rafeal', :comment =>
       %(Benedikt, Michael; Overland Partners: Building on Values:
         Costruire sui valori, Milan: L\'Arca Edizioni, 2002.)
@@ -5634,6 +5673,7 @@ module OregonDigital::Vocabularies
       %(Green, Nancy E. and Jessie Poesch; Arthur Wesley Dow and
         American Arts and Crafts, New York: American Federation of
         Arts; Harry N. Abrams, 1999.)
+    property :"creator/GearyEdwardR", :label => 'Geary, Edward R.'
     property :"creator/GebrderObpacher", :label => 'Gebrder Obpacher', :comment =>
       %(Deutsches Historisches Museum; Kunst! Kommerz! Visionen!:
         Deutsche Plakate, 1888- 1933, Heidelberg: Edition Braus, 1992.)
@@ -5881,6 +5921,8 @@ module OregonDigital::Vocabularies
     property :"photographer/GiustinaJohn", :label => 'Giustina, John'
     property :"creator/GivlerBill", :label => 'Givler, Bill', :comment =>
       %(Artist)
+    property :"creator/GlaserLillianGerard", :label => 'Glaser, Lillian Gerard'
+    property :"creator/GlaserWilliamCD", :label => 'Glaser, William C. D.'
     property :"creator/GlassPhilip", :label => 'Glass, Philip', :comment =>
       %(Rush, Michael; New Media in Art, Second edition, London:
         Thames and Hudson, 2005.)
@@ -5900,6 +5942,7 @@ module OregonDigital::Vocabularies
       %(Barter, Judith A.; Apostles of Beauty: Arts and Crafts From
         Britain to Chicago, New Haven: Yale University Press, 2009.
         American metalworker)
+    property :"creator/GlossMolly", :label => 'Gloss, Molly'
     property :"creator/GloverDeLay", :label => 'Glover, De Lay', :comment =>
       %(Name derived from original printed material house in Special
         Collections and University Archives, University of Oregon..)
@@ -5991,6 +6034,7 @@ module OregonDigital::Vocabularies
         designs in silver)
     property :"creator/GorhamAimee", :label => 'Gorham, Aimee', :comment =>
       %(Professional artist.)
+    property :"creator/GormanMartinW", :label => 'Gorman, Martin W.'
     property :"creator/Gorodetski", :label => 'Gorodetski', :comment =>
       %(Lyons, Marvin; Russian Original Photographs 1860-1920, New
         York: Scribner, 1977. photographer)
@@ -6086,6 +6130,7 @@ module OregonDigital::Vocabularies
     property :"photographer/Graves", :label => 'Graves'
     property :"creator/GrayDon", :label => 'Gray, Don', :comment =>
       %(Artist)
+    property :"creator/GrayJamesT", :label => 'Gray, James T.'
     property :"contributor/GrayJane1931", :label => 'Gray, Jane, 1931-'
     property :"creator/GraybrookandBradbury", :label => 'Graybrook & Bradbury', :comment =>
       %(Professional architecture firm.)
@@ -6290,7 +6335,7 @@ module OregonDigital::Vocabularies
       %(Greenhalgh, Paul; Art Nouveau, 1890-1914, New York: Harry N.
         Abrams, Inc., Publishers, 2000.)
     property :"creator/GuskeJennifer", :label => 'Guske, Jennifer', :comment =>
-      %(Pacific Northwest artist)
+      %(Artist)
     property :"creator/GustSchaeuffelenschePapierfabrik", :label => 'Gust. Schaeuffelen\'sche Papierfabrik', :comment =>
       %(Friese, Christiane; Plakatkunst, 1880-1935, Stuttgart:
         Klett-Cotta , 1994. Heilbronn)
@@ -6342,7 +6387,7 @@ module OregonDigital::Vocabularies
         International Netsuke Society, 2006.)
     property :"creator/HEWoodandCompany", :label => 'H. E. Wood & Company'
     property :"creator/HLCampandCompany", :label => 'H. L. Camp and CompanyCompany', :comment =>
-      %(Professional builder/contractor.)
+      %(UO VRC Slide Collections.)
     property :"creator/HRiffarth", :label => 'H. Riffarth', :comment =>
       %(Deutsches Historisches Museum; Kunst! Kommerz! Visionen!:
         Deutsche Plakate, 1888- 1933, Heidelberg: Edition Braus, 1992.
@@ -6465,8 +6510,7 @@ module OregonDigital::Vocabularies
     property :"creator/HallBonnie", :label => 'Hall, Bonnie', :comment =>
       %(Artist)
     property :"creator/HallLindsleyF", :label => 'Hall, Lindsley F.', :comment =>
-      %(Grinnell, Isobel Hoopes; Greek Temples, New York: Metropolitan
-        Museum of Art, 1943.)
+      %(Professional architect.)
     property :"creator/HallNels", :label => 'Hall, Nels', :comment =>
       %(Professional architect.)
     property :"creator/HallPeter", :label => 'Hall, Peter', :comment =>
@@ -6678,8 +6722,8 @@ module OregonDigital::Vocabularies
       %(UO VRC Slide Collections.)
     property :"photgrapher/HarveyCaitlin", :label => 'Harvey, Caitlin', :comment =>
       %(University of Oregon student.)
-    property :"photographer/HarveyPaulWIV", :label => 'Harvey, Paul W., IV'
     property :"creator/HarveyPaulWIV", :label => 'Harvey, Paul W., IV'
+    property :"photographer/HarveyPaulWIV", :label => 'Harvey, Paul W., IV'
     property :"creator/HarwoodGroveM", :label => 'Harwood, Grove M.', :comment =>
       %(Munson-Williams-Proctor Institute; Masterpieces of American
         furniture from the Munson-Williams-Proctor Institute, Utica,
@@ -6814,6 +6858,7 @@ module OregonDigital::Vocabularies
       %(Takeshina, Shuji, Horyuki Suzuki and Hiroshi Kashiwagi;
         Kenchiku to dezain, Nihon Bijutsu Zenshu, Tokyo: Kodansha,
         1993.)
+    property :"creator/HaycoxErnest", :label => 'Haycox, Ernest'
     property :"creator/HaydarRais", :label => 'Haydar, Ra\'is', :comment =>
       %(Falk, Toby, ed.; Treatures of Islam, London: Philip Wilson
         Publishers, Ltd., 1985 \(0856671967\). Ottoman painter)
@@ -6915,7 +6960,7 @@ module OregonDigital::Vocabularies
     property :"creator/HeeryArchitectsandEngineers", :label => 'Heery Architects and Engineers', :comment =>
       %(Architecture of Philip Johnson, Boston : Bulfinch Press, 2002.)
     property :"creator/HeftyHenryJ", :label => 'Hefty, Henry J.', :comment =>
-      %(Professional architect, builder/contractor.)
+      %(UO VRC Slide Collections. Portland architect, born Switzerland)
     property :"creator/HeggEA", :label => 'Hegg, E. A.', :comment =>
       %(Photographer)
     property :"creator/HeideJackWilliam", :label => 'Heide, Jack William'
@@ -6947,11 +6992,12 @@ module OregonDigital::Vocabularies
         1997. printer)
     property :"creator/HeldSheila", :label => 'Held, Sheila', :comment =>
       %(Artist)
+    property :"creator/HellerLouis", :label => 'Heller, Louis'
     property :"contributor/HelmsJordan", :label => 'Helms, Jordan'
     property :"creator/HelstronJohn", :label => 'Helstron, John', :comment =>
       %(Professional builder/contractor.)
     property :"creator/HelzerPeter", :label => 'Helzer, Peter', :comment =>
-      %(Professional artist.)
+      %(Artist)
     property :"creator/HemenwayRoscoeD", :label => 'Hemenway, Roscoe D.', :comment =>
       %(Professional architect.)
     property :"creator/HendersonHenryVK", :label => 'Henderson, Henry V. K.', :comment =>
@@ -7154,6 +7200,7 @@ module OregonDigital::Vocabularies
     property :"creator/HillerBrothers", :label => 'Hiller Brothers'
     property :"creator/HillersJack", :label => 'Hillers, Jack', :comment =>
       %(UO VRC Slide Collections.)
+    property :"creator/HillersJohnK", :label => 'Hillers, John K.'
     property :"contributor/HilllJamesE", :label => 'Hilll, James E.'
     property :"creator/HillsHarry", :label => 'Hills, Harry', :comment =>
       %(Professional architect.)
@@ -7309,6 +7356,7 @@ module OregonDigital::Vocabularies
       %(Emporis; http://www.emporis.com. The successor firm to
         Holabird & Roche, founded in 1880 and one of the earliest
         builders of skyscrapers)
+    property :"creator/HolbergRuthLangland", :label => 'Holberg, Ruth Langland'
     property :"creator/HolcombMike", :label => 'Holcomb, Mike', :comment =>
       %(Name and dates derived from a website. Assistant Dean for
         Technology in the Arts at the University of Arizona and
@@ -7323,6 +7371,7 @@ module OregonDigital::Vocabularies
         are also historians of early Louisiana material culture)
     property :"creator/HoldenLeeGray", :label => 'Holden, Lee Gray', :comment =>
       %(Professional architect.)
+    property :"creator/HoldridgeHerbertC", :label => 'Holdridge, Herbert C.'
     property :"creator/HolidayCatherineRaven", :label => 'Holiday, Catherine Raven', :comment =>
       %(Parry, Linda; William Morris, London, New York: Philip Wilson
         Publishers Ltd., Harry N. Abrams, Inc. Publishers, 1996.
@@ -7433,6 +7482,7 @@ module OregonDigital::Vocabularies
         Yoshitsugu Muramatsu\))
     property :"photgrapher/HornDallas", :label => 'Horn, Dallas', :comment =>
       %(Roseburg architect.)
+    property :"creator/HornerJohnHarland", :label => 'Horner, John Harland'
     property :"creator/HorstkotteArthurE", :label => 'Horstkotte, Arthur E.', :comment =>
       %(Professional architect.)
     property :"creator/Hosaku", :label => 'Hosaku', :comment =>
@@ -7741,10 +7791,11 @@ module OregonDigital::Vocabularies
         NY: Munson-Williams-Proctor Institute, 1999.)
     property :"creator/HuttonAddison", :label => 'Hutton, Addison', :comment =>
       %(Name and dates derived from a website. Philadelphia archtect)
-    property :"contributor/HuynhHenry", :label => 'Huynh, Henry'
     property :"creator/HuynhHenry", :label => 'Huynh, Henry'
+    property :"contributor/HuynhHenry", :label => 'Huynh, Henry'
     property :"creator/Hvittrask", :label => 'Hvittrask', :comment =>
       %(UO VRC Slide Collections.)
+    property :"creator/HydePhilip", :label => 'Hyde, Philip'
     property :"creator/HymanAnnWilliamson", :label => 'Hyman, Ann Williamson', :comment =>
       %(Artist)
     property :"donor/HynesPettyHannah", :label => 'Hynes-Petty, Hannah'
@@ -8068,12 +8119,15 @@ module OregonDigital::Vocabularies
       %(Emporis; http://www.emporis.com. Chicago-based firm)
     property :"creator/JacksonandHutchin", :label => 'Jackson & Hutchin', :comment =>
       %(Professional builder/contractor.)
+    property :"creator/JacksonCounty", :label => 'Jackson County'
     property :"creator/JacksonArthur", :label => 'Jackson, Arthur', :comment =>
       %(Haskell, Barbara; American Century: Art and Culture 1900-1950
         vol. 1, 1st ed, New York: Whitney Museum of American Art ,
         1999.)
+    property :"creator/JacksonBoydJ", :label => 'Jackson, Boyd J.'
     property :"creator/JacksonDianaL", :label => 'Jackson, Diana L.'
     property :"creator/JacksonGeorge", :label => 'Jackson, George'
+    property :"creator/JacksonWilliamHenry", :label => 'Jackson, William Henry'
     property :"creator/JacobandJosefKohn", :label => 'Jacob and Josef Kohn', :comment =>
       %(Wichmann, Siegfried; Jugendstil Art Nouveau: Floral and
         Functional Forms, First United States edition, Boston: Little,
@@ -8091,7 +8145,7 @@ module OregonDigital::Vocabularies
     property :"creator/JacobSamuelSwinton", :label => 'Jacob, Samuel Swinton', :comment =>
       %(Name and dates derived from a website.)
     property :"creator/JacobbergerandSmith", :label => 'Jacobberger & Smith', :comment =>
-      %(Professional architecture firm.)
+      %(UO VRC Slide Collections.)
     property :"creator/JacobbergerStantonandZeller", :label => 'Jacobberger Stanton & Zeller', :comment =>
       %(Professional architecture firm.)
     property :"creator/JacobbergerStantonFranksandNorman", :label => 'Jacobberger Stanton Franks & Norman', :comment =>
@@ -8158,6 +8212,7 @@ module OregonDigital::Vocabularies
     property :"creator/JagamarraMichaelNelson", :label => 'Jagamarra, Michael Nelson', :comment =>
       %(Archer, Michael. Art since 1960. New York : Thames & Hudson,
         c2002..)
+    property :"creator/JagendorfMAMoritzAdolph", :label => 'Jagendorf, M. A. (Moritz Adolph)'
     property :"creator/JalaluddinMuhammadAkbartheGreat", :label => 'Jalaluddin Muhammad Akbar the Great', :comment =>
       %(Roger, J.M.; Islamic Art and Design 1500-1700, London: British
         Museum Publications, 1983 \(0714114286\). Son of Humayun;
@@ -8181,6 +8236,7 @@ module OregonDigital::Vocabularies
         nineteenth century the firm also had studios at 13 High
         Street, Windsor and 50 Clarendon Road, Southsea.)
     property :"photgrapher/JamesEric", :label => 'James, Eric'
+    property :"creator/JamesJamesJ", :label => 'James, James J.'
     property :"creator/JamiAbdulRahman", :label => 'Jami, Abdul-Rahman', :comment =>
       %(Simpson, Marianna Shreve; Sultan Ibrahim Mirza\'s Haft Awrang:
         A Princely Manuscript from Sixteenth-Century Iran, New Haven:
@@ -8565,6 +8621,7 @@ module OregonDigital::Vocabularies
     property :"creator/JostHeinrich", :label => 'Jost, Heinrich', :comment =>
       %(Friese, Christiane; Plakatkunst, 1880-1935, Stuttgart:
         Klett-Cotta , 1994.)
+    property :"creator/JourdanAlbert", :label => 'Jourdan, Albert'
     property :"creator/JoyceDavid", :label => 'Joyce, David', :comment =>
       %(Artist)
     property :"creator/JoyceJennifer", :label => 'Joyce, Jennifer', :comment =>
@@ -9133,8 +9190,8 @@ module OregonDigital::Vocabularies
     property :"creator/KiyoshiInoshita", :label => 'Kiyoshi, Inoshita', :comment =>
       %(Name and dates derived from a website. landscape architect)
     property :"photgrapher/KiyunaM", :label => 'Kiyuna, M.'
-    property :"contributor/KlausenAlvin", :label => 'Klausen, Alvin'
     property :"creator/KlausenAlvin", :label => 'Klausen, Alvin'
+    property :"contributor/KlausenAlvin", :label => 'Klausen, Alvin'
     property :"creator/KleemanOttoK", :label => 'Kleeman, Otto K.', :comment =>
       %(Professional architect.)
     property :"creator/KleemannOttoKarl", :label => 'Kleemann, Otto Karl', :comment =>
@@ -9360,7 +9417,7 @@ module OregonDigital::Vocabularies
         Art and Culture in Central Europe, 1815-1848, Milan, New York:
         Skira Editore, Rizzoli International, 2001. clockmaker)
     property :"creator/KowertHank", :label => 'Kowert, Hank', :comment =>
-      %(Artist)
+      %(Pacific Northwest artist)
     property :"creator/KowertSolange", :label => 'Kowert, Solange', :comment =>
       %(Artist)
     property :"creator/KoyamaTaigetsu", :label => 'Koyama, Taigetsu', :comment =>
@@ -9568,6 +9625,7 @@ module OregonDigital::Vocabularies
       %(Krautheimer, Richard; Early Christian and Byzantine
         Architecture, 4th edition, Middlesex: Penguin Books, Ltd.,
         1986.)
+    property :"creator/LampmanEvelynSibley", :label => 'Lampman, Evelyn Sibley'
     property :"creator/LancasterandLodge", :label => 'Lancaster and Lodge', :comment =>
       %(Crites, Mitchell Shelby and Ameeta Nanji; India Sublime:
         Princely Palace Hotels of Rajasthan, New York: Rizzoli
@@ -9601,6 +9659,7 @@ module OregonDigital::Vocabularies
     property :"creator/LangheinCarl", :label => 'Langhein, Carl', :comment =>
       %(Friese, Christiane; Plakatkunst, 1880-1935, Stuttgart:
         Klett-Cotta , 1994.)
+    property :"creator/LangilleWilliamA", :label => 'Langille, William A.'
     property :"creator/LangloisPierretheElder", :label => 'Langlois, Pierre, the Elder', :comment =>
       %(www.fitzmuseum.uk.)
     property :"creator/LangmanElizar", :label => 'Langman, Elizar', :comment =>
@@ -9654,12 +9713,12 @@ module OregonDigital::Vocabularies
         Harry N. Abrams, Inc., 1974.)
     property :"creator/LaurelBrenda", :label => 'Laurel, Brenda', :comment =>
       %(Reckitt, Helena, ed.; Art and Feminism, London: Phaidon, 2001.)
-    property :"contributor/LauretaMarcus", :label => 'Laureta, Marcus'
     property :"creator/LauretaMarcus", :label => 'Laureta, Marcus'
+    property :"contributor/LauretaMarcus", :label => 'Laureta, Marcus'
     property :"creator/LaurgaardOlaf", :label => 'Laurgaard, Olaf', :comment =>
       %(Professional engineer.)
     property :"creator/LaursenJohn", :label => 'Laursen, John', :comment =>
-      %(Artist)
+      %(Professional typographic designer.)
     property :"creator/LaversandBarraud", :label => 'Lavers and Barraud', :comment =>
       %(Sewter, A. Charles; Stained Glass of William Morris and His
         Circle, London, New Haven: Yale University Press, 1974.)
@@ -9673,9 +9732,13 @@ module OregonDigital::Vocabularies
         Holford was established when Ellis F. Lawrence partnered with
         William G. Holford, an MIT classmate.)
     property :"creator/LawrenceHolfordandAllyn", :label => 'Lawrence Holford & Allyn', :comment =>
-      %(Professional architecture firm.)
+      %(Name and dates derived from a website. Oregon architecture
+        firm; formerly Lawrence, Holford, Allyn and Bean
+        \(1928-1933\). Partnership ended in 1941 when Holford and
+        Allyn withdrew, and Lawrence worked alone until 1944.)
     property :"creator/LawrenceHolfordAllynandBean", :label => 'Lawrence Holford Allyn & BeanBean', :comment =>
-      %(Professional architecture firm.)
+      %(UO VRC Slide Collections. succeeded firm of Lawrence & Holford
+        \(1913-1928\).)
     property :"creator/LawrenceEllisF", :label => 'Lawrence, Ellis F.', :comment =>
       %(Name and dates derived from a website.)
     property :"creator/LawrenceJohn", :label => 'Lawrence, John', :comment =>
@@ -9704,7 +9767,7 @@ module OregonDigital::Vocabularies
     property :"creator/LazarusEdgarM", :label => 'Lazarus, Edgar M.', :comment =>
       %(Professional construction architect.)
     property :"creator/LazarusEdgarMarks", :label => 'Lazarus, Edgar Marks', :comment =>
-      %(Name derived from a website.)
+      %(Name and dates derived from a website.)
     property :"creator/LazarusWhitehouseandFouihoux", :label => 'Lazarus, Whitehouse & Fouihoux', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/LazorikWayneR", :label => 'Lazorik, Wayne R.', :comment =>
@@ -9756,6 +9819,7 @@ module OregonDigital::Vocabularies
         artist)
     property :"creator/LeeCarolyn", :label => 'Lee, Carolyn', :comment =>
       %(Artist)
+    property :"creator/LeeManningdeVilleneuve", :label => 'Lee, Manning de Villeneuve'
     property :"creator/LeeMarshall", :label => 'Lee, Marshall', :comment =>
       %(Professional historian.)
     property :"creator/LeeSuzanne", :label => 'Lee, Suzanne', :comment =>
@@ -9854,6 +9918,7 @@ module OregonDigital::Vocabularies
     property :"creator/LevyStu", :label => 'Levy, Stu', :comment =>
       %(Committment to Vision, Eugene. OR: Photography at Oregon
         Gallery, 1986. American photographer)
+    property :"creator/LewisCC", :label => 'Lewis, C.C.'
     property :"creator/LewisCarolynK", :label => 'Lewis, Carolyn K.', :comment =>
       %(Bennett, Michael, Aaron J. Paul, and Mario Iozzo; Magna
         Graecia: Greek Art From South Italy and Sicily, Cleveland:
@@ -9877,7 +9942,7 @@ module OregonDigital::Vocabularies
     property :"creator/LewisWF", :label => 'Lewis, W. F.', :comment =>
       %(UO VRC Mounted Photographs Collection.)
     property :"creator/LewthwaiteCliftonR", :label => 'Lewthwaite, Clifton R.', :comment =>
-      %(Name and dates derived from a website.)
+      %(Professional architect.)
     property :"creator/LexNerlingerAlice", :label => 'Lex-Nerlinger, Alice', :comment =>
       %(Blume, Eugen; Kunst in Berlin 1648-1987, Berlin:
         Henschelverlag, 1987.)
@@ -10068,7 +10133,7 @@ module OregonDigital::Vocabularies
     property :"creator/LilienbergIngrid", :label => 'Lilienberg, Ingrid', :comment =>
       %(UO VRC Slide Collections. Landscape architect and city planner)
     property :"creator/LillGeorgeW", :label => 'Lill, George W.', :comment =>
-      %(UO VRC Slide Collections.)
+      %(Professional architect, builder/contractor.)
     property :"creator/LillagoreTheodoreW", :label => 'Lillagore, Theodore W.', :comment =>
       %(Peirce, Donald C.; Art & Enterprise: American Decorative Art,
         1825-1917: The Virginia Carroll Crawford Collection, Atlanta:
@@ -10148,8 +10213,7 @@ module OregonDigital::Vocabularies
       %(Name and dates derived from a website. architectural renderer)
     property :"photographer/LinkJames", :label => 'Link, James'
     property :"creator/LinnDavid", :label => 'Linn, David', :comment =>
-      %(Name and dates derived from a website. Oregon builder in
-        Jacksonville)
+      %(Professional builder/contractor.)
     property :"creator/LintermannBernd", :label => 'Lintermann, Bernd', :comment =>
       %(Shanken, Edward A.; Art and Electronic Media, London; New
         York: Phaidon Press, 2009.)
@@ -10163,6 +10227,7 @@ module OregonDigital::Vocabularies
       %(Gealt, Adelheid, et al.; Masterworks from the Indiana
         University Art Museum, Bloomington, IN: Indiana University
         Press, 2007. Florentine)
+    property :"creator/LippsOscarHiram", :label => 'Lipps, Oscar Hiram'
     property :"photgrapher/LipscombChristineK", :label => 'Lipscomb, Christine K.'
     property :"creator/LischewskiH", :label => 'Lischewski, H.', :comment =>
       %(UO VRC Slide Collections.)
@@ -10210,10 +10275,10 @@ module OregonDigital::Vocabularies
         State Council of the People\'s Republic of China; Peasant
         Paintings from Huhien County , Beijing: Foreign Languages
         Press , 1974. alternate name: Liu Hui-sheng)
+    property :"photgrapher/LiuJack", :label => 'Liu, Jack'
     property :"creator/LiuJack", :label => 'Liu, Jack', :comment =>
       %(Committment to Vision, Eugene. OR: Photography at Oregon
         Gallery, 1986. American photographer)
-    property :"photgrapher/LiuJack", :label => 'Liu, Jack'
     property :"creator/LiuJianhua", :label => 'Liu, Jianhua', :comment =>
       %(Fibicher, Bernhard and Matthias Frehner; Mahjong: Contemporary
         Chinese Art from the Sigg Collection, Ostfildern: Hatje Cantz
@@ -10418,13 +10483,15 @@ module OregonDigital::Vocabularies
         1999.)
     property :"creator/LopezMartina", :label => 'Lopez, Martina', :comment =>
       %(Name and dates derived from a website.)
+    property :"creator/LoppWilliamThomas", :label => 'Lopp, William Thomas'
     property :"creator/LoppnowDuane", :label => 'Loppnow, Duane'
     property :"creator/LorentzPare", :label => 'Lorentz, Pare', :comment =>
       %(Haskell, Barbara; American Century: Art and Culture 1900-1950
         vol. 1, 1st ed, New York: Whitney Museum of American Art ,
         1999.)
     property :"creator/LorenzBrothers", :label => 'Lorenz Brothers', :comment =>
-      %(Professional builder/contractor.)
+      %(http://pdfhost.focus.nps.gov/docs/NRHP/Text/78002308.pdf.
+        contractors)
     property :"creator/LorenzW", :label => 'Lorenz, W.', :comment =>
       %(Professional builder/contractor.)
     property :"creator/LorenzlJosef", :label => 'Lorenzl, Josef', :comment =>
@@ -10433,8 +10500,8 @@ module OregonDigital::Vocabularies
     property :"creator/LoringWilfred", :label => 'Loring, Wilfred', :comment =>
       %(Acton, David; Sixty Years of North American Prints: 1947-2007,
         Boston: Boston Printmakers, 2009. American printmaker)
-    property :"photgrapher/LorraineMadisonJohnson", :label => 'Lorraine, Madison Johnson'
     property :"author/LorraineMadisonJohnson", :label => 'Lorraine, Madison Johnson'
+    property :"photgrapher/LorraineMadisonJohnson", :label => 'Lorraine, Madison Johnson'
     property :"creator/LorreinsDonSantiago", :label => 'Lorreins, Don Santiago', :comment =>
       %(Gleason, David King; Plantation Homes of Louisiana and the
         Natchez Area, Baton Rouge: Louisiana State University Press,
@@ -10580,6 +10647,7 @@ module OregonDigital::Vocabularies
         Rizzoli, 1986.)
     property :"creator/Lykorgos", :label => 'Lykorgos', :comment =>
       %(UO VRC Slide Collections.)
+    property :"creator/LyleEugenePJr", :label => 'Lyle, Eugene P. Jr.'
     property :"creator/LymanMarie", :label => 'Lyman, Marie', :comment =>
       %(Artist)
     property :"creator/LynnRudy", :label => 'Lynn Rudy'
@@ -10591,6 +10659,7 @@ module OregonDigital::Vocabularies
     property :"creator/LyonCathy", :label => 'Lyon, Cathy', :comment =>
       %(Artist)
     property :"photographer/LyonsMike", :label => 'Lyons, Mike'
+    property :"creator/LytleRobertDay", :label => 'Lytle, Robert Day'
     property :"creator/MArtGroup", :label => 'M Art Group', :comment =>
       %(Gao Minglu; Total Modernity and the Avant-Garde in
         Twentieth-Century Chinese Art. An artist collective founded in
@@ -10705,7 +10774,7 @@ module OregonDigital::Vocabularies
         at the SF Academy of Art and the California College of Arts
         and Crafts.)
     property :"creator/MacNaughtonandRaymond", :label => 'MacNaughton & Raymond', :comment =>
-      %(Professional architecture firm.)
+      %(Name used by John Reynolds, architect, Eugene, Oregon.)
     property :"creator/MacNaughtonRaymondandLawrence", :label => 'MacNaughton Raymond & Lawrence', :comment =>
       %(Professional architecture firm.)
     property :"creator/MacNaughtonErnestB", :label => 'MacNaughton, Ernest B.', :comment =>
@@ -10973,6 +11042,7 @@ module OregonDigital::Vocabularies
     property :"creator/MarshHaroldD", :label => 'Marsh, Harold D.'
     property :"creator/MarshLSP", :label => 'Marsh, L. S. P.', :comment =>
       %(Professional builder/contractor.)
+    property :"creator/MarshallCharlesLouis", :label => 'Marshall, Charles Louis'
     property :"creator/MarshallFrankJohn", :label => 'Marshall, Frank John', :comment =>
       %(Meyer, Marilee Boyd; Inspiring Reform: Boston\'s Arts and
         Crafts Movement, Wellesley: Davis Museum and Cultural Center,
@@ -11003,9 +11073,9 @@ module OregonDigital::Vocabularies
         concept \'Angry Woebots\' Active 2002-present)
     property :"creator/MartinAnthonyDirk", :label => 'Martin, Anthony Dirk', :comment =>
       %(UO VRC Slide Collections.)
-    property :"creator/BKingMartin", :label => 'Martin, B. King'
     property :"creator/MartinBKing", :label => 'Martin, B. King', :comment =>
       %(Professional architect.)
+    property :"creator/BKingMartin", :label => 'Martin, B. King'
     property :"creator/MartinBerryandGlassbrook", :label => 'Martin, Berry and Glassbrook', :comment =>
       %(Fairclough, Oliver and Emmeline Leary; Textiles by William
         Morris and Morris & Co., 1861-1940, London, Westfield, NJ:
@@ -11203,6 +11273,7 @@ module OregonDigital::Vocabularies
     property :"creator/McCawMartinandWhite", :label => 'McCaw Martin & White'
     property :"creator/McCawWilliamF", :label => 'McCaw, William F.', :comment =>
       %(Professional architect.)
+    property :"creator/McClainAlbertM", :label => 'McClain, Albert M.'
     property :"creator/McClaranElmerE", :label => 'McClaran, Elmer E.', :comment =>
       %(Professional architect.)
     property :"creator/McCleary", :label => 'McCleary', :comment =>
@@ -11233,6 +11304,7 @@ module OregonDigital::Vocabularies
       %(Artist)
     property :"creator/McCulloughConde", :label => 'McCullough, Conde', :comment =>
       %(Name and dates derived from a website. architect)
+    property :"creator/McCuskerPhilip", :label => 'McCusker, Philip'
     property :"photographer/McDonaldDuncan", :label => 'McDonald, Duncan'
     property :"creator/McDonaldHarley", :label => 'McDonald, Harley', :comment =>
       %(Professional architect.)
@@ -11263,7 +11335,7 @@ module OregonDigital::Vocabularies
     property :"creator/McIlhennyHenry", :label => 'McIlhenny, Henry', :comment =>
       %(Name and dates derived from a website.)
     property :"creator/McInnisandReed", :label => 'McInnis & Reed', :comment =>
-      %(Professional builder/contractor.)
+      %(UO VRC Slide Collections.)
     property :"creator/McIntireScott", :label => 'McIntire, Scott', :comment =>
       %(Artist)
     property :"creator/McIntoshHarrison", :label => 'McIntosh, Harrison', :comment =>
@@ -11275,6 +11347,7 @@ module OregonDigital::Vocabularies
       %(Haskell, Barbara; American Century: Art and Culture 1900-1950
         vol. 1, 1st ed, New York: Whitney Museum of American Art ,
         1999.)
+    property :"creator/McKayDouglas", :label => 'McKay, Douglas'
     property :"creator/McKecknieHarper", :label => 'McKecknie, Harper', :comment =>
       %(Professional architect.)
     property :"creator/McKinneyEleanor", :label => 'McKinney, Eleanor', :comment =>
@@ -11282,8 +11355,7 @@ module OregonDigital::Vocabularies
         Costruire sui valori, Milan: L\'Arca Edizioni, 2002. landscape
         architect)
     property :"creator/McLarenJohn", :label => 'McLaren, John', :comment =>
-      %(Name and dates derived from a website. landscape architect for
-        SF\'s Golden Gate Park)
+      %(Professional landscape architect.)
     property :"creator/McLaughlinFrances", :label => 'McLaughlin, Frances', :comment =>
       %(Harrison, Martin; Appearances: Fashion Photography Since 1945,
         New York: Rizzoli International Publications, Inc., 1991.
@@ -11322,8 +11394,8 @@ module OregonDigital::Vocabularies
         no. 5 \(1044-1891\).)
     property :"creator/McNeilWendy", :label => 'McNeil, Wendy', :comment =>
       %(UO VRC Slide Collections.)
-    property :"creator/McPaddenRay", :label => 'McPadden, Ray'
     property :"contributor/McPaddenRay", :label => 'McPadden, Ray'
+    property :"creator/McPaddenRay", :label => 'McPadden, Ray'
     property :"creator/McWainOrlinG", :label => 'McWain, Orlin G.', :comment =>
       %(Professional architect.)
     property :"creator/MeadWilfredJ", :label => 'Mead, Wilfred J.', :comment =>
@@ -11343,6 +11415,7 @@ module OregonDigital::Vocabularies
       %(Artist)
     property :"creator/MeehanKathleen", :label => 'Meehan, Kathleen', :comment =>
       %(Artist)
+    property :"creator/MeekerEzra", :label => 'Meeker, Ezra'
     property :"creator/MeeksJohn", :label => 'Meeks, John', :comment =>
       %(Munson-Williams-Proctor Institute; Masterpieces of American
         furniture from the Munson-Williams-Proctor Institute, Utica,
@@ -11583,6 +11656,7 @@ module OregonDigital::Vocabularies
       %(Professional architect.)
     property :"creator/MillerJamesR", :label => 'Miller, James R.', :comment =>
       %(UO VRC Slide Collections.)
+    property :"creator/MillerJoaquin", :label => 'Miller, Joaquin'
     property :"creator/MillerPaul", :label => 'Miller, Paul', :comment =>
       %(Pacific Northwest artist)
     property :"creator/MillerRobert", :label => 'Miller, Robert', :comment =>
@@ -11665,6 +11739,7 @@ module OregonDigital::Vocabularies
       %(Starner, Carolyn; Emerald Journey: A Walk Through Northwest
         Gardens, Spokane: Greenstem Press, 2004. Canadian landscaper
         and garden designer)
+    property :"creator/MinthornTony", :label => 'Minthorn, Tony'
     property :"creator/MintonHollins", :label => 'Minton Hollins', :comment =>
       %(Soros, Susan Weber; E.W. Godwin: Aesthetic Movement Architect
         and Designer, New Haven: Yale University Press, 1999.
@@ -11814,11 +11889,13 @@ module OregonDigital::Vocabularies
       %(Artist)
     property :"creator/MolnarZ", :label => 'Molnar, Z.', :comment =>
       %(UO VRC Slide Collections.)
+    property :"creator/MomentSamuel", :label => 'Moment, Samuel'
     property :"creator/MomotaRyuei", :label => 'Momota, Ryuei', :comment =>
       %(Kobayashi, Tadashi and Hiroyuki Kano; Kano-ha to fuzokuga,
         Nihon Bijutsu Zenshu, Tokyo: Kodansha, 1992.)
     property :"creator/MonnerAlfred", :label => 'Monner, Alfred', :comment =>
-      %(Artist)
+      %(Committment to Vision, Eugene. OR: Photography at Oregon
+        Gallery, 1986. American photography)
     property :"creator/MonroeGary", :label => 'Monroe, Gary', :comment =>
       %(Name and dates derived from a website.)
     property :"creator/MontacchiniAlberto", :label => 'Montacchini, Alberto', :comment =>
@@ -11980,6 +12057,7 @@ module OregonDigital::Vocabularies
         International Publications, Inc., 1991.)
     property :"creator/MorrowRobertD", :label => 'Morrow, Robert D.', :comment =>
       %(Professional builder/contractor.)
+    property :"creator/MorseWayneL", :label => 'Morse, Wayne L.'
     property :"creator/MortonDigby", :label => 'Morton, Digby', :comment =>
       %(Torrens, Deborah; Fashion Illustrated: A Review of Women\'s
         Dress, 1920-1950, New York: Hawthorne Books, Inc. Publishers,
@@ -12285,6 +12363,7 @@ module OregonDigital::Vocabularies
       %(Murase, Miyeko; Bridge of Dreams: The Mary Griggs Burke
         Collection of Japanese Art, New York: Metropolitan Museum of
         Art, 2000.)
+    property :"creator/NaomiPhelps", :label => 'Naomi Phelps'
     property :"creator/NaraharaIkko", :label => 'Narahara, Ikko', :comment =>
       %(Szarkowski, John and Shoji Yamagishi; New Japanese
         Photography, New York: Museum of Modern Art, 1974. alt. name:
@@ -12345,7 +12424,8 @@ module OregonDigital::Vocabularies
     property :"creator/NeerDelosD", :label => 'Neer, Delos D.', :comment =>
       %(Professional architect.)
     property :"creator/NeevelPaul", :label => 'Neevel, Paul', :comment =>
-      %(Artist)
+      %(Committment to Vision, Eugene. OR: Photography at Oregon
+        Gallery, 1986.)
     property :"creator/NegreteSergio", :label => 'Negrete, Sergio', :comment =>
       %(Benedikt, Michael; Overland Partners: Building on Values:
         Costruire sui valori, Milan: L\'Arca Edizioni, 2002.)
@@ -13048,7 +13128,7 @@ module OregonDigital::Vocabularies
     property :"creator/ParkerJamieson", :label => 'Parker, Jamieson', :comment =>
       %(AIA Historical Directory of American Architects: ahd1033981.)
     property :"creator/ParkerJamiesonK", :label => 'Parker, Jamieson K.', :comment =>
-      %(Professional architect.)
+      %(UO VRC Slide Collections.)
     property :"creator/ParkinsonandParkinson", :label => 'Parkinson and Parkinson', :comment =>
       %(Weber, Eva; Art Deco in America, New York: Exeter Books, 1985.)
     property :"creator/ParkinsonJ", :label => 'Parkinson, J.'
@@ -13080,8 +13160,11 @@ module OregonDigital::Vocabularies
       %(Leboff, David and Tim Demuth; No Need to Ask! Early Maps of
         London\'s Underground Railways, Middlesex: Capital Transport
         Publishing, 1999. London advertising and printing firm)
+    property :"creator/PartridgeBarbaraDay", :label => 'Partridge, Barbara Day'
+    property :"creator/PartridgeEdward", :label => 'Partridge, Edward'
     property :"creator/PartridgeSam", :label => 'Partridge, Sam', :comment =>
       %(UO VRC Slide Collections.)
+    property :"creator/PartridgeWilliam", :label => 'Partridge, William'
     property :"creator/PascualyColomerNarciso", :label => 'Pascual y Colomer, Narciso', :comment =>
       %(Wikipedia. architect)
     property :"photgrapher/PasschierAGregoor", :label => 'Passchier, A. Gregoor'
@@ -13364,6 +13447,7 @@ module OregonDigital::Vocabularies
     property :"photgrapher/PierceTom", :label => 'Pierce, Tom', :comment =>
       %(Architect, Thomas Pierce Architecture and Interior Design.
         University of Oregon student of architecutr, 1982-1987.)
+    property :"creator/PierceWalterMarcus", :label => 'Pierce, Walter Marcus'
     property :"creator/PiermariniGregorio", :label => 'Piermarini, Gregorio', :comment =>
       %(Name and dates derived from a website.)
     property :"creator/PierreGuintini", :label => 'Pierre Guintini'
@@ -13392,6 +13476,8 @@ module OregonDigital::Vocabularies
       %(Burke, Doreen Bolger, Jonathan Freedman, et al.; In Pursuit of
         Beauty: Americans and the Aesthetic Movement, New York:
         Rizzoli, 1986.)
+    property :"creator/PinkertonKathrene", :label => 'Pinkerton, Kathrene'
+    property :"creator/PinkertonRobertE", :label => 'Pinkerton, Robert E.'
     property :"photgrapher/PiperDSmith", :label => 'Piper, D. Smith'
     property :"creator/PiperFStanley", :label => 'Piper, F. Stanley'
     property :"creator/PiperWW", :label => 'Piper, W.W.', :comment =>
@@ -13502,6 +13588,7 @@ module OregonDigital::Vocabularies
       %(Brunhammer, Yvonne and Suzanne Tise; Decorative Arts in
         France, 1900-1942, New York: Rizzoli International
         Publications, 1990. French designer)
+    property :"creator/PorterCharlesOrlando", :label => 'Porter, Charles Orlando'
     property :"creator/PorterThea", :label => 'Porter, Thea', :comment =>
       %(Moore, Doris Langley-Levy. Fashion through Fashion Plates,
         1771-1970. New York, C.N. Potter, 1971.)
@@ -13583,6 +13670,7 @@ module OregonDigital::Vocabularies
       %(Professional engineer.)
     property :"creator/PrenticeMargaret", :label => 'Prentice, Margaret', :comment =>
       %(Artist)
+    property :"creator/PrescottRobertJr", :label => 'Prescott, Robert Jr.'
     property :"creator/PrestoWilliam", :label => 'Presto, William', :comment =>
       %(Name and dates derived from a website.)
     property :"creator/PrestonJessieM", :label => 'Preston, Jessie M.', :comment =>
@@ -13594,6 +13682,7 @@ module OregonDigital::Vocabularies
         1500-1830, New Haven: Yale University Press, 2001.)
     property :"creator/PreusseandZittle", :label => 'Preusse & Zittle', :comment =>
       %(UO VRC Slide Collections.)
+    property :"creator/PriceChristine", :label => 'Price, Christine'
     property :"creator/PriceDavid", :label => 'Price, David', :comment =>
       %(George, Michael; Gardens of Ireland, New York: Little, Brown
         and Company, 1986.)
@@ -14083,8 +14172,8 @@ module OregonDigital::Vocabularies
         York: Metropolitan Museum of Art, 1992. cartographer)
     property :"creator/ReynoldsBeth", :label => 'Reynolds, Beth', :comment =>
       %(UO VRC Slide Collections.)
-    property :"contributor/ReynoldsJohn", :label => 'Reynolds, John'
     property :"creator/ReynoldsJohn", :label => 'Reynolds, John'
+    property :"contributor/ReynoldsJohn", :label => 'Reynolds, John'
     property :"creator/ReynoldsJohnS", :label => 'Reynolds, John S.', :comment =>
       %(Name used by John Reynolds, architect, Eugene, Oregon.
         professor emeritus of architecture, UO)
@@ -14126,6 +14215,7 @@ module OregonDigital::Vocabularies
         Private Collections, Philadelphia, Munich: Philadelphia Museum
         of Art, Prestel-Verlag, 1988. corporation, Munich)
     property :"creator/RichardCastenholz", :label => 'Richard Castenholz'
+    property :"creator/RichardNeubergerPapers", :label => 'Richard Neuberger Papers'
     property :"creator/RichardofBuryBishopofDurham", :label => 'Richard of Bury, Bishop of Durham', :comment =>
       %(Alexander, Jonathan and Paul Binski, eds.; Age of Chivalry:
         Art in Plantagenet England, 1200-1400, London: Royal Academy
@@ -14174,8 +14264,8 @@ module OregonDigital::Vocabularies
         Ottoman)
     property :"creator/RiggandVantyne", :label => 'Rigg & Vantyne', :comment =>
       %(Professional architecture firm.)
-    property :"creator/RileJrFrankH", :label => 'Rile Jr., Frank H.'
     property :"contributor/RileJrFrankH", :label => 'Rile Jr., Frank H.'
+    property :"creator/RileJrFrankH", :label => 'Rile Jr., Frank H.'
     property :"creator/RileyCarol", :label => 'Riley, Carol', :comment =>
       %(Artist)
     property :"creator/RileyMichael", :label => 'Riley, Michael', :comment =>
@@ -14625,6 +14715,7 @@ module OregonDigital::Vocabularies
         Imagined, Reborn, New York: Overlook Press, 2009. author of
         the Delineations of Fonthill \(1823\) guidebook to Fonthill
         Abbey)
+    property :"creator/RutterThomasH", :label => 'Rutter, Thomas H.'
     property :"creator/RyanCharlesBryan", :label => 'Ryan, Charles Bryan', :comment =>
       %(Pacific Northwest artist)
     property :"creator/RyanHenderson", :label => 'Ryan, Henderson', :comment =>
@@ -14871,6 +14962,7 @@ module OregonDigital::Vocabularies
       %(UO VRC Slide Collections. King of Pagan in Burma, also known
         as Min Lulin, son of Anawrahta; ruled from 1078-1084; captured
         and killed in captivity.)
+    property :"creator/SawyerRobertW", :label => 'Sawyer, Robert W.'
     property :"creator/SawyerTed", :label => 'Sawyer, Ted', :comment =>
       %(Artist)
     property :"creator/SaxSarah", :label => 'Sax, Sarah', :comment =>
@@ -14896,7 +14988,7 @@ module OregonDigital::Vocabularies
         2001. Collaborative drawing design for \'Wall Drawing 913\'
         executed by Sol LeWitt on Ceretto Chapel, Alba, Italy.)
     property :"creator/SchachtEmil", :label => 'Schacht, Emil', :comment =>
-      %(AIA Historical Directory of American Architects: ahd1039354.)
+      %(Professional architect.)
     property :"creator/SchackJamesH", :label => 'Schack, James H.', :comment =>
       %(Professional architect.)
     property :"creator/SchaferFrederickAbbot", :label => 'Schafer, Frederick Abbot', :comment =>
@@ -14976,6 +15068,7 @@ module OregonDigital::Vocabularies
     property :"creator/SchockCarl", :label => 'Schock, Carl', :comment =>
       %(Friese, Christiane; Plakatkunst, 1880-1935, Stuttgart:
         Klett-Cotta , 1994.)
+    property :"creator/SchoenbergSJ", :label => 'Schoenberg, S.J.'
     property :"creator/SchoenbornAugust", :label => 'Schoenborn, August', :comment =>
       %(Name and dates derived from a website.)
     property :"creator/ScholefieldAdrian", :label => 'Scholefield, Adrian', :comment =>
@@ -14993,7 +15086,7 @@ module OregonDigital::Vocabularies
         dictionary of architects deceased - 19th and 20th centuries.
         Portland, Oregon: Lair Hill Publishing, 2002..)
     property :"creator/SchonewaldGeorgeA", :label => 'Schonewald, George A.', :comment =>
-      %(UO VRC Slide Collections.)
+      %(Professional architect.)
     property :"creator/SchoolofCuzco", :label => 'School of Cuzco', :comment =>
       %(Damian, Carol; Virgin of the Andes; Art and Ritual in Colonial
         Cuzco, Miami Beach: Grassfield Press, 1995. The school of
@@ -15178,6 +15271,7 @@ module OregonDigital::Vocabularies
         2002.)
     property :"creator/SeraRosa", :label => 'Sera, Rosa', :comment =>
       %(Professional artist.)
+    property :"creator/SeredyKate", :label => 'Seredy, Kate'
     property :"creator/SergardiLodovico", :label => 'Sergardi, Lodovico', :comment =>
       %(http://www.intuscany.net/apartments/villa_catignano.htm.
         Quinto Settano, pseudonym)
@@ -15261,8 +15355,9 @@ module OregonDigital::Vocabularies
       %(Cushing, Lincoln and Ann Tompkins; Chinese Posters: Art From
         the Great Proletarian Cultural Revolution, San Francisco:
         Chronicle Books, 2007.)
-    property :"author/ShankHH", :label => 'Shank, H. H.'
     property :"photgrapher/ShankHH", :label => 'Shank, H. H.'
+    property :"author/ShankHH", :label => 'Shank, H. H.'
+    property :"creator/ShannonJohnPhilips", :label => 'Shannon, John Philips'
     property :"creator/ShansuddinBaysunghuri", :label => 'Shansuddin Baysunghuri', :comment =>
       %(Lentz, Thomas W. and Glenn D. Lowrey; Timur and the Princely
         Vision: Persian Art and Culture in the Fifteenth Century,
@@ -15338,6 +15433,7 @@ module OregonDigital::Vocabularies
       %(Kaplan, Wendy; \'The Art That is Life\': The Arts and Crafts
         Movement in America, 1875 -1920, Boston: Little, Brown and
         Company, 1987.)
+    property :"creator/SheldonHenryDavidson", :label => 'Sheldon, Henry Davidson'
     property :"creator/SheldonMilesM", :label => 'Sheldon, Miles M.', :comment =>
       %(Professional builder/contractor.)
     property :"creator/SheldrickMearsandCW", :label => 'Sheldrick, Mears and C.W.', :comment =>
@@ -15349,6 +15445,7 @@ module OregonDigital::Vocabularies
     property :"creator/Shelmerdine", :label => 'Shelmerdine', :comment =>
       %(UO AAA Library Architectural Drawing Collection. AAA
         Architecture student)
+    property :"creator/SheltonAC", :label => 'Shelton, A.C.'
     property :"creator/SheltonDavid", :label => 'Shelton, David', :comment =>
       %(Gleason, David King; Antebellum Homes of Georgia, Baton Rouge;
         London: Louisiana State University Press, 1987. Virginian who
@@ -15438,8 +15535,7 @@ module OregonDigital::Vocabularies
         Meaning, New York: Columbia University Press, 1994.
         illustrator)
     property :"creator/SherwinJoseph", :label => 'Sherwin, Joseph', :comment =>
-      %(UO VRC Slide Collections. British architect, worked in
-        Portland, Oregon in the 1880s)
+      %(Professional architect.)
     property :"creator/SherwoodCarlR", :label => 'Sherwood, Carl R.', :comment =>
       %(Professional architect.)
     property :"creator/SherwoodRobertE", :label => 'Sherwood, Robert E.', :comment =>
@@ -15724,6 +15820,8 @@ module OregonDigital::Vocabularies
       %(Artist)
     property :"creator/SimmonsEarl", :label => 'Simmons, Earl', :comment =>
       %(Professional builder/contractor.)
+    property :"creator/SimonHoward", :label => 'Simon, Howard'
+    property :"creator/SimonMinaLewiston", :label => 'Simon, Mina Lewiston'
     property :"editor/SimonNora", :label => 'Simon, Nora', :comment =>
       %(Editor in Chief of the Oregon Daily Emerald.)
     property :"creator/SimonedaOrsenigo", :label => 'Simone da Orsenigo', :comment =>
@@ -15903,6 +16001,8 @@ module OregonDigital::Vocabularies
     property :"creator/SmithWD", :label => 'Smith, W.D.', :comment =>
       %(Lafever, Minard; Modern Builder\'s Guide, Dover reprint
         edition, New York: Dover Publications, Inc., 1969.)
+    property :"creator/SmithWarrenD", :label => 'Smith, Warren D.'
+    property :"creator/SmithWilliamCarlson", :label => 'Smith, William Carlson'
     property :"creator/SmithBarryJamesHugh", :label => 'Smith-Barry, James Hugh', :comment =>
       %(thepeerage.com.)
     property :"creator/SmullinF", :label => 'Smullin, F.', :comment =>
@@ -16137,6 +16237,7 @@ module OregonDigital::Vocabularies
       %(Professional architect.)
     property :"creator/StaffordJohnEdward", :label => 'Stafford, John Edward', :comment =>
       %(AIA Historical Directory of American Architects: ahd1042601.)
+    property :"creator/StaffordKimRobert", :label => 'Stafford, Kim Robert'
     property :"creator/StahlJohn", :label => 'Stahl, John', :comment =>
       %(Artist)
     property :"creator/StahlArpke", :label => 'Stahl-Arpke', :comment =>
@@ -16248,6 +16349,7 @@ module OregonDigital::Vocabularies
       %(Artist)
     property :"creator/SternAllenH", :label => 'Stern, Allen H.', :comment =>
       %(Professional architect.)
+    property :"creator/SternBernardJ", :label => 'Stern, Bernard J.'
     property :"creator/StettnerM", :label => 'Stettner, M.', :comment =>
       %(Brandenburg, Hugo; Ancient Churches of Rome From the Fourth to
         the Seventh Century, English edition, Turnhout: Brepols
@@ -16258,6 +16360,8 @@ module OregonDigital::Vocabularies
     property :"creator/StevensGorhamP", :label => 'Stevens, Gorham P.', :comment =>
       %(Woodford, Susan; Art of Greece and Rome, Cambridge: Cambridge
         University Press, 1982.)
+    property :"creator/StevensHazard", :label => 'Stevens, Hazard'
+    property :"creator/StevensonJanetMarshall", :label => 'Stevenson, Janet Marshall'
     property :"creator/StewardJackW", :label => 'Steward, Jack W.'
     property :"creator/Stewart", :label => 'Stewart', :comment =>
       %(UO VRC Slide Collections.)
@@ -16373,6 +16477,7 @@ module OregonDigital::Vocabularies
         illustrator)
     property :"creator/StrattonCO", :label => 'Stratton, C. O.', :comment =>
       %(Professional builder/contractor.)
+    property :"creator/StrattonJuliusA", :label => 'Stratton, Julius A.'
     property :"creator/StrattonLouis", :label => 'Stratton, Louis', :comment =>
       %(Professional builder/contractor.)
     property :"creator/StredneyDonald", :label => 'Stredney, Donald', :comment =>
@@ -16577,7 +16682,7 @@ module OregonDigital::Vocabularies
       %(Heartney, Eleanor; Art & Today, New York: Phaidon Press, Inc.,
         2008. photographer \(no additional information\))
     property :"creator/SutinenPaul", :label => 'Sutinen, Paul', :comment =>
-      %(Professional artist.)
+      %(Artist)
     property :"creator/SutterCarl", :label => 'Sutter, Carl', :comment =>
       %(Greene, Rachel; Internet Art, London: Thames & Hudson, 2004.)
     property :"creator/SutterGillesde", :label => 'Sutter, Gilles de', :comment =>
@@ -16599,6 +16704,7 @@ module OregonDigital::Vocabularies
       %(Professional architect.)
     property :"creator/SuttonEve", :label => 'Sutton, Eve', :comment =>
       %(UO VRC Slide Collections. American photographer)
+    property :"creator/SuttonJM", :label => 'Sutton, J.M.'
     property :"creator/SuverJosephW", :label => 'Suver, Joseph W.', :comment =>
       %(Professional builder/contractor.)
     property :"creator/SuzukiHiroshigeII", :label => 'Suzuki, Hiroshige II', :comment =>
@@ -16635,6 +16741,7 @@ module OregonDigital::Vocabularies
         Press, 2008. American builder.)
     property :"creator/SweedenVirgil", :label => 'Sweeden, Virgil', :comment =>
       %(Artist)
+    property :"creator/SweetserAlbertR", :label => 'Sweetser, Albert R.'
     property :"contributor/SwetlandKaili", :label => 'Swetland, Kaili'
     property :"creator/SwietenJanvan", :label => 'Swieten, Jan van', :comment =>
       %(Name and dates derived from a website. NOT ULAN 500016809)
@@ -16651,6 +16758,7 @@ module OregonDigital::Vocabularies
     property :"creator/SymonsCorporation", :label => 'Symons Corporation', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/SynnesS", :label => 'Synnes, S.'
+    property :"creator/SzaszMargaret", :label => 'Szasz, Margaret'
     property :"creator/TPhelan", :label => 'T. Phelan'
     property :"creator/TBGArchitectsandPlanners", :label => 'TBG Architects & Planners', :comment =>
       %(Professional architecture firm.)
@@ -16892,6 +17000,7 @@ module OregonDigital::Vocabularies
     property :"creator/TecnoUnitedKingdom", :label => 'Tecno, United Kingdom', :comment =>
       %(Raizman, David S. History of Modern Design. Upper Saddle
         River, NJ: Prentice Hall, 2004.)
+    property :"creator/TeeVanHelenDamrosch", :label => 'Tee-Van, Helen Damrosch'
     property :"creator/TeeplesandThatcher", :label => 'Teeples & Thatcher', :comment =>
       %(Professional builder/contractor.)
     property :"creator/TeganRobertF", :label => 'Tegan, Robert F.'
@@ -16926,7 +17035,7 @@ module OregonDigital::Vocabularies
       %(Fiell, Charlotte and Peter Fiell; Modern Chairs, Cologne:
         Taschen, 1993.)
     property :"creator/TepferGary", :label => 'Tepfer, Gary', :comment =>
-      %(Artist)
+      %(Name and dates derived from a website.)
     property :"photgrapher/TepferGary", :label => 'Tepfer, Gary', :comment =>
       %(Name and dates derived from a website.)
     property :"creator/TerryKaren", :label => 'Terry, Karen', :comment =>
@@ -16995,7 +17104,7 @@ module OregonDigital::Vocabularies
     property :"creator/ThomasJamesDavid", :label => 'Thomas, James David', :comment =>
       %(Artist)
     property :"creator/ThomasLeeA", :label => 'Thomas, Lee A.', :comment =>
-      %(AIA Historical Directory of American Architects: ahd1044692.)
+      %(Professional architect.)
     property :"creator/ThomasMarianna", :label => 'Thomas, Marianna', :comment =>
       %(O\'Gorman, James F.; Architecture of Frank Furness,
         Philadelphia: University of Pennsylvania Press, 1973.
@@ -17019,7 +17128,7 @@ module OregonDigital::Vocabularies
     property :"photgrapher/ThompsonChristine", :label => 'Thompson, Christine', :comment =>
       %(University Planning Office.)
     property :"creator/ThompsonDavid", :label => 'Thompson, David', :comment =>
-      %(Professional builder/contractor.)
+      %(Artist)
     property :"creator/ThompsonDavidP", :label => 'Thompson, David P.'
     property :"creator/ThompsonEdwardHerbert", :label => 'Thompson, Edward Herbert', :comment =>
       %(Name and dates derived from a website. American-born
@@ -17028,6 +17137,7 @@ module OregonDigital::Vocabularies
         Mayan ethnology and material culture.)
     property :"creator/ThompsonJamesBlair", :label => 'Thompson, James Blair', :comment =>
       %(Artist)
+    property :"creator/ThompsonJeremiahBarnett", :label => 'Thompson, Jeremiah Barnett'
     property :"creator/ThompsonKate", :label => 'Thompson, Kate', :comment =>
       %(Professional artist.)
     property :"photographer/ThompsonMary", :label => 'Thompson, Mary'
@@ -17374,6 +17484,7 @@ module OregonDigital::Vocabularies
       %(McGregor, Suzi Moore and Nora Burba Trulsson; Living Homes:
         Sustainable Architecture and Design, San Francisco: Chronicle
         Press, 2008. Architectural designer located in Arizona)
+    property :"creator/TunisEdwin", :label => 'Tunis, Edwin'
     property :"creator/TupperEarl", :label => 'Tupper, Earl', :comment =>
       %(Name derived from a website.)
     property :"creator/TurnbullandAsser", :label => 'Turnbull & Asser', :comment =>
@@ -17461,6 +17572,7 @@ module OregonDigital::Vocabularies
       %(Schimmel, Paul. Out of Actions: Between Performance the the
         Object, 1949-1979. Los Angeles, Calif. : The Museum of
         Contemporary Art New York : Thames and Hudson, 1998.)
+    property :"creator/UllmanAl", :label => 'Ullman, Al'
     property :"creator/Ulrich", :label => 'Ulrich', :comment =>
       %(Bagnoli, Martina, Holger A. Klein, C. Griffith Mann, and James
         Robinson; Treasures of Heaven: Saints, Relics, and Devotion in
@@ -17481,6 +17593,7 @@ module OregonDigital::Vocabularies
       %(Name and dates derived from a website.)
     property :"creator/UndergraduatestudentTylerSchoolofArtPhotographyDept", :label => 'Undergraduate student, Tyler School of Art. Photography Dept.', :comment =>
       %(UO VRC Slide Collections.)
+    property :"creator/UnderhillRuthMurray", :label => 'Underhill, Ruth Murray'
     property :"creator/UngaroLucrezia", :label => 'Ungaro, Lucrezia', :comment =>
       %(Haselberger, Lothar, Jon Humphrey and Dean Abernathy; Imaging
         Ancient Rome: Documentation, Visualization, Imagination:
@@ -17519,6 +17632,7 @@ module OregonDigital::Vocabularies
       %(Professional architecture firm.)
     property :"creator/UnthankDeNorval", :label => 'Unthank, DeNorval', :comment =>
       %(Professional architect.)
+    property :"creator/UnwinNoraS", :label => 'Unwin, Nora S.'
     property :"creator/UnwinR", :label => 'Unwin, R.', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/UpandUp", :label => 'Up & Up', :comment =>
@@ -17709,7 +17823,7 @@ module OregonDigital::Vocabularies
         the Van Briggle Pottery Company in 1902. He died of
         tuberculosis in 1904.)
     property :"creator/VanBruntandHowe", :label => 'Van Brunt & Howe', :comment =>
-      %(Name and dates derived from a website. Kansas City-based firm)
+      %(Professional architecture firm.)
     property :"creator/VanCottSherrill", :label => 'Van Cott, Sherrill', :comment =>
       %(Pacific Northwest artist)
     property :"creator/VanDam", :label => 'Van Dam', :comment =>
@@ -17913,6 +18027,7 @@ module OregonDigital::Vocabularies
     property :"creator/WOHAArchitects", :label => 'WOHA Architects', :comment =>
       %(Roth, Manuela; Ecological Living, Kempen: teNeus Verlag, 2009.
         Architecture firm based in Singapore)
+    property :"creator/WPAHistoricalCollection", :label => 'WPA Historical Collection'
     property :"creator/WadeHaroldV", :label => 'Wade, Harold V.'
     property :"creator/WadsworthAlexanderScammell", :label => 'Wadsworth, Alexander Scammell', :comment =>
       %(Name and dates derived from a website. Naval officer during
@@ -17991,9 +18106,9 @@ module OregonDigital::Vocabularies
         Group)
     property :"creator/WallaceCH", :label => 'Wallace, C. H.', :comment =>
       %(Professional masonry.)
+    property :"creator/WallaceCharlesH", :label => 'Wallace, Charles H.'
     property :"creator/WallaceCharleH", :label => 'Wallace, Charles H.', :comment =>
       %(Professional builder/contractor.)
-    property :"creator/WallaceCharlesH", :label => 'Wallace, Charles H.'
     property :"creator/WallaceDwightG", :label => 'Wallace, Dwight G.', :comment =>
       %(Chicago Daily Tribune; International Competition for a New
         Administration Building for the Chicago Tribune, Chicago:
@@ -18001,6 +18116,7 @@ module OregonDigital::Vocabularies
     property :"creator/WallaceHamilton", :label => 'Wallace, Hamilton', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/WallaceJ", :label => 'Wallace, J.'
+    property :"creator/WallickJodie", :label => 'Wallick, Jodie'
     property :"creator/WallingAlbertG", :label => 'Walling, Albert G.', :comment =>
       %(UO VRC Slide Collections. founder of printing and lithography
         business in Portland, Oregon)
@@ -18256,8 +18372,8 @@ module OregonDigital::Vocabularies
         formed an architectural firm based in Cambridge,
         Massachusetts.)
     property :"contributor/WarfieldCharlesC", :label => 'Warfield, Charles C.'
-    property :"creator/WarfieldDonald", :label => 'Warfield, Donald'
     property :"contributor/WarfieldDonald", :label => 'Warfield, Donald'
+    property :"creator/WarfieldDonald", :label => 'Warfield, Donald'
     property :"creator/WarfieldJohnLewis1936", :label => 'Warfield, John Lewis, 1936-'
     property :"creator/WarnerandSons", :label => 'Warner & Sons', :comment =>
       %(Smith, Greg and Sarah Hyde; Walter Crane, 1845-1915: Artist,
@@ -18277,7 +18393,8 @@ module OregonDigital::Vocabularies
     property :"creator/WarnickLucy", :label => 'Warnick, Lucy', :comment =>
       %(Artist)
     property :"creator/WarpinskiTerri", :label => 'Warpinski, Terri', :comment =>
-      %(Artist)
+      %(Committment to Vision, Eugene. OR: Photography at Oregon
+        Gallery, 1986.)
     property :"creator/WarrenInvestmentCompany", :label => 'Warren Investment Company'
     property :"creator/WarrenWinitzki", :label => 'Warren Winitzki'
     property :"creator/WarrenandWetmore", :label => 'Warren and Wetmore', :comment =>
@@ -18333,6 +18450,7 @@ module OregonDigital::Vocabularies
     property :"creator/WaylandCharlesW", :label => 'Wayland, Charles W.', :comment =>
       %(Professional architect.)
     property :"creator/WaynePumpCompany", :label => 'Wayne Pump Company'
+    property :"creator/WeaverJamesH1927", :label => 'Weaver, James H., 1927-'
     property :"creator/WebbAshton", :label => 'Webb, Ashton', :comment =>
       %(Baker, Malcolm and Brenda Richardson; Grand Design: the Art of
         the Victoria and Albert Museum, New York: Harry N. Abrams,
@@ -18578,7 +18696,11 @@ module OregonDigital::Vocabularies
     property :"creator/WhitehouseandAssociates", :label => 'Whitehouse & Associates', :comment =>
       %(Professional architecture firm.)
     property :"creator/WhitehouseandFouilhoux", :label => 'Whitehouse & Fouilhoux', :comment =>
-      %(Professional architecture firm.)
+      %(Ritz, Richard Ellison. Architects of Oregon: a bibliographical
+        dictionary of architects deceased - 19th and 20th centuries.
+        Portland, Oregon: Lair Hill Publishing, 2002.. Portland,
+        Oregon architecture firm of Morris Homans Whitehouse and
+        Jacques Andre Fouilhoux.)
     property :"creator/WhitehouseChurchNewberryandRoehr", :label => 'Whitehouse Church Newberry & RoehrRoehr', :comment =>
       %(Professional architecture firm.)
     property :"creator/WhitehouseHoneymanandFouilhoux", :label => 'Whitehouse Honeyman & Fouilhoux', :comment =>
@@ -18587,7 +18709,7 @@ module OregonDigital::Vocabularies
       %(Real Thing: An Anthology of British Photographs, 1840-1950,
         London: Arts Council of Great Britain, 1975.)
     property :"creator/WhitehouseMorrisH", :label => 'Whitehouse, Morris H.', :comment =>
-      %(UO VRC Slide Collections.)
+      %(Professional architect.)
     property :"creator/WhitehouseStantonandChurch", :label => 'Whitehouse, Stanton & Church', :comment =>
       %(http://nwda.orbiscascade.org/ark:/80444/xv29419. During the
         early 1920s, Whitehouse practiced under the firm name of
@@ -18659,6 +18781,7 @@ module OregonDigital::Vocabularies
     property :"creator/WilcoxHarriettElizabeth", :label => 'Wilcox, Harriett Elizabeth', :comment =>
       %(Raizman, David S. History of Modern Design. Upper Saddle
         River, NJ: Prentice Hall, 2004.)
+    property :"creator/WilcoxWalterRossBaumes", :label => 'Wilcox, Walter Ross Baumes'
     property :"creator/WildBruce", :label => 'Wild, Bruce', :comment =>
       %(Artist)
     property :"creator/WildDavid", :label => 'Wild, David'
@@ -18754,6 +18877,7 @@ module OregonDigital::Vocabularies
     property :"creator/WilliamsonSue", :label => 'Williamson, Sue', :comment =>
       %(Committment to Vision, Eugene. OR: Photography at Oregon
         Gallery, 1986.)
+    property :"creator/WillisParkWeed", :label => 'Willis, Park Weed'
     property :"creator/WillmannManfred", :label => 'Willmann, Manfred', :comment =>
       %(Name and dates derived from a website. Manfred Willmann, the
         Austrian photographer and editor of the magazine \'Camera
@@ -18771,7 +18895,8 @@ module OregonDigital::Vocabularies
     property :"creator/WilmsenandEndicott", :label => 'Wilmsen & Endicott', :comment =>
       %(Professional architecture firm.)
     property :"creator/WilmsenEndicottandUnthank", :label => 'Wilmsen Endicott & Unthank', :comment =>
-      %(Professional architecture firm.)
+      %(Name and dates derived from a website. Oregon architecture
+        firm)
     property :"creator/WilmsenRobert", :label => 'Wilmsen, Robert'
     property :"creator/WilmsenEndicott", :label => 'Wilmsen-Endicott', :comment =>
       %(Archiplanet, http://www.archiplanet.org/wiki/Wilmsen-Endicott.)
@@ -18862,10 +18987,10 @@ module OregonDigital::Vocabularies
         Abrams, 1992.)
     property :"creator/WitherspoonEnglarandCompany", :label => 'Witherspoon-Englar & Company', :comment =>
       %(Professional designer.)
-    property :"photgrapher/WittMarvin", :label => 'Witt, Marvin', :comment =>
-      %(Architect and former University of Oregon student.)
     property :"creator/WittMarvin", :label => 'Witt, Marvin', :comment =>
       %(Professional architect.)
+    property :"photgrapher/WittMarvin", :label => 'Witt, Marvin', :comment =>
+      %(Architect and former University of Oregon student.)
     property :"creator/WittedT", :label => 'Witted, T.', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/WitterCharlesE", :label => 'Witter, Charles E.', :comment =>
@@ -18882,7 +19007,7 @@ module OregonDigital::Vocabularies
     property :"creator/WolfAston", :label => 'Wolf, Aston', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/WolfSherrie", :label => 'Wolf, Sherrie', :comment =>
-      %(Artist)
+      %(Pacific Northwest artist)
     property :"creator/WolffandPhillips", :label => 'Wolff & Phillips', :comment =>
       %(Professional architecture firm.)
     property :"creator/WolffandZimmerAssociates", :label => 'Wolff & Zimmer Associates', :comment =>
@@ -18902,6 +19027,7 @@ module OregonDigital::Vocabularies
       %(Artist)
     property :"creator/WoodHiramE", :label => 'Wood, Hiram E.', :comment =>
       %(Professional builder/contractor.)
+    property :"creator/WoodHughB", :label => 'Wood, Hugh B.'
     property :"creator/WoodKatherineLouise", :label => 'Wood, Katherine Louise', :comment =>
       %(Barter, Judith A.; Apostles of Beauty: Arts and Crafts From
         Britain to Chicago, New Haven: Yale University Press, 2009.
@@ -19099,6 +19225,8 @@ module OregonDigital::Vocabularies
       %(Artist)
     property :"creator/WylieScottWilliam1946", :label => 'Wylie, Scott William, 1946-', :comment =>
       %(Artist)
+    property :"creator/WyndhamLee", :label => 'Wyndham, Lee'
+    property :"creator/WyndhamRobert", :label => 'Wyndham, Robert'
     property :"creator/WysongLinda", :label => 'Wysong, Linda', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/XiGuorong", :label => 'Xi, Guorong', :comment =>
@@ -19481,8 +19609,8 @@ module OregonDigital::Vocabularies
         Prints, Amsterdam: Hotei Publishing, 2005.)
     property :"creator/YatesCarol", :label => 'Yates, Carol', :comment =>
       %(Artist)
-    property :"contributor/YatesJosh", :label => 'Yates, Josh'
     property :"creator/YatesJosh", :label => 'Yates, Josh'
+    property :"contributor/YatesJosh", :label => 'Yates, Josh'
     property :"creator/YeCheng", :label => 'Ye, Cheng', :comment =>
       %(Barnhart, Richard M; Painters of the great Ming: the Imperial
         Court and the Zhe School, Dallas: Dallas Museum of Art, 1993.
@@ -20227,6 +20355,7 @@ module OregonDigital::Vocabularies
       %(Shen Zhiyu; Shanghai Museum of Art, New York: Harry N. Abrams,
         Inc., 1983.)
     property :"photographer/ZiaMichaelH", :label => 'Zia, Michael H.'
+    property :"creator/ZimHerbertS", :label => 'Zim, Herbert S.'
     property :"creator/ZimmermanDominikus", :label => 'Zimmerman, Dominikus', :comment =>
       %(UO VRC Slide Collections.)
     property :"creator/ZininAN", :label => 'Zinin, A. N.', :comment =>
