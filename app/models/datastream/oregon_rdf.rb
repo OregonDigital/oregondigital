@@ -130,6 +130,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :tableOfContents, :predicate => RDF::DC.tableOfContents do |index|
     index.as :displayable
   end
+  property :tribalNotes, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tribalNotes do |index|
+    index.as :displayable
+  end
 
   # Subjects
   # :lcsubject is controlled subject using multiple vocabs
