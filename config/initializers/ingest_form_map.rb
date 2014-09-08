@@ -134,7 +134,6 @@ INGEST_MAP = {
     placeOfProduction: "descMetadata.placeOfProduction",
     language: "descMetadata.language",
     repository: "descMetadata.od_repository",
-    isPartOf: "descMetadata.isPartOf",
     localCollectionID: "descMetadata.localCollectionID",
     localCollectionName: "descMetadata.localCollectionName",
     seriesName: "descMetadata.seriesName",
@@ -148,6 +147,7 @@ INGEST_MAP = {
 
   relation: {
     relation: "descMetadata.relation",
+    isPartOf: "descMetadata.isPartOf",
     artSeries: "descMetadata.artSeries",
   },
 
