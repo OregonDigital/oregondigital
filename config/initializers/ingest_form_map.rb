@@ -141,12 +141,12 @@ INGEST_MAP = {
     folderNumber: "descMetadata.folderNumber",
     folderName: "descMetadata.folderName",
     provenance: "descMetadata.provenance",
-    hostItem: "descMetadata.hostItem",
   },
 
   relation: {
     relation: "descMetadata.relation",
     largerWork: "descMetadata.largerWork",
+    hostItem: "descMetadata.hostItem",
     isPartOf: "descMetadata.isPartOf",
     artSeries: "descMetadata.artSeries",
   },
