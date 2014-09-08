@@ -41,6 +41,7 @@ INGEST_MAP = {
     transcriber: "descMetadata.transcriber",
     donor: "descMetadata.donor",
     scribe: "descMetadata.scribe",
+    editor: "descMetadata.editor",
   },
 
   description: {
