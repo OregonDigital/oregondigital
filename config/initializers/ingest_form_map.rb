@@ -68,6 +68,7 @@ INGEST_MAP = {
     contents: "descMetadata.contents",
     provenance: "descMetadata.provenance",
     temporal: "descMetadata.temporal",
+    coverage: "descMetadata.coverage",
   },
 
   subject: {
