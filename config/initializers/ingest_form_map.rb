@@ -29,6 +29,7 @@ INGEST_MAP = {
     contributor: "descMetadata.contributor",
     photographer: "descMetadata.photographer",
     illustrator: "descMetadata.illustrator",
+    artist: "descMetadata.artist",
     interviewer: "descMetadata.interviewer",
     interviewee: "descMetadata.interviewee",
     composer: "descMetadata.composer",
