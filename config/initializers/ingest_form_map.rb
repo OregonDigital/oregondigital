@@ -181,12 +181,12 @@ INGEST_MAP = {
   },
 
   administrative: {
-    locationCopySublocation: "descMetadata.locationCopySublocation",
     institution: "descMetadata.institution",
     conversion: "descMetadata.conversion",
     dateDigitized: "descMetadata.dateDigitized",
     dateSubmitted: "descMetadata.submissionDate",
     modified: "descMetadata.modified",
+    locationCopySublocation: "descMetadata.locationCopySublocation",
   },
 
 }
