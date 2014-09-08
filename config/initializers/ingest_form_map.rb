@@ -187,6 +187,7 @@ INGEST_MAP = {
     dateSubmitted: "descMetadata.submissionDate",
     modified: "descMetadata.modified",
     locationCopySublocation: "descMetadata.locationCopySublocation",
+    fullText: "descMetadata.fullText",
   },
 
 }
