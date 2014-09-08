@@ -189,6 +189,7 @@ INGEST_MAP = {
     tribalStatus: "descMetadata.tribalStatus",
     locationCopySublocation: "descMetadata.locationCopySublocation",
     replacesUrl: "descMetadata.replacesUrl",
+    imageWidth: "descMetadata.imageWidth",
     fullText: "descMetadata.fullText",
   },
 
