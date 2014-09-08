@@ -141,6 +141,7 @@ INGEST_MAP = {
     folderNumber: "descMetadata.folderNumber",
     folderName: "descMetadata.folderName",
     citation: "descMetadata.citation",
+    containedInJournal: "descMetadata.containedInJournal",
     provenance: "descMetadata.provenance",
   },
 
