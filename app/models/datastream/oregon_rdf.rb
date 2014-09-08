@@ -370,7 +370,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :genus, :predicate => OregonDigital::Vocabularies::DWC.genus, :class_name => OregonDigital::ControlledVocabularies::SciGenus  do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :phylum, :predicate => OregonDigital::Vocabularies::DWC.phylum do |index|
+  property :phylum, :predicate => OregonDigital::Vocabularies::DWC.phylum, :class_name => OregonDigital::ControlledVocabularies::SciPhylum do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :higherClassification, :predicate => OregonDigital::Vocabularies::DWC.higherClassification do |index|
