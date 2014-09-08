@@ -89,6 +89,7 @@ INGEST_MAP = {
     militaryBranch: "descMetadata.militaryBranch",
     sportsTeam: "descMetadata.sportsTeam",
     ethnographicTerm: "descMetadata.ethnographicTerm",
+    tribalClasses: "descMetadata.tribalClasses",
     person: "descMetadata.person",
   },
 
