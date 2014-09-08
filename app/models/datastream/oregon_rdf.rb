@@ -132,9 +132,11 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # Subjects
+  # :lcsubject is controlled subject using multiple vocabs
   property :lcsubject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
     index.as :searchable, :facetable, :displayable
   end
+  # :subject is for keywords
   property :subject, :predicate => RDF::DC11.subject do |index|
     index.as :searchable, :facetable, :displayable
   end
