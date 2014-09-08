@@ -67,6 +67,7 @@ INGEST_MAP = {
     sourceCondition: "descMetadata.sourceCondition",
     contents: "descMetadata.contents",
     provenance: "descMetadata.provenance",
+    temporal: "descMetadata.temporal",
   },
 
   subject: {
