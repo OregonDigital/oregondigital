@@ -190,6 +190,7 @@ INGEST_MAP = {
     locationCopySublocation: "descMetadata.locationCopySublocation",
     replacesUrl: "descMetadata.replacesUrl",
     imageWidth: "descMetadata.imageWidth",
+    imageHeight: "descMetadata.imageHeight",
     fullText: "descMetadata.fullText",
   },
 
