@@ -161,6 +161,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :sportsTeam, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sportsTeam do |index|
     index.as :searchable, :displayable
   end
+  property :tribalClasses, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tribalClasses do |index|
+    index.as :searchable, :displayable
+  end
 
   # Geographics
   property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
