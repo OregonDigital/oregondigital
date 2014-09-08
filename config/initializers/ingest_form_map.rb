@@ -131,6 +131,7 @@ INGEST_MAP = {
     source: "descMetadata.source",
     publisher: "descMetadata.publisher",
     placeOfPublication: "descMetadata.placeOfPublication",
+    language: "descMetadata.language",
     repository: "descMetadata.od_repository",
     isPartOf: "descMetadata.isPartOf",
     localCollectionID: "descMetadata.localCollectionID",
