@@ -113,6 +113,7 @@ INGEST_MAP = {
     latestDate: "descMetadata.latestDate",
     created: "descMetadata.created",
     modified: "descMetadata.modified",
+    viewDate: "descMetadata.viewDate",
     awardDate: "descMetadata.awardDate",
   },
 
