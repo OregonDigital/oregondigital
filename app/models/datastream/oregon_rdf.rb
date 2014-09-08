@@ -332,10 +332,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :symbol
   end
 
-  # TODO: Are we using these?  If not, ditch them!  If so, they need to be in
-  # the data dictionary document!
-
-
   # Schema.org
   property :citation, :predicate => RDF::SCHEMA.citation do |index|
     index.as :searchable, :displayable
