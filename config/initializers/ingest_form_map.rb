@@ -54,7 +54,6 @@ INGEST_MAP = {
     firstLineChorus: "descMetadata.firstLineChorus",
     culturalContext: "descMetadata.culturalContext",
     inscription: "descMetadata.inscription",
-    artSeries: "descMetadata.artSeries",
     cover: "descMetadata.cover",
     instrumentation: "descMetadata.instrumentation",
     militaryServiceLocation: "descMetadata.militaryServiceLocation",
@@ -139,6 +138,7 @@ INGEST_MAP = {
 
   relation: {
     relation: "descMetadata.relation",
+    artSeries: "descMetadata.artSeries",
   },
 
   type: {
