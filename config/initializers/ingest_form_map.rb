@@ -140,6 +140,7 @@ INGEST_MAP = {
     boxNumber: "descMetadata.boxNumber",
     folderNumber: "descMetadata.folderNumber",
     folderName: "descMetadata.folderName",
+    citation: "descMetadata.citation",
     provenance: "descMetadata.provenance",
   },
 
