@@ -155,6 +155,7 @@ INGEST_MAP = {
     artSeries: "descMetadata.artSeries",
     hasPart: "descMetadata.hasPart",
     hasVersion: "descMetadata.hasVersion",
+    isVersionOf: "descMetadata.isVersionOf",
   },
 
   type: {
