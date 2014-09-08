@@ -253,7 +253,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :folderNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.folderNumber do |index|
     index.as :searchable, :displayable
   end
-  property :folderName, :predicate => RDF::URI('http://opaquenamespace.org/ns/folderName') do |index|
+  property :folderName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.folderName do |index|
     index.as :searchable, :displayable
   end
 
