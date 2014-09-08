@@ -26,6 +26,7 @@ INGEST_MAP = {
 
   creator: {
     creator: "descMetadata.creator",
+    author: "descMetadata.author",
     contributor: "descMetadata.contributor",
     photographer: "descMetadata.photographer",
     illustrator: "descMetadata.illustrator",
