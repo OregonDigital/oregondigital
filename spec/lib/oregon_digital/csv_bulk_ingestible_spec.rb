@@ -39,8 +39,8 @@ describe OregonDigital::CsvBulkIngestible do
       Dir.stub(:glob).and_call_original
       Dir.stub(:glob).with(File.join(dir, '*.csv')).and_return([File.join(dir, 'test.csv')])
       CSV.stub(:foreach).with(File.join(dir, 'test.csv'), :headers => true, :header_converters => :symbol).
-        and_yield(CSV::Row.new(sym_headers, ['1.txt', 'Fake 1', 'Moomin Pappa', 'moomin-collection', 'http://sws.geonames.org/5720727/'])).
-        and_yield(CSV::Row.new(sym_headers, ['2.txt', '   ', 'Moomin Pappa|Snuffkin', 'moomin-collection|moomin-valley-historical', '']))
+        and_yield(CSV::Row.new(sym_headers, ['1.txt', 'Fake 1', 'http://id.loc.gov/authorities/names/Moomin%20Pappa', 'moomin-collection', 'http://sws.geonames.org/5720727/'])).
+        and_yield(CSV::Row.new(sym_headers, ['2.txt', '   ', 'http://id.loc.gov/authorities/names/Moomin%20Pappa|http://id.loc.gov/authorities/names/Snuffkin', 'moomin-collection|moomin-valley-historical', '']))
     end
   end
 
@@ -50,7 +50,7 @@ describe OregonDigital::CsvBulkIngestible do
       Dir.stub(:glob).and_call_original
       Dir.stub(:glob).with(File.join(dir, '*.csv')).and_return([File.join(dir, 'test.csv')])
       CSV.stub(:foreach).with(File.join(dir, 'test.csv'), :headers => true, :header_converters => :symbol).
-        and_yield(CSV::Row.new((sym_headers << :not_real_field), ['1.txt', 'Fake 1', 'Moomin Pappa', 'moomin-collection', 'http://sws.geonames.org/5720727/', "Moomin Valley Historical Society", "not real field's value"]))
+        and_yield(CSV::Row.new((sym_headers << :not_real_field), ['1.txt', 'Fake 1', 'http://id.loc.gov/authorities/names/Moomin%20Pappa', 'moomin-collection', 'http://sws.geonames.org/5720727/', "Moomin Valley Historical Society", "not real field's value"]))
     end
   end
 
@@ -60,8 +60,8 @@ describe OregonDigital::CsvBulkIngestible do
       Dir.stub(:glob).and_call_original
       Dir.stub(:glob).with(File.join(dir, '*.csv')).and_return([File.join(dir, 'test.csv')])
       CSV.stub(:foreach).with(File.join(dir, 'test.csv'), :headers => true, :header_converters => :symbol).
-        and_yield(CSV::Row.new(sym_headers, ['1.txt', 'Fake 1', 'Moomin Pappa', 'moomin-collection', 'Corvallis'])).
-        and_yield(CSV::Row.new(sym_headers, ['2.txt', 'Fake 2', 'Moomin Pappa', 'mmmooooomin', 'http://sws.geonames.org/5720727/']))
+        and_yield(CSV::Row.new(sym_headers, ['1.txt', 'Fake 1', 'http://id.loc.gov/authorities/names/Moomin%20Pappa', 'moomin-collection', 'Corvallis'])).
+        and_yield(CSV::Row.new(sym_headers, ['2.txt', 'Fake 2', 'http://id.loc.gov/authorities/names/Moomin%20Pappa', 'mmmooooomin', 'http://sws.geonames.org/5720727/']))
     end
   end
 
