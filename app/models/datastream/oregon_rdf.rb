@@ -358,7 +358,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # Darwin Core
-  property :taxonClass, :predicate => OregonDigital::Vocabularies::DWC.class do |index|
+  property :taxonClass, :predicate => OregonDigital::Vocabularies::DWC.class, :class_name => OregonDigital::ControlledVocabularies::SciClass do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :order, :predicate => OregonDigital::Vocabularies::DWC.order do |index|
