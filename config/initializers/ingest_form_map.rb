@@ -66,6 +66,7 @@ INGEST_MAP = {
     compassDirection: "descMetadata.compassDirection",
     sourceCondition: "descMetadata.sourceCondition",
     contents: "descMetadata.contents",
+    provenance: "descMetadata.provenance",
   },
 
   subject: {
