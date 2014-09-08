@@ -73,6 +73,7 @@ INGEST_MAP = {
     numberOfPages: "descMetadata.numberOfPages",
     descriptionOfManifestation: "descMetadata.descriptionOfManifestation",
     modeOfIssuance: "descMetadata.modeOfIssuance",
+    formOfWork: "descMetadata.formOfWork",
     canzionerePoems: "descMetadata.canzionerePoems",
   },
 
