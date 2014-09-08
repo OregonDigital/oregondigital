@@ -72,6 +72,7 @@ INGEST_MAP = {
     coverage: "descMetadata.coverage",
     numberOfPages: "descMetadata.numberOfPages",
     descriptionOfManifestation: "descMetadata.descriptionOfManifestation",
+    canzionerePoems: "descMetadata.canzionerePoems",
   },
 
   subject: {
