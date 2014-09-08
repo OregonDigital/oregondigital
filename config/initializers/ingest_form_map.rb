@@ -143,6 +143,7 @@ INGEST_MAP = {
     citation: "descMetadata.citation",
     containedInJournal: "descMetadata.containedInJournal",
     isVolume: "descMetadata.isVolume",
+    hasNumber: "descMetadata.hasNumber",
     provenance: "descMetadata.provenance",
   },
 
