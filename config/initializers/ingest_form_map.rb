@@ -61,6 +61,7 @@ INGEST_MAP = {
     militaryServiceLocation: "descMetadata.militaryServiceLocation",
     militaryHighestRank: "descMetadata.militaryHighestRank",
     militaryOccupation: "descMetadata.militaryOccupation",
+    tribalNotes: "descMetadata.tribalNotes",
   },
 
   subject: {
