@@ -168,6 +168,7 @@ INGEST_MAP = {
     format: "descMetadata.format",
     physicalExtent: "descMetadata.physicalExtent",
     measurements: "descMetadata.measurements",
+    imageOrientation: "descMetadata.imageOrientation",
     support: "descMetadata.support",
   },
 
