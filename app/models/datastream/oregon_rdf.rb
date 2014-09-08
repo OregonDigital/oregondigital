@@ -186,7 +186,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :date, :predicate => RDF::DC.date do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :dateDigitized, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.dateDigitized
   property :earliestDate, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/earliestDate') do |index|
     index.as :searchable, :displayable
   end
@@ -324,6 +323,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
   property :conversion, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.conversionSpecifications
+  property :dateDigitized, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.dateDigitized
   property :created, :predicate => RDF::DC.created do |index|
     index.as :searchable, :facetable, :displayable
   end
