@@ -124,6 +124,12 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :canzonierePoems, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.canzonierePoems do |index|
     index.as :displayable
   end
+  property :coverage, :predicate => RDF::DC11.coverage do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :provenance, :predicate => RDF::DC.provenance do |index|
+    index.as :displayable
+  end
 
   # Subjects
   property :lcsubject, :predicate => RDF::DC.subject, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
@@ -329,12 +335,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   # TODO: Are we using these?  If not, ditch them!  If so, they need to be in
   # the data dictionary document!
 
-  property :coverage, :predicate => RDF::DC11.coverage do |index|
-    index.as :searchable, :facetable, :displayable
-  end
-  property :provenance, :predicate => RDF::DC.provenance do |index|
-    index.as :displayable
-  end
 
   # Schema.org
   property :citation, :predicate => RDF::SCHEMA.citation do |index|
