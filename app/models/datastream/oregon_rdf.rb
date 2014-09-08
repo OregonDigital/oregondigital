@@ -196,7 +196,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :viewDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/viewDate'] do |index|
     index.as :displayable
   end
-  property :awardDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/awardDate'] do |index|
+  property :awardDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.awardDate do |index|
     index.as :searchable, :displayable
   end
 
