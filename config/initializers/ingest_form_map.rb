@@ -137,6 +137,10 @@ INGEST_MAP = {
     hostItem: "descMetadata.hostItem",
   },
 
+  relation: {
+    relation: "descMetadata.relation",
+  },
+
   type: {
     type: "descMetadata.type",
     workType: "descMetadata.workType",
