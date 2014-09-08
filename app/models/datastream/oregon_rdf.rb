@@ -85,9 +85,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :inscription, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/inscription') do |index|
     index.as :searchable, :displayable
   end
-  property :artSeries, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.artSeries do |index|
-    index.as :searchable, :displayable
-  end
   property :view, :predicate => RDF::URI('http://opaquenamespace.org/ns/cco/viewDescription') do |index|
     index.as :displayable
   end
@@ -289,6 +286,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :largerWork, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.largerWork do |index|
     index.as :searchable, :displayable
   end   
+  property :artSeries, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.artSeries do |index|
+    index.as :searchable, :displayable
+  end
   property :hostItem, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.hostItem do |index|
     index.as  :displayable
   end
