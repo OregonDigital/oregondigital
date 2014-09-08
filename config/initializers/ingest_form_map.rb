@@ -37,6 +37,7 @@ INGEST_MAP = {
     lyricist: "descMetadata.lyricist",
     arranger: "descMetadata.arranger",
     printMaker: "descMetadata.printMaker",
+    cartographer: "descMetadata.cartographer",
     transcriber: "descMetadata.transcriber",
   },
 
