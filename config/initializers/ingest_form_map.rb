@@ -127,7 +127,7 @@ INGEST_MAP = {
     copyrightClaimant: "descMetadata.copyrightClaimant",
   },
 
-  publisher: {
+  source: {
     source: "descMetadata.source",
     publisher: "descMetadata.publisher",
     placeOfPublication: "descMetadata.placeOfPublication",
