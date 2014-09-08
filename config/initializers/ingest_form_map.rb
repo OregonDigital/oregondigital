@@ -64,6 +64,7 @@ INGEST_MAP = {
     tribalNotes: "descMetadata.tribalNotes",
     biographicalInformation: "descMetadata.biographicalInformation",
     compassDirection: "descMetadata.compassDirection",
+    sourceCondition: "descMetadata.sourceCondition",
   },
 
   subject: {
