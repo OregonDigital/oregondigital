@@ -85,7 +85,6 @@ INGEST_MAP = {
     stateEdition: "descMetadata.stateEdition",
     stylePeriod: "descMetadata.stylePeriod",
     culture: "descMetadata.culture",
-    workType: "descMetadata.workType",
     militaryBranch: "descMetadata.militaryBranch",
     sportsTeam: "descMetadata.sportsTeam",
     ethnographicTerm: "descMetadata.ethnographicTerm",
