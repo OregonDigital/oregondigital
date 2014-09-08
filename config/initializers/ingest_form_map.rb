@@ -21,6 +21,7 @@ INGEST_MAP = {
     title: "descMetadata.title",
     alternative: "descMetadata.alternative",
     captionTitle: "descMetadata.captionTitle",
+    tribalTitle: "descMetadata.tribalTitle",
     firstLine: "descMetadata.firstLine",
     firstLineChorus: "descMetadata.firstLineChorus",
   },
