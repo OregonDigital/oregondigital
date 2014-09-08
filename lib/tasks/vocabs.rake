@@ -2,10 +2,12 @@
 
 require 'linkeddata'
 require 'rdf/cli/vocab-loader'
+require 'oregon_digital/rdf/vocabulary_loader'
+require_relative '../../config/initializers/controlled_vocabularies'
 
 desc "Generate Vocabularies"
 
-task :gen_vocabs => :environment do
+task :gen_vocabs do
   RDF_VOCABS.each do |id, v|
     puts "Generate lib/oregon_digital/vocabularies/#{id}.rb"
     begin
