@@ -108,11 +108,10 @@ INGEST_MAP = {
 
   date: {
     date: "descMetadata.date",
+    created: "descMetadata.created",
     issued: "descMetadata.issued",
     earliestDate: "descMetadata.earliestDate",
     latestDate: "descMetadata.latestDate",
-    created: "descMetadata.created",
-    modified: "descMetadata.modified",
     viewDate: "descMetadata.viewDate",
     awardDate: "descMetadata.awardDate",
   },
@@ -175,6 +174,7 @@ INGEST_MAP = {
     conversion: "descMetadata.conversion",
     dateDigitized: "descMetadata.dateDigitized",
     dateSubmitted: "descMetadata.submissionDate",
+    modified: "descMetadata.modified",
   },
 
 }
