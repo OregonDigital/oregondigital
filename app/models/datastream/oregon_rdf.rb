@@ -122,7 +122,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
   property :coverage, :predicate => RDF::DC11.coverage do |index|
-    index.as :searchable, :facetable, :displayable
+    index.as :searchable, :displayable
   end
   property :provenance, :predicate => RDF::DC.provenance do |index|
     index.as :displayable
