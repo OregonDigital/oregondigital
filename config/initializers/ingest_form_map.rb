@@ -40,6 +40,7 @@ INGEST_MAP = {
     cartographer: "descMetadata.cartographer",
     transcriber: "descMetadata.transcriber",
     donor: "descMetadata.donor",
+    scribe: "descMetadata.scribe",
   },
 
   description: {
