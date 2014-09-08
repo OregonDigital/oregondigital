@@ -191,6 +191,7 @@ INGEST_MAP = {
     replacesUrl: "descMetadata.replacesUrl",
     imageWidth: "descMetadata.imageWidth",
     imageHeight: "descMetadata.imageHeight",
+    imageResolution: "descMetadata.imageResolution",
     fullText: "descMetadata.fullText",
   },
 
