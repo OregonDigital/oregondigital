@@ -172,6 +172,7 @@ INGEST_MAP = {
     imageOrientation: "descMetadata.imageOrientation",
     materials: "descMetadata.materials",
     support: "descMetadata.support",
+    technique: "descMetadata.technique",
   },
 
   grouping: {
