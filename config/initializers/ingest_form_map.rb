@@ -71,7 +71,6 @@ INGEST_MAP = {
     descriptionOfManifestation: "descMetadata.descriptionOfManifestation",
     modeOfIssuance: "descMetadata.modeOfIssuance",
     formOfWork: "descMetadata.formOfWork",
-    provenance: "descMetadata.provenance",
     biographicalInformation: "descMetadata.biographicalInformation",
     note: "descMetadata.note",
     canzionerePoems: "descMetadata.canzionerePoems",
