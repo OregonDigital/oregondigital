@@ -90,6 +90,7 @@ INGEST_MAP = {
     sportsTeam: "descMetadata.sportsTeam",
     ethnographicTerm: "descMetadata.ethnographicTerm",
     tribalClasses: "descMetadata.tribalClasses",
+    tribalTerms: "descMetadata.TribalTerms",
     person: "descMetadata.person",
   },
 
