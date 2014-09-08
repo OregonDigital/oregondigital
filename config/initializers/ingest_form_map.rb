@@ -78,7 +78,9 @@ INGEST_MAP = {
   },
 
   subject: {
+    # would like to rename lcsubject to subject if it won't break
     lcsubject: "descMetadata.lcsubject",
+    # would like to rename subject to keyword if it won't break
     subject: "descMetadata.subject",
     stylePeriod: "descMetadata.stylePeriod",
     workType: "descMetadata.workType",
