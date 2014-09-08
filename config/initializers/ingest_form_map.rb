@@ -153,6 +153,7 @@ INGEST_MAP = {
     hostItem: "descMetadata.hostItem",
     isPartOf: "descMetadata.isPartOf",
     artSeries: "descMetadata.artSeries",
+    hasPart: "descMetadata.hasPart",
   },
 
   type: {
@@ -165,7 +166,6 @@ INGEST_MAP = {
     physicalExtent: "descMetadata.physicalExtent",
     measurements: "descMetadata.measurements",
     support: "descMetadata.support",
-    hasPart: "descMetadata.hasPart",
   },
 
   grouping: {
