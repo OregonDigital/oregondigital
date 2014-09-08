@@ -271,6 +271,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#physicalExtent') do |index|
     index.as :displayable
   end
+  property :extent, :predicate => RDF::DC.extent do |index|
+    index.as :searchable, :displayable
+  end
   property :measurements, :predicate => RDF::URI('http://www.loc.gov/standards/vracrore/vocab/measurements') do |index|
     index.as :displayable
   end
