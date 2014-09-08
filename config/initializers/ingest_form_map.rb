@@ -92,6 +92,11 @@ INGEST_MAP = {
     tribalClasses: "descMetadata.tribalClasses",
     tribalTerms: "descMetadata.TribalTerms",
     person: "descMetadata.person",
+    # dwc terms to be added once configuration complete
+    # genus: "descMetadata.genus",
+    # phylum: "descMetadata.phylum",
+    # taxonClass: "descMetadata.taxonClass",
+    # commonNames: "descMetadata.commonNames",
   },
 
   geographic: {
