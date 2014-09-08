@@ -101,7 +101,7 @@ describe "(Ingest Form)" do
 
         fill_in_ingest_data("date", "created", "2014-03-07")
         click_link "Add date"
-        fill_in_ingest_data("date", "modified", "2014-03-08", 1)
+        fill_in_ingest_data("administrative", "modified", "2014-03-08", 0)
         click_the_ingest_button
       end
 
@@ -192,7 +192,7 @@ describe "(Ingest Form)" do
 
         fill_in_ingest_data("date", "created", "2001-01-01", 0, true)
         click_link "Add date"
-        fill_in_ingest_data("date", "modified", "2001-01-02", 1, false)
+        fill_in_ingest_data("administrative", "modified", "2001-01-02", 0, false)
         click_link "Add date"
         fill_in_ingest_data("date", "date", "2001-01-03", 2, true)
 
