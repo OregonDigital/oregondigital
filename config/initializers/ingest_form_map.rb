@@ -63,6 +63,7 @@ INGEST_MAP = {
     militaryOccupation: "descMetadata.militaryOccupation",
     tribalNotes: "descMetadata.tribalNotes",
     biographicalInformation: "descMetadata.biographicalInformation",
+    compassDirection: "descMetadata.compassDirection",
   },
 
   subject: {
