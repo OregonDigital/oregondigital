@@ -194,6 +194,7 @@ INGEST_MAP = {
     imageResolution: "descMetadata.imageResolution",
     colorSpace: "descMetadata.colorSpace",
     colourContent: "descMetadata.colourContent"
+    fileSize: "descMetadata.fileSize",
     fullText: "descMetadata.fullText",
   },
 
