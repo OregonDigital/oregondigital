@@ -186,6 +186,7 @@ INGEST_MAP = {
     dateDigitized: "descMetadata.dateDigitized",
     dateSubmitted: "descMetadata.submissionDate",
     modified: "descMetadata.modified",
+    tribalStatus: "descMetadata.tribalStatus",
     locationCopySublocation: "descMetadata.locationCopySublocation",
     fullText: "descMetadata.fullText",
   },
