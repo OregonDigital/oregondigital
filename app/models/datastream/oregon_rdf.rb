@@ -339,6 +339,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :fullText, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.fullText do |index|
     index.as :searchable, :displayable
   end
+  property :tribalStatus, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tribalStatus do |index|
+    index.as :searchable, :displayable
+  end
   property :submissionDate, :predicate => RDF::DC.dateSubmitted do |index|
     index.as :searchable, :displayable
   end
