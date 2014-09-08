@@ -175,7 +175,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :rangerDistrict, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.rangerDistrict, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :tgn, :predicate => RDF::URI('http://opaquenamespace.org/ns/tgn'), :class_name => OregonDigital::ControlledVocabularies::GettyTGN do |index|
+  property :tgn, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tgn, :class_name => OregonDigital::ControlledVocabularies::GettyTGN do |index|
     index.as :searchable, :facetable, :displayable
   end
 
