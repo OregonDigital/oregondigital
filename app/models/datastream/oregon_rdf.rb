@@ -164,6 +164,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :tribalClasses, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tribalClasses do |index|
     index.as :searchable, :displayable
   end
+  property :tribalTerms, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tribalTerms do |index|
+    index.as :searchable, :displayable
+  end
 
   # Geographics
   property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
