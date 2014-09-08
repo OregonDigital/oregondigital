@@ -71,6 +71,7 @@ INGEST_MAP = {
     temporal: "descMetadata.temporal",
     coverage: "descMetadata.coverage",
     numberOfPages: "descMetadata.numberOfPages",
+    descriptionOfManifestation: "descMetadata.descriptionOfManifestation",
   },
 
   subject: {
