@@ -376,7 +376,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :higherClassification, :predicate => OregonDigital::Vocabularies::DWC.higherClassification do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :commonNames, :predicate => OregonDigital::Vocabularies::DWC.vernacularName do |index|
+  property :commonNames, :predicate => OregonDigital::Vocabularies::DWC.vernacularName, :class_name => OregonDigital::ControlledVocabularies::SciCommon do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :identificationVerificationStatus, :predicate => OregonDigital::Vocabularies::DWC.identificationVerificationStatus do |index|
