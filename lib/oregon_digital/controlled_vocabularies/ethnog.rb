@@ -1,18 +1,13 @@
 module OregonDigital::ControlledVocabularies
-  class Subject < ActiveFedora::Rdf::Resource
+  class Ethnog < ActiveFedora::Rdf::Resource
     include OregonDigital::RDF::Controlled
-    
-    #metdata librarians want multiple authoritative sources with dct.subject
-    use_vocabulary :lcsh
-    use_vocabulary :lcnames
-    use_vocabulary :tgm
-    use_vocabulary :aat
-    use_vocabulary :subject
 
-    class QaLcsh < Qa::Authorities::Loc
+    use_vocabulary :afs_ethn
+
+    class QaLcEth < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching
       def search(q, sub_authority=nil)
-        super(q, 'subjects')
+        super(q, 'ethnog')
       end
 
       def loc_response_to_qa(data)
@@ -24,6 +19,6 @@ module OregonDigital::ControlledVocabularies
       end
     end
 
-    @qa_interface = QaLcsh.new
+    @qa_interface = QaLcEth.new
   end
 end

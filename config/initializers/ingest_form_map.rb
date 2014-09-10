@@ -21,51 +21,96 @@ INGEST_MAP = {
     title: "descMetadata.title",
     alternative: "descMetadata.alternative",
     captionTitle: "descMetadata.captionTitle",
-    firstLine: "descMetadata.firstLine",
-    firstLineChorus: "descMetadata.firstLineChorus",
+    tribalTitle: "descMetadata.tribalTitle",
   },
 
   creator: {
     creator: "descMetadata.creator",
+    author: "descMetadata.author",
     contributor: "descMetadata.contributor",
+    editor: "descMetadata.editor",
     photographer: "descMetadata.photographer",
     illustrator: "descMetadata.illustrator",
+    artist: "descMetadata.artist",
+    printMaker: "descMetadata.printMaker",
+    cartographer: "descMetadata.cartographer",
     composer: "descMetadata.composer",
     lyricist: "descMetadata.lyricist",
     arranger: "descMetadata.arranger",
-    printMaker: "descMetadata.printMaker",
+    interviewee: "descMetadata.interviewee",
+    interviewer: "descMetadata.interviewer",
+    transcriber: "descMetadata.transcriber",
+    scribe: "descMetadata.scribe",
+    creatorDisplay: "descMetadata.creatorDisplay",
+    donor: "descMetadata.donor",
   },
-  
+
   description: {
     description: "descMetadata.description",
     abstract: "descMetadata.abstract",
     view: "descMetadata.view",
+    inscription: "descMetadata.inscription",
+    firstLine: "descMetadata.firstLine",
+    firstLineChorus: "descMetadata.firstLineChorus",
     culturalContext: "descMetadata.culturalContext",
     inscription: "descMetadata.inscription",
     cover: "descMetadata.cover",
     instrumentation: "descMetadata.instrumentation",
+    militaryServiceLocation: "descMetadata.militaryServiceLocation",
+    militaryHighestRank: "descMetadata.militaryHighestRank",
+    militaryOccupation: "descMetadata.militaryOccupation",
+    tribalNotes: "descMetadata.tribalNotes",
+    coverage: "descMetadata.coverage",
+    compassDirection: "descMetadata.compassDirection",
+    tableOfContents: "descMetadata.tableOfContents",
+    #contents: "descMetadata.contents",
+    coverage: "descMetadata.coverage",
+    numberOfPages: "descMetadata.numberOfPages",
+    sourceCondition: "descMetadata.conditionOfSource",
+    descriptionOfManifestation: "descMetadata.descriptionOfManifestation",
+    modeOfIssuance: "descMetadata.modeOfIssuance",
+    formOfWork: "descMetadata.formOfWork",
+    biographicalInformation: "descMetadata.biographicalInformation",
     note: "descMetadata.note",
+    canzonierePoems: "descMetadata.canzonierePoems",
   },
 
   subject: {
+    # would like to rename lcsubject to subject if it won't break
     lcsubject: "descMetadata.lcsubject",
+    # would like to rename subject to keyword if it won't break
     subject: "descMetadata.subject",
-    # ethnographicTerm: "descMetadata.ethnographicTerm",
+    stateEdition: "descMetadata.stateEdition",
+    stylePeriod: "descMetadata.stylePeriod",
+    culture: "descMetadata.culture",
+    militaryBranch: "descMetadata.militaryBranch",
+    sportsTeam: "descMetadata.sportsTeam",
+    ethnographicTerm: "descMetadata.ethnographicTerm",
+    tribalClasses: "descMetadata.tribalClasses",
+    tribalTerms: "descMetadata.tribalTerms",
+    person: "descMetadata.person",
+    # dwc terms to be added once configuration complete
+    # genus: "descMetadata.genus",
+    # phylum: "descMetadata.phylum",
+    # taxonClass: "descMetadata.taxonClass",
+    # commonNames: "descMetadata.commonNames",
   },
-  
+
   geographic: {
     location: "descMetadata.location",
+    streetAddress: "descMetadata.streetAddress",
+    rangerDistrict: "descMetadata.rangerDistrict",
+    tgn: "descMetadata.tgn",
   },
 
   date: {
     date: "descMetadata.date",
-    dateSubmitted: "descMetadata.submissionDate",
-    dateDigitized: "descMetadata.dateDigitized",
+    created: "descMetadata.created",
     issued: "descMetadata.issued",
     earliestDate: "descMetadata.earliestDate",
     latestDate: "descMetadata.latestDate",
-    created: "descMetadata.created",
-    modified: "descMetadata.modified",
+    viewDate: "descMetadata.viewDate",
+    awardDate: "descMetadata.awardDate",
   },
 
   identifier: {
@@ -76,19 +121,43 @@ INGEST_MAP = {
 
   right: {
     rights: "descMetadata.rights",
-    copyrightClaimant: "descMetadata.copyrightClaimant",
     rightsHolder: "descMetadata.rightsHolder",
+    copyrightClaimant: "descMetadata.copyrightClaimant",
   },
 
-  publisher: {
+  source: {
     source: "descMetadata.source",
     publisher: "descMetadata.publisher",
     placeOfPublication: "descMetadata.placeOfPublication",
+    placeOfProduction: "descMetadata.placeOfProduction",
+    language: "descMetadata.language",
+    repository: "descMetadata.od_repository",
+    idCurrentRepository: "descMetadata.idCurrentRepository",
+    localCollectionName: "descMetadata.localCollectionName",
+    localCollectionID: "descMetadata.localCollectionID",
+    seriesName: "descMetadata.seriesName",
+    boxNumber: "descMetadata.boxNumber",
+    folderNumber: "descMetadata.folderNumber",
+    folderName: "descMetadata.folderName",
+    citation: "descMetadata.citation",
+    containedInJournal: "descMetadata.containedInJournal",
+    isVolume: "descMetadata.isVolume",
+    hasNumber: "descMetadata.hasNumber",
     provenance: "descMetadata.provenance",
+  },
+
+  relation: {
+    relation: "descMetadata.relation",
     largerWork: "descMetadata.largerWork",
     hostItem: "descMetadata.hostItem",
+    isPartOf: "descMetadata.isPartOf",
+    artSeries: "descMetadata.artSeries",
+    hasPart: "descMetadata.hasPart",
+    hasVersion: "descMetadata.hasVersion",
+    isVersionOf: "descMetadata.isVersionOf",
+    findingAid: "descMetadata.findingAid",
   },
-  
+
   type: {
     type: "descMetadata.type",
     workType: "descMetadata.workType",
@@ -96,21 +165,36 @@ INGEST_MAP = {
 
   format: {
     format: "descMetadata.format",
+    extent: "descMetadata.extent",
     physicalExtent: "descMetadata.physicalExtent",
     measurements: "descMetadata.measurements",
-    hasPart: "descMetadata.hasPart",
+    imageOrientation: "descMetadata.imageOrientation",
+    materials: "descMetadata.materials",
+    support: "descMetadata.support",
+    technique: "descMetadata.technique",
   },
 
   grouping: {
     set: "descMetadata.set",
-    localCollection: "descMetadata.localCollection",
     exhibit: "descMetadata.exhibit",
   },
 
   administrative: {
-    locationCopySublocation: "descMetadata.locationCopySublocation",
     institution: "descMetadata.institution",
     conversion: "descMetadata.conversion",
+    dateDigitized: "descMetadata.dateDigitized",
+    dateSubmitted: "descMetadata.submissionDate",
+    modified: "descMetadata.modified",
+    tribalStatus: "descMetadata.tribalStatus",
+    locationCopySublocation: "descMetadata.locationCopySublocation",
+    replacesUrl: "descMetadata.replacesUrl",
+    imageWidth: "descMetadata.imageWidth",
+    imageHeight: "descMetadata.imageHeight",
+    imageResolution: "descMetadata.imageResolution",
+    colorSpace: "descMetadata.colorSpace",
+    colourContent: "descMetadata.colourContent",
+    fileSize: "descMetadata.fileSize",
+    fullText: "descMetadata.fullText",
   },
 
 }
@@ -126,4 +210,3 @@ for group, types_map in TEMPLATE_MAP
     property.gsub!("descMetadata", "templateMetadata")
   end
 end
-

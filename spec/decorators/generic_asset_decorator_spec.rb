@@ -5,7 +5,15 @@ describe GenericAssetDecorator do
   let(:asset) {FactoryGirl.build(:generic_asset)}
   let(:result) {subject.sorted_show_fields}
   describe "#sorted_show_fields" do
+    before(:each) do
+      I18n.stub(:t).and_call_original
+    end
+
     context "when there is no configuration" do
+      before(:each) do
+        I18n.stub(:t).with("oregondigital.metadata").and_return({})
+      end
+
       it "should return the keys with values" do
         expect(result).to eq ["title", "created"]
       end
@@ -15,8 +23,8 @@ describe GenericAssetDecorator do
           g.descMetadata.photographer = "Test Photographer"
           g
         end
-        it "should return that key too" do
-          expect(result).to eq ["title", "created", "photographer"]
+        it "should return keys in the order they're defined in OregonRDF" do
+          expect(result).to eq ["title", "photographer", "created"]
         end
       end
       context "when there is an I18n configuration for fields" do
@@ -26,7 +34,6 @@ describe GenericAssetDecorator do
           g
         end
         before(:each) do
-          I18n.stub(:t).and_call_original
           I18n.stub(:t).with("oregondigital.metadata").and_return({:photographer => "photographer", :created => "created"})
         end
         it "should organize those fields at the top in the given order" do
