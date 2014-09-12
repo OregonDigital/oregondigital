@@ -4,7 +4,7 @@ class BulkTaskChild < ActiveRecord::Base
 
   belongs_to :bulk_task
   serialize :result
-  delegate :pending?, :ingesting?, :ingested?, :errored?, :to => :status
+  delegate :pending?, :ingesting?, :ingested?, :reviewed?, :reviewing?, :errored?, :to => :status
 
   def status
     ActiveSupport::StringInquirer.new(attributes['status'])
@@ -24,6 +24,28 @@ class BulkTaskChild < ActiveRecord::Base
   def ingest!
     if bulk_task.type == :bag
       bag_ingest!
+    end
+  end
+
+  def queue_review!
+    self.status = "reviewing"
+    save
+    Resque.enqueue(BulkIngest::ReviewChild, self.id)
+  end
+
+  def review!
+    begin
+      asset.review!
+      self.status = "reviewed"
+    rescue StandardError => e
+      self.status = "errored"
+      self.result = {}
+      self.result[:result] = "Failed During Review"
+      self.result[:error] = {}
+      self.result[:error][:message] = e.message
+      self.result[:error][:trace] = e.backtrace
+    ensure
+      save
     end
   end
 
@@ -110,7 +132,7 @@ class BulkTaskChild < ActiveRecord::Base
 
 
   def ingested_status_valid
-    if ingested_pid.present? && !ingested?
+    if !ingested_pid.present? && ingested?
       errors.add(:status, "can not be ingested without an attached pid")
     end
   end

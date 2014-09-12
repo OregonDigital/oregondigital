@@ -1,9 +1,9 @@
 class BulkTask < ActiveRecord::Base
 
   validates_presence_of :directory
-  validates :status, inclusion: { in: %w(new ingesting errored ingested reviewed), message: "%{value} is not a valid status" }
+  validates :status, inclusion: { in: %w(new ingesting errored ingested reviewing reviewed), message: "%{value} is not a valid status" }
 
-  delegate :new?, :ingesting?, :errored?, :ingested?, :reviewed?, :to => :status
+  delegate :new?, :ingesting?, :errored?, :ingested?, :reviewed?, :reviewing?, :to => :status
 
   has_many :bulk_task_children, :dependent => :destroy
 
@@ -38,10 +38,20 @@ class BulkTask < ActiveRecord::Base
   end
 
   def ingest!
+    return if bulk_task_children.length == 0
     bulk_task_children.each do |child|
       child.queue_ingest! unless child.ingesting?
     end
     self.status = "ingesting"
+    save
+  end
+
+  def review!
+    return if bulk_task_children.length == 0
+    bulk_task_children.each do |child|
+      child.queue_review!
+    end
+    self.status = "reviewing"
     save
   end
 
@@ -50,7 +60,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def asset_ids
-    @asset_ids ||= bulk_task_children.fetch(:ingested_pid)
+    @asset_ids ||= bulk_task_children.pluck(:ingested_pid)
   end
 
   private
@@ -65,6 +75,8 @@ class BulkTask < ActiveRecord::Base
         self.status = "errored"
       elsif children_statuses == ["ingested"] && !reviewed?
         self.status = "ingested"
+      elsif children_statuses == ["reviewed"]
+        self.status = "reviewed"
       end
     end
   end

@@ -24,8 +24,7 @@ class BulkTasksController < ApplicationController
 
   def review_all
     task = BulkTask.find(params[:id])
-    task.queue_review
-    task.save
+    task.review!
     redirect_to bulk_tasks_path, notice: "Queued batch review of #{task.asset_ids.count} items from #{task.directory}."
   end
 

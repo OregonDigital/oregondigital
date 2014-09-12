@@ -58,6 +58,14 @@ describe BulkTask do
         subject.ingest!
         subject.reload
       end
+      context "when there are no items" do
+        let(:setup) do
+          FileUtils.rm_rf(Rails.root.join("tmp", "bags", "bulkloads", "1"))
+        end
+        it "should be new" do
+          expect(subject).to be_new
+        end
+      end
       context "when everything is good" do
         it "should create one asset" do
           expect(subject.assets.size).to eq 1

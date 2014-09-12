@@ -23,6 +23,9 @@
     </tbody>
   </table>
   <% if @child.errored? %>
+    <h3>Result</h3>
+    <%= @child.result[:result] %>
+    <br>
     <h3>Error Message</h3>
     <%= @child.result[:error][:message] %>
     <br>
