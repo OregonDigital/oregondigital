@@ -1,19 +1,18 @@
 class BulkTask < ActiveRecord::Base
-  serialize :bulk_errors
-  serialize :asset_ids
 
   validates_presence_of :directory
-  validates :status, inclusion: { in: %w(new validating invalid validated processing ingested reviewed deleted failed), message: "%{value} is not a valid status" }
+  validates :status, inclusion: { in: %w(new ingesting errored ingested reviewed), message: "%{value} is not a valid status" }
 
-  delegate :new?, :processing?, :validated?, :reviewed?, :validating?, :deleted?, :to => :status
+  delegate :new?, :ingesting?, :errored?, :ingested?, :reviewed?, :to => :status
+
+  has_many :bulk_task_children, :dependent => :destroy
+
+  before_create :generate_children
+  after_initialize :update_status
 
   def self.refresh
     (disk_bulk_folders - relative_db_bulk_folders).each do |dir|
       BulkTask.new(:directory => dir).save
-    end
-    # queue validation on tasks if they are new
-    BulkTask.all.each do |task|
-      task.queue_validation if task.new? 
     end
   end
 
@@ -25,30 +24,8 @@ class BulkTask < ActiveRecord::Base
     BulkTask.pluck(:directory).map{|x| Pathname.new(x).basename.to_s}
   end
 
-  def assets
-    return nil if asset_ids.nil?
-    @assets ||= self.asset_ids.map { |pid| ActiveFedora::Base.find(:pid => pid).first.adapt_to_cmodel }   
-  end
-
-  def assets=(as)
-    @assets = assets
-    self.asset_ids = as.map { |a| a.pid }
-  end
-
   def status
     ActiveSupport::StringInquirer.new(attributes['status'])
-  end
-
-  def ingested?
-    self.status.ingested? or reviewed?
-  end
-
-  def failed?
-    self.status.failed? or invalid? or deleted?
-  end
-
-  def ingestible?
-    (not failed?) and (not ingested?) and (not processing?) and (not validating?)
   end
 
   def type
@@ -60,111 +37,47 @@ class BulkTask < ActiveRecord::Base
     Pathname(directory).absolute? ? directory : File.join(APP_CONFIG.batch_dir, directory)
   end
 
-  def enqueue
-    raise 'Batch job is already in queue.' if processing?
-    raise 'Already ingested batch job.' if ingested?
-    Resque.enqueue(BulkIngest::Ingest, self.id)
-    self.status = 'processing'
-  end
-
   def ingest!
-    raise 'Already ingested batch job.' if ingested?
-    begin
-      self.assets = send("ingest_#{type}")
-    rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e
-      build_errors(e)
-      raise e
+    bulk_task_children.each do |child|
+      child.queue_ingest! unless child.ingesting?
     end
-    clear_errors
-    self.status = 'ingested'
-    self.save
+    self.status = "ingesting"
+    save
   end
 
-  def delete_assets!
-    return status if asset_ids.nil?
-    self.assets.each do |asset|
-      asset.delete
-    end
-    self.asset_ids = nil
-    self.status = 'deleted'
-    self.save
+  def assets
+    @assets ||= bulk_task_children.map(&:asset).compact
   end
 
-  def queue_delete
-    self.status = 'processing'
-    Resque.enqueue(BulkIngest::Delete, self.id)
-  end
-
-  def reset!
-    delete_assets!
-    self.status = 'new'
-    self.save
-  end
-
-  def queue_validation
-    return false if type == :bag
-    self.status = 'validating'
-    Resque.enqueue(BulkIngest::Validation, self.id)
-  end
-
-  def validate_metadata
-    self.status = send("validate_#{type}")
-  end
-
-  def review_assets!
-    raise 'Batch job has already been review.' if reviewed?
-    raise 'Batch job has not yet been processed.' unless ingested?
-    raise 'No assets to review.' if asset_ids.nil? or asset_ids.empty?
-    assets.each do |asset|
-      asset.review
-    end
-    self.status = 'reviewed'
-    self.save
-  end
-
-  def queue_review
-    self.status = 'processing'
-    Resque.enqueue(BulkIngest::Review, self.id)
+  def asset_ids
+    @asset_ids ||= bulk_task_children.fetch(:ingested_pid)
   end
 
   private
 
-    def clear_errors
-      bulk_errors = nil
-    end
+  def children_statuses
+    @children_statuses ||= bulk_task_children.pluck(:status).uniq
+  end
 
-    def validate_csv
-      return 'validated' if validated?
-      begin
-        GenericAsset.assets_from_csv(absolute_path)
-      rescue OregonDigital::CsvBulkIngestible::CsvBatchError => e
-        build_errors(e)
-        return 'invalid'
+  def update_status
+    if bulk_task_children.count > 0
+      if children_statuses.include?("errored")
+        self.status = "errored"
+      elsif children_statuses == ["ingested"] && !reviewed?
+        self.status = "ingested"
       end
-      return 'validated'
     end
+  end
 
-    # simply returns new status to indicate that 
-    # validation never took place
-    # TODO: implement bag validation
-    def validate_bag
-      'new'
-    end
-  
-    def build_errors(e)
-      self.bulk_errors = { 
-        :field => e.field_errors,
-        :value => e.value_errors,
-        :file => e.file_errors
-      }
-      self.status = 'failed'
-    end
+  def generate_children
+    send("generate_#{type}_children")
+  end
 
-    def ingest_csv
-      GenericAsset.ingest_from_csv(absolute_path)
+  def generate_bag_children
+    Hybag::BulkIngester.new(absolute_path).each do |ingester|
+      directory = ingester.bag.bag_dir
+      bulk_task_children << BulkTaskChild.new(:target => directory)
     end
+  end
 
-    def ingest_bag
-      GenericAsset.bulk_ingest_bags(absolute_path)
-    end
 end

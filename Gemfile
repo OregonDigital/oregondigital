@@ -140,4 +140,5 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'shoulda'
 end

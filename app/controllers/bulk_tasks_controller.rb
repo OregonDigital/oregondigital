@@ -12,8 +12,7 @@ class BulkTasksController < ApplicationController
 
   def ingest
     task = BulkTask.find(params[:id])
-    task.enqueue
-    task.save
+    task.ingest!
     redirect_to bulk_tasks_path, notice: "Added #{task.directory} to the ingest queue."
   end
 

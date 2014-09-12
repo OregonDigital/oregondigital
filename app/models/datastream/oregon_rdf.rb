@@ -498,4 +498,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     solr_doc
   end
 
+  def self.default_attributes
+    super.merge(:controlGroup => 'M', :mimeType => 'application/n-triples')
+  end
+
 end

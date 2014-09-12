@@ -16,7 +16,7 @@ module OregonDigital
           mime = FileMagic.new(FileMagic::MAGIC_MIME).file(ingester.bag.bag_files.first).split(';')[0]
         end
 
-        # Get class from mime pattern
+j       # Get class from mime pattern
         # TODO: extract this logic to GenericAsset (or elsewhere?)
         for pattern, asset_class in ASSET_CLASS_LOOKUP
           if pattern === mime

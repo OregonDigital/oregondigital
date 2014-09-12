@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728173938) do
+ActiveRecord::Schema.define(version: 20140911213642) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id",     null: false
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20140728173938) do
     t.datetime "updated_at"
     t.string   "user_type"
   end
+
+  create_table "bulk_task_children", force: true do |t|
+    t.integer  "bulk_task_id"
+    t.text     "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status",       default: "pending"
+    t.string   "target"
+    t.string   "ingested_pid"
+  end
+
+  add_index "bulk_task_children", ["bulk_task_id"], name: "index_bulk_task_children_on_bulk_task_id"
 
   create_table "bulk_tasks", force: true do |t|
     t.string "status",      default: "new"

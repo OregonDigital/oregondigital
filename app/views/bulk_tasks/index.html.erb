@@ -25,19 +25,11 @@
       <%= task.status.to_s.humanize %>
     </td>
     <td class="button-cell">
-      <% if task.ingestible? %>
+      <% if task.new? %>
         <a href="<%= ingest_bulk_task_path(task.id) %>" data-method="put" >
         <span class="btn btn-success">
           <i class="icon-plus icon-white"></i>
           Ingest <span class="sr-only"><%= task.directory %></span>
-        </span>
-      </a>
-    <% end %>
-      <% if task.failed? or task.ingestible? or task.validating? %>
-        <a href="<%= reset_bulk_task_path(task.id) %>" data-method="put" >
-        <span class="btn btn-warning">
-          <i class="icon-plus icon-white"></i>
-          Reset <span class="sr-only"><%= task.directory %></span>
         </span>
       </a>
     <% end %>
@@ -56,6 +48,14 @@
         <span class="btn btn-danger">
           <i class="icon-remove icon-white"></i>
           Delete All <span class="sr-only"><%= task.directory %></span>
+        </span>
+      </a>
+    <% end %>
+    <% if task.errored? %>
+        <a href="<%= ingest_bulk_task_path(task.id) %>" data-method="put" >
+        <span class="btn btn-success">
+          <i class="icon-plus icon-white"></i>
+          Retry Ingest <span class="sr-only"><%= task.directory %></span>
         </span>
       </a>
     <% end %>
