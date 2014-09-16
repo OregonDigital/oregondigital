@@ -41,6 +41,30 @@ describe 'bulk tasks' do
       expect(page).to have_content("bulkloads")
       expect(page).to have_content("New")
       expect(page).to have_content("Ingest")
+      expect(page).to have_content("Refresh")
+    end
+  end
+  context "and the refresh button is clicked" do
+    context "and the first child is ingested" do
+      before do
+        child = bulk_task.bulk_task_children.first
+        child.status = "ingested"
+        child.save
+      end
+      context "and there's a new directory" do
+        before do
+          FileUtils.cp_r(bag.bag_dir, Pathname.new(bag.bag_dir).dirname.join("2").to_s)
+          click_link "Refresh"
+        end
+        it "should create a new child" do
+          within("table") do
+            expect(page).to have_content("2")
+          end
+        end
+        it "should have the ingest button again" do
+          expect(page).to have_link "Ingest"
+        end
+      end
     end
   end
   context "and it's ingested", :resque => true do

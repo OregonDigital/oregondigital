@@ -24,8 +24,16 @@ class BulkTask < ActiveRecord::Base
     BulkTask.pluck(:directory).map{|x| Pathname.new(x).basename.to_s}
   end
 
+  def refresh
+    generate_bag_children
+  end
+
   def status
     ActiveSupport::StringInquirer.new(attributes['status'])
+  end
+
+  def ingestible?
+    new? || children_statuses.include?("pending")
   end
 
   def type
@@ -40,7 +48,7 @@ class BulkTask < ActiveRecord::Base
   def ingest!
     return if bulk_task_children.length == 0
     bulk_task_children.each do |child|
-      child.queue_ingest! unless child.ingesting?
+      child.queue_ingest! unless child.ingesting? || child.ingested?
     end
     self.status = "ingesting"
     save
@@ -85,9 +93,16 @@ class BulkTask < ActiveRecord::Base
     send("generate_#{type}_children")
   end
 
+  def bag_directories
+    Hybag::BulkIngester.new(absolute_path).map{|ingester| ingester.bag.bag_dir}
+  end
+
+  def child_directories
+    bulk_task_children.pluck(:target)
+  end
+
   def generate_bag_children
-    Hybag::BulkIngester.new(absolute_path).each do |ingester|
-      directory = ingester.bag.bag_dir
+    (bag_directories - child_directories).each do |directory|
       bulk_task_children << BulkTaskChild.new(:target => directory)
     end
   end

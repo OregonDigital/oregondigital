@@ -37,7 +37,7 @@
   <div id="sidebar-nav" class="well">
     <ul class="nav nav-list">
       <li class="nav-header">Actions</li>
-      <% if @task.new? %>
+      <% if @task.ingestible? %>
       <li>
 	<a href="<%= ingest_bulk_task_path(@task.id) %>" data-method="put" >
 	  <span class="btn btn-success">

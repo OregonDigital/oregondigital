@@ -34,6 +34,7 @@ Oregondigital::Application.routes.draw do
     member do
       put '/ingest', :to => 'bulk_tasks#ingest'
       put '/reset', :to => 'bulk_tasks#reset_task'
+      put '/refresh', :to => 'bulk_tasks#refresh'
       put '/review_all', :to => 'bulk_tasks#review_all'
       delete '/delete', :to => 'bulk_tasks#delete'
     end

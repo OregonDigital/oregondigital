@@ -7,6 +7,7 @@
         <th scope="col">Directory</th>
         <th scope="col">Type</th>
         <th scope="col">Status</th>
+        <th scope="col">Items</th>
         <th></th>
       </tr>
     </thead>
@@ -24,8 +25,11 @@
     <td>
       <%= task.status.to_s.humanize %>
     </td>
+    <td>
+      <%= task.bulk_task_children.count %>
+    </td>
     <td class="button-cell">
-      <% if task.new? %>
+      <% if task.ingestible? %>
         <a href="<%= ingest_bulk_task_path(task.id) %>" data-method="put" >
         <span class="btn btn-success">
           <i class="icon-plus icon-white"></i>
@@ -33,6 +37,12 @@
         </span>
       </a>
     <% end %>
+    <a href="<%= refresh_bulk_task_path(task.id) %>" data-method="put" >
+      <span class="btn btn-success">
+        <i class="icon-plus icon-white"></i>
+        Refresh <span class="sr-only"><%= task.directory %></span>
+      </span>
+    </a>
       <% if task.ingested? %>
         <% if not task.reviewed?%>
         <a href="<%= review_all_bulk_task_path(task.id) %>" data-method="put"

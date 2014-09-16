@@ -1,5 +1,6 @@
 class BulkTasksController < ApplicationController
   before_filter :restrict_to_archivist
+  before_filter :find_task, :except => :index
   
   def index
     BulkTask.refresh
@@ -7,35 +8,39 @@ class BulkTasksController < ApplicationController
   end
 
   def show
-    @task = BulkTask.find(params[:id])
   end
 
   def ingest
-    task = BulkTask.find(params[:id])
-    task.ingest!
-    redirect_to bulk_tasks_path, notice: "Added #{task.directory} to the ingest queue."
+    @task.ingest!
+    redirect_to bulk_tasks_path, notice: "Added #{@task.directory} to the ingest queue."
+  end
+
+  def refresh
+    @task.refresh
+    redirect_to bulk_tasks_path, :notice => "Refreshed children for #{@task.directory}"
   end
 
   def reset_task
-    task = BulkTask.find(params[:id])
-    task.reset!
-    redirect_to bulk_tasks_path, notice: "Reset job: #{task.directory}."
+    @task.reset!
+    redirect_to bulk_tasks_path, notice: "Reset job: #{@task.directory}."
   end
 
   def review_all
-    task = BulkTask.find(params[:id])
-    task.review!
-    redirect_to bulk_tasks_path, notice: "Queued batch review of #{task.asset_ids.count} items from #{task.directory}."
+    @task.review!
+    redirect_to bulk_tasks_path, notice: "Queued batch review of #{@task.asset_ids.count} items from #{@task.directory}."
   end
 
   def delete
-    task = BulkTask.find(params[:id])
-    task.queue_delete
-    task.save
-    redirect_to bulk_tasks_path, notice: "Queued batch delete of #{task.asset_ids.count} items from #{task.directory}."
+    @task.queue_delete
+    @task.save
+    redirect_to bulk_tasks_path, notice: "Queued batch delete of #{@task.asset_ids.count} items from #{@task.directory}."
   end
 
   private
+
+  def find_task
+    @task = BulkTask.find(params[:id])
+  end
 
     def restrict_to_archivist
       unless can? :review, GenericAsset

@@ -51,6 +51,19 @@ describe BulkTask do
       end
     end
 
+    describe "#refresh" do
+      context "when there is a new bag" do
+        before do
+          subject.save
+          FileUtils.cp_r(bag.bag_dir, Pathname.new(bag.bag_dir).dirname.join("2"))
+          subject.refresh
+        end
+        it "should create a child for it" do
+          expect(subject.reload.bulk_task_children.count).to eq 2
+        end
+      end
+    end
+
     describe "#ingest!" do
       let(:setup) {}
       before do
