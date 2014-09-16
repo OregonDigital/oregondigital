@@ -48,7 +48,7 @@ class BulkTask < ActiveRecord::Base
   def ingest!
     return if bulk_task_children.length == 0
     bulk_task_children.each do |child|
-      child.queue_ingest! unless child.ingesting? || child.ingested?
+      child.queue_ingest! unless child.ingesting? || child.ingested? || child.reviewed? || child.reviewing?
     end
     self.status = "ingesting"
     save
@@ -57,7 +57,7 @@ class BulkTask < ActiveRecord::Base
   def review!
     return if bulk_task_children.length == 0
     bulk_task_children.each do |child|
-      child.queue_review!
+      child.queue_review! if child.ingested?
     end
     self.status = "reviewing"
     save
@@ -85,6 +85,8 @@ class BulkTask < ActiveRecord::Base
         self.status = "ingested"
       elsif children_statuses == ["reviewed"]
         self.status = "reviewed"
+      elsif children_statuses.sort == ["ingested", "reviewed"]
+        self.status = "ingested"
       end
     end
   end
