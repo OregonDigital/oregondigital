@@ -79,7 +79,7 @@ class BulkTaskChild < ActiveRecord::Base
       self.result ||= {}
       self.result[:result] = "Failed During #{status}"
       self.result[:error] = {}
-      self.result[:error][:state] = status
+      self.result[:error][:state] = status.to_s
       self.result[:error][:message] = e.message
       self.result[:error][:trace] = e.backtrace
       self.status = "errored"

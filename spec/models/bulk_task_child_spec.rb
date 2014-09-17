@@ -9,14 +9,22 @@ describe BulkTaskChild do
     context "when the ingested_pid is set" do
       let(:ingested_pid) {"oregondigital:3000"}
       context "and the status is not ingested" do
-        it "should not be valid" do
-          expect(subject).not_to be_valid
+        it "should be valid" do
+          expect(subject).to be_valid
         end
       end
       context "and the status is ingested" do
         let(:status) {"ingested"}
         it "should be valid" do
           expect(subject).to be_valid
+        end
+      end
+    end
+    context "when the ingested pid is not set" do
+      context "and the status is ingested" do
+        let(:status) {"ingested"}
+        it "should not be valid" do
+          expect(subject).not_to be_valid
         end
       end
     end
