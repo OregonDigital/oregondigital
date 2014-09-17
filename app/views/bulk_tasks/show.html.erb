@@ -37,47 +37,17 @@
   <div id="sidebar-nav" class="well">
     <ul class="nav nav-list">
       <li class="nav-header">Actions</li>
-      <% if @task.ingestible? %>
-      <li>
-	<a href="<%= ingest_bulk_task_path(@task.id) %>" data-method="put" >
-	  <span class="btn btn-success">
-            <i class="icon-plus icon-white"></i>
-	    Ingest <span class="sr-only"><%= @task.directory %></span>
-	  </span>
-	</a>
-      </li>
-      <% end %>
-      <% if @task.errored? %>
-      <li>
-	<a href="<%= ingest_bulk_task_path(@task.id) %>" data-method="put" >
-	  <span class="btn btn-success">
-            <i class="icon-plus icon-white"></i>
-	    Retry Ingest <span class="sr-only"><%= @task.directory %></span>
-	  </span>
-	</a>
-      </li>
-    <% end %>
-
-      <% if @task.ingested? and not @task.reviewed?%>
-      <li>
-	<a href="<%= review_all_bulk_task_path(@task.id) %>" data-method="put"
-	   data-confirm="Are you sure you want to review all items in '<%= @task.directory %>'?">
-	  <span class="btn btn-primary">
-            <i class="icon-plus icon-white"></i>
-	    Review All <span class="sr-only"><%= @task.directory %></span>
-	  </span>
-	</a>
-      </li>
-
-      <li>
-	<a href="<%= delete_bulk_task_path(@task.id) %>" data-method="delete"
-	   data-confirm="Are you sure you want to remove all items from '<%= @task.directory %>'?">
-	  <span class="btn btn-danger">
-            <i class="icon-remove icon-white"></i>
-            Delete All <span class="sr-only"><%= @task.directory %></span>
-	  </span>
-	</a>
-      </li>
+      <% @task.task_buttons.each do |key, button| %>
+        <% if button[:requirement] %>
+          <li>
+          <a href="<%= button[:path] %>" data-method="<%= button[:method] || "put" %>" data-confirm="<%= button[:notify] %>">
+            <span class="btn btn-<%= button[:class] || "success" %>">
+              <i class="icon-plus icon-white"></i>
+              <%= key %> <span class="sr-only"><%= @task.directory %></span>
+            </span>
+          </a>
+          </li>
+        <% end %>
       <% end %>
   </div>
 </div>

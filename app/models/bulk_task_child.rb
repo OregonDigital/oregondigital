@@ -12,13 +12,34 @@ class BulkTaskChild < ActiveRecord::Base
 
   def asset
     return unless ingested_pid
-    @asset ||= ActiveFedora::Base.find(ingested_pid).adapt_to_cmodel
+    @asset ||= begin 
+                 ActiveFedora::Base.find(ingested_pid).adapt_to_cmodel
+               rescue 
+                 nil
+               end
   end
 
   def queue_ingest!
     self.status = "ingesting"
     save
     Resque.enqueue(BulkIngest::IngestChild, self.id)
+  end
+
+  def queue_delete!
+    return if ingested_pid.blank?
+    self.status = "deleting"
+    save
+    Resque.enqueue(BulkIngest::Delete, self.id)
+  end
+
+
+  def delete_asset!
+    catch_error_and_persist do
+      asset.destroy
+      self.status = "deleted"
+      self.result = {}
+      self.ingested_pid = nil
+    end
   end
 
   def ingest!
@@ -34,39 +55,46 @@ class BulkTaskChild < ActiveRecord::Base
   end
 
   def review!
-    begin
+    catch_error_and_persist do
       asset.review!
       self.status = "reviewed"
-    rescue StandardError => e
-      self.status = "errored"
-      self.result = {}
-      self.result[:result] = "Failed During Review"
-      self.result[:error] = {}
-      self.result[:error][:message] = e.message
-      self.result[:error][:trace] = e.backtrace
-    ensure
-      save
+    end
+  end
+
+  def error_state
+    begin
+      result[:error][:state]
+    rescue
+      nil
     end
   end
 
   private
 
-  def bag_ingest!
+  def catch_error_and_persist
     begin
+      self.result = {}
+      yield
+    rescue StandardError => e
+      self.result ||= {}
+      self.result[:result] = "Failed During #{status}"
+      self.result[:error] = {}
+      self.result[:error][:state] = status
+      self.result[:error][:message] = e.message
+      self.result[:error][:trace] = e.backtrace
+      self.status = "errored"
+    ensure
+      save
+    end
+  end
+
+  def bag_ingest!
+    catch_error_and_persist do
       ingester = Hybag::Ingester.new(bag)
       asset = build_bag_asset(ingester)
       asset.save!
       self.status = "ingested"
       self.ingested_pid = asset.pid
-    rescue StandardError => e
-      self.status = "errored"
-      self.result ||= {}
-      self.result[:result] = "Exception Thrown"
-      self.result[:error] ||= {}
-      self.result[:error][:message] = e.message
-      self.result[:error][:trace] = e.backtrace
-    ensure
-      save
     end
     self
   end

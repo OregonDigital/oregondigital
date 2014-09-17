@@ -4,7 +4,7 @@ class BulkTasksController < ApplicationController
   
   def index
     BulkTask.refresh
-    @tasks = BulkTask.all
+    @tasks = BulkTask.all.decorate
   end
 
   def show
@@ -13,6 +13,11 @@ class BulkTasksController < ApplicationController
   def ingest
     @task.ingest!
     redirect_to bulk_tasks_path, notice: "Added #{@task.directory} to the ingest queue."
+  end
+
+  def reset
+    @task.destroy
+    redirect_to bulk_tasks_path, :notice => "Reset #{@task.directory}."
   end
 
   def refresh
@@ -31,15 +36,14 @@ class BulkTasksController < ApplicationController
   end
 
   def delete
-    @task.queue_delete
-    @task.save
+    @task.delete_all!
     redirect_to bulk_tasks_path, notice: "Queued batch delete of #{@task.asset_ids.count} items from #{@task.directory}."
   end
 
   private
 
   def find_task
-    @task = BulkTask.find(params[:id])
+    @task = BulkTask.find(params[:id]).decorate
   end
 
     def restrict_to_archivist

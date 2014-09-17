@@ -42,6 +42,7 @@ describe 'bulk tasks' do
       expect(page).to have_content("New")
       expect(page).to have_content("Ingest")
       expect(page).to have_content("Refresh")
+      expect(page).to have_content("Reset")
     end
   end
   context "and the refresh button is clicked" do
@@ -54,7 +55,9 @@ describe 'bulk tasks' do
       context "and there's a new directory" do
         before do
           FileUtils.cp_r(bag.bag_dir, Pathname.new(bag.bag_dir).dirname.join("2").to_s)
-          click_link "Refresh"
+          within("table") do
+            click_link "Refresh"
+          end
         end
         it "should create a new child" do
           within("table") do
@@ -133,6 +136,45 @@ describe 'bulk tasks' do
         end
         expect(ActiveFedora::Base.all.length).to eq 1
       end
+      context "and the delete all link is clicked" do
+        context "and everything is okay" do
+          before do
+            click_link "Delete All"
+          end
+          it "should delete all the items" do
+            within("table") do
+              expect(page).to have_content("Deleted")
+            end
+            expect(GenericAsset.all.length).to eq 0
+          end
+        end
+        context "and something goes wrong" do
+          before do
+            GenericAsset.any_instance.stub(:destroy).and_raise("SO MANY ERRORS")
+            click_link "Delete All"
+          end
+          it "should set status to errored" do
+            within("table") do
+              expect(page).to have_content("Errored")
+            end
+          end
+          it "should have a retry delete button" do
+            within("table") do
+              expect(page).to have_content("Retry Delete")
+              expect(page).not_to have_content("Retry Ingest")
+            end
+          end
+          context "and everything is fixed" do
+            before do
+              GenericAsset.any_instance.unstub(:destroy)
+              click_link "Retry Delete"
+            end
+            it "should delete" do
+              expect(page).to have_content("Deleted")
+            end
+          end
+        end
+      end
       context "and the review all link is clicked" do
         context "and everything is okay" do
           before do
@@ -159,9 +201,7 @@ describe 'bulk tasks' do
           context "and it's fixed" do
             before do
               GenericAsset.any_instance.unstub(:review!)
-              click_link "Retry Ingest"
-              expect(page).to have_content("Ingested")
-              click_link "Review All"
+              click_link "Retry Review"
             end
             it "should ingest right" do
               expect(page).to have_content("Reviewed")
@@ -174,7 +214,7 @@ describe 'bulk tasks' do
               visit bulk_task_child_path(BulkTaskChild.last.id)
             end
             it "should have the error" do
-              expect(page).to have_content("Failed During Review")
+              expect(page).to have_content("Failed During reviewing")
               expect(page).to have_content("SO MANY ERRORS")
             end
           end

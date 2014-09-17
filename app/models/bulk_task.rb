@@ -1,9 +1,9 @@
 class BulkTask < ActiveRecord::Base
 
   validates_presence_of :directory
-  validates :status, inclusion: { in: %w(new ingesting errored ingested reviewing reviewed), message: "%{value} is not a valid status" }
+  validates :status, inclusion: { in: %w(new ingesting errored ingested reviewing reviewed deleting deleted), message: "%{value} is not a valid status" }
 
-  delegate :new?, :ingesting?, :errored?, :ingested?, :reviewed?, :reviewing?, :to => :status
+  delegate :new?, :ingesting?, :errored?, :ingested?, :reviewed?, :reviewing?, :deleting?, :deleted?, :to => :status
 
   has_many :bulk_task_children, :dependent => :destroy
 
@@ -54,10 +54,19 @@ class BulkTask < ActiveRecord::Base
     save
   end
 
+  def delete_all!
+    return if bulk_task_children.length == 0
+    bulk_task_children.each do |child|
+      child.queue_delete! unless child.ingested_pid.blank?
+    end
+    self.status = "deleting"
+    save
+  end
+
   def review!
     return if bulk_task_children.length == 0
     bulk_task_children.each do |child|
-      child.queue_review! if child.ingested?
+      child.queue_review! if child.ingested? || (child.errored? && child.error_state == "reviewing")
     end
     self.status = "reviewing"
     save
@@ -69,6 +78,10 @@ class BulkTask < ActiveRecord::Base
 
   def asset_ids
     @asset_ids ||= bulk_task_children.pluck(:ingested_pid)
+  end
+
+  def error_states
+    @error_states ||= bulk_task_children.map(&:error_state).compact.uniq
   end
 
   private
@@ -87,6 +100,8 @@ class BulkTask < ActiveRecord::Base
         self.status = "reviewed"
       elsif children_statuses.sort == ["ingested", "reviewed"]
         self.status = "ingested"
+      elsif children_statuses == ["deleted"]
+        self.status = "deleted"
       end
     end
   end
