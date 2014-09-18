@@ -1,4 +1,5 @@
 Oregondigital::Application.routes.draw do
+
   root :to => redirect { |params, request| "/catalog?#{request.params.to_query}"}
   Blacklight.add_routes(self)
   HydraHead.add_routes(self)
@@ -33,10 +34,13 @@ Oregondigital::Application.routes.draw do
     member do
       put '/ingest', :to => 'bulk_tasks#ingest'
       put '/reset', :to => 'bulk_tasks#reset_task'
+      put '/refresh', :to => 'bulk_tasks#refresh'
       put '/review_all', :to => 'bulk_tasks#review_all'
       delete '/delete', :to => 'bulk_tasks#delete'
+      delete '/reset', :to => 'bulk_tasks#reset'
     end
   end
+  resources :bulk_task_children, :only => [:show]
 
   # Reviewer Controller Routes
   resources :reviewer, :only => [:index, :show, :update] do

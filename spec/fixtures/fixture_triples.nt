@@ -1,0 +1,26 @@
+<http://example.org/ns/0> <http://purl.org/dc/terms/identifier> "ua167_blakely_transcript" .
+<http://example.org/ns/0> <http://purl.org/dc/terms/title> "ua167_blakely_transcript" .
+<http://example.org/ns/0> <http://id.loc.gov/vocabulary/relators/ive> "Blakely, Nathan" .
+<http://example.org/ns/0> <http://id.loc.gov/vocabulary/relators/ivr> "Chastain, Brent; Resonberg, Corey" .
+<http://example.org/ns/0> <http://purl.org/dc/terms/subject> <http://id.loc.gov/authorities/subjects/sh85067568> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/subject> <http://id.loc.gov/authorities/subjects/sh85142973> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/subject> <http://id.loc.gov/authorities/names/n79091151> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/subject> <http://id.loc.gov/authorities/names/n79059683> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/subject> <http://id.loc.gov/authorities/names/n79077342> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/subject> <http://id.loc.gov/authorities/subjects/sh85073008> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/subject> <http://id.loc.gov/authorities/subjects/sh2002011436> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/subject> <http://id.loc.gov/authorities/subjects/sh85112549> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/subject> <http://id.loc.gov/authorities/subjects/sh85085191> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/description> "Interview with Nathan Blakely discussing his service in the Army." .
+<http://example.org/ns/0> <http://purl.org/dc/terms/description> "Interview conducted in Eugene, Oregon." .
+<http://example.org/ns/0> <http://opaquenamespace.org/ns/militaryBranch> <http://id.loc.gov/authorities/names/n79063202> .
+<http://example.org/ns/0> <http://opaquenamespace.org/ns/militaryOccupation> "19D Cavalry Scout" .
+<http://example.org/ns/0> <http://opaquenamespace.org/ns/militaryHighestRank> "Specialist / E-4" .
+<http://example.org/ns/0> <http://opaquenamespace.org/ns/militaryServiceLocations> "(11/2003 - 04/2004): Ft Knox, KY. (04/2004 - 12/2005): Camp Hovey (Toko-Ri), Republic of Korea; Ramadi, Iraq (Forward Operating Base Junction City); Fort Carson, (Colorado Springs) Colorado." .
+<http://example.org/ns/0> <http://purl.org/dc/terms/date> "2012-17-02" .
+<http://example.org/ns/0> <http://purl.org/dc/terms/type> <http://purl.org/dc/dcmitype/Text> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/format> <http://purl.org/NET/mediatypes/application/pdf> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/language> <http://id.loc.gov/vocabulary/iso639-1/en> .
+<http://example.org/ns/0> <http://opaquenamespace.org/ns/set> <http://oregondigital.org/resource/oregondigital:uo-veterans> .
+<http://example.org/ns/0> <http://opaquenamespace.org/ns/contributingInstitution> <http://dbpedia.org/resource/University_of_Oregon> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/replaces> <https://oregondigital.org/u?uovets,0> .

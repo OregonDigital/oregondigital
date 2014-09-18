@@ -1,9 +1,9 @@
 module BulkIngest
-  class Delete
+  class ReviewChild
   @queue = :ingest
     def self.perform(task_id)
       task = BulkTaskChild.find(task_id)
-      task.delete_asset!
+      task.review!
     end
   end
 end

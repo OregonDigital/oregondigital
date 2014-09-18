@@ -22,7 +22,7 @@ before_install:
   - gem install bundler bundle_cache
   - bundle_cache_install
 script:
-  - "bundle exec rake jetty:start && bundle exec rake db:migrate && bundle exec rake sets:content:sync && bundle exec rspec $TESTFOLDER"
+  - "bundle exec rake jetty:config && bundle exec rake jetty:start && bundle exec rake db:migrate && bundle exec rake sets:content:sync && bundle exec rspec $TESTFOLDER"
 after_script:
   - bundle_cache
 notifications:

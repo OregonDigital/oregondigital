@@ -5,46 +5,31 @@
     <span class="label label-info">Type: <%= @task.type.to_s.humanize.downcase %></span>
   </h2> 
 
-  <% unless @task.asset_ids.nil? %>  
-  <h3>Assets Loaded</h3>
-  <ul>
-    <% for id in @task.asset_ids %>
-    <li>
-      <a href="<%= reviewer_path(id) %>" >
-	<%= id %>
-      </a>
-    </li>
-    <% end %>
-  </ul>
-  <% end %>
-
-  <% unless @task.bulk_errors.nil? %>
-  <% if task.bulk_errors.keys.include? :field %>
-  <h3>Invalid Fields/Properties</h3>
-  <ul>
-    <% for field in @task.bulk_errors[:field] %>
-    <li><%= field %></li>
-    <% end %>
-  </ul>
-  <% end %>
-
-  <% if task.bulk_errors.keys.include? :value %>
-  <h3>Invalid Values</h3>
-  <ul>
-    <% for value in @task.bulk_errors[:value] %>
-    <li><%= value %></li>
-    <% end %>
-  </ul>
-  <% end %>
-
-  <% if task.bulk_errors.keys.include? :file %>
-  <h3>Missing Files</h3>
-  <ul>
-    <% for file in @task.bulk_errors[:file] %>
-    <li><%= file %></li>
-    <% end %>
-  </ul>
-  <% end %>
+  <% unless @task.bulk_task_children.blank? %>
+    <table class="table">
+      <thead>
+        <th>Bulk Task</th>
+        <th>Ingested Asset</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Modified</th>
+      </thead>
+      <tbody>
+        <% @task.bulk_task_children.each do |child| %>
+          <tr>
+            <td><%=link_to child.id, child %></td>
+            <% if child.ingested_pid.blank? %>
+              <td></td>
+            <% else %>
+              <td><%= link_to child.ingested_pid, reviewer_path(child.ingested_pid)%></td>
+            <% end %>
+            <td><%= child.status %></td>
+            <td><%= child.created_at %></td>
+            <td><%= child.updated_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
 </div>
 
@@ -52,37 +37,17 @@
   <div id="sidebar-nav" class="well">
     <ul class="nav nav-list">
       <li class="nav-header">Actions</li>
-      <% if @task.ingestible? %>
-      <li>
-	<a href="<%= ingest_bulk_task_path(@task.id) %>" data-method="put" >
-	  <span class="btn btn-success">
-            <i class="icon-plus icon-white"></i>
-	    Ingest <span class="sr-only"><%= @task.directory %></span>
-	  </span>
-	</a>
-      </li>
-      <% end %>
-
-      <% if @task.ingested? and not @task.reviewed?%>
-      <li>
-	<a href="<%= review_all_bulk_task_path(@task.id) %>" data-method="put"
-	   data-confirm="Are you sure you want to review all items in '<%= @task.directory %>'?">
-	  <span class="btn btn-primary">
-            <i class="icon-plus icon-white"></i>
-	    Review All <span class="sr-only"><%= @task.directory %></span>
-	  </span>
-	</a>
-      </li>
-
-      <li>
-	<a href="<%= delete_bulk_task_path(@task.id) %>" data-method="delete"
-	   data-confirm="Are you sure you want to remove all items from '<%= @task.directory %>'?">
-	  <span class="btn btn-danger">
-            <i class="icon-remove icon-white"></i>
-            Delete All <span class="sr-only"><%= @task.directory %></span>
-	  </span>
-	</a>
-      </li>
+      <% @task.task_buttons.each do |key, button| %>
+        <% if button[:requirement] %>
+          <li>
+          <a href="<%= button[:path] %>" data-method="<%= button[:method] || "put" %>" data-confirm="<%= button[:notify] %>">
+            <span class="btn btn-<%= button[:class] || "success" %>">
+              <i class="icon-plus icon-white"></i>
+              <%= key %> <span class="sr-only"><%= @task.directory %></span>
+            </span>
+          </a>
+          </li>
+        <% end %>
       <% end %>
   </div>
 </div>
