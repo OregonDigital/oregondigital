@@ -118,6 +118,9 @@ class BulkTask < ActiveRecord::Base
     bulk_task_children.pluck(:target)
   end
 
+  def generate_csv_children
+  end
+
   def generate_bag_children
     (bag_directories - child_directories).each do |directory|
       bulk_task_children << BulkTaskChild.new(:target => directory)
