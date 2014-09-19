@@ -57,7 +57,7 @@ describe BulkTask do
           subject.save
           FileUtils.cp_r(bag.bag_dir, Pathname.new(bag.bag_dir).dirname.join("2"))
           subject.reload
-          subject.refresh
+          BulkTask.find(subject.id).refresh
         end
         it "should create a child for it" do
           expect(subject.reload.bulk_task_children.count).to eq 2

@@ -25,7 +25,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def refresh
-    generate_bag_children
+    generate_children
   end
 
   def status
