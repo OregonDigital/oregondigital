@@ -56,6 +56,7 @@ describe BulkTask do
         before do
           subject.save
           FileUtils.cp_r(bag.bag_dir, Pathname.new(bag.bag_dir).dirname.join("2"))
+          subject.reload
           subject.refresh
         end
         it "should create a child for it" do
