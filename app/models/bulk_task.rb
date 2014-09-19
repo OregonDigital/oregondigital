@@ -111,7 +111,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def bag_directories
-    Hybag::BulkIngester.new(absolute_path).map{|ingester| ingester.bag.bag_dir}
+    @bag_directories ||= Dir[Pathname.new(absolute_path).join("*")].select{|x| File.directory?(x)}
   end
 
   def child_directories
