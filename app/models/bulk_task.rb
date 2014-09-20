@@ -25,7 +25,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def refresh
-    generate_bag_children
+    generate_children
   end
 
   def status
@@ -111,11 +111,14 @@ class BulkTask < ActiveRecord::Base
   end
 
   def bag_directories
-    Hybag::BulkIngester.new(absolute_path).map{|ingester| ingester.bag.bag_dir}
+    @bag_directories ||= Dir[Pathname.new(absolute_path).join("*")].select{|x| File.directory?(x)}
   end
 
   def child_directories
     bulk_task_children.pluck(:target)
+  end
+
+  def generate_csv_children
   end
 
   def generate_bag_children

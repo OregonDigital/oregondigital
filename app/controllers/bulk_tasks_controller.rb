@@ -4,7 +4,7 @@ class BulkTasksController < ApplicationController
   
   def index
     BulkTask.refresh
-    @tasks = BulkTask.all.decorate
+    @tasks = BulkTask.includes(:bulk_task_children).all.decorate
   end
 
   def show
