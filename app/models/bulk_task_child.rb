@@ -5,6 +5,7 @@ class BulkTaskChild < ActiveRecord::Base
   belongs_to :bulk_task
   serialize :result
   delegate :pending?, :ingesting?, :ingested?, :reviewed?, :reviewing?, :errored?, :to => :status
+  delegate :type, :to => :bulk_task
 
   def status
     ActiveSupport::StringInquirer.new(attributes['status'])
@@ -43,9 +44,12 @@ class BulkTaskChild < ActiveRecord::Base
   end
 
   def ingest!
-    if bulk_task.type == :bag
-      bag_ingest!
+    catch_error_and_persist do
+      if type == :bag
+        bag_ingest!
+      end
     end
+    self
   end
 
   def queue_review!
@@ -80,8 +84,8 @@ class BulkTaskChild < ActiveRecord::Base
       self.result[:result] = "Failed During #{status}"
       self.result[:error] = {}
       self.result[:error][:state] = status.to_s
-      self.result[:error][:message] = e.message
-      self.result[:error][:trace] = e.backtrace
+      self.result[:error][:message] = e.message.to_s.truncate(150)
+      self.result[:error][:trace] = e.backtrace.map{|x| x.to_s.truncate(150)}
       self.status = "errored"
     ensure
       save
@@ -89,13 +93,11 @@ class BulkTaskChild < ActiveRecord::Base
   end
 
   def bag_ingest!
-    catch_error_and_persist do
-      ingester = Hybag::Ingester.new(bag)
-      asset = build_bag_asset(ingester)
-      asset.save!
-      self.status = "ingested"
-      self.ingested_pid = asset.pid
-    end
+    ingester = Hybag::Ingester.new(bag)
+    asset = build_bag_asset(ingester)
+    asset.save!
+    self.status = "ingested"
+    self.ingested_pid = asset.pid
     self
   end
 
@@ -130,7 +132,7 @@ class BulkTaskChild < ActiveRecord::Base
 
 
   def bag
-    BagIt::Bag.new(target) if bulk_task.type == :bag
+    BagIt::Bag.new(target) if type == :bag
   end
 
   def bag_mime
