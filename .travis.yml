@@ -26,4 +26,5 @@ script:
 after_script:
   - bundle_cache
 notifications:
-  irc: "irc.freenode.org#oregonhydra"
+  slack:
+    secure: byateYr+i6BSUi5/SDrBefHB97by3+CORlhUmyp6k+yDeJA8X+YU6BS4fbtKsxXs63q8Ynu6Dp7NuPoZKcOmjye+j1rClxsdGbQFzZZF/yYDMBooNEHsQuW1D3a93ElWiTNfbKKPwcxJirwrWrbJjkI23nh/F2Joz+Cns96Pzyw=
