@@ -4,9 +4,9 @@ set :user, config['user']
 # Set RBEnv Stuff
 set :default_environment, config['default_environment'] || {}
 # Servers
-role :web, config['hosts']['web'] # Your HTTP server, Apache/etc
-role :app, config['hosts']['app'] # This may be the same as your `Web` server
-role :db,  config['hosts']['db'], :primary => true # This is where Rails migrations will run
+role :web, *config['hosts']['web'] # Your HTTP server, Apache/etc
+role :app, *config['hosts']['app'] # This may be the same as your `Web` server
+role :db,  *config['hosts']['db'], :primary => true # This is where Rails migrations will run
 # Git Config
 set :branch, fetch(:branch, config["branch"] || "master")
 # God Settings
