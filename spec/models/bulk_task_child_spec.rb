@@ -29,7 +29,7 @@ describe BulkTaskChild do
       end
     end
   end
-
+  
   describe "#asset" do
     context "when there is no ingested_pid" do
       it "should be nil" do
@@ -41,6 +41,19 @@ describe BulkTaskChild do
       let(:asset) {FactoryGirl.create(:generic_asset)}
       it "should be the asset" do
         expect(subject.asset).to eq asset
+      end
+    end
+  end
+
+  describe "ingest!" do
+    context "when there's a HUGE error" do
+      before do
+        subject.stub(:bag_ingest!).and_raise("a"*200)
+        subject.stub(:type).and_return(:bag)
+        subject.ingest!
+      end 
+      it "should truncate the error" do
+        expect(subject.result[:error][:message].length).to eq 150
       end
     end
   end
