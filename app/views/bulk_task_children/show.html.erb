@@ -5,6 +5,7 @@
       <th>Bulk Task</th>
       <th>Status</th>
       <th>Ingested Asset</th>
+      <th>Target</th>
       <th>Created</th>
       <th>Updated</th>
     </thead>
@@ -17,6 +18,7 @@
         <% else %>
           <td><%= link_to @child.asset.title, reviewer_path(@child.asset.pid) %></td>
         <% end %>
+        <td><%= @child.target %></td>
         <td><%= @child.created_at %></td>
         <td><%= @child.updated_at %></td>
       </tr>
