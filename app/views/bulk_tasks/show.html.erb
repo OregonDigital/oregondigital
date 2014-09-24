@@ -11,6 +11,7 @@
         <th>Bulk Task</th>
         <th>Ingested Asset</th>
         <th>Status</th>
+        <th>Target</th>
         <th>Created</th>
         <th>Modified</th>
       </thead>
@@ -24,6 +25,7 @@
               <td><%= link_to child.ingested_pid, reviewer_path(child.ingested_pid)%></td>
             <% end %>
             <td><%= child.status %></td>
+            <td><%= child.target %></td>
             <td><%= child.created_at %></td>
             <td><%= child.updated_at %></td>
           </tr>
