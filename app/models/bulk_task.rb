@@ -84,11 +84,11 @@ class BulkTask < ActiveRecord::Base
     @error_states ||= bulk_task_children.map(&:error_state).compact.uniq
   end
 
-  private
-
   def children_statuses
     @children_statuses ||= bulk_task_children.pluck(:status).uniq
   end
+
+  private
 
   def update_status
     if bulk_task_children.count > 0
