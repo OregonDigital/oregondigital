@@ -60,6 +60,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.gc_every_n_examples = 5
+
   config.before(:each) do
     ActiveFedora::Base.delete_all
   end

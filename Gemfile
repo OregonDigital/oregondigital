@@ -141,4 +141,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'shoulda'
+
+  # Adjust garbage control in rspec runs
+  gem 'rspec-gc-control'
 end

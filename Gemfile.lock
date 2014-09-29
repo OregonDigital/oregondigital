@@ -440,6 +440,8 @@ GEM
     rspec-core (2.14.6)
     rspec-expectations (2.14.3)
       diff-lcs (>= 1.1.3, < 2.0)
+    rspec-gc-control (1.0.1)
+      rspec-core (>= 2.11.1)
     rspec-mocks (2.14.4)
     rspec-rails (2.14.0)
       actionpack (>= 3.0)
@@ -607,6 +609,7 @@ DEPENDENCIES
   recursive-open-struct
   resque (~> 1.25.0)
   rmagick (~> 2.13.2)
+  rspec-gc-control
   rspec-rails (~> 2.14.0)
   ruby-filemagic (~> 0.4.2)
   ruby-vips (~> 0.3.6)
