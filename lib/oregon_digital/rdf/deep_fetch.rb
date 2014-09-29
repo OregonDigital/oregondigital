@@ -16,14 +16,12 @@ module OregonDigital::RDF
     def fix_fedora_index(property, resource)
       # Get assets which have this property set, but don't have the right label.
       if resource.rdf_label.first.blank? || resource.rdf_label.first.to_s == resource.rdf_subject.to_s
-        assets = ActiveFedora::Base.where("#{Solrizer.solr_name(apply_prefix(property), :facetable)}:#{RSolr.escape(resource.rdf_subject.to_s)} AND #{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}:[\"\" TO *]")
+        assets = ActiveFedora::SolrService.query("#{Solrizer.solr_name(apply_prefix(property), :facetable)}:#{RSolr.escape(resource.rdf_subject.to_s)} AND #{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}:[\"\" TO *]", :rows => 1000000).map{|x| x["id"]}
       else
-        assets = ActiveFedora::Base.where(
-            Solrizer.solr_name(apply_prefix(property), :facetable) => resource.rdf_subject.to_s,
-            "-#{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}" => "#{resource.rdf_label.first}$#{resource.rdf_subject.to_s}"
-        )
+        assets = ActiveFedora::SolrService.query("#{Solrizer.solr_name(apply_prefix(property), :facetable)}:#{RSolr.escape(resource.rdf_subject.to_s)} AND -#{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}:#{RSolr.escape("#{resource.rdf_label.first}$#{resource.rdf_subject.to_s}")}", :rows => 1000000).map{|x| x["id"]}
       end
       assets.each do |a|
+        a = ActiveFedora::Base.find(a).adapt_to_cmodel
         a.skip_queue = 1 if a.respond_to?(:skip_queue=)
         a.update_index
       end
