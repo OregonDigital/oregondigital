@@ -8,6 +8,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :tgm
     use_vocabulary :aat
     use_vocabulary :subject
+    use_vocabulary :lc_orgs
 
     class QaLcsh < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching
