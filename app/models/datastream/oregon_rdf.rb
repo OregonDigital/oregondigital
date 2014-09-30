@@ -356,8 +356,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :citation, :predicate => RDF::SCHEMA.citation do |index|
     index.as :searchable, :displayable
   end
-  property :editor, :predicate => RDF::SCHEMA.editor do |index|
-    index.as :searchable, :displayable
+  property :editor, :predicate => RDF::SCHEMA.editor, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
+    index.as :searchable, :facetable, :displayable
   end
   property :numberOfPages, :predicate => RDF::SCHEMA.numberOfPages do |index|
     index.as :facetable, :displayable
