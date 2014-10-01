@@ -106,6 +106,14 @@ describe "item review behavior" do
           before(:each) do
             click_button "Mark as Reviewed"
           end
+          context "and the item was a generic collection" do
+            let(:asset) { FactoryGirl.create(:generic_collection, :pending_review) }
+            it "should not be viewable on the catalog" do
+              visit catalog_index_path
+              click_button "search"
+              expect(page).not_to have_selector(".document")
+            end
+          end
           it "should mark the item as reviewed" do
             expect(page).to have_content('Successfully reviewed.')
             expect(GenericAsset.last).to be_reviewed
