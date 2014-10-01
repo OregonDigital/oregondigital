@@ -3,8 +3,6 @@ require 'rdf'
 module OregonDigital::Vocabularies
   class EURIGHTS < ::RDF::StrictVocabulary("http://www.europeana.eu/rights/")
 
-    configure :rdf_label => RDF::DC11.title
-
     # Other terms
     property :"rr-f/"
     property :"rr-r/"
