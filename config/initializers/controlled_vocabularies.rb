@@ -25,7 +25,7 @@ RDF_VOCABS = {
   :set                  =>  { :prefix => 'http://oregondigital.org/resource/', :strict => false },
   :holding              =>  { :prefix => 'http://purl.org/ontology/holding#' },
   :creator              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/creator.jsonld', :strict => true },
-  :culture              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/culture.jsonld', :strict => true },
+  :culture              =>  { :prefix => 'http://opaquenamespace.org/ns/culture/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/culture.jsonld', :strict => true },
   :localcoll            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/localCollectionName.jsonld', :strict => true },
   :institutions         =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/oregondigital_orgs.jsonld', :strict => true },
   :people               =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/people.jsonld', :strict => true },
