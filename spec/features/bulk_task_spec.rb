@@ -128,6 +128,45 @@ describe 'bulk tasks' do
           click_link "Ingest"
         end
       end
+      context "and resque hasn't run yet", :resque => false do
+        it "should show as ingesting" do
+          within("table") do
+            expect(page).to have_content("Ingesting")
+          end
+          expect(Resque.size("ingest")).to eq 1
+        end
+        it "should have a stop button" do
+          expect(page).to have_content("Stop Ingest")
+        end
+        context "and one child is already ingested" do
+          before do
+            b = BulkTaskChild.create(:bulk_task => bulk_task, :target => "blabla", :status => "ingested", :ingested_pid => 100)
+            click_link "Stop Ingest"
+          end
+          it "should delete resque tasks" do
+            expect(Resque.size("ingest")).to eq 0
+          end
+          it "should have an ingest button" do
+            within("table") do
+              expect(page).to have_link("Ingest")
+            end
+          end
+        end
+        context "and the stop button is clicked" do
+          before do
+            click_link "Stop Ingest"
+          end
+          it "should mark the status as new" do
+            within "table" do
+              expect(page).to have_content("New")
+            end
+            expect(page).to have_link("Ingest")
+          end
+          it "should delete resque tasks" do
+            expect(Resque.size("ingest")).to eq 0
+          end
+        end
+      end
       it "should ingest the item" do
         within("table") do
           expect(page).to have_content("Ingested")

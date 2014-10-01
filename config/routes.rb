@@ -38,6 +38,7 @@ Oregondigital::Application.routes.draw do
       put '/review_all', :to => 'bulk_tasks#review_all'
       delete '/delete', :to => 'bulk_tasks#delete'
       delete '/reset', :to => 'bulk_tasks#reset'
+      delete '/stop_ingest', :to => 'bulk_tasks#stop_ingest'
     end
   end
   resources :bulk_task_children, :only => [:show]

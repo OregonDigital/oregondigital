@@ -44,6 +44,13 @@ class BulkTaskDecorator < Draper::Decorator
         :method => "delete",
         :class => "danger",
         :notify => "Are you sure you want to reset? This will lose all state and information about this bulk task."
+      },
+      "Stop Ingest" => {
+        :requirement => children_statuses.include?("ingesting"),
+        :path => h.stop_ingest_bulk_task_path(id),
+        :method => "delete",
+        :class => "danger",
+        :notify => "Are you sure you want to stop the ingest?"
       }
     }
   end

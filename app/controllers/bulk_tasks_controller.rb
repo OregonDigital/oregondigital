@@ -20,6 +20,20 @@ class BulkTasksController < ApplicationController
     redirect_to bulk_tasks_path, :notice => "Reset #{@task.directory}."
   end
 
+  def stop_ingest
+    jobs = Resque.peek("ingest", 0, 100000).select{|x| x["class"] == "BulkIngest::IngestChild"}
+    job_ids = jobs.map{|x| x["args"].first}
+    @task.bulk_task_children.each do |child|
+      next unless job_ids.include?(child.id)
+      child.status = "pending"
+      child.save
+      Resque::Job.destroy("ingest", "BulkIngest::IngestChild", child.id)
+    end
+    @task.status = "new"
+    @task.save
+    redirect_to bulk_tasks_path, :notice => "Stopped ingest of #{@task.directory}."
+  end
+
   def refresh
     @task.refresh
     redirect_to bulk_tasks_path, :notice => "Refreshed children for #{@task.directory}"
