@@ -1,5 +1,6 @@
 # This file generated automatically using vocab-fetch from https://raw.github.com/OregonDigital/opaque_ns/master/culture.jsonld
 require 'rdf'
+require 'oregon_digital/rdf'
 module OregonDigital::Vocabularies
   class CULTURE < OregonDigital::RDF::TripleStrictVocabulary("http://opaquenamespace.org/ns/culture/")
 
