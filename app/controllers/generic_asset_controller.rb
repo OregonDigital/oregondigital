@@ -1,6 +1,7 @@
 class GenericAssetController < ApplicationController
   include Hydra::Controller::ControllerBehavior
   load_and_authorize_resource
+  before_filter :adapt_asset
 
   def review
     authorize! :review, @generic_asset
@@ -14,6 +15,10 @@ class GenericAssetController < ApplicationController
     @generic_asset.soft_destroy
     flash[:notice] = "Successfully deleted asset."
     redirect_to catalog_path
+  end
+
+  def adapt_asset
+    @generic_asset = @generic_asset.adapt_to_cmodel if @generic_asset
   end
 
 end
