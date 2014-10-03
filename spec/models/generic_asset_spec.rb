@@ -316,7 +316,7 @@ describe GenericAsset, :resque => true do
         end
       end
       it "should be gettable" do
-        expect(generic_asset.od_content.to_a).to eq [asset_2, asset_3]
+        expect(generic_asset.od_content.to_a.map(&:references)).to eq [[asset_2], [asset_3]]
       end
       it "should index" do
         expect(generic_asset.to_solr[Solrizer.solr_name("desc_metadata__od_content", :symbol)]).to eq [asset_2.resource.rdf_subject.to_s, asset_3.resource.rdf_subject.to_s]
@@ -330,11 +330,11 @@ describe GenericAsset, :resque => true do
           generic_asset.save
         end
         it "be able to get its content back" do
-          expect(GenericAsset.find(generic_asset.pid).od_content.to_a).to eq [asset_2, asset_3]
+          expect(GenericAsset.find(generic_asset.pid).od_content.to_a.map(&:references)).to eq [[asset_2], [asset_3]]
         end
         it "should be able to append more objects" do
           generic_asset.od_content << asset_4
-          expect(generic_asset.od_content.to_a).to eq [asset_2, asset_3, asset_4]
+          expect(generic_asset.od_content.to_a.map(&:references)).to eq [[asset_2], [asset_3], [asset_4]]
         end
       end
     end

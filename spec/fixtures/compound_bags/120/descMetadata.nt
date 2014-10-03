@@ -1,0 +1,32 @@
+<http://example.org/ns/120> <http://purl.org/dc/terms/title> "Booth Bridge Postcard" .
+<http://example.org/ns/120> <http://purl.org/dc/terms/date> "1925-00-00" .
+<http://example.org/ns/120> <http://purl.org/dc/terms/description> "Pacific Highway Bridge (Booth) over the South Umpqua River at Winchester, Oregon." .
+<http://example.org/ns/120> <http://opaquenamespace.org/ns/huc> "17100303" .
+<http://example.org/ns/120> <http://opaquenamespace.org/ns/llid> "1234460432680" .
+<http://example.org/ns/120> <http://purl.org/dc/terms/type> <http://purl.org/dc/dcmitype/Image> .
+<http://example.org/ns/120> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/aat/300026816> .
+<http://example.org/ns/120> <http://opaquenamespace.org/ns/localCollectionName> <http://opaquenamespace.org/ns/localCollectionName/UmpquaBasinExplorer> .
+<http://example.org/ns/120> <http://purl.org/dc/terms/isReferencedBy> "Umpqua Album" .
+<http://example.org/ns/120> <http://purl.org/dc/terms/identifier> "WilliamsG:Booth Bridge1" .
+<http://example.org/ns/120> <http://purl.org/dc/terms/rights> <http://www.europeana.eu/rights/rr-r/> .
+<http://example.org/ns/120> <http://opaquenamespace.org/rights/rightsHolder> "OSU Special Collections & Archives Research Center" .
+<http://example.org/ns/120> <http://opaquenamespace.org/ns/conversionSpecifications> "Master scanned with Epson 1640XL scanner at 800 dpi, 8 bit gray scale. Image manipulated with Adobe Elements 4.0." .
+<http://example.org/ns/120> <http://opaquenamespace.org/ns/contributingInstitution> <http://dbpedia.org/resource/Oregon_State_University> .
+<http://example.org/ns/120> <http://purl.org/dc/terms/created> "2008-01-10" .
+<http://example.org/ns/120> <http://purl.org/dc/terms/modified> "2011-06-22" .
+<http://example.org/ns/120> <http://purl.org/dc/terms/replaces> <http://oregondigital.org/u?/gwilliams,120> .
+<http://example.org/ns/120> <http://opaquenamespace.org/ns/set> <http://oregondigital.org/resource/oregondigital:gwilliams> .
+<http://example.org/ns/120> <http://opaquenamespace.org/ns/contents> _:g70255837180160 .
+_:g70255837180160 <http://purl.org/dc/terms/title> "Postcard" .
+_:g70255837180160 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:g70255837191240 .
+_:g70255837180160 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:g70255837209120 .
+_:g70255837191240 <http://purl.org/dc/terms/title> "Booth Bridge" .
+_:g70255837191240 <http://purl.org/dc/terms/replaces> <http://oregondigital.org/u?/gwilliams,11> .
+_:g70255837191240 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://opaquenamespace.org/ns/compoundObject> .
+_:g70255837191240 <http://opaquenamespace.org/ns/full> "2.jp2" .
+_:g70255837200400 <http://purl.org/dc/terms/title> "Booth Bridge Postcard verso" .
+_:g70255837200400 <http://purl.org/dc/terms/replaces> <http://oregondigital.org/u?/gwilliams,117> .
+_:g70255837200400 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://opaquenamespace.org/ns/compoundObject> .
+_:g70255837200400 <http://opaquenamespace.org/ns/full> "118.jp2" .
+_:g70255837209120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:g70255837200400 .
+_:g70255837209120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .

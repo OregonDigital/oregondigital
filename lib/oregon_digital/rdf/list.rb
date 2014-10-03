@@ -14,24 +14,25 @@ module OregonDigital::RDF
       @graph = ListResource.new(subject) << graph unless graph.kind_of? ActiveFedora::Rdf::Resource
     end
 
-    def node_from_value(value)
-      if value.kind_of?(::RDF::Resource)
-        if value.kind_of?(RDF::URI) && value.to_s.include?(Datastream::OregonRDF.resource_class.base_uri) 
-          return GenericAsset.from_uri(value, resource).adapt_to_cmodel
-        end
-      end
-      super
-    end
     def << (value)
+      if value.kind_of?(ActiveFedora::Base)
+        raise "Unable to append unsaved asset" if !value.persisted?
+        compound_resource = OregonDigital::RDF::CompoundResource.new(RDF::Node.new, resource)
+        compound_resource.references << value
+        value = compound_resource
+        value.persist!
+      end
       value = value.resource if value.respond_to?(:resource)
-      raise "Unable to append unsaved asset" if value.respond_to?(:persisted?) && !value.persisted?
+      raise "Unable to append unsaved asset" if value.respond_to?(:persisted?) && !value.persisted? && !value.kind_of?(OregonDigital::RDF::CompoundResource)
       result = super
+      resource << value
       resource.persist!
       return result
     end
     class ListResource < ActiveFedora::Rdf::List::ListResource
       def solrize
-        query([nil, RDF.first, nil]).map{|x| x.object.to_s}
+        subjects = query([nil, RDF.first, nil]).objects.to_a
+        Array.wrap(subjects.map{|x| query([x, RDF::DC.references, nil]).objects.map(&:to_s)}.flatten)
       end
 
       def fetch
