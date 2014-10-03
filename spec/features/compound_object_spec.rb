@@ -45,6 +45,18 @@ describe "compound objects" do
         end
       end
     end
+    context "and the object has a compound node title" do
+      before do
+        t = object.title
+        parent.od_content.first.title = "Test Compound Node Title"
+        parent.save
+        expect(object.reload.title).to eq t
+        visit catalog_path(parent.pid)
+      end
+      it "should show that as the link" do
+        expect(page).to have_link("Test Compound Node Title")
+      end
+    end
     context "and the page is visited" do
       before do
         visit catalog_path(object.pid)

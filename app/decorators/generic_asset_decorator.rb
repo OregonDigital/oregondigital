@@ -29,7 +29,7 @@ class GenericAssetDecorator < Draper::Decorator
   def compound_list
     list = []
     list << self if compound?
-    list |= od_content.to_a
+    list |= od_content.to_a.select{|x| x.references.present?}
     list |= compound_parent.decorate.compound_list if compound_parent
     list
   end
