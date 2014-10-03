@@ -3,6 +3,6 @@ class OregonDigital::Metadata::FieldTypeLabel
   # options dropdown, which is also the "type" on the ingest map)
   def self.for(field)
     return "" if field.blank?
-    I18n.t(field, :scope => [:oregondigital, :metadata], :default => field.to_s.humanize)
+    I18n.t(field, :scope => [:oregondigital, :metadata], :default => field.to_s.titleize)
   end
 end
