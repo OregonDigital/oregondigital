@@ -12,7 +12,7 @@ env:
     - NOKOGIRI_USE_SYSTEM_LIRARIES=1
   matrix:
     - TESTFOLDER=spec/features
-    - TESTFOLDER=spec/models spec/services spec/decorators spec/controllers spec/helpers
+    - TESTFOLDER="spec/models spec/services spec/decorators spec/controllers spec/helpers"
     - TESTFOLDER=spec/lib
 before_install:
   - sudo apt-get update -qq
