@@ -1,9 +1,10 @@
 module OregonDigital::Qa
   module Caching
     def search(*args)
-      Rails.cache.fetch("od_qa_cache/#{self.class}/#{args.first}", :expires_in => cache_time) do
+      result = Rails.cache.fetch("od_qa_cache/#{self.class}/#{args.first}", :expires_in => cache_time) do
         super
       end
+      self.response = result
     end
 
     def cache_time

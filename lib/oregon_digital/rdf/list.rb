@@ -16,6 +16,7 @@ module OregonDigital::RDF
 
     def << (value)
       if value.kind_of?(ActiveFedora::Base)
+        raise "Unable to append unsaved asset" if !value.persisted?
         compound_resource = OregonDigital::RDF::CompoundResource.new(RDF::Node.new, resource)
         compound_resource.references << value
         value = compound_resource
