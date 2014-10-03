@@ -108,7 +108,19 @@ class BulkTaskChild < ActiveRecord::Base
     (asset.content.mimeType = bag_mime) if bag_mime
     (asset.format = ::RDF::URI("http://purl.org/NET/mediatypes/#{asset.content.mimeType}")) if bag_mime
     update_rdf_subject(asset)
+    adjust_compound(asset) if asset.compound?
     asset
+  end
+
+  def adjust_compound(asset)
+    replace_uris = asset.od_content.to_a.map{|x| x.query([nil, RDF::DC.replaces, nil]).first.object}
+    replace_pids = replace_uris.map{|x| ActiveFedora::SolrService.query("desc_metadata__replacesUrl_ssim:#{RSolr.escape(x.to_s)}", :rows => 10000).map{|x| x["id"]}.first}
+    raise "Unable to set compound object - child objects not ingested" if replace_uris.length != replace_pids.length
+    asset.od_content.clear
+    replace_pids.map!{|x| RDF::URI.new("http://oregondigital.org/resource/#{x}")}
+    replace_pids.each do |x|
+      asset.od_content << x
+    end
   end
 
   def update_rdf_subject(asset)
