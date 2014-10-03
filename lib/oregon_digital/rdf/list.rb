@@ -27,7 +27,6 @@ module OregonDigital::RDF
       result = super
       resource << value
       resource.persist!
-      binding.pry
       return result
     end
     class ListResource < ActiveFedora::Rdf::List::ListResource
