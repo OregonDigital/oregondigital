@@ -98,6 +98,7 @@ class BulkTaskChild < ActiveRecord::Base
     ingester = Hybag::Ingester.new(bag)
     asset = build_bag_asset(ingester)
     asset.save!
+    asset.update_index
     self.status = "ingested"
     self.ingested_pid = asset.pid
     self
@@ -121,6 +122,9 @@ class BulkTaskChild < ActiveRecord::Base
     replace_pids.map!{|x| RDF::URI.new("http://oregondigital.org/resource/#{x}")}
     asset.od_content.each_with_index do |item, index|
       item.references << replace_pids[index]
+    end
+    asset.od_content.each do |item|
+      asset.od_content.resource << item
     end
   end
 

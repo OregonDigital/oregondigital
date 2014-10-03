@@ -25,12 +25,15 @@ module OregonDigital::RDF
       value = value.resource if value.respond_to?(:resource)
       raise "Unable to append unsaved asset" if value.respond_to?(:persisted?) && !value.persisted? && !value.kind_of?(OregonDigital::RDF::CompoundResource)
       result = super
+      resource << value
       resource.persist!
+      binding.pry
       return result
     end
     class ListResource < ActiveFedora::Rdf::List::ListResource
       def solrize
-        query([nil, RDF::DC.references, nil]).map{|x| x.object.to_s}
+        subjects = query([nil, RDF.first, nil]).objects.to_a
+        Array.wrap(subjects.map{|x| query([x, RDF::DC.references, nil]).objects.map(&:to_s)}.flatten)
       end
 
       def fetch
