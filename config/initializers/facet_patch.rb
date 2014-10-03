@@ -10,7 +10,7 @@ module FacetPatch
 
   def controlled_label(key)
     key = key.gsub("filler$","")
-    I18n.t("oregondigital.catalog.facet.#{key}", :default => key.humanize)
+    I18n.t("oregondigital.catalog.facet.#{key}", :default => OregonDigital::Metadata::FieldTypeLabel.for(key))
   end
 end
 
