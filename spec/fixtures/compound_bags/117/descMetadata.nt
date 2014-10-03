@@ -1,0 +1,15 @@
+<http://example.org/ns/117> <http://purl.org/dc/terms/title> "Booth Bridge Postcard verso" .
+<http://example.org/ns/117> <http://purl.org/dc/terms/type> <http://purl.org/dc/dcmitype/Image> .
+<http://example.org/ns/117> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://vocab.getty.edu/aat/300026816> .
+<http://example.org/ns/117> <http://purl.org/dc/terms/isReferencedBy> "Umpqua Album" .
+<http://example.org/ns/117> <http://purl.org/dc/terms/identifier> "WilliamsG:Booth_Bridge1verso" .
+<http://example.org/ns/117> <http://purl.org/dc/terms/rights> <http://www.europeana.eu/rights/rr-r/> .
+<http://example.org/ns/117> <http://opaquenamespace.org/rights/rightsHolder> "OSU Special Collections & Archives Research Center" .
+<http://example.org/ns/117> <http://opaquenamespace.org/ns/conversionSpecifications> "Master scanned with Epson 1640XL scanner at 800 dpi. Image manipulated with Adobe Elements 4.0." .
+<http://example.org/ns/117> <http://opaquenamespace.org/ns/dateDigitized> "2007-12-10" .
+<http://example.org/ns/117> <http://opaquenamespace.org/ns/contributingInstitution> <http://dbpedia.org/resource/Oregon_State_University> .
+<http://example.org/ns/117> <http://opaquenamespace.org/ns/full> "Volume1\\WilliamsG_Booth_Bridge1verso.tif" .
+<http://example.org/ns/117> <http://purl.org/dc/terms/created> "2008-01-10" .
+<http://example.org/ns/117> <http://purl.org/dc/terms/modified> "2008-01-10" .
+<http://example.org/ns/117> <http://purl.org/dc/terms/replaces> <http://oregondigital.org/u?/gwilliams,117> .
+<http://example.org/ns/117> <http://opaquenamespace.org/ns/set> <http://oregondigital.org/resource/oregondigital:gwilliams> .
