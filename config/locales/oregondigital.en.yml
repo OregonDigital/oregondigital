@@ -3,9 +3,13 @@ en:
     metadata:
       title: Title
       lcsubject: LC Subject
+      localCollectionID: Local Collection ID
+      locationCopyShelfLocator: Item Locator
 
     catalog:
       facet:
         lcsubject: Topic
         location: Region
         set: Collection
+        localCollectionID: Local Collection ID
+        locationCopyShelfLocator: Item Locator
