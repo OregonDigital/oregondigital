@@ -30,7 +30,7 @@ gem 'rdf', '~>1.1.2.1'
 gem 'sparql'
 gem 'sparql-client'
 
-gem 'noid', '~>0.6.6'
+gem 'noid'
 gem 'hybag'
 gem 'qa', :github => "terrellt/questioning_authority", :branch => "feature/od-fixes"
 
@@ -102,9 +102,6 @@ gem 'dalli'
 group :development do
   # Spring as Rails preloader
   gem 'spring'
-  # Guard for auto-test running
-  gem 'guard', '~>1.0'
-  gem 'guard-rspec', '~>3.0'
   gem 'pry-remote'
 end
 
@@ -115,14 +112,14 @@ end
 
 group :development, :test do
   # Rspec stuff
-  gem 'rspec-rails', '~>2.14.0'
+  gem 'rspec-rails', '~>2.0'
 
   gem 'sqlite3', '~>1.3.7'
   gem 'jettywrapper'
 
   # Form testing
-  gem 'capybara', '~>2.1'
-  gem 'poltergeist', '~>1.5.0'
+  gem 'capybara'
+  gem 'poltergeist'
 
   # Exif stuff - regardless of our image library, we want tests to access image data
   gem 'exifr', '~>1.1.3'

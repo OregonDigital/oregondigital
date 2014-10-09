@@ -32,12 +32,12 @@
     <td class="button-cell">
       <% task.task_buttons.each do |key, button| %>
         <% if button[:requirement] %>
-          <a href="<%= button[:path] %>" data-method="<%= button[:method] || "put" %>" data-confirm="<%= button[:notify] %>">
+          <%= link_to(button[:path], :method => button[:method] || "put", :data => {:confirm => button[:notify]}) do %>
             <span class="btn btn-<%= button[:class] || "success" %>">
               <i class="icon-plus icon-white"></i>
               <%= key %> <span class="sr-only"><%= task.directory %></span>
             </span>
-          </a>
+          <% end %>
         <% end %>
       <% end %>
     </td>

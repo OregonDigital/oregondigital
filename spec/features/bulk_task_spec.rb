@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'bulk tasks' do
+describe 'bulk tasks', :js => true do
   let(:admin) {FactoryGirl.create(:admin)}
   let(:asset) do
     a = GenericAsset.new

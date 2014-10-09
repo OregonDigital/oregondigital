@@ -15,15 +15,20 @@
 
 module OregonDigital
   class IdService
-    @@minter = Noid::Minter.new(:template => '.reeddeeddk')
     def self.namespace
       APP_CONFIG.id_namespace
     end
+    def self.noid_template
+      '.reeddeeddk'
+    end
+    @minter = ::Noid::Minter.new(template: noid_template)
+    @pid = $$
+    @semaphore = Mutex.new
 
     def self.valid?(identifier)
       # remove the fedora namespace since it's not part of the noid
       noid = identifier.split(':').last
-      @@minter.valid? noid
+      @minter.valid? noid
     end
     def self.namespaceize(pid)
       "#{namespace}:#{pid}"
@@ -38,9 +43,8 @@ module OregonDigital
     def self.mint
       while true
         pid = next_id
-        break unless ActiveFedora::Base.exists?(pid)
+        return pid unless ActiveFedora::Base.exists?(pid)
       end
-      pid
     end
 
     protected
@@ -51,8 +55,20 @@ module OregonDigital
       # server time gets messed up and pid is repeatable over reboots,
       # the odds of a collision with the exact time and process are
       # very low.
-      @@minter.seed($PROCESS_ID + Time.now.to_i * 1_000_000)
-      namespaceize(@@minter.mint)
+      pid = ''
+      File.open(APP_CONFIG.minter_statefile, File::RDWR|File::CREAT, 0644) do |f|
+        f.flock(File::LOCK_EX)
+        yaml = YAML::load(f.read)
+        yaml = {template: noid_template} unless yaml
+        minter = ::Noid::Minter.new(yaml)
+        pid = namespaceize(minter.mint)
+        f.rewind
+        yaml = YAML::dump(minter.dump)
+        f.write yaml
+        f.flush
+        f.truncate(f.pos)
+      end
+      return pid
     end
   end
 end
