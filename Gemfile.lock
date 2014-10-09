@@ -104,7 +104,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.5)
     arel (5.0.1.20140414130214)
-    backports (3.3.5)
     bagit (0.3.2)
       docopt (~> 0.5.0)
       validatable (~> 1.6)
@@ -312,8 +311,7 @@ GEM
     netaddr (1.5.0)
     netrc (0.7.7)
     newrelic_rpm (3.7.3.204)
-    noid (0.6.6)
-      backports
+    noid (0.7.1)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     nom-xml (0.5.1)
@@ -591,7 +589,7 @@ DEPENDENCIES
   mini_magick
   mysql2
   newrelic_rpm
-  noid (~> 0.6.6)
+  noid
   oai!
   poltergeist (~> 1.5.0)
   pry

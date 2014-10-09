@@ -1,4 +1,5 @@
 id_namespace: oregondigital
+minter_statefile: 'tmp/minter-state'
 uri_base:
   oregondigital: 'http://oregondigital.org/resource/'
 set_content_repo: "git://github.com/OregonDigital/oregon-digital-set-content.git"

@@ -30,7 +30,7 @@ gem 'rdf', '~>1.1.2.1'
 gem 'sparql'
 gem 'sparql-client'
 
-gem 'noid', '~>0.6.6'
+gem 'noid'
 gem 'hybag'
 gem 'qa', :github => "terrellt/questioning_authority", :branch => "feature/od-fixes"
 
