@@ -23,7 +23,6 @@ module OregonDigital
     end
     @minter = ::Noid::Minter.new(template: noid_template)
     @pid = $$
-    @namespace = namespace
     @semaphore = Mutex.new
 
     def self.valid?(identifier)
@@ -42,11 +41,9 @@ module OregonDigital
       namespaceize(forcedName)
     end
     def self.mint
-      @semaphore.synchronize do
-        while true
-          pid = next_id
-          return pid unless ActiveFedora::Base.exists?(pid)
-        end
+      while true
+        pid = next_id
+        return pid unless ActiveFedora::Base.exists?(pid)
       end
     end
 
