@@ -1,3 +1,4 @@
+require 'resque/server'
 Oregondigital::Application.routes.draw do
 
   root :to => redirect { |params, request| "/catalog?#{request.params.to_query}"}
@@ -5,6 +6,9 @@ Oregondigital::Application.routes.draw do
   HydraHead.add_routes(self)
 
   devise_for :users
+  authenticate :user, lambda {|u| u.admin?} do
+    mount Resque::Server.new, :at => "/resque"
+  end
   mount Hydra::RoleManagement::Engine => '/'
   mount Qa::Engine => '/qa'
   resources :roles, :only => [] do
