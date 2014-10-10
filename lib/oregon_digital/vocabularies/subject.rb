@@ -108,9 +108,9 @@ module OregonDigital::Vocabularies
     property :"subject/Anseriformes(waterfowl)-mergansers", :label => 'Anseriformes (waterfowl) - mergansers'
     property :"subject/Anseriformes(waterfowl)-seaducks", :label => 'Anseriformes (waterfowl) - seaducks'
     property :"subject/Anseriformes(waterfowl)-surfacefeedingducks", :label => 'Anseriformes (waterfowl) - surface feeding ducks'
-    property :AntlerDeer, :label => 'Antler, Deer', :comment =>
+    property :"subject/AntlerDeer", :label => 'Antler, Deer', :comment =>
       %(The horn of a deer)
-    property :AntlerElk, :label => 'Antler, Elk', :comment =>
+    property :"subject/AntlerElk", :label => 'Antler, Elk', :comment =>
       %(The horn of an elk)
     property :"subject/Apartmentart", :label => 'Apartment art'
     property :"subject/Appliances", :label => 'Appliances'
@@ -158,12 +158,12 @@ module OregonDigital::Vocabularies
     property :"subject/ArdashirMirzaPrincegovernorofTehran", :label => 'Ardashir Mirza, Prince, governor of Tehran'
     property :"subject/Ardavanr247224BCE", :label => 'Ardavan, r. 247-224 BCE'
     property :"subject/Ariko", :label => 'Ariko'
-    property :ArmBandsBeaded, :label => 'Arm Bands, Beaded', :comment =>
+    property :"subject/ArmBandsBeaded", :label => 'Arm Bands, Beaded', :comment =>
       %(A band worn around the arm with beaded decoration.
         Alternately, a band made of strung together beads)
-    property :ArmBandsBrass, :label => 'Arm Bands, Brass', :comment =>
+    property :"subject/ArmBandsBrass", :label => 'Arm Bands, Brass', :comment =>
       %(A band worn around the arm made of brass)
-    property :ArmBandsFur, :label => 'Arm Bands, Fur', :comment =>
+    property :"subject/ArmBandsFur", :label => 'Arm Bands, Fur', :comment =>
       %(A band worn around the arm made of animal fur)
     property :"subject/ArmstrongRexE", :label => 'Armstrong, Rex E.'
     property :"subject/ArtPearl", :label => 'Art Pearl'
@@ -178,22 +178,22 @@ module OregonDigital::Vocabularies
         that sailed the Yukon River in the late 19th century.)
     property :"subject/AustriclinianSaintofLimoges3rdcent", :label => 'Austriclinian, Saint, of Limoges, 3rd cent.'
     property :"subject/Autocreativeart", :label => 'Auto-creative art'
-    property :Awawanita, :label => 'Awawanita', :comment =>
+    property :"subject/Awawanita", :label => 'Awawanita', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/AxtellMelissaR", :label => 'Axtell, Melissa R.'
     property :"subject/AynieandRia", :label => 'Aynie and Ria'
     property :"subject/BaeJongseob", :label => 'Bae, Jongseob'
-    property :BagBeaded, :label => 'Bag, Beaded', :comment =>
+    property :"subject/BagBeaded", :label => 'Bag, Beaded', :comment =>
       %(A soft container used for carrying things with beaded
         decoration)
-    property :BagBeadedGeometric, :label => 'Bag, Beaded--Geometric', :comment =>
+    property :"subject/BagBeadedGeometric", :label => 'Bag, Beaded--Geometric', :comment =>
       %(A soft container used for carrying things with beaded
         decoration with geometric patterns or stylized figures)
-    property :BagCornhusk, :label => 'Bag, Cornhusk', :comment =>
+    property :"subject/BagCornhusk", :label => 'Bag, Cornhusk', :comment =>
       %(A soft container used for carrying things made from corn husks)
-    property :BagPipe, :label => 'Bag, Pipe', :comment =>
+    property :"subject/BagPipe", :label => 'Bag, Pipe', :comment =>
       %(A soft container used for carrying one or more smoking pipes)
-    property :BagStorage, :label => 'Bag, Storage', :comment =>
+    property :"subject/BagStorage", :label => 'Bag, Storage', :comment =>
       %(A soft container used for storing things)
     property :"subject/BaileyGatzertSteamship", :label => 'Bailey Gatzert (Steamship)'
     property :"subject/BainLucious", :label => 'Bain, Lucious'
@@ -209,11 +209,11 @@ module OregonDigital::Vocabularies
     property :"subject/BallouJamesR", :label => 'Ballou, James R.'
     property :"subject/BandoHikosaburo", :label => 'Bando, Hikosaburo'
     property :"subject/BandoMitsugoro", :label => 'Bando, Mitsugoro'
-    property :BandoleerFur, :label => 'Bandoleer, Fur', :comment =>
+    property :"subject/BandoleerFur", :label => 'Bandoleer, Fur', :comment =>
       %(A strap made of animal fur worn over the shoulder and across
         the chest, often decorative or used for the suspending or
         supporting of some other object)
-    property :BandoleerHairbone, :label => 'Bandoleer, Hairbone', :comment =>
+    property :"subject/BandoleerHairbone", :label => 'Bandoleer, Hairbone', :comment =>
       %(A strap made of or decorated with long slender beads worn over
         the shoulder and across the chest, often decorative or used
         for the suspending or supporting of some other object)
@@ -222,7 +222,7 @@ module OregonDigital::Vocabularies
     property :"subject/BarkhurstVernonL", :label => 'Barkhurst, Vernon L'
     property :"subject/BarlowSamuelK19thcentury", :label => 'Barlow, Samuel K., 19th century'
     property :"subject/BarnerKenjon", :label => 'Barner, Kenjon'
-    property :BarnhartBilly, :label => 'Barnhart, Billy', :comment =>
+    property :"subject/BarnhartBilly", :label => 'Barnhart, Billy', :comment =>
       %(Umatilla man whose camp was photographed by Lee Moorhouse in
         1903.)
     property :"subject/BarnhartPhilipN", :label => 'Barnhart, Philip N.'
@@ -231,9 +231,9 @@ module OregonDigital::Vocabularies
     property :"subject/BartonNick", :label => 'Barton, Nick', :comment =>
       %(Berea, Kentucky. Civil War veteran)
     property :"subject/BaudimiusSaint4thcent", :label => 'Baudimius, Saint, 4th cent.'
-    property :Beaded, :label => 'Beaded', :comment =>
+    property :"subject/Beaded", :label => 'Beaded', :comment =>
       %(Having form or ornament produced with beads)
-    property :BeadedGauntlet, :label => 'Beaded Gauntlet', :comment =>
+    property :"subject/BeadedGauntlet", :label => 'Beaded Gauntlet', :comment =>
       %(A long glove decorated with beadwork)
     property :"subject/BealEdwinT", :label => 'Beal, Edwin T.'
     property :"subject/BeallChandlerBaker1901", :label => 'Beall, Chandler Baker, 1901-'
@@ -259,16 +259,16 @@ module OregonDigital::Vocabularies
     property :"subject/BellRachelM", :label => 'Bell, Rachel M.'
     property :"subject/BellRay", :label => 'Bell, Ray'
     property :"subject/BelloniJoanne", :label => 'Belloni, Joanne'
-    property :BellsAnkleDance, :label => 'Bells, Ankle-Dance', :comment =>
+    property :"subject/BellsAnkleDance", :label => 'Bells, Ankle-Dance', :comment =>
       %(Small, hollow metalic objects worn around the ankle during
         dancing)
     property :"subject/BeloniBob", :label => 'Beloni, Bob'
-    property :BeltBeaded, :label => 'Belt, Beaded', :comment =>
+    property :"subject/BeltBeaded", :label => 'Belt, Beaded', :comment =>
       %(A strip of flexible material worn around the waist, decorated
         with or formed of beads)
-    property :BeltLeather, :label => 'Belt, Leather', :comment =>
+    property :"subject/BeltLeather", :label => 'Belt, Leather', :comment =>
       %(A strip of leather worn around the waist)
-    property :BeltYarn, :label => 'Belt, Yarn', :comment =>
+    property :"subject/BeltYarn", :label => 'Belt, Yarn', :comment =>
       %(A woven strip of yran worn around the waist)
     property :"subject/BenLinder", :label => 'Ben Linder'
     property :"subject/BenceStephen", :label => 'Bence, Stephen'
@@ -278,7 +278,7 @@ module OregonDigital::Vocabularies
       %(Owner of Brooks Penlan Mill, Hayesville, North Carolina)
     property :"subject/BennettBeverly", :label => 'Bennett, Beverly'
     property :"subject/BennettBryanA", :label => 'Bennett, Bryan A.'
-    property :BennettJoe, :label => 'Bennett, Joe', :comment =>
+    property :"subject/BennettJoe", :label => 'Bennett, Joe', :comment =>
       %(Walla Walla man photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/BennettLaraA", :label => 'Bennett, Lara A.'
@@ -364,10 +364,10 @@ module OregonDigital::Vocabularies
     property :"subject/BizhanibnGiv", :label => 'Bizhan ibn Giv'
     property :"subject/BjorkDelbertLeonard", :label => 'Bjork, DelbertLeonard'
     property :"subject/BlackArtsmovementCost", :label => 'Black Arts movement -- Cost'
-    property :BlackHawkMrs, :label => 'Black Hawk, Mrs.', :comment =>
+    property :"subject/BlackHawkMrs", :label => 'Black Hawk, Mrs.', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/BlackLawrence", :label => 'Black, Lawrence'
-    property :BlackMrs, :label => 'Black, Mrs.', :comment =>
+    property :"subject/BlackMrs", :label => 'Black, Mrs.', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/BlackabyBill", :label => 'Blackaby, Bill'
     property :"subject/BlackabyEarl", :label => 'Blackaby, Earl'
@@ -389,10 +389,10 @@ module OregonDigital::Vocabularies
     property :"subject/BlancheofMontferratDuchessofSavoy14721519", :label => 'Blanche of Montferrat, Duchess of Savoy, 1472-1519'
     property :"subject/BlandBev", :label => 'Bland, Bev'
     property :"subject/BlandToddD", :label => 'Bland, Todd D.'
-    property :BlanketStrip, :label => 'Blanket Strip', :comment =>
+    property :"subject/BlanketStrip", :label => 'Blanket Strip', :comment =>
       %(A strip of materials woven using the same techniques as
         blanket)
-    property :BlanketStripBeaded, :label => 'Blanket Strip, Beaded', :comment =>
+    property :"subject/BlanketStripBeaded", :label => 'Blanket Strip, Beaded', :comment =>
       %(A strip of materials woven using the same techniques as
         blanket and decorated with beads)
     property :"subject/BlanketPendleton", :label => 'Blanket, Pendleton', :comment =>
@@ -439,11 +439,11 @@ module OregonDigital::Vocabularies
     property :"subject/BondKen", :label => 'Bond, Ken'
     property :"subject/BondRay", :label => 'Bond, Ray'
     property :"subject/BoneHannah", :label => 'Bone, Hannah'
-    property :BonnetDoubleTrail, :label => 'Bonnet, Double Trail', :comment =>
+    property :"subject/BonnetDoubleTrail", :label => 'Bonnet, Double Trail', :comment =>
       %(A headdress with two long decorated tails)
-    property :BonnetSingleTrail, :label => 'Bonnet, Single Trail', :comment =>
+    property :"subject/BonnetSingleTrail", :label => 'Bonnet, Single Trail', :comment =>
       %(A headdress with a single, long decorated tail)
-    property :BonnetStovePipe, :label => 'Bonnet, Stove Pipe', :comment =>
+    property :"subject/BonnetStovePipe", :label => 'Bonnet, Stove Pipe', :comment =>
       %(A headdress with an upright, cylindrical form)
     property :"subject/BonnyTerryJ", :label => 'Bonny, Terry J.'
     property :"subject/BonviciniGiustoAbbot", :label => 'Bonvicini, Giusto, Abbot'
@@ -501,7 +501,7 @@ module OregonDigital::Vocabularies
     property :"subject/BrathwaiteChristopher", :label => 'Brathwaite, Christopher'
     property :"subject/BraunstenBruce", :label => 'Braunsten, Bruce'
     property :"subject/BreaidDenny", :label => 'Breaid, Denny'
-    property :BreastplateHairbone, :label => 'Breastplate, Hairbone', :comment =>
+    property :"subject/BreastplateHairbone", :label => 'Breastplate, Hairbone', :comment =>
       %(A wide decorative chest ornament made of or decorated with
         long slender beads)
     property :"subject/BredthauerOrville", :label => 'Bredthauer, Orville'
@@ -515,7 +515,7 @@ module OregonDigital::Vocabularies
     property :"subject/BrewerChristopherD", :label => 'Brewer, Christopher D.'
     property :"subject/BrewerFitzhughL", :label => 'Brewer, Fitzhugh L.'
     property :"subject/BridgmonMattie", :label => 'Bridgmon, Mattie'
-    property :BridleBeaded, :label => 'Bridle, Beaded', :comment =>
+    property :"subject/BridleBeaded", :label => 'Bridle, Beaded', :comment =>
       %(Headgear decorated with beads used to guide a horse)
     property :"subject/BriggsDebi", :label => 'Briggs, Debi'
     property :"subject/BriggsShelly", :label => 'Briggs, Shelly'
@@ -599,7 +599,7 @@ module OregonDigital::Vocabularies
     property :"subject/BurgessBryceA", :label => 'Burgess, Bryce A.'
     property :"subject/BurgherBill", :label => 'Burgher, Bill'
     property :"subject/BurgherJosephW", :label => 'Burgher, JosephW.'
-    property :BurkeBob, :label => 'Burke, Bob', :comment =>
+    property :"subject/BurkeBob", :label => 'Burke, Bob', :comment =>
       %(Cowboy who rode in the Pendleton Round-Up ca. 1897-ca. 1920.)
     property :"subject/BurkhardtFred", :label => 'Burkhardt, Fred', :comment =>
       %(Berea College, Berea, Kentucky)
@@ -625,7 +625,7 @@ module OregonDigital::Vocabularies
     property :"subject/BushTheron", :label => 'Bush, Theron'
     property :"subject/BusingforschoolintegrationPublicopinion", :label => 'Busing for school integration -- Public opinion'
     property :"subject/BusirisEgyptianking", :label => 'Busiris (Egyptian king)'
-    property :BustleEagle, :label => 'Bustle, Eagle', :comment =>
+    property :"subject/BustleEagle", :label => 'Bustle, Eagle', :comment =>
       %(A piece of regalia made with eagle feathers attached to a
         backboard)
     property :"subject/ButcherMatthewJ", :label => 'Butcher, Matthew J.'
@@ -640,7 +640,7 @@ module OregonDigital::Vocabularies
     property :"subject/ByrneBill", :label => 'Byrne, Bill'
     property :"subject/ByrneJohnF", :label => 'Byrne, John F.'
     property :"subject/CSylvester", :label => 'C. Sylvester'
-    property :"event/CPSCamp56", :label => 'CPS Camp 56'
+    property :"subject/CPSCamp56", :label => 'CPS Camp 56'
     property :"subject/CabralJohnathanK", :label => 'Cabral, Johnathan K.'
     property :"subject/CadenassoDonaldJ", :label => 'Cadenasso, Donald J.'
     property :"subject/CadenassoJames", :label => 'Cadenasso, James'
@@ -693,7 +693,7 @@ module OregonDigital::Vocabularies
     property :"subject/CannonCarolyn", :label => 'Cannon, Carolyn'
     property :"subject/CannonGary", :label => 'Cannon, Gary'
     property :"subject/CantolaSteve", :label => 'Cantola, Steve'
-    property :Capote, :label => 'Capote', :comment =>
+    property :"subject/Capote", :label => 'Capote', :comment =>
       %(A long hooded coat or cloak)
     property :"subject/CappsAl", :label => 'Capps, Al'
     property :"subject/CaracallaMarcusAureliusSeverusAntoninusAugustusEmperor", :label => 'Caracalla (Marcus Aurelius Severus Antoninus Augustus), Emperor'
@@ -767,22 +767,22 @@ module OregonDigital::Vocabularies
     property :"subject/ChanticleerInnPortlandOr", :label => 'Chanticleer Inn (Portland, Or.)'
     property :"subject/ChapaRudy", :label => 'Chapa, Rudy'
     property :"subject/ChapmanChappy", :label => 'Chapman, Chappy'
-    property :ChapmanEd, :label => 'Chapman, Ed', :comment =>
+    property :"subject/ChapmanEd", :label => 'Chapman, Ed', :comment =>
       %(Native American man photographed by Lee Moorhouse ca. 1879-ca.
         1920. Possibly a weaver in the Pendleton Woolen Mills)
     property :"subject/ChapmanHarold", :label => 'Chapman, Harold'
-    property :ChapmanJack, :label => 'Chapman, Jack', :comment =>
+    property :"subject/ChapmanJack", :label => 'Chapman, Jack', :comment =>
       %(Native American man photographed by Lee Moorhouse ca. 1879-ca.
         1920.)
     property :"subject/ChapmanKarissaL", :label => 'Chapman, Karissa L.'
     property :"subject/ChapmanNish", :label => 'Chapman, Nish'
     property :"subject/ChapmanNorm", :label => 'Chapman, Norm'
-    property :ChapmanSally, :label => 'Chapman, Sally', :comment =>
+    property :"subject/ChapmanSally", :label => 'Chapman, Sally', :comment =>
       %(Native American woman photographed by Lee Moorhouse ca.
         1879-ca. 1920.)
     property :"subject/ChapmanThomas", :label => 'Chapman, Thomas'
     property :"subject/ChapmanThomasJ", :label => 'Chapman, Thomas J.'
-    property :ChapsLeather, :label => 'Chaps, Leather', :comment =>
+    property :"subject/ChapsLeather", :label => 'Chaps, Leather', :comment =>
       %(Leather leg coverings)
     property :"subject/Charadriiformes(shorebirds,gulls,alcids)-Scalopacidae(sandpipers)", :label => 'Charadriiformes (shorebirds, gulls, alcids) - Scalopacidae (sandpipers)'
     property :"subject/CharlesIDukeofSavoy14681490", :label => 'Charles I, Duke of Savoy, 1468-1490'
@@ -801,27 +801,27 @@ module OregonDigital::Vocabularies
       %(Chinese man photographed vy Gertrude Bass Warner)
     property :"subject/ChiefAlex", :label => 'Chief Alex', :comment =>
       %(Chief of the Tinne Indian tribe)
-    property :ChiefFiveCrows, :label => 'Chief Five Crows', :comment =>
+    property :"subject/ChiefFiveCrows", :label => 'Chief Five Crows', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :ChiefHomily, :label => 'Chief Homily', :comment =>
+    property :"subject/ChiefHomily", :label => 'Chief Homily', :comment =>
       %(Walla Walla man photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/ChiefJoseph", :label => 'Chief Joseph', :comment =>
       %(Artist.)
-    property :ChiefNoShirt, :label => 'Chief No-Shirt', :comment =>
+    property :"subject/ChiefNoShirt", :label => 'Chief No-Shirt', :comment =>
       %(Walla Walla man photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
-    property :ChiefPatBelly, :label => 'Chief Pat Belly', :comment =>
+    property :"subject/ChiefPatBelly", :label => 'Chief Pat Belly', :comment =>
       %(Palouse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :ChiefPeo, :label => 'Chief Peo', :comment =>
+    property :"subject/ChiefPeo", :label => 'Chief Peo', :comment =>
       %(Umatilla man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/ChiefSaponowox", :label => 'Chief Saponowox', :comment =>
       %(Chief of the Yakima Indian tribe)
-    property :ChiefShooway, :label => 'Chief Sho-o-way', :comment =>
+    property :"subject/ChiefShooway", :label => 'Chief Sho-o-way', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :ChiefUmapine, :label => 'Chief Umapine', :comment =>
+    property :"subject/ChiefUmapine", :label => 'Chief Umapine', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :ChiefWolf, :label => 'Chief Wolf', :comment =>
+    property :"subject/ChiefWolf", :label => 'Chief Wolf', :comment =>
       %(Palouse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/Chikako", :label => 'Chikako'
     property :"subject/ChildersSuzanne", :label => 'Childers, Suzanne'
@@ -900,7 +900,7 @@ module OregonDigital::Vocabularies
     property :"subject/ClarkeDavid", :label => 'Clarke, David'
     property :"subject/ClarkeDudleyR", :label => 'Clarke, Dudley R.'
     property :"subject/ClaryDon", :label => 'Clary, Don'
-    property :ClawsBear, :label => 'Claws, Bear', :comment =>
+    property :"subject/ClawsBear", :label => 'Claws, Bear', :comment =>
       %(The sharp nails of a bear)
     property :"subject/ClawsonKerry", :label => 'Clawson, Kerry'
     property :"subject/ClayCharles", :label => 'Clay, Charles'
@@ -920,13 +920,13 @@ module OregonDigital::Vocabularies
     property :"subject/ClydeEquipmentCompany", :label => 'Clyde Equipment Company', :comment =>
       %(Portland, Oregon manufacturer and provider of heavy machinery)
     property :"subject/Coastal", :label => 'Coastal'
-    property :CoatBuckskin, :label => 'Coat, Buckskin', :comment =>
+    property :"subject/CoatBuckskin", :label => 'Coat, Buckskin', :comment =>
       %(A piece of outerwear made of the skin of a deer and used to
         keep the wearer warm or dry)
-    property :CoatCloth, :label => 'Coat, Cloth', :comment =>
+    property :"subject/CoatCloth", :label => 'Coat, Cloth', :comment =>
       %(A piece of outerwear made from cloth and used to keep the
         wearer warm or dry)
-    property :CoatJacket, :label => 'Coat, Jacket', :comment =>
+    property :"subject/CoatJacket", :label => 'Coat, Jacket', :comment =>
       %(A short piece of outerwear used to keep the wearer warm or dry)
     property :"subject/CobbCharlesR", :label => 'Cobb, Charles R.'
     property :"subject/CochranReanousJess", :label => 'Cochran, ReanousJess'
@@ -936,7 +936,7 @@ module OregonDigital::Vocabularies
     property :"subject/CoffeeCupRestaurant", :label => 'Coffee Cup (Restaurant)', :comment =>
       %(Restaurant in Sandy, Oregon)
     property :"subject/CoffeeHarley", :label => 'Coffee, Harley'
-    property :CoffeyB, :label => 'Coffey, B.', :comment =>
+    property :"subject/CoffeyB", :label => 'Coffey, B.', :comment =>
       %(Indian Agent for the Umatilla ca. 1888.)
     property :"subject/CoffeyBrett", :label => 'Coffey, Brett'
     property :"subject/CoffinDavidW", :label => 'Coffin, DavidW.'
@@ -1015,17 +1015,17 @@ module OregonDigital::Vocabularies
     property :"subject/CoringStan", :label => 'Coring, Stan'
     property :"subject/CorleyVaughn", :label => 'Corley, Vaughn'
     property :"subject/Cornarofamily", :label => 'Cornaro family'
-    property :CornelisonJamesN, :label => 'Cornelison, James N.', :comment =>
+    property :"subject/CornelisonJamesN", :label => 'Cornelison, James N.', :comment =>
       %(Reverand James. N. Cornelison was a missionary affiliated with
         the Tutuilla Presbyterian Church located on the Confederated
         Tribes of the Umatilla Indian Reservation \(CTUIR\).)
-    property :CornelisonMaryJane, :label => 'Cornelison, Mary Jane', :comment =>
+    property :"subject/CornelisonMaryJane", :label => 'Cornelison, Mary Jane', :comment =>
       %(Photographed by Lee Moorhouse ca. 1897-ca. 1920, Mary Janeis
         presumed to have a familial relationship with Rev. James N.
         Cornelison.)
     property :"subject/CornellAnsonB", :label => 'Cornell, Anson B.'
     property :"subject/CornelliaCondon", :label => 'Cornellia Condon'
-    property :Cornhusk, :label => 'Cornhusk', :comment =>
+    property :"subject/Cornhusk", :label => 'Cornhusk', :comment =>
       %(The outer leaves of an ear of corn)
     property :"subject/CorriganBernardG", :label => 'Corrigan, Bernard G.'
     property :"subject/CorriganMary", :label => 'Corrigan, Mary'
@@ -1046,8 +1046,6 @@ module OregonDigital::Vocabularies
     property :"subject/CourtneyBill", :label => 'Courtney, Bill'
     property :"subject/CovingtonJerome", :label => 'Covington, Jerome'
     property :"subject/CowboyApparel", :label => 'Cowboy Apparel', :comment =>
-      %(Term derived from the Historical Photographs Collection)
-    property :CowboyApparel, :label => 'Cowboy Apparel', :comment =>
       %(Clothing typially worn by cowboys)
     property :"subject/CowleyDrRobert", :label => 'Cowley, Dr. Robert', :comment =>
       %(Berea Hospital, Berea, Kentucky)
@@ -1057,23 +1055,23 @@ module OregonDigital::Vocabularies
       %(Of Alpine, Oregon)
     property :"subject/CoxEd", :label => 'Cox, Ed', :comment =>
       %(Of Alpine, Oregon)
-    property :CoyoteAnna, :label => 'Coyote, Anna', :comment =>
+    property :"subject/CoyoteAnna", :label => 'Coyote, Anna', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :CoyoteIda, :label => 'Coyote, Ida', :comment =>
+    property :"subject/CoyoteIda", :label => 'Coyote, Ida', :comment =>
       %(Cayuse girl photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :CoyoteLee, :label => 'Coyote, Lee', :comment =>
+    property :"subject/CoyoteLee", :label => 'Coyote, Lee', :comment =>
       %(Cayuse infant photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :CoyoteRuth, :label => 'Coyote, Ruth', :comment =>
+    property :"subject/CoyoteRuth", :label => 'Coyote, Ruth', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/CrabtreeJackLee", :label => 'Crabtree, JackLee'
     property :"subject/CrabtreeSeth", :label => 'Crabtree, Seth'
     property :"subject/CrabtreeTom", :label => 'Crabtree, Tom'
-    property :CradleboardBeadedFloral, :label => 'Cradleboard, Beaded--Floral', :comment =>
+    property :"subject/CradleboardBeadedFloral", :label => 'Cradleboard, Beaded--Floral', :comment =>
       %(A baby carrier decorated with beadwork in patterns relating to
         flowers)
     property :"subject/CraigBob", :label => 'Craig, Bob'
     property :"subject/CraigIan", :label => 'Craig, Ian'
-    property :CraigJoe, :label => 'Craig, Joe', :comment =>
+    property :"subject/CraigJoe", :label => 'Craig, Joe', :comment =>
       %(Umatilla man photograohed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/CraigheadJamie", :label => 'Craighead, Jamie'
     property :"subject/CramerMark", :label => 'Cramer, Mark'
@@ -1135,7 +1133,7 @@ module OregonDigital::Vocabularies
     property :"subject/DamesGeorgeF", :label => 'Dames, George F.'
     property :"subject/Dana", :label => 'Dana'
     property :"subject/DanaGreekmythology", :label => 'Dana (Greek mythology)'
-    property :DanceStick, :label => 'Dance Stick', :comment =>
+    property :"subject/DanceStick", :label => 'Dance Stick', :comment =>
       %(A decorated stick used while dancing)
     property :"subject/DaniellJennifer", :label => 'Daniell, Jennifer'
     property :"subject/DanielsChester", :label => 'Daniels, Chester'
@@ -1191,7 +1189,7 @@ module OregonDigital::Vocabularies
     property :"subject/DebCarver", :label => 'Deb Carver'
     property :"subject/DecorationandornamentAsian", :label => 'Decoration and ornament--Asian'
     property :"subject/DecourceyKeith", :label => 'Decourcey, Keith'
-    property :DeerHoof, :label => 'Deer Hoof', :comment =>
+    property :"subject/DeerHoof", :label => 'Deer Hoof', :comment =>
       %(The horned foot of a deer)
     property :"subject/DeforestDave", :label => 'Deforest, Dave'
     property :"subject/DehoopDave", :label => 'Dehoop, Dave'
@@ -1279,16 +1277,16 @@ module OregonDigital::Vocabularies
     property :"subject/DreesCodyJ", :label => 'Drees, Cody J.'
     property :"subject/DreisnerBob", :label => 'Dreisner, Bob'
     property :"subject/DrenkleMorris", :label => 'Drenkle, Morris'
-    property :DressBuckskin, :label => 'Dress, Buckskin', :comment =>
+    property :"subject/DressBuckskin", :label => 'Dress, Buckskin', :comment =>
       %(Main garments for women, consisting of a bodice and skirt made
         from the skin of a deer)
-    property :DressCloth, :label => 'Dress, Cloth', :comment =>
+    property :"subject/DressCloth", :label => 'Dress, Cloth', :comment =>
       %(Main garments for women, consisting of a bodice and skirt made
         from cloth)
-    property :DressClothBeaded, :label => 'Dress, Cloth--Beaded', :comment =>
+    property :"subject/DressClothBeaded", :label => 'Dress, Cloth--Beaded', :comment =>
       %(Main garments for women, consisting of a bodice and skirt made
         from cloth decorated with beads)
-    property :DressTradeCloth, :label => 'Dress, Trade Cloth', :comment =>
+    property :"subject/DressTradeCloth", :label => 'Dress, Trade Cloth', :comment =>
       %(Main garments for women, consisting of a bodice and skirt made
         from mass-produced cloth obtained through trade)
     property :"subject/DresserRalph", :label => 'Dresser, Ralph'
@@ -1334,7 +1332,7 @@ module OregonDigital::Vocabularies
     property :"subject/EarlVirgilDelman", :label => 'Earl, VirgilDelman'
     property :"subject/EarleGarrett", :label => 'Earle, Garrett'
     property :"subject/EarlyJeff", :label => 'Early, Jeff'
-    property :EarringsShell, :label => 'Earrings, Shell', :comment =>
+    property :"subject/EarringsShell", :label => 'Earrings, Shell', :comment =>
       %(Ear ornaments made of shell)
     property :"subject/EastburnWayne", :label => 'Eastburn, Wayne'
     property :"subject/EasterBunny", :label => 'Easter, Bunny'
@@ -1342,7 +1340,7 @@ module OregonDigital::Vocabularies
     property :"subject/EastmanDavidJ", :label => 'Eastman, David J.'
     property :"subject/EastonKariA", :label => 'Easton, Kari A.'
     property :"subject/EastonKym", :label => 'Easton, Kym'
-    property :Eatnomeat, :label => 'Eat-no-meat', :comment =>
+    property :"subject/Eatnomeat", :label => 'Eat-no-meat', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/EatonAH", :label => 'Eaton, A. H.'
     property :"subject/EatonAshtonJ", :label => 'Eaton, Ashton J.'
@@ -1366,7 +1364,7 @@ module OregonDigital::Vocabularies
     property :"subject/EdwardsHarry", :label => 'Edwards, Harry'
     property :"subject/EdwardsRay", :label => 'Edwards, Ray'
     property :"subject/EdwardsTom", :label => 'Edwards, Tom'
-    property :EelsDrying, :label => 'Eels--Drying', :comment =>
+    property :"subject/EelsDrying", :label => 'Eels--Drying', :comment =>
       %(The process of preserving eel through exposure to air and sun)
     property :"subject/EffingerDanielR", :label => 'Effinger, Daniel R.'
     property :"subject/EggeJoe", :label => 'Egge, Joe'
@@ -1377,9 +1375,9 @@ module OregonDigital::Vocabularies
     property :"subject/EklundCarlV", :label => 'Eklund, Carl V.'
     property :"subject/EkpreOlomuIfomenoM", :label => 'Ekpre-Olomu, Ifomeno M.'
     property :"subject/ElbonMariaC", :label => 'Elbon, Maria C.'
-    property :ElectricStudio, :label => 'Electric Studio', :comment =>
+    property :"subject/ElectricStudio", :label => 'Electric Studio', :comment =>
       %(A photographic studio?)
-    property :ElkTeeth, :label => 'Elk Teeth', :comment =>
+    property :"subject/ElkTeeth", :label => 'Elk Teeth', :comment =>
       %(Hard bony objects in the mouth of an elk used for biting and
         chewing)
     property :"subject/ElkaimJeramy", :label => 'Elkaim, Jeramy'
@@ -1448,7 +1446,7 @@ module OregonDigital::Vocabularies
     property :"subject/EugeneMoratoriumCommittee", :label => 'Eugene Moratorium Committee'
     property :"subject/EugeneVanReed", :label => 'Eugene Van Reed'
     property :"subject/EugeniusofCarthageSaint", :label => 'Eugenius of Carthage, Saint'
-    property :EuroAmericanclothing, :label => 'Euro-American clothing', :comment =>
+    property :"subject/EuroAmericanclothing", :label => 'Euro-American clothing', :comment =>
       %(Clothing typical of American settlers decended from Europeans)
     property :"subject/EuscherJamesR", :label => 'Euscher, James R.'
     property :"subject/EustachiusSaintd188CE", :label => 'Eustachius, Saint, d. 188 CE'
@@ -1477,10 +1475,10 @@ module OregonDigital::Vocabularies
     property :"subject/FallinKristinaM", :label => 'Fallin, Kristina M.'
     property :"subject/FanChenxin", :label => 'Fan, Chenxin'
     property :"subject/FanConnie", :label => 'Fan, Connie'
-    property :FanEagleTail, :label => 'Fan, Eagle Tail', :comment =>
+    property :"subject/FanEagleTail", :label => 'Fan, Eagle Tail', :comment =>
       %(A hand-held object made of eagle feathers used to produce a
         current of air)
-    property :FanHawkTail, :label => 'Fan, Hawk Tail', :comment =>
+    property :"subject/FanHawkTail", :label => 'Fan, Hawk Tail', :comment =>
       %(A hand-held object made of hawk feathers used to produce a
         current of air)
     property :"subject/FanganProjectonPaper", :label => 'Fang an (\'Project on Paper\')'
@@ -1496,7 +1494,7 @@ module OregonDigital::Vocabularies
     property :"subject/FaulknerBarbara", :label => 'Faulkner, Barbara', :comment =>
       %(Pine Mountain, Kentucky)
     property :"subject/FaustArnold", :label => 'Faust, Arnold'
-    property :FeathersEagle, :label => 'Feathers, Eagle', :comment =>
+    property :"subject/FeathersEagle", :label => 'Feathers, Eagle', :comment =>
       %(Light outgrowths that form the body covering of an eagle)
     property :"subject/FederighiCarolineL", :label => 'Federighi, Caroline L.'
     property :"subject/FeeChester", :label => 'Fee, Chester'
@@ -1622,7 +1620,7 @@ module OregonDigital::Vocabularies
     property :"subject/FreiJerry", :label => 'Frei, Jerry'
     property :"subject/FrenchChristianL", :label => 'French, Christian L.'
     property :"subject/FrenchJoseph", :label => 'French, Joseph'
-    property :FrenchLou, :label => 'French, Lou', :comment =>
+    property :"subject/FrenchLou", :label => 'French, Lou', :comment =>
       %(Walla Walla woman photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/FrevertKatie", :label => 'Frevert, Katie'
@@ -1647,7 +1645,7 @@ module OregonDigital::Vocabularies
     property :"subject/Fukurokuju", :label => 'Fukurokuju'
     property :"subject/FullertonBrad", :label => 'Fullerton, Brad'
     property :"subject/Funerarypractices", :label => 'Funerary practices'
-    property :FurHairWraps, :label => 'Fur--Hair Wraps', :comment =>
+    property :"subject/FurHairWraps", :label => 'Fur--Hair Wraps', :comment =>
       %(Ornamental strips of fur wraped around hair or hanging in the
         hair)
     property :"subject/FuryCon", :label => 'Fury, Con'
@@ -1714,7 +1712,7 @@ module OregonDigital::Vocabularies
     property :"subject/GergelMelissaA", :label => 'Gergel, Melissa A.'
     property :"subject/GerlingerIreneHazard", :label => 'Gerlinger, IreneHazard'
     property :"subject/GiantsequoiasCaliforniaMariposa18701880", :label => 'Giant sequoias--California--Mariposa--1870-1880'
-    property :GibbonPeter, :label => 'Gibbon, Peter', :comment =>
+    property :"subject/GibbonPeter", :label => 'Gibbon, Peter', :comment =>
       %(Palouse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/GibbsRoss", :label => 'Gibbs, Ross'
     property :"subject/GibiliscoJack", :label => 'Gibilisco, Jack'
@@ -1865,7 +1863,7 @@ module OregonDigital::Vocabularies
     property :"subject/GurevichNicholasA", :label => 'Gurevich, Nicholas A.'
     property :"subject/GustafsonSaraE", :label => 'Gustafson, Sara E.'
     property :"subject/GustafssonAnnikaL", :label => 'Gustafsson, Annika L.'
-    property :GuyerJim, :label => 'Guyer, Jim', :comment =>
+    property :"subject/GuyerJim", :label => 'Guyer, Jim', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/GuyotaBoruB", :label => 'Guyota, Boru B.'
     property :"subject/HEBGroceryCompanyLP", :label => 'HEB Grocery Company, LP'
@@ -1881,7 +1879,7 @@ module OregonDigital::Vocabularies
     property :"subject/Haidamasks", :label => 'Haida masks'
     property :"subject/HailBill", :label => 'Hail, Bill'
     property :"subject/HainesDustinL", :label => 'Haines, Dustin L.'
-    property :Hairbone, :label => 'Hairbone', :comment =>
+    property :"subject/Hairbone", :label => 'Hairbone', :comment =>
       %(Long slender beads)
     property :"subject/HaissTherese", :label => 'Haiss, Therese'
     property :"subject/HakobyanHeghine", :label => 'Hakobyan, Heghine'
@@ -1975,7 +1973,7 @@ module OregonDigital::Vocabularies
     property :"subject/HassaloSteamship", :label => 'Hassalo (Steamship)'
     property :"subject/HastingsWimp", :label => 'Hastings, Wimp'
     property :"subject/HastingsWinfredEugene", :label => 'Hastings, WinfredEugene'
-    property :HatCornhusk, :label => 'Hat, Cornhusk', :comment =>
+    property :"subject/HatCornhusk", :label => 'Hat, Cornhusk', :comment =>
       %(A head covering made with corn husks)
     property :"subject/Hatcher", :label => 'Hatcher', :comment =>
       %(Owner of a cabin in Tennessee)
@@ -2014,9 +2012,9 @@ module OregonDigital::Vocabularies
     property :"subject/HaywoodChuck", :label => 'Haywood, Chuck'
     property :"subject/HaywoodRaymondCharles", :label => 'Haywood, RaymondCharles'
     property :"subject/HazzardTom", :label => 'Hazzard, Tom'
-    property :Heyutesemiliken, :label => 'He-yute-se-miliken', :comment =>
+    property :"subject/Heyutesemiliken", :label => 'He-yute-se-miliken', :comment =>
       %(Native member of the Indian Police Umatilla Agency in 1888.)
-    property :HeaddressHorned, :label => 'Headdress, Horned', :comment =>
+    property :"subject/HeaddressHorned", :label => 'Headdress, Horned', :comment =>
       %(A head covering including the horns of an animal)
     property :"subject/HeadsAnatomy", :label => 'Heads (Anatomy)'
     property :"subject/HealyRyonC", :label => 'Healy, Ryon C.'
@@ -2194,13 +2192,11 @@ module OregonDigital::Vocabularies
     property :"subject/HornRandallM", :label => 'Horn, Randall M.'
     property :"subject/HorneRichard", :label => 'Horne, Richard'
     property :"subject/HornsbyRussellI", :label => 'Hornsby, Russell I.'
-    property :HorseGear, :label => 'Horse Gear', :comment =>
+    property :"subject/HorseGear", :label => 'Horse Gear', :comment =>
       %(Equipment worn by horses, typially including saddles,
         blankets, bridles, reins, saddlebags or ornaments)
-    property :"subject/HorseGear", :label => 'Horse Gear', :comment =>
-      %(Term derived from the Historical Photographs Collection)
     property :"subject/HorseRacing", :label => 'Horse Racing'
-    property :HorseTrappings, :label => 'Horse Trappings', :comment =>
+    property :"subject/HorseTrappings", :label => 'Horse Trappings', :comment =>
       %(Ornamental equipment worn by horses, including collars, masks
         and attachments to the reins, bridles,saddle bags and saddles)
     property :"subject/HorsleyAshanteT", :label => 'Horsley, Ashante T.'
@@ -2314,7 +2310,7 @@ module OregonDigital::Vocabularies
     property :"subject/IkelerHeather", :label => 'Ikeler, Heather'
     property :"subject/ImelMauraJ", :label => 'Imel, Maura J.'
     property :"subject/ImwalleRichardF", :label => 'Imwalle, Richard F.'
-    property :Indianencampments, :label => 'Indian encampments', :comment =>
+    property :"subject/Indianencampments", :label => 'Indian encampments', :comment =>
       %(A place where Native Americans have established a camp)
     property :"subject/Indianservices", :label => 'Indian services', :comment =>
       %(US Department of the Interior, Bureau of Indian Affairs,
@@ -2348,10 +2344,10 @@ module OregonDigital::Vocabularies
     property :"subject/InskeepRuss", :label => 'Inskeep, Russ'
     property :"subject/Instantcameras", :label => 'Instant cameras'
     property :"subject/Interiordesignandfurnishings", :label => 'Interior design and furnishings'
-    property :"event/InternationalNight2013", :label => 'International Night 2013'
+    property :"subject/InternationalNight2013", :label => 'International Night 2013'
     property :"subject/InternationalStudentAssociationOrganization", :label => 'International Student Association (Organization)'
     property :"subject/Introducktions ", :label => 'Introducktions'
-    property :Ipnasoletok, :label => 'Ip-na-sol-e-tok', :comment =>
+    property :"subject/Ipnasoletok", :label => 'Ip-na-sol-e-tok', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/IphiclesGreekmythology", :label => 'Iphicles (Greek mythology)'
     property :"subject/IreneSaint3rdcenturyCE", :label => 'Irene, Saint, 3rd century C.E.'
@@ -2364,12 +2360,12 @@ module OregonDigital::Vocabularies
     property :"subject/IsagawaCassyL", :label => 'Isagawa, Cassy L.'
     property :"subject/IsbergLeonard", :label => 'Isberg, Leonard'
     property :"subject/IsemonogatariAzumakudari", :label => 'Ise monogatari--Azuma-kudari'
-    property :Istanse, :label => 'Istanse', :comment =>
+    property :"subject/Istanse", :label => 'Istanse', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/ItaliaRomandeity", :label => 'Italia (Roman deity)'
-    property :Itskaka, :label => 'Its-kaka', :comment =>
+    property :"subject/Itskaka", :label => 'Its-kaka', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
-    property :Itswashpalu, :label => 'Its-wash-pa-lu', :comment =>
+    property :"subject/Itswashpalu", :label => 'Its-wash-pa-lu', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/IversonDavid", :label => 'Iverson, David'
     property :"subject/IwaiKumesaburo", :label => 'Iwai Kumesaburo'
@@ -2419,7 +2415,7 @@ module OregonDigital::Vocabularies
     property :"subject/Japaneseoccupation", :label => 'Japanese occupation'
     property :"subject/JaquaRobin", :label => 'Jaqua, Robin'
     property :"subject/JaraczeskiJeff", :label => 'Jaraczeski, Jeff'
-    property :Jemima, :label => 'Jemima', :comment =>
+    property :"subject/Jemima", :label => 'Jemima', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/JenkinsEricA", :label => 'Jenkins, Eric A.'
     property :"subject/JenkinsGeneO", :label => 'Jenkins, Gene O.'
@@ -2501,7 +2497,7 @@ module OregonDigital::Vocabularies
     property :"subject/JonesMrs", :label => 'Jones, Mrs.', :comment =>
       %(Candy Kitchen, Berea College, Berea, Kentucky)
     property :"subject/JonesNick", :label => 'Jones, Nick'
-    property :JonesPhillip, :label => 'Jones, Phillip', :comment =>
+    property :"subject/JonesPhillip", :label => 'Jones, Phillip', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/JonesRon", :label => 'Jones, Ron'
     property :"subject/JonesRyanW", :label => 'Jones, RyanW.'
@@ -2513,10 +2509,10 @@ module OregonDigital::Vocabularies
     property :"subject/JordanReginald", :label => 'Jordan, Reginald'
     property :"subject/JorgensenMichaelH", :label => 'Jorgensen, Michael H.'
     property :"subject/JosephDavidD", :label => 'Joseph, David D.'
-    property :JosephineYoumoits, :label => 'Josephine You-mo-its', :comment =>
+    property :"subject/JosephineYoumoits", :label => 'Josephine You-mo-its', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/JosephsonJamesC", :label => 'Josephson, James C.'
-    property :JoshuaBilly, :label => 'Joshua, Billy', :comment =>
+    property :"subject/JoshuaBilly", :label => 'Joshua, Billy', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/JossieSamW", :label => 'Jossie, SamW.'
     property :"subject/JostCharles", :label => 'Jost, Charles'
@@ -2532,8 +2528,8 @@ module OregonDigital::Vocabularies
     property :"subject/JusticeDelia", :label => 'Justice, Delia', :comment =>
       %(Weaver and spinner, Gainesville, Georgia)
     property :"subject/KinichAjawSunEyedLord", :label => 'K\'inich Ajaw (Sun-Eyed Lord)'
-    property :"subject/KLIVRadiostation:SanJoseCalif", :label => 'KLIV (Radio station : San Jose, Calif.)'
     property :"subject/KLIVRadiostationSanJoseCalif", :label => 'KLIV (Radio station : San Jose, Calif.)'
+    property :"subject/KLIVRadiostation:SanJoseCalif", :label => 'KLIV (Radio station : San Jose, Calif.)'
     property :"subject/Ka'aiKoa", :label => 'Ka\'ai, Koa'
     property :"subject/Ka'aiLakeK", :label => 'Ka\'ai, Lake K.'
     property :"subject/KaanapuToddCK", :label => 'Kaanapu, Todd C. K.'
@@ -2545,7 +2541,7 @@ module OregonDigital::Vocabularies
     property :"subject/KamyabNazanin", :label => 'Kamyab, Nazanin'
     property :"subject/KanamoriHanako", :label => 'Kanamori, Hanako'
     property :"subject/KangRyanJ", :label => 'Kang, Ryan J.'
-    property :KanineJim, :label => 'Kanine, Jim', :comment =>
+    property :"subject/KanineJim", :label => 'Kanine, Jim', :comment =>
       %(Crow man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/KantolaStevenJ", :label => 'Kantola, Steven J.'
     property :"subject/KapriHueda", :label => 'Kapri, Hueda'
@@ -2556,11 +2552,11 @@ module OregonDigital::Vocabularies
     property :"subject/KarlofBavaria18741957", :label => 'Karl of Bavaria, 1874-1957'
     property :"subject/KarnofskiRaymond", :label => 'Karnofski, Raymond'
     property :"subject/KarrakerJackR", :label => 'Karraker, Jack R.'
-    property :KashKash, :label => 'Kash-Kash', :comment =>
+    property :"subject/KashKash", :label => 'Kash-Kash', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :KashKashAnna, :label => 'Kash-Kash, Anna', :comment =>
+    property :"subject/KashKashAnna", :label => 'Kash-Kash, Anna', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :KashKashJames, :label => 'Kash-Kash, James', :comment =>
+    property :"subject/KashKashJames", :label => 'Kash-Kash, James', :comment =>
       %(Cayuse preacher photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/KataokaNizaemon", :label => 'Kataoka, Nizaemon'
@@ -2649,7 +2645,7 @@ module OregonDigital::Vocabularies
     property :"subject/KirschWalterR", :label => 'Kirsch, Walter R.'
     property :"subject/KiserSamanthaJ", :label => 'Kiser, Samantha J.'
     property :"subject/KishMichael", :label => 'Kish, Michael'
-    property :KittsonPeter, :label => 'Kittson, Peter', :comment =>
+    property :"subject/KittsonPeter", :label => 'Kittson, Peter', :comment =>
       %(Native American man photographed by Lee Moorhouse ca. 1904.)
     property :"subject/KitzmillerJohn", :label => 'Kitzmiller, John'
     property :"subject/KivettAshleyE", :label => 'Kivett, Ashley E.'
@@ -2674,7 +2670,7 @@ module OregonDigital::Vocabularies
     property :"subject/KnoxR", :label => 'Knox, R.'
     property :"subject/KnudsenVictoriaA", :label => 'Knudsen, VictoriaA.'
     property :"subject/KnutsonEddie", :label => 'Knutson, Eddie'
-    property :KolopsSusie, :label => 'Ko-lops, Susie', :comment =>
+    property :"subject/KolopsSusie", :label => 'Ko-lops, Susie', :comment =>
       %(Umatilla woman photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/KochRobert", :label => 'Koch, Robert'
@@ -2784,7 +2780,7 @@ module OregonDigital::Vocabularies
     property :"subject/LayliandMajnun", :label => 'Layli and Majnun'
     property :"subject/LaymanGeorge", :label => 'Layman, George'
     property :"subject/LazarusBiblicalfigure", :label => 'Lazarus (Biblical figure)'
-    property :LazyDog, :label => 'Lazy Dog', :comment =>
+    property :"subject/LazyDog", :label => 'Lazy Dog', :comment =>
       %(Umatilla man photographed by Lee Moorhouse 1903.)
     property :"subject/LeBlancBrittaN", :label => 'LeBlanc, Britta N.'
     property :"subject/LeMayLindseyD", :label => 'LeMay, Lindsey D.'
@@ -2807,11 +2803,11 @@ module OregonDigital::Vocabularies
     property :"subject/LeeTodd", :label => 'Lee, Todd'
     property :"subject/LeezerandKoeblerDruggists", :label => 'Leezer and Koebler Druggists', :comment =>
       %(Term derived from the Historical Photographs Collection)
-    property :LeggingsBuckskin, :label => 'Leggings, Buckskin', :comment =>
+    property :"subject/LeggingsBuckskin", :label => 'Leggings, Buckskin', :comment =>
       %(Leather coverings for the legs)
-    property :LeggingsWomens, :label => 'Leggings, Women\'s', :comment =>
+    property :"subject/LeggingsWomens", :label => 'Leggings, Women\'s', :comment =>
       %(Coverings for the legs, especially for women)
-    property :LeggingsWool, :label => 'Leggings, Wool', :comment =>
+    property :"subject/LeggingsWool", :label => 'Leggings, Wool', :comment =>
       %(Wool coverings for the legs)
     property :"subject/LehlJim", :label => 'Lehl, Jim'
     property :"subject/LehnerMichael", :label => 'Lehner, Michael'
@@ -2849,7 +2845,7 @@ module OregonDigital::Vocabularies
     property :"subject/LiBin", :label => 'Li Bin'
     property :"subject/LibbyNanci", :label => 'Libby, Nanci'
     property :"subject/Liberality", :label => 'Liberality'
-    property :LibertyJohn, :label => 'Liberty, John', :comment =>
+    property :"subject/LibertyJohn", :label => 'Liberty, John', :comment =>
       %(Umatilla man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/LibkeChristinaJ", :label => 'Libke, Christina J.'
     property :"subject/LibkeScout", :label => 'Libke, Scout'
@@ -2858,7 +2854,7 @@ module OregonDigital::Vocabularies
     property :"subject/LiebeKlausD", :label => 'Liebe, Klaus D.'
     property :"subject/LiebowitzSamuel", :label => 'Liebowitz, Samuel'
     property :"subject/LieuallenRoyElwayne", :label => 'Lieuallen, Roy Elwayne'
-    property :LightfootHorse, :label => 'Lightfoot (Horse)', :comment =>
+    property :"subject/LightfootHorse", :label => 'Lightfoot (Horse)', :comment =>
       %(Horse ridden in the Pendelton Round-Up ca. 1897-ca. 1920,
         Pendleton, Oregon.)
     property :"subject/LightfootDavidW", :label => 'Lightfoot, DavidW.'
@@ -2867,13 +2863,13 @@ module OregonDigital::Vocabularies
     property :"subject/LillieJerry", :label => 'Lillie, Jerry'
     property :"subject/LilnerLottie", :label => 'Lilner, Lottie', :comment =>
       %(Spinner and weaver, Ringgold, Georgia)
-    property :LincolnFrancis, :label => 'Lincoln, Francis', :comment =>
+    property :"subject/LincolnFrancis", :label => 'Lincoln, Francis', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/LindHerman", :label => 'Lind, Herman'
     property :"subject/LindemanGabrielleM", :label => 'Lindeman, Gabrielle M.'
     property :"subject/LindenJim", :label => 'Linden, Jim'
     property :"subject/LindgrenArne", :label => 'Lindgren, Arne'
-    property :LindleyPeter, :label => 'Lindley, Peter', :comment =>
+    property :"subject/LindleyPeter", :label => 'Lindley, Peter', :comment =>
       %(Cayuse preacher photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/LindnerEricR", :label => 'Lindner, Eric R.'
@@ -2897,12 +2893,12 @@ module OregonDigital::Vocabularies
     property :"subject/LoewenRebeccaM", :label => 'Loewen, Rebecca M.'
     property :"subject/LoftenJames", :label => 'Loften, James'
     property :"subject/LoftisJack", :label => 'Loftis, Jack'
-    property :Logs, :label => 'Logs', :comment =>
+    property :"subject/Logs", :label => 'Logs', :comment =>
       %(Large pieces of unmilled wood from a tree)
     property :"subject/LokanHaroldC", :label => 'Lokan, Harold C.'
     property :"subject/LokanWhitey", :label => 'Lokan, Whitey'
     property :"subject/LokomboBoseko", :label => 'Lokombo, Boseko'
-    property :LongHair, :label => 'Long Hair', :comment =>
+    property :"subject/LongHair", :label => 'Long Hair', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/LongDallasC", :label => 'Long, Dallas C.'
     property :"subject/LongDick", :label => 'Long, Dick'
@@ -2928,7 +2924,7 @@ module OregonDigital::Vocabularies
     property :"subject/LowryTyrrell", :label => 'Lowry, Tyrrell'
     property :"subject/LoydJohnathanM", :label => 'Loyd, Johnathan M.'
     property :"subject/LuShang11thcenuryBCE", :label => 'Lu Shang, 11th cenury BCE'
-    property :LuTom, :label => 'Lu, Tom', :comment =>
+    property :"subject/LuTom", :label => 'Lu, Tom', :comment =>
       %(Umatilla man whose camp was photographed by Lee Moorhouse ca.
         1897-ca. 1920.)
     property :"subject/LubashAndrewA", :label => 'Lubash, Andrew A.'
@@ -2955,13 +2951,13 @@ module OregonDigital::Vocabularies
     property :"subject/LurichRay", :label => 'Lurich, Ray', :comment =>
       %(Student, Berea College, Berea, Kentucky)
     property :"subject/LuskKevinD", :label => 'Lusk, Kevin D.'
-    property :LutonLacy, :label => 'Luton, Lacy', :comment =>
+    property :"subject/LutonLacy", :label => 'Luton, Lacy', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/LwegiChokwechief17thcentury", :label => 'Lwegi, Chokwe chief, 17th century'
     property :"subject/LyerlaColtK", :label => 'Lyerla, Colt K.'
     property :"subject/Lykomedes", :label => 'Lykomedes'
     property :"subject/LyleCrawford", :label => 'Lyle, Crawford'
-    property :LymanAbraham, :label => 'Lyman, Abraham', :comment =>
+    property :"subject/LymanAbraham", :label => 'Lyman, Abraham', :comment =>
       %(Walla Walla man photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/LynchMichael", :label => 'Lynch, Michael'
@@ -3055,7 +3051,7 @@ module OregonDigital::Vocabularies
     property :"subject/MarshChris", :label => 'Marsh, Chris'
     property :"subject/MarshMarlinV", :label => 'Marsh, Marlin V.'
     property :"subject/MarshallByronL", :label => 'Marshall, Byron L.'
-    property :MarshallGeorge, :label => 'Marshall, George', :comment =>
+    property :"subject/MarshallGeorge", :label => 'Marshall, George', :comment =>
       %(Umatilla man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/MarshallKaren", :label => 'Marshall, Karen'
     property :"subject/MarshallRobertA", :label => 'Marshall, Robert A.'
@@ -3075,7 +3071,7 @@ module OregonDigital::Vocabularies
     property :"subject/MartinRoger", :label => 'Martin, Roger'
     property :"subject/MartinWJ", :label => 'Martin, W.J.', :comment =>
       %(Carver, Brasstown, North Carolina)
-    property :Martingale, :label => 'Martingale', :comment =>
+    property :"subject/Martingale", :label => 'Martingale', :comment =>
       %(A large collar for a horse)
     property :"subject/MaryJacobiSaint", :label => 'Mary Jacobi, Saint'
     property :"subject/MarySalomeSaint", :label => 'Mary Salome, Saint'
@@ -3120,7 +3116,7 @@ module OregonDigital::Vocabularies
     property :"subject/MazmanyanTatevik", :label => 'Mazmanyan, Tatevik'
     property :"subject/McArdleMarcusN", :label => 'McArdle, Marcus N.'
     property :"subject/McArthurCliftonN", :label => 'McArthur, Clifton N.'
-    property :McBainJohn, :label => 'McBain, John', :comment =>
+    property :"subject/McBainJohn", :label => 'McBain, John', :comment =>
       %(Man photographed by Lee Moorhouse, often with groups of Native
         Americans.)
     property :"subject/McBrideConnorF", :label => 'McBride, Connor F.'
@@ -3193,9 +3189,9 @@ module OregonDigital::Vocabularies
       %(Major, Army Core of Engineers)
     property :"subject/McIntyreWalter", :label => 'McIntyre, Walter'
     property :"subject/McIverBrandonR", :label => 'McIver, Brandon R.'
-    property :McKayAgnesRedhawkDavisDixon, :label => 'McKay, Agnes Redhawk Davis Dixon', :comment =>
+    property :"subject/McKayAgnesRedhawkDavisDixon", :label => 'McKay, Agnes Redhawk Davis Dixon', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :McKayDonald, :label => 'McKay, Donald', :comment =>
+    property :"subject/McKayDonald", :label => 'McKay, Donald', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/McKayGordon", :label => 'McKay, Gordon'
     property :"subject/McKayJohnH", :label => 'McKay, John H.'
@@ -3329,12 +3325,12 @@ module OregonDigital::Vocabularies
     property :"subject/MinogameJapanesemythology", :label => 'Minogame (Japanese mythology)'
     property :"subject/MinorJasmineN", :label => 'Minor, Jasmine N.'
     property :"subject/MinoraYasui", :label => 'Minora Yasui'
-    property :MinthornLuke, :label => 'Minthorn, Luke', :comment =>
+    property :"subject/MinthornLuke", :label => 'Minthorn, Luke', :comment =>
       %(Native member of the Indian Police Umatilla Agency in 1888.)
-    property :MinthornMolly, :label => 'Minthorn, Molly', :comment =>
+    property :"subject/MinthornMolly", :label => 'Minthorn, Molly', :comment =>
       %(Native American woman photographed by Lee Moorhouse ca.
         1897-ca. 1920.)
-    property :MinthornSabina, :label => 'Minthorn, Sabina', :comment =>
+    property :"subject/MinthornSabina", :label => 'Minthorn, Sabina', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/MintonyeDolores", :label => 'Mintonye, Dolores', :comment =>
       %(Of Alpine, Oregon)
@@ -3343,7 +3339,7 @@ module OregonDigital::Vocabularies
     property :"subject/MintonyeMartha", :label => 'Mintonye, Martha', :comment =>
       %(Of Alpine, Oregon)
     property :"subject/Misc", :label => 'Misc'
-    property :MissCraig, :label => 'Miss Craig', :comment =>
+    property :"subject/MissCraig", :label => 'Miss Craig', :comment =>
       %(Walla Walla woman photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/MissfeldtChuck", :label => 'Missfeldt, Chuck'
@@ -3356,13 +3352,13 @@ module OregonDigital::Vocabularies
     property :"subject/MitchellWalter", :label => 'Mitchell, Walter'
     property :"subject/MoaceBo", :label => 'Moace, Bo'
     property :"subject/MobleyDick", :label => 'Mobley, Dick'
-    property :MoccasinsBeadedFloral, :label => 'Moccasins, Beaded-Floral', :comment =>
+    property :"subject/MoccasinsBeadedFloral", :label => 'Moccasins, Beaded-Floral', :comment =>
       %(Soft leather shoeS decorated with beads in patterns relating
         to flowers)
-    property :MoccasinsBeadedGeometric, :label => 'Moccasins, Beaded-Geometric', :comment =>
+    property :"subject/MoccasinsBeadedGeometric", :label => 'Moccasins, Beaded-Geometric', :comment =>
       %(Soft leather shoeS decorated with beads with geometric
         patterns or stylized figures)
-    property :MoccasinsPlain, :label => 'Moccasins, Plain', :comment =>
+    property :"subject/MoccasinsPlain", :label => 'Moccasins, Plain', :comment =>
       %(Soft leather shows devoid of ornament)
     property :"subject/MocciaJacquelineE", :label => 'Moccia, Jacqueline E.'
     property :"subject/MockJerry", :label => 'Mock, Jerry'
@@ -3441,36 +3437,36 @@ module OregonDigital::Vocabularies
     property :"subject/MortonPat", :label => 'Morton, Pat'
     property :"subject/MoserGregoryA", :label => 'Moser, Gregory A.'
     property :"subject/MoserMichaelA", :label => 'Moser, Michael A.'
-    property :Moses, :label => 'Moses', :comment =>
+    property :"subject/Moses", :label => 'Moses', :comment =>
       %(Native American man photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/MoshofskyEdwardW", :label => 'Moshofsky, EdwardW.'
     property :"subject/MossBob", :label => 'Moss, Bob'
     property :"subject/MossJeanette", :label => 'Moss, Jeanette'
-    property :MotanicArt, :label => 'Motanic, Art', :comment =>
+    property :"subject/MotanicArt", :label => 'Motanic, Art', :comment =>
       %(Cayuse infant, son of Parson Motanic, photographed by Lee
         Moorhouse ca. 1897-ca. 1920.)
-    property :MotanicDan, :label => 'Motanic, Dan', :comment =>
+    property :"subject/MotanicDan", :label => 'Motanic, Dan', :comment =>
       %(Cayuse man photographed by Lee Moorhouse in 1915. Persumably
         related to Art, Mary, Esther, Sarah, Dorothy, and Parson
         Motanic.)
-    property :MotanicDorothy, :label => 'Motanic, Dorothy', :comment =>
+    property :"subject/MotanicDorothy", :label => 'Motanic, Dorothy', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse in 1915. Persumably
         related to Art, Mary, Esther, Sarah, Parson, and Dan Motanic.)
-    property :MotanicEsther, :label => 'Motanic, Esther', :comment =>
+    property :"subject/MotanicEsther", :label => 'Motanic, Esther', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse in 1915. Persumably
         related to Art, Mary, Parson, Sarah, Dorothy, and Dan Motanic.)
-    property :MotanicInfant, :label => 'Motanic, Infant', :comment =>
+    property :"subject/MotanicInfant", :label => 'Motanic, Infant', :comment =>
       %(Cayuse infant, child of Parson Motanic, photographed by Lee
         Moorhouse ca. 1897-ca.1920.)
-    property :MotanicMary, :label => 'Motanic, Mary', :comment =>
+    property :"subject/MotanicMary", :label => 'Motanic, Mary', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse in 1915. Persumably
         related to Art, Parson, Esther, Sarah, Dorothy, and Dan
         Motanic.)
-    property :MotanicParson, :label => 'Motanic, Parson', :comment =>
+    property :"subject/MotanicParson", :label => 'Motanic, Parson', :comment =>
       %(Cayuse man photographed by Lee Moorhouse in 1915. Persumably
         related to Art, Mary, Esther, Sarah, Dorothy, and Dan Motanic.)
-    property :MotanicSarah, :label => 'Motanic, Sarah', :comment =>
+    property :"subject/MotanicSarah", :label => 'Motanic, Sarah', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse in 1915. Persumably
         related to Art, Mary, Esther, Parson, Dorothy, and Dan
         Motanic.)
@@ -3559,7 +3555,7 @@ module OregonDigital::Vocabularies
     property :"subject/NaturalViews", :label => 'Natural Views'
     property :"subject/NavarroSaucedoJulian", :label => 'Navarro Saucedo, Julian'
     property :"subject/NavarroCarlosM", :label => 'Navarro, Carlos M.'
-    property :NecklaceLoop, :label => 'Necklace, Loop', :comment =>
+    property :"subject/NecklaceLoop", :label => 'Necklace, Loop', :comment =>
       %(A piece of jewelry formed by more than one loop of a strand of
         beads around the neck)
     property :"subject/NeedhamHarryJ", :label => 'Needham, Harry J.'
@@ -3617,7 +3613,7 @@ module OregonDigital::Vocabularies
     property :"subject/NillsonIrwin", :label => 'Nillson, Irwin'
     property :"subject/NilsenHenry", :label => 'Nilsen, Henry'
     property :"subject/NishimuraJan", :label => 'Nishimura, Jan'
-    property :NoShirtMrs, :label => 'No-Shirt, Mrs.', :comment =>
+    property :"subject/NoShirtMrs", :label => 'No-Shirt, Mrs.', :comment =>
       %(Umatilla woman photographed by Lee Moorhouse in 1903.)
     property :"subject/NobleDave", :label => 'Noble, Dave', :comment =>
       %(Of Alpine, Oregon)
@@ -3650,7 +3646,7 @@ module OregonDigital::Vocabularies
     property :"subject/NortonTatumA", :label => 'Norton, Tatum A.'
     property :"subject/NotosSam", :label => 'Notos, Sam'
     property :"subject/NowlandFred", :label => 'Nowland, Fred'
-    property :Nuncipo, :label => 'Nuncipo', :comment =>
+    property :"subject/Nuncipo", :label => 'Nuncipo', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/NuttJames", :label => 'Nutt, James'
     property :"subject/OHeroesProgram", :label => 'O Heroes (Program)'
@@ -3661,7 +3657,7 @@ module OregonDigital::Vocabularies
     property :"subject/O'LearyAlanB", :label => 'O\'Leary, Alan B.'
     property :"subject/O'MalleyColleenE", :label => 'O\'Malley, Colleen E.'
     property :"subject/O'NeillDavidM", :label => 'O\'Neill, David M.'
-    property :"O'ReillyCharlesJ", :label => 'O\'Reilly, Charles J.', :comment =>
+    property :"subject/O'ReillyCharlesJ", :label => 'O\'Reilly, Charles J.', :comment =>
       %(Catholic Bishop of Lincoln, Nebraska \(1918-1923\), Baker
         City, Oregon \(1903-1918\), and priest in Oregon City, Oregon
         \(1890-1903\).)
@@ -3724,7 +3720,7 @@ module OregonDigital::Vocabularies
     property :"subject/OppliggerAl", :label => 'Oppligger, Al'
     property :"subject/OrbellJohn", :label => 'Orbell, John'
     property :"subject/OrdingRMichael", :label => 'Ording, R.Michael'
-    property :"event/Oregana", :label => 'Oregana'
+    property :"subject/Oregana", :label => 'Oregana'
     property :"subject/Oreganas ", :label => 'Oreganas'
     property :"subject/OregonBasketballBandMusicalgroup", :label => 'Oregon Basketball Band (Musical group)'
     property :"subject/OregonBuildingCongress", :label => 'Oregon Building Congress', :comment =>
@@ -3755,7 +3751,7 @@ module OregonDigital::Vocabularies
     property :"subject/OrientalTheaterPortlandOregon", :label => 'Oriental Theater (Portland, Oregon)', :comment =>
       %(Movie house and theater in Portland, Oregon)
     property :"subject/Origins", :label => 'Origins'
-    property :OrnamentsWomens, :label => 'Ornaments, Women\'s', :comment =>
+    property :"subject/OrnamentsWomens", :label => 'Ornaments, Women\'s', :comment =>
       %(Decorative objects for women)
     property :"subject/OrofinoAllison", :label => 'Orofino, Allison'
     property :"subject/OsbornRick", :label => 'Osborn, Rick'
@@ -3824,7 +3820,7 @@ module OregonDigital::Vocabularies
     property :"subject/PalmquistOscar", :label => 'Palmquist, Oscar'
     property :"subject/PamphileofKos", :label => 'Pamphile of Kos'
     property :"subject/PamplinRocky", :label => 'Pamplin, Rocky'
-    property :Pan, :label => 'Pan', :comment =>
+    property :"subject/Pan", :label => 'Pan', :comment =>
       %(Shallow container typically for domestic use)
     property :"subject/PantagesTheaterPortlandOregon", :label => 'Pantages Theater (Portland, Oregon)', :comment =>
       %(Vaudeville theater in Portland, Oregon)
@@ -3841,10 +3837,10 @@ module OregonDigital::Vocabularies
     property :"subject/ParkerTimothyS", :label => 'Parker, Timothy S.'
     property :"subject/ParleeLindsayA", :label => 'Parlee, Lindsay A.'
     property :"subject/ParrKristenD", :label => 'Parr, Kristen D.'
-    property :ParrNellie, :label => 'Parr, Nellie', :comment =>
+    property :"subject/ParrNellie", :label => 'Parr, Nellie', :comment =>
       %(Walla Walla woman photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
-    property :ParrRosa, :label => 'Parr, Rosa', :comment =>
+    property :"subject/ParrRosa", :label => 'Parr, Rosa', :comment =>
       %(Walla Walla woman photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/ParrottTim", :label => 'Parrott, Tim'
@@ -3853,10 +3849,10 @@ module OregonDigital::Vocabularies
     property :"subject/PaschkeBecky", :label => 'Paschke, Becky'
     property :"subject/PassoltMel", :label => 'Passolt, Mel'
     property :"subject/PastegaJonny", :label => 'Pastega, Jonny'
-    property :PatawaAlice, :label => 'Patawa, Alice', :comment =>
+    property :"subject/PatawaAlice", :label => 'Patawa, Alice', :comment =>
       %(Umatilla woman photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
-    property :PatawaAllen, :label => 'Patawa, Allen', :comment =>
+    property :"subject/PatawaAllen", :label => 'Patawa, Allen', :comment =>
       %(Umatilla man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/PateRobinC", :label => 'Pate, Robin C.'
     property :"subject/PateraJack", :label => 'Patera, Jack'
@@ -3867,7 +3863,7 @@ module OregonDigital::Vocabularies
     property :"subject/PattersonCharles", :label => 'Patterson, Charles'
     property :"subject/PattersonHoward", :label => 'Patterson, Howard'
     property :"subject/PattersonPat", :label => 'Patterson, Pat'
-    property :PaulRosa, :label => 'Paul, Rosa', :comment =>
+    property :"subject/PaulRosa", :label => 'Paul, Rosa', :comment =>
       %(Walla Walla woman photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/PavalunasMatt", :label => 'Pavalunas, Matt'
@@ -3887,7 +3883,7 @@ module OregonDigital::Vocabularies
     property :"subject/Pelecaniformes(pelicansandallies)-Frigatidae(frigatebirds)", :label => 'Pelecaniformes (pelicans and allies) - Frigatidae (frigatebirds)'
     property :"subject/PelhamClintonHenryPelhamFiennesDukeofNewcastle18111864", :label => 'Pelham-Clinton, Henry Pelham Fiennes, Duke of Newcastle, 1811-1864'
     property :"subject/PellumDonW", :label => 'Pellum, DonW.'
-    property :PendletonHighSchoolPendletonOregon, :label => 'Pendleton High School, Pendleton, Oregon', :comment =>
+    property :"subject/PendletonHighSchoolPendletonOregon", :label => 'Pendleton High School, Pendleton, Oregon', :comment =>
       %(Secondary school in Pendleton, Oregon, United States)
     property :"subject/PendletonRoundUp", :label => 'Pendleton Round-Up', :comment =>
       %(A frontier exhibition of picturesque pastimes, Indian and
@@ -3900,13 +3896,13 @@ module OregonDigital::Vocabularies
       %(Preacher \(?\), Berea, Kentucky)
     property :"subject/PenningtonBarry", :label => 'Pennington, Barry'
     property :"subject/PensoMarcS", :label => 'Penso, Marc S.'
-    property :PeoChiefElijahLowry, :label => 'Peo, Chief Elijah Lowry', :comment =>
+    property :"subject/PeoChiefElijahLowry", :label => 'Peo, Chief Elijah Lowry', :comment =>
       %(Umatilla man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :PeoJennie, :label => 'Peo, Jennie', :comment =>
+    property :"subject/PeoJennie", :label => 'Peo, Jennie', :comment =>
       %(Native American woman photographed by Lee Moorhouse ca.
         1897-ca. 1920. Mother of Rachel Eva Shillal amd sister of
         Walter Peo.)
-    property :PeoWalter, :label => 'Peo, Walter', :comment =>
+    property :"subject/PeoWalter", :label => 'Peo, Walter', :comment =>
       %(Umatilla man photographed by Lee Moorhouse ca. 1897-ca. 1920.
         Brother of Jennie Peo.)
     property :"subject/PepelnjakGeorge", :label => 'Pepelnjak, George'
@@ -3939,7 +3935,7 @@ module OregonDigital::Vocabularies
     property :"subject/PetersonRobertL", :label => 'Peterson, Robert L.'
     property :"subject/PetersonSteve", :label => 'Peterson, Steve'
     property :"subject/PetersonVirginia", :label => 'Peterson, Virginia'
-    property :Petints, :label => 'Petints', :comment =>
+    property :"subject/Petints", :label => 'Petints', :comment =>
       %(Walla Walla girl photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/PetrainWJ", :label => 'Petrain,W. J.'
@@ -3987,10 +3983,10 @@ module OregonDigital::Vocabularies
     property :"subject/PinkstaffJohn", :label => 'Pinkstaff, John'
     property :"subject/PioneerMother ", :label => 'Pioneer Mother'
     property :"subject/Pioneersculpture ", :label => 'Pioneer sculpture'
-    property :PipeHatchetStyle, :label => 'Pipe, Hatchet Style', :comment =>
+    property :"subject/PipeHatchetStyle", :label => 'Pipe, Hatchet Style', :comment =>
       %(Smoking pipe with the form of a small ax)
     property :"subject/PisarcikJakeA", :label => 'Pisarcik, Jake A.'
-    property :PishCook, :label => 'Pish-Cook', :comment =>
+    property :"subject/PishCook", :label => 'Pish-Cook', :comment =>
       %(Cayuse man photographed by Lee Moorhouse 1903)
     property :"subject/PitcairnJohnMAJ", :label => 'Pitcairn, John, MAJ'
     property :"subject/PitcaithleyAlanL", :label => 'Pitcaithley, Alan L.'
@@ -4006,16 +4002,16 @@ module OregonDigital::Vocabularies
     property :"subject/PocockJackNewton", :label => 'Pocock, JackNewton'
     property :"subject/PoemsbyCaptainJack", :label => 'Poems by Captain Jack', :comment =>
       %(Poetry by John W. \'Captain Jack\' Crawford)
-    property :PokerJim, :label => 'Poker Jim', :comment =>
+    property :"subject/PokerJim", :label => 'Poker Jim', :comment =>
       %(Cayuse man, whose camp was near Cayuse Station, was
         photographed by Lee Moorhouse ca. 1897-ca. 1920. He was also
         Chief of the Pendleton Round-Up sometime during the same
         period.)
-    property :"event/PolarPlungeFundraiser", :label => 'Polar Plunge (Fundraiser)'
+    property :"subject/PolarPlungeFundraiser", :label => 'Polar Plunge (Fundraiser)'
     property :"subject/PoloJohnF", :label => 'Polo, John F.'
     property :"subject/PonticelliBernice", :label => 'Ponticelli, Bernice', :comment =>
       %(Costume designer on the movie The Great Sioux Uprising)
-    property :PopeLeoWhiteBull, :label => 'Pope Leo White Bull', :comment =>
+    property :"subject/PopeLeoWhiteBull", :label => 'Pope Leo White Bull', :comment =>
       %(Cayuse and Umatilla boy photographed by Lee Moorhouse ca.
         1897-ca. 1920.)
     property :"subject/PopeMrsET", :label => 'Pope, Mrs. E. T.', :comment =>
@@ -4112,7 +4108,7 @@ module OregonDigital::Vocabularies
     property :"subject/QingMingFestival", :label => 'Qing Ming Festival'
     property :"subject/QuaneJoann", :label => 'Quane, Joann'
     property :"subject/QuarrieDon", :label => 'Quarrie, Don'
-    property :QueenEtna, :label => 'Queen Etna', :comment =>
+    property :"subject/QueenEtna", :label => 'Queen Etna', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/QuillanFred", :label => 'Quillan, Fred'
     property :"subject/RachWilliam", :label => 'Rach, William'
@@ -4156,10 +4152,10 @@ module OregonDigital::Vocabularies
     property :"subject/ReberPaulD", :label => 'Reber, Paul D.'
     property :"subject/ReceiptRollforWallaWallaTribe", :label => 'Receipt Roll for Walla Walla Tribe', :comment =>
       %(Census document for the Walla Walla tribal members)
-    property :RedElk, :label => 'Red Elk', :comment =>
+    property :"subject/RedElk", :label => 'Red Elk', :comment =>
       %(Umatilla man photographed by Lee Moorhouse in 1903.)
     property :"subject/ReddawayGaryW", :label => 'Reddaway, GaryW.'
-    property :RedhawkGeorge, :label => 'Redhawk, George', :comment =>
+    property :"subject/RedhawkGeorge", :label => 'Redhawk, George', :comment =>
       %(Cayuse chief photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/RedmondCharles", :label => 'Redmond, Charles'
     property :"subject/ReeRyannD", :label => 'Ree, Ryann D.'
@@ -4183,7 +4179,7 @@ module OregonDigital::Vocabularies
     property :"subject/RegnerWilliam", :label => 'Regner, William'
     property :"subject/ReidPeter", :label => 'Reid, Peter'
     property :"subject/ReinhartBill", :label => 'Reinhart, Bill'
-    property :Reins, :label => 'Reins', :comment =>
+    property :"subject/Reins", :label => 'Reins', :comment =>
       %(Straps used to guide a horse, connected to a bridle)
     property :"subject/ReischmanJohnG", :label => 'Reischman, John G.'
     property :"subject/ReiserKenneth", :label => 'Reiser, Kenneth'
@@ -4192,7 +4188,7 @@ module OregonDigital::Vocabularies
     property :"subject/ReitzugJosephA", :label => 'Reitzug, Joseph A.'
     property :"subject/ReliefHospitalshipAH", :label => 'Relief (Hospital ship : AH)', :comment =>
       %(USS Relief was a naval hospital ship 1917-1946.)
-    property :Religiousdwellings, :label => 'Religious dwellings', :comment =>
+    property :"subject/Religiousdwellings", :label => 'Religious dwellings', :comment =>
       %(Domenstic buildings affiliated with a religious sect or
         community)
     property :"subject/RelocationReservation18321871", :label => 'Relocation / Reservation (1832-1871)', :comment =>
@@ -4247,7 +4243,7 @@ module OregonDigital::Vocabularies
       %(Musician, Viper, Kentucky)
     property :"subject/RitsonBob", :label => 'Ritson, Bob'
     property :"subject/RiveraEdmundJ", :label => 'Rivera, Edmund J.'
-    property :RoachPorcupine, :label => 'Roach, Porcupine', :comment =>
+    property :"subject/RoachPorcupine", :label => 'Roach, Porcupine', :comment =>
       %(A headdress made of porcupine hair)
     property :"subject/RobbinsMark", :label => 'Robbins, Mark'
     property :"subject/RobersonDave", :label => 'Roberson, Dave'
@@ -4391,7 +4387,7 @@ module OregonDigital::Vocabularies
     property :"subject/SaltzmanHal", :label => 'Saltzman, Hal'
     property :"subject/SamplesMerlyn", :label => 'Samples, Merlyn'
     property :"subject/SampsonDrewA", :label => 'Sampson, Drew A.'
-    property :SampsonMaud, :label => 'Sampson, Maud', :comment =>
+    property :"subject/SampsonMaud", :label => 'Sampson, Maud', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/SamuelsonAllan", :label => 'Samuelson, Allan'
     property :"subject/SanFranciscoStateCollegeBlackFire", :label => 'San Francisco State College. Black Fire'
@@ -4418,12 +4414,12 @@ module OregonDigital::Vocabularies
     property :"subject/SawamuraKodenji", :label => 'Sawamura Kodenji'
     property :"subject/SawamuraSojuro", :label => 'Sawamura, Sojuro'
     property :"subject/SawamuraSojuroIII", :label => 'Sawamura, Sojuro, III'
-    property :SawattisKowKow, :label => 'Sawattis-Kow-Kow', :comment =>
+    property :"subject/SawattisKowKow", :label => 'Sawattis-Kow-Kow', :comment =>
       %(Native member of the Indian Police Umatilla Agency in 1888.)
     property :"subject/SaxMoe", :label => 'Sax, Moe'
-    property :ScabbardKnife, :label => 'Scabbard, Knife', :comment =>
+    property :"subject/ScabbardKnife", :label => 'Scabbard, Knife', :comment =>
       %(A sheath for a knife)
-    property :ScabbardRifle, :label => 'Scabbard, Rifle', :comment =>
+    property :"subject/ScabbardRifle", :label => 'Scabbard, Rifle', :comment =>
       %(A sheath for a rifle)
     property :"subject/SchadeAlanJ", :label => 'Schade, Alan J.'
     property :"subject/SchaeferErikaA", :label => 'Schaefer, Erika A.'
@@ -4504,7 +4500,7 @@ module OregonDigital::Vocabularies
     property :"subject/SensLaurenE", :label => 'Sens, Lauren E.'
     property :"subject/SeoHanuleS", :label => 'Seo, Hanule S.'
     property :"subject/SeoSky", :label => 'Seo, Sky'
-    property :Sequyena, :label => 'Sequyena', :comment =>
+    property :"subject/Sequyena", :label => 'Sequyena', :comment =>
       %(Walla Walla man photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/SernaCaseyR", :label => 'Serna, Casey R.'
@@ -4529,7 +4525,7 @@ module OregonDigital::Vocabularies
     property :"subject/ShawGeorge", :label => 'Shaw, George'
     property :"subject/ShawMichaelT", :label => 'Shaw, Michael T.'
     property :"subject/ShawThomasG", :label => 'Shaw, Thomas G.'
-    property :ShawlPendleton, :label => 'Shawl, Pendleton', :comment =>
+    property :"subject/ShawlPendleton", :label => 'Shawl, Pendleton', :comment =>
       %(A rectangular garment or wrapper for covering the head and
         shoulders, made from a Pendleton Blanket. The Pendleton Woolen
         Mills in Oregon mass produced these blankets for trading with
@@ -4553,19 +4549,19 @@ module OregonDigital::Vocabularies
     property :"subject/SherrellRachelS", :label => 'Sherrell, Rachel S.'
     property :"subject/ShiJin", :label => 'Shi Jin'
     property :"subject/ShieldsEugene", :label => 'Shields, Eugene'
-    property :ShillalRachelEva, :label => 'Shillal, Rachel Eva', :comment =>
+    property :"subject/ShillalRachelEva", :label => 'Shillal, Rachel Eva', :comment =>
       %(Native American infant, daughter of Jennie Peo, photographed
         by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/ShimomuraCharles", :label => 'Shimomura, Charles'
     property :"subject/ShipleyKen", :label => 'Shipley, Ken'
     property :"subject/ShippentowerAlex", :label => 'Shippentower, Alex', :comment =>
       %(Native American man)
-    property :ShirtBuckskin, :label => 'Shirt, Buckskin', :comment =>
+    property :"subject/ShirtBuckskin", :label => 'Shirt, Buckskin', :comment =>
       %(Main garment for the upper body made of deer skin)
-    property :ShirtBuckskinBeaded, :label => 'Shirt, Buckskin--Beaded', :comment =>
+    property :"subject/ShirtBuckskinBeaded", :label => 'Shirt, Buckskin--Beaded', :comment =>
       %(Main garment for the upper body made of deer skin and
         decorated with beads)
-    property :ShirtCloth, :label => 'Shirt, Cloth', :comment =>
+    property :"subject/ShirtCloth", :label => 'Shirt, Cloth', :comment =>
       %(Main garment for the upper body made of cloth)
     property :"subject/ShmockPeterC", :label => 'Shmock, Peter C.'
     property :"subject/ShoemakeBud", :label => 'Shoemake, Bud'
@@ -4575,17 +4571,18 @@ module OregonDigital::Vocabularies
     property :"subject/ShookRobert", :label => 'Shook, Robert', :comment =>
       %(Farmer, New Found Creek, North Carolina)
     property :"subject/ShortFaulkner", :label => 'Short, Faulkner'
-    property :"event/ShowTime2011", :label => 'Show Time, 2011'
-    property :"event/ShowTime2012", :label => 'Show Time, 2012'
-    property :ShowawayPaul, :label => 'Showaway, Paul', :comment =>
+    property :"subject/ShowTime2011", :label => 'Show Time, 2011'
+    property :"subject/ShowTime2012", :label => 'Show Time, 2012'
+    property :"subject/ShowawayPaul", :label => 'Showaway, Paul', :comment =>
       %(Umatilla or Cayuse man photographed by Lee Moorhouse ca.
         1897-ca. 1920.)
-    property :"event/Showtime2013", :label => 'Showtime, 2013'
+    property :"subject/Showtime2013", :label => 'Showtime, 2013'
     property :"subject/ShraderBrianT", :label => 'Shrader, Brian T.'
     property :"subject/ShreveDon", :label => 'Shreve, Don'
     property :"subject/ShreveKourtney", :label => 'Shreve, Kourtney'
     property :"subject/ShrinesCentralAsia", :label => 'Shrines--Central Asia'
     property :"subject/ShurNicolai", :label => 'Shur, Nicolai'
+    property :"subject/Sicilian", :label => 'Sicilian'
     property :"subject/SickelJack", :label => 'Sickel, Jack'
     property :"subject/SidesingerQuentin", :label => 'Sidesinger, Quentin'
     property :"subject/SiefertGeorge", :label => 'Siefert, George'
@@ -4710,7 +4707,7 @@ module OregonDigital::Vocabularies
     property :"subject/SoggeStudio", :label => 'Sogge Studio'
     property :"subject/SoggeChan", :label => 'Sogge, Chan'
     property :"subject/SohRuiYong", :label => 'Soh, RuiYong'
-    property :Somkin, :label => 'Som-kin', :comment =>
+    property :"subject/Somkin", :label => 'Som-kin', :comment =>
       %(Walla Walla princess photographed by Lee Moorhouse ca.
         1897-ca. 1920.)
     property :"subject/SorensenRex", :label => 'Sorensen, Rex'
@@ -4888,7 +4885,7 @@ module OregonDigital::Vocabularies
     property :"subject/StueckemannJanaR", :label => 'Stueckemann, Jana R.'
     property :"subject/StullerEverett", :label => 'Stuller, Everett'
     property :"subject/StutzmanDuane", :label => 'Stutzman, Duane'
-    property :SuLump, :label => 'Su-Lump', :comment =>
+    property :"subject/SuLump", :label => 'Su-Lump', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/Subhatalabrar", :label => 'Subhat al-abrar'
     property :"subject/SuguraJoe", :label => 'Sugura, Joe'
@@ -5013,7 +5010,7 @@ module OregonDigital::Vocabularies
         jurisdiction of states.)
     property :"subject/TessarBrandoJ", :label => 'Tessar, Brando J.'
     property :"subject/TextiledesignAfrica", :label => 'Textile design--Africa'
-    property :Textilemillworkers, :label => 'Textile mill workers', :comment =>
+    property :"subject/Textilemillworkers", :label => 'Textile mill workers', :comment =>
       %(Laborers in the textile-producing industy)
     property :"subject/ThackerayWilliamMakepeace18111863VanityFair", :label => 'Thackeray, William Makepeace, 1811-1863. Vanity Fair'
     property :"subject/ThayerDutch", :label => 'Thayer, Dutch'
@@ -5062,7 +5059,7 @@ module OregonDigital::Vocabularies
     property :"subject/ThorpeJohnD", :label => 'Thorpe, John D.'
     property :"subject/ThorpeThomasP", :label => 'Thorpe, Thomas P.'
     property :"subject/ThurstonSam", :label => 'Thurston, Sam'
-    property :TiCarNee, :label => 'Ti-Car-Nee', :comment =>
+    property :"subject/TiCarNee", :label => 'Ti-Car-Nee', :comment =>
       %(Walla Walla man photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/TibblesLance", :label => 'Tibbles, Lance'
@@ -5073,7 +5070,7 @@ module OregonDigital::Vocabularies
       %(Native Maerican girl from Wainwright, Alaska)
     property :"subject/TigerJamesD", :label => 'Tiger, James D.'
     property :"subject/TikiPolynesiandeity", :label => 'Tiki (Polynesian deity)'
-    property :Tilloquats, :label => 'Tilloquats', :comment =>
+    property :"subject/Tilloquats", :label => 'Tilloquats', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/Tilting", :label => 'Tilting'
     property :"subject/Timarete", :label => 'Timarete'
@@ -5093,12 +5090,12 @@ module OregonDigital::Vocabularies
     property :"subject/TorinomachiFestival", :label => 'Torinomachi Festival'
     property :"subject/TornabuoniFrancescaPitti", :label => 'Tornabuoni, Francesca (Pitti)'
     property :"subject/TornabuoniGiovanni", :label => 'Tornabuoni, Giovanni'
-    property :Totshoma, :label => 'Tots-homa', :comment =>
+    property :"subject/Totshoma", :label => 'Tots-homa', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/TottenJessie", :label => 'Totten, Jessie'
     property :"subject/TougasRamonaR", :label => 'Tougas, Ramona R.'
     property :"subject/TourvilleCharlesW", :label => 'Tourville, CharlesW.'
-    property :Towatoy, :label => 'Towatoy', :comment =>
+    property :"subject/Towatoy", :label => 'Towatoy', :comment =>
       %(Umatilla man photographed by Lee Moorhouse in 1903.)
     property :"subject/TownsendHazel", :label => 'Townsend, Hazel', :comment =>
       %(Of Alpine, Oregon)
@@ -5144,7 +5141,7 @@ module OregonDigital::Vocabularies
     property :"subject/TrowbridgeJoe", :label => 'Trowbridge, Joe'
     property :"subject/TroxelRichard", :label => 'Troxel, Richard'
     property :"subject/TrukositzDavid", :label => 'Trukositz, David'
-    property :Tsintschpu, :label => 'Tsin-tschpu', :comment =>
+    property :"subject/Tsintschpu", :label => 'Tsin-tschpu', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/TsurusakiKiyoharu", :label => 'Tsurusaki, Kiyoharu'
     property :"subject/TsuyuMorningDew", :label => 'Tsuyu (Morning Dew)'
@@ -5156,7 +5153,7 @@ module OregonDigital::Vocabularies
     property :"subject/TuerckWilliamP", :label => 'Tuerck, William P.'
     property :"subject/TuggleSusan", :label => 'Tuggle, Susan'
     property :"subject/TuhfatalahrarGiftofthefree", :label => 'Tuhfat al-ahrar (Gift of the free)'
-    property :Turkicriders, :label => 'Turkic riders', :comment =>
+    property :"subject/Turkicriders", :label => 'Turkic riders', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/TurnerFred", :label => 'Turner, Fred'
     property :"subject/TuskettBob", :label => 'Tuskett, Bob'
@@ -5172,16 +5169,16 @@ module OregonDigital::Vocabularies
     property :"subject/UhlmanJasonA", :label => 'Uhlman, Jason A.'
     property :"subject/Ukifune", :label => 'Ukifune'
     property :"subject/UkiyoeFloatingWorld", :label => 'Ukiyo-e (Floating World)'
-    property :UmaSomKin, :label => 'Uma-Som-Kin', :comment =>
+    property :"subject/UmaSomKin", :label => 'Uma-Som-Kin', :comment =>
       %(Cayuse man, captain of the Indian Police Umatilla Agency in
         1888, photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :UmaSomKinMrs, :label => 'Uma-Som-Kin, Mrs.', :comment =>
+    property :"subject/UmaSomKinMrs", :label => 'Uma-Som-Kin, Mrs.', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/UmatillaImplementCompany", :label => 'Umatilla Implement Company', :comment =>
       %(Pendleton, Oregon company)
     property :"subject/UmenhoferKelly", :label => 'Umenhofer, Kelly'
     property :"subject/UnakaNdidi", :label => 'Unaka, Ndidi'
-    property :Underdresscloth, :label => 'Underdress, cloth', :comment =>
+    property :"subject/Underdresscloth", :label => 'Underdress, cloth', :comment =>
       %(Cloth dresses worn beneath another dress)
     property :"subject/Uniformity", :label => 'Uniformity'
     property :"subject/UnionFishermansCooperativePackingCompany", :label => 'Union Fisherman\'s Cooperative Packing Company', :comment =>
@@ -5272,7 +5269,7 @@ module OregonDigital::Vocabularies
     property :"subject/VerondaTony", :label => 'Veronda, Tony'
     property :"subject/VertumnusRomandeity", :label => 'Vertumnus (Roman deity)'
     property :"subject/VeruttiPatrickJ", :label => 'Verutti, Patrick J.'
-    property :VestCloth, :label => 'Vest, Cloth', :comment =>
+    property :"subject/VestCloth", :label => 'Vest, Cloth', :comment =>
       %(Sleveless main garments extending to the waist or just below
         it, made of cloth)
     property :"subject/VetterDebbie", :label => 'Vetter, Debbie'
@@ -5308,7 +5305,7 @@ module OregonDigital::Vocabularies
     property :"subject/VowelsBarbara", :label => 'Vowels, Barbara'
     property :"subject/WHMcMoniesandCompany", :label => 'W.H. McMonies and Company', :comment =>
       %(Harness company in Portland, Oregon)
-    property :Watistemeha, :label => 'Wa-tis-te-me-ha', :comment =>
+    property :"subject/Watistemeha", :label => 'Wa-tis-te-me-ha', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/WaddellHarrington", :label => 'Waddell & Harrington'
     property :"subject/WaddellDave", :label => 'Waddell, Dave'
@@ -5322,8 +5319,6 @@ module OregonDigital::Vocabularies
     property :"subject/WagnerCarolynM", :label => 'Wagner, Carolyn M.'
     property :"subject/WagnerCharlesE", :label => 'Wagner, Charles E.'
     property :"subject/Wagonwheels", :label => 'Wagon wheels', :comment =>
-      %(Term derived from the Historical Photographs Collection)
-    property :Wagonwheels, :label => 'Wagon wheels', :comment =>
       %(Whells, largely wooden, made for wagons)
     property :"subject/WagonerKiraE", :label => 'Wagoner, Kira E.'
     property :"subject/WaldenCecil", :label => 'Walden, Cecil'
@@ -5354,7 +5349,7 @@ module OregonDigital::Vocabularies
     property :"subject/WaltzingMarbleHorse", :label => 'Waltzing Marble (Horse)', :comment =>
       %(Horse riden in the Pendelton Round-Up, Pendleton, Oregon)
     property :"subject/WalzerAndrewW", :label => 'Walzer, AndrewW.'
-    property :Wanico, :label => 'Wanico', :comment =>
+    property :"subject/Wanico", :label => 'Wanico', :comment =>
       %(Umatilla man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/WarEagleJohn", :label => 'War Eagle, John', :comment =>
       %(Native American actor who appeared in the movie The Great
@@ -5385,7 +5380,7 @@ module OregonDigital::Vocabularies
     property :"subject/WashingtonTonyO", :label => 'Washington, Tony O.'
     property :"subject/WasikowskiMark", :label => 'Wasikowski, Mark'
     property :"subject/WaspPatriciaA", :label => 'Wasp, Patricia A.'
-    property :Watalowit, :label => 'Watalowit', :comment =>
+    property :"subject/Watalowit", :label => 'Watalowit', :comment =>
       %(Native member of the Indian Police Umatilla Agency in 1888.)
     property :"subject/WatanabenoTsuna", :label => 'Watanabe no Tsuna'
     property :"subject/WatheyJamesE", :label => 'Wathey, James E.'
@@ -5417,10 +5412,10 @@ module OregonDigital::Vocabularies
       %(African-American singer, Berea, Kentucky and Murphy, North
         Carolina)
     property :"subject/WengertEgbertS19121964", :label => 'Wengert, Egbert S., 1912-1964'
-    property :WenixtheElder, :label => 'Wenix, the Elder', :comment =>
+    property :"subject/WenixtheElder", :label => 'Wenix, the Elder', :comment =>
       %(Cayuse woman, sister of Donald McKay, photographed by Lee
         Moorhouse ca. 1897-ca. 1920.)
-    property :WenixtheYounger, :label => 'Wenix, the Younger', :comment =>
+    property :"subject/WenixtheYounger", :label => 'Wenix, the Younger', :comment =>
       %(Cayuse woman, sister of Red Elk, photographed by Lee Moorhouse
         ca. 1897-ca. 1920.)
     property :"subject/WerbundExhibition1914CologneGermany", :label => 'Werbund Exhibition (1914: Cologne, Germany)'
@@ -5448,23 +5443,23 @@ module OregonDigital::Vocabularies
     property :"subject/WheelerJaklynA", :label => 'Wheeler, Jaklyn A.'
     property :"subject/WheelerJonC", :label => 'Wheeler, Jon C.'
     property :"subject/WheelerSheila", :label => 'Wheeler, Sheila'
-    property :WheetSootJack, :label => 'WheetSoot, Jack', :comment =>
+    property :"subject/WheetSootJack", :label => 'WheetSoot, Jack', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :WheetSootMrs, :label => 'WheetSoot, Mrs.', :comment =>
+    property :"subject/WheetSootMrs", :label => 'WheetSoot, Mrs.', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/WhighamStanleyT", :label => 'Whigham, Stanley T.'
     property :"subject/WhippleBert", :label => 'Whipple, Bert'
-    property :WhirlwindCharlesJr, :label => 'Whirlwind, Charles, Jr.', :comment =>
+    property :"subject/WhirlwindCharlesJr", :label => 'Whirlwind, Charles, Jr.', :comment =>
       %(Native American man photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
-    property :WhirlwindCharleySr, :label => 'Whirlwind, Charley, Sr.', :comment =>
+    property :"subject/WhirlwindCharleySr", :label => 'Whirlwind, Charley, Sr.', :comment =>
       %(Cayuse doctor photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/WhiteAndrinae", :label => 'White, Andrinae'
     property :"subject/WhiteChandlerJ", :label => 'White, Chandler J.'
     property :"subject/WhiteChelseaM", :label => 'White, Chelsea M.'
     property :"subject/WhiteHal", :label => 'White, Hal'
     property :"subject/WhiteHerald", :label => 'White, Herald'
-    property :WhiteIsaiah, :label => 'White, Isaiah', :comment =>
+    property :"subject/WhiteIsaiah", :label => 'White, Isaiah', :comment =>
       %(Native member of the Indian Police Umatilla Agency in 1888.)
     property :"subject/WhiteMandy", :label => 'White, Mandy'
     property :"subject/WhiteMichaelC", :label => 'White, Michael C.'
@@ -5472,7 +5467,7 @@ module OregonDigital::Vocabularies
     property :"subject/WhiteStewartE", :label => 'White, Stewart E.'
     property :"subject/WhiteWally", :label => 'White, Wally'
     property :"subject/WhiteWill", :label => 'White, Will'
-    property :WhitebullIsadore, :label => 'Whitebull, Isadore', :comment =>
+    property :"subject/WhitebullIsadore", :label => 'Whitebull, Isadore', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/WhitfieldAnnieN", :label => 'Whitfield, Annie N.'
     property :"subject/WhitfieldRobert", :label => 'Whitfield, Robert'
@@ -5488,7 +5483,7 @@ module OregonDigital::Vocabularies
     property :"subject/WideWorldPhoto", :label => 'Wide World Photo'
     property :"subject/WiestOskar", :label => 'Wiest, Oskar'
     property :"subject/WigginsPaul", :label => 'Wiggins, Paul'
-    property :WikeWike, :label => 'Wike-Wike', :comment =>
+    property :"subject/WikeWike", :label => 'Wike-Wike', :comment =>
       %(Native member of the Indian Police Umatilla Agency in 1888.)
     property :"subject/WilbanksScott", :label => 'Wilbanks, Scott'
     property :"subject/WilbornDavidC", :label => 'Wilborn, David C.'
@@ -5516,7 +5511,7 @@ module OregonDigital::Vocabularies
       %(Artist.)
     property :"subject/WilliamWHarseyJr", :label => 'William W. Harsey, Jr.', :comment =>
       %(Artist.)
-    property :WilliamVictor, :label => 'William, Victor', :comment =>
+    property :"subject/WilliamVictor", :label => 'William, Victor', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/WilliamsArianaC", :label => 'Williams, Ariana C.'
     property :"subject/WilliamsBasil", :label => 'Williams, Basil'
@@ -5529,9 +5524,9 @@ module OregonDigital::Vocabularies
     property :"subject/WilliamsGaryR", :label => 'Williams, Gary R.'
     property :"subject/WilliamsJeffreyI", :label => 'Williams, Jeffrey I.'
     property :"subject/WilliamsJerome", :label => 'Williams, Jerome'
-    property :WilliamsJulius, :label => 'Williams, Julius', :comment =>
+    property :"subject/WilliamsJulius", :label => 'Williams, Julius', :comment =>
       %(Cayuse man photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :WilliamsLucian, :label => 'Williams, Lucian', :comment =>
+    property :"subject/WilliamsLucian", :label => 'Williams, Lucian', :comment =>
       %(Cowboy in the Pendleton Round-Up ca. 1897-ca. 1920.)
     property :"subject/WilliamsMichaelJ", :label => 'Williams, Michael J.'
     property :"subject/WilliamsMicheleK", :label => 'Williams, Michele K.'
@@ -5539,7 +5534,7 @@ module OregonDigital::Vocabularies
     property :"subject/WilliamsRandy", :label => 'Williams, Randy'
     property :"subject/WilliamsRobertE", :label => 'Williams, Robert E.'
     property :"subject/WilliamsShaquala", :label => 'Williams, Shaquala'
-    property :WilliamsStella, :label => 'Williams, Stella', :comment =>
+    property :"subject/WilliamsStella", :label => 'Williams, Stella', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/WilliamsSteve", :label => 'Williams, Steve'
     property :"subject/WilliamsTerryR", :label => 'Williams, Terry R.'
@@ -5593,9 +5588,9 @@ module OregonDigital::Vocabularies
     property :"subject/WinnHarveyJ", :label => 'Winn, Harvey J.'
     property :"subject/WintermuteUrgel", :label => 'Wintermute, Urgel'
     property :"subject/WiperNicholasK", :label => 'Wiper, Nicholas K.'
-    property :WoPaPum, :label => 'Wo-Pa-Pum', :comment =>
+    property :"subject/WoPaPum", :label => 'Wo-Pa-Pum', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
-    property :Wohopum, :label => 'Wo-ho-pum', :comment =>
+    property :"subject/Wohopum", :label => 'Wo-ho-pum', :comment =>
       %(Cayuse woman photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/WoganMatthewR", :label => 'Wogan, Matthew R.'
     property :"subject/WohlersPat", :label => 'Wohlers, Pat'
@@ -5611,7 +5606,7 @@ module OregonDigital::Vocabularies
     property :"subject/WolfsonDerekC", :label => 'Wolfson, Derek C.'
     property :"subject/WolmanFrancois", :label => 'Wolman, Francois'
     property :"subject/WolvertAngelina", :label => 'Wolvert, Angelina'
-    property :"event/WomeninAthleticsCelebration", :label => 'Women in Athletics Celebration'
+    property :"subject/WomeninAthleticsCelebration", :label => 'Women in Athletics Celebration'
     property :"subject/WomensInternationalTerroristConspiracyfromHellWITCH", :label => 'Women\'s International Terrorist Conspiracy from Hell (WITCH)'
     property :"subject/Womenseducation", :label => 'Women\'s education'
     property :"subject/WonKeenynM", :label => 'Won, Keenyn M.'
@@ -5637,7 +5632,7 @@ module OregonDigital::Vocabularies
     property :"subject/WoodyKennethA", :label => 'Woody, Kenneth A.'
     property :"subject/WootenDuran", :label => 'Wooten, Duran'
     property :"subject/WootenTom", :label => 'Wooten, Tom'
-    property :Workcrews, :label => 'Work crews', :comment =>
+    property :"subject/Workcrews", :label => 'Work crews', :comment =>
       %(Groups of laborders put together to accomplish specific tasks)
     property :"subject/Workstudy ", :label => 'Work study'
     property :"subject/WorthingHelenLee19051948", :label => 'Worthing, Helen Lee, 1905-1948'
@@ -5665,11 +5660,11 @@ module OregonDigital::Vocabularies
     property :"subject/YatchmenoffNorman", :label => 'Yatchmenoff, Norman'
     property :"subject/YatesGeorge", :label => 'Yates, George'
     property :"subject/YatskoStuartA", :label => 'Yatsko, Stuart A.'
-    property :Yeehye, :label => 'Yeeh-ye', :comment =>
+    property :"subject/Yeehye", :label => 'Yeeh-ye', :comment =>
       %(Cayuse or Umatilla man photographed by Lee Moorhouse ca.
         1897-ca. 1920.)
     property :"subject/YellowGarterBandMusicalgroup", :label => 'Yellow Garter Band (Musical group)'
-    property :YellowHawk, :label => 'Yellow Hawk', :comment =>
+    property :"subject/YellowHawk", :label => 'Yellow Hawk', :comment =>
       %(Native American participant in the Pendleton Round-Up,
         photographed by Lee Moorhouse ca. 1897-ca. 1920.)
     property :"subject/YenDaisy", :label => 'Yen, Daisy'
@@ -5688,7 +5683,7 @@ module OregonDigital::Vocabularies
     property :"subject/YoungSA", :label => 'Young, S. A.'
     property :"subject/YoungbloodJamesha", :label => 'Youngblood, Jamesha'
     property :"subject/YoungbloodTerryG", :label => 'Youngblood, Terry G.'
-    property :YoungchiefDavid, :label => 'Youngchief, David', :comment =>
+    property :"subject/YoungchiefDavid", :label => 'Youngchief, David', :comment =>
       %(Walla Walla man photographed by Lee Moorhouse ca. 1897-ca.
         1920.)
     property :"subject/YoungmayrWilliamA", :label => 'Youngmayr, William A.'
@@ -5721,80 +5716,80 @@ module OregonDigital::Vocabularies
     property :"subject/abstractionnonobjective", :label => 'abstraction / non-objective'
     property :"subject/alHarithibnHammam", :label => 'al-Harith ibn Hammam'
     property :"subject/alRashidBeyOmar18391911", :label => 'al-Rashid Bey, Omar, 1839-1911'
-    property :antlerlandscapes, :label => 'antler landscapes', :comment =>
+    property :"subject/antlerlandscapes", :label => 'antler landscapes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :archaicanimals, :label => 'archaic animals', :comment =>
+    property :"subject/archaicanimals", :label => 'archaic animals', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/architecturalexteriors", :label => 'architectural exteriors'
     property :"subject/architecturalinteriors", :label => 'architectural interiors'
     property :"subject/architecturalplans", :label => 'architectural plans'
     property :"subject/architecturehistorical", :label => 'architecture, historical'
-    property :attackscenes, :label => 'attack scenes', :comment =>
+    property :"subject/attackscenes", :label => 'attack scenes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :birdmen, :label => 'bird-men', :comment =>
+    property :"subject/birdmen", :label => 'bird-men', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :birthingwomen, :label => 'birthing women', :comment =>
+    property :"subject/birthingwomen", :label => 'birthing women', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :boar, :label => 'boar', :comment =>
+    property :"subject/boar", :label => 'boar', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/botanical", :label => 'botanical'
-    property :bulldeer, :label => 'bull-deer', :comment =>
+    property :"subject/bulldeer", :label => 'bull-deer', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/candidportraits", :label => 'candid portraits', :comment =>
       %(Portraits with subjects unposed)
-    property :caprids, :label => 'caprids', :comment =>
+    property :"subject/caprids", :label => 'caprids', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/caricaturessatire", :label => 'caricatures / satire'
     property :"subject/collagedecollage", :label => 'collage, decollage'
     property :"subject/collateralmaterial", :label => 'collateral material'
-    property :combatscenes, :label => 'combat scenes', :comment =>
+    property :"subject/combatscenes", :label => 'combat scenes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/commercial", :label => 'commercial'
     property :"subject/commercialindustrialdesign", :label => 'commercial / industrial design'
     property :"subject/contemporary1950topresent", :label => 'contemporary (1950 to present)'
     property :"subject/crunchybagels", :label => 'crunchy bagels'
-    property :cupmarks, :label => 'cupmarks', :comment =>
+    property :"subject/cupmarks", :label => 'cupmarks', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/cyclesseries", :label => 'cycles / series'
-    property :dancingfigures, :label => 'dancing figures', :comment =>
+    property :"subject/dancingfigures", :label => 'dancing figures', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :deerriders, :label => 'deer riders', :comment =>
+    property :"subject/deerriders", :label => 'deer riders', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :deerhorses, :label => 'deer-horses', :comment =>
+    property :"subject/deerhorses", :label => 'deer-horses', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/didactic", :label => 'didactic'
-    property :domesticscenes, :label => 'domestic scenes', :comment =>
+    property :"subject/domesticscenes", :label => 'domestic scenes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/duToitTrudie", :label => 'duToit, Trudie'
     property :"subject/engineeringindustry", :label => 'engineering / industry'
-    property :enigmaticpatterns, :label => 'enigmatic patterns', :comment =>
+    property :"subject/enigmaticpatterns", :label => 'enigmatic patterns', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :eroticscenes, :label => 'erotic scenes', :comment =>
+    property :"subject/eroticscenes", :label => 'erotic scenes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :felines, :label => 'felines', :comment =>
+    property :"subject/felines", :label => 'felines', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :femalefigures, :label => 'female figures', :comment =>
+    property :"subject/femalefigures", :label => 'female figures', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/fenghuang", :label => 'feng-huang'
     property :"subject/figuregroups", :label => 'figure groups'
-    property :figures, :label => 'figures', :comment =>
+    property :"subject/figures", :label => 'figures', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/figuresfemale", :label => 'figures, female'
     property :"subject/figuresmale", :label => 'figures, male'
     property :"subject/filmandvideo", :label => 'film and video'
     property :"subject/fortifiedtown", :label => 'fortified town'
-    property :frontalfigures, :label => 'frontal figures', :comment =>
+    property :"subject/frontalfigures", :label => 'frontal figures', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/genre", :label => 'genre'
-    property :handprints, :label => 'hand-prints', :comment =>
+    property :"subject/handprints", :label => 'hand-prints', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :herdingscenes, :label => 'herding scenes', :comment =>
+    property :"subject/herdingscenes", :label => 'herding scenes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/historical", :label => 'historical'
     property :"subject/historicalarchitecture", :label => 'historical architecture'
-    property :hornedfigures, :label => 'horned figures', :comment =>
+    property :"subject/hornedfigures", :label => 'horned figures', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :huntingscenes, :label => 'hunting scenes', :comment =>
+    property :"subject/huntingscenes", :label => 'hunting scenes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/indooractionphotographseries", :label => 'indoor action photograph series'
     property :"subject/indoorcandidportraits", :label => 'indoor candid portraits', :comment =>
@@ -5812,14 +5807,14 @@ module OregonDigital::Vocabularies
     property :"subject/interiors", :label => 'interiors', :comment =>
       %(Photos of interior spaces that may or may not include figures)
     property :"subject/khokholoma", :label => 'khokholoma'
-    property :landscapescenes, :label => 'landscape scenes', :comment =>
+    property :"subject/landscapescenes", :label => 'landscape scenes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/literarylegendary", :label => 'literary / legendary'
-    property :malefigures, :label => 'male figures', :comment =>
+    property :"subject/malefigures", :label => 'male figures', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/manuscriptsandbooks", :label => 'manuscripts and books'
     property :"subject/militarywar", :label => 'military / war'
-    property :modernwriting, :label => 'modern writing', :comment =>
+    property :"subject/modernwriting", :label => 'modern writing', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/nushwetu", :label => 'nushwetu'
     property :"subject/outdooractionphotographseries", :label => 'outdoor action photograph series'
@@ -5840,45 +5835,45 @@ module OregonDigital::Vocabularies
     property :"subject/outdoorposedphotographicportrait", :label => 'outdoor posed photographic portrait'
     property :"subject/outdoorstudioportraits", :label => 'outdoor studio portraits', :comment =>
       %(Portraits taken in an outdoor studio setting)
-    property :ovids, :label => 'ovids', :comment =>
+    property :"subject/ovids", :label => 'ovids', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/petrushkas", :label => 'petrushkas'
     property :"subject/portraitphotographs", :label => 'portrait photographs', :comment =>
       %(Photographic portraits)
     property :"subject/posedoutdoor", :label => 'posed outdoor'
     property :"subject/posedoutdoorphotograph", :label => 'posed outdoor photograph'
-    property :predationscenes, :label => 'predation scenes', :comment =>
+    property :"subject/predationscenes", :label => 'predation scenes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/printedadvertisingorsouvenircard", :label => 'printed advertising or souvenir card'
     property :"subject/recreationandgames", :label => 'recreation and games'
     property :"subject/religiousSemitic", :label => 'religious (Semitic)'
-    property :riders, :label => 'riders', :comment =>
+    property :"subject/riders", :label => 'riders', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :ritualscenes, :label => 'ritual scenes', :comment =>
+    property :"subject/ritualscenes", :label => 'ritual scenes', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/rulersleaders", :label => 'rulers / leaders'
     property :"subject/rural", :label => 'rural'
     property :"subject/scientificmedical", :label => 'scientific / medical'
     property :"subject/settlement", :label => 'settlement'
-    property :spiritfigures, :label => 'spirit figures', :comment =>
+    property :"subject/spiritfigures", :label => 'spirit figures', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/standardschool", :label => 'standard school', :comment =>
       %(A school meeting the standards set by the rules of the Oregon
         State Board of Education)
     property :"subject/studiophotographs", :label => 'studio photographs', :comment =>
       %(Photographs taken in a studio setting)
-    property :stylizeddeer, :label => 'stylized deer', :comment =>
+    property :"subject/stylizeddeer", :label => 'stylized deer', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :stylizedstags, :label => 'stylized stags', :comment =>
+    property :"subject/stylizedstags", :label => 'stylized stags', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/suburban", :label => 'suburban'
-    property :syncreticdeer, :label => 'syncretic deer', :comment =>
+    property :"subject/syncreticdeer", :label => 'syncretic deer', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :syncreticstag, :label => 'syncretic stag', :comment =>
+    property :"subject/syncreticstag", :label => 'syncretic stag', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :tamgas, :label => 'tamgas', :comment =>
+    property :"subject/tamgas", :label => 'tamgas', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
-    property :transitionaldeer, :label => 'transitional deer', :comment =>
+    property :"subject/transitionaldeer", :label => 'transitional deer', :comment =>
       %(Term originated in the Mongolian Altai Inventory Collection)
     property :"subject/typographycalligraphy", :label => 'typography / calligraphy'
     property :"subject/unidentifiedmale", :label => 'unidentified male', :comment =>
