@@ -22,6 +22,8 @@ module OregonDigital::Vocabularies
     property :"people/AddisonBralonR", :label => 'Addison, Bralon R.'
     property :"people/AdlerJack", :label => 'Adler, Jack'
     property :"people/AgnewSpiroT1918", :label => 'Agnew, Spiro T. , 1918-'
+    property :"people/AgostTaylorM", :label => 'Agos, Taylor M.', :comment =>
+      %(Volleyball, Fr. 2014-2015.)
     property :"people/AhernJoe", :label => 'Ahern, Joe'
     property :"people/AikenJerryC", :label => 'Aiken, Jerry C.'
     property :"people/AikenJim", :label => 'Aiken, Jim'
@@ -32,6 +34,8 @@ module OregonDigital::Vocabularies
     property :"people/AlbrightGaryR", :label => 'Albright, Gary R.'
     property :"people/AleLeroyT", :label => 'Ale, Leroy T.'
     property :"people/AlexanderColbyR", :label => 'Alexander, Colby R.'
+    property :"people/AlieTaylorM", :label => 'Alie, Taylor M.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/AliottiNicholasJ", :label => 'Aliotti, Nicholas J.'
     property :"people/AllbrightGordon", :label => 'Allbright, Gordon'
     property :"people/AlldridgePattiM", :label => 'Alldridge, Patti M.'
@@ -57,6 +61,8 @@ module OregonDigital::Vocabularies
     property :"people/AmardiRichard", :label => 'Amardi, Richard'
     property :"people/AmatoTonyJohn", :label => 'Amato, Tony John'
     property :"people/AmmonKevinM", :label => 'Ammon, Kevin M.'
+    property :"people/AmoakoStephenA", :label => 'Amoako, Stephen A.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/AmosJaysonT", :label => 'Amos, Jayson T.'
     property :"people/AnayaJamesJ", :label => 'Anaya, James J.'
     property :"people/AncesJaime", :label => 'Ances, Jaime'
@@ -92,6 +98,8 @@ module OregonDigital::Vocabularies
     property :"people/AnonsenTraci", :label => 'Anonsen, Traci'
     property :"people/AnunsenFred", :label => 'Anunsen, Fred'
     property :"people/ArbuckleDick", :label => 'Arbuckle, Dick'
+    property :"people/ArcherLillianLillyH", :label => 'Archer, Lillian \'Lilly\' H.', :comment =>
+      %(Women\'s Soccer, Sr. 2014-2015.)
     property :"people/ArcherLillianH", :label => 'Archer, Lillian H.'
     property :"people/ArcherSam", :label => 'Archer, Sam'
     property :"people/ArchulettaCarlos", :label => 'Archuletta, Carlos'
@@ -112,6 +120,8 @@ module OregonDigital::Vocabularies
     property :"people/ArtztEdwinL", :label => 'Artzt, Edwin L.'
     property :"people/AschbacherAlexandraM", :label => 'Aschbacher, Alexandra M.'
     property :"people/AschbacherDarrelG", :label => 'Aschbacher, Darrel G.'
+    property :"people/AschgbacherAlexandraAllyM", :label => 'Aschgbacher, Alexandra \'Ally\' M.', :comment =>
+      %(Women\'s Cross Country, RJr. 2014-2015.)
     property :"people/AshaoluOluseyiA", :label => 'Ashaolu, Oluseyi A.'
     property :"people/AshenShellsyL", :label => 'Ashen, Shellsy L.'
     property :"people/AshworthRobertL", :label => 'Ashworth, Robert L.'
@@ -121,6 +131,8 @@ module OregonDigital::Vocabularies
     property :"people/AustinAnthony", :label => 'Austin, Anthony'
     property :"people/AustinCharlesDelroy", :label => 'Austin, Charles Delroy'
     property :"people/AustinWaverlyS", :label => 'Austin, Waverly S.'
+    property :"people/AvaIsaacW", :label => 'Ava,Isaac W.', :comment =>
+      %(Football, RSr. 2014-2015.)
     property :"people/AverillBernie", :label => 'Averill, Bernie'
     property :"people/AverillEarlJr", :label => 'Averill, Earl, Jr.'
     property :"people/AxtellMelissaR", :label => 'Axtell, Melissa R.'
@@ -149,6 +161,8 @@ module OregonDigital::Vocabularies
     property :"people/BalchGeorge", :label => 'Balch, George'
     property :"people/BalderstonKeith", :label => 'Balderston, Keith'
     property :"people/BalducciAlexanderJ", :label => 'Balducci, Alexander J.'
+    property :"people/BalducciAlexandreAlexJ", :label => 'Balducci, Alexandre \'Alex\' J.', :comment =>
+      %(Football, Jr. 2014-2015.)
     property :"people/BalePaul", :label => 'Bale, Paul'
     property :"people/BaliNoelleJ", :label => 'Bali, Noelle J.'
     property :"people/BallardGreg", :label => 'Ballard, Greg'
@@ -158,6 +172,8 @@ module OregonDigital::Vocabularies
     property :"people/BaltaAnthonyJ", :label => 'Balta, Anthony J.'
     property :"people/BamfordMeganJ", :label => 'Bamford, Megan J.'
     property :"people/BanbrockWilliam", :label => 'Banbrock, William'
+    property :"people/BandoAlexisE", :label => 'Bando, Alexis E.', :comment =>
+      %(Univeristy of Oregon Women\'s Basketball, 2014-2015)
     property :"people/BanichHoward", :label => 'Banich, Howard'
     property :"people/BarakaImamuAmiri1934", :label => 'Baraka, Imamu Amiri, 1934-'
     property :"people/BarberJR", :label => 'Barber, J. R.'
@@ -190,14 +206,22 @@ module OregonDigital::Vocabularies
     property :"people/BartlettKenneth", :label => 'Bartlett, Kenneth'
     property :"people/BarwigMark", :label => 'Barwig, Mark'
     property :"people/BasherWillie", :label => 'Basher, Willie'
+    property :"people/BassettKennyC", :label => 'Bassett, Kenny C.', :comment =>
+      %(Football, RSr. 2014-2015.)
     property :"people/BatesJenifer", :label => 'Bates, Jenifer'
     property :"people/BatisteMelanieC", :label => 'Batiste, Melanie C.'
     property :"people/BattleLarry", :label => 'Battle, Larry'
     property :"people/BaugePaulE", :label => 'Bauge, Paul E.'
     property :"people/BaughAndre", :label => 'Baugh, Andre'
     property :"people/BaumanKennethC", :label => 'Bauman, Kenneth C.'
+    property :"people/BaumgartenBrandonL", :label => 'Baumgarten, Brandon', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
     property :"people/BaumgartnerTylerJ", :label => 'Baumgartner, Tyler J.'
+    property :"people/BaxterSarahL", :label => 'Baxter, Sarah L.', :comment =>
+      %(Women\'s Cross Country, Fr. 2014-2015.)
     property :"people/BaxterShawna", :label => 'Baxter, Shawna'
+    property :"people/BaylisEvanL", :label => 'Baylis, Evan L.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/BealEdwinT", :label => 'Beal, Edwin T.'
     property :"people/BeallChandlerBaker1901", :label => 'Beall, Chandler Baker, 1901-'
     property :"people/BeallEdwardS", :label => 'Beall, Edward S.'
@@ -220,6 +244,8 @@ module OregonDigital::Vocabularies
     property :"people/BelkoSteve", :label => 'Belko, Steve'
     property :"people/BellCharlesWade", :label => 'Bell, Charles Wade'
     property :"people/BellGeorge", :label => 'Bell, George'
+    property :"people/BellJordanT", :label => 'Bell, Jordan T.', :comment =>
+      %(Univeristy of Oregon Mens\' Basketball, 2014-2015)
     property :"people/BellRachelM", :label => 'Bell, Rachel M.'
     property :"people/BellRay", :label => 'Bell, Ray'
     property :"people/BelloniJoanne", :label => 'Belloni, Joanne'
@@ -234,8 +260,12 @@ module OregonDigital::Vocabularies
     property :"people/BennettMarty", :label => 'Bennett, Marty'
     property :"people/BennisonRichard", :label => 'Bennison, Richard'
     property :"people/BenoitJoan", :label => 'Benoit, Joan'
+    property :"people/BenoitKaniM", :label => 'Benoit, Kani M.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/BensonAmanda", :label => 'Benson, Amanda'
     property :"people/BensonAmandaS", :label => 'Benson, Amanda S.'
+    property :"people/BensonCaseyB", :label => 'Benson, Casey B.', :comment =>
+      %(Univeristy of Oregon Mens\' Basketball, 2014-2015)
     property :"people/BensonPercy", :label => 'Benson, Percy'
     property :"people/BentleyArleigh", :label => 'Bentley, Arleigh'
     property :"people/BenyardEverettL", :label => 'Benyard, Everett L.'
@@ -264,6 +294,8 @@ module OregonDigital::Vocabularies
     property :"people/BeutlerMarynN", :label => 'Beutler, Maryn N.'
     property :"people/BezdekHugo", :label => 'Bezdek, Hugo'
     property :"people/BhattiMH", :label => 'Bhatti, M. H.'
+    property :"people/BieberJeffreyJeffM", :label => 'Bieber, Jeffrey \'Jeff\' M.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/BigbeeMorrisS", :label => 'Bigbee, Morris S.'
     property :"people/BighelowJeff", :label => 'Bighelow, Jeff'
     property :"people/BilderbackDavidE", :label => 'Bilderback, David E.'
@@ -310,6 +342,8 @@ module OregonDigital::Vocabularies
     property :"people/BlodgettBill", :label => 'Blodgett, Bill'
     property :"people/BloodNicoleM", :label => 'Blood, Nicole M.'
     property :"people/BlumensteinMike", :label => 'Blumenstein, Mike'
+    property :"people/BlumhardtKathrynC", :label => 'Blumhardt, Kathryn C.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/BluntDavidW", :label => 'Blunt, David W.'
     property :"people/BluntLarry", :label => 'Blunt, Larry'
     property :"people/BoatrightJarrelScot", :label => 'Boatright, Jarrel Scot'
@@ -331,6 +365,8 @@ module OregonDigital::Vocabularies
     property :"people/BondKen", :label => 'Bond, Ken'
     property :"people/BondRay", :label => 'Bond, Ray'
     property :"people/BoneHannah", :label => 'Bone, Hannah'
+    property :"people/BonnerAndrewM", :label => 'Bonner, Andrew M.', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
     property :"people/BonnyTerryJ", :label => 'Bonny, Terry J.'
     property :"people/BookoutGonzalezNatalieE", :label => 'Bookout Gonzalez, Natalie E.'
     property :"people/BoosingerJohnL", :label => 'Boosinger, John L.'
@@ -377,6 +413,8 @@ module OregonDigital::Vocabularies
     property :"people/BreinerAlexandraJ", :label => 'Breiner, Alexandra J.'
     property :"people/BrennBruce", :label => 'Brenn, Bruce'
     property :"people/BrennanChristianE", :label => 'Brennan, Christian E.'
+    property :"people/BrennerDouglasDougJ", :label => 'Brenner, Douglas \'Doug\' J.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/BrennerElizabethA", :label => 'Brenner, Elizabeth A.'
     property :"people/BrethauerMonteL", :label => 'Brethauer, Monte L.'
     property :"people/BrewerChristopherD", :label => 'Brewer, Christopher D.'
@@ -397,6 +435,8 @@ module OregonDigital::Vocabularies
     property :"people/BrookeEdwardWilliam1919", :label => 'Brooke, Edward William, 1919-'
     property :"people/BrookeKendallA", :label => 'Brooke, Kendall A.'
     property :"people/BrooksBenjamin", :label => 'Brooks, Benjamin'
+    property :"people/BrooksDillon", :label => 'Brooks, Dillon', :comment =>
+      %(Univeristy of Oregon Mens\' Basketball, 2014-2015)
     property :"people/BrooksKasey", :label => 'Brooks, Kasey'
     property :"people/BrooksRich1941", :label => 'Brooks, Rich, 1941-'
     property :"people/BrosterhousGreg", :label => 'Brosterhous, Greg'
@@ -409,6 +449,8 @@ module OregonDigital::Vocabularies
     property :"people/BrownCHarmon", :label => 'Brown, C. Harmon'
     property :"people/BrownDon", :label => 'Brown, Don'
     property :"people/BrownDonaldP", :label => 'Brown, Donald P.'
+    property :"people/BrownJalenD", :label => 'Brown, Jalen D.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/BrownJohnHerbert", :label => 'Brown, John Herbert'
     property :"people/BrownJulie", :label => 'Brown, Julie'
     property :"people/BrownKoreyM", :label => 'Brown, Korey M.'
@@ -432,6 +474,7 @@ module OregonDigital::Vocabularies
     property :"people/BryantJohnW", :label => 'Bryant, John W.'
     property :"people/BryantRaymondH", :label => 'Bryant, Raymond H.'
     property :"people/BrysonRoscoeS", :label => 'Bryson, Roscoe S.'
+    property :"creator/BuckEliza", :label => 'Buck, Eliza'
     property :"people/BuckPeter", :label => 'Buck, Peter'
     property :"people/BuckiewiczGinaM", :label => 'Buckiewicz, Gina M.'
     property :"people/BuckmanZoe", :label => 'Buckman, Zoe'
@@ -459,9 +502,13 @@ module OregonDigital::Vocabularies
     property :"people/BurtonRayE", :label => 'Burton, Ray E.'
     property :"people/BusbyBeth", :label => 'Busby, Beth'
     property :"people/BushJim", :label => 'Bush, Jim'
+    property :"people/BushSam", :label => 'Bush, Sam', :comment =>
+      %(Univeristy of Oregon Mens\' Tennis, 2014-2015)
     property :"people/BushTheron", :label => 'Bush, Theron'
     property :"people/ButcherMatthewJ", :label => 'Butcher, Matthew J.'
     property :"people/ButlerHarry", :label => 'Butler, Harry'
+    property :"people/ButlerMichael", :label => 'Butler, Micahel', :comment =>
+      %(Mens\'s Cross Country, Fr. 2014-2015.)
     property :"people/ButlerZenas", :label => 'Butler, Zenas'
     property :"people/ButterfieldBenjaminW", :label => 'Butterfield, Benjamin W.'
     property :"people/ButterfieldCurt", :label => 'Butterfield, Curt'
@@ -503,6 +550,8 @@ module OregonDigital::Vocabularies
     property :"people/CappsAl", :label => 'Capps, Al'
     property :"people/CardwellAikenMollyL", :label => 'Cardwell-Aiken, Molly L.'
     property :"people/CarewBenedictGary", :label => 'Carew, Benedict Gary'
+    property :"people/CarewTannerJ", :label => 'Carew, Tanner J.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/CargillDuaneJ", :label => 'Cargill, Duane J.'
     property :"people/CarkerNickC", :label => 'Carker, Nick C.'
     property :"people/CarlFrederickG", :label => 'Carl, Frederick G.'
@@ -518,21 +567,30 @@ module OregonDigital::Vocabularies
     property :"people/CarpenterMeganM", :label => 'Carpenter, Megan M.'
     property :"people/CarpenterWes", :label => 'Carpenter, Wes'
     property :"people/CarrMichaelD", :label => 'Carr, Michael D.'
+    property :"people/CarrigerCodyJ", :label => 'Carriger, Cody J.', :comment =>
+      %(Football, RSo. 2014-2015.)
+    property :"people/CarringtonDarren", :label => 'Carrington, Darren', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/CarswellGHarroldGeorgeHarrold1919", :label => 'Carswell, G. Harrold (George Harrold), 1919-'
     property :"people/CarterAl", :label => 'Carter, Al'
     property :"people/CarterBenJ", :label => 'Carter, Ben J.'
     property :"people/CarterJeff", :label => 'Carter, Jeff'
+    property :"people/CarterMaxwellJ", :label => 'Carter, Maxwell J.', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
     property :"people/CarterRoscoeChallis", :label => 'Carter, Roscoe Challis'
     property :"people/CarterRoss", :label => 'Carter, Ross'
     property :"people/CasanovaLeonardB", :label => 'Casanova, Leonard B.'
     property :"people/CasertanoElizabethM", :label => 'Casertano, Elizabeth M.'
     property :"people/CaseyChris", :label => 'Casey, Chris'
     property :"people/CaseyStephenC", :label => 'Casey, Stephen C.'
+    property :"people/CashAllisonAlliN", :label => 'Cash, Allison \'Alli\' N.', :comment =>
+      %(Women\'s Cross Country, RFr. 2014-2015.)
     property :"people/CashAllisonN", :label => 'Cash, Allison N.'
     property :"people/CasonWendellB", :label => 'Cason, Wendell B.'
     property :"people/CassellTrokonRahimJ", :label => 'Cassell, Trokon-Rahim J.'
     property :"people/CassidyChasG", :label => 'Cassidy, Chas G.'
     property :"people/CassidyKaylaG", :label => 'Cassidy, Kayla G.'
+    property :"creator/CastellanozEva", :label => 'Castellanoz, Eva'
     property :"people/CastleBrianD", :label => 'Castle, Brian D.'
     property :"people/CatalanoNicholasA", :label => 'Catalano, Nicholas A.'
     property :"people/CataniaClaireA", :label => 'Catania, ClaireA.'
@@ -554,6 +612,8 @@ module OregonDigital::Vocabularies
     property :"people/ChambersLindseyA", :label => 'Chambers, Lindsey A.'
     property :"people/ChambersMarcusJ", :label => 'Chambers, Marcus J.'
     property :"people/ChandlerBenjaminRobert", :label => 'Chandler, Benjamin Robert'
+    property :"people/ChandlerMichael", :label => 'Chandler, Michael', :comment =>
+      %(Univeristy of Oregon Mens\' Basketball, 2014-2015)
     property :"people/ChandlerTate", :label => 'Chandler, Tate'
     property :"people/ChapaRudy", :label => 'Chapa, Rudy'
     property :"people/ChapmanChappy", :label => 'Chapman, Chappy'
@@ -574,6 +634,7 @@ module OregonDigital::Vocabularies
     property :"people/ChickRobert", :label => 'Chick, Robert'
     property :"people/ChildersSuzanne", :label => 'Childers, Suzanne'
     property :"people/ChildersZack", :label => 'Childers, Zack'
+    property :"creator/ChildesLeila", :label => 'Childes, Leila'
     property :"people/ChinBrentT", :label => 'Chin, Brent T.'
     property :"people/ChoboianMax", :label => 'Choboian, Max'
     property :"people/ChrissMichaelN", :label => 'Chriss, Michael N'
@@ -632,6 +693,8 @@ module OregonDigital::Vocabularies
     property :"people/ColeyRay", :label => 'Coley, Ray'
     property :"people/ColferCharlesE", :label => 'Colfer, Charles E.'
     property :"people/CollinsAustinB", :label => 'Collins, Austin B.'
+    property :"people/ConderMeganR", :label => 'Conder, Megan R.', :comment =>
+      %(Univeristy of Oregon Women\'s Golf, 2014-2015)
     property :"people/ConeEdwinE", :label => 'Cone, Edwin E.'
     property :"people/ConlonKatieL", :label => 'Conlon, Katie L.'
     property :"people/ConnerDennisL", :label => 'Conner, Dennis L.'
@@ -644,7 +707,11 @@ module OregonDigital::Vocabularies
     property :"people/CookDan", :label => 'Cook, Dan'
     property :"people/CookElginR", :label => 'Cook, Elgin R.'
     property :"people/CookIsaac", :label => 'Cook, Isaac'
+    property :"people/CookKerriK", :label => 'Cook, Kerri K.', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/CookKiyomi", :label => 'Cook, Kiyomi'
+    property :"people/CookKiyomiC", :label => 'Cook, Kiyomi C.', :comment =>
+      %(Women\'s Soccer, Sr. 2014-2015.)
     property :"people/CookRoscoe", :label => 'Cook, Roscoe'
     property :"people/CookSamuel", :label => 'Cook, Samuel'
     property :"people/CookVern", :label => 'Cook, Vern'
@@ -684,10 +751,14 @@ module OregonDigital::Vocabularies
     property :"people/CramerMark", :label => 'Cramer, Mark'
     property :"people/CravenRobert", :label => 'Craven, Robert'
     property :"people/CressScott", :label => 'Cress, Scott'
+    property :"people/CrevoiseratLindsayE", :label => 'Crevoiserat, Lindsay E.', :comment =>
+      %(Women\'s Cross Country, Sr. 2014-2015.)
     property :"people/CrishAnthony", :label => 'Crish, Anthony'
     property :"people/CrittendenNayaA", :label => 'Crittenden, Naya A.'
     property :"people/CrockettLaurenC", :label => 'Crockett, Lauren C.'
     property :"people/CrookHaydenJ", :label => 'Crook, Hayden J.'
+    property :"people/CrosbyTyrellR", :label => 'Crosby, Tyrell R.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/CrossCarolM", :label => 'Cross, Carol M.'
     property :"people/CrossmanBronwynT", :label => 'Crossman, Bronwyn T.'
     property :"people/CrouserBrian", :label => 'Crouser, Brian'
@@ -703,6 +774,8 @@ module OregonDigital::Vocabularies
     property :"people/CubbageAmyL", :label => 'Cubbage,Amy L.'
     property :"people/CuffelHal", :label => 'Cuffel, Hal'
     property :"people/CuicoKaileeK", :label => 'Cuico, Kailee K.'
+    property :"people/CukarCambrianCambiJ", :label => 'Cukar, Cambrian \'Cambi\' J.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/CulpDavidM", :label => 'Culp, David M.'
     property :"people/CummingsPaul", :label => 'Cummings, Paul'
     property :"people/CunninghamGuntherM", :label => 'Cunningham, Gunther M.'
@@ -717,13 +790,19 @@ module OregonDigital::Vocabularies
     property :"people/CushingJulie", :label => 'Cushing, Julie'
     property :"people/CuthbertFrederickAlexander1902", :label => 'Cuthbert, Frederick Alexander, 1902-'
     property :"people/DaggattScott", :label => 'Daggatt, Scott'
+    property :"people/DaichAustinD", :label => 'Daich, Austin D.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/DaleBill", :label => 'Dale, Bill'
     property :"people/DaleChereeS", :label => 'Dale, Cheree S.'
     property :"people/DaleCyleR", :label => 'Dale, Cyle R.'
     property :"people/DalyDan", :label => 'Daly, Dan'
     property :"people/DamesGeorgeF", :label => 'Dames, George F.'
+    property :"people/DanielTJ", :label => 'Daniel, T. J.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/DaniellJennifer", :label => 'Daniell, Jennifer'
     property :"people/DanielsChester", :label => 'Daniels, Chester'
+    property :"people/DanielsReginaldReggieL", :label => 'Daniels, Reginald \'Reggie\' L.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/DanielsRogerOral", :label => 'Daniels, Roger Oral'
     property :"people/DanielsSamuel", :label => 'Daniels, Samuel'
     property :"people/DanielsWilliamH", :label => 'Daniels, William H.'
@@ -734,6 +813,8 @@ module OregonDigital::Vocabularies
     property :"people/DaughertyRichardL", :label => 'Daugherty, Richard L.'
     property :"people/DavidsonAlexandriaL", :label => 'Davidson, Alexandria L.'
     property :"people/DavieRyannA", :label => 'Davie, Ryann A.'
+    property :"people/DaviesRobertTannerT", :label => 'Davies, RobertTannerT', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/DavisAgustasDenzi", :label => 'Davis, Agustas Denzi'
     property :"people/DavisBud", :label => 'Davis, Bud'
     property :"people/DavisDon", :label => 'Davis, Don'
@@ -759,6 +840,8 @@ module OregonDigital::Vocabularies
     property :"people/DeanCalvinH", :label => 'Dean, Calvin H.'
     property :"people/DeanLowellL", :label => 'Dean, Lowell L.'
     property :"people/DebCarver", :label => 'Deb Carver'
+    property :"people/DeckerHaileyC", :label => 'Decker, Hailey C.', :comment =>
+      %(Univeristy of Oregon Women\'s Softball, 2014-2015)
     property :"people/DecourceyKeith", :label => 'Decourcey, Keith'
     property :"people/DeforestDave", :label => 'Deforest, Dave'
     property :"people/DehoopDave", :label => 'Dehoop, Dave'
@@ -769,6 +852,8 @@ module OregonDigital::Vocabularies
     property :"people/DelbonDonaldA", :label => 'Delbon, Donald A.'
     property :"people/DelegatoMichaelJ", :label => 'Delegato, Michael J.'
     property :"people/DelgadoAmandaK", :label => 'Delgado, Amanda K.'
+    property :"people/DelgadoJosephJ", :label => 'Delgado, Joseph J.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/DellerBill", :label => 'Deller, Bill'
     property :"people/DellingerBill", :label => 'Dellinger, Bill'
     property :"people/DemarisWarren", :label => 'Demaris, Warren'
@@ -786,6 +871,8 @@ module OregonDigital::Vocabularies
     property :"people/DionLindsey", :label => 'Dion, Lindsey'
     property :"people/DionTerry", :label => 'Dion, Terry'
     property :"people/DivineRoscoe", :label => 'Divine, Roscoe'
+    property :"people/DixonIsaacMarquiceM", :label => 'Dixon, Isaac \'Marquice\' M.', :comment =>
+      %(Football, RJr. 2014-2015.)
     property :"people/DixonRichard", :label => 'Dixon, Richard'
     property :"people/DodsonDallas", :label => 'Dodson, Dallas'
     property :"people/DodsonRalph", :label => 'Dodson, Ralph'
@@ -875,9 +962,17 @@ module OregonDigital::Vocabularies
     property :"people/EdwardsRay", :label => 'Edwards, Ray'
     property :"people/EdwardsTom", :label => 'Edwards, Tom'
     property :"people/EffingerDanielR", :label => 'Effinger, Daniel R.'
+    property :"people/EggertBraden", :label => 'Eggert, Braden', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/EhizuelenCharlton", :label => 'Ehizuelen, Charlton'
+    property :"people/EickertAlecZ", :label => 'Eickert, Alec Z.', :comment =>
+      %(Football, Jr. 2014-2015.)
     property :"people/EklundCarlV", :label => 'Eklund, Carl V.'
+    property :"people/EkpreOlomuIfomenoIfoM", :label => 'Ekpre-Olomu, Ifomeno \'Ifo\' M.', :comment =>
+      %(Football, Sr. 2014-2015.)
     property :"people/EkpreOlomuIfomenoM", :label => 'Ekpre-Olomu, Ifomeno M.'
+    property :"people/ElbonMariaMiaC", :label => 'Elbon, Maria \'Mia\' C.', :comment =>
+      %(Women\'s Cross Country, Sr. 2014-2015.)
     property :"people/ElbonMariaC", :label => 'Elbon, Maria C.'
     property :"people/ElkaimJeramy", :label => 'Elkaim, Jeramy'
     property :"people/EllRoy", :label => 'Ell, Roy'
@@ -914,9 +1009,13 @@ module OregonDigital::Vocabularies
     property :"people/EstebanJessicaA", :label => 'Esteban, Jessica A.'
     property :"people/EstesNewton", :label => 'Estes, Newton'
     property :"people/EstesWilliamE", :label => 'Estes, William E.'
+    property :"people/EugenioCaseyT", :label => 'Eugenio, Casey T.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/EuscherJamesR", :label => 'Euscher, James R.'
     property :"people/EvansDarrell", :label => 'Evans, Darrell'
     property :"people/EvansDon", :label => 'Evans, Don'
+    property :"people/EvansSkylar", :label => 'Evans, Skylar', :comment =>
+      %(Women\'s Cross Country, RSo. 2014-2015.)
     property :"people/EvansSkylarA", :label => 'Evans, Skylar A.'
     property :"people/EvensonJamesL", :label => 'Evenson, James L.'
     property :"people/EverettClifford", :label => 'Everett, Clifford'
@@ -934,6 +1033,8 @@ module OregonDigital::Vocabularies
     property :"people/FarmerTeddy", :label => 'Farmer, Teddy'
     property :"people/FarrarJohnEdwin", :label => 'Farrar, John Edwin'
     property :"people/FaucettBob", :label => 'Faucett, Bob'
+    property :"people/FaulhaberIvanS", :label => 'Faulhaber, Ivan S.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/FaustArnold", :label => 'Faust, Arnold'
     property :"people/FederighiCarolineL", :label => 'Federighi, Caroline L.'
     property :"people/FeeChester", :label => 'Fee, Chester'
@@ -946,6 +1047,8 @@ module OregonDigital::Vocabularies
     property :"people/FeolaCraig", :label => 'Feola, Craig'
     property :"people/FergusonDuncan", :label => 'Ferguson, Duncan'
     property :"people/FergusonTrevorJ", :label => 'Ferguson, Trevor J.'
+    property :"people/FernandezBryanL", :label => 'Fernandez, Bryan L.', :comment =>
+      %(Mens\'s Cross Country, RFr. 2014-2015.)
     property :"people/FernandoAnilNK", :label => 'Fernando, Anil N. K.'
     property :"people/FernandoJumbo", :label => 'Fernando, Jumbo'
     property :"people/FerrellBrianK", :label => 'Ferrell, Brian K.'
@@ -963,6 +1066,8 @@ module OregonDigital::Vocabularies
     property :"people/FishBubbles", :label => 'Fish, Bubbles'
     property :"people/FishDavidWesley", :label => 'Fish, David Wesley'
     property :"people/FishDorothyS", :label => 'Fish, Dorothy S.'
+    property :"people/FisherJacobJakeL", :label => 'Fisher, Jacob Jake L.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/FisherJacobL", :label => 'Fisher, Jacob L.'
     property :"people/FisherRS", :label => 'Fisher, R. S.'
     property :"people/FitchTaylorJ", :label => 'Fitch, Taylor J.'
@@ -975,6 +1080,8 @@ module OregonDigital::Vocabularies
     property :"people/FlaniganKatie", :label => 'Flanigan, Katie'
     property :"people/FleetMcClellanV", :label => 'Fleet, McClellan V.'
     property :"people/FlegalRuth", :label => 'Flegal, Ruth'
+    property :"people/FlemingJordanR", :label => 'Fleming, Jordan R.', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/FlemmingArthurS", :label => 'Flemming, Arthur S'
     property :"people/FlynnBaileyR", :label => 'Flynn, Bailey R.'
     property :"people/FlynnCandyceE", :label => 'Flynn, Candyce E.'
@@ -1004,6 +1111,8 @@ module OregonDigital::Vocabularies
     property :"people/FosterSteve", :label => 'Foster, Steve'
     property :"people/FosterTheodoreD", :label => 'Foster, Theodore D.'
     property :"people/FouchGeorge", :label => 'Fouch, George'
+    property :"people/FousheeZacharyS", :label => 'Foushee, Zachary S.', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
     property :"people/FoutsDan", :label => 'Fouts, Dan'
     property :"people/FoutsMike", :label => 'Fouts, Mike'
     property :"people/FowlerNed", :label => 'Fowler, Ned'
@@ -1027,6 +1136,8 @@ module OregonDigital::Vocabularies
     property :"people/FredrickAlyssa", :label => 'Fredrick, Alyssa'
     property :"people/FreedJeffreyP", :label => 'Freed, Jeffrey P.'
     property :"people/FreemanPercy", :label => 'Freeman, Percy'
+    property :"people/FreemanRoyceD", :label => 'Freeman, Royce D.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/FreemanTessM", :label => 'Freeman, Tess M.'
     property :"people/FreiJerry", :label => 'Frei, Jerry'
     property :"people/FrenchChristianL", :label => 'French, Christian L.'
@@ -1076,16 +1187,24 @@ module OregonDigital::Vocabularies
     property :"people/GarneyGary", :label => 'Garney, Gary'
     property :"people/GarrettTom", :label => 'Garrett, Tom'
     property :"people/GarrickCarlyleO", :label => 'Garrick, Carlyle O.'
+    property :"people/GarrityMiachelMikeJ", :label => 'Garrity, Miachel \'Mike\' J.', :comment =>
+      %(Football, RSr. 2014-2015.)
     property :"people/GarrityMichaelJ", :label => 'Garrity, Michael J.'
     property :"people/GarzaDan", :label => 'Garza, Dan'
     property :"people/GaskinsWilliam", :label => 'Gaskins, William'
     property :"people/GassnerDennisC", :label => 'Gassner, Dennis C.'
     property :"people/GatchellGail", :label => 'Gatchell, Gail'
+    property :"people/GattiMariahMarK", :label => 'Gatti, Maria \'Mar\' K.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/GawlikMichelleL", :label => 'Gawlik, Michelle L.'
     property :"people/GebhardtTheodore", :label => 'Gebhardt, Theodore'
     property :"people/GeeLeighton", :label => 'Gee, Leighton'
     property :"people/GeigerGregoryG", :label => 'Geiger, Gregory G.'
     property :"people/GeislerGeorgine", :label => 'Geisler, Georgine'
+    property :"people/GenskeWilliamWillM", :label => 'Genske, William \'Will\' M.', :comment =>
+      %(Football, Fr. 2014-2015.)
+    property :"people/GeorgeElijahJ", :label => 'George, Elijah J.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/GeraldBogen", :label => 'Gerald Bogen'
     property :"people/GerberJohnJJr", :label => 'Gerber, John J., Jr.'
     property :"people/GergelMelissaA", :label => 'Gergel, Melissa A.'
@@ -1108,6 +1227,8 @@ module OregonDigital::Vocabularies
     property :"people/GintherGeoff", :label => 'Ginther, Geoff'
     property :"people/GiovaniniNello", :label => 'Giovanini, Nello'
     property :"people/GirardeauMarvinDJr", :label => 'Girardeau, Marvin D., Jr.'
+    property :"people/GlascoGeriGeriAnnA", :label => 'Glasco, Geri \'Geri Ann\' A.', :comment =>
+      %(Univeristy of Oregon Women\'s Softball, 2014-2015)
     property :"people/GleasonCindiL", :label => 'Gleason, Cindi L.'
     property :"people/GleasonJohnD", :label => 'Gleason, John D.'
     property :"people/GlennBruceE", :label => 'Glenn, Bruce E.'
@@ -1175,6 +1296,8 @@ module OregonDigital::Vocabularies
     property :"people/GrelleJamesE", :label => 'Grelle, James E.'
     property :"people/GrewatzAbbyM", :label => 'Grewatz,Abby M.'
     property :"people/GriffinLorna", :label => 'Griffin, Lorna'
+    property :"people/GriffinTyN", :label => 'Griffin, Ty N.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/GriffithIrene", :label => 'Griffith, Irene'
     property :"people/GriffithJohnL", :label => 'Griffith, John L.'
     property :"people/GriffithsJim", :label => 'Griffiths, Jim'
@@ -1193,6 +1316,8 @@ module OregonDigital::Vocabularies
     property :"people/GuldagerGeorge", :label => 'Guldager, George'
     property :"people/GuminaPietroF", :label => 'Gumina, Pietro F.'
     property :"people/GunterMia", :label => 'Gunter, Mia'
+    property :"people/GunterMiaC", :label => 'Gunter, Mia C.', :comment =>
+      %(Women\'s Soccer, Jr. 2014-2015.)
     property :"people/GuntherJerome", :label => 'Gunther, Jerome'
     property :"people/GurevichNicholasA", :label => 'Gurevich, NicholasA.'
     property :"people/GustafsonSaraE", :label => 'Gustafson, Sara E.'
@@ -1219,6 +1344,8 @@ module OregonDigital::Vocabularies
     property :"people/HallAmil", :label => 'Hall, Amil'
     property :"people/HallArnoldBennett", :label => 'Hall, Arnold Bennett'
     property :"people/HallGordon", :label => 'Hall, Gordon'
+    property :"people/HallPoirierMarine", :label => 'Hall-Poirier, Marine', :comment =>
+      %(Volleyball, RSr. 2014-2015.)
     property :"people/HallinFrank", :label => 'Hallin, Frank'
     property :"people/HalversonBrad", :label => 'Halverson, Brad'
     property :"people/HalversonDavidL", :label => 'Halverson, David L.'
@@ -1235,6 +1362,8 @@ module OregonDigital::Vocabularies
     property :"people/HamptonKwanteL", :label => 'Hampton, Kwante L.'
     property :"people/HamptonNorman", :label => 'Hampton, Norman'
     property :"people/HandLarryL", :label => 'Hand, Larry L.'
+    property :"people/HaneyBlakeK", :label => 'Haney, Blake K.', :comment =>
+      %(Mens\'s Cross Country, Fr. 2014-2015.)
     property :"people/HaneyJim", :label => 'Haney, Jim'
     property :"people/HanlonMatthewO", :label => 'Hanlon, Matthew O.'
     property :"people/HannsJim", :label => 'Hanns, Jim'
@@ -1250,6 +1379,8 @@ module OregonDigital::Vocabularies
     property :"people/HardingAlfred", :label => 'Harding, Alfred'
     property :"people/HardistyChick", :label => 'Hardisty, Chick'
     property :"people/HardistyDale", :label => 'Hardisty, Dale'
+    property :"people/HardrickRodney", :label => 'Hardrick, Rodney', :comment =>
+      %(Football, RJr. 2014-2015.)
     property :"people/HardrickRodneyL", :label => 'Hardrick, Rodney L.'
     property :"people/HardyRobert", :label => 'Hardy, Robert'
     property :"people/HargainTony", :label => 'Hargain, Tony'
@@ -1270,6 +1401,8 @@ module OregonDigital::Vocabularies
     property :"people/HarrisMike", :label => 'Harris, Mike'
     property :"people/HarrisTannerJ", :label => 'Harris, Tanner J.'
     property :"people/HarrisTed", :label => 'Harris, Ted'
+    property :"people/HarrisonDominiqueNiqueM", :label => 'Harrison, Dominique \'Nique\' M.', :comment =>
+      %(Football, Jr. 2014-2015.)
     property :"people/HarrisonJamesR", :label => 'Harrison, James R.'
     property :"people/HarrowBill", :label => 'Harrow, Bill'
     property :"people/HartBrittanyN", :label => 'Hart, Brittany N.'
@@ -1310,6 +1443,8 @@ module OregonDigital::Vocabularies
     property :"people/HaywoodRaymondCharles", :label => 'Haywood, Raymond Charles'
     property :"people/HazzardTom", :label => 'Hazzard, Tom'
     property :"people/HealyRyonC", :label => 'Healy, Ryon C.'
+    property :"people/HeardEddie", :label => 'Heard, Eddie', :comment =>
+      %(Football, So. 2014-2015.)
     property :"people/HeardRichardAlvin", :label => 'Heard, Richard Alvin'
     property :"people/HeardRobertAlvin", :label => 'Heard, Robert Alvin'
     property :"people/HearnStan", :label => 'Hearn, Stan'
@@ -1360,6 +1495,8 @@ module OregonDigital::Vocabularies
     property :"people/HerronDaleA", :label => 'Herron, Dale A.'
     property :"people/HerseyEricC", :label => 'Hersey, Eric C.'
     property :"people/HersheyLewisBlaine1893", :label => 'Hershey, Lewis Blaine, 1893-'
+    property :"people/HeskethJoannaL", :label => 'Hesketh, Joanna L.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/HesseJanine", :label => 'Hesse, Janine'
     property :"people/HeubergerDave", :label => 'Heuberger, Dave'
     property :"people/HeywoodHerbert", :label => 'Heywood, Herbert'
@@ -1374,6 +1511,8 @@ module OregonDigital::Vocabularies
     property :"people/HiemstraDiane", :label => 'Hiemstra, Diane'
     property :"people/HigbeeJeffW", :label => 'Higbee, Jeff W.'
     property :"people/HiggenbottomKen", :label => 'Higgenbottom, Ken'
+    property :"people/HigginsZoeA", :label => 'Higgins, Zoe A.', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/HiggsHelen", :label => 'Higgs, Helen'
     property :"people/HiguchiSho", :label => 'Higuchi, Sho'
     property :"people/HilbertStephenE", :label => 'Hilbert, Stephen E.'
@@ -1389,9 +1528,13 @@ module OregonDigital::Vocabularies
     property :"people/HillTroyA", :label => 'Hill, Troy A.'
     property :"people/HillstromEldonL", :label => 'Hillstrom, Eldon L.'
     property :"people/HillstromSpike", :label => 'Hillstrom, Spike'
+    property :"people/HiltzDominiqueNikkiA", :label => 'Hiltz, Dominique \'Nikki\' A.', :comment =>
+      %(Women\'s Cross Country, RFr. 2014-2015.)
     property :"people/HinesLarryH", :label => 'Hines, Larry H.'
     property :"people/HinesThomas", :label => 'Hines, Thomas'
     property :"people/HinkleJoan", :label => 'Hinkle, Joan'
+    property :"people/HinriksdottirHallaMargret", :label => 'Hinriksd&oacute;ttir, Halla Margret', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/HintnausTom", :label => 'Hintnaus, Tom'
     property :"people/HippCaliR", :label => 'Hipp, Cali R.'
     property :"people/HoageGlen", :label => 'Hoage, Glen'
@@ -1407,7 +1550,11 @@ module OregonDigital::Vocabularies
     property :"people/HoganJoshuaR", :label => 'Hogan, Joshua R.'
     property :"people/HoganVicki", :label => 'Hogan, Vicki'
     property :"people/HogensenGregoryD", :label => 'Hogensen, Gregory D.'
+    property :"people/HojnarAlexandraAlexM", :label => 'Hojnar, Alexandra \'Alex\' M.', :comment =>
+      %(Volleyball, Fr. 2014-2015.)
     property :"people/HolcombBenny", :label => 'Holcomb, Benny'
+    property :"people/HoldenLaurenM", :label => 'Holden, Lauren M.', :comment =>
+      %(Women\'s Soccer, So. 2014-2015.)
     property :"people/HoldenWilliamF", :label => 'Holden, William F.'
     property :"people/HollandAndre", :label => 'Holland, Andre'
     property :"people/HollandBarney", :label => 'Holland, Barney'
@@ -1416,6 +1563,8 @@ module OregonDigital::Vocabularies
     property :"people/HollenbeckBill", :label => 'Hollenbeck, Bill'
     property :"people/HollidayJasminD", :label => 'Holliday, Jasmin D.'
     property :"people/HollinsCharles", :label => 'Hollins, Charles'
+    property :"people/HollinsJustinC", :label => 'Hollins, Justin C.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/HollisOrlandoJohn", :label => 'Hollis, Orlando John'
     property :"people/HollowayJamesN", :label => 'Holloway, James N.'
     property :"people/HollowayJohnnyC1938", :label => 'Holloway, Johnny C., 1938-'
@@ -1497,6 +1646,8 @@ module OregonDigital::Vocabularies
     property :"people/HutchinsonHarold", :label => 'Hutchinson, Harold'
     property :"people/IamaleavaJanitahT", :label => 'Iamaleava, Janitah T.'
     property :"people/IdrissMahamat", :label => 'Idriss, Mahamat'
+    property :"people/IhenachoGlenU", :label => 'Ihenacho, Glen U.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/ImelMauraJ", :label => 'Imel, Maura J.'
     property :"people/ImwalleRichardF", :label => 'Imwalle, Richard F.'
     property :"people/InglesTubby", :label => 'Ingles, Tubby'
@@ -1533,6 +1684,8 @@ module OregonDigital::Vocabularies
     property :"people/JacobsonPaulBenjamin1901", :label => 'Jacobson, Paul Benjamin, 1901-'
     property :"people/JakwayBernard", :label => 'Jakway, Bernard'
     property :"people/JalofHolly", :label => 'Jalof, Holly'
+    property :"people/JamesAntonioTonyT", :label => 'James, Antonio \'Tony\' T.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/JamesMark", :label => 'James, Mark'
     property :"people/JamesRandallS", :label => 'James, Randall S'
     property :"people/JamesonGeorge", :label => 'Jameson, George'
@@ -1540,6 +1693,8 @@ module OregonDigital::Vocabularies
     property :"people/JanakMarvin", :label => 'Janak, Marvin'
     property :"people/JaquaRobin", :label => 'Jaqua, Robin'
     property :"people/JaraczeskiJeff", :label => 'Jaraczeski, Jeff'
+    property :"people/JelksJalenJ", :label => 'Jelks, Jalen J.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/JenkinsEricA", :label => 'Jenkins, Eric A.'
     property :"people/JenkinsGeneO", :label => 'Jenkins, Gene O.'
     property :"people/JensenEllroyP", :label => 'Jensen, Ellroy P.'
@@ -1561,6 +1716,8 @@ module OregonDigital::Vocabularies
     property :"people/JohnsonAmandaN", :label => 'Johnson, Amanda N.'
     property :"people/JohnsonBradley", :label => 'Johnson, Bradley'
     property :"people/JohnsonCharlesEd1969", :label => 'Johnson, Charles E., d. 1969'
+    property :"people/JohnsonConnor", :label => 'Johnson, Connor', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/JohnsonDeWayne", :label => 'Johnson, DeWayne'
     property :"people/JohnsonFletcher", :label => 'Johnson, Fletcher'
     property :"people/JohnsonFrank", :label => 'Johnson, Frank'
@@ -1575,6 +1732,8 @@ module OregonDigital::Vocabularies
     property :"people/JohnsonTye", :label => 'Johnson, Tye'
     property :"people/JohnsonYogi", :label => 'Johnson, Yogi'
     property :"people/JohnsonLockhartTinaC", :label => 'Johnson-Lockhart, Tina C.'
+    property :"people/JohnstonTylerK", :label => 'Johnston, Tyler K.', :comment =>
+      %(Football, RJr. 2014-2015.)
     property :"people/JohnstoneTylerK", :label => 'Johnstone, Tyler K'
     property :"people/JohszZoeyT", :label => 'Johsz, Zoey T.'
     property :"people/JonesAaronM", :label => 'Jones, Aaron M.'
@@ -1582,6 +1741,8 @@ module OregonDigital::Vocabularies
     property :"people/JonesChristianR", :label => 'Jones, Christian R.'
     property :"people/JonesCleveland", :label => 'Jones, Cleveland'
     property :"people/JonesDon", :label => 'Jones, Don'
+    property :"people/JonesJamiasJJJ", :label => 'Jones, Jamias J. \'J. J.\'', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/JonesJohn", :label => 'Jones, John'
     property :"people/JonesKenneth", :label => 'Jones, Kenneth'
     property :"people/JonesLucille", :label => 'Jones, Lucille'
@@ -1589,6 +1750,7 @@ module OregonDigital::Vocabularies
     property :"people/JonesRon", :label => 'Jones, Ron'
     property :"people/JonesRyanW", :label => 'Jones, Ryan W.'
     property :"people/JonesSteve", :label => 'Jones, Steve'
+    property :"creator/JonesSuzi", :label => 'Jones, Suzi'
     property :"people/JonesTaylorC", :label => 'Jones, Taylor C.'
     property :"people/JonesTerrance", :label => 'Jones, Terrance'
     property :"people/JordanDion", :label => 'Jordan, Dion'
@@ -1601,9 +1763,15 @@ module OregonDigital::Vocabularies
     property :"people/JoyFrederick", :label => 'Joy, Frederick'
     property :"people/JudgeDouglasJ", :label => 'Judge, Douglas J.'
     property :"people/JuolaEino", :label => 'Juola, Eino'
-    property :"people/Ka'aiLakeK", :label => 'Ka\'ai, Lake K.'
+    property :"people/KaaiLakeKoaK", :label => 'Ka\'ai, Lake \'Koa\' K.', :comment =>
+      %(Football, RJr. 2014-2015.)
+    property :"people/KaaiLakeK", :label => 'Ka\'ai, Lake K.'
     property :"people/KaanapuToddCK", :label => 'Kaanapu, Todd C. K.'
     property :"people/KaarsbergLawrence", :label => 'Kaarsberg, Lawrence'
+    property :"people/KailLindseyA", :label => 'Kail, Lindsey A.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
+    property :"people/KampSamuelSamM", :label => 'Kamp, Samuel \'Sam\' L.', :comment =>
+      %(Football, RJr. 2014-2015.)
     property :"people/KampSamuelM", :label => 'Kamp, Samuel M.'
     property :"people/KamyabNazanin", :label => 'Kamyab, Nazanin'
     property :"people/KanamoriHanako", :label => 'Kanamori, Hanako'
@@ -1611,8 +1779,12 @@ module OregonDigital::Vocabularies
     property :"people/KantolaStevenJ", :label => 'Kantola, Steven J.'
     property :"people/KapriHueda", :label => 'Kapri, Hueda'
     property :"people/KaraviotisMarkR", :label => 'Karaviotis, Mark R.'
+    property :"subject/KarenGuzak", :label => 'Karen Guzak', :comment =>
+      %(Artist.)
     property :"people/KarlWOnthank", :label => 'Karl W. Onthank'
     property :"people/KatzaroffNatashaM", :label => 'Katzaroff, Natasha M.'
+    property :"people/KatzenRebeccaBeccaC", :label => 'Katzen, Rebecca \'Becca\' C.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/KaumeyerThom", :label => 'Kaumeyer, Thom'
     property :"people/KaupangLarsM", :label => 'Kaupang, Lars M.'
     property :"people/KawasakiKellieM", :label => 'Kawasaki, Kellie M.'
@@ -1632,13 +1804,19 @@ module OregonDigital::Vocabularies
     property :"people/KellerJack", :label => 'Keller, Jack'
     property :"people/KellerJohn", :label => 'Keller, John'
     property :"people/KelleyBeijanJ", :label => 'Kelley, Beijan J.'
+    property :"people/KelleyBeijanJBJ", :label => 'Kelley, Beijan J. \'B. J.\'', :comment =>
+      %(Football, RJr. 2014-2015.)
     property :"people/KelleyJim", :label => 'Kelley, Jim'
     property :"people/KellisJames", :label => 'Kellis, James'
     property :"people/KellisKimberly", :label => 'Kellis, Kimberly'
     property :"people/KelloggBob", :label => 'Kellogg, Bob'
     property :"people/KellyDanJ", :label => 'Kelly, Dan J.'
+    property :"people/KellyJesseM", :label => 'Kelly, Jesse M.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/KempBlakeE", :label => 'Kemp, Blake E.'
     property :"people/KenMetzler", :label => 'Ken Metzler'
+    property :"people/KenionJonathanR", :label => 'Kenion, Jonathan R.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/KennedyDonaldEugene", :label => 'Kennedy, Donald Eugene'
     property :"people/KennedyJohnFJohnFitzgerald19171963", :label => 'Kennedy, John F., (John Fitzgerald), 1917-1963'
     property :"people/Kenneth", :label => 'Kenneth'
@@ -1648,6 +1826,8 @@ module OregonDigital::Vocabularies
     property :"people/KentErnie", :label => 'Kent, Ernie'
     property :"people/KentJordanR", :label => 'Kent, Jordan R.'
     property :"people/KenyonVictoriaI", :label => 'Kenyon, Victoria I.'
+    property :"people/KeohoChelseyH", :label => 'Keoho, Chelsey H.', :comment =>
+      %(Volleyball, Jr. 2014-2015.)
     property :"people/KerschnerJerryLayne", :label => 'Kerschner, Jerry Layne'
     property :"people/KershnerJerry", :label => 'Kershner, Jerry'
     property :"people/KeslerMike", :label => 'Kesler, Mike'
@@ -1662,6 +1842,8 @@ module OregonDigital::Vocabularies
     property :"people/KimptonVerlund", :label => 'Kimpton, Verlund'
     property :"people/KimseyDuffB", :label => 'Kimsey, Duff B.'
     property :"people/KindGretchen", :label => 'Kind, Gretchen'
+    property :"people/KingAbbyL", :label => 'King, Abby L.', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/KingRalph", :label => 'King, Ralph'
     property :"people/KingmaBrettM", :label => 'Kingma, Brett M.'
     property :"people/KinseySue", :label => 'Kinsey, Sue'
@@ -1685,6 +1867,7 @@ module OregonDigital::Vocabularies
     property :"people/KnoxKimberlyJ", :label => 'Knox, Kimberly J.'
     property :"people/KnudsenVictoriaA", :label => 'Knudsen, VictoriaA.'
     property :"people/KnutsonEddie", :label => 'Knutson, Eddie'
+    property :"creator/KodishDeborah", :label => 'Kodish, Deborah'
     property :"people/KoenigAllisonR", :label => 'Koenig, Allison R.'
     property :"people/KoerberHenry", :label => 'Koerber, Henry'
     property :"people/KoernerPaul", :label => 'Koerner, Paul'
@@ -1710,10 +1893,14 @@ module OregonDigital::Vocabularies
     property :"people/KuemperAustinC", :label => 'Kuemper, Austin C.'
     property :"people/KuneyKarl", :label => 'Kuney, Karl'
     property :"people/KunkleEdward", :label => 'Kunkle, Edward'
+    property :"people/KuraharaJordanE", :label => 'Kurahara, Jordan E.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/KuykendallDV", :label => 'Kuykendall, D. V.'
     property :"people/KuykendallEberle", :label => 'Kuykendall, Eberle'
     property :"people/KwiatkowskiChrisR", :label => 'Kwiatkowski, Chris R.'
     property :"people/LaBountyMatt", :label => 'LaBounty, Matt'
+    property :"people/LaCosteJarretJ", :label => 'LaCoste, Jarret J.', :comment =>
+      %(Football, Jr. 2014-2015.)
     property :"people/LacauFrenchy", :label => 'Lacau, Frenchy'
     property :"people/LacauJean", :label => 'Lacau, Jean'
     property :"people/LaceyMilo", :label => 'Lacey, Milo'
@@ -1737,6 +1924,10 @@ module OregonDigital::Vocabularies
     property :"people/LashOC", :label => 'Lash, O. C.'
     property :"people/LasselleDale", :label => 'Lasselle, Dale'
     property :"people/LatouretteEarle", :label => 'Latourette, Earle'
+    property :"people/LattChristopherJordanJ", :label => 'Latt, Christopher \'Jordan\' J.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
+    property :"people/LaubacherBradleyJ", :label => 'Laubacher, Bradley J.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/LaudenslagerDonavonP", :label => 'Laudenslager, Donavon P.'
     property :"people/LauderbackBill", :label => 'Lauderback, Bill'
     property :"people/LaurenceLeoE", :label => 'Laurence, Leo E.'
@@ -1757,6 +1948,8 @@ module OregonDigital::Vocabularies
     property :"people/LehlJim", :label => 'Lehl, Jim'
     property :"people/LehnerMichael", :label => 'Lehner, Michael'
     property :"people/LeichtJake", :label => 'Leicht, Jake'
+    property :"people/LeingangJacobJakeA", :label => 'Leingang, Jacob \'Jake\' A.', :comment =>
+      %(Mens\'s Cross Country, So. 2014-2015.)
     property :"people/LemiereOscar", :label => 'Lemiere, Oscar'
     property :"people/LenzserKatharineT", :label => 'Lenzser, Katharine T.'
     property :"people/LeoGreg", :label => 'Leo, Greg'
@@ -1764,6 +1957,10 @@ module OregonDigital::Vocabularies
     property :"people/LeslieEarl", :label => 'Leslie, Earl'
     property :"people/LeslieKeith", :label => 'Leslie, Keith'
     property :"people/LeslieKelseyJ", :label => 'Leslie, Kelsey J.'
+    property :"people/LettNigelW", :label => 'Lett, Nigel W.', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
+    property :"people/LevermoreKyleA", :label => 'Levermore, Kyle A.', :comment =>
+      %(Mens\'s Cross Country, Fr. 2014-2015.)
     property :"people/LevigJocelynR", :label => 'Levig, Jocelyn R.'
     property :"people/LevingsFrank", :label => 'Levings, Frank'
     property :"people/LewisAlyssaR", :label => 'Lewis, Alyssa R.'
@@ -1779,6 +1976,8 @@ module OregonDigital::Vocabularies
     property :"people/LiebowitzSamuel", :label => 'Liebowitz, Samuel'
     property :"people/LieuallenRoyElwayne", :label => 'Lieuallen, Roy Elwayne'
     property :"people/LileyRusty", :label => 'Liley, Rusty'
+    property :"people/LimThomasF", :label => 'Lim, Thomas F.', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
     property :"people/LindHerman", :label => 'Lind, Herman'
     property :"people/LindemanGabrielleM", :label => 'Lindeman, Gabrielle M.'
     property :"people/LindenJim", :label => 'Linden, Jim'
@@ -1786,6 +1985,8 @@ module OregonDigital::Vocabularies
     property :"people/LindnerEricR", :label => 'Lindner, Eric R.'
     property :"people/LindstromJOrville", :label => 'Lindstrom, J. Orville'
     property :"people/LindvallJanelleD", :label => 'Lindvall, Janelle D.'
+    property :"people/LindvallLaurenD", :label => 'Lindvall, Lauren D.', :comment =>
+      %(Univeristy of Oregon Women\'s Softball, 2014-2015)
     property :"people/LippmanCarol", :label => 'Lippman, Carol'
     property :"people/LiptonMiriamF", :label => 'Lipton, Miriam F.'
     property :"people/LiquoriMarty", :label => 'Liquori, Marty'
@@ -1796,21 +1997,30 @@ module OregonDigital::Vocabularies
     property :"people/LloydBen", :label => 'Lloyd, Ben'
     property :"people/LlyoydCharles1938", :label => 'Llyoyd, Charles, 1938-'
     property :"people/LockardGordon", :label => 'Lockard, Gordon'
+    property :"people/LockieJeffreyJeffC", :label => 'Lockie, Jeffrey \'Jeff\' C.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/LoeraJordanE", :label => 'Loera, Jordan E.'
     property :"people/LoewenRebeccaM", :label => 'Loewen, Rebecca M.'
     property :"people/LoftenJames", :label => 'Loften, James'
     property :"people/LoftisJack", :label => 'Loftis, Jack'
     property :"people/LokanHaroldC", :label => 'Lokan, Harold C.'
     property :"people/LokomboBoseko", :label => 'Lokombo, Boseko'
+    property :"people/LongChristopherHurlyH", :label => 'Long, Christopher \'Hurley\' H.', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
     property :"people/LongDick", :label => 'Long, Dick'
     property :"people/LongKyleH", :label => 'Long, Kyle H.'
     property :"people/LongMike", :label => 'Long, Mike'
     property :"people/LongNicoleP", :label => 'Long, Nicole P.'
+    property :"people/LongtainAnnaAnnieS", :label => 'Longtain, Anna \'Annie\' S.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/LooNancyM", :label => 'Loo, Nancy M.'
+    property :"creator/LoomisOrmond", :label => 'Loomis, Ormond'
     property :"people/LoosLaurenA", :label => 'Loos, Lauren A.'
     property :"people/LoperKatelynR", :label => 'Loper, Katelyn R.'
     property :"people/LoronNaomiE", :label => 'Loron, Naomi E.'
     property :"people/LoumenaHenriBernard", :label => 'Loumena, Henri Bernard'
+    property :"people/LousiHaniteliTeliM", :label => 'Lousi, Haniteli \'Teli\' M.', :comment =>
+      %(Football, Jr. 2014-2015.)
     property :"people/LoveDanielleM", :label => 'Love, Danielle M.'
     property :"people/LovilleDerek", :label => 'Loville, Derek'
     property :"people/LoweKeanonG", :label => 'Lowe, Keanon G.'
@@ -1855,6 +2065,8 @@ module OregonDigital::Vocabularies
     property :"people/MaffieJonathanR", :label => 'Maffie, Jonathan R.'
     property :"people/MagdelinoJuliaA", :label => 'Magdelino, Julia A.'
     property :"people/MageeMadisonV", :label => 'Magee, Madison V.'
+    property :"people/MahalakMorganG", :label => 'Mahalak, Morgan G.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/MahlerCaroline", :label => 'Mahler, Caroline'
     property :"people/MaikeEmilyA", :label => 'Maike, Emily A.'
     property :"people/MainWilliam", :label => 'Main, William'
@@ -1864,15 +2076,25 @@ module OregonDigital::Vocabularies
     property :"people/MalcolmHoward", :label => 'Malcolm, Howard'
     property :"people/MaldonadoAlejandro", :label => 'Maldonado, Alejandro'
     property :"people/MaleyDavidN", :label => 'Maley, David N.'
+    property :"people/MaloataAustinT", :label => 'Maloata, Austin T.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/MaloneDerrickE", :label => 'Malone, Derrick E.'
+    property :"people/MaloneDerrickEJr", :label => 'Malone, Derrick E., Jr.', :comment =>
+      %(Football, RSr. 2014-2015.)
     property :"people/MaloneyDennisM", :label => 'Maloney, Dennis M.'
     property :"people/ManerudCliffordR", :label => 'Manerud, Clifford R.'
+    property :"people/MannBrittanyT", :label => 'Mann, Brittany T.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/MannexRuss", :label => 'Mannex, Russ'
+    property :"people/MannsMichaelR", :label => 'Manns, Michael R.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/ManolovaRalitsaR", :label => 'Manolova, Ralitsa R.'
     property :"people/MansellRaquelM", :label => 'Mansell, Raquel M.'
     property :"people/MansfieldJosephP", :label => 'Mansfield, Joseph P.'
     property :"people/MarasescuNatalia", :label => 'Marasescu, Natalia'
     property :"people/MarchantAlice", :label => 'Marchant, Alice'
+    property :"people/MarcinkowskiAlexanderR", :label => 'Marcinkowski, Alexander R.', :comment =>
+      %(Univeristy of Oregon Mens\' Tennis, 2014-2015)
     property :"people/MaresToledoAspenD", :label => 'Mares-Toledo, Aspen D.'
     property :"people/MariotaMarcusA", :label => 'Mariota, Marcus A.'
     property :"people/MarkerWilliam", :label => 'Marker, William'
@@ -1899,8 +2121,12 @@ module OregonDigital::Vocabularies
     property :"people/MathesMary", :label => 'Mathes, Mary'
     property :"people/MathewsLynnE", :label => 'Mathews, Lynn E.'
     property :"people/MathisDiorM", :label => 'Mathis, Dior M.'
+    property :"people/MarlattKatherineKatieT", :label => 'Matlatt, Katherine \'Katie\' T.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/MatonAshleyN", :label => 'Maton, Ashley N.'
     property :"people/MatternTommy", :label => 'Mattern, Tommy'
+    property :"people/MattinglyDanielDannyL", :label => 'Mattingly, Daniel \'Danny\' L.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/MattoxKimberM", :label => 'Mattox, Kimber M.'
     property :"people/MattsonRiley", :label => 'Mattson, Riley'
     property :"people/MauldingMike", :label => 'Maulding, Mike'
@@ -1915,6 +2141,8 @@ module OregonDigital::Vocabularies
     property :"people/MayhughMcKayla", :label => 'Mayhugh, McKayla'
     property :"people/MayhughStacy", :label => 'Mayhugh, Stacy'
     property :"people/MazmanyanTatevik", :label => 'Mazmanyan, Tatevik'
+    property :"people/McArdleMarcusN", :label => 'McArdle, Marcus N.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/McCalisterDanny", :label => 'McCalister, Danny'
     property :"people/McCallKevinL", :label => 'McCall, Kevin L.'
     property :"people/McCallTom1913", :label => 'McCall, Tom, 1913-'
@@ -1937,7 +2165,11 @@ module OregonDigital::Vocabularies
     property :"people/McCoolErikaK", :label => 'McCool, Erika K.'
     property :"people/McCordJim", :label => 'McCord, Jim'
     property :"people/McCormackCondonC", :label => 'McCormack, Condon C.'
+    property :"people/McCormickKatherineKatieM", :label => 'McCormick, Katherine \'Katie\' M.', :comment =>
+      %(Women\'s Soccer, Jr. 2014-2015.)
     property :"people/McCoyMason", :label => 'McCoy, Mason'
+    property :"people/McCreathJakeR", :label => 'McCreath, Jake R.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/McCredieHugh", :label => 'McCredie, Hugh'
     property :"people/McCuddenBernard", :label => 'McCudden, Bernard'
     property :"people/McCullochBriannaP", :label => 'McCulloch, Brianna P.'
@@ -1947,8 +2179,12 @@ module OregonDigital::Vocabularies
     property :"people/McDougallPatrickR", :label => 'McDougall, Patrick R.'
     property :"people/McEwanJohnJ", :label => 'McEwan, John J.'
     property :"people/McFaddenMatthewG", :label => 'McFadden, Matthew G.'
+    property :"people/McFaddenMatthewMattG", :label => 'McFadden, Matthew Matt G.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/McGaugheySam", :label => 'McGaughey, Sam'
     property :"people/McGillKevinR", :label => 'McGill, Kevin R.'
+    property :"people/McGrawMattrellMattD", :label => 'McGraw, Mattrell \'Matt\' D.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/McGuireJohn", :label => 'McGuire, John'
     property :"people/McHughPhil", :label => 'McHugh, Phil'
     property :"people/McIverBrandonR", :label => 'McIver, Brandon R.'
@@ -1972,12 +2208,20 @@ module OregonDigital::Vocabularies
     property :"people/MeatsKaren", :label => 'Meats, Karen'
     property :"people/MecklenburgMarcia", :label => 'Mecklenburg, Marcia'
     property :"people/MedleyDorrisW", :label => 'Medley, Dorris W.'
+    property :"creator/MeehanHoward", :label => 'Meehan, Howard', :comment =>
+      %(Artist)
+    property :"creator/MeehanKathleen", :label => 'Meehan, Kathleen', :comment =>
+      %(Artist)
     property :"people/MeehanRay", :label => 'Meehan, Ray'
     property :"people/MeharryBrianne", :label => 'Meharry, Brianne'
     property :"people/MeinertJamesD", :label => 'Meinert, James D.'
     property :"people/MelanconMatthewR", :label => 'Melancon, Matthew R.'
     property :"people/MelandTheodoreR", :label => 'Meland, Theodore R.'
+    property :"people/MelendezDevinA", :label => 'Melendez, Devin A.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/MelickHannahT", :label => 'Melick, Hannah T.'
+    property :"people/MeluJoshua", :label => 'Melu, Joshua', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/MendenhallAndrewL", :label => 'Mendenhall, Andrew L.'
     property :"people/MenkensMichelleM", :label => 'Menkens, Michelle M.'
     property :"people/MercadoDanicaM", :label => 'Mercado, Danica M.'
@@ -1991,9 +2235,15 @@ module OregonDigital::Vocabularies
     property :"people/MetzgerJuliaM", :label => 'Metzger, Julia M.'
     property :"people/MeyersHeatherL", :label => 'Meyers, Heather L.'
     property :"people/MezaAdolph", :label => 'Meza, Adolph'
+    property :"people/MichaelDevanP", :label => 'Michael, Devan P.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/MichaelGraham", :label => 'Michael, Graham'
     property :"people/MichekFrankJ", :label => 'Michek, Frank J.'
     property :"people/MichelClaireF", :label => 'Michel, Claire F.'
+    property :"subject/MichiKosuge", :label => 'Michi Kosuge', :comment =>
+      %(Artist.)
+    property :"people/MiddlebrooksMadelineO", :label => 'Middlebrooks, Madeline O.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/MiddletonToni", :label => 'Middleton, Toni'
     property :"people/MikelsJerryD", :label => 'Mikels, Jerry D.'
     property :"people/MikesellRaymondFrech", :label => 'Mikesell, Raymond Frech'
@@ -2027,16 +2277,24 @@ module OregonDigital::Vocabularies
     property :"people/MitchellDan", :label => 'Mitchell, Dan'
     property :"people/MitchellTerranceR", :label => 'Mitchell, Terrance R.'
     property :"people/MitchellWalter", :label => 'Mitchell, Walter'
+    property :"people/MiyashiroSaipaiaDavisK", :label => 'Miyashiro-Saipaia, Davis K.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/MoaceBo", :label => 'Moace, Bo'
     property :"people/MobleyDick", :label => 'Mobley, Dick'
     property :"people/MocciaJacquelineE", :label => 'Moccia, Jacqueline E.'
     property :"people/MockJerry", :label => 'Mock, Jerry'
+    property :"people/ModinMitchG", :label => 'Modin, Mitch G.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
+    property :"people/ModlyNatalieR", :label => 'Modly, Natalie R.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/MoellerEd", :label => 'Moeller, Ed'
     property :"people/MoffatFlorence", :label => 'Moffat, Florence'
     property :"people/MohrFred", :label => 'Mohr, Fred'
     property :"people/MolterCameronH", :label => 'Molter, Cameron H.'
     property :"people/MonaghanRandy", :label => 'Monaghan, Randy'
     property :"people/MondaleHarry", :label => 'Mondale, Harry'
+    property :"people/MondeauxHenryM", :label => 'Mondeaux, Henry M.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/MonroeKevin", :label => 'Monroe, Kevin'
     property :"people/MonsonDon", :label => 'Monson, Don'
     property :"people/MontiethOrville", :label => 'Montieth, Orville'
@@ -2059,6 +2317,7 @@ module OregonDigital::Vocabularies
     property :"people/MoreyGalen", :label => 'Morey, Galen'
     property :"people/MorfittBette", :label => 'Morfitt, Bette'
     property :"people/MorfittNeil", :label => 'Morfitt, Neil'
+    property :"creator/MorinJonesMaryan", :label => 'Morin-Jones, Maryan'
     property :"people/MorleyKimberlyM", :label => 'Morley, Kimberly M.'
     property :"people/MoroGuerrino", :label => 'Moro, Guerrino'
     property :"people/MoroJerry", :label => 'Moro, Jerry'
@@ -2067,8 +2326,12 @@ module OregonDigital::Vocabularies
     property :"people/MorrisFrankE", :label => 'Morris, Frank E.'
     property :"people/MorrisJack", :label => 'Morris, Jack'
     property :"people/MorrisJanet", :label => 'Morris, Janet'
+    property :"people/MorrisJennaC", :label => 'Morris, Jenna C.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/MorrisonBridgetC", :label => 'Morrison, Bridget C.'
     property :"people/MorrisonRichard", :label => 'Morrison, Richard'
+    property :"people/MorrowAbigailAbbyA", :label => 'Morrow, Abigail \'Abby\' A.', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/MorrowThomasE", :label => 'Morrow, Thomas E.'
     property :"people/MorseRaymond", :label => 'Morse, Raymond'
     property :"people/MortensonBruceW", :label => 'Mortenson, Bruce W.'
@@ -2095,10 +2358,18 @@ module OregonDigital::Vocabularies
     property :"people/MullenJeffrey", :label => 'Mullen, Jeffrey'
     property :"people/MullensRobertA", :label => 'Mullens, RobertA.'
     property :"people/MullinsKevin", :label => 'Mullins, Kevin'
+    property :"people/MulverhillChristopherChrisW", :label => 'Mulverhill, Christopher \'Chris\' W.', :comment =>
+      %(Mens\'s Cross Country, RFr. 2014-2015.)
+    property :"people/MundtJohnJohnnyC", :label => 'Mundt, John \'Johnny\' C.', :comment =>
+      %(Football, So. 2014-2015.)
     property :"people/MundtJohnC", :label => 'Mundt, John C.'
     property :"people/MunieNormaJ", :label => 'Munie, Norma J.'
     property :"people/MunkhbatMunkherdene", :label => 'Munkhbat, Munkherdene'
     property :"people/MunsonHanna", :label => 'Munson, Hanna'
+    property :"people/MurphyBrennaE", :label => 'Murphy, Brenna E.', :comment =>
+      %(Univeristy of Oregon Women\'s Golf, 2014-2015)
+    property :"people/MurphyEvanA", :label => 'Murphy, Evan A.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/MurphyHD", :label => 'Murphy, H. D.'
     property :"people/MurphyWD", :label => 'Murphy, W. D.'
     property :"people/MurrayJohnJr", :label => 'Murray, John, Jr.'
@@ -2117,16 +2388,24 @@ module OregonDigital::Vocabularies
     property :"people/NavarroCarlosM", :label => 'Navarro, Carlos M.'
     property :"people/NeedhamHarryJ", :label => 'Needham, Harry J.'
     property :"people/NeeleyJohn", :label => 'Neeley, John'
+    property :"people/NeerWaverlyA", :label => 'Neer, Waverly A.', :comment =>
+      %(Women\'s Cross Country, Jr. 2014-2015.)
     property :"people/NehlJohnT", :label => 'Nehl, John T.'
     property :"people/NeilSteinhauer", :label => 'Neil Steinhauer'
     property :"people/NeillWill", :label => 'Neill, Will'
     property :"people/NelsonBruce", :label => 'Nelson, Bruce'
+    property :"people/NelsonCharlesK", :label => 'Nelson, Charles K.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/NelsonDean", :label => 'Nelson, Dean'
     property :"people/NelsonDick", :label => 'Nelson, Dick'
     property :"people/NelsonJeff", :label => 'Nelson, Jeff'
     property :"people/NelsonMartin", :label => 'Nelson, Martin'
+    property :"people/NerudBriannaL", :label => 'Nerud, Brianna L.', :comment =>
+      %(Women\'s Cross Country, Jr. 2014-2015.)
     property :"people/NestorFrancis", :label => 'Nestor, Francis'
     property :"people/NeubertPascaleM", :label => 'Neubert, Pascale M.'
+    property :"people/NeubertTatumJ", :label => 'Neubert, Tatum J.', :comment =>
+      %(Univeristy of Oregon Women\'s Basketball, 2014-2015)
     property :"people/NeumanTravisC", :label => 'Neuman, Travis C.'
     property :"people/NevillsSam", :label => 'Nevills, Sam'
     property :"people/NewcomerBus", :label => 'Newcomer, Bus'
@@ -2167,13 +2446,18 @@ module OregonDigital::Vocabularies
     property :"people/NortonTatumA", :label => 'Norton, Tatum A.'
     property :"people/NotosSam", :label => 'Notos, Sam'
     property :"people/NowlandFred", :label => 'Nowland, Fred'
+    property :"creator/NuszNancy", :label => 'Nusz, Nancy'
     property :"people/NuttJames", :label => 'Nutt, James'
+    property :"people/OConnellCarlyE", :label => 'O\'Connell, Carley E.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/O'ConnellCarlyE", :label => 'O\'Connell, Carly E.'
     property :"people/O'DonnellBrianK", :label => 'O\'Donnell, Brian K.'
     property :"people/O'DonnellMorganS", :label => 'O\'Donnell, Morgan S.'
     property :"people/O'LearyAlanB", :label => 'O\'Leary, Alan B.'
     property :"people/O'MalleyColleenE", :label => 'O\'Malley, Colleen E.'
     property :"people/O'NeillDavidM", :label => 'O\'Neill, David M.'
+    property :"people/ONeillKellyA", :label => 'O\'Neill, Kelly A.', :comment =>
+      %(Women\'s Cross Country, RFr. 2014-2015.)
     property :"people/O'RourkeLeo", :label => 'O\'Rourke, Leo'
     property :"people/O'RourkeRandy", :label => 'O\'Rourke, Randy'
     property :"people/O'TooleWilliamS", :label => 'O\'Toole, William S.'
@@ -2181,6 +2465,8 @@ module OregonDigital::Vocabularies
     property :"people/OberstPaul1914", :label => 'Oberst, Paul, 1914-'
     property :"people/OberteufferRK", :label => 'Oberteuffer, R. K.'
     property :"people/Odetta1930", :label => 'Odetta, 1930-'
+    property :"people/OdleFeliciaM", :label => 'Odle, Felicia M.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/OfficerBob", :label => 'Officer, Bob'
     property :"people/OgburnReginald", :label => 'Ogburn, Reginald'
     property :"people/OhlemannSig", :label => 'Ohlemann, Sig'
@@ -2192,6 +2478,8 @@ module OregonDigital::Vocabularies
     property :"people/OliveiraRafaelD", :label => 'Oliveira, Rafael D.'
     property :"people/OliverGeraldA", :label => 'Oliver, Gerald A.'
     property :"people/OliverJeanB", :label => 'Oliver, Jean B.'
+    property :"people/OliverKhalilD", :label => 'Oliver, Khalil D.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/OlsenMel", :label => 'Olsen, Mel'
     property :"people/OlsonDennis", :label => 'Olson, Dennis'
     property :"people/OlsonEric", :label => 'Olson, Eric'
@@ -2217,7 +2505,11 @@ module OregonDigital::Vocabularies
     property :"people/PappasSamanthaN", :label => 'Pappas, Samantha N.'
     property :"people/PardiniDanielS", :label => 'Pardini, Daniel S.'
     property :"people/ParentKrista", :label => 'Parent, Krista'
+    property :"people/ParkLukeT", :label => 'Park, Luke T.', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
     property :"people/ParkeRobertFrank", :label => 'Parke, Robert Frank'
+    property :"people/ParkerJanelleC", :label => 'Parker, Janelle C.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/ParkerJody", :label => 'Parker, Jody'
     property :"people/ParkerTimothyS", :label => 'Parker, Timothy S.'
     property :"people/ParrKristenD", :label => 'Parr, Kristen D.'
@@ -2248,9 +2540,13 @@ module OregonDigital::Vocabularies
     property :"people/PennyHerb", :label => 'Penny, Herb'
     property :"people/PensoMarcS", :label => 'Penso, Marc S.'
     property :"people/PepelnjakGeorge", :label => 'Pepelnjak, George'
+    property :"people/PepiotTanguyN", :label => 'Pepiot, Tanguy N.', :comment =>
+      %(Mens\'s Cross Country, Sr. 2014-2015.)
     property :"people/PerkinsCloanNorris", :label => 'Perkins, Cloan Norris'
     property :"people/PerkinsElsie", :label => 'Perkins, Elsie'
     property :"people/PerkinsRichardL", :label => 'Perkins, Richard L.'
+    property :"people/PerkinsRonaldRonJ", :label => 'Perkins, Ronald \'Ron\' J.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/PerryEmily", :label => 'Perry, Emily'
     property :"people/PersonsChris", :label => 'Persons, Chris'
     property :"people/PetchakanMonicaK", :label => 'Petchakan, Monica K.'
@@ -2280,6 +2576,8 @@ module OregonDigital::Vocabularies
     property :"people/PiercyCatherine", :label => 'Piercy, Catherine'
     property :"people/PiercyKitty", :label => 'Piercy, Kitty'
     property :"people/PiersKaren", :label => 'Piers, Karen'
+    property :"people/PiersonMatthewMattA", :label => 'Pierson, MatthewMattA', :comment =>
+      %(Football, RJr. 2014-2015.)
     property :"people/PietschmanAl", :label => 'Pietschman, Al'
     property :"people/PiiborJonasC", :label => 'Piibor, Jonas C.'
     property :"people/PikovskyMarilyn", :label => 'Pikovsky, Marilyn'
@@ -2297,6 +2595,8 @@ module OregonDigital::Vocabularies
     property :"people/PorterJim", :label => 'Porter, Jim'
     property :"people/PorterJoe", :label => 'Porter, Joe'
     property :"people/PostDouglasA", :label => 'Post, Douglas A.'
+    property :"people/PowellCheyeneN", :label => 'Powell, Cheyene N.', :comment =>
+      %(Univeristy of Oregon Women\'s Softball, 2014-2015)
     property :"people/PowellDavidK", :label => 'Powell, David K.'
     property :"people/PowersJim", :label => 'Powers, Jim'
     property :"people/PowersMaryAlice", :label => 'Powers, Mary Alice'
@@ -2306,7 +2606,15 @@ module OregonDigital::Vocabularies
     property :"people/PozzoBud", :label => 'Pozzo, Bud'
     property :"people/PrakelSamuelS", :label => 'Prakel, Samuel S.'
     property :"people/PrandiniJennaE", :label => 'Prandini, Jenna E.'
+    property :"people/PranoviaMarcella", :label => 'Pranovia, Marcella', :comment =>
+      %(Univeristy of Oregon Women\'s Golf, 2014-2015)
+    property :"people/PraterJamal", :label => 'Prater, Jamal', :comment =>
+      %(Football, RJr. 2014-2015.)
+    property :"people/PrenaCullenP", :label => 'Prena, Cullen P.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/PrestonBevBland", :label => 'Preston, Bev Bland'
+    property :"people/PrevotTorrodneyV", :label => 'Prevot, Torrodney V.', :comment =>
+      %(Football, So. 2014-2015.)
     property :"people/PribilskyStefanM", :label => 'Pribilsky, Stefan M.'
     property :"people/PriceAlexanderM", :label => 'Price, Alexander M.'
     property :"people/PriceRick", :label => 'Price, Rick'
@@ -2319,6 +2627,8 @@ module OregonDigital::Vocabularies
     property :"people/ProzinskiDennis", :label => 'Prozinski, Dennis'
     property :"people/PuckettJamesH", :label => 'Puckett, James H.'
     property :"people/PuentesSamanthaS", :label => 'Puentes, Samantha S.'
+    property :"people/PughBriannaBriR", :label => 'Pugh, Brianna \'Bri\' R.', :comment =>
+      %(Women\'s Soccer, Sr. 2014-2015.)
     property :"people/PughBriannaR", :label => 'Pugh, Brianna R.'
     property :"people/PurdyKen", :label => 'Purdy, Ken'
     property :"people/PurvineWinstonD", :label => 'Purvine, Winston D.'
@@ -2332,6 +2642,8 @@ module OregonDigital::Vocabularies
     property :"people/RachWilliam", :label => 'Rach, William'
     property :"people/RadcliffeJamesC", :label => 'Radcliffe, James C.'
     property :"people/RaganMacKenzieH", :label => 'Ragan, MacKenzie H.'
+    property :"people/RaginJohnnyEIII", :label => 'Ragin, Johnny E. III', :comment =>
+      %(Football, So. 2014-2015.)
     property :"people/RalphDanielR", :label => 'Ralph, Daniel R.'
     property :"people/RameyHoward", :label => 'Ramey, Howard'
     property :"people/RamiuJulian", :label => 'Ramiu, Julian'
@@ -2370,6 +2682,8 @@ module OregonDigital::Vocabularies
     property :"people/RempelAvernoM", :label => 'Rempel, Averno M.'
     property :"people/RenfroMel", :label => 'Renfro, Mel'
     property :"people/RevelleRhonda", :label => 'Revelle, Rhonda'
+    property :"people/ReyesAlberto", :label => 'Reyes, Alberto', :comment =>
+      %(Univeristy of Oregon Mens\' Tennis, 2014-2015)
     property :"people/ReynoldsWilliam", :label => 'Reynolds, William'
     property :"people/RhoadesDonaldE", :label => 'Rhoades, Donald E.'
     property :"people/RhoneEd", :label => 'Rhone, Ed'
@@ -2418,16 +2732,28 @@ module OregonDigital::Vocabularies
     property :"people/RocchelliLuciaA", :label => 'Rocchelli, LuciaA.'
     property :"people/RocheJack", :label => 'Roche, Jack'
     property :"people/RocheJohnL", :label => 'Roche, John L.'
+    property :"people/RockeyMichelleT", :label => 'Rockey, Michelle T.', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/RoddyGeorge", :label => 'Roddy, George'
     property :"people/RodgersRobert", :label => 'Rodgers, Robert'
     property :"people/RodigerDick", :label => 'Rodiger, Dick'
+    property :"people/RodriguezAllie", :label => 'Rodriguez, Allie', :comment =>
+      %(Women\'s Soccer, Sr. 2014-2015.)
     property :"people/RodriguezAllisonM", :label => 'Rodriguez, Allison M.'
     property :"people/RoeslerLauraA", :label => 'Roesler, Laura A.'
+    property :"people/RogersAlexandraAllieP", :label => 'Rogers, Alexandra \'Allie\' P.', :comment =>
+      %(Volleyball, RSr. 2014-2015.)
     property :"people/RollwageJack", :label => 'Rollwage, Jack'
     property :"people/RomneyMilesC", :label => 'Romney, Miles C.'
+    property :"people/RorieAhmaad", :label => 'Rorie, Ahmaad', :comment =>
+      %(Univeristy of Oregon Mens\' Basketball, 2014-2015)
     property :"people/RoseDawnaR", :label => 'Rose, Dawna R.'
     property :"people/RoseGeorgene", :label => 'Rose, Georgene'
     property :"people/RoseMichael", :label => 'Rose, Michael'
+    property :"people/RoseNiaA", :label => 'Rose, Nia A.', :comment =>
+      %(Univeristy of Oregon Women\'s Tennis, 2014-2015)
+    property :"people/RoseberryTateRLane", :label => 'Roseberry, Tate R. \'Lane\'', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/RosenburgChick", :label => 'Rosenburg, Chick'
     property :"people/RossBill", :label => 'Ross, Bill'
     property :"people/RossCuster", :label => 'Ross, Custer'
@@ -2438,6 +2764,8 @@ module OregonDigital::Vocabularies
     property :"people/RoweChrishaeD", :label => 'Rowe, Chrishae D.'
     property :"people/RowePaul", :label => 'Rowe, Paul'
     property :"people/RowellKelseyC", :label => 'Rowell, Kelsey C.'
+    property :"people/RowleeAlishaJ", :label => 'Rowlee, Alisha J.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/RundlettRobert", :label => 'Rundlett, Robert'
     property :"people/RungeJody", :label => 'Runge, Jody'
     property :"people/RunquistAlbert", :label => 'Runquist, Albert'
@@ -2464,7 +2792,11 @@ module OregonDigital::Vocabularies
     property :"people/SandnessEarl", :label => 'Sandness, Earl'
     property :"people/SandsnessJim", :label => 'Sandsness, Jim'
     property :"people/SanfordGlenn", :label => 'Sanford, Glenn'
+    property :"people/SantMarybethE", :label => 'Sant, Marybeth E.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/SantosDesmondR", :label => 'Santos, Desmond R.'
+    property :"people/SantosoCathleen", :label => 'Santoso, Cathleen', :comment =>
+      %(Univeristy of Oregon Women\'s Golf, 2014-2015)
     property :"people/SarduDaniel", :label => 'Sardu, Daniel'
     property :"people/SarpolaTed", :label => 'Sarpola, Ted'
     property :"people/SasekAlexandriaR", :label => 'Sasek,Alexandria R.'
@@ -2480,20 +2812,28 @@ module OregonDigital::Vocabularies
     property :"people/SchauflerRickW", :label => 'Schaufler, Rick W.'
     property :"people/SchedeenPoly", :label => 'Schedeen, Poly'
     property :"people/SchickHal", :label => 'Schick, Hal'
+    property :"people/SchilmoellerErinF", :label => 'Schilmoeller, Erin F.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/SchlossteinDick", :label => 'Schlosstein, Dick'
     property :"people/SchmaedickMaggieJ", :label => 'Schmaedick, Maggie J.'
     property :"people/SchmeerHay", :label => 'Schmeer, Hay'
     property :"people/SchmerNick", :label => 'Schmer, Nick'
     property :"people/SchmidtEllen", :label => 'Schmidt, Ellen'
+    property :"people/SchneiderAidanC", :label => 'Schneider, Aidan C.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/SchneiderBruceM", :label => 'Schneider, Bruce M.'
     property :"people/SchoeniArthurL", :label => 'Schoeni, Arthur L.'
     property :"people/SchollMarc", :label => 'Scholl, Marc'
     property :"people/SchriverJim", :label => 'Schriver, Jim'
     property :"people/SchroederChris", :label => 'Schroeder, Chris'
     property :"people/SchulerDentonC", :label => 'Schuler, Denton C.'
+    property :"people/SchullerZacheryZacH", :label => 'Schuller, Zachery \'Zac\' H.', :comment =>
+      %(Football, Jr. 2014-2015.)
     property :"people/SchultzGilbert", :label => 'Schultz, Gilbert'
     property :"people/SchultzRussell", :label => 'Schultz, Russell'
     property :"people/SchulzAshleeN", :label => 'Schulz, Ashlee N.'
+    property :"people/SchulzMirandaM", :label => 'Schulz, Miranda M.', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/SchulzeSamanthaJ", :label => 'Schulze, Samantha J.'
     property :"people/SchvaneveldtKay", :label => 'Schvaneveldt, Kay'
     property :"people/SchwabGregoryS", :label => 'Schwab, Gregory S.'
@@ -2504,6 +2844,8 @@ module OregonDigital::Vocabularies
     property :"people/ScottDonaldG", :label => 'Scott, Donald G.'
     property :"people/ScottGlen", :label => 'Scott, Glen'
     property :"people/ScottLS", :label => 'Scott, L. S.'
+    property :"people/ScottMargaretMaggieL", :label => 'Scott, Margaret \'Maggie\' L.', :comment =>
+      %(Volleyball, Fr. 2014-2015.)
     property :"people/ScottOrbie", :label => 'Scott, Orbie'
     property :"people/ScottSteve", :label => 'Scott, Steve'
     property :"people/ScottVernonCharles", :label => 'Scott, Vernon Charles'
@@ -2514,9 +2856,13 @@ module OregonDigital::Vocabularies
     property :"people/SeeborgKenneth", :label => 'Seeborg, Kenneth'
     property :"people/SegaleRaymondG", :label => 'Segale, Raymond G.'
     property :"people/SeifertGeorge", :label => 'Seifert, George'
+    property :"people/SeisayChristopherChrisA", :label => 'Seisay, Christopher \'Chris\' A.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/SendersH", :label => 'Senders, H.'
     property :"people/SeniorGreg", :label => 'Senior, Greg'
     property :"people/SenoChiari", :label => 'Seno, Chiari'
+    property :"people/SensLaurenE", :label => 'Sens, Lauren E.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/SeoHanuleS", :label => 'Seo, Hanule S.'
     property :"people/ServiceBill", :label => 'Service, Bill'
     property :"people/SextonAutumn", :label => 'Sexton,Autumn'
@@ -2530,6 +2876,8 @@ module OregonDigital::Vocabularies
     property :"people/ShawMichaelT", :label => 'Shaw, Michael T.'
     property :"people/SheaJamesM", :label => 'Shea, James M.'
     property :"people/SheaTerry", :label => 'Shea, Terry'
+    property :"people/ShebbyFrancesFrankie", :label => 'Shebby, Frances \'Frankie\'', :comment =>
+      %(Volleyball, Fr. 2014-2015.)
     property :"people/ShedrickJuanA", :label => 'Shedrick, Juan A.'
     property :"people/SheehyJamesSarsfield", :label => 'Sheehy, James Sarsfield'
     property :"people/SheikhNoahS", :label => 'Sheikh, Noah S.'
@@ -2585,11 +2933,15 @@ module OregonDigital::Vocabularies
     property :"people/SisleyBeckyL", :label => 'Sisley, Becky L.'
     property :"people/SkillicornStan", :label => 'Skillicorn, Stan'
     property :"people/SkinnerKenyon", :label => 'Skinner, Kenyon'
+    property :"people/SkipperGregoryK", :label => 'Skipper, Gregory K.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/SkipperJim", :label => 'Skipper, Jim'
     property :"people/SkipperScott", :label => 'Skipper, Scott'
     property :"people/SkofstadAmyL", :label => 'Skofstad, Amy L.'
     property :"people/SkowronskiPatriciaN", :label => 'Skowronski, Patricia N.'
     property :"people/SladeRoderickL", :label => 'Slade, Roderick L.'
+    property :"people/SloanJasonL", :label => 'Sloan, Jason L.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/SmartShirley", :label => 'Smart, Shirley'
     property :"people/SmatovaPavlina", :label => 'Smatova, Pavlina'
     property :"people/SmetanaDrewF", :label => 'Smetana, Drew F.'
@@ -2626,6 +2978,8 @@ module OregonDigital::Vocabularies
     property :"people/SnowBrooklynI", :label => 'Snow, Brooklyn I.'
     property :"people/SnyderBruce", :label => 'Snyder, Bruce'
     property :"people/SnyderWilliamC", :label => 'Snyder, William C.'
+    property :"people/SolisEric", :label => 'Solis, Eric', :comment =>
+      %(Football, RSr. 2014-2015.)
     property :"people/SorensenRex", :label => 'Sorensen, Rex'
     property :"people/SoursJamesK", :label => 'Sours, James K.'
     property :"people/SowaMarcy", :label => 'Sowa, Marcy'
@@ -2643,6 +2997,8 @@ module OregonDigital::Vocabularies
     property :"people/SpirPeterC", :label => 'Spir, Peter C.'
     property :"people/SpragueVernon", :label => 'Sprague, Vernon'
     property :"people/SpringbettBruce", :label => 'Springbett, Bruce'
+    property :"people/SpringsArrion", :label => 'Springs, Arrion', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/StamsosLindseyR", :label => 'Stamsos, Lindsey R.'
     property :"people/StandiferLarry", :label => 'Standifer, Larry'
     property :"people/StanfordDwayneA", :label => 'Stanford, Dwayne A.'
@@ -2650,11 +3006,15 @@ module OregonDigital::Vocabularies
     property :"people/StantonDonald", :label => 'Stanton, Donald'
     property :"people/StantonEd", :label => 'Stanton, Ed'
     property :"people/StanulisLauraE", :label => 'Stanulis, Laura E.'
+    property :"people/StarkSpencerF", :label => 'Stark, Spencer F.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/StarrRalphG", :label => 'Starr, Ralph G.'
     property :"people/StarrRobertC", :label => 'Starr, Robert C.'
     property :"people/StarrSilas", :label => 'Starr, Silas'
     property :"people/StatonMorgan", :label => 'Staton, Morgan'
     property :"people/StaubRay", :label => 'Staub, Ray'
+    property :"people/SteeleAbigailAbbyA", :label => 'Steele, Abigail \'Abby\' A.', :comment =>
+      %(Women\'s Soccer, Sr. 2014-2015.)
     property :"people/SteeleAbigailA", :label => 'Steele, Abigail A.'
     property :"people/SteenDavid", :label => 'Steen, David'
     property :"people/SteereLoydV", :label => 'Steere, Loyd V.'
@@ -2672,6 +3032,8 @@ module OregonDigital::Vocabularies
     property :"people/SterlingVern", :label => 'Sterling, Vern'
     property :"people/StevensHamaniT", :label => 'Stevens, Hamani T.'
     property :"people/StevensJohn", :label => 'Stevens, John'
+    property :"people/StevensSimon", :label => 'Stevens, Simon', :comment =>
+      %(Univeristy of Oregon Mens\' Tennis, 2014-2015)
     property :"people/StewardRay", :label => 'Steward, Ray'
     property :"people/StewartDick", :label => 'Stewart, Dick'
     property :"people/StilesChloeA", :label => 'Stiles, Chloe A.'
@@ -2682,7 +3044,11 @@ module OregonDigital::Vocabularies
     property :"people/StimsonAlex", :label => 'Stimson,Alex'
     property :"people/StinerLon", :label => 'Stiner, Lon'
     property :"people/StinsonParkerR", :label => 'Stinson, Parker R.'
+    property :"people/StinsonTaylorS", :label => 'Stinson, Taylor S.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/StipanovichWilliamD", :label => 'Stipanovich, William D.'
+    property :"people/StoehrBrighamA", :label => 'Stoehr, Brigham A.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/StoicanMaryAnn", :label => 'Stoican, Mary Ann'
     property :"people/StokeleyCarmichael", :label => 'Stokeley Carmichael'
     property :"people/StolpJohn", :label => 'Stolp, John'
@@ -2720,6 +3086,8 @@ module OregonDigital::Vocabularies
     property :"people/SullivanGeorge", :label => 'Sullivan, George'
     property :"people/SullivanJamieRae", :label => 'Sullivan, Jamie Rae'
     property :"people/SullivanRobertV", :label => 'Sullivan, Robert V.'
+    property :"people/SummersChanceP", :label => 'Summers, Chance P.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/SummervilleFranklinJ", :label => 'Summerville, Franklin J.'
     property :"people/SundbergIrma", :label => 'Sundberg, Irma'
     property :"people/SunderlandRalph", :label => 'Sunderland, Ralph'
@@ -2728,12 +3096,20 @@ module OregonDigital::Vocabularies
     property :"people/SurlesLeonard", :label => 'Surles, Leonard'
     property :"people/SuterJamesO", :label => 'Suter, James O.'
     property :"people/SuttonJosephR", :label => 'Sutton, Joseph R.'
+    property :"people/SvekisGuinevereGwenM", :label => 'Svekis, Guinevere \'Gwen\' M.', :comment =>
+      %(Univeristy of Oregon Women\'s Softball, 2014-2015)
+    property :"people/SwainJimmieL", :label => 'Swain, Jimmie L.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/SwainWilliamS", :label => 'Swain, William S.'
     property :"people/SwalmTom", :label => 'Swalm, Tom'
     property :"people/SwanbergPeterH", :label => 'Swanberg, Peter H.'
     property :"people/SwansonCharles", :label => 'Swanson, Charles'
     property :"people/SwansonWalter", :label => 'Swanson, Walter'
+    property :"people/SwayslandJosephJ", :label => 'Swaysland, Joseph J.', :comment =>
+      %(Univeristy of Oregon Mens\' Tennis, 2014-2015)
     property :"people/SweanyHenry", :label => 'Sweany, Henry'
+    property :"people/SweatmanMarloC", :label => 'Sweatman, Marlo C.', :comment =>
+      %(Women\'s Soccer, So. 2014-2015.)
     property :"people/SwitzerGerry", :label => 'Switzer, Gerry'
     property :"people/SykesVanessaR", :label => 'Sykes, Vanessa R.'
     property :"people/SylvesterCharles", :label => 'Sylvester, Charles'
@@ -2742,9 +3118,13 @@ module OregonDigital::Vocabularies
     property :"people/TaggesellRobertL", :label => 'Taggesell, Robert L.'
     property :"people/TakedaJanetteM", :label => 'Takeda, Janette M.'
     property :"people/TalbotThomasW", :label => 'Talbot, Thomas W.'
+    property :"people/TaliaTuiT", :label => 'Talia, Tui T.', :comment =>
+      %(Football, Jr. 2014-2015.)
     property :"people/TarbellTom", :label => 'Tarbell, Tom'
     property :"people/TarrJerry", :label => 'Tarr, Jerry'
     property :"people/TarrowWilbertCarl", :label => 'Tarrow, Wilbert Carl'
+    property :"people/TaskerBrookeA", :label => 'Tasker, Brooke A.', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/TattersallJamesN", :label => 'Tattersall, James N.'
     property :"people/TaucherDonaldF", :label => 'Taucher, Donald F.'
     property :"people/TaylorAnthony", :label => 'Taylor, Anthony'
@@ -2767,20 +3147,30 @@ module OregonDigital::Vocabularies
     property :"people/TempletonFrankM", :label => 'Templeton, Frank M.'
     property :"people/TempletonJoeH", :label => 'Templeton, Joe H.'
     property :"people/TempletonRobin", :label => 'Templeton, Robin'
+    property :"people/TerefenkoMadisonMaddieM", :label => 'Terefenko, Madison \'Maddie\' M.', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/TerjesonRalphS", :label => 'Terjeson, Ralph S.'
     property :"people/TermanLewisMadison18771956", :label => 'Terman, Lewis Madison, 1877-1956'
     property :"people/TessarBrandoJ", :label => 'Tessar, Brando J.'
+    property :"people/TewhillChristopherChrisP", :label => 'Tewhill, Christopher \'Chris\' P.', :comment =>
+      %(Football, RSo. 2014-2015.)
     property :"people/TheisenBrianneL", :label => 'Theisen, Brianne L.'
+    property :"people/ThielBenjaminD", :label => 'Thiel, Benjamin D.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/ThomasCondon", :label => 'Thomas Condon'
     property :"people/ThomasArielA", :label => 'Thomas, Ariel A.'
     property :"people/ThomasAurelius", :label => 'Thomas, Aurelius'
     property :"people/ThomasBrettJ", :label => 'Thomas, Brett J.'
+    property :"people/ThomasClaireP", :label => 'Thomas, Claire P.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/ThomasDe'AnthonyM", :label => 'Thomas, De\'Anthony M.'
     property :"people/ThomasEdwardC", :label => 'Thomas, Edward C.'
     property :"people/ThomasOsbornR", :label => 'Thomas, Osborn R.'
     property :"people/ThomasRalph", :label => 'Thomas, Ralph'
     property :"people/ThomasTatiannaC", :label => 'Thomas, Tatianna C.'
     property :"people/ThomasWilliamN", :label => 'Thomas, William N.'
+    property :"people/ThompsonGrantM", :label => 'Thompson, Grant M.', :comment =>
+      %(Football, RSr. 2014-2015.)
     property :"people/ThompsonLaurenM", :label => 'Thompson, Lauren M.'
     property :"people/ThompsonMelanieA", :label => 'Thompson, Melanie A.'
     property :"people/ThompsonPatti", :label => 'Thompson, Patti'
@@ -2791,6 +3181,8 @@ module OregonDigital::Vocabularies
     property :"people/TichenorCal", :label => 'Tichenor, Cal'
     property :"people/TigerJamesD", :label => 'Tiger, James D.'
     property :"people/TiptonLes", :label => 'Tipton, Les'
+    property :"people/TobitaAlyssaT", :label => 'Tobita, Alyssa T.', :comment =>
+      %(Univeristy of Oregon Women\'s Tennis, 2014-2015)
     property :"people/ToddClarkeLeroy", :label => 'Todd, Clarke Leroy'
     property :"people/ToddJasmineA", :label => 'Todd, Jasmine A.'
     property :"people/ToddPatrickS", :label => 'Todd, Patrick S.'
@@ -2834,6 +3226,8 @@ module OregonDigital::Vocabularies
     property :"people/TynerThomasJ", :label => 'Tyner, Thomas J.'
     property :"people/UdriaNikki", :label => 'Udria, Nikki'
     property :"people/UhlmanJasonA", :label => 'Uhlman, Jason A.'
+    property :"people/UlepKelseyN", :label => 'Ulep, Kelsey N.', :comment =>
+      %(Univeristy of Oregon Women\'s Golf, 2014-2015)
     property :"people/UmenhoferKelly", :label => 'Umenhofer, Kelly'
     property :"people/UnakaNdidi", :label => 'Unaka, Ndidi'
     property :"people/UnisRichard", :label => 'Unis, Richard'
@@ -2850,7 +3244,11 @@ module OregonDigital::Vocabularies
     property :"people/VanMatreMargaret", :label => 'Van Matre, Margaret'
     property :"people/VanVlietMaurice", :label => 'Van Vliet, Maurice'
     property :"people/VanceLisaR", :label => 'Vance, Lisa R.'
+    property :"people/VandenbergJacintaC", :label => 'Vandenberg, Jacinta C.', :comment =>
+      %(Univeristy of Oregon Women\'s Basketball, 2014-2015)
     property :"people/VanderSterreLucy", :label => 'Vander Sterre, Lucy'
+    property :"people/VarelaMadelayneE", :label => 'Varela, Madelayne E.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/VaroffGeorge", :label => 'Varoff, George'
     property :"people/VaughnKortni", :label => 'Vaughn, Kortni'
     property :"people/VaughnRahsaanA", :label => 'Vaughn, Rahsaan A.'
@@ -2864,6 +3262,8 @@ module OregonDigital::Vocabularies
     property :"people/VitusOtto", :label => 'Vitus, Otto'
     property :"people/VoboraAndrew", :label => 'Vobora, Andrew'
     property :"people/VoegtlyBob", :label => 'Voegtly, Bob'
+    property :"people/VoellerEvanM", :label => 'Voeller, Evan M.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/VolkleKarlW", :label => 'Volkle, Karl W.'
     property :"people/VolpeMitchellB", :label => 'Volpe, Mitchell B.'
     property :"people/VoorheesDavidW", :label => 'Voorhees, David W.'
@@ -2881,6 +3281,10 @@ module OregonDigital::Vocabularies
     property :"people/WalkerClyde", :label => 'Walker, Clyde'
     property :"people/WalkerDave", :label => 'Walker, Dave'
     property :"people/WalkerDean", :label => 'Walker, Dean'
+    property :"people/WalkerJosephJoeW", :label => 'Walker, Joseph Joe W.', :comment =>
+      %(Football, Jr. 2014-2015.)
+    property :"people/WalkerRachel", :label => 'Walker, Rachel', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/WalkerRobertD", :label => 'Walker, Robert D.'
     property :"people/WalkerThomasS", :label => 'Walker, Thomas S.'
     property :"people/WalkerVersinia", :label => 'Walker, Versinia'
@@ -2888,6 +3292,8 @@ module OregonDigital::Vocabularies
     property :"people/WallaceTaylorG", :label => 'Wallace, Taylor G.'
     property :"people/WallerKristi", :label => 'Waller, Kristi'
     property :"people/WallyCampbell", :label => 'Wally Campbell'
+    property :"people/WalshColeR", :label => 'Walsh, Cole R.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/WaltBarger", :label => 'Walt Barger'
     property :"people/WaltBiddle", :label => 'Walt Biddle'
     property :"people/WalterMike", :label => 'Walter, Mike'
@@ -2926,10 +3332,14 @@ module OregonDigital::Vocabularies
     property :"people/WeaverReid", :label => 'Weaver, Reid'
     property :"people/WebbArthurE", :label => 'Webb, Arthur E.'
     property :"people/WebbBrenda", :label => 'Webb, Brenda'
+    property :"people/WeberJamesJimE", :label => 'Weber, James \'Jim\' E.', :comment =>
+      %(Football, Fr. 2014-2015.)
     property :"people/WebsterDevall", :label => 'Webster, Devall'
     property :"people/WeddellBrian", :label => 'Weddell, Brian'
     property :"people/WeigelAlvinA", :label => 'Weigel, Alvin A.'
     property :"people/WeinsteinJulie", :label => 'Weinstein, Julie'
+    property :"people/WeirJillianL", :label => 'Weir, Jullian L.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/WelchClaxtonN", :label => 'Welch, Claxton N.'
     property :"people/WelchJohnW", :label => 'Welch, John W.'
     property :"people/WelchPeterHarold", :label => 'Welch, Peter Harold'
@@ -2945,12 +3355,16 @@ module OregonDigital::Vocabularies
     property :"people/WestheadPaulW", :label => 'Westhead, Paul W.'
     property :"people/WestonHarry", :label => 'Weston, Harry'
     property :"people/WheatleyRaymondD", :label => 'Wheatley, Raymond D.'
+    property :"people/WheelerIanS", :label => 'Wheeler, Ian S.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/WheelerJC", :label => 'Wheeler, J. C.'
     property :"people/WheelerJonC", :label => 'Wheeler, Jon C.'
     property :"people/WheelerSheila", :label => 'Wheeler, Sheila'
     property :"people/WhighamStanleyT", :label => 'Whigham, Stanley T.'
     property :"people/WhippleBert", :label => 'Whipple, Bert'
     property :"people/WhiteAndrinae", :label => 'White, Andrinae'
+    property :"people/WhiteAustinO", :label => 'White, Austin O.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/WhiteChandlerJ", :label => 'White, Chandler J.'
     property :"people/WhiteChelseaM", :label => 'White, Chelsea M.'
     property :"people/WhiteHal", :label => 'White, Hal'
@@ -2961,12 +3375,16 @@ module OregonDigital::Vocabularies
     property :"people/WhiteStewartE", :label => 'White, Stewart E.'
     property :"people/WhiteWally", :label => 'White, Wally'
     property :"people/WhiteWill", :label => 'White, Will'
+    property :"people/WhitfieldAnnieN", :label => 'Whitfield, Annie N.', :comment =>
+      %(Univeristy of Oregon Women\'s Track and Field, 2014-2015)
     property :"people/WhitfieldRobert", :label => 'Whitfield, Robert'
     property :"people/WhitingRay", :label => 'Whiting, Ray'
     property :"people/WhitmillLori", :label => 'Whitmill, Lori'
     property :"people/WhitneySamuelG", :label => 'Whitney, Samuel G.'
     property :"people/WhittlseyWL", :label => 'Whittlsey, W. L.'
     property :"people/WhitwerNathanJ", :label => 'Whitwer, Nathan J.'
+    property :"people/WiegandBrownMadisonA", :label => 'Wiegand-Brown, Madison A.', :comment =>
+      %(Women\'s Soccer, Fr. 2014-2015.)
     property :"people/WiestOskar", :label => 'Wiest, Oskar'
     property :"people/WilbornDavidC", :label => 'Wilborn, David C.'
     property :"people/WilchuckKurtM", :label => 'Wilchuck, Kurt M.'
@@ -2982,6 +3400,8 @@ module OregonDigital::Vocabularies
     property :"people/WillettGerald", :label => 'Willett, Gerald'
     property :"people/WilleyAustin", :label => 'Willey, Austin'
     property :"people/WilliamBoydBeaty", :label => 'William Boyd Beaty'
+    property :"subject/WilliamMoore", :label => 'William Moore', :comment =>
+      %(Artist.)
     property :"people/WilliamsArianaC", :label => 'Williams, Ariana C.'
     property :"people/WilliamsBasil", :label => 'Williams, Basil'
     property :"people/WilliamsBenjaminH", :label => 'Williams, Benjamin H.'
@@ -2989,6 +3409,8 @@ module OregonDigital::Vocabularies
     property :"people/WilliamsDougalT", :label => 'Williams, Dougal T.'
     property :"people/WilliamsGaryR", :label => 'Williams, Gary R.'
     property :"people/WilliamsJeffreyI", :label => 'Williams, Jeffrey I.'
+    property :"people/WilliamsJuwaanO", :label => 'Williams, Juwaan O.', :comment =>
+      %(Football, RFr. 2014-2015.)
     property :"people/WilliamsMichaelJ", :label => 'Williams, Michael J.'
     property :"people/WilliamsMicheleK", :label => 'Williams, Michele K.'
     property :"people/WilliamsPete", :label => 'Williams, Pete'
@@ -2998,6 +3420,8 @@ module OregonDigital::Vocabularies
     property :"people/WilliamsTerryR", :label => 'Williams, Terry R.'
     property :"people/WilliamsVince", :label => 'Williams, Vince'
     property :"people/WillmoreRick", :label => 'Willmore, Rick'
+    property :"people/WillyardBrettD", :label => 'Willyard, Brett D.', :comment =>
+      %(Univeristy of Oregon Mens\' Track and Field, 2014-2015)
     property :"people/WilsonBlaireN", :label => 'Wilson, Blaire N.'
     property :"people/WilsonDod", :label => 'Wilson, Dod'
     property :"people/WilsonDon", :label => 'Wilson, Don'
@@ -3021,6 +3445,10 @@ module OregonDigital::Vocabularies
     property :"people/WinslowWalter", :label => 'Winslow, Walter'
     property :"people/WintermuteUrgel", :label => 'Wintermute, Urgel'
     property :"people/WiperNicholasK", :label => 'Wiper, Nicholas K.'
+    property :"people/WiseAaron", :label => 'Wise, Aaron', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
+    property :"people/WoganMatthewMattR", :label => 'Wogan, Matthew \'Matt\' R.', :comment =>
+      %(Football, So. 2014-2015.)
     property :"people/WohlersPat", :label => 'Wohlers, Pat'
     property :"people/WoldVirginia", :label => 'Wold, Virginia'
     property :"people/WolfJohnJ", :label => 'Wolf, John J.'
@@ -3029,7 +3457,11 @@ module OregonDigital::Vocabularies
     property :"people/WolmanFrancois", :label => 'Wolman, Francois'
     property :"people/WolvertAngelina", :label => 'Wolvert, Angelina'
     property :"people/WonKeenynM", :label => 'Won, Keenyn M.'
+    property :"people/WongCaitlynE", :label => 'Wong, Caitlyn E.', :comment =>
+      %(Women\'s Soccer, RFr. 2014-2015.)
     property :"people/WongWarnerK", :label => 'Wong, Warner K.'
+    property :"people/WooJonathanK", :label => 'Woo, Jonathan K.', :comment =>
+      %(Univeristy of Oregon Mens\' Golf, 2014-2015)
     property :"people/WoodWilliam", :label => 'Wood, William'
     property :"people/WoodellRobert", :label => 'Woodell, Robert'
     property :"people/WoodleGaryL", :label => 'Woodle, Gary L.'
@@ -3055,10 +3487,13 @@ module OregonDigital::Vocabularies
     property :"people/YenDaisy", :label => 'Yen, Daisy'
     property :"people/YenTaiJu", :label => 'Yen, Tai-Ju'
     property :"people/YerbyJohn", :label => 'Yerby, John'
+    property :"people/YimBronsonR", :label => 'Yim, Bronson R.', :comment =>
+      %(Football, RJr. 2014-2015.)
     property :"people/YorkCarsonD", :label => 'York, Carson D.'
     property :"people/YoungBrett", :label => 'Young, Brett'
     property :"people/YoungEugene", :label => 'Young, Eugene'
-    property :"people/YoungJosephM", :label => 'Young, Joseph M.'
+    property :"people/YoungJosephM", :label => 'Young, Joseph M.', :comment =>
+      %(Univeristy of Oregon Mens\' Basketball, 2014-2015)
     property :"people/YoungKathy", :label => 'Young, Kathy'
     property :"people/YoungReggie", :label => 'Young, Reggie'
     property :"people/YoungRoyARoyAton1921", :label => 'Young, Roy A. (Roy Aton), 1921-'
@@ -3074,11 +3509,17 @@ module OregonDigital::Vocabularies
     property :"people/ZimmermanGaryW", :label => 'Zimmerman, Gary W.'
     property :"people/ZinkeRyanK", :label => 'Zinke, Ryan K.'
     property :"people/ZoumboukosNeal1946", :label => 'Zoumboukos, Neal, 1946-'
+    property :"people/ZrinyiJulia", :label => 'Zrinyi, Julia', :comment =>
+      %(Women\'s Cross Country, RSo. 2014-2015.)
+    property :"people/ZubillagaJillian", :label => 'Zubillaga, Jillian', :comment =>
+      %(Univeristy of Oregon Women\'s Lacross, 2014-2015)
     property :"people/ZuercherLynnette", :label => 'Zuercher, Lynnette'
     property :"people/ZulaufDwight", :label => 'Zulauf, Dwight'
     property :"people/ZurcherHal", :label => 'Zurcher, Hal'
     property :"people/delaIslaJose", :label => 'de la Isla, Jose'
     property :"people/duToitTrudie", :label => 'du Toit, Trudie'
+    property :"subject/unidentifiedmale", :label => 'unidentified male', :comment =>
+      %(Artist.)
     property :"people/vonOtterstedtWolf", :label => 'von Otterstedt, Wolf'
   end
 end

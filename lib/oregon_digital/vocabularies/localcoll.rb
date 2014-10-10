@@ -35,6 +35,9 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/oh_07", :label => 'A.L. Strand Oral History Collection, 1949-1985 (OH 07)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/AbigailScottDuniwayPapers18521992", :label => 'Abigail Scott Duniway Papers, 1852-1992', :comment =>
+      %(Coll 232B Collection in Special Collections and University
+        Archives, University of Oregon)
     property :"localCollectionName/mss_wrightam", :label => 'Abigail and Mattie Wright Collection, 1886-1915 (MSS WrightAM)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -526,6 +529,9 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/mss_leach", :label => 'Beverly J. Leach Papers, 1918-1949 (MSS Leach)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/BillBowermanpapers19321999", :label => 'Bill Bowerman papers, 1932-1999', :comment =>
+      %(UA 003 Collection in Special Collections and University
+        Archives, University of Oregon)
     property :"localCollectionName/mss_crocker", :label => 'Bill Crocker Papers, 1970-1975 (MSS Crocker)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -574,7 +580,7 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/rg_054", :label => 'Botany and Plant Pathology Department Records, 1900-2005 (RG 054)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
-    property :"localCollectionName/BowmanWalterSPhotographsn", :label => 'Bowman (Walter S.) Photographs', :comment =>
+    property :"localCollectionName/BowmanWalterSPhotographs", :label => 'Bowman (Walter S.) Photographs', :comment =>
       %(Collection in Special Collection and University Archives,
         University of Oregon.)
     property :"localCollectionName/mss_boyscouts", :label => 'Boy Scouts of America Troop 1 (Corvallis, Or.) Records, 1919-1996 (MSS BoyScouts)', :comment =>
@@ -1547,6 +1553,8 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/mss_betts", :label => 'Frederick V. Betts Scrapbook, 1926-1964 (MSS Betts)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/FrederickWallaceWilsonCollection", :label => 'Frederick Wallace Wilson Collection', :comment =>
+      %(Mss 2167 Collection in Oregon Historical Society)
     property :"localCollectionName/mss_friendsofhorner", :label => 'Friends of Horner Museum Records, 1989-1999 (MSS FriendsofHorner)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -2326,6 +2334,9 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/p_256", :label => 'Ken Gray Photograph Collection, 1964-1979 (P 256)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/KenMetzlerPapers", :label => 'Ken Metzler Papers', :comment =>
+      %(UA 007 Collection in Special Collections and University
+        Archives, University of Oregon)
     property :"localCollectionName/KenOconnellCollection", :label => 'Ken O\'connell Collection', :comment =>
       %(Local division that reflects gift collections, donations
         and/or major purchased additions to the Visual Resources
@@ -2388,6 +2399,12 @@ module OregonDigital::Vocabularies
       %(Local division that reflects gift collections, donations
         and/or major purchased additions to the Visual Resources
         Collections or Oregon Digital.)
+    property :"localCollectionName/LatinoRootscollection", :label => 'Latino Roots collection', :comment =>
+      %(UA142 University of Oregon Special Collections and University
+        Archives.)
+    property :"localCollectionName/LauraJBockPapers", :label => 'Laura J. Bock Papers', :comment =>
+      %(UA 018 Collection in Special Collections and University
+        Archives, University of Oregon)
     property :"localCollectionName/mss_burt", :label => 'Lawrence A. Burt Papers, 1974-2009 (MSS Burt)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -2521,6 +2538,9 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/mss_malheur", :label => 'Malheur County 4-H Leaders\' Council Records, 1935-1966 (MSS Malheur)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/Manuscriptscollection", :label => 'Manuscripts collection', :comment =>
+      %(Special Collections and University Archives, University of
+        Oregon)
     property :"localCollectionName/mss_maplemanor", :label => 'Maple Manor Cooperative House Records, 1940-1995 (MSS MapleManor)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -2886,6 +2906,25 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/rg_018", :label => 'Office of University Publications and OSU Press Records, 1907-1995 (RG 018)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/NationalJapaneseAmericanStudentRelocationCouncilRecords", :label => 'Office of the Dean of Personnel Administration. National Japanese American Student Relocation Council Records', :comment =>
+      %(UA009 University of Oregon Special Collections and University
+        Archives.)
+    property :"localCollectionName/OfficeofthePresidentRecordsArthurSFlemming", :label => 'Office of the President Records, Arthur S. Flemming', :comment =>
+      %(Collection in Special Collections and University Archives,
+        University of Oregon)
+    property :"localCollectionName/OfficeofthePresidentRecordsCharlesEJohnson", :label => 'Office of the President Records, Charles E. Johnson', :comment =>
+      %(UA 008 Collection in Special Collections and University
+        Archives, University of Oregon)
+    property :"localCollectionName/OfficeofthePresidentRecordsJohnsonHawk196869", :label => 'Office of the President Records, Johnson-Hawk (1968-69)', :comment =>
+      %(Collection in Special Collections and University Archives,
+        University of Oregon)
+    property :"localCollectionName/OfficeofthePresidentRecordsOMeredithWilson", :label => 'Office of the President Records, O. Meredith Wilson', :comment =>
+      %(UA 010 Collection in Special Collections and University
+        Archives, University of Oregon)
+    property :"localCollectionName/OfficeofthePresidentRecordsRobertDClark", :label => 'Office of the President Records, Robert D. Clark', :comment =>
+      %(UA 001.012 Collection in Special Collections and University
+        Archives, University of Oregon)
+    property :"localCollectionName/OldOregon", :label => 'Old Oregon'
     property :"localCollectionName/mss_matthews", :label => 'Oliver Matthews Collection, 1905-1969 (MSS Matthews)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -2919,6 +2958,7 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/mss_orderspoon", :label => 'Order of the Spoon Records, 1928-1939 (MSS OrderSpoon)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/Oregana1969", :label => 'Oregana1969'
     property :"localCollectionName/rg_040", :label => 'Oregon Agricultural College Engineering Association Records, 1905-1909 (RG 040)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -3347,6 +3387,7 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/rg_236", :label => 'Pride Center Records, 1993-2008 (RG 236)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/PrintCollection", :label => 'Print Collection'
     property :"localCollectionName/rg_166", :label => 'Printing and Mailing Services Records, 1932-1993 (RG 166)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -3481,6 +3522,9 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/mss_wilsonr", :label => 'Robert Claude Wilson Papers, 1920-2004 (MSS WilsonR)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/RobertDClarkPapers", :label => 'Robert D. Clark Papers', :comment =>
+      %(UA 144 Collection in Special Collections and University
+        Archives, University of Oregon)
     property :"localCollectionName/mss_grahamrd", :label => 'Robert D. Graham Papers, 1903-1973 (MSS GrahamRD)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -3728,6 +3772,8 @@ module OregonDigital::Vocabularies
       %(Local division that reflects gift collections, donations
         and/or major purchased additions to the Visual Resources
         Collections or Oregon Digital.)
+    property :"localCollectionName/StevenLowenstamCollection", :label => 'Steven Lowenstam Collection', :comment =>
+      %(University of Oregon Department of Classics.)
     property :"localCollectionName/mss_barometer", :label => 'Story of the Oregon State College Barometer Manuscript, 1947-1948 (MSS Barometer)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -3872,9 +3918,14 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/mss_civilwar", :label => 'U.S. Civil War Collection, 1862-1898 (MSS CivilWar)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/UOLibrariesMapCollectionOCSW", :label => 'UO Libraries: Map Collection; OCSW', :comment =>
+      %(Map Collection of University of Oregon Libraries)
     property :"localCollectionName/mss_cannery", :label => 'USDA Northwest Cannery Survey Collection, 1914-1915 (MSS Cannery)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/UlmannDorisPhotographs", :label => 'Ulmann (Doris) Photographs', :comment =>
+      %(PH038 University of Oregon Special Collections and University
+        Archives.)
     property :"localCollectionName/mss_mcalexander", :label => 'Ulysses Grant McAlexander Collection, 1883-1964 (MSS McAlexander)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -3913,6 +3964,11 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/rg_145", :label => 'University Housing and Dining Services Records, 1930-2005 (RG 145)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/UniversityPhotographCollection1846", :label => 'University Photograph Collection, 1846-'
+    property :"localCollectionName/UniversityPhotographicCollection", :label => 'University Photographic Collection', :comment =>
+      %(University of Oregon Special Collections and University
+        Archives.)
+    property :"localCollectionName/UniversityPhotosPaulHarveyIV", :label => 'University Photos - Paul Harvey, IV.'
     property :"localCollectionName/p_094", :label => 'University Publications Photographs, 1890-2002 (P 094)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
@@ -4054,6 +4110,9 @@ module OregonDigital::Vocabularies
     property :"localCollectionName/rg_047", :label => 'Websterian Literary Society Records, 1892-1894 (RG 047)', :comment =>
       %(Collection in Special Collections & Archives Research Center,
         Oregon State University Libraries.)
+    property :"localCollectionName/WesleyGoodsonNicholsonPapers", :label => 'Wesley Goodson Nicholson Papers', :comment =>
+      %(Collection in Special Collections and University Archives,
+        University of Oregon)
     property :"localCollectionName/WesleyJBarnumCollection", :label => 'Wesley J. Barnum Collection', :comment =>
       %(Local division that reflects gift collections, donations
         and/or major purchased additions to the Visual Resources
