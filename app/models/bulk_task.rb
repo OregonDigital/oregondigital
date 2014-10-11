@@ -122,7 +122,7 @@ class BulkTask < ActiveRecord::Base
   end
 
   def generate_bag_children
-    (bag_directories - child_directories).each do |directory|
+    (bag_directories - child_directories).sort_by{|x| x.split("/").last}.each do |directory|
       bulk_task_children << BulkTaskChild.new(:target => directory)
     end
   end

@@ -92,7 +92,19 @@ describe BulkTask do
         end
         it "should create a compound object" do
           last_asset = GenericAsset.all.find{|x| x.compound?}
-          expect(last_asset.od_content.first.first_reference).to be_kind_of(GenericAsset)
+          expect(last_asset.od_content.first.first_reference).to be_kind_of(ActiveFedora::Base)
+        end
+        context "and the compound object is first" do
+          let(:setup) do
+            asset.destroy
+            FileUtils.rm_rf(Rails.root.join("tmp", "bags", "bulkloads"))
+            FileUtils.mkdir_p(Rails.root.join("tmp", "bags", "bulkloads"))
+            FileUtils.cp_r(Dir[File.join(fixture_path, "compound_bags", "*")], Rails.root.join("tmp", "bags", "bulkloads"))
+            FileUtils.mv(Rails.root.join("tmp", "bags", "bulkloads","120"), Rails.root.join("tmp", "bags", "bulkloads", "0"))
+          end
+          it "should error" do
+            expect(GenericAsset.all.length).to eq 2
+          end
         end
       end
       context "when everything is good" do
