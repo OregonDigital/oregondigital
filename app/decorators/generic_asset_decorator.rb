@@ -58,7 +58,7 @@ class GenericAssetDecorator < Draper::Decorator
   def configured_show_keys
     r = I18n.t("oregondigital.metadata")
     r = {} unless r.kind_of?(Hash)
-    r.keys.map{|x| x.to_s.downcase}
+    r.keys.map{|x| x.to_s}
   end
 
 end
