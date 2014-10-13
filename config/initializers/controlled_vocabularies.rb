@@ -40,5 +40,6 @@ RDF_VOCABS = {
   :worktype             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/workType.jsonld', :strict => true },
   :ubio                 =>  { :prefix => 'http://identifiers.org/ubio.namebank/', :strict => false, :fetch => false },
   :itis                 =>  { :prefix => 'http://www.itis.gov/ITISWebService/', :strict => false, :fetch => false },
-  :bm                   =>  { :prefix => 'http://collection.britishmuseum.org/', :strict => false, :fetch => false }
+  :bm                   =>  { :prefix => 'http://collection.britishmuseum.org/', :strict => false, :fetch => false },
+  :archiveshub          =>  { :prefix => 'http://data.archiveshub.ac.uk/def/', :source => 'http://data.archiveshub.ac.uk/def/' }
 }
