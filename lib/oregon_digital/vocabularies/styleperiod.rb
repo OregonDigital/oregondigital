@@ -34,9 +34,9 @@ module OregonDigital::Vocabularies
       %(Gealt, Adelheid, et al.; Masterworks from the Indiana
         University Art Museum, Bloomington, IN: Indiana University
         Press, 2007.)
-    property :Arzhan, :label => 'Arzhan', :comment =>
+    property :"Altai/Arzhan", :label => 'Arzhan', :comment =>
       %(Term originated in the Mongolian Altai Inventory)
-    property :ArzhanPeriod, :label => 'Arzhan Period', :comment =>
+    property :"Altai/ArzhanPeriod", :label => 'Arzhan Period', :comment =>
       %(Term originated in the Mongolian Altai Inventory)
     property :"stylePeriod/AshtarkhanidJanid", :label => 'Ashtarkhanid (Janid)', :comment =>
       %(Term originated in the University of Oregon Visual Resources
@@ -87,10 +87,10 @@ module OregonDigital::Vocabularies
         is 1319, excavated from a tomb in Jiangxi.)
     property :"stylePeriod/BrandywineSchool", :label => 'Brandywine School', :comment =>
       %(Term originated with the Bridgeman Art Library.)
-    property :BronzeAgeandlaterAltai, :label => 'Bronze Age and later', :comment =>
+    property :"Altai/BronzeAgeandlater", :label => 'Bronze Age and later', :comment =>
       %(Referring to the period and cultures present in the Mongolian
         Altai Mountains from about 3500 BCE and later.)
-    property :BronzeAgetoModern, :label => 'Bronze Age to Modern', :comment =>
+    property :"Altai/BronzeAgetoModern", :label => 'Bronze Age to Modern', :comment =>
       %(Referring to the period and cultures present in the Mongolian
         Altai Mountains from about 3500 BCE to modern times.)
     property :"stylePeriod/Bunka", :label => 'Bunka', :comment =>
@@ -131,7 +131,7 @@ module OregonDigital::Vocabularies
       %(Mannikka, Eleanor; Selected Topics in Cataloging Asian Art:
         VRA, VRA Special Bulletin No. 4, Visual Resources Association,
         1989.)
-    property :EarlyIronAgeorlater, :label => 'Early Iron Age or later?', :comment =>
+    property :"Altai/EarlyIronAgeorlater", :label => 'Early Iron Age or later?', :comment =>
       %(Referring to the period and cultures present in the Mongolian
         Altai Mountains from about 2500 BCE.)
     property :"stylePeriod/EarlyLucanian", :label => 'Early Lucanian', :comment =>
@@ -141,7 +141,7 @@ module OregonDigital::Vocabularies
     property :"stylePeriod/EarlyMinoanII", :label => 'Early Minoan II', :comment =>
       %(Matz, Friedrich; Art of Crete and Early Greece: the Prelude to
         Greek Art, New York: Greystone Press, 1962.)
-    property :EarlyNomadicAltai, :label => 'Early Nomadic', :comment =>
+    property :"Altai/EarlyNomadic", :label => 'Early Nomadic', :comment =>
       %(Referring to the period and nomadic herding cultures present
         in the Mongolian Altai Mountains from the Late Bronze Age to
         the Early Iron Age, about 2800-2300 BCE.)
@@ -162,7 +162,7 @@ module OregonDigital::Vocabularies
       %(Gealt, Adelheid, et al.; Masterworks from the Indiana
         University Art Museum, Bloomington, IN: Indiana University
         Press, 2007. Australian; aka Darnley Island)
-    property :EthnographicPeriodAltai, :label => 'Ethnographic Period', :comment =>
+    property :"Altai/EthnographicPeriod", :label => 'Ethnographic Period', :comment =>
       %(A subdivision of the Iron Age in the cultures of the Mongolian
         Altai Mountains.)
     property :"stylePeriod/Exotic", :label => 'Exotic', :comment =>
@@ -232,7 +232,7 @@ module OregonDigital::Vocabularies
         Dwelling and Structure in the Early Historic Period,
         Fairbanks: University of Alaska Press and University of Alaska
         Museum, 2003.)
-    property :Kyrgyz, :label => 'Kyrgyz', :comment =>
+    property :"Altai/Kyrgyz", :label => 'Kyrgyz', :comment =>
       %(Term originated in the Mongolian Altai Inventory)
     property :"stylePeriod/Laeconian", :label => 'Laeconian', :comment =>
       %(Term used by Dr. Steven Lowenstam, University of Oregon.)
@@ -247,7 +247,7 @@ module OregonDigital::Vocabularies
     property :"stylePeriod/LateMycenaeanIIICperiod", :label => 'Late Mycenaean IIIC period', :comment =>
       %(Term originated in the University of Oregon Visual Resources
         Collection slide collections.)
-    property :LatePazyryk, :label => 'Late Pazyryk', :comment =>
+    property :"Altai/LatePazyryk", :label => 'Late Pazyryk', :comment =>
       %(Referring to the latter end of the period of the Pazyryk
         culture present in the Mongolian Altai Mountains, around the
         3rd century BCE.)
@@ -305,7 +305,7 @@ module OregonDigital::Vocabularies
         University of California Press, 1999. Appropriate for Chinese
         art contemporary with but outside of the context of the
         People\'s Republic of China.)
-    property :MongolPeriodAltai, :label => 'Mongol Period', :comment =>
+    property :"Altai/MongolPeriod", :label => 'Mongol Period', :comment =>
       %(Referring to the period and cultures originating in the
         steppes of Central Asia and extending across Asia in the in
         the 13th and 14th century.)
@@ -353,18 +353,21 @@ module OregonDigital::Vocabularies
       %(http://www.encyclopediaofarkansas.net/encyclopedia/entry-detail.aspx?entryID=547.
         Plum Bayou developed out of the earlier \(300 BC to AD 650\)
         Baytown culture)
-    property :PostTurkicAltai, :label => 'Post-Turkic', :comment =>
+    property :"Altai/PostTurkic", :label => 'Post-Turkic', :comment =>
       %(Referring to the period and cultures present in the Mongolian
         Altai Mountains from the end of the Turkic period, about 1000
         BCE.)
     property :"stylePeriod/PraKonChai", :label => 'Pra Kon Chai', :comment =>
       %(Metropolitan Museum of Art; Asia, New York: Metropolitan
         Museum of Art, 1989.)
-    property :PreBronzeAgeAltai, :label => 'Pre-Bronze Age', :comment =>
+    property :"Altai/PreBronzeAge", :label => 'Pre-Bronze Age', :comment =>
       %(Referring to the period and cultures present in the Mongolian
         Altai Mountains from the end of the Neolithic era, about 4300
         BCE, to the beginning of the Bronze Age, about 4000 BCE.)
-    property :PreModernAltai, :label => 'Pre-Modern', :comment =>
+    property :"Altai/PreModer", :label => 'Pre-Modern', :comment =>
+      %(Referring to the period and cultures present in the Mongolian
+        Altai Mountains in modern times)
+    property :"Altai/PreModern", :label => 'Pre-Modern', :comment =>
       %(Referring to the period and cultures present in the Mongolian
         Altai Mountains in modern times)
     property :"stylePeriod/Precanonical", :label => 'Precanonical', :comment =>
@@ -462,7 +465,7 @@ module OregonDigital::Vocabularies
     property :"stylePeriod/SusaKuzajaran", :label => 'Susa-Kuzajaran', :comment =>
       %(Strommenger, Eva; 5000 Years of the Art of Mesopotamia, New
         York: Harry N. Abrams, Inc., Publishers, 1964.)
-    property :Tamga, :label => 'Tamga', :comment =>
+    property :"Altai/Tamga", :label => 'Tamga', :comment =>
       %(Term originated in the Mongolian Altai Inventory)
     property :"stylePeriod/TarimBasin", :label => 'Tarim Basin', :comment =>
       %(Exhibition of Ancient Art Treasures of the People\'s Republic
@@ -478,10 +481,10 @@ module OregonDigital::Vocabularies
         University Art Museum, Bloomington, IN: Indiana University
         Press, 2007. Probably Pre-Columbian Andean period, Early
         Intermediate period)
-    property :TurkicPeriodAltai, :label => 'Turkic Period', :comment =>
+    property :"Altai/TurkicPeriod", :label => 'Turkic Period', :comment =>
       %(Referring to the period and cultures present in the Mongolian
         Altai Mountains between the 6th and 9th centuries.)
-    property :UighurperiodAltai, :label => 'Uighur period', :comment =>
+    property :"Altai/Uighurperiod", :label => 'Uighur period', :comment =>
       %(Referring to the period and Uighur culture present in the
         Mongolian Altai Mountains from the the end of the Turkic
         Period, around the 8th-9th centuries.)
@@ -491,7 +494,7 @@ module OregonDigital::Vocabularies
         Fairbanks: University of Alaska Press and University of Alaska
         Museum, 2003. Use with Yup\'ik culture see also
         http://en.wikipedia.org/wiki/Yup%27ik)
-    property :UncertainAltai, :label => 'Uncertain', :comment =>
+    property :"Altai/Uncertain", :label => 'Uncertain', :comment =>
       %(Referring to uncertain period and cultures present in the
         Mongolian Altai Mountains.)
     property :"stylePeriod/WesternZhouStyleI", :label => 'Western Zhou Style I', :comment =>
@@ -520,17 +523,17 @@ module OregonDigital::Vocabularies
       %(Indicating the latter end of the period or era)
     property :"stylePeriod/lateFaliscan", :label => 'late Faliscan', :comment =>
       %(Term used by Dr. Steven Lowenstam, University of Oregon.)
-    property :morerecent, :label => 'more recent', :comment =>
+    property :"Altai/morerecent", :label => 'more recent', :comment =>
       %(Term originated in the Mongolian Altai Inventory)
-    property :possiblylater, :label => 'possibly later', :comment =>
+    property :"Altai/possiblylater", :label => 'possibly later', :comment =>
       %(Term originated in the Mongolian Altai Inventory)
     property :"stylePeriod/pseudochalkidian", :label => 'pseudo-chalkidian', :comment =>
       %(Term used by Dr. Steven Lowenstam, University of Oregon.)
-    property :recent, :label => 'recent', :comment =>
+    property :"Altai/recent", :label => 'recent', :comment =>
       %(Term originated in the Mongolian Altai Inventory)
-    property :uncertain, :label => 'uncertain', :comment =>
+    property :"Altai/uncertain", :label => 'uncertain', :comment =>
       %(Term originated in the Mongolian Altai Inventory)
-    property :varied, :label => 'varied', :comment =>
+    property :"Altai/varied", :label => 'varied', :comment =>
       %(Term originated in the Mongolian Altai Inventory)
 
     # Other terms

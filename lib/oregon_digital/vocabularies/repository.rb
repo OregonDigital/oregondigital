@@ -1401,14 +1401,14 @@ module OregonDigital::Vocabularies
         Ettinghausen, Richard, Oleg Grabar and Marilyn Jenkins-Madina;
         Islamic Art and Architecture 650-1250, New Haven: Yale
         University Press, 2001)
-    property :"repository/MuseoArcheologicoCerveteri", :label => 'Museo Archeologico', :comment =>
-      %(Museo Archeologico, Cerveteri, Lazio, Italy. Cristofani,
-        Mauro; Etruscans: A New Investigation, New York: Galahad
-        Books, 1979)
     property :"repository/MuseoArcheologicoLaccoAmeno", :label => 'Museo Archeologico', :comment =>
       %(Museo Archeologico, Lacco Ameno, Campania, Italy. Name
         originated in the University of Oregon Visual Resources
         Collection slide collections)
+    property :"repository/MuseoArcheologicoCerveteri", :label => 'Museo Archeologico', :comment =>
+      %(Museo Archeologico, Cerveteri, Lazio, Italy. Cristofani,
+        Mauro; Etruscans: A New Investigation, New York: Galahad
+        Books, 1979)
     property :"repository/MuseoArcheologicoNazionale", :label => 'Museo Archeologico Nazionale', :comment =>
       %(Museo Archeologico Nazionale, Pesto, Campania, Italy. Kleiner,
         Fred S. ; History of Roman Art, Instructor\'s edition,
@@ -2248,6 +2248,10 @@ module OregonDigital::Vocabularies
         Kingdom. Grabar, Oleg; Mostly Miniatures: An Introduction to
         Persian Painting, Princeton, NJ: Princeton University Press,
         2000)
+    property :"repository/UniversityofOregonArchitectureandAlliedArtsLibrary", :label => 'University of Oregon. Architecture and Allied Arts Library', :comment =>
+      %(AAA Library, Eugene, Oregon)
+    property :"repository/UniversityofOregonLibrariesDocumentCenterMapandAerialPhotographyCollection", :label => 'University of Oregon. Libraries. Document Center. Map and Aerial Photography Collection', :comment =>
+      %(Knight Library, Eugene, Oregon)
     property :"repository/UniversityofVermont", :label => 'University of Vermont', :comment =>
       %(University of Vermont, Robert Hull Fleming Museum, Burlington,
         Vermont. Name originated in the University of Oregon Visual
