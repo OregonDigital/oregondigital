@@ -11,7 +11,7 @@ RDF_VOCABS = {
   :lcnames              =>  { :prefix => 'http://id.loc.gov/authorities/names/', :strict => false, :fetch => false },
   :tgm                  =>  { :prefix => 'http://id.loc.gov/vocabulary/graphicMaterials', :strict => false, :fetch => false },
   :afs_ethn             =>  { :prefix => 'http://id.loc.gov/vocabulary/ethnographicTerms', :strict => false, :fetch => false },
-  :lc_orgs              =>  { :prefix => 'http://id.loc.gov/vocabulary/ethnographicTerms', :strict => false, :fetch => false },
+  :lc_orgs              =>  { :prefix => 'http://id.loc.gov/vocabulary/organizations', :strict => false, :fetch => false },
   :aat                  =>  { :prefix => 'http://vocab.getty.edu/aat/', :strict => false, :fetch => false },
   :getty_tgn            =>  { :prefix => 'http://vocab.getty.edu/tgn/', :strict => false, :fetch => false },
   :cclicenses           =>  { :prefix => 'http://creativecommons.org/licenses/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/cclicenses/cclicenses.nt'},
@@ -37,5 +37,9 @@ RDF_VOCABS = {
   :styleperiod          =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/stylePeriod.jsonld', :strict => true },
   :subject              =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/subject.jsonld', :strict => true },
   :technique            =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/technique.jsonld', :strict => true },
-  :worktype             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/workType.jsonld', :strict => true }
+  :worktype             =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/workType.jsonld', :strict => true },
+  :ubio                 =>  { :prefix => 'http://identifiers.org/ubio.namebank/', :strict => false, :fetch => false },
+  :itis                 =>  { :prefix => 'http://www.itis.gov/ITISWebService/', :strict => false, :fetch => false },
+  :bm                   =>  { :prefix => 'http://collection.britishmuseum.org/', :strict => false, :fetch => false },
+  :archiveshub          =>  { :prefix => 'http://data.archiveshub.ac.uk/def/', :source => 'http://data.archiveshub.ac.uk/def/' }
 }
