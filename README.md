@@ -37,10 +37,20 @@ Requires [Git](http://www.git-scm.com/),
 [Vagrant](http://www.vagrantup.com/).  Also requires 3 gigs of RAM to be
 available for the VM which vagrant creates.
 
+Option 1: manual submodule setup:
+
     git clone git@github.com:OregonDigital/oregondigital.git
     cd oregondigital
     git submodule init
     git submodule update
+
+Option 2: automatic submodule setup:
+
+    git clone git@github.com:OregonDigital/oregondigital.git --recursive
+    cd oregondigital
+
+Either way, you then tell vagrant to download and start the virtual machine:
+
     vagrant up
     vagrant ssh
 
