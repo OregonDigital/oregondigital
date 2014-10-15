@@ -138,4 +138,5 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'shoulda'
+  gem 'rspec-rerun'
 end

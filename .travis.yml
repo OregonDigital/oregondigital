@@ -21,8 +21,9 @@ before_install:
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
   - gem install bundler bundle_cache
   - bundle_cache_install
+  - export RSPEC_RERUN_PATTERN=$TESTFOLDER
 script:
-  - "bundle exec rake jetty:config && bundle exec rake jetty:start && bundle exec rake db:migrate && bundle exec rake sets:content:sync && bundle exec rspec $TESTFOLDER"
+  - "bundle exec rake jetty:config && bundle exec rake jetty:start && bundle exec rake db:migrate && bundle exec rake sets:content:sync && bundle exec rake rspec-rerun:spec"
 after_script:
   - bundle_cache
 notifications:
