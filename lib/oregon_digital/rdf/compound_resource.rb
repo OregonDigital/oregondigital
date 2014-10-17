@@ -15,6 +15,22 @@ module OregonDigital::RDF
     def first_reference
       references.first
     end
+
+    def solrize
+      fields.map{|field| {field.to_sym => solrize_field(field)}}.inject(&:merge)
+    end
+
+    def solrize_field(field)
+      if respond_to?("#{field}_solrize")
+        send("#{field}_solrize")
+      else
+        send("#{field}")
+      end
+    end
+
+    def references_solrize
+      references.map{|x| x.resource.rdf_subject}
+    end
     
     private
 
