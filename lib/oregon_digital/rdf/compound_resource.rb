@@ -24,7 +24,11 @@ module OregonDigital::RDF
     end
 
     def cached_reference
-      @cached_reference ||= ActiveFedora::Base.load_instance_from_solr(pid)
+      @cached_reference ||= begin
+                              ActiveFedora::Base.load_instance_from_solr(pid)
+                            rescue ActiveFedora::ObjectNotFoundError
+                              nil
+                            end
     end
 
     def solrize
