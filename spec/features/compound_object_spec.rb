@@ -46,8 +46,12 @@ describe "compound objects" do
       end
     end
     it "should not ask Fedora" do
-      expect(parent.inner_object.repository).not_to receive(:datastream_dissemination)
+      expect(parent.inner_object.class.any_instance).not_to receive(:datastream_dissemination)
+      expect(GenericAsset).not_to receive(:from_uri)
       visit catalog_path(parent.pid)
+      expect(page).to have_link object.title
+      visit catalog_path(object.pid)
+      expect(page).to have_link parent.title
     end
     context "and the object has a compound node title" do
       before do
