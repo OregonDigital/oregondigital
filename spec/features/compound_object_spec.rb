@@ -45,6 +45,10 @@ describe "compound objects" do
         end
       end
     end
+    it "should not ask Fedora" do
+      expect(parent.inner_object.repository).not_to receive(:datastream_dissemination)
+      visit catalog_path(parent.pid)
+    end
     context "and the object has a compound node title" do
       before do
         t = object.title

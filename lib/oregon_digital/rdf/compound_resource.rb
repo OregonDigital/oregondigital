@@ -23,6 +23,10 @@ module OregonDigital::RDF
       references.first
     end
 
+    def cached_reference
+      @cached_reference ||= ActiveFedora::Base.load_instance_from_solr(pid)
+    end
+
     def solrize
       fields.map{|field| {field.to_sym => solrize_field(field)}}.inject(&:merge)
     end
@@ -43,7 +47,7 @@ module OregonDigital::RDF
 
 
     def reference_title
-      Array.wrap(first_reference.title) if first_reference.respond_to?(:title)
+      Array.wrap(cached_reference.title) if cached_reference.respond_to?(:title)
     end
   end
 end
