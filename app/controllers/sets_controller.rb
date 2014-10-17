@@ -5,13 +5,16 @@ class SetsController < CatalogController
   before_filter :strip_facets
 
   def index
-    @collections = sets.sort_by {|s| s.title.sub(/^(the|a|an)\s+/i, '')}
-    @collection = set
+    if params[:set]
+      @collection = set
+    else
+      @collections = sets.sort_by {|s| s.title.sub(/^(the|a|an)\s+/i, '')}
+    end
     super
   end
 
   def search_action_url(options={})
-    sets_path(options.merge(:set => set))
+    sets_path(options.merge(:set => @collection))
   end
 
   private
@@ -29,16 +32,18 @@ class SetsController < CatalogController
   end
 
   def set
-    @set ||= sets.find{|x| x.pid.downcase == OregonDigital::IdService.namespaceize(params[:set]).downcase}
+    return nil unless params[:set]
+    @set ||= GenericCollection.load_instance_from_solr(OregonDigital::IdService.namespaceize(params[:set]).downcase).decorate
   end
 
   def require_set(solr_parameters, user_parameters)
+    return unless params[:set]
     solr_parameters[:fq] ||= []
     solr_parameters[:fq] << "+#{ActiveFedora::SolrService.solr_name("desc_metadata__set",:facetable)}:\"#{set.resource.rdf_subject}\"" if set
   end
 
   def strip_facets
-    if set
+    if params[:set] && set
       self.blacklight_config.facet_fields.except!(ActiveFedora::SolrService.solr_name("desc_metadata__set", :facetable))
     end
   end
