@@ -3,13 +3,20 @@ module OregonDigital::RDF
     configure :type => RDF::URI("http://opaquenamespace.org/ns/compoundObject")
     property :references, :predicate => RDF::DC.references, :class_name => ::GenericAsset
     property :title, :predicate => RDF::DC.title
-    delegate :pid, :to => :first_reference, :allow_nil => true
 
     alias_method :orig_title, :title
 
     def title
       return reference_title if reference_title.present? && orig_title.blank?
       orig_title
+    end
+
+    def references_pids
+      @references_pids ||= query([rdf_subject, RDF::DC.references, nil]).map{|x| x.object.to_s.split("/").last}
+    end
+
+    def pid
+      references_pids.first
     end
 
     def first_reference
