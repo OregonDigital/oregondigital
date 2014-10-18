@@ -31,8 +31,7 @@ module OregonDigital::RDF
     end
     class ListResource < ActiveFedora::Rdf::List::ListResource
       def solrize
-        subjects = query([nil, RDF.first, nil]).objects.to_a
-        Array.wrap(subjects.map{|x| query([x, RDF::DC.references, nil]).objects.map(&:to_s)}.flatten)
+        OregonDigital::RDF::List.new(rdf_subject, self).to_a.map{|x| x.solrize}
       end
 
       def fetch

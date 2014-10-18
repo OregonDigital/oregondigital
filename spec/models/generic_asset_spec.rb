@@ -10,6 +10,24 @@ describe GenericAsset, :resque => true do
     expect { generic_asset }.not_to raise_error
   end
 
+
+  describe "load from solr" do
+    context "when it's loaded from solr" do
+      let(:asset) {FactoryGirl.create(:generic_asset)}
+      subject {ActiveFedora::Base.load_instance_from_solr(asset.pid)}
+      before do
+        asset
+      end
+      it "should not touch Fedora" do
+        expect(ActiveFedora::Relation.any_instance).not_to receive(:load_from_fedora)
+        subject
+      end
+      it "should respond to all attributes" do
+        expect(subject.title).to eq asset.title
+      end
+    end
+  end
+
   describe '.save' do
     context 'when content has not been assigned' do
       it 'should not try to create derivatives' do
@@ -319,7 +337,7 @@ describe GenericAsset, :resque => true do
         expect(generic_asset.od_content.to_a.map(&:references)).to eq [[asset_2], [asset_3]]
       end
       it "should index" do
-        expect(generic_asset.to_solr[Solrizer.solr_name("desc_metadata__od_content", :symbol)]).to eq [asset_2.resource.rdf_subject.to_s, asset_3.resource.rdf_subject.to_s]
+        expect(generic_asset.to_solr[Solrizer.solr_name("desc_metadata__od_content_references", :symbol)]).to eq [asset_2.resource.rdf_subject.to_s, asset_3.resource.rdf_subject.to_s]
       end
       it "should be a compound object" do
         expect(generic_asset).to be_compound

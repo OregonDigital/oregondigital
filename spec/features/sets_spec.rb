@@ -124,6 +124,16 @@ describe "SetsController /index" do
             expect(page).to have_content("Oregon State University")
           end
         end
+        it "should have a link to the collection" do
+          expect(page).to have_link collection.title
+        end
+        # Pending until we can patch ActiveFedora to accept an argument for
+        # using load_instance_from_solr
+        xit "should not ask Fedora" do
+          expect(ActiveFedora::DigitalObject).not_to receive(:find)
+          visit current_path
+          expect(page).to have_link collection.title
+        end
         context "and a facet is clicked" do
           before do
             click_link "Test Facet"

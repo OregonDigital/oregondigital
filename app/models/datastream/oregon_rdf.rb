@@ -488,8 +488,11 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
         Array.wrap(val).each do |solr_val|
           new_key = field_key
           if solr_val.kind_of?(Hash)
-            key, solr_val = solr_val.first
-            new_key = "#{field_key}_#{key}"
+            solr_val.each do |k, v|
+              new_key = "#{field_key}_#{k}"
+              self.class.create_and_insert_terms(apply_prefix(new_key), v, field_info[:behaviors], solr_doc)
+            end
+            next
           end
           self.class.create_and_insert_terms(apply_prefix(new_key), solr_val, field_info[:behaviors], solr_doc)
         end
@@ -500,6 +503,35 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
   def self.default_attributes
     super.merge(:controlGroup => 'M', :mimeType => 'application/n-triples')
+  end
+
+  def from_solr(solr_doc)
+    @datastream_content = ""
+    relevant_values = solr_doc.select{|k, v| k.start_with?(dsid.underscore)}.map{|k, v| {k.split("__").last.split("_").reverse.drop(1).reverse.join("_") => v}}.inject(&:merge)
+    relevant_values.each do |k, v|
+      if k.start_with?("od_content")
+        od_content = self.od_content.first_or_create
+        if od_content.length < v.length
+          v.length.times { od_content << OregonDigital::RDF::CompoundResource.new }
+        end
+        new_key = k.gsub("od_content_","")
+        v.each_with_index do |value, i|
+          od_content[i].send(:"#{new_key}=", Array.wrap(coerce_to_uri(value)))
+        end
+      end
+      meth_name = :"#{k}="
+      v = coerce_to_uri(v)
+      self.send(meth_name, v) if respond_to?(meth_name)
+    end
+  end
+
+  def coerce_to_uri(value)
+    value = Array(value)
+    value.each_with_index do |v,i|
+      next unless v.start_with?("http")
+      value[i] = RDF::URI(v)
+    end
+    value
   end
 
 end
