@@ -1046,7 +1046,7 @@ module OregonDigital::Vocabularies
     property :"subject/CourtneyBill", :label => 'Courtney, Bill'
     property :"subject/CovingtonJerome", :label => 'Covington, Jerome'
     property :"subject/CowboyApparel", :label => 'Cowboy Apparel', :comment =>
-      %(Clothing typially worn by cowboys)
+      %(Term derived from the Historical Photographs Collection)
     property :"subject/CowleyDrRobert", :label => 'Cowley, Dr. Robert', :comment =>
       %(Berea Hospital, Berea, Kentucky)
     property :"subject/CoxBlanche", :label => 'Cox, Blanche', :comment =>
@@ -1743,6 +1743,7 @@ module OregonDigital::Vocabularies
     property :"subject/GleasonCindiL", :label => 'Gleason, Cindi L.'
     property :"subject/GleasonJohnD", :label => 'Gleason, John D.'
     property :"subject/GlennBruceE", :label => 'Glenn, Bruce E.'
+    property :"subject/GlovesBeadedGauntlet", :label => 'Gloves, Beaded Gauntlet'
     property :"subject/GodBMayandeity", :label => 'God B (Mayan deity)'
     property :"subject/GodDMayandeity", :label => 'God D (Mayan deity)'
     property :"subject/GodehardusSaintbishopofHildesheimd1038", :label => 'Godehardus, Saint, bishop of Hildesheim, d. 1038'
@@ -2344,6 +2345,7 @@ module OregonDigital::Vocabularies
     property :"subject/InskeepRuss", :label => 'Inskeep, Russ'
     property :"subject/Instantcameras", :label => 'Instant cameras'
     property :"subject/Interiordesignandfurnishings", :label => 'Interior design and furnishings'
+    property :"subject/Interiorphotograph", :label => 'Interior photograph'
     property :"subject/InternationalNight2013", :label => 'International Night 2013'
     property :"subject/InternationalStudentAssociationOrganization", :label => 'International Student Association (Organization)'
     property :"subject/Introducktions ", :label => 'Introducktions'
@@ -2408,7 +2410,6 @@ module OregonDigital::Vocabularies
     property :"subject/JanakMarvin", :label => 'Janak, Marvin'
     property :"subject/January14thCoalition", :label => 'January 14th Coalition'
     property :"subject/January14thPeoplesTrialCommittee", :label => 'January 14th People\'s Trial Committee'
-    property :"subject/January14thPeople'sTrialCommittee", :label => 'January 14th People\'s Trial Committee'
     property :"subject/JapaneseAmericancollegestudentsOregon", :label => 'Japanese American college students -- Oregon'
     property :"subject/JapaneseAmericancollegestudentsSocialconditions20thcentury", :label => 'Japanese American college studentsSocial conditions20th century'
     property :"subject/JapaneseWhiteeyebird", :label => 'Japanese White-eye (bird)'
@@ -2528,10 +2529,10 @@ module OregonDigital::Vocabularies
     property :"subject/JusticeDelia", :label => 'Justice, Delia', :comment =>
       %(Weaver and spinner, Gainesville, Georgia)
     property :"subject/KinichAjawSunEyedLord", :label => 'K\'inich Ajaw (Sun-Eyed Lord)'
-    property :"subject/KLIVRadiostationSanJoseCalif", :label => 'KLIV (Radio station : San Jose, Calif.)'
     property :"subject/KLIVRadiostation:SanJoseCalif", :label => 'KLIV (Radio station : San Jose, Calif.)'
-    property :"subject/Ka'aiKoa", :label => 'Ka\'ai, Koa'
-    property :"subject/Ka'aiLakeK", :label => 'Ka\'ai, Lake K.'
+    property :"subject/KLIVRadiostationSanJoseCalif", :label => 'KLIV (Radio station : San Jose, Calif.)'
+    property :"subject/KaaiKoa", :label => 'Ka\'ai, Koa'
+    property :"subject/KaaiLakeK", :label => 'Ka\'ai, Lake K.'
     property :"subject/KaanapuToddCK", :label => 'Kaanapu, Todd C. K.'
     property :"subject/KaarsbergLawrence", :label => 'Kaarsberg, Lawrence'
     property :"subject/KagoonaMrsPerry", :label => 'Kagoona, Mrs. Perry', :comment =>
@@ -3650,20 +3651,20 @@ module OregonDigital::Vocabularies
       %(Cayuse woman photographed by Lee Moorhouse.)
     property :"subject/NuttJames", :label => 'Nutt, James'
     property :"subject/OHeroesProgram", :label => 'O Heroes (Program)'
-    property :"subject/O'BrienJim", :label => 'O\'Brien, Jim'
-    property :"subject/O'ConnellCarlyE", :label => 'O\'Connell, Carly E.'
-    property :"subject/O'DonnellBrianK", :label => 'O\'Donnell, Brian K.'
-    property :"subject/O'DonnellMorganS", :label => 'O\'Donnell, Morgan S.'
-    property :"subject/O'LearyAlanB", :label => 'O\'Leary, Alan B.'
-    property :"subject/O'MalleyColleenE", :label => 'O\'Malley, Colleen E.'
-    property :"subject/O'NeillDavidM", :label => 'O\'Neill, David M.'
-    property :"subject/O'ReillyCharlesJ", :label => 'O\'Reilly, Charles J.', :comment =>
+    property :"subject/OBrienJim", :label => 'O\'Brien, Jim'
+    property :"subject/OConnellCarlyE", :label => 'O\'Connell, Carly E.'
+    property :"subject/ODonnellBrianK", :label => 'O\'Donnell, Brian K.'
+    property :"subject/ODonnellMorganS", :label => 'O\'Donnell, Morgan S.'
+    property :"subject/OLearyAlanB", :label => 'O\'Leary, Alan B.'
+    property :"subject/OMalleyColleenE", :label => 'O\'Malley, Colleen E.'
+    property :"subject/ONeillDavidM", :label => 'O\'Neill, David M.'
+    property :"subject/OReillyCharlesJ", :label => 'O\'Reilly, Charles J.', :comment =>
       %(Catholic Bishop of Lincoln, Nebraska \(1918-1923\), Baker
         City, Oregon \(1903-1918\), and priest in Oregon City, Oregon
         \(1890-1903\).)
-    property :"subject/O'RourkeLeo", :label => 'O\'Rourke, Leo'
-    property :"subject/O'RourkeRandy", :label => 'O\'Rourke, Randy'
-    property :"subject/O'TooleWilliamS", :label => 'O\'Toole, William S.'
+    property :"subject/ORourkeLeo", :label => 'O\'Rourke, Leo'
+    property :"subject/ORourkeRandy", :label => 'O\'Rourke, Randy'
+    property :"subject/OTooleWilliamS", :label => 'O\'Toole, William S.'
     property :"subject/OWWatsonCompany", :label => 'O. W. Watson Company'
     property :"subject/OIMBHistory", :label => 'OIMB History'
     property :"subject/OasRobert", :label => 'Oas, Robert'
@@ -4030,8 +4031,8 @@ module OregonDigital::Vocabularies
     property :"subject/PortlandStateStrikeCommittee", :label => 'Portland State Strike Committee'
     property :"subject/PortlandStateUniversityOfficeofPresident", :label => 'Portland State University. Office of President'
     property :"subject/PortlandandVancouverRailRoadFerryCompany", :label => 'Portland and Vancouver Rail Road Ferry Company', :comment =>
-      %(Railroad and Ferry compnay running between Portland, Oregon
-        and Vancouver, British Columbia)
+      %(Rail and ferry company running between Portland, Oregon and
+        Vancouver, British Columbia)
     property :"subject/Portraits19501960", :label => 'Portraits 1950-1960'
     property :"subject/Portraits19601970", :label => 'Portraits 1960-1970'
     property :"subject/Posedgroupoutdoorphotograph", :label => 'Posed group outdoor photograph'
@@ -5034,7 +5035,7 @@ module OregonDigital::Vocabularies
     property :"subject/ThomasBrettJ", :label => 'Thomas, Brett J.'
     property :"subject/ThomasClaireP", :label => 'Thomas, Claire P.'
     property :"subject/ThomasCurtis", :label => 'Thomas, Curtis'
-    property :"subject/ThomasDe'AnthonyM", :label => 'Thomas, De\'Anthony M.'
+    property :"subject/ThomasDeAnthonyM", :label => 'Thomas, De\'Anthony M.'
     property :"subject/ThomasEdwardC", :label => 'Thomas, Edward C.'
     property :"subject/ThomasHomer", :label => 'Thomas, Homer'
     property :"subject/ThomasJohn", :label => 'Thomas, John', :comment =>
@@ -5303,6 +5304,7 @@ module OregonDigital::Vocabularies
     property :"subject/VonRummelhoffJames", :label => 'Von Rummelhoff, James'
     property :"subject/VoorheesDavidW", :label => 'Voorhees, DavidW.'
     property :"subject/VowelsBarbara", :label => 'Vowels, Barbara'
+    property :"subject/Vydunas18681953Istselenie", :label => 'Vydu-nas, 1868-1953. Istselenie'
     property :"subject/WHMcMoniesandCompany", :label => 'W.H. McMonies and Company', :comment =>
       %(Harness company in Portland, Oregon)
     property :"subject/Watistemeha", :label => 'Wa-tis-te-me-ha', :comment =>
@@ -5572,7 +5574,7 @@ module OregonDigital::Vocabularies
     property :"subject/WilsonWard", :label => 'Wilson, Ward'
     property :"subject/WilsonWilliamHolden18051856", :label => 'Wilson, William Holden, 1805-1856'
     property :"subject/WiltrudMarieAlixofBavaria18841975", :label => 'Wiltrud Marie Alix of Bavaria, 1884-1975'
-    property :"subject/Wiltshire'sEugeneOr", :label => 'Wiltshire\'s (Eugene, Or.)'
+    property :"subject/WiltshiresEugeneOr", :label => 'Wiltshire\'s (Eugene, Or.)'
     property :"subject/WiltshireEricS", :label => 'Wiltshire, Eric S.'
     property :"subject/WinbiglerLynne", :label => 'Winbigler, Lynne'
     property :"subject/WinchellWilcey", :label => 'Winchell, Wilcey'
