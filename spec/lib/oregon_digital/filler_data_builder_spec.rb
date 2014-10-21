@@ -7,13 +7,13 @@ describe OregonDigital::FillerDataBuilder do
     let(:default_options) do
       {:collections => [
         {
-          :institution => "University_of_Oregon",
+          :institution => OregonDigital::Vocabularies::OREGON_UNIVERSITIES.University_of_Oregon,
           :model => "document",
           :elements => 3,
           :traits => [:with_pdf_datastream]
         },
         {
-          :institution => "Oregon_State_University",
+          :institution => OregonDigital::Vocabularies::OREGON_UNIVERSITIES.Oregon_State_University,
           :model => "image",
           :elements => 3,
           :traits => [:with_tiff_datastream ]
@@ -37,8 +37,8 @@ describe OregonDigital::FillerDataBuilder do
           expect(collections.length).to eq 2
         end
         it "should assign two different institutions" do
-          expect(collections.first.institution).to eq [OregonDigital::ControlledVocabularies::Organization.new("University_of_Oregon")]
-          expect(collections.last.institution).to eq [OregonDigital::ControlledVocabularies::Organization.new("Oregon_State_University")]
+          expect(collections.first.institution).to eq [OregonDigital::ControlledVocabularies::Organization.new("http://dbpedia.org/resource/University_of_Oregon")]
+          expect(collections.last.institution).to eq [OregonDigital::ControlledVocabularies::Organization.new("http://dbpedia.org/resource/Oregon_State_University")]
         end
         it "should create 3 images" do
           expect(Image.all.length).to eq 3
