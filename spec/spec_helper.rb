@@ -62,6 +62,19 @@ RSpec.configure do |config|
 
   config.before(:each) do
     ActiveFedora::Base.delete_all
+    Blacklight.solr.delete_by_query "*:*"
+    Blacklight.solr.commit
+    ActiveFedora::Rdf::Repositories.repositories.each do |name, repository|
+      repository.clear!
+    end
+    begin
+      Rails.cache.clear
+    rescue
+    end
+    GC.start
+    Resque.redis.keys("*").each do |key|
+      Resque.redis.del(key)
+    end
   end
 
   config.after(:suite) do
