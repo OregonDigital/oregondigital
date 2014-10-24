@@ -69,6 +69,13 @@ describe "compound objects" do
       before do
         visit catalog_path(object.pid)
       end
+      context "and the parent is an image" do
+        let(:parent) { FactoryGirl.create(:image) }
+        it "should show a table of contents" do
+          expect(page).to have_content("Contents")
+          expect(page).to have_content(object_2.title)
+        end
+      end
       it "should show a table of contents" do
         expect(page).to have_content("Contents")
         expect(page).to have_content(object_2.title)
