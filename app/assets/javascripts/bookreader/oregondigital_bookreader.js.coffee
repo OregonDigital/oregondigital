@@ -62,7 +62,8 @@ class BookReaderManager
   search_url: (term) =>
     "/document/#{@br.bookId}/fulltext/#{term}.json"
   reductionFactors: ->
-    [{reduce: 0.25, autofit: null},
+    [ {reduce: 0.1, autofit: null},
+     {reduce: 0.25, autofit: null},
       {reduce: 0.5, autofit: null},
         {reduce: 1, autofit: null},
         {reduce: 2, autofit: null},
@@ -71,8 +72,8 @@ class BookReaderManager
         {reduce: 6, autofit: null} ];
   getPageURI: (index, reduce, rotate) =>
     reduce_factor = "small" if reduce >= 4
-    reduce_factor ||= "normal" if reduce >= 1
-    reduce_factor ||= "large" if reduce > 0.5
+    reduce_factor ||= "normal" if reduce >= 2
+    reduce_factor ||= "large" if reduce >= 1 
     reduce_factor ||= "x-large"
     "#{@element.data("root")}/#{reduce_factor}-page-#{index+1}.jpg"
   getPageSide: (index) ->

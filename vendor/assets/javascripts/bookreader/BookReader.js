@@ -4607,7 +4607,10 @@ function BookReader() {
             var ratio = this.getPageHeight(index) / this.twoPage.height;
             var scale;
             // $$$ we make an assumption here that the scales are available pow2 (like kakadu)
-            if (ratio < 2) {
+            // Added lower scale value here so our x-large image gets loaded (wickr)
+            if (ratio < 1) {
+                scale = 0.5
+            } else if (ratio < 2) {
                 scale = 1;
             } else if (ratio < 4) {
                 scale = 2;
