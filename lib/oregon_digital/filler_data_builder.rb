@@ -47,13 +47,13 @@ module OregonDigital
         {
           :collections => [
             {
-              :institution => "University_of_Oregon",
+              :institution => "http://dbpedia.org/resource/University_of_Oregon",
               :model => "document",
               :elements => 30,
               :traits => [:with_pdf_datastream]
             },
             {
-              :institution => "Oregon_State_University",
+              :institution => "http://dbpedia.org/resource/Oregon_State_University",
               :model => "image",
               :elements => 30,
               :traits => [:with_tiff_datastream ]

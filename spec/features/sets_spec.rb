@@ -88,7 +88,7 @@ describe "SetsController /index" do
       let(:collection_pid) {'oregondigital:braceros'}
       let(:collection) do
         g = FactoryGirl.create(:generic_collection, :has_pid, pid: collection_pid)
-        g.institution = OregonDigital::ControlledVocabularies::Organization.new('Oregon_State_University')
+        g.institution = OregonDigital::ControlledVocabularies::Organization.new('http://dbpedia.org/resource/Oregon_State_University')
         g.institution.first.set_value(RDF::SKOS.prefLabel, "Oregon State University")
         g.institution.first.persist!
         g.save
@@ -106,7 +106,7 @@ describe "SetsController /index" do
       context "and then an item is clicked" do
         let(:collection) do
           g = FactoryGirl.create(:generic_collection, :has_pid, pid: collection_pid)
-          g.institution = OregonDigital::ControlledVocabularies::Organization.new('Oregon_State_University')
+          g.institution = OregonDigital::ControlledVocabularies::Organization.new('http://dbpedia.org/resource/Oregon_State_University')
           g.institution.first.set_value(RDF::SKOS.prefLabel, "Oregon State University")
           g.institution.first.persist!
           g.save
