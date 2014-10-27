@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911213642) do
+ActiveRecord::Schema.define(version: 20141027163535) do
 
   create_table "bookmarks", force: true do |t|
     t.integer  "user_id",     null: false
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20140911213642) do
   create_table "ip_ranges", force: true do |t|
     t.string   "ip_start"
     t.string   "ip_end"
-    t.integer  "ip_start_i"
-    t.integer  "ip_end_i"
+    t.integer  "ip_start_i", limit: 5
+    t.integer  "ip_end_i",   limit: 5
     t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
