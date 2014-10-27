@@ -249,7 +249,7 @@ describe "(Ingest Form)" do
           visit_ingest_url
         end
         it "should hit up the REST API" do
-          expect(RestClient).to receive(:get).and_call_original
+          expect(RestClient).to receive(:get).at_least(1).times.and_call_original
           choose_controlled_vocabulary_item("subject", "lcsubject", "food", label1, subject1)
         end
       end
