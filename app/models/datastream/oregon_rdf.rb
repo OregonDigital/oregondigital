@@ -139,6 +139,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :acceptedNameUsage, :predicate => RDF::URI('http://rs.tdwg.org/dwc/terms/acceptedNameUsage') do |index|
     index.as :displayable
   end
+  property :originalNameUsage, :predicate => RDF::URI('http://rs.tdwg.org/dwc/terms/originalNameUsage') do |index|
+    index.as :displayable
+  end
+  property :specimenType, :predicate => RDF::URI('http://opaquenamespace.org/ns/specimenType') do |index|
+    index.as :displayable
+  end
+
 
   # Subjects
   # :lcsubject is controlled subject using multiple vocabs
@@ -177,6 +184,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
 
+
   # Geographics
   property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
     index.as :searchable, :facetable, :displayable
@@ -210,6 +218,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :awardDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.awardDate do |index|
     index.as :searchable, :displayable
   end
+  property :collectedDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.collectedDate do |index|
+    index.as :displayable
+  end
+  property :temporal, :predicate => RDF::DC.temporal do |index|
+    index.as :searchable, :displayable
+  end
+
 
   # Identifiers
   property :identifier, :predicate => RDF::DC.identifier do |index|
@@ -228,6 +243,12 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :rightsHolder, :predicate => RDF::URI('http://opaquenamespace.org/rights/rightsHolder') do |index|
     index.as :searchable, :facetable, :displayable
+  end
+  property :useRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.useRestrictions do |index| 
+    index.as :searchable, :displayable
+  end
+  property :accessRestricitons, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.accessRestrictions do |index|
+    index.as :searchable, :displayable
   end
   property :copyrightClaimant, :predicate => OregonDigital::Vocabularies::MARCREL.cpc do |index|
     index.as :displayable
@@ -257,6 +278,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :seriesName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.seriesName do |index|
     index.as :searchable, :displayable
+  end
+  property :seriesNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.seriesNumber do |index|
+    index.as :displayable
   end
   property :boxNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.boxNumber do |index|
     index.as :searchable, :displayable
