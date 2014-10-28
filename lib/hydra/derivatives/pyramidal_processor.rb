@@ -21,7 +21,7 @@ class Hydra::Derivatives::PyramidalProcessor < Hydra::Derivatives::Image
     output_path = Dir::Tmpname.create(["#{source_pid}",".tiff"], Hydra::Derivatives.temp_file_base){}
     i = VIPS::Image.new(file.path)
     # Can't convert 16 bit tiffs the traditional way - make it a jpeg first.
-    if i.vtype.to_s == "RGB16"
+    if i.vtype.to_s == "RGB16" || i.vtype.to_s == "GREY16"
       new_path = Pathname.new(file.path).sub_ext(".jpg").to_s
       i.write(new_path)
       i = VIPS::Image.new(new_path)
