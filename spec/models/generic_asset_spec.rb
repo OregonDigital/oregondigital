@@ -322,6 +322,23 @@ describe GenericAsset, :resque => true do
       it "should not be a compound object" do
         expect(generic_asset).not_to be_compound
       end
+      it "should not add statements to the graph" do
+        expect(generic_asset).not_to be_compound
+        expect(generic_asset.resource.query([nil, OregonDigital::Vocabularies::OREGONDIGITAL.contents, nil]).to_a.length).to eq 0
+      end
+    end
+    context "when it has one asset" do
+      before do
+        generic_asset.od_content << asset_2
+      end
+      context "and it's persisted" do
+        before do
+          generic_asset.save
+        end
+        it "should be re-gettable" do
+          expect(GenericAsset.find(generic_asset.pid).od_content.to_a.map(&:references)).to eq [[asset_2]]
+        end
+      end
     end
     context "when appending" do
       before do
