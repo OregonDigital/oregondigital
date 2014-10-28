@@ -11,12 +11,12 @@ module OregonDigital
 
     def od_content
       @od_content ||= descMetadata.od_content.first || OregonDigital::RDF::List.from_uri(::RDF::Node.new, resource)
-      persist_od_content if descMetadata.od_content.first.nil? && @od_content.to_a.length > 0
+      persist_od_content
       @od_content
     end
 
     def persist_od_content
-      descMetadata.od_content = [@od_content]
+      descMetadata.od_content = [@od_content] if @od_content && descMetadata.od_content.first.nil? && @od_content.to_a.length > 0
     end
 
     def compound_parent

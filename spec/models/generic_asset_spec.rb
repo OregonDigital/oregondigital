@@ -327,6 +327,19 @@ describe GenericAsset, :resque => true do
         expect(generic_asset.resource.query([nil, OregonDigital::Vocabularies::OREGONDIGITAL.contents, nil]).to_a.length).to eq 0
       end
     end
+    context "when it has one asset" do
+      before do
+        generic_asset.od_content << asset_2
+      end
+      context "and it's persisted" do
+        before do
+          generic_asset.save
+        end
+        it "should be re-gettable" do
+          expect(GenericAsset.find(generic_asset.pid).od_content.to_a.map(&:references)).to eq [[asset_2]]
+        end
+      end
+    end
     context "when appending" do
       before do
         generic_asset.od_content << asset_2
