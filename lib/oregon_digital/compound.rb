@@ -1,13 +1,22 @@
 module OregonDigital
   module Compound
     extend ActiveSupport::Concern
+    included do
+      before_save :persist_od_content
+    end
     
     def compound?
       od_content.length > 0
     end
 
     def od_content
-      @od_content ||= descMetadata.od_content.first_or_create
+      @od_content ||= descMetadata.od_content.first || OregonDigital::RDF::List.from_uri(::RDF::Node.new, resource)
+      persist_od_content if descMetadata.od_content.first.nil? && @od_content.to_a.length > 0
+      @od_content
+    end
+
+    def persist_od_content
+      descMetadata.od_content = [@od_content]
     end
 
     def compound_parent

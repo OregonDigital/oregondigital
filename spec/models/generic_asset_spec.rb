@@ -322,6 +322,10 @@ describe GenericAsset, :resque => true do
       it "should not be a compound object" do
         expect(generic_asset).not_to be_compound
       end
+      it "should not add statements to the graph" do
+        expect(generic_asset).not_to be_compound
+        expect(generic_asset.resource.query([nil, OregonDigital::Vocabularies::OREGONDIGITAL.contents, nil]).to_a.length).to eq 0
+      end
     end
     context "when appending" do
       before do
