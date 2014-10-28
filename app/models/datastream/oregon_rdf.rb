@@ -145,7 +145,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :specimenType, :predicate => RDF::URI('http://opaquenamespace.org/ns/specimenType') do |index|
     index.as :displayable
   end
-
+  property :temporal, :predicate => RDF::DC.temporal do |index|
+    index.as :searchable, :displayable
+  end
 
   # Subjects
   # :lcsubject is controlled subject using multiple vocabs
@@ -221,10 +223,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :collectedDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.collectedDate do |index|
     index.as :displayable
   end
-  property :temporal, :predicate => RDF::DC.temporal do |index|
-    index.as :searchable, :displayable
-  end
-
 
   # Identifiers
   property :identifier, :predicate => RDF::DC.identifier do |index|
