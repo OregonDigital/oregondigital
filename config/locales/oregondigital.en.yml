@@ -5,6 +5,7 @@ en:
       lcsubject: LC Subject
       localCollectionID: Local Collection ID
       locationCopyShelfLocator: Item Locator
+      od_repository: Repository
 
     catalog:
       facet:
@@ -13,3 +14,4 @@ en:
         set: Collection
         localCollectionID: Local Collection ID
         locationCopyShelfLocator: Item Locator
+        od_repository: Repository
