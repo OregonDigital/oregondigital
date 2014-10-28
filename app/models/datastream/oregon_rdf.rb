@@ -245,7 +245,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :useRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.useRestrictions do |index|
     index.as :searchable, :displayable
   end
-  property :accessRestricitons, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.accessRestrictions do |index|
+  property :accessRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.accessRestrictions do |index|
     index.as :searchable, :displayable
   end
   property :copyrightClaimant, :predicate => OregonDigital::Vocabularies::MARCREL.cpc do |index|
