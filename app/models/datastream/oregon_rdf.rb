@@ -26,7 +26,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :creator, :predicate => RDF::DC11.creator, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :contributor, :predicate => RDF::DC11.contributor, :class_name => OregonDigital::ControlledVocabularies::Creator  do |index|
+  property :contributor, :predicate => RDF::DC11.contributor, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :displayable
   end
   property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
@@ -48,7 +48,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :illustrator, :predicate => OregonDigital::Vocabularies::MARCREL.ill, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
-    index.as :displayable, :facetable, :displayable
+    index.as :displayable, :facetable
   end
   property :interviewee, :predicate => OregonDigital::Vocabularies::MARCREL.ive do |index|
     index.as :searchable, :displayable
@@ -73,6 +73,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :creatorDisplay, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/creatorDisplay'] do |index|
     index.as :displayable
+  end
+  property :collector, :predicate => OregonDigital::Vocabularies::MARCREL.col, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
+    index.as :searchable, :displayable
   end
 
   # Descriptions
@@ -131,6 +134,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
   property :tribalNotes, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tribalNotes do |index|
+    index.as :displayable
+  end
+  property :acceptedNameUsage, :predicate => RDF::URI('http://rs.tdwg.org/dwc/terms/acceptedNameUsage') do |index|
     index.as :displayable
   end
 
@@ -235,7 +241,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable, :facetable
   end
   property :publisher, :predicate => RDF::DC.publisher do |index|
-    index.as :searchable, :facetable,  :displayable
+    index.as :searchable, :facetable, :displayable
   end
   property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup do |index|
     index.as :displayable
@@ -268,7 +274,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # Formats
-  property :format, :predicate => RDF::DC.format,  :class_name => OregonDigital::ControlledVocabularies::Format do |index|
+  property :format, :predicate => RDF::DC.format, :class_name => OregonDigital::ControlledVocabularies::Format do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#physicalExtent') do |index|
@@ -306,7 +312,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :hostItem, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.hostItem do |index|
-    index.as  :displayable
+    index.as :displayable
   end
   property :hasPart, :predicate => RDF::DC.hasPart do |index|
     index.as :displayable
@@ -376,7 +382,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :family, :predicate => OregonDigital::Vocabularies::DWC.family do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :genus, :predicate => OregonDigital::Vocabularies::DWC.genus, :class_name => OregonDigital::ControlledVocabularies::SciGenus  do |index|
+  property :genus, :predicate => OregonDigital::Vocabularies::DWC.genus, :class_name => OregonDigital::ControlledVocabularies::SciGenus do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :phylum, :predicate => OregonDigital::Vocabularies::DWC.phylum, :class_name => OregonDigital::ControlledVocabularies::SciPhylum do |index|

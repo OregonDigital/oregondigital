@@ -43,6 +43,7 @@ INGEST_MAP = {
     scribe: "descMetadata.scribe",
     creatorDisplay: "descMetadata.creatorDisplay",
     donor: "descMetadata.donor",
+    collector: "descMetadata.collector",
   },
 
   description: {
@@ -73,6 +74,7 @@ INGEST_MAP = {
     biographicalInformation: "descMetadata.biographicalInformation",
     note: "descMetadata.note",
     canzonierePoems: "descMetadata.canzonierePoems",
+    acceptedNameUsage: "descMetadata.acceptedNameUsage",
   },
 
   subject: {
