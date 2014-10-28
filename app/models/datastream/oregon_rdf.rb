@@ -244,7 +244,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :rightsHolder, :predicate => RDF::URI('http://opaquenamespace.org/rights/rightsHolder') do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :useRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.useRestrictions do |index| 
+  property :useRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.useRestrictions do |index|
     index.as :searchable, :displayable
   end
   property :accessRestricitons, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.accessRestrictions do |index|
@@ -325,13 +325,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
 
-  # Relations  
+  # Relations
   property :relation, :predicate => RDF::DC.relation do |index|
     index.as :displayable
   end
   property :largerWork, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.largerWork do |index|
     index.as :searchable, :displayable
-  end   
+  end
   property :artSeries, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.artSeries do |index|
     index.as :searchable, :displayable
   end
@@ -425,7 +425,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   # PREMIS
   property :preservation, :predicate => OregonDigital::Vocabularies::PREMIS.hasOriginalName
   property :hasFixity, :predicate => OregonDigital::Vocabularies::PREMIS.hasFixity
-  
+
   # MODS RDF
   property :locationCopySublocation, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#locationCopySublocation') do |index|
     index.as :displayable
@@ -436,7 +436,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :note, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#note') do |index|
     index.as :displayable
   end
-  
+
   # VRA
   property :culturalContext, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/culturalContext') do |index|
     index.as :displayable
