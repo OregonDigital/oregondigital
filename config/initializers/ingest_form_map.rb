@@ -75,6 +75,11 @@ INGEST_MAP = {
     note: "descMetadata.note",
     canzonierePoems: "descMetadata.canzonierePoems",
     acceptedNameUsage: "descMetadata.acceptedNameUsage",
+    originalNameUsage: "descMetadata.originalNameUsage",
+    identificationVerificationStatus: "descMetadata.identificationVerificationStatus",
+    layout: "descMetadata.layout",
+    specimenType: "descMetadata.specimenType",
+    temporal: "descMetadata.temporal",
   },
 
   subject: {
@@ -91,11 +96,12 @@ INGEST_MAP = {
     tribalClasses: "descMetadata.tribalClasses",
     tribalTerms: "descMetadata.tribalTerms",
     person: "descMetadata.person",
-    # dwc terms to be added once configuration complete
-    # genus: "descMetadata.genus",
-    # phylum: "descMetadata.phylum",
-    # taxonClass: "descMetadata.taxonClass",
-    # commonNames: "descMetadata.commonNames",
+    family: "descMetadata.family",
+    genus: "descMetadata.genus",
+    phylum: "descMetadata.phylum",
+    taxonClass: "descMetadata.taxonClass",
+    commonNames: "descMetadata.commonNames",
+    event: "descMetadata.event",
   },
 
   geographic: {
@@ -113,6 +119,7 @@ INGEST_MAP = {
     latestDate: "descMetadata.latestDate",
     viewDate: "descMetadata.viewDate",
     awardDate: "descMetadata.awardDate",
+    collectedDate: "descMetadata.collectedDate",
   },
 
   identifier: {
@@ -124,6 +131,8 @@ INGEST_MAP = {
   right: {
     rights: "descMetadata.rights",
     rightsHolder: "descMetadata.rightsHolder",
+    useRestrictions: "descMetadata.useRestricions",
+    accessRestrictions: "descMetadata.accessRestrictions",
     copyrightClaimant: "descMetadata.copyrightClaimant",
   },
 
@@ -138,6 +147,7 @@ INGEST_MAP = {
     localCollectionName: "descMetadata.localCollectionName",
     localCollectionID: "descMetadata.localCollectionID",
     seriesName: "descMetadata.seriesName",
+    seriesNumber: "descMetadata.seriesNumber",
     boxNumber: "descMetadata.boxNumber",
     folderNumber: "descMetadata.folderNumber",
     folderName: "descMetadata.folderName",
