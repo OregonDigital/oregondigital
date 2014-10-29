@@ -47,8 +47,12 @@ module CollectionsHelper
     if block_given?
       link_to url_for(doc), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  }), &block
     else
-      link_to label, doc, { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
+      link_to label, solr_document_path(:id => doc["id"], :anchor => document_anchor(doc)), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
     end
+  end
+
+  def document_anchor(doc)
+    "page/1/mode/1up/search/#{params[:q]}" if doc["active_fedora_model_ssi"] == "Document"
   end
 
   def link_to_previous_document(previous_document)

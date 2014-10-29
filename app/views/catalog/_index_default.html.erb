@@ -3,7 +3,7 @@
   <div class="span thumbnail-container">
 
     <% if document["has_thumbnail_bs"] %>
-      <%= link_to_document(document, :counter => document_counter_with_offset(document_counter)) do %>
+      <%= link_to_document(document, :counter => document_counter_with_offset(document_counter), :anchor => "page/1/mode/1up/search/#{params[:q]}") do %>
         <img src="/thumbnails/<%= Image.relative_thumbnail_location(document["id"]) %>"
              alt="<%= document["desc_metadata__title_ssm"].try(:first) %>"
              title="<%= document["desc_metadata__title_ssm"].try(:first) %>"

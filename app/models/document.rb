@@ -70,4 +70,9 @@ class Document < GenericAsset
     Pathname.new(APP_CONFIG["document_pages_path"] || Rails.root.join("media", "document_pages"))
   end
 
+  def to_solr(*args)
+    return super if ocr_object.nil?
+    super.merge({ActiveFedora::SolrService.solr_name("desc_metadata__full_text", :stored_searchable) => ocr_object.words.map(&:text).join(" ")})
+  end
+
 end

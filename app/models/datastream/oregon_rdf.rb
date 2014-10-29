@@ -10,7 +10,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
   # Titles
   property :title, :predicate => RDF::DC.title do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :displayable, :symbol, :facetable, :stored_searchable
   end
   property :alternative, :predicate => RDF::DC.alternative do |index|
     index.as :searchable, :displayable
@@ -80,7 +80,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
   # Descriptions
   property :description, :predicate => RDF::DC.description do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :displayable, :stored_searchable
   end
   property :abstract, :predicate => RDF::DC.abstract do |index|
     index.as :searchable, :displayable
