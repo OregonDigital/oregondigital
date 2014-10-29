@@ -78,7 +78,6 @@ module OregonDigital::OCR
       ocr_object.words.each_with_index do |word, index|
         next unless word.text.downcase.include?(word_queries.first)
         next unless index+word_queries.length-1 < ocr_object.words.length
-        puts ocr_object.words[index..index+word_queries.length-1].map(&:text).join(" ")
         if ocr_object.words[index..index+word_queries.length-1].map(&:text).join(" ").downcase.include?(query)
           @matches |= ocr_object.words[index..index+word_queries.length-1]
         end
