@@ -41,5 +41,7 @@ RDF_VOCABS = {
   :ubio                 =>  { :prefix => 'http://identifiers.org/ubio.namebank/', :strict => false, :fetch => false },
   :itis                 =>  { :prefix => 'http://www.itis.gov/ITISWebService/', :strict => false, :fetch => false },
   :bm                   =>  { :prefix => 'http://collection.britishmuseum.org/', :strict => false, :fetch => false },
-  :archiveshub          =>  { :prefix => 'http://data.archiveshub.ac.uk/def/', :source => 'http://data.archiveshub.ac.uk/def/' }
+  :archiveshub          =>  { :prefix => 'http://data.archiveshub.ac.uk/def/', :source => 'http://data.archiveshub.ac.uk/def/' },
+  :bibframe             =>  { :prefix => 'http://bibframe.org/vocab/', :source => 'http://bibframe.org/vocab/', :strict => false, :fetch => false},
+  :ccrel                =>  { :prefix => 'http://creativecommons.org/ns', :strict => false, :fetch => false }
 }

@@ -26,7 +26,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :creator, :predicate => RDF::DC11.creator, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :contributor, :predicate => RDF::DC11.contributor, :class_name => OregonDigital::ControlledVocabularies::Creator  do |index|
+  property :contributor, :predicate => RDF::DC11.contributor, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :displayable
   end
   property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
@@ -48,7 +48,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :illustrator, :predicate => OregonDigital::Vocabularies::MARCREL.ill, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
-    index.as :displayable, :facetable, :displayable
+    index.as :displayable, :facetable
   end
   property :interviewee, :predicate => OregonDigital::Vocabularies::MARCREL.ive do |index|
     index.as :searchable, :displayable
@@ -73,6 +73,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :creatorDisplay, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/creatorDisplay'] do |index|
     index.as :displayable
+  end
+  property :collector, :predicate => OregonDigital::Vocabularies::MARCREL.col, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
+    index.as :searchable, :displayable
   end
 
   # Descriptions
@@ -133,6 +136,18 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :tribalNotes, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tribalNotes do |index|
     index.as :displayable
   end
+  property :acceptedNameUsage, :predicate => RDF::URI('http://rs.tdwg.org/dwc/terms/acceptedNameUsage') do |index|
+    index.as :displayable
+  end
+  property :originalNameUsage, :predicate => RDF::URI('http://rs.tdwg.org/dwc/terms/originalNameUsage') do |index|
+    index.as :displayable
+  end
+  property :specimenType, :predicate => RDF::URI('http://opaquenamespace.org/ns/specimenType') do |index|
+    index.as :displayable
+  end
+  property :temporal, :predicate => RDF::DC.temporal do |index|
+    index.as :searchable, :displayable
+  end
 
   # Subjects
   # :lcsubject is controlled subject using multiple vocabs
@@ -171,6 +186,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
 
+
   # Geographics
   property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
     index.as :searchable, :facetable, :displayable
@@ -204,6 +220,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :awardDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.awardDate do |index|
     index.as :searchable, :displayable
   end
+  property :collectedDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.collectedDate do |index|
+    index.as :displayable
+  end
 
   # Identifiers
   property :identifier, :predicate => RDF::DC.identifier do |index|
@@ -223,6 +242,12 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :rightsHolder, :predicate => RDF::URI('http://opaquenamespace.org/rights/rightsHolder') do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :useRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.useRestrictions do |index|
+    index.as :searchable, :displayable
+  end
+  property :accessRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.accessRestrictions do |index|
+    index.as :searchable, :displayable
+  end
   property :copyrightClaimant, :predicate => OregonDigital::Vocabularies::MARCREL.cpc do |index|
     index.as :displayable
   end
@@ -235,7 +260,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable, :facetable
   end
   property :publisher, :predicate => RDF::DC.publisher do |index|
-    index.as :searchable, :facetable,  :displayable
+    index.as :searchable, :facetable, :displayable
   end
   property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup do |index|
     index.as :displayable
@@ -251,6 +276,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :seriesName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.seriesName do |index|
     index.as :searchable, :displayable
+  end
+  property :seriesNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.seriesNumber do |index|
+    index.as :displayable
   end
   property :boxNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.boxNumber do |index|
     index.as :searchable, :displayable
@@ -268,7 +296,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # Formats
-  property :format, :predicate => RDF::DC.format,  :class_name => OregonDigital::ControlledVocabularies::Format do |index|
+  property :format, :predicate => RDF::DC.format, :class_name => OregonDigital::ControlledVocabularies::Format do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#physicalExtent') do |index|
@@ -295,18 +323,18 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
 
-  # Relations  
+  # Relations
   property :relation, :predicate => RDF::DC.relation do |index|
     index.as :displayable
   end
   property :largerWork, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.largerWork do |index|
     index.as :searchable, :displayable
-  end   
+  end
   property :artSeries, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.artSeries do |index|
     index.as :searchable, :displayable
   end
   property :hostItem, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.hostItem do |index|
-    index.as  :displayable
+    index.as :displayable
   end
   property :hasPart, :predicate => RDF::DC.hasPart do |index|
     index.as :displayable
@@ -376,7 +404,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :family, :predicate => OregonDigital::Vocabularies::DWC.family do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :genus, :predicate => OregonDigital::Vocabularies::DWC.genus, :class_name => OregonDigital::ControlledVocabularies::SciGenus  do |index|
+  property :genus, :predicate => OregonDigital::Vocabularies::DWC.genus, :class_name => OregonDigital::ControlledVocabularies::SciGenus do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :phylum, :predicate => OregonDigital::Vocabularies::DWC.phylum, :class_name => OregonDigital::ControlledVocabularies::SciPhylum do |index|
@@ -395,7 +423,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   # PREMIS
   property :preservation, :predicate => OregonDigital::Vocabularies::PREMIS.hasOriginalName
   property :hasFixity, :predicate => OregonDigital::Vocabularies::PREMIS.hasFixity
-  
+
   # MODS RDF
   property :locationCopySublocation, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#locationCopySublocation') do |index|
     index.as :displayable
@@ -406,7 +434,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :note, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#note') do |index|
     index.as :displayable
   end
-  
+
   # VRA
   property :culturalContext, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/culturalContext') do |index|
     index.as :displayable
