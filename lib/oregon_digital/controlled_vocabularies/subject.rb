@@ -9,6 +9,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :aat
     use_vocabulary :subject
     use_vocabulary :lc_orgs
+    use_vocabulary :afs_ethn
 
     class QaLcsh < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching
