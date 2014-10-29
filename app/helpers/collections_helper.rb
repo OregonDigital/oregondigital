@@ -43,11 +43,13 @@ module CollectionsHelper
     label = render_document_index_label doc, opts
     if params[:controller] == "sets"
       doc = {:controller => "sets", :action => "show", :set => params[:set], :id => doc["id"]}
+    else
+      doc = {:controller => "catalog", :action => "show", :id => doc["id"]}
     end
     if block_given?
       link_to url_for(doc), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  }), &block
     else
-      link_to label, solr_document_path(:id => doc["id"], :anchor => document_anchor(doc)), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
+      link_to label, doc.merge(:anchor => document_anchor(doc)), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
     end
   end
 
