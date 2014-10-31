@@ -234,6 +234,12 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :accessionNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/accessionNumber'] do |index|
     index.as :searchable, :displayable
   end
+  property :lccn, :predicate => OregonDigital::Vocabularies::BIBFRAME.lccn do |index|
+    index.as :searchable, :displayable
+  end
+  property :barcode, :predicate => OregonDigital::Vocabularies::BIBFRAME.barcode do |index|
+    index.as :displayable
+  end
 
   # Rights
   property :rights, :predicate => RDF::DC.rights, :class_name => OregonDigital::ControlledVocabularies::RightsStatement do |index|
