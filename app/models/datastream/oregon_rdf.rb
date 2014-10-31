@@ -229,10 +229,16 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :itemLocator, :predicate => OregonDigital::Vocabularies::HOLDING.label do |index|
-    index.as :displayable
+    index.as :searchable, :displayable
   end
   property :accessionNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/accessionNumber'] do |index|
     index.as :searchable, :displayable
+  end
+  property :lccn, :predicate => OregonDigital::Vocabularies::BIBFRAME.lccn do |index|
+    index.as :searchable, :displayable
+  end
+  property :barcode, :predicate => OregonDigital::Vocabularies::BIBFRAME.barcode do |index|
+    index.as :displayable
   end
 
   # Rights
@@ -247,6 +253,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
   property :accessRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.accessRestrictions do |index|
     index.as :searchable, :displayable
+  end
+  property :license, :predicate => OregonDigital::Vocabularies::CCREL.license do |index|
+    index.as :displayable
   end
   property :copyrightClaimant, :predicate => OregonDigital::Vocabularies::MARCREL.cpc do |index|
     index.as :displayable
