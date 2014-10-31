@@ -229,7 +229,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :itemLocator, :predicate => OregonDigital::Vocabularies::HOLDING.label do |index|
-    index.as :displayable
+    index.as :searchable, :displayable
   end
   property :accessionNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/accessionNumber'] do |index|
     index.as :searchable, :displayable
