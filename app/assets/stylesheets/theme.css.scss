@@ -546,6 +546,13 @@ ul.sidenav {
     border-top: none;
   }
 }
+
+/* Search results hilight color */
+.document-metadata > dd > em {
+  background-color: #e2edfe;
+}
+
+
 /*item view */
 #large-image-viewer {
   margin-top: 10px;
