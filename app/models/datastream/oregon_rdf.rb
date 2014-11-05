@@ -173,9 +173,6 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :ethnographicTerm, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.ethnographic, :class_name => OregonDigital::ControlledVocabularies::Ethnog do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :person, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.people, :class_name => OregonDigital::ControlledVocabularies::People do |index|
-    index.as :searchable, :facetable, :displayable
-  end
   property :sportsTeam, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sportsTeam do |index|
     index.as :searchable, :displayable
   end
