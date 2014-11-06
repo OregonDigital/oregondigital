@@ -10,6 +10,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :subject
     use_vocabulary :lc_orgs
     use_vocabulary :creator
+    use_vocabulary :people
 
     class QaLcsh < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching

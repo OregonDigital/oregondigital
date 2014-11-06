@@ -95,7 +95,6 @@ INGEST_MAP = {
     ethnographicTerm: "descMetadata.ethnographicTerm",
     tribalClasses: "descMetadata.tribalClasses",
     tribalTerms: "descMetadata.tribalTerms",
-    person: "descMetadata.person",
     family: "descMetadata.family",
     genus: "descMetadata.genus",
     phylum: "descMetadata.phylum",
