@@ -34,6 +34,9 @@ DUMMY_PATH = File.join(ROOT_PATH,"dummies")
 WebMock.disable_net_connect!(:allow_localhost => true)
 
 RSpec.configure do |config|
+  # Let Rails do its thing with spec types
+  config.infer_spec_type_from_file_location!
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
