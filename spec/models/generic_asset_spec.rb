@@ -364,6 +364,14 @@ describe GenericAsset, :resque => true do
         before do
           generic_asset.save
         end
+
+        it "should store and retrieve more than two appended objects" do
+          generic_asset.od_content << asset_4
+          generic_asset.save
+          reloaded_asset = GenericAsset.find(generic_asset.pid)
+          expect(reloaded_asset.od_content.to_a.map(&:references)).to eq [[asset_2], [asset_3], [asset_4]]
+        end
+
         it "be able to get its content back" do
           expect(GenericAsset.find(generic_asset.pid).od_content.to_a.map(&:references)).to eq [[asset_2], [asset_3]]
         end
