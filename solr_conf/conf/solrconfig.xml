@@ -36,6 +36,11 @@
             http://wiki.apache.org/solr/LocalParams
        -->
         <str name="qf">
+          id
+          active_fedora_model_ssi
+          title_tesim
+          author_tesim
+          subject_tesim
           all_text_timv
         </str>
         <str name="pf">
