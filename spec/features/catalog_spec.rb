@@ -33,6 +33,16 @@ describe 'catalog' do
       end
     end
 
+    context "when there is a document with no fulltext" do
+      before(:each) do
+        FactoryGirl.create(:document, :title => "bla")
+      end
+      it "should not show 'Fulltext' field title" do
+        visit root_path(:search_field => "all_field")
+        expect(page).not_to have_content("Full Text")
+      end
+    end
+
     context "when there is an asset with a thumbnails" do
       context "when the asset is an image" do
         it_should_behave_like "a thumbnail asset" do
