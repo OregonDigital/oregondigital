@@ -15,7 +15,7 @@
   <div class="span metadata-container">
     <dl class="document-metadata dl-invert">
       <% index_fields(document).each do |solr_fname, field| -%>
-        <% if should_render_index_field? document, field %>
+        <% if should_render_index_field? document, field and render_index_field_value(document, :field => solr_fname).present? %>
           <dt class="blacklight-<%= solr_fname.parameterize %>"><%= render_index_field_label document, :field => solr_fname %></dt>
           <dd class="blacklight-<%= solr_fname.parameterize %>"><%= render_index_field_value document, :field => solr_fname %></dd>
         <% end -%>
