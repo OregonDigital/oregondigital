@@ -44,17 +44,18 @@ module CollectionsHelper
     if params[:controller] == "sets"
       doc = {:controller => "sets", :action => "show", :set => params[:set], :id => doc["id"]}
     else
+      solr_document = doc
       doc = {:controller => "catalog", :action => "show", :id => doc["id"]}
     end
     if block_given?
-      link_to url_for(doc), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  }), &block
+      link_to doc.merge(:anchor => document_anchor(doc, solr_document)), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  }), &block
     else
-      link_to label, doc.merge(:anchor => document_anchor(doc)), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
+      link_to label, doc.merge(:anchor => document_anchor(doc, solr_document)), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
     end
   end
 
-  def document_anchor(doc)
-    "page/1/mode/1up/search/#{params[:q]}" if doc["active_fedora_model_ssi"] == "Document"
+  def document_anchor(doc, solr_document)
+    "page/1/mode/1up/search/#{params[:q]}" if solr_document["active_fedora_model_ssi"] == "Document"
   end
 
   def link_to_previous_document(previous_document)
