@@ -4281,6 +4281,7 @@ function BookReader() {
         // process /search
         if ('undefined' != typeof(params.searchTerm)) {
             if (this.searchTerm != params.searchTerm) {
+			    $("#textSrch").val(params.searchTerm);
                 this.search(params.searchTerm);
             }
         }
