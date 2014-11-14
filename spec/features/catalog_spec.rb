@@ -23,6 +23,9 @@ describe 'catalog' do
     end
   end
   describe 'search results' do
+    let(:asset) { FactoryGirl.create(:document, :with_pdf_datastream, :description => 'Dogs', :title => title) }
+    let(:title) { "Test Document" }
+
     context "when there is a collection" do
       before(:each) do
         FactoryGirl.create(:generic_collection)
@@ -33,15 +36,49 @@ describe 'catalog' do
       end
     end
 
-    context "when there is a document with no fulltext" do
-      before(:each) do
-        FactoryGirl.create(:document, :title => "bla")
-      end
-      it "should not show 'Fulltext' field title" do
+    context "when there is a document" do
+      let(:query) { "Document" }
+      before do
+        asset.create_derivatives
+        asset.review
+
         visit root_path(:search_field => "all_field")
-        expect(page).not_to have_content("Full Text")
+        fill_in "q", :with => query
+        click_button "search"
+      end
+
+      after do
+        begin
+          FileUtils.rm_rf(Rails.root.join("media","test"))
+        rescue
+        end
+      end
+
+      context "result links to items" do
+        it "should contain search term(s) in link anchor of title" do
+          expect(page).to have_selector("h5.index_title a[href$='search/Document']")
+        end
+        it "should contain search term(s) in link anchor of thumbnail" do
+          expect(page).to have_selector("div.thumbnail-container a[href$='search/Document']")
+        end
+      end
+
+      context "with a fulltext search match" do
+        let(:query) {"Dog"}
+        it "should show Full Text field title" do
+          expect(page).to have_content("Full Text")
+        end
+      end
+      context "with no fulltext search match" do
+        it "should not show 'Full Text' field title" do
+          expect(page).not_to have_content("Full Text")
+        end
+        it "should show 'Description' field title" do
+          expect(page).to have_content("Description")
+        end
       end
     end
+
 
     context "when there is an asset with a thumbnails" do
       context "when the asset is an image" do
