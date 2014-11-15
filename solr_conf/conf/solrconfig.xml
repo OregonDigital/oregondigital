@@ -41,6 +41,7 @@
           title_tesim
           author_tesim
           subject_tesim
+          all_text_timv
         </str>
         <str name="pf">
           all_text_timv^10
@@ -69,7 +70,7 @@
 
        <str name="facet">true</str>
        <str name="facet.mincount">1</str>
-       <str name="facet.limit">10</str>
+       <str name="facet.limit">50</str>
        <str name="facet.field">active_fedora_model_ssi</str>
        <str name="facet.field">subject_sim</str>
        

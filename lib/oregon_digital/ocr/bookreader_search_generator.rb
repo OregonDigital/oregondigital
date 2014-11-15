@@ -72,7 +72,17 @@ module OregonDigital::OCR
     end
 
     def matches
-      @matches ||= ocr_object.words.select{|word| word.text.downcase.include?(query)}
+      return @matches if @matches
+      word_queries = query.strip.split(" ")
+      @matches = []
+      ocr_object.words.each_with_index do |word, index|
+        next unless word.text.downcase.include?(word_queries.first)
+        next unless index+word_queries.length-1 < ocr_object.words.length
+        if ocr_object.words[index..index+word_queries.length-1].map(&:text).join(" ").downcase.include?(query)
+          @matches |= ocr_object.words[index..index+word_queries.length-1]
+        end
+      end
+      @matches
     end
 
   end

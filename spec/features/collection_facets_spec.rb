@@ -40,7 +40,7 @@ describe 'collection facets' do
         end
         context "and then a search is done" do
           before do
-            fill_in "Search...", :with => "Test"
+            fill_in "Search...", :with => "Can't Find Me"
             click_button "search"
             expect(page).to have_content("No entries found")
           end
