@@ -72,7 +72,7 @@ class Document < GenericAsset
 
   def to_solr(*args)
     return super if ocr_object.nil?
-    super.merge({ActiveFedora::SolrService.solr_name("desc_metadata__full_text", :stored_searchable) => ocr_object.words.map(&:text).join(" ")})
+    super.merge({ActiveFedora::SolrService.solr_name("desc_metadata__full_text", "tsimv") => ocr_object.words.map(&:text).join(" ")})
   end
 
 end

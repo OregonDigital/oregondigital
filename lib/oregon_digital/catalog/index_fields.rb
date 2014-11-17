@@ -11,7 +11,7 @@ module OregonDigital
             config.add_index_field solr_name("desc_metadata__#{field}", :displayable), :label => label
           end
           label = OregonDigital::Metadata::FieldTypeLabel.for(:full_text)
-          config.add_index_field solr_name("desc_metadata__full_text", :stored_searchable), :label => label, :highlight => true
+          config.add_index_field solr_name("desc_metadata__full_text", "tsimv"), :label => label, :highlight => true
         end
       end
     end
