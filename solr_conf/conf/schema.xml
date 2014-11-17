@@ -161,6 +161,7 @@
     <!-- <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/> -->
   <copyField source="*_tesim" dest="all_text_timv"/>
   <copyField source="*_teim" dest="all_text_timv"/>
+  <copyField source="*_tsimv" dest="all_text_timv"/>
   <types>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>    
