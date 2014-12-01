@@ -1,0 +1,15 @@
+dependencies:
+  pre:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libmagickwand-dev libvips-dev libmagic-dev graphicsmagick
+    poppler-utils poppler-data ghostscript pdftk libreoffice ffmpeg libvorbis-dev libavcodec-extra-53
+  bundler:
+    without: [development]
+database:
+  override:
+    - bundle exec rake db:create db:migrate --trace
+    - bundle exec rake jetty:config
+    - bundle exec rake jetty:start
+test:
+  pre:
+    - bundle exec rake sets:content:sync
