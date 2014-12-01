@@ -2,7 +2,7 @@ dependencies:
   pre:
   - sudo apt-get update
   - sudo aptitude install libmagickwand-dev imagemagick libvips-dev libmagic-dev graphicsmagick
-    poppler-utils poppler-data ghostscript pdftk libreoffice ffmpeg libvorbis-dev libavcodec-extra-53
+    poppler-utils poppler-data ghostscript pdftk libreoffice ffmpeg libvorbis-dev libavcodec-extra-53 -y
   bundler:
     without: [development]
 database:
