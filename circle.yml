@@ -1,7 +1,8 @@
 dependencies:
   pre:
   - sudo apt-get update
-  - sudo apt-get install libvips-dev
+  - sudo aptitude install libvips-dev libmagic-dev graphicsmagick
+    poppler-utils poppler-data ghostscript pdftk libreoffice ffmpeg libvorbis-dev libavcodec-extra-53 -y
   bundler:
     without: [development]
 database:
