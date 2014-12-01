@@ -1,6 +1,14 @@
 dependencies:
+  cache_directories:
+    - vips-7.40.11
   pre:
   - sudo apt-get update
+  - sudo apt-get install -y imagemagick libmagickcore5 libmagickwand5 librsvg2-bin libfftw3-double3
+  - sudo apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff4-dev libexif-dev liblcms2-dev libxml2-dev swig libmagickwand-dev curl
+  - if [[ ! -e vips-7.40.11/tools/batch_crop ]]; then curl -O http://www.vips.ecs.soton.ac.uk/supported/current/vips-7.40.11.tar.gz && tar -xzvf vips-7.40.11.tar.gz && cd vips-7.40.11 && ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw --without-gsf && make; fi
+  - sudo cd  vips-7.40.11 && sudo make install
+  - sudo apt-get install -qq libmagickwand-dev libmagic-dev graphicsmagick
+    poppler-utils poppler-data ghostscript pdftk libreoffice ffmpeg libvorbis-dev libavcodec-extra-53
   bundler:
     without: [development]
 database:
