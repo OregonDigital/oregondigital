@@ -47,15 +47,6 @@ describe 'soft delete' do
     it "should not show a destroy button" do
       expect(page).not_to have_link("Delete")
     end
-    context "and there is a soft destroyed item" do
-      before do
-        asset.soft_destroy
-        visit catalog_path(:id => asset.pid)
-      end
-      it "should not let them see it" do
-        expect(page).to have_content("You do not have sufficient")
-      end
-    end
   end
 end
 
