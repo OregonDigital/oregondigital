@@ -4,15 +4,16 @@ describe CatalogController do
   describe 'GET show' do
     let(:core_asset) { FactoryGirl.build(:generic_asset) }
     let(:asset) { core_asset }
-    let(:document) { asset.to_solr }
-    let(:user) { FactoryGirl.build(:user) }
     let(:soft_destroyed) do
       core_asset.soft_destroy
       core_asset
     end
+    let(:document) { asset.to_solr }
+    let(:user) { FactoryGirl.build(:user) }
     before do
       sign_in user
-      asset.save
+      asset.stub(:pid).and_return("oregondigital:bla")
+      asset.update_index
       get :show, :id => asset.pid
     end
     context "when an admin" do
