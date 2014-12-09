@@ -44,6 +44,10 @@ class CatalogController < ApplicationController
     solr_parameters[:fq] << "-#{ActiveFedora::SolrService.solr_name("workflow_metadata__destroyed", :symbol)}:\"true\""
   end
 
+  def invalid_solr_id_error(exception)
+    binding.pry
+  end
+
   # Array of models to exclude from catalog results.
   def unwanted_models
     [
