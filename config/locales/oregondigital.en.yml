@@ -1,5 +1,7 @@
 en:
   oregondigital:
+    generic_asset:
+      destroy: Successfully deleted asset.
     metadata:
       title: Title
       lcsubject: LC Subject

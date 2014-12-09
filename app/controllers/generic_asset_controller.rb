@@ -13,7 +13,7 @@ class GenericAssetController < ApplicationController
   def destroy
     authorize! :destroy, @generic_asset
     @generic_asset.soft_destroy
-    flash[:notice] = "Successfully deleted asset."
+    flash[:notice] = I18n.t("oregondigital.generic_asset.destroy")
     redirect_to catalog_path
   end
 

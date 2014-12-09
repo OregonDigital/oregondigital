@@ -10,9 +10,6 @@ describe 'soft delete' do
   end
   context "when a user is an admin" do
     let(:user) {FactoryGirl.create(:admin)}
-    it "should show a destroy button" do
-      expect(page).to have_link("Delete")
-    end
     context "and the item is already destroyed" do
       before do
         asset.soft_destroy
@@ -30,9 +27,6 @@ describe 'soft delete' do
         within("#main-flashes") do
           expect(page).to have_content("Successfully deleted asset.")
         end
-      end
-      it "should not really delete the asset" do
-        expect(Image.find(asset.pid).pid).to eq asset.pid
       end
       it "should not show the asset on search results" do
         visit root_path(:search_field => "all_fields")

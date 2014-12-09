@@ -14,7 +14,7 @@ describe "catalog/_admin_show_tools.html.erb" do
     context "when the object is not soft deleted" do
       it "should have a soft destroy link" do
         render "catalog/admin_show_tools.html.erb", :decorated_object => decorated_object, :id => "bla"
-        expect(rendered).to have_link "Delete"
+        expect(rendered).to have_css "a[data-method='delete'][href='#{generic_asset_path(:id => asset.pid)}']", :text => "Delete"
       end
     end
     context "and the object is soft deleted" do
@@ -23,7 +23,7 @@ describe "catalog/_admin_show_tools.html.erb" do
       end
       it "should have an undelete link" do
         render "catalog/admin_show_tools.html.erb", :decorated_object => decorated_object, :id => "bla"
-        expect(rendered).to have_link "Undelete"
+        expect(rendered).to have_link "Undelete", :href => undelete_destroyed_path(asset.pid)
       end
     end
   end
