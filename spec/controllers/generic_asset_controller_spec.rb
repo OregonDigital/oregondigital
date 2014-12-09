@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe GenericAssetController do
-  let(:core_asset) { double(:generic_asset) }
+  let(:core_asset) { instance_double("GenericAsset") }
   let(:asset) do
     core_asset.stub(:pid).and_return("oregondigital:bla")
     core_asset.stub(:soft_destroy)
@@ -40,10 +40,10 @@ describe GenericAssetController do
   end
   describe "GenericAssetController::AssetAdapter" do
     describe ".call" do
-      let(:asset) { double(:asset) }
+      let(:asset) { instance_double("GenericAsset") }
       let(:result) { GenericAssetController::AssetAdapter.call(asset) }
       context "when given an object that can be adapted" do
-        let(:new_asset) { double(:new_asset) }
+        let(:new_asset) { instance_double("GenericAsset") }
         before do
           asset.stub(:adapt_to_cmodel).and_return(new_asset)
         end

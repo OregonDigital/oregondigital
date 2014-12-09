@@ -89,4 +89,11 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
   config.expose_current_running_example_as :example
+  config.mock_with :rspec do |mocks|
+    mocks.verify_doubled_constant_names = true
+    mocks.syntax = [:should, :expect]
+  end
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
 end

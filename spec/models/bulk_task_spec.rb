@@ -155,13 +155,13 @@ describe BulkTask do
 
     it 'creates BulkTasks for folders found' do
       BulkTask.refresh
-      expect(BulkTask.all).to have(3).items
+      expect(BulkTask.all.size).to eq 3
     end
 
     it 'is idempotent' do
       BulkTask.refresh
       BulkTask.refresh
-      expect(BulkTask.all).to have(3).items
+      expect(BulkTask.all.size).to eq 3
     end
     
     it 'assigns a relative directory' do
@@ -172,7 +172,7 @@ describe BulkTask do
     it 'does not create duplicate BulkTasks' do
       BulkTask.new(:directory => File.join(APP_CONFIG.batch_dir, 'test1')).save
       BulkTask.refresh
-      expect(BulkTask.all).to have(3).items
+      expect(BulkTask.all.size).to eq 3
     end
   end
 end

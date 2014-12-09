@@ -32,7 +32,7 @@ describe Ingest::AssetFileAttacher do
   end
 
   describe "#attach_file_to_asset" do
-    let(:asset) { double("ActiveFedora asset") }
+    let(:asset) { instance_double("GenericAsset") }
     let(:content) { double("content datastream") }
     let(:attacher) { Ingest::AssetFileAttacher.new(asset, upload) }
 

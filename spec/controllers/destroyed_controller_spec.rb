@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe DestroyedController do
   let(:user) {}
-  let(:core_asset) { double(:generic_asset) }
+  let(:core_asset) { instance_double("GenericAsset") }
   # I do this a lot. Can there be a "stubbed factory" or something?
   let(:asset) do
     core_asset.stub(:pid).and_return("oregondigital:bla")

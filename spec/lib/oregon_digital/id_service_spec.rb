@@ -51,7 +51,7 @@ describe OregonDigital::IdService do
       OregonDigital::IdService.stub(:namespace).and_return("prefix")
 
       # Never hit the real fedora / solr for mint tests
-      @afb = double("ActiveFedora::Base")
+      @afb = class_double("ActiveFedora::Base")
       stub_const("ActiveFedora::Base", @afb)
       @afb.stub(:exists? => false)
 
