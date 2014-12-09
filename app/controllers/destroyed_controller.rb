@@ -12,13 +12,16 @@ class DestroyedController < CatalogController
   end
 
   def undelete
-    asset = GenericAsset.find(params[:id])
     asset.undelete!
-    flash[:notice] = "Successfully restored object."
+    flash[:notice] = I18n.t('oregondigital.destroyed.undelete.success')
     redirect_to catalog_path(asset) 
   end
 
   private
+
+  def asset
+    @asset ||= GenericAsset.find(params[:id])
+  end
 
   def require_destroyed_items(solr_parameters, user_parameters)
     solr_parameters[:fq] ||= []
@@ -33,7 +36,7 @@ class DestroyedController < CatalogController
 
   def restrict_to_destroyers
     unless can? :destroy, GenericAsset
-      raise Hydra::AccessDenied.new "You do not have permission to manage destroyed objects."
+      raise Hydra::AccessDenied.new I18n.t('oregondigital.destroyed.unauthorized')
     end
   end
 end

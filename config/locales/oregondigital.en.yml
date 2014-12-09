@@ -1,5 +1,9 @@
 en:
   oregondigital:
+    destroyed:
+      unauthorized: You do not have permission to manage destroyed objects.
+      undelete:
+        success: Successfully restored object.
     generic_asset:
       destroy: Successfully deleted asset.
     metadata:

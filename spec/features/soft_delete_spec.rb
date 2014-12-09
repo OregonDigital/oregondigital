@@ -10,23 +10,9 @@ describe 'soft delete' do
   end
   context "when a user is an admin" do
     let(:user) {FactoryGirl.create(:admin)}
-    context "and the item is already destroyed" do
-      before do
-        asset.soft_destroy
-        visit catalog_path(:id => asset.pid)
-      end
-      it "should have a working Undelete button" do
-        click_link "Undelete"
-        expect(page).to have_content("restored")
-        expect(asset.reload).not_to be_soft_destroyed
-      end
-    end
     context "and the destroy button is clicked" do
       before do
         click_link "Delete"
-        within("#main-flashes") do
-          expect(page).to have_content("Successfully deleted asset.")
-        end
       end
       it "should not show the asset on search results" do
         visit root_path(:search_field => "all_fields")

@@ -25,4 +25,15 @@ describe "#soft_destroy" do
       expect(asset).not_to be_soft_destroyed
     end
   end
+
+  describe "#undelete!" do
+    it "should call undelete" do
+      expect(asset).to receive(:undelete)
+      asset.undelete!
+    end
+    it "should call save" do
+      expect(asset).to receive(:save)
+      asset.undelete!
+    end
+  end
 end
