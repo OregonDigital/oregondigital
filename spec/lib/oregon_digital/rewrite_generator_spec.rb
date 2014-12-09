@@ -20,7 +20,7 @@ describe OregonDigital::RewriteGenerator do
           subject
         end
         it "should not create a rewrite conf file" do
-          expect(File.exist?(file_path)).not_to be_true
+          expect(File.exist?(file_path)).not_to be true
         end
       end
       context "when there is an object with a replaces attribute" do
@@ -36,7 +36,7 @@ describe OregonDigital::RewriteGenerator do
           subject
         end
         it "should create a rewrite conf file" do
-          expect(File.exist?(file_path)).to be_true
+          expect(File.exist?(file_path)).to be true
           strings = OregonDigital::RewriteGenerator.new.replace_strings
           expect(strings.length).to eq 2
           expect(File.read(file_path)).to eq strings.first+"\n"+strings.last+"\n"
@@ -48,7 +48,7 @@ describe OregonDigital::RewriteGenerator do
         subject
       end
       it "should not create a rewrite conf file" do
-        expect(File.exist?(file_path)).not_to be_true
+        expect(File.exist?(file_path)).not_to be true
       end
     end
 

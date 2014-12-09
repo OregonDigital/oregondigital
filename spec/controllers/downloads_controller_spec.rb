@@ -43,7 +43,7 @@ describe DownloadsController do
       context "(when a user is not authenticated)" do
         context "(with no requested datastream)" do
           it "should be a success" do
-            expect{get :show, :id => document.pid}.not_to raise_error(Hydra::AccessDenied)
+            expect{get :show, :id => document.pid}.not_to raise_error
           end
         end
       end

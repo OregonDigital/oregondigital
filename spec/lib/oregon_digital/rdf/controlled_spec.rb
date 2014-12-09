@@ -85,7 +85,7 @@ describe OregonDigital::RDF::Controlled do
   describe '#load_vocabularies' do
     it 'should load data' do
       subject.load_vocabularies
-      expect(subject.new('Image').has_subject?(RDF::URI('http://purl.org/dc/dcmitype/Image'))).to be_true
+      expect(subject.new('Image').has_subject?(RDF::URI('http://purl.org/dc/dcmitype/Image'))).to be true
     end
   end
 

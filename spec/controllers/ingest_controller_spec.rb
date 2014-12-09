@@ -251,7 +251,7 @@ describe IngestController do
 
       it "should cause the form container to be invalid" do
         post :update, id: 1, metadata_ingest_form: attrs
-        expect(assigns(:form).valid?).to be_false
+        expect(assigns(:form).valid?).to be false
       end
 
       it "should propagate asset errors onto the form" do
