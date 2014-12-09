@@ -18,9 +18,6 @@ describe 'soft delete' do
         asset.soft_destroy
         visit catalog_path(:id => asset.pid)
       end
-      it "should not show a destroy button" do
-        expect(page).not_to have_link("Delete")
-      end
       it "should have a working Undelete button" do
         click_link "Undelete"
         expect(page).to have_content("restored")
@@ -41,11 +38,6 @@ describe 'soft delete' do
         visit root_path(:search_field => "all_fields")
         expect(page).not_to have_selector(".document")
       end
-    end
-  end
-  context "when a user is not an admin" do
-    it "should not show a destroy button" do
-      expect(page).not_to have_link("Delete")
     end
   end
 end
