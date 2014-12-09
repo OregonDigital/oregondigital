@@ -13,11 +13,11 @@ def fill_out_dummy_data
 end
 
 def click_the_ingest_button
-  find(:css, 'input.btn-primary').click
+  find('input.btn-primary').click
 end
 
 def ingest_group_nodes(group)
-  return all(:css, ".nested-fields[data-group=#{group}]")
+  return all(".nested-fields[data-group=#{group}]")
 end
 
 def fill_in_ingest_data(group, type, value, position = 0, clone = false)
@@ -55,7 +55,7 @@ def choose_controlled_vocabulary_item(group, type, search, pick, internal, posit
   expect(page).to have_content(pick)
   expect(page).to have_content(internal)
 
-  autocomplete_tags = all(:css, '.tt-suggestion .suggestion-label')
+  autocomplete_tags = all('.tt-suggestion .suggestion-label')
   autocomplete_tags.select {|tag| tag.text == pick}.first.click
 
   # Validate the internal field

@@ -292,7 +292,6 @@ describe "(Ingest Form)" do
         click_the_ingest_button
         mark_as_reviewed
         visit(catalog_path(@pid))
-        pending "Show view needs to show labels before we can test this!"
         expect(page).to have_content(label1)
         expect(page).to have_content(label2)
       end
