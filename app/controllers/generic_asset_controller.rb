@@ -1,24 +1,32 @@
 class GenericAssetController < ApplicationController
   include Hydra::Controller::ControllerBehavior
   load_and_authorize_resource
-  before_filter :adapt_asset
 
   def review
-    authorize! :review, @generic_asset
-    @generic_asset.review!
+    authorize! :review, asset
+    asset.review!
     flash[:notice] = "Successfully reviewed."
     redirect_to reviewer_path
   end
 
   def destroy
-    authorize! :destroy, @generic_asset
-    @generic_asset.soft_destroy
+    authorize! :destroy, asset
+    asset.soft_destroy
     flash[:notice] = I18n.t("oregondigital.generic_asset.destroy")
     redirect_to catalog_path
   end
 
-  def adapt_asset
-    @generic_asset = @generic_asset.adapt_to_cmodel if @generic_asset
+  private
+  
+  def asset
+    @asset ||= AssetAdapter.call(@generic_asset)
+  end
+
+  class AssetAdapter
+    def self.call(asset)
+      return asset unless asset.respond_to?(:adapt_to_cmodel)
+      asset.adapt_to_cmodel
+    end
   end
 
 end

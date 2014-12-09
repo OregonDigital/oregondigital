@@ -2,12 +2,11 @@ require 'spec_helper'
 
 describe DestroyedController do
   let(:user) {}
-  let(:core_asset) { FactoryGirl.build(:generic_asset) }
+  let(:core_asset) { double(:generic_asset) }
   # I do this a lot. Can there be a "stubbed factory" or something?
   let(:asset) do
     core_asset.stub(:pid).and_return("oregondigital:bla")
-    core_asset.stub(:persisted?).and_return(true)
-    core_asset.stub(:save)
+    core_asset.stub(:undelete!)
     core_asset
   end
   before do

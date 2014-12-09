@@ -86,4 +86,7 @@ RSpec.configure do |config|
     # completely break testing otherwise
     ActiveFedora::Base.delete_all
   end
+
+  config.infer_spec_type_from_file_location!
+  config.expose_current_running_example_as :example
 end
