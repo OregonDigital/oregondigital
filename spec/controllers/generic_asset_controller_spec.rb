@@ -35,6 +35,12 @@ describe GenericAssetController do
           delete_asset
           expect(flash[:notice]).to eq I18n.t("oregondigital.generic_asset.destroy")
         end
+        it "should discover the appropriate asset" do
+          controller.instance_variable_set(:@generic_asset, nil)
+          expect(GenericAsset).to receive(:find).with(asset.pid).and_return(asset)
+          delete_asset
+          expect(assigns(:generic_asset)).to eq asset
+        end
       end
     end
   end
