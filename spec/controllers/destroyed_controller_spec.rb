@@ -10,8 +10,9 @@ describe DestroyedController do
     core_asset
   end
   before do
-    controller.stub(:asset).and_return(asset)
     sign_in user if user
+    # DO NOT STUB #asset. Replace this with the implementation to find an asset.
+    GenericAsset.stub(:find).with(asset.pid).and_return(asset)
   end
 
   describe "GET undelete" do
@@ -27,6 +28,10 @@ describe DestroyedController do
     end
     context "when logged in as an admin" do
       let(:user) { FactoryGirl.create(:admin) }
+      it "should call AssetUndeleter" do
+        expect(AssetUndeleter).to receive(:call).with(asset, anything).and_call_original
+        undelete_asset
+      end
       it "should call undelete! on asset" do
         expect(asset).to receive(:undelete!)
         undelete_asset

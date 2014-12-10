@@ -3,14 +3,12 @@ class GenericAssetController < ApplicationController
   load_and_authorize_resource
 
   def review
-    authorize! :review, asset
     asset.review!
     flash[:notice] = "Successfully reviewed."
     redirect_to reviewer_path
   end
 
   def destroy
-    authorize! :destroy, asset
     asset.soft_destroy
     flash[:notice] = I18n.t("oregondigital.generic_asset.destroy")
     redirect_to catalog_path

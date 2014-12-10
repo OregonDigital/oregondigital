@@ -37,6 +37,7 @@ describe GenericAssetController do
         end
         it "should discover the appropriate asset" do
           controller.instance_variable_set(:@generic_asset, nil)
+          binding.pry
           expect(GenericAsset).to receive(:find).with(asset.pid).and_return(asset)
           delete_asset
           expect(assigns(:generic_asset)).to eq asset

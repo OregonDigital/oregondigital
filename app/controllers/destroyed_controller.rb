@@ -12,9 +12,14 @@ class DestroyedController < CatalogController
   end
 
   def undelete
-    asset.undelete!
-    flash[:notice] = I18n.t('oregondigital.destroyed.undelete.success')
-    redirect_to catalog_path(asset) 
+    AssetUndeleter.call(asset, UndeleteResponse.new(self))
+  end
+
+  class UndeleteResponse < SimpleDelegator
+    def success(asset)
+      flash[:notice] = I18n.t('oregondigital.destroyed.undelete.success')
+      redirect_to catalog_path(asset) 
+    end
   end
 
   private
