@@ -15,17 +15,18 @@ class DestroyedController < CatalogController
     AssetUndeleter.call(asset, UndeleteResponse.new(self))
   end
 
-  class UndeleteResponse < SimpleDelegator
-    def success(asset)
-      flash[:notice] = I18n.t('oregondigital.destroyed.undelete.success')
-      redirect_to catalog_path(asset) 
-    end
-  end
 
   private
 
   def asset
     @asset ||= GenericAsset.find(params[:id])
+  end
+
+  class UndeleteResponse < SimpleDelegator
+    def success(asset)
+      flash[:notice] = I18n.t('oregondigital.destroyed.undelete.success')
+      redirect_to catalog_path(asset) 
+    end
   end
 
   def require_destroyed_items(solr_parameters, user_parameters)
