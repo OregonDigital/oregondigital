@@ -10,12 +10,6 @@ describe "IP Range Administration" do
         visit root_path
         capybara_login(user)
       end
-      context "and they are a user" do
-        it "should not let them to the role admin page" do
-          visit role_management.edit_role_path(role)
-          expect(page).to have_content("You are not authorized to access this page.")
-        end
-      end
       context "and they are an admin" do
         before(:each) do
           user.roles << role
