@@ -100,7 +100,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :compassDirection, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.compassDirection do |index|
     index.as :displayable
   end
-  property :conditionOfSource, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sourceCondition do |index|
+  property :objectOrientation, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.objectOrientation do |index|
+    index.as :displayable
+  end
+  property :photographOrientation, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.photographOrientation do |index|
+    index.as :displayable
+  end
+  property :conditionOfSource, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sourceCondition do |index|    
     index.as :searchable, :displayable
   end
   property :instrumentation, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.instrumentation do |index|
