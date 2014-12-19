@@ -191,8 +191,17 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
 
   # Geographics
+  property :geobox, :predicate => RDF::URI('https://schema.org/box') do |index|
+     index.as :searchable, :displayable
+  end
+  property :latitude, :predicate => RDF::URI('http://www.w3.org/2003/12/exif/ns#gpsLatitude') do |index|
+     index.as :searchable, :displayable
+  end
+  property :longitude, :predicate => RDF::URI('http://www.w3.org/2003/12/exif/ns#gpsLongitude') do |index|
+     index.as :searchable, :displayable
+  end
   property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
-    index.as :searchable, :facetable, :displayable
+     index.as :searchable, :facetable, :displayable
   end
   property :streetAddress, :predicate => RDF::URI('http://www.loc.gov/standards/mads/rdf/v1.html#streetAddress') do |index|
     index.as :searchable, :displayable
