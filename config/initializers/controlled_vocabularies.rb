@@ -43,5 +43,6 @@ RDF_VOCABS = {
   :bm                   =>  { :prefix => 'http://collection.britishmuseum.org/', :strict => false, :fetch => false },
   :archiveshub          =>  { :prefix => 'http://data.archiveshub.ac.uk/def/', :source => 'http://data.archiveshub.ac.uk/def/' },
   :bibframe             =>  { :prefix => 'http://bibframe.org/vocab/', :source => 'http://bibframe.org/vocab/', :strict => false, :fetch => false},
-  :ccrel                =>  { :prefix => 'http://creativecommons.org/ns#', :strict => false, :fetch => false }
+  :ccrel                =>  { :prefix => 'http://creativecommons.org/ns#', :strict => false, :fetch => false },
+  :mods                 =>  { :prefix => 'http://www.loc.gov/standards/mods/modsrdf/v1/#', :strict => false, :fetch => false }
 }
