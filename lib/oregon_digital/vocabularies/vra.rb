@@ -1,4 +1,5 @@
-OregonDigital::Vocabularies
+require 'rdf'
+module OregonDigital::Vocabularies
   class VRA < ::RDF::Vocabulary("http://opaquenamespace.org/ns/vra/")
   end
 end
