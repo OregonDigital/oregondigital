@@ -85,7 +85,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :abstract, :predicate => RDF::DC.abstract do |index|
     index.as :searchable, :displayable
   end
-  property :inscription, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/inscription') do |index|
+  property :inscription, :predicate => OregonDigital::Vocabularies::VRA.inscription do |index|
     index.as :searchable, :displayable
   end
   property :view, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/viewDescription'] do |index|
@@ -100,7 +100,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :compassDirection, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.compassDirection do |index|
     index.as :displayable
   end
-  property :conditionOfSource, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sourceCondition do |index|
+  property :objectOrientation, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.objectOrientation do |index|
+    index.as :displayable
+  end
+  property :photographOrientation, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.photographOrientation do |index|
+    index.as :displayable
+  end
+  property :conditionOfSource, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sourceCondition do |index|    
     index.as :searchable, :displayable
   end
   property :instrumentation, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.instrumentation do |index|
@@ -158,10 +164,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :subject, :predicate => RDF::DC11.subject do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :stateEdition, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/stateEdition') do |index|
+  property :stateEdition, :predicate => OregonDigital::Vocabularies::VRA.stateEdition do |index|
     index.as :searchable, :displayable
   end
-  property :stylePeriod, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/stylePeriod'), :class_name => OregonDigital::ControlledVocabularies::StylePeriod do |index|
+  property :stylePeriod, :predicate => OregonDigital::Vocabularies::VRA.hasStylePeriod, :class_name => OregonDigital::ControlledVocabularies::StylePeriod do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::WorkType do |index|
@@ -185,8 +191,17 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
 
   # Geographics
+  property :geobox, :predicate => RDF::URI('https://schema.org/box') do |index|
+     index.as :searchable, :displayable
+  end
+  property :latitude, :predicate => RDF::URI('http://www.w3.org/2003/12/exif/ns#gpsLatitude') do |index|
+     index.as :searchable, :displayable
+  end
+  property :longitude, :predicate => RDF::URI('http://www.w3.org/2003/12/exif/ns#gpsLongitude') do |index|
+     index.as :searchable, :displayable
+  end
   property :location, :predicate => RDF::DC.spatial, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
-    index.as :searchable, :facetable, :displayable
+     index.as :searchable, :facetable, :displayable
   end
   property :streetAddress, :predicate => RDF::URI('http://www.loc.gov/standards/mads/rdf/v1.html#streetAddress') do |index|
     index.as :searchable, :displayable
@@ -202,13 +217,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :date, :predicate => RDF::DC.date do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :earliestDate, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/earliestDate') do |index|
+  property :earliestDate, :predicate => OregonDigital::Vocabularies::VRA.earliestDate do |index|
     index.as :searchable, :displayable
   end
   property :issued, :predicate => RDF::DC.issued do |index|
     index.as :searchable, :displayable
   end
-  property :latestDate, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/latestDate') do |index|
+  property :latestDate, :predicate => OregonDigital::Vocabularies::VRA.latestDate do |index|
     index.as :searchable, :displayable
   end
   property :viewDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/viewDate'] do |index|
@@ -311,16 +326,16 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :extent, :predicate => RDF::DC.extent do |index|
     index.as :searchable, :displayable
   end
-  property :measurements, :predicate => RDF::URI('http://www.loc.gov/standards/vracrore/vocab/measurements') do |index|
+  property :measurements, :predicate => OregonDigital::Vocabularies::VRA.measurements do |index|
     index.as :displayable
   end
-  property :materials, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/materials') do |index|
+  property :material, :predicate => OregonDigital::Vocabularies::VRA.material do |index|
     index.as :searchable, :displayable
   end
-  property :support, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/support') do |index|
+  property :support, :predicate => OregonDigital::Vocabularies::VRA.support do |index|
     index.as :searchable, :displayable
   end
-  property :technique, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/technique') do |index|
+  property :technique, :predicate => OregonDigital::Vocabularies::VRA.hasTechnique do |index|
     index.as :searchable, :displayable
   end
 
@@ -442,16 +457,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # VRA
-  property :culturalContext, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/culturalContext') do |index|
+  property :culturalContext, :predicate => OregonDigital::Vocabularies::VRA.culturalContext do |index|
     index.as :displayable
   end
-  property :medium, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/medium') do |index|
-    index.as :searchable, :displayable
-  end
-  property :culture, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/culture'), :class_name => OregonDigital::ControlledVocabularies::Culture do |index|
-    index.as :searchable, :displayable
-  end
-  property :idCurrentRepository, :predicate => RDF::URI('http://www.loc.gov/standards/vracore/vocab/idCurrentRepository') do |index|
+  property :idCurrentRepository, :predicate => OregonDigital::Vocabularies::VRA.idCurrentRepository do |index|
     index.as :searchable, :displayable
   end
 
