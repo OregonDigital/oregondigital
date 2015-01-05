@@ -5,6 +5,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :lcnames
     use_vocabulary :uonames
     use_vocabulary :creator
+    use_vocabulary :dummycreator
 
     def initialize(*args)
       args[0] = assign_subject(args.first) unless args.first.to_s.start_with?("http")
@@ -19,7 +20,7 @@ module OregonDigital::ControlledVocabularies
     def assign_subject(string)
       string = string.to_s
       new_subject = string.gsub(" ", "").gsub(/[^A-z]/,'').camelize
-      new_subject = OregonDigital::Vocabularies::CREATOR.send(new_subject).to_s
+      new_subject = OregonDigital::Vocabularies::DUMMYCREATOR.send(new_subject).to_s
       @new_label = string
       new_subject
     end

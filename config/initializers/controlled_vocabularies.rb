@@ -46,5 +46,6 @@ RDF_VOCABS = {
   :ccrel                =>  { :prefix => 'http://creativecommons.org/ns#', :strict => false, :fetch => false },
   :mods                 =>  { :prefix => 'http://www.loc.gov/standards/mods/modsrdf/v1/#', :strict => false, :fetch => false },
   :exif                 =>  { :prefix => 'http://www.w3.org/2003/12/exif/ns#', :strict => false, :fetch => false},
+  :dummycreator                 =>  { :prefix => 'http://dummynamespace.org/creator/', :strict => false, :fetch => false},
   :schema               =>  { :prefix => 'https://schema.org', :strict => false, :fetch => false}
 }
