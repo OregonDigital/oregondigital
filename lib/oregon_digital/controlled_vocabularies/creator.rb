@@ -7,6 +7,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :creator
 
     def initialize(*args)
+      args[0] = assign_subject(args.first) unless args.first.to_s.start_with?("http")
       super
       if @new_label
         self << RDF::Statement.new(rdf_subject, RDF::SKOS.prefLabel, @new_label)
@@ -15,15 +16,12 @@ module OregonDigital::ControlledVocabularies
       end
     end
 
-    def set_subject!(uri_or_str)
-      if uri_or_str.to_s.start_with?("http")
-        super
-      else
-        new_subject = uri_or_str.to_s.gsub(" ", "").gsub(/[^A-z]/,'').camelize
-        new_subject = OregonDigital::Vocabularies::CREATOR.send(new_subject).to_s
-        super(new_subject)
-        @new_label = uri_or_str.to_s
-      end
+    def assign_subject(string)
+      string = string.to_s
+      new_subject = string.gsub(" ", "").gsub(/[^A-z]/,'').camelize
+      new_subject = OregonDigital::Vocabularies::CREATOR.send(new_subject).to_s
+      @new_label = string
+      new_subject
     end
 
     class QaLcNames < Qa::Authorities::Loc
