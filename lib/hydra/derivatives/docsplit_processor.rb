@@ -60,6 +60,7 @@ class Hydra::Derivatives::DocsplitProcessor < Hydra::Derivatives::Processor
 
             image = MiniMagick::Image.open(file)
             image.resize size
+            image.quality "85"
             image.write new_path.to_s
 
             if key == "normal"
