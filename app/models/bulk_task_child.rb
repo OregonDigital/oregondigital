@@ -138,13 +138,19 @@ class BulkTaskChild < ActiveRecord::Base
   end
 
   def existing_asset
-    @existing_asset ||= begin
+    @existing_asset ||= ActiveFedora::Base.find(replaces_documents[0]["id"]).adapt_to_cmodel unless replaces_documents.blank?
+  end
+
+  def replaces_documents
+    @replaces_documents ||= ActiveFedora::SolrService.query("desc_metadata__replacesUrl_ssim:#{RSolr.escape(replaces_url)}", :rows => 10000) unless replaces_url.blank?
+  end
+
+  def replaces_url
+    @replaces_url ||= begin
                           ntriples = bag.tag_files.find{|x| x.include? "descMetadata.nt"}
                           graph = ::RDF::Graph.load(ntriples)
-                          replaces_url = graph.query([nil, ::RDF::DC.replaces, nil]).map{|x| x.object.to_s}.first
-                          documents = ActiveFedora::SolrService.query("desc_metadata__replacesUrl_ssim:#{RSolr.escape(replaces_url)}", :rows => 10000)
-                          ActiveFedora::Base.find(documents[0]["id"]).adapt_to_cmodel unless documents.blank?
-                        end
+                          graph.query([nil, ::RDF::DC.replaces, nil]).map{|x| x.object.to_s}.first
+                      end
   end
 
 
