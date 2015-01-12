@@ -13,9 +13,11 @@ describe BulkTask do
     before do
       ActiveFedora::Rdf::Resource.any_instance.stub(:fetch).and_return(true)
     end
+    let(:graph) do
+      RDF::Graph.load(Rails.root.join("spec", "fixtures", "fixture_triples.nt"))
+    end
     let(:asset) do
       a = GenericAsset.new
-      graph = RDF::Graph.load(Rails.root.join("spec", "fixtures", "fixture_triples.nt"))
       a.resource << graph
       a.save
       a.stub(:bag_path).and_return(Rails.root.join("tmp", "bags", "bulkloads", "1").to_s)
@@ -112,6 +114,17 @@ describe BulkTask do
           expect(subject.assets.size).to eq 1
         end
         it "should be ingested" do
+          expect(subject).to be_ingested
+        end
+      end
+      context "when replaces is blank" do
+        let(:graph) do
+          graph = RDF::Graph.load(Rails.root.join("spec", "fixtures", "fixture_triples.nt"))
+          graph.delete([nil, RDF::DC.replaces, nil])
+          graph
+        end
+        it "should ingest" do
+          expect(subject.assets.size).to eq 1
           expect(subject).to be_ingested
         end
       end
