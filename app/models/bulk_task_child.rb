@@ -138,15 +138,11 @@ class BulkTaskChild < ActiveRecord::Base
   end
 
   def existing_asset
-    @existing_asset ||= begin
-                          ActiveFedora::Base.find(replaces_documents[0]["id"]).adapt_to_cmodel unless replaces_documents.blank?
-                        end
+    @existing_asset ||= ActiveFedora::Base.find(replaces_documents[0]["id"]).adapt_to_cmodel unless replaces_documents.blank?
   end
 
   def replaces_documents
-    @replaces_documents ||= begin
-                              ActiveFedora::SolrService.query("desc_metadata__replacesUrl_ssim:#{RSolr.escape(replaces_url)}", :rows => 10000) unless replaces_url.blank?
-                            end
+    @replaces_documents ||= ActiveFedora::SolrService.query("desc_metadata__replacesUrl_ssim:#{RSolr.escape(replaces_url)}", :rows => 10000) unless replaces_url.blank?
   end
 
   def replaces_url
