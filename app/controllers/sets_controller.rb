@@ -28,7 +28,7 @@ class SetsController < CatalogController
   end
 
   def set_pids
-    Blacklight.solr.get("select", :params => {:qt => "search", :q => "has_model_ssim:#{RSolr.escape("info:fedora/afmodel:GenericCollection")}", :rows => 10000})["response"]["docs"]
+    @set_pids ||= ActiveFedora::SolrService.query("has_model_ssim:#{RSolr.escape("info:fedora/afmodel:GenericCollection")} AND reviewed_ssim:true", :rows => 100000)
   end
 
   def set
