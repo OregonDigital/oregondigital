@@ -1,4 +1,5 @@
-require 'resque/server'
+require 'resque-retry'
+require 'resque-retry/server'
 Oregondigital::Application.routes.draw do
 
   root :to => redirect { |params, request| "/catalog?#{request.params.to_query}"}

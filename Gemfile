@@ -99,6 +99,9 @@ gem 'newrelic_rpm'
 # Dalli for memcache
 gem 'dalli'
 
+# Resque-retry for retrying resque jobs
+gem 'resque-retry'
+
 group :development do
   # Spring as Rails preloader
   gem 'spring'
