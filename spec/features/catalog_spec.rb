@@ -61,6 +61,12 @@ describe 'catalog' do
         it "should contain search term(s) in link anchor of thumbnail" do
           expect(page).to have_selector("div.thumbnail-container a[href$='search/Document']")
         end
+        context "when query has quotes in it" do
+          let(:query) { '"Document"' }
+          it "should strip them in the anchor" do
+            expect(page).to have_selector("h5.index_title a[href$='search/Document']")
+          end
+        end
       end
 
       context "with a fulltext search match" do
