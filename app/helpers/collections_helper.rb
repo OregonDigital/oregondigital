@@ -55,7 +55,7 @@ module CollectionsHelper
   end
 
   def document_anchor(solr_document)
-    "page/1/mode/1up/search/#{params[:q]}" if solr_document["active_fedora_model_ssi"] == "Document"
+    "page/1/mode/1up/search/#{params[:q].to_s.gsub('"',"")}" if solr_document["active_fedora_model_ssi"] == "Document"
   end
 
   def link_to_previous_document(previous_document)
