@@ -8,6 +8,7 @@ module OregonDigital
         configure_blacklight do |config|
           config.add_sort_field "#{ActiveFedora::SolrService.solr_name("desc_metadata__title", :sortable)} asc", :label => "Title A-Z"
           config.add_sort_field "#{ActiveFedora::SolrService.solr_name("desc_metadata__title", :sortable)} desc", :label => "Title Z-A"
+          config.add_sort_field "system_create_dtsi desc", :label => "Recently Added"
 
           # If there are more than this many search results, no spelling ("did you
           # mean") suggestion is offered.
