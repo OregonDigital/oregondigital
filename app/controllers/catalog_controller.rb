@@ -11,6 +11,7 @@ class CatalogController < ApplicationController
   include OregonDigital::Catalog::Facets
   include OregonDigital::Catalog::IndexFields
   include OregonDigital::Catalog::SearchFields
+  include OregonDigital::Catalog::SortFields
   include OregonDigital::Catalog::Decorators
 
   # These before_filters apply the hydra access controls

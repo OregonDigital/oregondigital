@@ -6,10 +6,8 @@ module OregonDigital
       extend ActiveSupport::Concern
       included do
         configure_blacklight do |config|
-          # "sort results by" select (pulldown)
-          # label in pulldown is followed by the name of the SOLR field to sort by and
-          # whether the sort is ascending or descending (it must be asc or desc
-          # except in the relevancy case).
+          config.add_sort_field "#{ActiveFedora::SolrService.solr_name("desc_metadata__title", :sortable)} asc", :label => "Title A-Z"
+          config.add_sort_field "#{ActiveFedora::SolrService.solr_name("desc_metadata__title", :sortable)} desc", :label => "Title Z-A"
 
           # If there are more than this many search results, no spelling ("did you
           # mean") suggestion is offered.
