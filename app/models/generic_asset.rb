@@ -6,6 +6,7 @@ class GenericAsset < ActiveFedora::Base
   include OregonDigital::Workflow
   include OregonDigital::OAI::Concern
   include OregonDigital::Compound
+  include OregonDigital::DateSorting
   include ActiveFedora::Rdf::Identifiable
   extend OregonDigital::CsvBulkIngestible
 
