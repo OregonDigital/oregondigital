@@ -28,6 +28,66 @@ describe GenericAsset, :resque => true do
     end
   end
 
+  describe "date indexing" do
+    context "with two records" do
+      let(:asset_1) { FactoryGirl.create(:generic_asset, :date => date_1) }
+      let(:asset_2) { FactoryGirl.create(:generic_asset, :date => date_2) }
+      let(:date_1) { "2011-01-01" }
+      let(:date_2) { "2011-01-02" }
+      let(:direction) { "desc" }
+      let(:result) { ActiveFedora::SolrService.query("*:*", :sort => "sort_date_#{direction}_dtsi #{direction}", :fl => "id").map{|x| x["id"]} }
+      before do
+        asset_1
+        asset_2
+      end
+
+      describe "descending" do
+        it "should be able to sort" do
+          expect(result.first).to eq asset_2.id
+        end
+        context "with only a year" do
+          let(:date_2) { "2012" }
+          it "should be able to sort" do
+            expect(result.first).to eq asset_2.id
+          end
+        end
+        context "with a range" do
+          let(:date_1) {"2009"}
+          let(:date_2) {"2010-2013"}
+          it "should be able to sort" do
+            expect(result.first).to eq asset_2.id
+          end
+        end
+        context "with months and dates" do
+          let(:date_1) { "2011-01" }
+          let(:date_2) { "2011-02" }
+          it "should be able to sort" do
+            expect(result.first).to eq asset_2.id
+          end
+        end
+        context "with a bad date" do
+          let(:date_1) { "Circa 2011" }
+          it "should be able to sort" do
+            expect(result.first).to eq asset_2.id
+          end
+        end
+        context "with no date" do
+          let(:date_1) { nil }
+          it "should be able to sort" do
+            expect(result.first).to eq asset_2.id
+          end
+        end
+      end
+      describe "ascending" do
+        let(:direction) { "asc" }
+        let(:date_1) { nil }
+        it "should push nil dates to the end" do
+          expect(result.first).to eq asset_2.id
+        end
+      end
+    end
+  end
+
   describe '.save' do
     context 'when content has not been assigned' do
       it 'should not try to create derivatives' do
