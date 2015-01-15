@@ -6,6 +6,7 @@ module OregonDigital
       extend ActiveSupport::Concern
       included do
         configure_blacklight do |config|
+          config.add_sort_field "score desc", :label => "Relevance"
           config.add_sort_field "#{ActiveFedora::SolrService.solr_name("desc_metadata__title", :sortable)} asc", :label => "Title A-Z"
           config.add_sort_field "#{ActiveFedora::SolrService.solr_name("desc_metadata__title", :sortable)} desc", :label => "Title Z-A"
           config.add_sort_field "sort_date_desc_dtsi desc", :label => "Date Descending"
