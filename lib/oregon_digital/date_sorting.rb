@@ -24,16 +24,14 @@ module OregonDigital
     end
 
     def clean_datetime
-      begin
-        DateTime.parse(date.to_s)
-      rescue ArgumentError
-        if date =~ /^[0-9]{4}-[0-9]{2}$/ # YYYY-MM
-          DateTime.strptime(date, "%Y-%m")
-        elsif date =~ /^[0-9]{4}/
-          DateTime.strptime(date.split("-").first, "%Y")
-        else
-          raise ArgumentError
-        end
+      if date =~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/ # YYY-MM-DD
+        DateTime.strptime(date, "%Y-%m-%d")
+      elsif date =~ /^[0-9]{4}-[0-9]{2}$/ # YYYY-MM
+        DateTime.strptime(date, "%Y-%m")
+      elsif date =~ /^[0-9]{4}/
+        DateTime.strptime(date.split("-").first, "%Y")
+      else
+        raise ArgumentError
       end
     end
   end
