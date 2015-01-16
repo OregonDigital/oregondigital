@@ -292,9 +292,6 @@ describe GenericAsset, :resque => true do
         expect(asset_2.descMetadata.lcsubject.first).not_to receive(:fetch)
         asset_2.descMetadata.fetch_external
       end
-      it "should persist the label to solr for other objects" do
-        expect(GenericAsset.where("desc_metadata__lcsubject_label_sim" => "Food industry and trade$#{subject_1.to_s}").length).to eq 1
-      end
     end
   end
 
