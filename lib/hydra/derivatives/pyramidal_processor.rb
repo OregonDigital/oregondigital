@@ -22,9 +22,7 @@ class Hydra::Derivatives::PyramidalProcessor < Hydra::Derivatives::Image
     i = VIPS::Image.new(file.path)
     # Can't convert 16 bit tiffs the traditional way - make it a jpeg first.
     if i.vtype.to_s == "RGB16" || i.vtype.to_s == "GREY16"
-      new_path = Pathname.new(file.path).sub_ext(".jpg").to_s
-      i.write(new_path)
-      i = VIPS::Image.new(new_path)
+      i = i.msb
     end
     i.tiff(output_path,
       :compression  => :jpeg,
