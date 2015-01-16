@@ -24,7 +24,7 @@ module OregonDigital
     end
 
     def clean_datetime
-      if date =~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/ # YYY-MM-DD
+      if date =~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/ # YYYY-MM-DD
         DateTime.strptime(date, "%Y-%m-%d")
       elsif date =~ /^[0-9]{4}-[0-9]{2}$/ # YYYY-MM
         DateTime.strptime(date, "%Y-%m")
