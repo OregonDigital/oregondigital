@@ -8,22 +8,7 @@ module OregonDigital::RDF
           next unless resource.kind_of?(ActiveFedora::Rdf::Resource)
           fetch_value(resource) if resource.kind_of? ActiveFedora::Rdf::Resource
           resource.persist! unless value.kind_of?(ActiveFedora::Base)
-          fix_fedora_index(property, resource)
         end
-      end
-    end
-
-    def fix_fedora_index(property, resource)
-      # Get assets which have this property set, but don't have the right label.
-      if resource.rdf_label.first.blank? || resource.rdf_label.first.to_s == resource.rdf_subject.to_s
-        assets = ActiveFedora::SolrService.query("#{Solrizer.solr_name(apply_prefix(property), :facetable)}:#{RSolr.escape(resource.rdf_subject.to_s)} AND #{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}:[\"\" TO *]", :rows => 1000000).map{|x| x["id"]}
-      else
-        assets = ActiveFedora::SolrService.query("#{Solrizer.solr_name(apply_prefix(property), :facetable)}:#{RSolr.escape(resource.rdf_subject.to_s)} AND -#{Solrizer.solr_name(apply_prefix("#{property}_label"), :facetable)}:#{RSolr.escape("#{resource.rdf_label.first}$#{resource.rdf_subject.to_s}")}", :rows => 1000000).map{|x| x["id"]}
-      end
-      assets.each do |a|
-        a = ActiveFedora::Base.find(a).adapt_to_cmodel
-        a.skip_queue = 1 if a.respond_to?(:skip_queue=)
-        a.update_index
       end
     end
 

@@ -3,5 +3,6 @@ class FetchAllJob
   def self.perform(pid)
     object = ActiveFedora::Base.find(pid, :cast => true)
     object.descMetadata.fetch_external if object.descMetadata.respond_to?(:fetch_external)
+    object.update_index
   end
 end
