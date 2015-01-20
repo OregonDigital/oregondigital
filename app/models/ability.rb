@@ -18,6 +18,7 @@ class Ability
 
   def download_permissions
     can [:download], Document
+    can [:download], Audio
   end
 
   def ingest_permissions
