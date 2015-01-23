@@ -40,7 +40,6 @@
 // BookReader
 //= require bookreader/dragscrollable
 //= require bookreader/jquery.colorbox
-//= require bookreader/jquery.ui.ipad
 //= require bookreader/jquery.bt.min
 //= require bookreader/BookReader
 //
