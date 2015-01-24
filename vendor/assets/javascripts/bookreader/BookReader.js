@@ -3652,10 +3652,6 @@ function BookReader() {
         );
 
         // Browser hack - bug with colorbox on iOS 3 see https://bugs.launchpad.net/bookreader/+bug/686220
-        if ( navigator.userAgent.match(/ipad/i) && $.browser.webkit && (parseInt($.browser.version, 10) <= 531) ) {
-            $('#BRtoolbarbuttons .info').hide();
-            $('#BRtoolbarbuttons .share').hide();
-        }
 
         $('#BRreturn a').prop('href', this.bookUrl).text(this.bookTitle);
 
