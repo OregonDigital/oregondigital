@@ -17,16 +17,6 @@
 <http://example.org/ns/120> <http://purl.org/dc/terms/replaces> <http://oregondigital.org/u?/gwilliams,120> .
 <http://example.org/ns/120> <http://opaquenamespace.org/ns/set> <http://oregondigital.org/resource/oregondigital:gwilliams> .
 <http://example.org/ns/120> <http://opaquenamespace.org/ns/contents> _:g70255837180160 .
-_:g70255837180160 <http://purl.org/dc/terms/title> "Postcard" .
-_:g70255837180160 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:g70255837191240 .
-_:g70255837180160 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:g70255837209120 .
-_:g70255837191240 <http://purl.org/dc/terms/title> "Booth Bridge" .
-_:g70255837191240 <http://purl.org/dc/terms/replaces> <http://oregondigital.org/u?/gwilliams,11> .
-_:g70255837191240 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://opaquenamespace.org/ns/compoundObject> .
-_:g70255837191240 <http://opaquenamespace.org/ns/full> "2.jp2" .
-_:g70255837200400 <http://purl.org/dc/terms/title> "Booth Bridge Postcard verso" .
+<http://example.org/ns/120> <http://opaquenamespace.org/ns/contents> _:g70255837200400 .
+_:g70255837180160 <http://purl.org/dc/terms/replaces> <http://oregondigital.org/u?/gwilliams,11> .
 _:g70255837200400 <http://purl.org/dc/terms/replaces> <http://oregondigital.org/u?/gwilliams,117> .
-_:g70255837200400 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://opaquenamespace.org/ns/compoundObject> .
-_:g70255837200400 <http://opaquenamespace.org/ns/full> "118.jp2" .
-_:g70255837209120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> _:g70255837200400 .
-_:g70255837209120 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .

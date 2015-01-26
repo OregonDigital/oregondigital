@@ -8,6 +8,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     OregonDigital::RDF::ObjectResource
   end
 
+
   # Titles
   property :title, :predicate => RDF::DC.title do |index|
     index.as :searchable, :displayable, :symbol, :facetable, :stored_searchable, :sortable
@@ -112,7 +113,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :instrumentation, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.instrumentation do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :od_content, :predicate => RDF::URI('http://opaquenamespace.org/ns/contents'), :class_name => OregonDigital::RDF::List do |index|
+  property :od_content, :predicate => RDF::URI('http://opaquenamespace.org/ns/contents'), :class_name => GenericAsset do |index|
     index.as :symbol
   end
   property :militaryServiceLocation, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.militaryServiceLocation do |index|
@@ -553,14 +554,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     relevant_values = solr_doc.select{|k, v| k.start_with?(dsid.underscore)}.map{|k, v| {k.split("__").last.split("_").reverse.drop(1).reverse.join("_") => v}}.inject(&:merge)
     relevant_values.each do |k, v|
       if k.start_with?("od_content")
-        od_content = self.od_content.first_or_create
-        if od_content.length < v.length
-          v.length.times { od_content << OregonDigital::RDF::CompoundResource.new }
-        end
-        new_key = k.gsub("od_content_","")
-        v.each_with_index do |value, i|
-          od_content[i].send(:"#{new_key}=", Array.wrap(coerce_to_uri(value)))
-        end
+        @od_content = v.map{|x| GenericAsset.load_instance_from_solr("oregondigital:#{OregonDigital::IdService.noidify(x)}") }
       end
       meth_name = :"#{k}="
       v = coerce_to_uri(v)
@@ -575,6 +569,12 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
       value[i] = RDF::URI(v)
     end
     value
+  end
+
+  alias_method :orig_od_content, :od_content
+  def od_content
+    return @od_content if @od_content
+    orig_od_content
   end
 
 end

@@ -5,7 +5,6 @@ class GenericAsset < ActiveFedora::Base
   include Hybag::Baggable
   include OregonDigital::Workflow
   include OregonDigital::OAI::Concern
-  include OregonDigital::Compound
   include OregonDigital::DateSorting
   include ActiveFedora::Rdf::Identifiable
   extend OregonDigital::CsvBulkIngestible
@@ -32,8 +31,25 @@ class GenericAsset < ActiveFedora::Base
 
   has_attributes :format, :type, :location, :created, :description, :rights, :title, :modified, :date, :datastream => :descMetadata, :multiple => false
   has_attributes :identifier, :lcsubject, :set, :creator, :contributor, :institution, :datastream => :descMetadata, :multiple => true
+  delegate :od_content, :to => :descMetadata, :allow_nil => true
+
+  def compound?
+    od_content.length > 0
+  end
+
+  def compounded?
+    compound_parent.present?
+  end
+
+  def compound_parent
+    @compound_parent ||= ActiveFedora::Base.load_instance_from_solr(compound_parent_id) if compound_parent_id
+  end
 
   private
+
+  def compound_parent_id
+    @compound_parent_id ||= ActiveFedora::SolrService.query("#{Solrizer.solr_name("desc_metadata__od_content", :symbol)}:#{RSolr.escape(resource.rdf_subject.to_s)}", :fl => "id", :rows => 1).map{|x| x["id"]}.first
+  end
 
   def queue_fetch
     skip_queue ? self.skip_queue = nil : Resque.enqueue(FetchAllJob,pid)
