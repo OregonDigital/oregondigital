@@ -95,6 +95,7 @@ describe BulkTask do
         it "should create a compound object" do
           last_asset = GenericAsset.all.find{|x| x.compound?}
           expect(last_asset.od_content.first).to be_kind_of(ActiveFedora::Base)
+          expect(last_asset.query([nil, OregonDigital::Vocabularies::ORE.proxyFor, RDF::URI.new("http://oregondigital.org/u?/gwilliams,11")]).to_a.length).to eq 0
         end
         context "and the compound object is first" do
           let(:setup) do

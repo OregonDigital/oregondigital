@@ -116,11 +116,20 @@ class BulkTaskChild < ActiveRecord::Base
   end
 
   def adjust_compound(asset)
-    uris = asset.od_content.map{|x| x.rdf_subject}
-    replace_uris = uris.map{|x| asset.query([x, RDF::DC.replaces, nil]).first.object}
+    replace_uris = asset.od_content_uris
     replace_pids = replace_uris.map{|x| ActiveFedora::SolrService.query("desc_metadata__replacesUrl_ssim:#{RSolr.escape(x.to_s)}", :rows => 10000).map{|y| y["id"]}.first}.compact
     raise "Unable to set compound object - child objects not ingested" if replace_uris.length != replace_pids.length
     replace_pids.map!{|x| RDF::URI.new("http://oregondigital.org/resource/#{x}")}
+    replace_uris.each_with_index do |uri, idx|
+      asset.resource.statements.each do |s|
+        next unless s.subject == uri || s.object == uri
+        new_uri = RDF::URI.new("http://oregondigital.org/resource/#{replace_pids[idx]}")
+        subject = s.subject == uri ? new_uri : s.subject
+        object = s.object == uri ? new_uri : s.object
+        asset.resource << [subject, s.predicate, object]
+        asset.resource.delete(s)
+      end
+    end
     asset.descMetadata.od_content = replace_pids
   end
 

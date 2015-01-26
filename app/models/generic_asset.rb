@@ -34,7 +34,11 @@ class GenericAsset < ActiveFedora::Base
   delegate :od_content, :to => :descMetadata, :allow_nil => true
 
   def compound?
-    od_content.length > 0
+    od_content_uris.length > 0
+  end
+
+  def od_content_uris
+    resource.query([resource.rdf_subject, OregonDigital::Vocabularies::OREGONDIGITAL.contents, nil]).map{|x| x.object}
   end
 
   def compounded?
