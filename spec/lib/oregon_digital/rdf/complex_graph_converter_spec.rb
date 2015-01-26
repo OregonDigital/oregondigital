@@ -32,7 +32,6 @@ RSpec.describe OregonDigital::RDF::ComplexGraphConverter do
         expect(subject.query([nil, OregonDigital::Vocabularies::IANA["next"], nil]).to_a.length).to eq 1
         expect(subject.query([nil, OregonDigital::Vocabularies::IANA["previous"], nil]).to_a.length).to eq 1
         expect(subject.query([graph_resource.rdf_subject, OregonDigital::Vocabularies::IANA["last"], nil]).to_a.length).to eq 1
-        binding.pry
       end
       it "should return a graph with the basic properties" do
         expect(subject).to have_statement RDF::Statement.from([graph_resource.rdf_subject, RDF::DC.title, resource.title])
