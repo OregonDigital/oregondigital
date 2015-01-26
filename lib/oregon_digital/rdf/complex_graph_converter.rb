@@ -23,7 +23,7 @@ module OregonDigital::RDF
     end
 
     def copy_members
-      ProxyCreator.new(source_graph, result, contents_node, source_graph).run
+      ProxyCreator.new(source_graph, result, contents_node, source_graph).run if contents_node
     end
 
     def contents_node
@@ -101,7 +101,7 @@ module OregonDigital::RDF
       end
 
       def first_node_references
-        first_node.query([nil, RDF::DC.references, nil]).to_a.first.object
+        first_node.query([nil, RDF::DC.references, nil]).to_a.first.try(:object)
       end
 
       def first

@@ -9,8 +9,10 @@ RSpec.describe OregonDigital::RDF::ComplexGraphConverter do
     let(:resource_3) { FactoryGirl.create(:generic_asset) }
     let(:statements) { subject.statements }
     before do
-      resource.od_content << resource_2
-      resource.od_content << resource_3
+      list = OregonDigital::RDF::List.from_uri(RDF::Node.new,graph_resource)
+      list << resource_2
+      list << resource_3
+      graph_resource << [graph_resource.rdf_subject, OregonDigital::Vocabularies::OREGONDIGITAL.contents, list.rdf_subject]
       resource.save
     end
     describe "#run" do
