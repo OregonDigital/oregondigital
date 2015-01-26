@@ -12,6 +12,8 @@ RSpec.describe OregonDigital::RDF::ComplexGraphConverter do
       list = OregonDigital::RDF::List.from_uri(RDF::Node.new,graph_resource)
       list << resource_2
       list << resource_3
+      list[0].title = "Test"
+      graph_resource << list[0]
       graph_resource << [graph_resource.rdf_subject, OregonDigital::Vocabularies::OREGONDIGITAL.contents, list.rdf_subject]
       resource.save
     end
@@ -34,6 +36,7 @@ RSpec.describe OregonDigital::RDF::ComplexGraphConverter do
         expect(subject.query([nil, OregonDigital::Vocabularies::IANA["next"], nil]).to_a.length).to eq 1
         expect(subject.query([nil, OregonDigital::Vocabularies::IANA["previous"], nil]).to_a.length).to eq 1
         expect(subject.query([graph_resource.rdf_subject, OregonDigital::Vocabularies::IANA["last"], nil]).to_a.length).to eq 1
+        expect(subject.query([nil, RDF::DC.title, "Test"]).to_a.length).to eq 1
       end
       it "should return a graph with the basic properties" do
         expect(subject).to have_statement RDF::Statement.from([graph_resource.rdf_subject, RDF::DC.title, resource.title])

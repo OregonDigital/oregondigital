@@ -48,6 +48,7 @@ module OregonDigital::RDF
       end
 
       def run
+        add_first_node_properties if first_node
         add_references if first_node_references
         if rest_present?
           ProxyCreator.new(source_graph, result, rest_node, new_proxy).run
@@ -64,6 +65,14 @@ module OregonDigital::RDF
 
       def rest_present?
         rest && rest != RDF.nil
+      end
+
+      def add_first_node_properties
+        first_node.statements.each do |statement|
+          next if statement.predicate == RDF.type
+          next if statement.predicate == RDF::DC.references
+          new_proxy << [new_proxy.rdf_subject, statement.predicate, statement.object]
+        end
       end
 
       def add_references
