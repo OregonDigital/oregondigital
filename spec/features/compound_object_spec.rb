@@ -10,6 +10,17 @@ describe "compound objects" do
       parent.od_content << object_2
       parent.save
     end
+    context "and it has a missing URI" do
+      before do
+        parent.resource << [parent.resource.rdf_subject, OregonDigital::Vocabularies::OREGONDIGITAL.contents, RDF::URI("http://oregondigital.org/resource/oregondigital:bananas")]
+        parent.save
+        visit catalog_path(parent.pid)
+      end
+      it "should show link to child items" do
+        expect(page).to have_link object.title
+        expect(page).to have_link object_2.title
+      end
+    end
     context "and the root page is visited" do
       before do
         visit catalog_path(parent.pid)
