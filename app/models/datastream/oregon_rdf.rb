@@ -554,7 +554,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     relevant_values = solr_doc.select{|k, v| k.start_with?(dsid.underscore)}.map{|k, v| {k.split("__").last.split("_").reverse.drop(1).reverse.join("_") => v}}.inject(&:merge)
     relevant_values.each do |k, v|
       if k.start_with?("od_content")
-        @od_content = v.map{|x| GenericAsset.load_instance_from_solr("oregondigital:#{OregonDigital::IdService.noidify(x)}") }
+        @od_content = v.map{|x| ActiveFedora::Base.load_instance_from_solr("oregondigital:#{OregonDigital::IdService.noidify(x)}") }
       end
       meth_name = :"#{k}="
       v = coerce_to_uri(v)
