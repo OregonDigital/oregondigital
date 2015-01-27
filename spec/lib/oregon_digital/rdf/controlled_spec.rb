@@ -34,6 +34,40 @@ describe OregonDigital::RDF::Controlled do
     end
   end
 
+  describe "#fetch" do
+    subject { DummyAuthority.new(uri) }
+    let(:uri) { "http://purl.org/dc/dcmitype/Image" }
+    before do
+      allow(subject).to receive(:load)
+    end
+    context "if there's a label" do
+      before do
+        subject << [subject.rdf_subject, RDF::SKOS.prefLabel, "Test"]
+        subject.fetch
+      end
+      it "should not call #load" do
+        expect(subject).not_to have_received(:load)
+      end
+    end
+    context "if there's no label" do
+      before do
+        subject.fetch
+      end
+      it "should call #load" do
+        expect(subject).to have_received(:load)
+      end
+    end
+    context "if it has no uri" do
+      let(:uri) { nil }
+      before do
+        subject.fetch
+      end
+      it "should call #load" do
+        expect(subject).to have_received(:load)
+      end
+    end
+  end
+
   describe '#list_terms' do
     it 'should list terms from registered StrictVocabs' do
       subject.vocabularies.each do |name, vocab|
