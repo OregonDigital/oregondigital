@@ -24,7 +24,10 @@ module OregonDigital::RDF
 
     def fetch_value(value)
       redis_connection.cache("fetch-cache:#{value.rdf_subject.to_s}", 7.days) do
-        value.fetch
+        begin
+          value.fetch
+        rescue
+        end
         Time.current.to_s
       end
     end
