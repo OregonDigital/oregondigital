@@ -65,6 +65,11 @@ module OregonDigital::RDF
       node? ? [] : [rdf_subject.to_s]
     end
 
+    def fetch
+      return unless rdf_label == [rdf_subject.to_s] || rdf_label.empty?
+      super
+    end
+
     ##
     #  Class methods for adding and using controlled vocabularies
     module ClassMethods

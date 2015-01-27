@@ -72,7 +72,7 @@ describe 'bulk tasks', :js => true do
   end
   context "and it's ingested", :resque => true do
     before do
-        ActiveFedora::Rdf::Resource.any_instance.stub(:fetch).and_return(true)
+      GenericAsset.any_instance.stub(:queue_fetch)
     end
     context "and an error is raised" do
       before do

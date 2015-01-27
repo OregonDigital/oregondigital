@@ -11,7 +11,8 @@ describe BulkTask do
 
   describe 'bulk bag ingest', :resque => true do
     before do
-      ActiveFedora::Rdf::Resource.any_instance.stub(:fetch).and_return(true)
+      #ActiveFedora::Rdf::Resource.any_instance.stub(:fetch).and_return(true)
+      GenericAsset.any_instance.stub(:queue_fetch)
     end
     let(:graph) do
       RDF::Graph.load(Rails.root.join("spec", "fixtures", "fixture_triples.nt"))
