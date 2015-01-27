@@ -61,7 +61,8 @@ describe "compound objects" do
         expect(object.reload.title).to eq t
         visit catalog_path(parent.pid)
       end
-      it "should show that as the link" do
+      # Losing this feature.
+      xit "should show that as the link" do
         expect(page).to have_link("Test Compound Node Title")
       end
     end
