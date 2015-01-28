@@ -6,8 +6,12 @@ module OregonDigital::RDF
         get_values(property).each do |value|
           resource = value.respond_to?(:resource) ? value.resource : value
           next unless resource.kind_of?(ActiveFedora::Rdf::Resource)
+          old_label = resource.rdf_label.first
+          next unless old_label == resource.rdf_subject.to_s || old_label.nil?
           fetch_value(resource) if resource.kind_of? ActiveFedora::Rdf::Resource
-          resource.persist! unless value.kind_of?(ActiveFedora::Base)
+          if !value.kind_of?(ActiveFedora::Base) && old_label != resource.rdf_label.first && resource.rdf_label.first != resource.rdf_subject.to_s
+            resource.persist!
+          end
         end
       end
     end
