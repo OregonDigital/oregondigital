@@ -9,7 +9,7 @@ module OregonDigital::RDF
           old_label = resource.rdf_label.first
           next unless old_label == resource.rdf_subject.to_s || old_label.nil?
           fetch_value(resource) if resource.kind_of? ActiveFedora::Rdf::Resource
-          if !value.kind_of?(ActiveFedora::Base) && old_label != resource.rdf_label.first
+          if !value.kind_of?(ActiveFedora::Base) && old_label != resource.rdf_label.first && resource.rdf_label.first != resource.rdf_subject.to_s
             resource.persist!
           end
         end
