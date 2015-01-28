@@ -21,6 +21,14 @@ GIT
       rest-client
 
 GIT
+  remote: git://github.com/terrellt/rdf-mongo.git
+  revision: 4bd2a866fd9c8c4c65619c817325886ae70658e4
+  specs:
+    rdf-mongo (1.1.0)
+      mongo (>= 1.8.6)
+      rdf (>= 1.1)
+
+GIT
   remote: git://github.com/tobiasr/sprockets-digest-assets-fix.git
   revision: 88c756c20c17038fb5b463ae2430d13da35f33a8
   specs:
@@ -369,9 +377,6 @@ GEM
       nokogiri (~> 1.6)
       rdf (~> 1.1)
       rdf-xsd (~> 1.1)
-    rdf-mongo (1.1.0)
-      mongo (>= 1.8.6)
-      rdf (>= 1.1)
     rdf-n3 (1.1.0.1)
       rdf (~> 1.1)
     rdf-rdfa (1.1.3.1)
@@ -589,7 +594,7 @@ DEPENDENCIES
   qa!
   rails (~> 4.1.0)
   rdf (~> 1.1.2.1)
-  rdf-mongo
+  rdf-mongo!
   recursive-open-struct
   resque (~> 1.25.0)
   resque-retry

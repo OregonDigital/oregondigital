@@ -85,7 +85,7 @@ gem 'oai', :github => "code4lib/ruby-oai", :branch => :master
 # Old Asset Precompile Behavior for Stylesheets
 gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-fix"
 
-gem 'rdf-mongo'
+gem 'rdf-mongo', :github => "terrellt/rdf-mongo"
 gem 'bson_ext'
 
 # Blacklight Advanced Search
