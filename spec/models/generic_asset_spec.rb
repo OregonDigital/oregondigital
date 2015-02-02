@@ -28,6 +28,49 @@ describe GenericAsset, :resque => true do
     end
   end
 
+  describe "decade facets" do
+    let(:asset) { FactoryGirl.build(:generic_asset, :date => date) }
+    let(:date) { "2011-01-01" }
+    let(:facet) { asset.to_solr["date_decades_ssim"] }
+    context "when no date" do
+      let(:date) { nil }
+      it "should be blank" do
+        expect(facet).to be_nil
+      end
+    end
+    context "when given a date" do
+      it "should be that decade" do
+        expect(facet).to eq ["2010-2019"]
+      end
+    end
+    context "when given just a year" do
+      let(:date) { "2011" }
+      it "should pull the date" do
+        expect(facet).to eq ["2010-2019"]
+      end
+    end
+    context "when given a date range" do
+      context "when is in a single decade" do
+        let(:date) { "1910-1915" }
+        it "should have only one entry" do
+          expect(facet).to eq ["1910-1919"]
+        end
+      end
+      context "which spans decades" do
+        let(:date) { "1910-1920" }
+        it "should have two entries" do
+          expect(facet).to eq ["1910-1919", "1920-1929"]
+        end
+        context "which is more than 30 years" do
+          let(:date) { "1900-1940" }
+          it "should be blank" do
+            expect(facet).to be_nil
+          end
+        end
+      end
+    end
+  end
+
   describe "date indexing" do
     context "with two records" do
       let(:asset_1) { FactoryGirl.create(:generic_asset, :date => date_1) }
