@@ -15,9 +15,6 @@ class DownloadsController < ApplicationController
   end
 
   def can_download?
-    return super if datastream_to_show == default_content_ds && default_content_ds.dsid != "content"
-    return true if default_content_ds.dsid == "content" && current_ability.can?(:download, asset.class)
-    return true if current_ability.can?(:create, asset.class)
-    false
+    return super || current_ability.can?(:create, asset.class)
   end
 end
