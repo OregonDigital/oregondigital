@@ -9,12 +9,14 @@ class SetsController < CatalogController
       @collection = set
     else
       @collections = sets.sort_by {|s| s.title.sub(/^(the|a|an)\s+/i, '')}
+      render "setlisting"
     end
     super
   end
 
   def search_action_url(options={})
-    sets_path(options.merge(:set => @collection))
+    return sets_path(options.merge(:set => @collection)) if @collection
+    return root_path
   end
 
   private
