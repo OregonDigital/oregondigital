@@ -60,5 +60,33 @@ describe DownloadsController do
         end
       end
     end
+
+    context "for a generic asset" do
+      let(:document) { FactoryGirl.create(:generic_asset, :with_binary_datastream) }
+      before do
+        DownloadsController.any_instance.stub(:asset).and_return(document)
+      end
+
+      context "(when a user is not authenticated)" do
+        context "(with no requested datastream)" do
+          it "should be a success" do
+            expect{get :show, :id => document.pid}.not_to raise_error(Hydra::AccessDenied)
+          end
+        end
+      end
+
+      context "(when a user is an admin)" do
+        let(:user) {FactoryGirl.create(:admin)}
+        before do
+          sign_in user
+        end
+        context "(when requesting the content datastream)" do
+          it "(should be a success)" do
+            get :show, :id => image.pid, :datastream_id => "content"
+            expect(response).to be_success
+          end
+        end
+      end
+    end
   end
 end

@@ -64,6 +64,17 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_binary_datastream do
+      after(:build) do |obj|
+        obj.add_file_datastream(
+          File.open("#{ROOT}/spec/fixtures/fixture_video.flv", "rb").read,
+          :dsid => "content",
+          :mimetype => "application/octet-stream",
+          :label => "video.bin"
+        )
+      end
+    end
+
     trait :pending_review do
       after(:build) do |obj|
         obj.reset_workflow
