@@ -18,7 +18,12 @@ describe DownloadsController do
         # TODO: Review these permissions.
         context "(when requesting the content datastream)" do
           it "should not be a success" do
-            expect{get :show, :id => image.pid, :datastream_id => "content"}.to raise_error(Hydra::AccessDenied)
+            get :show, :id => image.pid, :datastream_id => "content"
+            expect(response).to be_redirect
+            expect(response).to redirect_to(new_user_session_url)
+            # This hard-coded text is hard-coded on the Hydra side, too, so,
+            # no, there's no nice I18n rule to look up
+            expect(flash[:alert]).to include("You do not have sufficient access privileges")
           end
         end
       end
@@ -43,7 +48,8 @@ describe DownloadsController do
       context "(when a user is not authenticated)" do
         context "(with no requested datastream)" do
           it "should be a success" do
-            expect{get :show, :id => document.pid}.not_to raise_error(Hydra::AccessDenied)
+            get :show, :id => document.pid
+            expect(response).to be_success
           end
         end
       end
