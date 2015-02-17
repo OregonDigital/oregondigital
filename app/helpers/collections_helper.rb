@@ -44,7 +44,7 @@ module CollectionsHelper
     solr_document = doc
 
     # If set is nil, send to catalog controller
-    if params[:controller] == "sets" and params[:set]
+    if params[:controller] == "sets" && params[:set]
       doc = {:controller => "sets", :action => "show", :set => params[:set], :id => doc["id"]}
     else
       doc = {:controller => "catalog", :action => "show", :id => doc["id"]}
