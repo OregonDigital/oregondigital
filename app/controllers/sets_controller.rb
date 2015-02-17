@@ -9,7 +9,6 @@ class SetsController < CatalogController
       @collection = set
     else
       @collections = sets.sort_by {|s| s.title.sub(/^(the|a|an)\s+/i, '')}
-      render "setlisting"
     end
     super
   end
