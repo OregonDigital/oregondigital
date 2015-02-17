@@ -48,9 +48,9 @@ describe "SetsController /index" do
       item2
       visit sets_path
     end
-    it "should not show the facets" do
-      expect(page).not_to have_content(item.lcsubject.map(&:rdf_label).join)
-      expect(page).not_to have_content(item2.lcsubject.map(&:rdf_label).join)
+    it "should show the facets" do
+      expect(page).to have_content(item.lcsubject.map(&:rdf_label).join)
+      expect(page).to have_content(item2.lcsubject.map(&:rdf_label).join)
     end
   end
   context "when requesting a collection sub-page" do
