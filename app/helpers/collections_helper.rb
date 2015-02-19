@@ -42,7 +42,9 @@ module CollectionsHelper
     opts[:label] ||= blacklight_config.index.show_link.to_sym
     label = render_document_index_label doc, opts
     solr_document = doc
-    if params[:controller] == "sets"
+
+    # If set is nil, send to catalog controller
+    if params[:controller] == "sets" && params[:set]
       doc = {:controller => "sets", :action => "show", :set => params[:set], :id => doc["id"]}
     else
       doc = {:controller => "catalog", :action => "show", :id => doc["id"]}

@@ -52,6 +52,15 @@ describe "SetsController /index" do
       expect(page).to have_content(item.lcsubject.map(&:rdf_label).join)
       expect(page).to have_content(item2.lcsubject.map(&:rdf_label).join)
     end
+    context "and the facets are clicked" do
+      before(:each) do
+        click_link "Test Facet"
+      end
+      it "should show one result" do
+        expect(page).to have_selector('.document', :count => 1)
+        expect(page).to have_content(item.lcsubject.map(&:rdf_label).join)
+      end
+    end
   end
   context "when requesting a collection sub-page" do
     before(:each) do
