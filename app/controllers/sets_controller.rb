@@ -14,8 +14,11 @@ class SetsController < CatalogController
   end
 
   def search_action_url(options={})
-    return sets_path(options.merge(:set => @collection)) if @collection
-    return root_path
+    if @collection
+      sets_path(options.merge(:set => @collection))
+    else
+      root_path
+    end
   end
 
   private
