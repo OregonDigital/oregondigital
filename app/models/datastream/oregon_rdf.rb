@@ -321,7 +321,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :format, :predicate => RDF::DC.format, :class_name => OregonDigital::ControlledVocabularies::Format do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#physicalExtent') do |index|
+  property :physicalExtent, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#physicalExtent') do |index|
     index.as :displayable
   end
   property :extent, :predicate => RDF::DC.extent do |index|
@@ -447,13 +447,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :hasFixity, :predicate => OregonDigital::Vocabularies::PREMIS.hasFixity
 
   # MODS RDF
-  property :locationCopySublocation, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#locationCopySublocation') do |index|
+  property :locationCopySublocation, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopySublocation') do |index|
     index.as :displayable
   end
-  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#locationCopyShelfLocator') do |index|
+  property :locationCopyShelfLocator, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#locationCopyShelfLocator') do |index|
     index.as :displayable
   end
-  property :note, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1#note') do |index|
+  property :note, :predicate => RDF::URI('http://www.loc.gov/standards/mods/modsrdf/v1/#note') do |index|
     index.as :displayable
   end
 
@@ -483,31 +483,31 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # RDA
-  property :formOfWork, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/w/formOfWork.en') do |index|
+  property :formOfWork, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/w/#formOfWork.en') do |index|
     index.as :displayable
   end
-  property :fileSize, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/fileSize.en') do |index|
+  property :fileSize, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#fileSize.en') do |index|
     index.as :displayable
   end
-  property :layout, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/layout.en') do |index|
+  property :layout, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#layout.en') do |index|
     index.as :displayable
   end
-  property :containedInManifestation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/containedInManifestation.en') do |index|
+  property :containedInManifestation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#containedInManifestation.en') do |index|
     index.as :displayable
   end
-  property :modeOfIssuance, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/modeOfIssuance.en') do |index|
+  property :modeOfIssuance, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#modeOfIssuance.en') do |index|
     index.as :displayable
   end
-  property :placeOfProduction, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/placeOfProduction.en') do |index|
+  property :placeOfProduction, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#placeOfProduction.en') do |index|
     index.as :displayable
   end
-  property :descriptionOfManifestation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/descriptionOfManifestation.en') do |index|
+  property :descriptionOfManifestation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#descriptionOfManifestation.en') do |index|
     index.as :displayable
   end
-  property :colourContent, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/e/colourContent.en') do |index|
+  property :colourContent, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/e/#colourContent.en') do |index|
     index.as :displayable
   end
-  property :biographicalInformation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/a/biographicalInformation.en') do |index|
+  property :biographicalInformation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/a/#biographicalInformation.en') do |index|
     index.as :displayable
   end
 
