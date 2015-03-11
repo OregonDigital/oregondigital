@@ -117,7 +117,7 @@ group :development, :test do
   # Rspec stuff
   gem 'rspec-rails', '~>2.0'
 
-  gem 'sqlite3', '~>1.3.7'
+  gem 'sqlite3', '~>1.3.9'
   gem 'jettywrapper'
 
   # Form testing
