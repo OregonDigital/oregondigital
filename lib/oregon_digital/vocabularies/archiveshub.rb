@@ -133,11 +133,11 @@ module OregonDigital::Vocabularies
     property :isPublisherOf, :label => 'Is Publisher Of', :comment =>
       %(A resource which the agent makes available.)
     property :isRepresentedBy, :label => 'Is Represented By', :comment =>
-      %(An archival resourcce represented by the resource.)
-    property :isRepresentedBy, :label => 'Is Represented By', :comment =>
       %(A resource which represents the archival resource, such as an
         image of a text page, a transcription of text, an audio or
         video clip, or an aggregation of such resources.)
+    property :isRepresentedBy, :label => 'Is Represented By', :comment =>
+      %(An archival resourcce represented by the resource.)
     property :item, :label => 'Item', :comment =>
       %(A number of items)
     property :level, :label => 'Level', :comment =>

@@ -3,6 +3,8 @@ module OregonDigital::ControlledVocabularies
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :scicommon
+    use_vocabulary :ubio
+    use_vocabulary :itis
 
   end
 end

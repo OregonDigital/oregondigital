@@ -86,23 +86,23 @@ module OregonDigital::Vocabularies
         from start of file c:\apache2\htdocs\image\logo.gif]
         \(bitstream\))
     property :hasCopyrightJurisdiction, :comment =>
-      %(Examples: us, de, be)
-    property :hasCopyrightJurisdiction, :comment =>
       %(Data Constraint: Values should be taken from ISO 3166.)
-    property :hasCopyrightStatusDeterminationDate, :comment =>
-      %(Example: 2001-10-26T19:32:52+00:00)
+    property :hasCopyrightJurisdiction, :comment =>
+      %(Examples: us, de, be)
     property :hasCopyrightStatusDeterminationDate, :comment =>
       %(Data Constraint: To aid machine processing, value should use a
         structured form: xsd:dateTime)
+    property :hasCopyrightStatusDeterminationDate, :comment =>
+      %(Example: 2001-10-26T19:32:52+00:00)
     property :hasCreatingApplicationName, :comment =>
       %(Example: MSWord)
     property :hasCreatingApplicationVersion, :comment =>
       %(Example: 2000)
     property :hasDateCreatedByApplication, :comment =>
-      %(Example: 2001-10-26T19:32:52+00:00)
-    property :hasDateCreatedByApplication, :comment =>
       %(Data Constraint: To aid machine processing, value should use a
         structured form: xsd:dateTime)
+    property :hasDateCreatedByApplication, :comment =>
+      %(Example: 2001-10-26T19:32:52+00:00)
     property :hasDependencyName, :comment =>
       %(Example: Additional Element Set for Language Corpora)
     property :hasEndDate, :comment =>
@@ -112,10 +112,10 @@ module OregonDigital::Vocabularies
       %(Example: This environment assumes that the PDF will be stored
         locally and used with a standalone PDF reader.)
     property :hasEventDateTime, :comment =>
-      %(Example: 2001-10-26T19:32:52+00:00)
-    property :hasEventDateTime, :comment =>
       %(Data Constraint: To aid machine processing, value should use a
         structured form: xsd:dateTime)
+    property :hasEventDateTime, :comment =>
+      %(Example: 2001-10-26T19:32:52+00:00)
     property :hasEventDetail, :comment =>
       %(Examples: Object permanently withdrawn by request of Caroline
         Hunt, Program="MIGJP2JP2K"; version="2.2")
@@ -151,17 +151,17 @@ module OregonDigital::Vocabularies
     property :hasHardwareOtherInformation, :comment =>
       %(Examples: 32MB minimum, Required RAM for Apache is unknown)
     property :hasIdentifierType, :comment =>
+      %(Examples: DLC, DRS, hdl:4263537)
+    property :hasIdentifierType, :comment =>
       %(Data Constraint: Value should be taken from controlled
         vocabulary.)
-    property :hasIdentifierType, :comment =>
-      %(Examples: DLC, DRS, hdl:4263537)
+    property :hasIdentifierValue, :comment =>
+      %(Defnition: The value of the Identifier.)
     property :hasIdentifierValue, :comment =>
       %(Examples: 0000000312 \(Representation\), IU2440 \(File\),
         WAC1943.56 \(File\),
         http://nrs.harvard.edu/urn-3:FHCL.Loeb:sal \(File\), IU2440-1
         \(Bitstream\))
-    property :hasIdentifierValue, :comment =>
-      %(Defnition: The value of the Identifier.)
     property :hasInhibitorKey, :comment =>
       %(Example: [DES decryption key])
     property :hasLicenseTerms
@@ -239,18 +239,18 @@ module OregonDigital::Vocabularies
     property :hasStatuteInformationDeterminationDate, :comment =>
       %(Example: 2001-10-26T19:32:52+00:00)
     property :hasStatuteJurisdiction, :comment =>
-      %(Examples: us, de, be)
-    property :hasStatuteJurisdiction, :comment =>
       %(Data Constraint: Values should be taken from a controlled
         vocabulary.)
+    property :hasStatuteJurisdiction, :comment =>
+      %(Examples: us, de, be)
+    property :hasAct, :comment =>
+      %(Data Constraint: Values are taken from the SKOS vocabulary:
+        http://id.loc.gov/vocabulary/preservation/actionsGranted)
     property :hasAct, :comment =>
       %(Extensions: One can use its own SKOS vocabulary to use for
         this property. The precondition to do this, is to link your
         SKOS concepts to the SKOS concepts of the id.loc.gov
         vocabulary.)
-    property :hasAct, :comment =>
-      %(Data Constraint: Values are taken from the SKOS vocabulary:
-        http://id.loc.gov/vocabulary/preservation/actionsGranted)
     property :hasAgent
     property :hasAgentType, :comment =>
       %(Data Constraint: Values are taken from the SKOS vocabulary:
@@ -263,14 +263,9 @@ module OregonDigital::Vocabularies
     property :hasApplicableDates
     property :hasContentLocation
     property :hasContentLocationType, :comment =>
-      %(Extensions: One can use its own SKOS vocabulary to use for
-        this property. The precondition to do this, is to link your
-        SKOS concepts to the SKOS concepts of the id.loc.gov
-        vocabulary.)
-    property :hasContentLocationType, :comment =>
       %(Data Constraint: Values are taken from the SKOS vocabulary:
         http://id.loc.gov/vocabulary/preservation/contentLocationType)
-    property :hasCopyrightStatus, :comment =>
+    property :hasContentLocationType, :comment =>
       %(Extensions: One can use its own SKOS vocabulary to use for
         this property. The precondition to do this, is to link your
         SKOS concepts to the SKOS concepts of the id.loc.gov
@@ -278,17 +273,22 @@ module OregonDigital::Vocabularies
     property :hasCopyrightStatus, :comment =>
       %(Data Constraint: Values are taken from the SKOS vocabulary:
         http://id.loc.gov/vocabulary/preservation/copyrightStatus)
+    property :hasCopyrightStatus, :comment =>
+      %(Extensions: One can use its own SKOS vocabulary to use for
+        this property. The precondition to do this, is to link your
+        SKOS concepts to the SKOS concepts of the id.loc.gov
+        vocabulary.)
     property :hasCreatingApplication
     property :hasDependency
     property :hasEnvironment
+    property :hasEnvironmentCharacteristic, :comment =>
+      %(Data Constraint: Values are taken from the SKOS vocabulary:
+        http://id.loc.gov/vocabulary/preservation/environmentCharacteristic)
     property :hasEnvironmentCharacteristic, :comment =>
       %(Extensions: One can use its own SKOS vocabulary to use for
         this property. The precondition to do this, is to link your
         SKOS concepts to the SKOS concepts of the id.loc.gov
         vocabulary.)
-    property :hasEnvironmentCharacteristic, :comment =>
-      %(Data Constraint: Values are taken from the SKOS vocabulary:
-        http://id.loc.gov/vocabulary/preservation/environmentCharacteristic)
     property :hasEnvironmentPurpose, :comment =>
       %(Data Constraint: Values are taken from the SKOS vocabulary:
         http://id.loc.gov/vocabulary/preservation/environmentPurpose)
@@ -325,22 +325,22 @@ module OregonDigital::Vocabularies
     property :hasFormatDesignation
     property :hasFormatRegistry
     property :hasFormatRegistryRole, :comment =>
-      %(Extensions: One can use its own SKOS vocabulary to use for
-        this property. The precondition to do this, is to link your
-        SKOS concepts to the SKOS concepts of the id.loc.gov
-        vocabulary.)
-    property :hasFormatRegistryRole, :comment =>
       %(Data Constraint: Values are taken from the SKOS vocabulary:
         http://id.loc.gov/vocabulary/preservation/formatRegistryRole)
-    property :hasHardware
-    property :hasHardwareType, :comment =>
+    property :hasFormatRegistryRole, :comment =>
       %(Extensions: One can use its own SKOS vocabulary to use for
         this property. The precondition to do this, is to link your
         SKOS concepts to the SKOS concepts of the id.loc.gov
         vocabulary.)
+    property :hasHardware
     property :hasHardwareType, :comment =>
       %(Data Constraint: Values are taken from the SKOS vocabulary:
         http://id.loc.gov/vocabulary/preservation/hardwareType)
+    property :hasHardwareType, :comment =>
+      %(Extensions: One can use its own SKOS vocabulary to use for
+        this property. The precondition to do this, is to link your
+        SKOS concepts to the SKOS concepts of the id.loc.gov
+        vocabulary.)
     property :hasIdentifier
     property :hasInhibitorTarget, :comment =>
       %(Data Constraint: Values are taken from the SKOS vocabulary:
@@ -376,13 +376,13 @@ module OregonDigital::Vocabularies
     property :hasObjectCharacteristics
     property :hasPreservationLevel
     property :hasPreservationLevelRole, :comment =>
+      %(Data Constraint: Values are taken from the SKOS vocabulary:
+        http://id.loc.gov/vocabulary/preservation/preservationLevelRole)
+    property :hasPreservationLevelRole, :comment =>
       %(Extensions: One can use its own SKOS vocabulary to use for
         this property. The precondition to do this, is to link your
         SKOS concepts to the SKOS concepts of the id.loc.gov
         vocabulary.)
-    property :hasPreservationLevelRole, :comment =>
-      %(Data Constraint: Values are taken from the SKOS vocabulary:
-        http://id.loc.gov/vocabulary/preservation/preservationLevelRole)
     property :hasRelatedObject
     property :hasRelatedStatuteInformation
     property :hasRelationship, :comment =>
@@ -418,22 +418,22 @@ module OregonDigital::Vocabularies
         SKOS concepts to the SKOS concepts of the id.loc.gov
         vocabulary.)
     property :hasSignatureMethod, :comment =>
+      %(Data Constraint: Values are taken from a SKOS vocabulary)
+    property :hasSignatureMethod, :comment =>
       %(Extensions: One can use its own SKOS vocabulary to use for
         this property. The precondition to do this, is to link your
         SKOS concepts to the SKOS concepts of the id.loc.gov
         vocabulary.)
-    property :hasSignatureMethod, :comment =>
-      %(Data Constraint: Values are taken from a SKOS vocabulary)
     property :hasSignificantProperties
     property :hasSoftware
     property :hasSoftwareType, :comment =>
+      %(Data Constraint: Values are taken from the SKOS vocabulary:
+        http://id.loc.gov/vocabulary/preservation/softwareType)
+    property :hasSoftwareType, :comment =>
       %(Extensions: One can use its own SKOS vocabulary to use for
         this property. The precondition to do this, is to link your
         SKOS concepts to the SKOS concepts of the id.loc.gov
         vocabulary.)
-    property :hasSoftwareType, :comment =>
-      %(Data Constraint: Values are taken from the SKOS vocabulary:
-        http://id.loc.gov/vocabulary/preservation/softwareType)
     property :hasStorage
     property :hasStorageMedium, :comment =>
       %(Data Constraint: Values are taken from the SKOS vocabulary:
