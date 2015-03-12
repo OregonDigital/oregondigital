@@ -508,7 +508,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.10)
+    sqlite3 (1.3.8)
     stomp (1.3.2)
     subexec (0.2.3)
     sxp (0.1.4)
@@ -609,7 +609,7 @@ DEPENDENCIES
   sparql-client
   spring
   sprockets-digest-assets-fix!
-  sqlite3 (~> 1.3.9)
+  sqlite3 (~> 1.3.7)
   uglifier (>= 1.3.0)
   unicode
   webmock
