@@ -19,8 +19,7 @@ fi
 # Install RVM
 if [[ ! -e "/usr/local/rvm/scripts/rvm" ]]; then
   echo "Install RVM, Ruby, Gems"
-  gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  curl -sSL https://get.rvm.io | bash -s stable --ruby 
+  curl -sSL https://get.rvm.io | bash -s stable --ruby > /dev/null 2>&1
   source /usr/local/rvm/scripts/rvm
   echo "Installed `ruby --version`"
 fi
