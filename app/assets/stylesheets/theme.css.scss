@@ -647,6 +647,11 @@ ul.sidenav {
 .blueberry { 
   margin: 0 auto; 
 
+
+  /* the following min-height is a quick cosmetic fix to eliminate a bug before the whole thing is rebuilt with Bootstrap 3 */
+  min-height: 800px;
+
+
   figure, ul {
     margin: 0;
   }
