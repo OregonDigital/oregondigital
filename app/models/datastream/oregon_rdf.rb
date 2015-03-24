@@ -51,11 +51,11 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :illustrator, :predicate => OregonDigital::Vocabularies::MARCREL.ill, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :displayable, :facetable
   end
-  property :interviewee, :predicate => OregonDigital::Vocabularies::MARCREL.ive do |index|
-    index.as :searchable, :displayable
+  property :interviewee, :predicate => OregonDigital::Vocabularies::MARCREL.ive, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
+    index.as :searchable, :facetable, :displayable
   end
-  property :interviewer, :predicate => OregonDigital::Vocabularies::MARCREL.ivr do |index|
-    index.as :searchable, :displayable
+  property :interviewer, :predicate => OregonDigital::Vocabularies::MARCREL.ivr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
+    index.as :searchable, :facetable, :displayable
   end
   property :lyricist, :predicate => OregonDigital::Vocabularies::MARCREL.lyr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
