@@ -171,7 +171,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :stylePeriod, :predicate => OregonDigital::Vocabularies::VRA.hasStylePeriod, :class_name => OregonDigital::ControlledVocabularies::StylePeriod do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :workType, :predicate => OregonDigital::Vocabularies::VRA.workType, :class_name => OregonDigital::ControlledVocabularies::WorkType do |index|
+  property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::WorkType do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :militaryBranch, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.militaryBranch, :class_name => OregonDigital::ControlledVocabularies::Subject do |index|
