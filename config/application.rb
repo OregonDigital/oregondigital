@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require(:default, Rails.env)
+require_relative '../lib/conneg_middleware'
 
 module Oregondigital
   class Application < Rails::Application
@@ -64,5 +65,6 @@ module Oregondigital
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.middleware.use ::ConnegMiddleware
   end
 end
