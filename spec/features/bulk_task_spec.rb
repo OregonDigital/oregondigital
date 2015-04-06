@@ -56,7 +56,7 @@ describe 'bulk tasks', :js => true do
         before do
           FileUtils.cp_r(bag.bag_dir, Pathname.new(bag.bag_dir).dirname.join("2").to_s)
           within("table") do
-            click_link "Refresh"
+            click_link "Refresh", :match => :first
           end
         end
         it "should create a new child" do
@@ -78,7 +78,7 @@ describe 'bulk tasks', :js => true do
       before do
         GenericAsset.any_instance.stub(:save).and_raise("AAAH IT'S BUSTED")
         within("table") do
-          click_link "Ingest"
+          click_link "Ingest", :match => :first
         end
       end
       it "should not ingest and should show an error" do
@@ -125,7 +125,7 @@ describe 'bulk tasks', :js => true do
     context "and everything's okay" do
       before do
         within("table") do
-          click_link "Ingest"
+          click_link "Ingest", :match => :first
         end
       end
       context "and resque hasn't run yet", :resque => false do
