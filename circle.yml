@@ -6,7 +6,7 @@ dependencies:
     - vips_install
   pre:
     - sudo add-apt-repository ppa:libreoffice/libreoffice-4-2 -y
-    - sudo sh bin/vips-install.sh
+    - sudo sh bin/vips_install.sh
     - sudo apt-get install poppler-utils poppler-data ghostscript libreoffice 
     - sudo apt-get install libmagickwand-dev libmagic-dev ffmpeg libvorbis-dev 
       libavcodec-extra-53
