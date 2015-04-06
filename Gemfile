@@ -111,6 +111,7 @@ end
 group :test do
   gem 'webmock'
   gem 'fakeredis', :require => 'fakeredis/rspec'
+  gem 'rspec_junit_formatter', :github => 'circleci/rspec_junit_formatter'
 end
 
 group :development, :test do

@@ -1,0 +1,22 @@
+machine:
+  ruby:
+    version: 2.2.0
+dependencies:
+  cache_directories:
+    - vips_install
+  pre:
+    - sudo add-apt-repository ppa:libreoffice/libreoffice-4-2 -y
+    - sudo sh bin/vips-install.sh
+    - sudo apt-get install poppler-utils poppler-data ghostscript libreoffice 
+    - sudo apt-get install libmagickwand-dev libmagic-dev ffmpeg libvorbis-dev 
+      libavcodec-extra-53
+
+  post:
+    - bundle exec rake sets:content:sync
+    - RAILS_ENV=development bundle exec rake jetty:clean
+    - bundle exec rake jetty:config
+    - cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/oregondigital_2/jetty/solr -XX:MaxPermSize=128m -Xmx256m -jar start.jar:
+        background: true
+test:
+  override:
+    - bundle exec rake circle_ci

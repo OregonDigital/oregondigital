@@ -62,3 +62,5 @@ braceros-tiffs
 /config/puma.rb
 # Ignore Vagrant
 /.vagrant/*
+# Ignore circle ci rspec output
+/rspec
