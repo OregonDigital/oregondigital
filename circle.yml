@@ -8,7 +8,7 @@ dependencies:
     - sudo add-apt-repository ppa:libreoffice/libreoffice-4-2 -y
     - sudo sh bin/vips_install.sh
     - sudo apt-get install poppler-utils poppler-data ghostscript libreoffice 
-    - sudo apt-get install graphicsmagick-libmagick-dev-compat libmagic-dev ffmpeg libvorbis-dev 
+    - sudo apt-get install libmagic-dev ffmpeg libvorbis-dev 
       libavcodec-extra-53
 
   post:
