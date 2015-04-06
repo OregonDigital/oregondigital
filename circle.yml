@@ -15,7 +15,7 @@ dependencies:
     - bundle exec rake sets:content:sync
     - RAILS_ENV=development bundle exec rake jetty:clean
     - bundle exec rake jetty:config
-    - cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/oregondigital_2/jetty/solr -XX:MaxPermSize=128m -Xmx256m -jar start.jar:
+    - cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/oregondigital/jetty/solr -XX:MaxPermSize=128m -Xmx256m -jar start.jar:
         background: true
 test:
   override:
