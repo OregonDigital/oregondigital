@@ -1,6 +1,9 @@
 machine:
   ruby:
     version: 2.2.0
+general:
+  artifacts:
+    - "tmp/capybara"
 dependencies:
   cache_directories:
     - vips_install
