@@ -1,7 +1,7 @@
 OregonDigital
 =============
 
-[![Build Status](https://secure.travis-ci.org/OregonDigital/oregondigital.png)](http://travis-ci.org/OregonDigital/oregondigital)
+[![Circle CI](https://circleci.com/gh/OregonDigital/oregondigital.svg?style=svg)](https://circleci.com/gh/OregonDigital/oregondigital)
 [![Coverage Status](https://coveralls.io/repos/OregonDigital/oregondigital/badge.png)](https://coveralls.io/r/OregonDigital/oregondigital)
 
 Local Development Setup
