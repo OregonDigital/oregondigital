@@ -107,6 +107,8 @@ INGEST_MAP = {
     streetAddress: "descMetadata.streetAddress",
     rangerDistrict: "descMetadata.rangerDistrict",
     tgn: "descMetadata.tgn",
+    gpsLatitude: "descMetadata.gpsLatitude",
+    gpsLongitude: "descMetadata.gpsLongitude",
   },
 
   date: {
