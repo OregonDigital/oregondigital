@@ -101,6 +101,7 @@ gem 'dalli'
 
 # Resque-retry for retrying resque jobs
 gem 'resque-retry'
+gem 'rspec-rails', '~>2.0'
 
 group :development do
   # Spring as Rails preloader
@@ -117,7 +118,6 @@ end
 
 group :development, :test do
   # Rspec stuff
-  gem 'rspec-rails', '~>2.0'
 
   gem 'sqlite3', '~>1.3.7'
   gem 'jettywrapper'
