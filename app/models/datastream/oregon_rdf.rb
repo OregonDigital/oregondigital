@@ -524,6 +524,21 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
 
 
   def to_solr(solr_doc = Hash.new)
+    solr_doc = index_terms(solr_doc)
+    solr_doc = index_coordinates(solr_doc)
+  end
+
+  def index_coordinates(solr_doc = Hash.new)
+    latitude = resource.get_values(:latitude).first
+    longitude = resource.get_values(:longitude).first
+    if latitude && longitude
+      prefix = apply_prefix(:coordinates)
+      solr_doc["#{prefix}_llsim".to_sym] = ["#{latitude},#{longitude}"]
+    end
+    solr_doc
+  end
+
+  def index_terms(solr_doc = Hash.new)
     fields.each do |field_key, field_info|
       values = resource.get_values(field_key).map{|x| x.respond_to?(:resource) ? x.resource : x}
       Array.wrap(values).each do |val|
