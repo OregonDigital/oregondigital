@@ -28,6 +28,18 @@ describe GenericAsset, :resque => true do
     end
   end
 
+  describe "#to_solr" do
+    context "when there is a lat/lng" do
+      before do
+        subject.descMetadata.latitude = ["-45"]
+        subject.descMetadata.longitude = ["-50"]
+      end
+      it "should index it" do
+        expect(subject.to_solr).to include ({:desc_metadata__coordinates_llsim => ["-45,-50"]})
+      end
+    end
+  end
+
   describe "decade facets" do
     let(:asset) { FactoryGirl.build(:generic_asset, :date => date) }
     let(:date) { "2011-01-01" }
