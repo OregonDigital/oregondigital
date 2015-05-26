@@ -338,22 +338,13 @@ p {
   .btn {
     vertical-align: middle;
   }
-
 }
 
-/* main-container */
+/* main-container - and contents */
 
 #main-container {
   margin-top: 20px;
   margin-bottom: 50px;
-}
-.admin .main-container {}
-
-@media (min-width: 767px) and (max-width: 979px) {
-  #main-container {
-  /*  width: auto;
-    margin: 10px; */
-  }
 }
 
 @media (min-width: 767px) {
@@ -368,6 +359,10 @@ p {
         width: 220px;
       }
     }
+  }
+
+  .nav-list > li > a {
+    width: 120px;
   }
 }
 
@@ -385,6 +380,10 @@ p {
       }
     }
   }
+
+  .nav-list > li > a {
+    width: 180px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -401,6 +400,11 @@ p {
       }
     }
   }
+
+  .nav-list > li > a {
+    width: 230px;
+  }
+
 }
 
 /* facets */
@@ -602,13 +606,19 @@ ul.sidenav {
 .nav-list .nav-header {
   border-bottom: 1px solid #E3E3E3;
   margin-bottom: 8px;
-
 }
 
 .nav-list > li > a, label.toggle_bookmark {
   font-size: 13px;
   line-height: 22px;
 }
+
+.nav-list > li > a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .nav-list > li {
   font-size: 13px;
   line-height: 22px;
