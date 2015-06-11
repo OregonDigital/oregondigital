@@ -361,7 +361,7 @@ p {
     }
   }
 
-  .nav-list > li > a {
+  .nav-list > li {
     width: 120px;
   }
 }
@@ -381,7 +381,7 @@ p {
     }
   }
 
-  .nav-list > li > a {
+  .nav-list > li {
     width: 180px;
   }
 }
@@ -401,7 +401,7 @@ p {
     }
   }
 
-  .nav-list > li > a {
+  .nav-list > li {
     width: 230px;
   }
 
@@ -613,15 +613,12 @@ ul.sidenav {
   line-height: 22px;
 }
 
-.nav-list > li > a {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .nav-list > li {
   font-size: 13px;
   line-height: 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn-group:first-child {
