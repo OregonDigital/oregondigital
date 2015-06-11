@@ -72,6 +72,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :transcriber, :predicate => OregonDigital::Vocabularies::MARCREL.trc do |index|
     index.as :displayable
   end
+  property :translator, :predicate => OregonDigital::Vocabularies::MARCREL.trl do |index|
+    index.as :searchable, :displayable
+  end
   property :creatorDisplay, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/creatorDisplay'] do |index|
     index.as :displayable
   end
