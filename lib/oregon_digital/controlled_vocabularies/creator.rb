@@ -7,7 +7,6 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :creator
     use_vocabulary :dummycreator
     use_vocabulary :ulan
-    use_vocabulary :lcsh
     use_vocabulary :people
 
     def initialize(*args)
