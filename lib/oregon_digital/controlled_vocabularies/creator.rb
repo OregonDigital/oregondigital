@@ -7,6 +7,8 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :creator
     use_vocabulary :dummycreator
     use_vocabulary :ulan
+    use_vocabulary :lcsh
+    use_vocabulary :people
 
     def initialize(*args)
       args[0] = assign_subject(args.first) unless args.first.to_s.start_with?("http")
