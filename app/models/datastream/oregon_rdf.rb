@@ -52,7 +52,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable, :facetable
   end
   property :interviewee, :predicate => OregonDigital::Vocabularies::MARCREL.ive, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :facetable, :displayable
   end
   property :interviewer, :predicate => OregonDigital::Vocabularies::MARCREL.ivr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :displayable
@@ -70,7 +70,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :transcriber, :predicate => OregonDigital::Vocabularies::MARCREL.trc do |index|
-    index.as :displayable
+    index.as :searchable, :displayable
   end
   property :translator, :predicate => OregonDigital::Vocabularies::MARCREL.trl do |index|
     index.as :searchable, :displayable
