@@ -1,11 +1,11 @@
 development:
   user: fedoraAdmin
   password: fedoraAdmin
-  url: http://127.0.0.1:8983/fedora
+  url: http://127.0.0.1:8985/fedora
 test: &TEST
   user: fedoraAdmin
   password: fedoraAdmin
-  url: <%= "http://127.0.0.1:#{ENV['TEST_JETTY_PORT'] || 8983}/fedora-test" %>
+  url: <%= "http://127.0.0.1:#{ENV['TEST_JETTY_PORT'] || 8985}/fedora-test" %>
 production:
   user: <%= ENV['OREGONDIGITAL_FEDORA_USER'] || "fedoraAdmin" %>
   password: <%= ENV['OREGONDIGITAL_FEDORA_PASSWORD'] || "fedoraAdmin" %>

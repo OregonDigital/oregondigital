@@ -4,7 +4,7 @@ APP_ROOT="." # for jettywrapper
 require 'jettywrapper'
 require 'rspec/core'
 require 'rspec/core/rake_task'
-
+Jettywrapper.hydra_jetty_version = "v7.0.0"
 desc 'Spin up hydra-jetty and run specs'
 task :ci => ['jetty:config'] do
   puts 'running continuous integration'

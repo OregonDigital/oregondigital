@@ -57,7 +57,7 @@
 		this value must be less than the limit specified for the 
 		datastreamExpirationLimit.</comment>
   </param>
-  <param name="fedoraServerPort" value="8983">
+  <param name="fedoraServerPort" value="8985">
     <comment>Defines the port number on which the Fedora server runs; 
 		default is 8080.</comment>
   </param>
