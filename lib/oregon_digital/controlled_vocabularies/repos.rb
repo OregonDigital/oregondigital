@@ -6,6 +6,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :repository
     use_vocabulary :lcnames
     use_vocabulary :ulan
+    use_vocabulary :lcsh
 
     class QaLcNames < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching
