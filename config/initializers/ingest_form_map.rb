@@ -124,6 +124,7 @@ INGEST_MAP = {
     identifier: "descMetadata.identifier",
     locationCopyShelfLocator: "descMetadata.locationCopyShelfLocator",
     accessionNumber: "descMetadata.accessionNumber",
+    itemLocator: "descMetadata.itemLocator"
   },
 
   right: {
