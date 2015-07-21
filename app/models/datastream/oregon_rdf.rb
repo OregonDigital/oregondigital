@@ -261,6 +261,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :rights, :predicate => RDF::DC.rights, :class_name => OregonDigital::ControlledVocabularies::RightsStatement do |index|
     index.as :searchable, :displayable, :facetable
   end
+  property :rights_statement, :predicate => RDF::DC11.rights do |index|
+    index.as :searchable, :displayable, :facetable
+  end
   property :rightsHolder, :predicate => RDF::URI('http://opaquenamespace.org/rights/rightsHolder') do |index|
     index.as :searchable, :facetable, :displayable
   end
