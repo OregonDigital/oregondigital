@@ -89,7 +89,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :abstract, :predicate => RDF::DC.abstract do |index|
     index.as :searchable, :displayable
   end
-  property :inscription, :predicate => OregonDigital::Vocabularies::VRA.inscription do |index|
+  property :inscription, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.inscription do |index|
     index.as :searchable, :displayable
   end
   property :view, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/viewDescription'] do |index|
@@ -168,10 +168,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :subject, :predicate => RDF::DC11.subject do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :stateEdition, :predicate => OregonDigital::Vocabularies::VRA.stateEdition do |index|
+  property :stateEdition, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.stateEdition do |index|
     index.as :searchable, :displayable
   end
-  property :stylePeriod, :predicate => OregonDigital::Vocabularies::VRA.hasStylePeriod, :class_name => OregonDigital::ControlledVocabularies::StylePeriod do |index|
+  property :stylePeriod, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.hasStylePeriod, :class_name => OregonDigital::ControlledVocabularies::StylePeriod do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :workType, :predicate => RDF.type, :class_name => OregonDigital::ControlledVocabularies::WorkType do |index|
@@ -221,13 +221,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :date, :predicate => RDF::DC.date do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :earliestDate, :predicate => OregonDigital::Vocabularies::VRA.earliestDate do |index|
+  property :earliestDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.earliestDate do |index|
     index.as :searchable, :displayable
   end
   property :issued, :predicate => RDF::DC.issued do |index|
     index.as :searchable, :displayable
   end
-  property :latestDate, :predicate => OregonDigital::Vocabularies::VRA.latestDate do |index|
+  property :latestDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.latestDate do |index|
     index.as :searchable, :displayable
   end
   property :viewDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/viewDate'] do |index|
@@ -330,16 +330,16 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :extent, :predicate => RDF::DC.extent do |index|
     index.as :searchable, :displayable
   end
-  property :measurements, :predicate => OregonDigital::Vocabularies::VRA.measurements do |index|
+  property :measurements, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.measurements do |index|
     index.as :displayable
   end
-  property :material, :predicate => OregonDigital::Vocabularies::VRA.material do |index|
+  property :material, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.material do |index|
     index.as :searchable, :displayable
   end
-  property :support, :predicate => OregonDigital::Vocabularies::VRA.support do |index|
+  property :support, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.support do |index|
     index.as :searchable, :displayable
   end
-  property :technique, :predicate => OregonDigital::Vocabularies::VRA.hasTechnique do |index|
+  property :technique, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.hasTechnique do |index|
     index.as :searchable, :displayable
   end
 
@@ -460,11 +460,11 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
 
-  # VRA
-  property :culturalContext, :predicate => OregonDigital::Vocabularies::VRA.culturalContext do |index|
+  # OREGONDIGITAL
+  property :culturalContext, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.culturalContext do |index|
     index.as :displayable
   end
-  property :idCurrentRepository, :predicate => OregonDigital::Vocabularies::VRA.idCurrentRepository do |index|
+  property :idCurrentRepository, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.idCurrentRepository do |index|
     index.as :searchable, :displayable
   end
 
