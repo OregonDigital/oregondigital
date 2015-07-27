@@ -1,5 +1,4 @@
 class CreateDerivativesJob
-  extend Resque::Plugins::ExponentialBackoff
   @queue = :derivatives
   def self.perform(pid)
     object = ActiveFedora::Base.find(pid, :cast => true)
