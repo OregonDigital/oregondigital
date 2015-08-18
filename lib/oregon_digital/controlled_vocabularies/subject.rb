@@ -13,6 +13,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :people
     use_vocabulary :itis
     use_vocabulary :ubio
+    use_vocabulary :osubuildings
 
     class QaLcsh < Qa::Authorities::Loc
       include OregonDigital::Qa::Caching
