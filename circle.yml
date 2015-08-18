@@ -8,8 +8,10 @@ dependencies:
   cache_directories:
     - vips_install
   pre:
-    - sudo add-apt-repository ppa:libreoffice/libreoffice-4-2 -y
     - sudo sh bin/vips_install.sh
+    - sudo apt-get purge libreoffice*
+    - sudo add-apt-repository ppa:libreoffice/ppa -y
+    - sudo apt-get update
     - sudo apt-get install poppler-utils poppler-data ghostscript libreoffice 
     - sudo apt-get install libmagic-dev ffmpeg libvorbis-dev 
       libavcodec-extra-53
