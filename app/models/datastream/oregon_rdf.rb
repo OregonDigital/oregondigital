@@ -374,7 +374,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :hasVersion, :predicate => RDF::DC.hasVersion do |index|
-    index.as :displayable
+    index.as :searchable, :displayable
   end
   property :isVersionOf, :predicate => RDF::DC.isVersionOf do |index|
     index.as :displayable
