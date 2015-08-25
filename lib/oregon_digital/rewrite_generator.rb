@@ -31,7 +31,7 @@ module OregonDigital
     end
 
     def file_name
-      "hydra_rewrite_rules.conf"
+      "oregondigital.map"
     end
 
     def build_replace_string(id, value)
@@ -40,11 +40,11 @@ module OregonDigital
     end
 
     def viewer_string(root, pointer,id)
-      "if ($request_uri ~ /cdm4/item_viewer\\.php\\?CISOROOT=#{root}&CISOPTR=#{pointer}(.*)$ ) { rewrite ^ /catalog/#{id}? permanent; }"
+      "~*/cdm4/item_viewer\\.php\?CISOROOT=#{root}&CISOPTR=#{pointer}((.*)[^0-9].*)?$ \"#{id}\";"
     end
 
     def persistent_url_string(root, pointer, id)
-      "if ($request_uri = /u?#{root},#{pointer}) { rewrite ^ /catalog/#{id}? permanent;  }"
+      "~*/u/\\?#{root},#{pointer} \"#{id}\";"
     end
 
     def replaces_objects

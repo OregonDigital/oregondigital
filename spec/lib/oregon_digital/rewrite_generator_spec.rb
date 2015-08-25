@@ -7,7 +7,7 @@ describe OregonDigital::RewriteGenerator do
     before do
       OregonDigital::RewriteGenerator.any_instance.stub(:output_directory).and_return(Rails.root.join("tmp"))
     end
-    let(:file_path) {Rails.root.join("tmp", "hydra_rewrite_rules.conf")}
+    let(:file_path) {Rails.root.join("tmp", "oregondigital.map")}
     after do
       if File.exist?(file_path)
         FileUtils.rm(file_path)
@@ -121,7 +121,8 @@ describe OregonDigital::RewriteGenerator do
         asset
       end
       it "should return a rewrite string" do
-        expect(subject.first).to eq "if ($request_uri ~ /cdm4/item_viewer\\.php\\?CISOROOT=/bracero&CISOPTR=62(.*)$ ) { rewrite ^ /catalog/#{asset.pid}? permanent; }"
+        expect(subject.first).to eq "~*/cdm4/item_viewer\\.php\?CISOROOT=/bracero&CISOPTR=62((.*)[^0-9].*)?$ \"#{asset.id}\";"
+        expect(subject.last).to eq "~*/u/\\?/bracero,62 \"#{asset.id}\";"
       end
     end
   end
