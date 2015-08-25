@@ -121,8 +121,9 @@ describe OregonDigital::RewriteGenerator do
         asset
       end
       it "should return a rewrite string" do
-        expect(subject.first).to eq "~*/cdm4/item_viewer\\.php\?CISOROOT=/bracero&CISOPTR=62((.*)[^0-9].*)?$ \"#{asset.id}\";"
-        expect(subject.last).to eq "~*/u/\\?/bracero,62 \"#{asset.id}\";"
+        id = asset.id.gsub("oregondigital:", "")
+        expect(subject.first).to eq "~*/cdm4/item_viewer\\.php\\?CISOROOT=/bracero&CISOPTR=62((.*)[^0-9].*)?$ \"#{id}\";"
+        expect(subject.last).to eq "~*/u/\\?/bracero,62 \"#{id}\";"
       end
     end
   end
