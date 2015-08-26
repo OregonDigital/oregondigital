@@ -59,7 +59,7 @@ describe OregonDigital::RewriteGenerator do
     subject {OregonDigital::RewriteGenerator.new.replaces_hash}
     context "when there are no replaces records" do
       it "should be empty" do
-        expect(subject).to eq({})
+        expect(subject).to eq([])
       end
     end
     context "when there is an object" do
@@ -69,7 +69,7 @@ describe OregonDigital::RewriteGenerator do
       end
       context "with no replaces attribute" do
         it "should be empty" do
-          expect(subject).to eq({})
+          expect(subject).to eq([])
         end
       end
       context "with a replaces attribute" do
@@ -88,18 +88,18 @@ describe OregonDigital::RewriteGenerator do
             a
           end
           it "should be empty" do
-            expect(subject).to eq({})
+            expect(subject).to eq([])
           end
         end
         context "which is missing a slash" do
           it "should be a hash with that attribute" do
-            expect(subject).to eq({asset.pid => "/bracero,62"})
+            expect(subject).to eq([{asset.pid => "/bracero,62"}])
           end
         end
         context "which has the slash" do
           let(:replaces) {"http://oregondigital.org/u?/bracero,62"}
           it "should return appropriately" do
-            expect(subject).to eq({asset.pid => "/bracero,62"})
+            expect(subject).to eq([{asset.pid => "/bracero,62"}])
           end
         end
       end
