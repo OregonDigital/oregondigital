@@ -5,11 +5,11 @@ module OregonDigital
     end
 
     def replaces_hash
-      replaces_objects.map{|hsh| {hsh["id"] => uri_to_id(hsh[replaces_key].first)}}.inject(&:merge) || {}
+      replaces_objects.map{|hsh| {hsh["id"] => uri_to_id(hsh[replaces_key].first)}}|| {}
     end
 
     def replace_strings
-      @replaces_strings ||= replaces_hash.map{|id, value| build_replace_string(id,value)}.flatten
+      @replaces_strings ||= replaces_hash.map{|hsh| build_replace_string(hsh.keys.first,hsh.values.first)}.flatten
     end
 
     def write_file
