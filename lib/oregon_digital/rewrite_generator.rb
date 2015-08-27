@@ -40,7 +40,7 @@ module OregonDigital
     end
 
     def viewer_string(root, pointer,id)
-      "~*/cdm4/item_viewer\\.php\\?CISOROOT=#{root}&CISOPTR=#{pointer}((.*)[^0-9].*)?$ \"#{id.gsub("oregondigital:","")}\";"
+      "~*/cdm4/item_viewer\\.php\\?CISOROOT=#{root}&CISOPTR=#{pointer}&.*$ \"#{id.gsub("oregondigital:","")}\";"
     end
 
     def persistent_url_string(root, pointer, id)
