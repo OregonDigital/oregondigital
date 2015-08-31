@@ -85,7 +85,7 @@ module OregonDigital::ControlledVocabularies
       end
 
       def geo_json_to_qa_item(geo)
-        item = { id: APP_CONFIG['geonames']['prefix'] + geo['geonameId'].to_s }
+        item = { id: APP_CONFIG['geonames']['prefix'] + geo['geonameId'].to_s + '/' }
         item[:label] = geo["toponymName"]
         unless geo["countryName"].blank?
           if geo["adminName1"].blank?
