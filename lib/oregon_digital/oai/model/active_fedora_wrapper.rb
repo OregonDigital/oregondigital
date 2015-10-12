@@ -22,40 +22,59 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def find(selector, options = {})
-    set = GenericCollection.find(:pid => options[:set]).first
-    if options.delete(:set)
-      return [] unless set
-      model = set.members
+   query_pairs = []
+   query_args = {}
+   afresults = []
+   set = options.delete(:set)
+   if set
+     query_pairs = "desc_metadata__set_sim: #{RSolr.escape('http://oregondigital.org/resource/' + set)}"
+   elsif !selector.blank? && selector!= :all
+     query_pairs = "id:#{RSolr.escape(selector)}"
+   else
+     query_pairs = "active_fedora_model_ssi:#{self.inner_model}"
+   end
+   query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
+   query_args = {:sort => "system_modified_dtsi desc", :fl => "id"}
+   solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
+   #binding.pry
+   return next_set(solr_count, options[:resumption_token]) if options[:resumption_token]
+   if @limit && solr_count.count > @limit
+     return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0}))) 
+   end
+    solr_count.map{|x| x["id"]}.each do |pid|
+      afresults << ActiveFedora::Base.load_instance_from_solr(pid)
     end
-    model ||= inner_model
-    query = form_query(options)
-    result = model.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true").where(query)
-    result = result.where("id:#{RSolr.escape(selector)}") unless selector.blank? || selector == :all
-    result = result.limit(@limit) if @limit
-    result = result.order("#{updated_at_field} desc")
-    return next_set(result, options[:resumption_token]) if options[:resumption_token]
-    if @limit && result.count > @limit
-      return partial_result(result, OAI::Provider::ResumptionToken.new(options.merge({:last => 0}))) 
-    end
-    return result.to_a
+   return afresults.to_a
+
   end
 
   def next_set(result, token_string)
+    #binding.pry
     raise OAI::ResumptionTokenException.new unless @limit
     token = OAI::Provider::ResumptionToken.parse(token_string)
-    result = result.offset(token.last)
-    # End of result set
     if token.last+@limit == result.count
-      return result
+      part = result.slice(token.last, @limit)
+      afresults = []
+      part.map{|x| x["id"]}.each do |pid|
+        afresults << ActiveFedora::Base.load_instance_from_solr(pid)
+      end
+      return afresults.to_a
     else
       return partial_result(result, token)
     end
   end
 
   def partial_result(result, token)
+    #binding.pry
     raise OAI::ResumptionTokenException.new unless result
     offset = token.last+@limit
-    OAI::Provider::PartialResult.new(result, token.next(offset))
+    part = result.slice(token.last, @limit)
+    afresults = []
+    part.map{|x| x["id"]}.each do |pid|
+      afresults << ActiveFedora::Base.load_instance_from_solr(pid)
+    end
+    OAI::Provider::PartialResult.new(afresults.to_a, token.next(offset))
+
   end
 
   def timestamp_field
