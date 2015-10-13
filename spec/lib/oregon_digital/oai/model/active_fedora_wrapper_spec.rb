@@ -74,6 +74,7 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
     end
     describe "#latest" do
       it "should return the latest modified_date timestamp" do
+        binding.pry
         expect(subject.latest).to eq generic_asset_2.modified_date
       end
     end
