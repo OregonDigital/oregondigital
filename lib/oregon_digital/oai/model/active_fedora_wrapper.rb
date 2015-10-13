@@ -17,6 +17,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def latest
+    #binding.pry
     latest = inner_model.order("#{updated_at_field} desc").limit(1).first
     latest.try(:modified_date) || Time.at(0).utc.iso8601
   end
@@ -31,7 +32,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
    elsif !selector.blank? && selector!= :all
      query_pairs = "id:#{RSolr.escape(selector)}"
    else
-     query_pairs = "active_fedora_model_ssi:#{self.inner_model}"
+     query_pairs = "active_fedora_model_ssi:GenericAsset"
    end
    query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id"}
@@ -78,6 +79,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def timestamp_field
+    #binding.pry
     :parsed_modified_date
   end
 
