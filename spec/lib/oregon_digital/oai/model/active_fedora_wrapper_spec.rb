@@ -30,6 +30,7 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
     describe "#find" do
       context "when given :all" do
         it "should return all records" do
+          binding.pry
           expect(subject.find(:all).length).to eq 2
         end
       end

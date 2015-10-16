@@ -12,14 +12,18 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def earliest
-    earliest = inner_model.order("#{updated_at_field} asc").limit(1).first
-    earliest.try(:modified_date) || Time.at(0).utc.iso8601
+    query_pairs = "active_fedora_model_ssi:GenericAsset"
+    query_args = {:sort => "system_modified_dtsi asc", :fl => "id,system_modified_dtsi", :rows => 1}
+    earliest = ActiveFedora::SolrService.query(query_parts, query_args)
+    earliest.first["system_modified_dtsi"]
   end
 
   def latest
-    #binding.pry
-    latest = inner_model.order("#{updated_at_field} desc").limit(1).first
-    latest.try(:modified_date) || Time.at(0).utc.iso8601
+    query_pairs = "active_fedora_model_ssi:GenericAsset"
+    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows => 1}
+    latest = ActiveFedora::SolrService.query(query_parts, query_args)
+    latest.first["system_modified_dtsi"]
+
   end
 
   def find(selector, options = {})
@@ -35,30 +39,23 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
      query_pairs = "active_fedora_model_ssi:GenericAsset"
    end
    query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
-   query_args = {:sort => "system_modified_dtsi desc", :fl => "id"}
+   query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi"}
    solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
-   #binding.pry
+   binding.pry
    return next_set(solr_count, options[:resumption_token]) if options[:resumption_token]
    if @limit && solr_count.count > @limit
      return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0}))) 
    end
-    solr_count.map{|x| x["id"]}.each do |pid|
-      afresults << ActiveFedora::Base.load_instance_from_solr(pid)
-    end
+   afresults = convert(solr_count)
    return afresults.to_a
-
   end
 
   def next_set(result, token_string)
-    #binding.pry
     raise OAI::ResumptionTokenException.new unless @limit
     token = OAI::Provider::ResumptionToken.parse(token_string)
     if token.last+@limit == result.count
       part = result.slice(token.last, @limit)
-      afresults = []
-      part.map{|x| x["id"]}.each do |pid|
-        afresults << ActiveFedora::Base.load_instance_from_solr(pid)
-      end
+      afresults = convert(part)
       return afresults.to_a
     else
       return partial_result(result, token)
@@ -66,30 +63,37 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def partial_result(result, token)
-    #binding.pry
     raise OAI::ResumptionTokenException.new unless result
     offset = token.last+@limit
     part = result.slice(token.last, @limit)
-    afresults = []
-    part.map{|x| x["id"]}.each do |pid|
-      afresults << ActiveFedora::Base.load_instance_from_solr(pid)
-    end
+    afresults = convert(part)
     OAI::Provider::PartialResult.new(afresults.to_a, token.next(offset))
-
   end
 
   def timestamp_field
-    #binding.pry
-    :parsed_modified_date
+    return 'modified_date'
   end
 
   def sets
-    result = GenericCollection.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true")
+   result = GenericCollection.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true")
     result = result.order("id desc")
     result.map { |col| ::OAI::Set.new(:name => col.title, :spec => col.pid, :description => col.description) }
   end
 
   private
+
+  def convert(part)
+    afresults = []
+    part.each do |item|
+      #binding.pry
+      obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
+      obj2 = OregonDigital::OAI::Model::SolrInstanceDecorator.new(obj)
+      obj2.modified_date = Time.parse(item["system_modified_dtsi"]).utc
+      afresults << obj2
+    end
+    afresults
+  end
+
 
     def form_query(options)
       from = options.delete(:from) || '*'
