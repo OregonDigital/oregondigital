@@ -19,13 +19,15 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
             http://www.openarchives.org/OAI/2.0/oai_dc.xsd}.gsub(/\s+/, ' ')
       }
     end
-
+    #record.send when format is nil seems to cause an error in gem; other nil fields are handled fine.
     def value_for(field, record, map)
-      binding.pry
-      if record.respond_to?(field)
-        return record.send field
-      else
-        []
+      #binding.pry
+      begin
+        if record.respond_to?(field)
+          val = record.send field
+        end
+      ensure 
+        return val ||=[]
       end
     end
 end
