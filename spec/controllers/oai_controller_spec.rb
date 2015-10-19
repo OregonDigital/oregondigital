@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe OaiController do
   describe '#index' do
-    context "when asked for records" do
+    context "when given a request" do
       let(:format) {RDF::URI.new("http://purl.org/NET/mediatypes/image/tiff")}
       #let(:formaturi) {"http://purl.org/NET/mediatypes/image/tiff"}
       #let(:label) {"image/tiff"}
@@ -34,15 +34,50 @@ describe OaiController do
         f.save
         f
       end
-      before do
+      before (:each) do
         generic_asset_1
         generic_asset_2
         generic_asset_3
-
-        get :index, :verb => "ListRecords", :metadataPrefix => "oai_dc"
       end
-      it "should work" do
-        expect(response).to be_success
+      context "and request is list" do
+        before do
+          get :index, :verb => "ListRecords", :metadataPrefix => "oai_dc"
+        end
+        it "should work" do
+          expect(response).to be_success
+        end
+      end
+      context 'and request is get' do
+        before do
+          get :index, :verb => "GetRecord", :metadataPrefix => "oai_dc", :identifier=>"#{generic_asset_1.id}"
+        end
+        it "should work" do
+          expect(response).to be_success
+        end
+      end
+      context "and request is identifiers" do
+        before do
+          get :index, :verb => "ListIdentifiers", :metadataPrefix => "oai_dc"
+        end
+        it "should work" do
+          expect(response).to be_success
+        end
+      end
+      context "and request is for metadata formats" do
+        before do
+          get :index, :verb => "ListMetadataFormats"
+        end
+        it "should work" do
+          expect(response).to be_success
+        end
+      end
+      context "and request is for identity" do
+        before do
+          get :index, :verb => "Identify"
+        end
+        it "should work" do
+          expect(response).to be_success
+        end
       end
     end
     context "when asked for sets" do
@@ -67,8 +102,8 @@ describe OaiController do
       end
       it "should work" do
         expect(response).to be_success
-
       end
     end
+
   end
 end
