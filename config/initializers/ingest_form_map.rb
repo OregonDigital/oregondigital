@@ -44,6 +44,7 @@ INGEST_MAP = {
     creatorDisplay: "descMetadata.creatorDisplay",
     donor: "descMetadata.donor",
     collector: "descMetadata.collector",
+    translator: "descMetadata.translator",
   },
 
   description: {
