@@ -47,6 +47,9 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
      return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0}))) 
    end
    afresults = convert(solr_count)
+   if !selector.blank? && selector!= :all
+     return afresults.first
+   end
    return afresults.to_a
   end
 
