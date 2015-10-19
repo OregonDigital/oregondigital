@@ -12,14 +12,14 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def earliest
-    query_pairs = "active_fedora_model_ssi:GenericAsset"
+    query_pairs = "active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection"
     query_args = {:sort => "system_modified_dtsi asc", :fl => "id,system_modified_dtsi", :rows => 1}
     earliest = ActiveFedora::SolrService.query(query_pairs, query_args)
     earliest.first["system_modified_dtsi"]
   end
 
   def latest
-    query_pairs = "active_fedora_model_ssi:GenericAsset"
+    query_pairs = "active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection"
     query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows => 1}
     latest = ActiveFedora::SolrService.query(query_pairs, query_args)
     latest.first["system_modified_dtsi"]
@@ -36,7 +36,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
    elsif !selector.blank? && selector!= :all
      query_pairs = "id:#{RSolr.escape(selector)}"
    else
-     query_pairs = "active_fedora_model_ssi:GenericAsset"
+     query_pairs = "active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection"
    end
    query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi"}
