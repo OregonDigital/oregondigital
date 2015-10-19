@@ -30,7 +30,6 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
     describe "#find" do
       context "when given :all" do
         it "should return all records" do
-          binding.pry
           expect(subject.find(:all).length).to eq 2
         end
       end
@@ -70,18 +69,22 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
     end
     describe "#earliest" do
       it "should return the earliest modified_date timestamp" do
-        expect(subject.earliest).to eq generic_asset_1.modified_date
+        ga_time = generic_asset_1.modified_date.to_time(:utc)
+        expect(subject.earliest).to eq ga_time.strftime("%Y-%m-%dT%H:%M:%SZ")
       end
     end
     describe "#latest" do
       it "should return the latest modified_date timestamp" do
-        binding.pry
-        expect(subject.latest).to eq generic_asset_2.modified_date
+        ga_time = generic_asset_2.modified_date.to_time(:utc)
+        expect(subject.latest).to eq ga_time.strftime("%Y-%m-%dT%H:%M:%SZ")
       end
     end
     describe "#sets" do
-      it "should return an array" do
-        expect(subject.sets).to be_a Array
+      before do
+        collection_1
+      end
+      it "should return an array with the coll" do
+        expect(subject.sets.first.name).to eq collection_1.title
       end
     end
   end

@@ -14,14 +14,14 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   def earliest
     query_pairs = "active_fedora_model_ssi:GenericAsset"
     query_args = {:sort => "system_modified_dtsi asc", :fl => "id,system_modified_dtsi", :rows => 1}
-    earliest = ActiveFedora::SolrService.query(query_parts, query_args)
+    earliest = ActiveFedora::SolrService.query(query_pairs, query_args)
     earliest.first["system_modified_dtsi"]
   end
 
   def latest
     query_pairs = "active_fedora_model_ssi:GenericAsset"
     query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows => 1}
-    latest = ActiveFedora::SolrService.query(query_parts, query_args)
+    latest = ActiveFedora::SolrService.query(query_pairs, query_args)
     latest.first["system_modified_dtsi"]
 
   end
@@ -41,7 +41,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
    query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi"}
    solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
-   binding.pry
+   #binding.pry
    return next_set(solr_count, options[:resumption_token]) if options[:resumption_token]
    if @limit && solr_count.count > @limit
      return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0}))) 
@@ -75,7 +75,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def sets
-   result = GenericCollection.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true")
+    result = GenericCollection.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true")
     result = result.order("id desc")
     result.map { |col| ::OAI::Set.new(:name => col.title, :spec => col.pid, :description => col.description) }
   end
