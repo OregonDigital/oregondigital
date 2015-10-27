@@ -5,6 +5,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :aat
     use_vocabulary :worktype
     use_vocabulary :lcsh
+    use_vocabulary :tgm
 
   end
 end
