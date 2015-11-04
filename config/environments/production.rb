@@ -44,6 +44,7 @@ Oregondigital::Application.configure do
 
   # Use a different logger for distributed setups
   config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new('rails-oregondigital-prod'))
+  config.logger.facility = Syslog::LOG_LOCAL0
 
   # Use a different cache store in production
   config.cache_store = :mem_cache_store, *((ENV['MEMCACHE_SERVERS'] || "localhost:11211").split(",").map(&:strip))
