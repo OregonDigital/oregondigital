@@ -43,8 +43,8 @@ Oregondigital::Application.configure do
   # config.log_tags = [ :subdomain, :uuid ]
 
   # Use a different logger for distributed setups
-  config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new('rails-oregondigital-prod'))
-  config.logger.facility = Syslog::LOG_LOCAL0
+  Syslog::Logger.syslog = Syslog.open("rails-oregondigital-prod", nil, Syslog::LOG_LOCAL0)
+  config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new)
 
   # Use a different cache store in production
   config.cache_store = :mem_cache_store, *((ENV['MEMCACHE_SERVERS'] || "localhost:11211").split(",").map(&:strip))
