@@ -1,4 +1,4 @@
-desc 'Generates NGINX Rewrite Rules into tmp/hydra_rewrite_rules.conf'
+desc 'Generates NGINX Rewrite Rules into tmp/oregondigital.map'
 
 task :generate_rewrites => :environment do
   OregonDigital::RewriteGenerator.call
