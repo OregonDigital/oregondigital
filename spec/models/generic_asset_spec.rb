@@ -320,7 +320,6 @@ describe GenericAsset, :resque => true do
       g
     end
     it "should fetch on save" do
-      binding.pry
       subject.reload
       expect(subject.descMetadata.lcsubject.first.rdf_label.first).to eq "Food industry and trade"
     end
