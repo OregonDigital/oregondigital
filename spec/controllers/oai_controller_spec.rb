@@ -1,21 +1,25 @@
 require 'spec_helper'
 
-describe OaiController do
+describe OaiController, :resque => true do
   describe '#index' do
     context "when given a request" do
       let(:format) {RDF::URI.new("http://purl.org/NET/mediatypes/image/tiff")}
-      #let(:formaturi) {"http://purl.org/NET/mediatypes/image/tiff"}
-      #let(:label) {"image/tiff"}
-      #let(:format) do
-        #frm = OregonDigital::ControlledVocabularies::Format.new(formaturi)
-        #frm.set_value(RDF::SKOS.prefLabel, label)
-        #frm.persist!
-      #end
+      let(:lcsubject) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
+      let(:lcname) {RDF::URI.new("http://id.loc.gov/authorities/names/nr93013379")}
+      let(:lcname2) {RDF::URI.new("http://id.loc.gov/authorities/names/no00013511")}
+      let(:type) {RDF::URI.new("http://purl.org/dc/dcmitype/Image")}
+      let(:rights){RDF::URI.new("http://creativecommons.org/licenses/by-nc-nd/4.0/")}
       let(:generic_asset_1) do
-        #GenericAsset.any_instance.stub(:queue_fetch).and_return(true)
         f = FactoryGirl.build(:generic_asset)
-        f.descMetadata.format = format
         f.title = "gen asset 1"
+        f.descMetadata.format = format
+        f.descMetadata.lcsubject = lcsubject
+        f.descMetadata.creator = [lcname,lcname2]
+        f.descMetadata.rights = rights
+        f.descMetadata.type = type
+        f.descMetadata.date = "2012-12-12"
+        f.descMetadata.description = "This thing is a thing."
+        f.descMetadata.identifier = "blahblah123"
         f.save
         f
       end
@@ -35,7 +39,7 @@ describe OaiController do
         f
       end
       before (:each) do
-        generic_asset_1
+        generic_asset_1.reload
         generic_asset_2
         generic_asset_3
       end

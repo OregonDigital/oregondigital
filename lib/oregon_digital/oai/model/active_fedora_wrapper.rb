@@ -1,4 +1,5 @@
 class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
+  include OregonDigital::OAI::Concern::ClassMethods
   attr_accessor :inner_model
 
   def initialize(model, options={})
@@ -23,28 +24,16 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows => 1}
     latest = ActiveFedora::SolrService.query(query_pairs, query_args)
     latest.first["system_modified_dtsi"]
-
   end
 
   def find(selector, options = {})
-   query_pairs = []
-   query_args = {}
    afresults = []
-   set = options.delete(:set)
-   if set
-     query_pairs = "desc_metadata__set_sim: #{RSolr.escape('http://oregondigital.org/resource/' + set)}"
-   elsif !selector.blank? && selector!= :all
-     query_pairs = "id:#{RSolr.escape(selector)}"
-   else
-     query_pairs = "active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection"
-   end
-   query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
+   query_pairs = build_query(selector, options)
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi"}
    solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
-   #binding.pry
    return next_set(solr_count, options[:resumption_token]) if options[:resumption_token]
    if @limit && solr_count.count > @limit
-     return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0}))) 
+     return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0})))
    end
    afresults = convert(solr_count)
    if !selector.blank? && selector!= :all
@@ -85,14 +74,41 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
   private
 
-  def convert(part)
+  def build_query(selector, options={})
+    query_pairs = []
+    set = options.delete(:set)
+    if set
+      query_pairs = "desc_metadata__set_sim: #{RSolr.escape('http://oregondigital.org/resource/' + set)}"
+    elsif !selector.blank? && selector!= :all
+      query_pairs = "id:#{RSolr.escape(selector)}"
+    else
+      query_pairs = "active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection"
+    end
+    query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
+  end
+
+  def convert(items)
     afresults = []
-    part.each do |item|
-      #binding.pry
-      obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
-      obj2 = OregonDigital::OAI::Model::SolrInstanceDecorator.new(obj)
-      obj2.modified_date = Time.parse(item["system_modified_dtsi"]).utc
-      afresults << obj2
+    items.each do |item|
+      pseudo_obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
+      solrqry = ActiveFedora::SolrService.query("id:#{RSolr.escape(item['id'])}")
+      wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
+      #replace the uris with labels
+      uri_fields.each do |field|
+        val = solrqry.first["desc_metadata__#{field}_label_ssm"]
+        unless val.nil?
+          label_arr = []
+          val.each do |term|
+            label = term.split('$')
+            label_arr << label[0]
+          end
+          wrapped.set_attrs("#{field}", label_arr)
+        end
+      end
+      #override the item identifier
+      wrapped.identifier = "http://oregondigital.org/catalog/" + item["id"]
+      wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
+      afresults << wrapped
     end
     afresults
   end
