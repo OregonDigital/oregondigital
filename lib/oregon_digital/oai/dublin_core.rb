@@ -1,12 +1,13 @@
 class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
 
+    include OregonDigital::OAI::Concern::ClassMethods
+
     def initialize
       @prefix = 'oai_dc'
       @schema = 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd'
       @namespace = 'http://www.openarchives.org/OAI/2.0/oai_dc/'
       @element_namespace = 'dc'
-      @fields = [ :title, :creator, :subject, :description,
-                  :date, :type, :format, :identifier, :rights]
+      @fields = uri_fields + string_fields
     end
 
     def header_specification
@@ -19,9 +20,8 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
             http://www.openarchives.org/OAI/2.0/oai_dc.xsd}.gsub(/\s+/, ' ')
       }
     end
-    #record.send when format is nil seems to cause an error in gem; other nil fields are handled fine.
+
     def value_for(field, record, map)
-      #binding.pry
       begin
         if record.respond_to?(field)
           val = record.send field

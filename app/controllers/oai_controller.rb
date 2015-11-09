@@ -7,3 +7,4 @@ class OaiController < ApplicationController
     render :text => response, :content_type => 'text/xml'
   end
 end
+
