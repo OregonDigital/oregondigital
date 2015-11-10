@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "IP Roles" do
   context "when an item is restricted to an IP" do
-    let(:role) {FactoryGirl.create(:role)}
+    let(:role) {Role.new(:name=>"University-of-Oregon")}
     let(:ip_range) {IpRange.create(:role => role, :ip_start => ip, :ip_end => ip)}
     let(:ip) {"128.0.0.0"}
     let(:asset) do
@@ -31,6 +31,7 @@ describe "IP Roles" do
         end
         it "should not be viewable" do
           expect(page).not_to have_content(asset.title)
+          expect(page).to have_content("VPN")
         end
       end
     end

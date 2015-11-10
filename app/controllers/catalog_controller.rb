@@ -26,6 +26,14 @@ class CatalogController < ApplicationController
   # Filter out destroyed items.
   self.solr_search_params_logic += [:exclude_destroyed_items]
 
+  rescue_from Hydra::AccessDenied do |exception|
+    asset = ActiveFedora::Base.find(request["id"])
+    if ((asset.read_groups.include? "University-of-Oregon") || (asset.read_groups.include? "Oregon-State-University") )
+      redirect_to root_url, :alert => "Requested asset is restricted to university use on campus; if accessing Oregon Digital from off-campus, please use VPN."
+    else redirect_to new_user_session_url, :alert => "You do not have sufficient access privileges to read this document, which has been marked private."
+    end
+  end
+
   private
 
   def exclude_unwanted_models(solr_parameters, user_parameters)
