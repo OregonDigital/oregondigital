@@ -27,10 +27,16 @@ class CatalogController < ApplicationController
   self.solr_search_params_logic += [:exclude_destroyed_items]
 
   rescue_from Hydra::AccessDenied do |exception|
-    asset = ActiveFedora::Base.find(request["id"])
-    if ((asset.read_groups.include? "University-of-Oregon") || (asset.read_groups.include? "Oregon-State-University") )
-      redirect_to root_url, :alert => "Requested asset is restricted to university use on campus; if accessing Oregon Digital from off-campus, please use VPN."
-    else redirect_to new_user_session_url, :alert => "You do not have sufficient access privileges to read this document, which has been marked private."
+    unless request["id"].nil?
+      asset = ActiveFedora::Base.find(request["id"])
+      if ((asset.read_groups.include? "University-of-Oregon") || (asset.read_groups.include? "Oregon-State-University") )
+        return redirect_to root_url, :alert => "Requested asset is restricted to university use on campus; if accessing Oregon Digital from off-campus, please use VPN."
+      end
+    end
+    if current_user and current_user.persisted?
+      redirect_to root_url, :alert => exception.message
+    else
+      redirect_to new_user_session_url, :alert => exception.message
     end
   end
 
