@@ -84,14 +84,16 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     else
       query_pairs = "active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection"
     end
-    query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
+    query_pairs += (" AND " + add_from_to(options))
+    #query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
   end
 
   def convert(items)
     afresults = []
     items.each do |item|
-      pseudo_obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
       solrqry = ActiveFedora::SolrService.query("id:#{RSolr.escape(item['id'])}")
+      next unless is_valid(solrqry)
+      pseudo_obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
       wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
       #replace the uris with labels
       uri_fields.each do |field|
@@ -105,6 +107,9 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
           wrapped.set_attrs("#{field}", label_arr)
         end
       end
+      if solrqry.first["workflow_metadata__destroyed_ssm"]
+        wrapped.set_attrs("deleted", true) # put this in the decorator to begin with?
+      end
       #override the item identifier
       wrapped.identifier = "http://oregondigital.org/catalog/" + item["id"]
       wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
@@ -112,6 +117,15 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     end
     afresults
   end
+
+    def is_valid(solrqry)
+      if solrqry.first["reviewed_ssim"].first =="true"
+        return true
+      elsif !solrqry.first["workflow_metadata__destroyed_ssm"].nil? && solrqry.first["workflow_metadata__destroyed_ssm"].first == "true"
+        return true
+      else return false
+      end
+    end
 
     def add_from_to(options)
       from = options.delete(:from)

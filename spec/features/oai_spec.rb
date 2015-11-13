@@ -16,9 +16,11 @@ describe "OAI endpoint" do
       asset.descMetadata.identifier = "blahblah123"
       asset.save
       asset.review!
-      visit oai_path(:verb => "ListRecords", :metadataPrefix => "oai_dc")
     end
     context "and they are generic assets" do
+      before :each do
+        visit oai_path(:verb => "ListRecords", :metadataPrefix => "oai_dc")
+      end
       it "should show them" do
         expect(page).to have_content("Test Title")
       end
@@ -35,8 +37,21 @@ describe "OAI endpoint" do
         expect(page).not_to have_content("blahblah123")
       end
     end
+    context "if one of them is deleted" do
+      before do
+        asset.soft_destroy
+        asset.save
+        visit oai_path(:verb => "ListRecords", :metadataPrefix => "oai_dc")
+      end
+      it "should have 'deleted' in the header of the record" do
+        expect(page).to have_xpath('//header[@status="deleted"]')
+      end
+    end
     context "and they are documents" do
       let(:asset_class) {Document}
+      before do
+        visit oai_path(:verb => "ListRecords", :metadataPrefix => "oai_dc")
+      end
       it "should show them" do
         expect(page).to have_content("Test Title")
       end
