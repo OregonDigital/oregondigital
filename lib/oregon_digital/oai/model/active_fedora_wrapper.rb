@@ -113,12 +113,19 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     afresults
   end
 
-
-    def form_query(options)
-      from = options.delete(:from) || '*'
-      from = from.iso8601 unless from.to_s == '*'
-      until_date = options.delete(:until) || '*'
-      until_date = until_date.iso8601 unless until_date.to_s == '*'
+    def add_from_to(options)
+      from = options.delete(:from)
+      if from
+        from = from.to_time(:utc) unless from.is_a? Time
+        from = from.iso8601
+      else from = '*'
+      end
+      until_date = options.delete(:until)
+      if until_date
+        until_date = until_date.to_time(:utc)unless until_date.is_a? Time
+        until_date = until_date.iso8601
+      else until_date = '*'
+      end
       "#{updated_at_field}:[#{from} TO #{until_date}]"
     end
 
