@@ -5,6 +5,7 @@ describe "OAI endpoint" do
   context "when there are assets" do
     let(:lcname) {RDF::URI.new("http://id.loc.gov/authorities/names/nr93013379")}
     let(:lcname2) {RDF::URI.new("http://id.loc.gov/authorities/names/no00013511")}
+    let(:lcsubj) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2003003075")}
     let(:asset) {asset_class.new}
     before(:each) do
       asset.title = "Test Title"
@@ -14,6 +15,9 @@ describe "OAI endpoint" do
       asset.descMetadata.creator.second.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("Hisaishi, Joe", :language => :en))
       asset.descMetadata.creator.second.persist!
       asset.descMetadata.identifier = "blahblah123"
+      asset.descMetadata.lcsubject = [lcsubj]
+      asset.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("anime", :language => :en))
+      asset.descMetadata.lcsubject.first.persist!
       asset.save
       asset.review!
     end
@@ -35,6 +39,10 @@ describe "OAI endpoint" do
       it "should include as an identifier the OD url" do
         expect(page).to have_content("http://oregondigital.org/catalog/" + asset.pid)
         expect(page).not_to have_content("blahblah123")
+      end
+      #note that can't look for dc:lcsubject because nokogiri doesn't recognize the namespace
+      it "should use the mapped_field if there is one" do
+        expect(page).not_to have_xpath('//lcsubject')
       end
     end
     context "if one of them is deleted" do

@@ -12,7 +12,9 @@ module OregonDigital::OAI::Concern
     def uri_fields
       @uri_fields = [:creator, :lcsubject, :type, :format, :rights]
     end
-
+    def mapped_fields
+      @mapped_fields = {:lcsubject => "subject"}
+    end
   end
 end
 
