@@ -52,6 +52,11 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
           expect(subject.find(:all, :resumption_token => middle_result.token.send(:encode_conditions))).to eq [generic_asset_1]
         end
       end
+      context "when given a date range that ends prior to today" do
+        it "should return 0 records" do
+          expect(subject.find(:all, :from => "2010-01-01", :until=>"2013-12-31").length).to eq 0
+        end
+      end
       context "when given an id" do
         it "should return that record" do
           expect(subject.find(generic_asset_1.pid).title).to eq generic_asset_1.title
