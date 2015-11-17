@@ -104,7 +104,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
             label = term.split('$')
             label_arr << label[0]
           end
-          wrapped.set_attrs("#{field}", label_arr)
+          final_field = mapped_fields[field] || field
+          wrapped.set_attrs("#{final_field}", label_arr)
         end
       end
       if solrqry.first["workflow_metadata__destroyed_ssm"]
