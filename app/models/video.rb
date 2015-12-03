@@ -27,9 +27,9 @@ class Video < GenericAsset
   
   def create_video_files
     transform_datastream :content, {
-        :webm => {
-          :format => "webm"
-        },
+#        :webm => {
+#          :format => "webm"
+#        },
         :mp4 => {
           :format => "mp4"
         },
