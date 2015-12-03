@@ -23,11 +23,11 @@ describe Video do
         subject.save
         subject.create_derivatives
       end
-      it "should create a webm" do
+      xit "should create a webm" do
         mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(subject.webm_location).split(';')[0]
         expect(mime_type).to eq 'video/webm'
       end
-      it 'should populate the external webm datastream' do
+      xit 'should populate the external webm datastream' do
         expect(subject.content_webm.dsLocation).to eq("file://#{subject.webm_location}")
         expect(Video.find(subject.pid).content_webm.dsLocation).to eq("file://#{subject.webm_location}")
       end

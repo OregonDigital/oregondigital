@@ -4,7 +4,8 @@ class VideoDecorator < GenericAssetDecorator
   end
 
   def video_files
-    webm_file.merge(mp4_file)
+    mp4_file
+#    webm_file.merge(mp4_file)
   end
 
   def webm_file
