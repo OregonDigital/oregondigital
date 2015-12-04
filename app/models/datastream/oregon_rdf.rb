@@ -213,6 +213,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :rangerDistrict, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.rangerDistrict, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :waterBasin, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.waterBasin, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
+    index.as :searchable, :facetable, :displayable
+  end
   property :tgn, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tgn, :class_name => OregonDigital::ControlledVocabularies::GettyTGN do |index|
     index.as :searchable, :facetable, :displayable
   end
@@ -528,6 +531,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
   property :hasNumber, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#hasNumber') do |index|
+    index.as :displayable
+  end
+  property :onPages, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#onPages') do |index|
     index.as :displayable
   end
 
