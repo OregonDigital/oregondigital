@@ -52,9 +52,14 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
           expect(subject.find(:all, :resumption_token => middle_result.token.send(:encode_conditions))).to eq [generic_asset_1]
         end
       end
+      context "when given a date range that ends prior to today" do
+        it "should return 0 records" do
+          expect(subject.find(:all, :from => "2010-01-01", :until=>"2013-12-31").length).to eq 0
+        end
+      end
       context "when given an id" do
         it "should return that record" do
-          expect(subject.find(generic_asset_1.pid).first).to eq generic_asset_1
+          expect(subject.find(generic_asset_1.pid).title).to eq generic_asset_1.title
         end
       end
       context "when given a set" do
@@ -69,17 +74,22 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
     end
     describe "#earliest" do
       it "should return the earliest modified_date timestamp" do
-        expect(subject.earliest).to eq generic_asset_1.modified_date
+        ga_time = generic_asset_1.modified_date.to_time(:utc)
+        expect(subject.earliest).to eq ga_time.strftime("%Y-%m-%dT%H:%M:%SZ")
       end
     end
     describe "#latest" do
       it "should return the latest modified_date timestamp" do
-        expect(subject.latest).to eq generic_asset_2.modified_date
+        ga_time = generic_asset_2.modified_date.to_time(:utc)
+        expect(subject.latest).to eq ga_time.strftime("%Y-%m-%dT%H:%M:%SZ")
       end
     end
     describe "#sets" do
-      it "should return an array" do
-        expect(subject.sets).to be_a Array
+      before do
+        collection_1
+      end
+      it "should return an array with the coll" do
+        expect(subject.sets.first.name).to eq collection_1.title
       end
     end
   end

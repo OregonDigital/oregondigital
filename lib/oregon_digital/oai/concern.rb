@@ -6,12 +6,15 @@ module OregonDigital::OAI::Concern
     end
   end
   module ClassMethods
-    def map_oai_dc
-      {:subject => :subject,
-       :description => :description,
-       :creator => :creator,
-       :contributor => :contributor
-      }
+    def string_fields
+      @string_fields = [ :title, :description, :date, :identifier]
+    end
+    def uri_fields
+      @uri_fields = [:creator, :lcsubject, :type, :format, :rights]
+    end
+    def mapped_fields
+      @mapped_fields = {:lcsubject => "subject"}
     end
   end
 end
+
