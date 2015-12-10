@@ -67,9 +67,12 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def sets
-    result = GenericCollection.where(ActiveFedora::SolrService.solr_name(:reviewed, :symbol) => "true")
-    result = result.order("id desc")
-    result.map { |col| ::OAI::Set.new(:name => col.title, :spec => col.pid, :description => col.description) }
+    cols = []
+    result = ActiveFedora::SolrService.query("active_fedora_model_ssi:GenericCollection AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true", :sort=>"id desc", :fl=> "id")
+    result.each do |col|
+      cols << get_set(col["id"])
+    end
+    cols
   end
 
   private
