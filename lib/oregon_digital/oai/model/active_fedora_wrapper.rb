@@ -114,9 +114,21 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
       #override the item identifier
       wrapped.identifier = "http://oregondigital.org/catalog/" + item["id"]
       wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
+      sets = []
+      if !pseudo_obj.set.nil?
+        pseudo_obj.set.each do |setid|
+          sets << get_set(setid.to_str.split('/').last)
+        end
+        wrapped.sets = sets
+      end
       afresults << wrapped
     end
     afresults
+  end
+
+  def get_set(id)
+    col = ActiveFedora::Base.load_instance_from_solr(id)
+    set = ::OAI::Set.new(:name => col.title, :spec=> col.id, :description => col.description)
   end
 
     def is_valid(solrqry)
