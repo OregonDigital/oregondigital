@@ -75,6 +75,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     cols
   end
 
+  private
+
   def get_set_from_options(options)
     if !options[:resumption_token].nil?
       token = OAI::Provider::ResumptionToken.parse(options[:resumption_token])
@@ -83,8 +85,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
       set = options[:set]
     end
     set
-end
-  private
+  end
 
   def build_query(selector, options={})
     query_pairs = []
@@ -138,9 +139,21 @@ end
     afresults
   end
 
+  def create_description(col)
+    institutions = ""
+    if !col.institution.nil?
+       col.institution.inject{|institutions,element| institutions + ", " + element}
+    end
+    description = "Title: " + col.title + ", Institution(s): " + institutions
+  end
+
   def get_set(id)
     col = ActiveFedora::Base.load_instance_from_solr(id)
-    set = ::OAI::Set.new(:name => col.title, :spec=> col.id, :description => col.description)
+    description = col.description
+    if description.nil?
+      description = create_description(col)
+    end
+    set = ::OAI::Set.new(:name => col.title, :spec=> col.id, :description => description)
   end
 
     def is_valid(solrqry)
