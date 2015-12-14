@@ -75,11 +75,20 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     cols
   end
 
+  def get_set_from_options(options)
+    if !options[:resumption_token].nil?
+      token = OAI::Provider::ResumptionToken.parse(options[:resumption_token])
+      set = token.set
+    else
+      set = options[:set]
+    end
+    set
+end
   private
 
   def build_query(selector, options={})
     query_pairs = []
-    set = options.delete(:set)
+    set = get_set_from_options(options)
     if set
       query_pairs = "desc_metadata__set_sim: #{RSolr.escape('http://oregondigital.org/resource/' + set)}"
     elsif !selector.blank? && selector!= :all
