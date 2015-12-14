@@ -29,7 +29,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   def find(selector, options = {})
    afresults = []
    query_pairs = build_query(selector, options)
-   query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi"}
+   query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>1000000}
    solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
    return next_set(solr_count, options[:resumption_token]) if options[:resumption_token]
    if @limit && solr_count.count > @limit
@@ -75,11 +75,20 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     cols
   end
 
+  def get_set_from_options(options)
+    if !options[:resumption_token].nil?
+      token = OAI::Provider::ResumptionToken.parse(options[:resumption_token])
+      set = token.set
+    else
+      set = options[:set]
+    end
+    set
+end
   private
 
   def build_query(selector, options={})
     query_pairs = []
-    set = options.delete(:set)
+    set = get_set_from_options(options)
     if set
       query_pairs = "desc_metadata__set_sim: #{RSolr.escape('http://oregondigital.org/resource/' + set)}"
     elsif !selector.blank? && selector!= :all
