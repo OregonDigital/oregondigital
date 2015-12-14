@@ -29,7 +29,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   def find(selector, options = {})
    afresults = []
    query_pairs = build_query(selector, options)
-   query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi"}
+   query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>1000000}
    solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
    return next_set(solr_count, options[:resumption_token]) if options[:resumption_token]
    if @limit && solr_count.count > @limit
