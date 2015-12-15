@@ -9,7 +9,7 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
       @element_namespace = 'dc'
 
       @fields = []
-      tempfields = uri_fields + string_fields
+      tempfields = string_fields + uri_fields
       tempfields.each do |field|
         tempfield = mapped_fields[field] || field
         @fields << tempfield.to_sym
