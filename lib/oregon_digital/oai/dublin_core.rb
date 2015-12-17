@@ -7,12 +7,15 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
       @schema = 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd'
       @namespace = 'http://www.openarchives.org/OAI/2.0/oai_dc/'
       @element_namespace = 'dc'
+
       @fields = []
-      tempfields = string_fields + uri_fields
+
+      tempfields = [:title, :description, :date, :identifier, :creator, :photographer, :lcsubject, :type, :format, :rights, :location]
       tempfields.each do |field|
         tempfield = mapped_fields[field] || field
         @fields << tempfield.to_sym
       end
+
     end
 
     def header_specification
