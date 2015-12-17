@@ -6,14 +6,12 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
       @prefix = 'oai_qdc'
       @schema = 'http://dublincore.org/schemas/xmls/qdc/2008/02/11/qualifieddc.xsd'
       @namespace = 'http://purl.org/dc/terms/'
-      @element_namespace = 'dc'
+      @element_namespace = 'dcterms'
 
-      @fields = []
-      tempfields = string_fields + uri_fields
-      tempfields.each do |field|
-        tempfield = mapped_fields[field] || field
-        @fields << tempfield.to_sym
-      end
+      # Dublin Core Terms Fields
+      @fields = [:title, :description, :identifier, :date, :created, :issued,
+                 :creator, :contributor, :subject, :type, :rights, :spatial, :language, :isPartOf]
+      # Format causing problems with Rails reserved keywords  :format
     end
 
     def header_specification
@@ -29,13 +27,26 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
       }
     end
 
+
+    # For each Dublin Core field, oai_qdc_map returns values, this gets called to grab values
     def value_for(field, record, map)
-      begin
-        if record.respond_to?(field)
-          val = record.send field
+      method = map[field] ? map[field] : field
+
+      val = []
+
+      method.each do |fld|
+        if record.respond_to?(fld) && !record.send(fld).nil?
+          val << record.send(fld) unless record.send(fld).empty?
         end
-      ensure 
-        return val ||=[]
       end
+
+      if val.is_a?(String) && !val.nil?
+        return val
+      elsif val.is_a?(Array)
+        return val.join('; ')
+      else
+        return val ||= []
+      end
+
     end
 end
