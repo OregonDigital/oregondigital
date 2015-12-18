@@ -7,9 +7,6 @@ module OregonDigital::OAI::Concern
   end
 
   module ClassMethods
-    def string_fields
-      @string_fields = [:title, :description, :date, :identifier]
-    end
     def uri_fields
       @uri_fields = [:creator, :lcsubject, :type, :format, :rights, :location, :author, :editor, :photographer, :rangerDistrict, :set]
     end
@@ -21,7 +18,7 @@ module OregonDigital::OAI::Concern
       }
     end
 
-    # Map Oregon Digital fields to Qualified Dublin Core fields
+    # Map Qualified Dublin Core (Terms) fields to Oregon Digital fields
     def map_oai_qdc
       { :title => [:title],
         :description => [:description],
@@ -38,6 +35,26 @@ module OregonDigital::OAI::Concern
 #        :format => [:format],
         :language => [:language],
         :isPartOf => [:set]
+      }
+    end
+
+    # Map Dublin Core (Elements) fields to Oregon Digital fields
+    def map_oai_dc
+      { :title => [:title],
+        :description => [:description],
+        :date => [:date],
+        :identifier => [:identifier],
+        :creator => [:creator],
+        :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :donor, :editor, :photographer],
+        :subject => [:lcsubject, :subject],
+        :coverage => [:location, :tgn, :waterBasin, :rangerDistrictc, :streetAddress],
+        :publisher => [:publisher],
+        :type => [:type],
+#        :format => [:format],
+#        :source => [:source],
+        :language => [:language],
+        :relation => [:set],
+        :rights => [:rights]
       }
     end
   end
