@@ -8,14 +8,11 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
       @namespace = 'http://www.openarchives.org/OAI/2.0/oai_dc/'
       @element_namespace = 'dc'
 
-      @fields = []
-
-      tempfields = [:title, :description, :date, :identifier, :creator, :photographer, :lcsubject, :type, :format, :rights, :location]
-      tempfields.each do |field|
-        tempfield = mapped_fields[field] || field
-        @fields << tempfield.to_sym
-      end
-
+      # Dublin Core Elements fields
+      @fields = [:title, :description, :date, :identifier, :creator, :contributor, :coverage, :relation,
+                   :type, :rights, :subject, :publisher, :language]
+      # Format causing problems with Rails reserved keywords   :format
+      # Source wasn't working as expected
     end
 
     def header_specification
@@ -30,6 +27,25 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
     end
 
     def value_for(field, record, map)
+      method = map[field] ? map[field] : field
+
+      val = []
+
+      method.each do |fld|
+        if record.respond_to?(fld) && !record.send(fld).nil?
+          val << record.send(fld) unless record.send(fld).empty?
+        end
+      end
+      
+      if val.is_a?(String) && !val.nil?
+        return val
+      elsif val.is_a?(Array)
+        return val.join('; ')
+      else
+        return val ||= []
+      end
+
+=begin
       begin
         if record.respond_to?(field)
           val = record.send field
@@ -37,5 +53,6 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
       ensure 
         return val ||=[]
       end
+=end
     end
 end
