@@ -36,7 +36,7 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
           val << record.send(fld) unless record.send(fld).empty?
         end
       end
-      
+
       if val.is_a?(String) && !val.nil?
         return val
       elsif val.is_a?(Array)
@@ -44,15 +44,5 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
       else
         return val ||= []
       end
-
-=begin
-      begin
-        if record.respond_to?(field)
-          val = record.send field
-        end
-      ensure 
-        return val ||=[]
-      end
-=end
     end
 end

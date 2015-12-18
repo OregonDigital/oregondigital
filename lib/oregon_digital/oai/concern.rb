@@ -11,13 +11,6 @@ module OregonDigital::OAI::Concern
       @uri_fields = [:creator, :lcsubject, :type, :format, :rights, :location, :author, :editor, :photographer, :rangerDistrict, :set]
     end
 
-    def mapped_fields
-      @mapped_fields = {#:lcsubject => "subject",
-#                        :location => "coverage",
-#                        :photographer => "creator2"
-      }
-    end
-
     # Map Qualified Dublin Core (Terms) fields to Oregon Digital fields
     def map_oai_qdc
       { :title => [:title],
@@ -47,7 +40,7 @@ module OregonDigital::OAI::Concern
         :creator => [:creator],
         :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :donor, :editor, :photographer],
         :subject => [:lcsubject, :subject],
-        :coverage => [:location, :tgn, :waterBasin, :rangerDistrictc, :streetAddress],
+        :coverage => [:location, :tgn, :waterBasin, :rangerDistrict, :streetAddress],
         :publisher => [:publisher],
         :type => [:type],
 #        :format => [:format],
