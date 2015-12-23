@@ -9,8 +9,11 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
       @element_namespace = 'dcterms'
 
       # Dublin Core Terms Fields
-      @fields = [:title, :description, :identifier, :date, :created, :issued,
-                 :creator, :contributor, :subject, :type, :rights, :spatial, :language, :isPartOf]
+      # For new fields, add here first then add to oai_qdc_map
+      @fields = [:title, :alternative, :description, :abstract, :identifier, :date, :created, :issued,
+                  :creator, :contributor, :subject, :type, :rights, :rightsHolder, :license, :publisher, :provenance,
+                  :spatial, :language, :isPartOf, :tableOfContents, :temporal, :bibliographicCitation, :relation,
+                  :isReferencedBy, :hasPart, :hasVersion, :isVersionOf, :extent]
       # Format causing problems with Rails reserved keywords  :format
     end
 
@@ -27,8 +30,7 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
       }
     end
 
-
-    # For each Dublin Core field, oai_qdc_map returns values, this gets called to grab values
+    # For each Dublin Core field, oai_qdc_map returns properties, this gets called to grab values
     def value_for(field, record, map)
       method = map[field] ? map[field] : field
 
@@ -37,6 +39,8 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
       method.each do |fld|
         if record.respond_to?(fld) && !record.send(fld).nil?
           val << record.send(fld) unless record.send(fld).empty?
+        elsif record.descMetadata.respond_to?(fld) && !record.descMetadata.send(fld).nil?
+          val << record.descMetadata.send(fld) unless record.descMetadata.send(fld).empty?
         end
       end
 

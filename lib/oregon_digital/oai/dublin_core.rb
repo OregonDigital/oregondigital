@@ -34,6 +34,8 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
       method.each do |fld|
         if record.respond_to?(fld) && !record.send(fld).nil?
           val << record.send(fld) unless record.send(fld).empty?
+        elsif record.descMetadata.respond_to?(fld) && !record.descMetadata.send(fld).nil?
+          val << record.descMetadata.send(fld) unless record.descMetadata.send(fld).empty?
         end
       end
 
