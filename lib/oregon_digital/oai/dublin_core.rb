@@ -41,10 +41,35 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
 
       if val.is_a?(String) && !val.nil?
         return val
-      elsif val.is_a?(Array)
+      elsif val.is_a?(Array) && !val.empty?
         return val.join('; ')
       else
-        return val ||= []
+        return nil
+      end
+    end
+
+    # Copied from ruby-oai gem: ruby-oai/lib/oai/provider/metadata_format.rb
+    # Changed to not write out fields if values are nil
+    def encode(model, record)
+      if record.respond_to?("to_#{prefix}")
+        record.send("to_#{prefix}")
+      else
+        xml = Builder::XmlMarkup.new
+        map = model.respond_to?("map_#{prefix}") ? model.send("map_#{prefix}") : {}
+          xml.tag!("#{prefix}:#{element_namespace}", header_specification) do
+            fields.each do |field|
+              values = value_for(field, record, map)
+              next if values.nil?
+              if values.respond_to?(:each)
+                values.each do |value|
+                  xml.tag! "#{element_namespace}:#{field}", value
+                end
+              else
+                xml.tag! "#{element_namespace}:#{field}", values
+              end
+            end
+          end
+        xml.target!
       end
     end
 end
