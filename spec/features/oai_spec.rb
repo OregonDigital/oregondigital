@@ -36,6 +36,9 @@ describe "OAI endpoint" do
         expect(page).to have_content("Hisaishi")
         expect(page).to have_content("Miyazaki")
       end
+      it "should separate multiple values with a semicolon" do
+        expect(page).to have_content("Miyazaki, Hayao, 1942-; Hisaishi, Joe")
+      end
       it "should include as an identifier the OD url" do
         expect(page).to have_content("http://oregondigital.org/catalog/" + asset.pid)
         expect(page).not_to have_content("blahblah123")
