@@ -1,3 +1,4 @@
-<%= button_to "Mark as Reviewed", review_generic_asset_path(document.id), :method => :put %>
+<%= button_to "Mark as Reviewed", review_generic_asset_path(document.id),
+    :method => :put, :class => "prevent-double-click" %>
 
 <%= render :partial => "catalog/index_default", :locals => local_assigns %>
