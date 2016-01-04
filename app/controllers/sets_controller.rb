@@ -4,14 +4,10 @@ class SetsController < CatalogController
 
   before_filter :strip_facets
 
-  def index
-    if params[:set]
-      @collection = set
-    else
-      @collections = sets.sort_by {|s| s.title.sub(/^(the|a|an)\s+/i, '')}
-    end
-    super
-  end
+  # I don't like this approach, but the blacklight inheritance combined with
+  # Hydra and OD magic could make it tough and/or verbose to ensure we always
+  # have @collection set properly.
+  before_filter :get_collection
 
   def search_action_url(options={})
     if @collection
@@ -52,4 +48,12 @@ class SetsController < CatalogController
     end
   end
 
+  # Gets @collection or @collections based on presence of :set in params
+  def get_collection
+    if params[:set]
+      @collection = set
+    else
+      @collections = sets.sort_by {|s| s.title.sub(/^(the|a|an)\s+/i, '')}
+    end
+  end
 end
