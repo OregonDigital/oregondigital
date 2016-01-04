@@ -1,16 +1,19 @@
 # Coverage
 require 'simplecov'
-require 'coveralls'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-    SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
-]
-pid = Process.pid
-SimpleCov.at_exit do
-  SimpleCov.result.format! if Process.pid == pid
+unless ENV['NO_COVERAGE']
+  require 'simplecov'
+
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+      SimpleCov::Formatter::HTMLFormatter,
+      Coveralls::SimpleCov::Formatter
+  ]
+  pid = Process.pid
+  SimpleCov.at_exit do
+    SimpleCov.result.format! if Process.pid == pid
+  end
+  SimpleCov.start('rails')
 end
-SimpleCov.start('rails')
 
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
