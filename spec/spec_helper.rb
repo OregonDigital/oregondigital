@@ -1,16 +1,18 @@
 # Coverage
-require 'simplecov'
-require 'coveralls'
+unless ENV['NO_COVERAGE']
+  require 'simplecov'
+  require 'coveralls'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-    SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
-]
-pid = Process.pid
-SimpleCov.at_exit do
-  SimpleCov.result.format! if Process.pid == pid
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+      SimpleCov::Formatter::HTMLFormatter,
+      Coveralls::SimpleCov::Formatter
+  ]
+  pid = Process.pid
+  SimpleCov.at_exit do
+    SimpleCov.result.format! if Process.pid == pid
+  end
+  SimpleCov.start('rails')
 end
-SimpleCov.start('rails')
 
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -31,6 +33,9 @@ DUMMY_PATH = File.join(ROOT_PATH,"dummies")
 WebMock.disable_net_connect!(:allow_localhost => true)
 
 RSpec.configure do |config|
+  # Let Rails do its thing with spec types
+  config.infer_spec_type_from_file_location!
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
