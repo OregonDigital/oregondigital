@@ -14,6 +14,8 @@ Oregondigital::Application.configure do
   config.action_controller.perform_caching = true
   config.cache_store = :mem_cache_store
 
+  Deprecation.default_deprecation_behavior = :silence
+
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
