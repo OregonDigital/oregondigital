@@ -37,8 +37,6 @@ module OregonDigital::OAI::Concern
         :provenance => [:provenance],
         :spatial => [:location, :tgn, :waterBasin, :rangerDistrict, :streetAddress, :geobox, :latitude, :longitude],
         :type => [:type],
-#        :format => [:format],
-#        :source => [:source],
         :language => [:language],
         :isPartOf => [:set, :containedInJournal, :localCollectionName, :isPartOf, :largerWork],
         :tableOfContents => [:tableOfContents],
@@ -67,8 +65,6 @@ module OregonDigital::OAI::Concern
         :coverage => [:location, :tgn, :waterBasin, :rangerDistrict, :streetAddress, :temporal, :geobox, :latitude, :longitude],
         :publisher => [:publisher, :od_repository],
         :type => [:type],
-#        :format => [:format],
-#        :source => [:source],
         :language => [:language],
         :relation => [:relation, :set, :localCollectionName, :artSeries, :findingAid],
         :rights => [:rights, :rightsHolder, :license, :useRestrictions, :accessRestrictions]

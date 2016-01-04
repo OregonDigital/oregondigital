@@ -11,8 +11,6 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
     # Dublin Core Elements fields
     @fields = [:title, :description, :date, :identifier, :creator, :contributor, :coverage, :relation,
                  :type, :rights, :subject, :publisher, :language]
-    # Format causing problems with Rails reserved keywords   :format
-    # Source wasn't working as expected
   end
 
   def header_specification

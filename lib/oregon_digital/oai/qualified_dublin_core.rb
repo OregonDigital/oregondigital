@@ -14,7 +14,6 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
                 :creator, :contributor, :subject, :type, :rights, :rightsHolder, :license, :publisher, :provenance,
                 :spatial, :language, :isPartOf, :tableOfContents, :temporal, :bibliographicCitation, :relation,
                 :isReferencedBy, :hasPart, :hasVersion, :isVersionOf, :extent]
-    # Format causing problems with Rails reserved keywords  :format
   end
 
   def header_specification
