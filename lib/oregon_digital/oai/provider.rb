@@ -6,4 +6,5 @@ class OregonDigital::OAI::Provider < ::OAI::Provider::Base
   sample_id APP_CONFIG['oai']['sample_id']
   source_model ::OregonDigital::OAI::Model::ActiveFedoraWrapper.new(::ActiveFedora::Base, :limit => 10)
   Base.register_format(OregonDigital::OAI::DublinCore.instance)
+  Base.register_format(OregonDigital::OAI::QualifiedDublinCore.instance)
 end
