@@ -1,8 +1,7 @@
 # Coverage
-require 'simplecov'
-
 unless ENV['NO_COVERAGE']
   require 'simplecov'
+  require 'coveralls'
 
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
       SimpleCov::Formatter::HTMLFormatter,
