@@ -25,7 +25,8 @@
   <% end %>
   <% if can?(:review, decorated_object) && !decorated_object.reviewed? && !decorated_object.soft_destroyed? %>
     <li>
-      <%= link_to(review_generic_asset_path(decorated_object), :method => :put) do %>
+      <%= link_to(review_generic_asset_path(decorated_object),
+          :method => :put, :class => "prevent-double-click") do %>
         <span>Mark as Reviewed</span>
         <span class="sr-only"><%= decorated_object.title %></span>
       <% end %>
