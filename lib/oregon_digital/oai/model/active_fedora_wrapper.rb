@@ -101,6 +101,19 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     #query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
   end
 
+
+def extract_labels(qry, field)
+  val = qry.first["desc_metadata__#{field}_label_ssm"]
+  unless val.nil?
+    label_arr = []
+    val.each do |term|
+      label = term.split('$')
+      label_arr << label[0]
+    end
+  end
+  label_arr
+end
+
   def convert(items)
     afresults = []
 
@@ -111,16 +124,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
       wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
       #replace the uris with labels
       uri_fields.each do |field|
-        val = solrqry.first["desc_metadata__#{field}_label_ssm"]
-        unless val.nil?
-          label_arr = []
-          val.each do |term|
-            label = term.split('$')
-            label_arr << label[0]
-          end
-
-          wrapped.set_attrs("#{field}", label_arr)
-        end
+        label_arr = extract_labels(solrqry, field)
+        wrapped.set_attrs("#{field}", label_arr)
       end
       if solrqry.first["workflow_metadata__destroyed_ssm"]
         wrapped.set_attrs("deleted", true) # put this in the decorator to begin with?
@@ -144,6 +149,15 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     institutions = ""
     if !col.institution.nil?
        col.institution.inject{|institutions,element| institutions + ", " + element}
+    end
+    description = "Title: " + col.title + ", Institution(s): " + institutions
+  end
+
+  def create_description(col)
+    solrqry = ActiveFedora::SolrService.query("id:#{RSolr.escape(col.id)}")
+    label_arr = extract_labels(solrqry, "institution")
+    if !label_arr.nil?
+       institutions = label_arr.inject{|collector,element| collector + ", " + element}
     end
     description = "Title: " + col.title + ", Institution(s): " + institutions
   end
