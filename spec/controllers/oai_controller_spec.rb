@@ -92,10 +92,11 @@ describe OaiController, :resque => true do
         g.save
         g
       end
+      let(:institution){RDF::URI.new("http://dbpedia.org/resource/University_of_Oregon")}
       let(:generic_coll_2) do
         g = FactoryGirl.build(:generic_collection)
         g.title = "Collection_2"
-        g.description = "The second collection"
+        g.institution = institution
         g.save
         g
       end
