@@ -5,6 +5,7 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
     subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset)}
     let(:collection_1) do
       f = FactoryGirl.build(:generic_collection)
+      f.title = "My wonderful launderette"
       f.save
       f
     end
