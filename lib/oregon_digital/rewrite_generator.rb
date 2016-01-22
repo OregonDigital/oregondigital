@@ -44,7 +44,7 @@ module OregonDigital
     end
 
     def persistent_url_string(root, pointer, id)
-      "~*/u/\\?#{root},#{pointer} \"#{id.gsub("oregondigital:","")}\";"
+      "~*/u/\\?#{root},#{pointer}$ \"#{id.gsub("oregondigital:","")}\";"
     end
 
     def replaces_objects

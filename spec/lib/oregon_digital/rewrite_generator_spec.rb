@@ -123,7 +123,7 @@ describe OregonDigital::RewriteGenerator do
       it "should return a rewrite string" do
         id = asset.id.gsub("oregondigital:", "")
         expect(subject.first).to eq "~*/cdm4/item_viewer\\.php\\?CISOROOT=/bracero&CISOPTR=62&.*$ \"#{id}\";"
-        expect(subject.last).to eq "~*/u/\\?/bracero,62 \"#{id}\";"
+        expect(subject.last).to eq "~*/u/\\?/bracero,62$ \"#{id}\";"
       end
     end
   end
