@@ -19,7 +19,7 @@ RDF_VOCABS = {
   :uonames              =>  { :prefix => 'http://opaquenamespace.org/ns/uo-names/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/uo/names.jsonld', :strict => false, :fetch => false },
   :rights               =>  { :prefix => 'http://opaquenamespace.org/ns/rights/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/rights.jsonld', :strict => true },
   :eurights             =>  { :prefix => 'http://www.europeana.eu/rights/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/eurights/rightsstatements.nt', :strict => true },
-  :mimetype             =>  { :prefix => 'http://purl.org/NET/mediatypes/', :source => 'http://mediatypes.appspot.com/dump.rdf' },
+  :mimetype             =>  { :prefix => 'http://purl.org/NET/mediatypes/', :fetch => false },
   :oregondigital        =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/opaquenamespace.jsonld', :strict => false, :fetch => false },
   :oregon_universities  =>  { :prefix => 'http://dbpedia.org/resource/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/oregon_universities.jsonld', :strict => false, :fetch => false },
   :set                  =>  { :prefix => 'http://oregondigital.org/resource/', :strict => false, :fetch => false },
