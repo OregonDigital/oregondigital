@@ -105,6 +105,7 @@ INGEST_MAP = {
     location: "descMetadata.location",
     streetAddress: "descMetadata.streetAddress",
     rangerDistrict: "descMetadata.rangerDistrict",
+    waterBasin: "descMetadata.waterBasin",
     tgn: "descMetadata.tgn",
     latitude: "descMetadata.latitude",
     longitude: "descMetadata.longitude",
