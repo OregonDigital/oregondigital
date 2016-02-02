@@ -124,6 +124,7 @@ end
         afresults << item
       end
     end
+    afresults
   end
 
   def convert(items)
