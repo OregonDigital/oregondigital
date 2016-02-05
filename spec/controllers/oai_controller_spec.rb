@@ -20,6 +20,8 @@ describe OaiController, :resque => true do
         f.descMetadata.date = "2012-12-12"
         f.descMetadata.description = "This thing is a thing."
         f.descMetadata.identifier = "blahblah123"
+        f.descMetadata.earliestDate = "1983"
+        f.descMetadata.latestDate = "1984"
         f.save
         f
       end

@@ -8,4 +8,17 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       self.instance_variable_set("@#{key}", val)
       self.class.send(:define_method, key, proc {self.instance_variable_get("@#{key}")})
     end
+
+    def earliestDate
+      string = descMetadata.earliestDate.first || ""
+      if descMetadata.latestDate.nil? || descMetadata.latestDate.empty?
+        return ""
+      end
+      string = string + "-" + descMetadata.latestDate.first
+      string
+    end
+
+    def latestDate
+      return ""
+    end
 end
