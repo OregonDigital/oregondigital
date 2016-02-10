@@ -22,7 +22,7 @@ module OregonDigital::OAI::Concern
         :description => [:description, :descriptionOfManifestation, :culturalContext, :stylePeriod, :awardDate],
         :abstract => [:abstract],
         :identifier => [:identifier, :accessionNumber, :itemLocator],
-        :date => [:date, :viewDate, :earliestDate, :latestDate],
+        :date => [:date, :viewDate, :earliestDate],
         :created => [:created],
         :issued => [:issued],
         :creator => [:creator],
@@ -55,7 +55,7 @@ module OregonDigital::OAI::Concern
     def map_oai_dc
       { :title => [:title, :alternative],
         :description => [:description, :abstract, :descriptionOfManifestation, :culturalContext, :stylePeriod, :awardDate],
-        :date => [:date, :created, :viewDate, :earliestDate, :latestDate],
+        :date => [:date, :created, :viewDate, :earliestDate],
         :identifier => [:identifier, :accessionNumber, :itemLocator],
         :creator => [:creator],
         :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :donor, :editor, :illustrator,

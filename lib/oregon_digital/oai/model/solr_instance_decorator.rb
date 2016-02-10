@@ -18,7 +18,4 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       string
     end
 
-    def latestDate
-      return ""
-    end
 end

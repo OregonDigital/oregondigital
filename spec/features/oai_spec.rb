@@ -20,6 +20,8 @@ shared_examples "OAI endpoint" do |parameter|
       asset.descMetadata.lcsubject = [lcsubj]
       asset.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("anime", :language => :en))
       asset.descMetadata.lcsubject.first.persist!
+      asset.descMetadata.earliestDate = "1982"
+      asset.descMetadata.latestDate = "1983"
       asset.save
       asset.review!
     end
@@ -49,6 +51,9 @@ shared_examples "OAI endpoint" do |parameter|
       #note that can't look for dc:lcsubject because nokogiri doesn't recognize the namespace
       it "should use the mapped_field if there is one" do
         expect(page).not_to have_xpath('//lcsubject')
+      end
+      it "should have earliest/latest date in the date field" do
+        expect(page).to have_content("1982-1983")
       end
     end
 
