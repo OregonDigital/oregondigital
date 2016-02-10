@@ -85,6 +85,16 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
         expect(subject.latest).to eq ga_time.strftime("%Y-%m-%dT%H:%M:%SZ")
       end
     end
+    describe "#compound objects" do
+      before do
+        generic_asset_1.od_content << generic_asset_2
+        generic_asset_1.save
+        generic_asset_1.reload
+      end
+      it "should not return a child" do
+        expect(subject.find(:all)).to eq [generic_asset_1]
+      end
+    end
     describe "#sets" do
       before do
         collection_1

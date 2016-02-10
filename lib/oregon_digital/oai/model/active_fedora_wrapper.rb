@@ -31,6 +31,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
    query_pairs = build_query(selector, options)
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>1000000}
    solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
+   solr_count = remove_children(solr_count)
    return next_set(solr_count, options[:resumption_token]) if options[:resumption_token]
    if @limit && solr_count.count > @limit
      return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0})))
@@ -113,6 +114,18 @@ def extract_labels(qry, field)
   end
   label_arr
 end
+
+  def remove_children(items)
+    afresults = []
+    uribase = "http://oregondigital.org/resource/"
+    items.each do |item|
+      parent = ActiveFedora::SolrService.query("#{Solrizer.solr_name("desc_metadata__od_content", :symbol)}:#{RSolr.escape(uribase + item['id'])}", :fl => "id", :rows => 1).map{|x| x["id"]}.first
+      if parent.nil?
+        afresults << item
+      end
+    end
+    afresults
+  end
 
   def convert(items)
     afresults = []
