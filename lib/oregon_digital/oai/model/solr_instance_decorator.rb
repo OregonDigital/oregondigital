@@ -18,4 +18,7 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       string
     end
 
+    def oaiIdentifier
+      return "http://oregondigital.org/catalog/" + descMetadata.pid
+    end
 end

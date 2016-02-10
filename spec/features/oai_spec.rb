@@ -44,9 +44,9 @@ shared_examples "OAI endpoint" do |parameter|
       it "should separate multiple values with a semicolon" do
         expect(page).to have_content("Miyazaki, Hayao, 1942-; Hisaishi, Joe")
       end
-      it "should include as an identifier the OD url" do
+      it "should include the od url with any identifiers" do
         expect(page).to have_content("http://oregondigital.org/catalog/" + asset.pid)
-        expect(page).not_to have_content("blahblah123")
+        expect(page).to have_content("blahblah123")
       end
       #note that can't look for dc:lcsubject because nokogiri doesn't recognize the namespace
       it "should use the mapped_field if there is one" do
