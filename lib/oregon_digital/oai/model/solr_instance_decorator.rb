@@ -18,4 +18,8 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       string
     end
 
+    def rights
+      return descMetadata.rights.first.rdf_label.first + " (" + descMetadata.rights.first.rdf_subject.to_s + ")"
+    end
+
 end
