@@ -356,6 +356,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :set, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.set, :class_name => "GenericCollection" do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :primarySet, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.primarySet, :class_name => "GenericCollection" do |index|
+    index.as :searchable, :displayable
+  end
 
   # Relations
   property :relation, :predicate => RDF::DC.relation do |index|

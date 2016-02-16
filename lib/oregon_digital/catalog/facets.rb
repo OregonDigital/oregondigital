@@ -20,6 +20,8 @@ module OregonDigital
         # TODO: Move this to ControlledVocabulary class.
         def controlled_vocabularies
           Datastream::OregonRDF.properties.map do |key, property|
+            # Force hiding of Primary Set facet
+            next if key == 'primarySet'
             instance = property[:class_name].new if property[:class_name]
             if instance && (instance.class.ancestors.include?(OregonDigital::RDF::Controlled) || (instance.respond_to?(:resource) && instance.resource.class.ancestors.include?(OregonDigital::RDF::Controlled)))
               key

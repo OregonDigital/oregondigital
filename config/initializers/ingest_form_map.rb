@@ -190,6 +190,7 @@ INGEST_MAP = {
 
   grouping: {
     set: "descMetadata.set",
+    primarySet: "descMetadata.primarySet",
     exhibit: "descMetadata.exhibit",
   },
 
