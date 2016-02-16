@@ -18,4 +18,10 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       string
     end
 
+    def rights
+      if !descMetadata.rights.nil? && !descMetadata.rights.empty?
+        return descMetadata.rights.first.rdf_label.first + ", " + descMetadata.rights.first.rdf_subject.to_s
+      end
+    end
+
 end

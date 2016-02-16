@@ -7,6 +7,7 @@ shared_examples "OAI endpoint" do |parameter|
     let(:lcname) {RDF::URI.new("http://id.loc.gov/authorities/names/nr93013379")}
     let(:lcname2) {RDF::URI.new("http://id.loc.gov/authorities/names/no00013511")}
     let(:lcsubj) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2003003075")}
+    let(:rights) {RDF::URI.new("http://creativecommons.org/licenses/by-nc-nd/4.0/")}
     let(:asset) {asset_class.new}
 
     before(:each) do
@@ -20,6 +21,9 @@ shared_examples "OAI endpoint" do |parameter|
       asset.descMetadata.lcsubject = [lcsubj]
       asset.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("anime", :language => :en))
       asset.descMetadata.lcsubject.first.persist!
+      asset.descMetadata.rights = [rights]
+      asset.descMetadata.rights.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("Attribution-NonCommercial-NoDerivatives 4.0 International", :language => :en))
+      asset.descMetadata.rights.first.persist!
       asset.descMetadata.earliestDate = "1982"
       asset.descMetadata.latestDate = "1983"
       asset.save
@@ -54,6 +58,10 @@ shared_examples "OAI endpoint" do |parameter|
       end
       it "should have earliest/latest date in the date field" do
         expect(page).to have_content("1982-1983")
+      end
+      it "should have both the rights url and the rights label" do
+        expect(page).to have_content("Attribution-NonCommercial-NoDerivatives 4.0 International")
+        expect(page).to have_content("http://creativecommons.org/licenses/by-nc-nd/4.0/")
       end
     end
 
