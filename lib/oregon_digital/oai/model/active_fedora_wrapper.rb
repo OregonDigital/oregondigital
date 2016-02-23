@@ -159,14 +159,6 @@ end
   end
 
   def create_description(col)
-    institutions = ""
-    if !col.institution.nil?
-       col.institution.inject{|institutions,element| institutions + ", " + element}
-    end
-    description = "Title: " + col.title + ", Institution(s): " + institutions
-  end
-
-  def create_description(col)
     solrqry = ActiveFedora::SolrService.query("id:#{RSolr.escape(col.id)}")
     description = "Title: " + col.title
     label_arr = extract_labels(solrqry, "institution")
