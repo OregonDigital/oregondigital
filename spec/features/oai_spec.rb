@@ -9,6 +9,7 @@ shared_examples "OAI endpoint" do |parameter|
     let(:lcsubj) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2003003075")}
     let(:rights) {RDF::URI.new("http://creativecommons.org/licenses/by-nc-nd/4.0/")}
     let(:opns) {RDF::URI.new("http://opaquenamespace.org/ns/creator/mylittlecreator")}
+    let(:pset) {GenericCollection.new(pid:"oregondigital:myset")}
     let(:asset) {asset_class.new}
 
     before(:each) do
@@ -29,6 +30,10 @@ shared_examples "OAI endpoint" do |parameter|
       asset.descMetadata.rights.first.persist!
       asset.descMetadata.earliestDate = "1982"
       asset.descMetadata.latestDate = "1983"
+      pset.title = "my set"
+      pset.save
+      asset.descMetadata.set = [pset]
+      asset.descMetadata.primarySet = [pset]
       asset.save
       asset.review!
     end
@@ -54,9 +59,10 @@ shared_examples "OAI endpoint" do |parameter|
       it "should separate multiple values with a semicolon" do
         expect(page).to have_content("Miyazaki, Hayao, 1942-; Hisaishi, Joe")
       end
-      it "should include as an identifier the OD url" do
+      it "should include OD url and the oai identifier and any other identifiers" do
         expect(page).to have_content("http://oregondigital.org/catalog/" + asset.pid)
-        expect(page).not_to have_content("blahblah123")
+        expect(page).to have_content("blahblah123")
+        expect(page).to have_content("oai:oregondigital.org:myset/" + asset.pid.gsub("oregondigital:",""))
       end
       #note that can't look for dc:lcsubject because nokogiri doesn't recognize the namespace
       it "should use the mapped_field if there is one" do

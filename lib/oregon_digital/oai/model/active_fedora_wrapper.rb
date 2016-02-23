@@ -146,8 +146,6 @@ end
       if solrqry.first["workflow_metadata__destroyed_ssm"]
         wrapped.set_attrs("deleted", true) # put this in the decorator to begin with?
       end
-      #override the item identifier
-      wrapped.identifier = "http://oregondigital.org/catalog/" + item["id"]
       wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
       sets = []
       if !pseudo_obj.set.nil?
