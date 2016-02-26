@@ -17,7 +17,7 @@ class BulkTaskDecorator < Draper::Decorator
         :path => h.review_all_bulk_task_path(id)
       },
       "Delete All" => {
-        :requirement => ingested? || reviewed?,
+        :requirement => ingested? && !reviewed?,
         :path => h.delete_bulk_task_path(id),
         :method => "delete",
         :class => "danger"
