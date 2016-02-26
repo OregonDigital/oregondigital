@@ -222,6 +222,7 @@ describe 'bulk tasks', :js => true do
           it "should review all items" do
             within("table") do
               expect(page).to have_content("Reviewed")
+              expect(page).not_to have_link "Delete All"
             end
             expect(GenericAsset.first).to be_reviewed
           end
