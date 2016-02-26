@@ -20,7 +20,8 @@ class BulkTaskDecorator < Draper::Decorator
         :requirement => ingested? && !reviewed?,
         :path => h.delete_bulk_task_path(id),
         :method => "delete",
-        :class => "danger"
+        :class => "danger",
+        :notify => "Are you sure you want to delete all items?"
       },
       "Retry Ingest" => {
         :requirement => errored? && error_states == ["ingesting"],
