@@ -57,7 +57,7 @@ class BulkTask < ActiveRecord::Base
   def delete_all!
     return if bulk_task_children.length == 0
     bulk_task_children.each do |child|
-      child.queue_delete! unless child.ingested_pid.blank?
+      child.queue_delete! unless child.ingested_pid.blank? || child.reviewed? || child.reviewing?
     end
     self.status = "deleting"
     save
