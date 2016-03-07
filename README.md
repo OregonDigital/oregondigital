@@ -36,6 +36,12 @@ ln -s /path/to/rails/media public/media
 ln -s /path/to/rails/media/thumbnails public/thumbnails
 ```
 
+Install memcached if needed, or make sure it's running (needed for login sessions):
+
+* Ubuntu: ```sudo apt-get install memcached```
+* Mac/Homebrew: ```brew install memcached```
+* Other: http://memcached.org/downloads
+
 Start the servers:
 
     rake jetty:start
