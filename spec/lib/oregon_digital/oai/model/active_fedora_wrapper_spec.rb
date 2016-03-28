@@ -96,10 +96,19 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
       end
     end
     describe "#sets" do
+      let(:collection_2) do
+        f = FactoryGirl.build(:generic_collection)
+        f.title = "Fly, be free"
+        f.save
+        f
+      end
       before do
         collection_1
+        collection_2
+        generic_asset_1.descMetadata.primarySet = RDF::URI("http://oregondigital.org/resource/" + collection_1.id)
+        generic_asset_1.save
       end
-      it "should return an array with the coll" do
+      it "should return an array with only the coll that is a primary set" do
         expect(subject.sets.first.name).to eq collection_1.title
       end
     end
