@@ -170,7 +170,7 @@ end
     solrqry = ActiveFedora::SolrService.query("id:#{RSolr.escape(col.id)}")
     description = "Title: " + col.title
     label_arr = extract_labels(solrqry, "institution")
-    if !label_arr.nil?
+    if !label_arr.empty?
       institutions = label_arr.inject{|collector,element| collector + ", " + element}
       description += ", Institution(s): " + institutions
     end
