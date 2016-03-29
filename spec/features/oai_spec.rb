@@ -8,6 +8,7 @@ shared_examples "OAI endpoint" do |parameter|
     let(:lcname2) {RDF::URI.new("http://id.loc.gov/authorities/names/no00013511")}
     let(:lcsubj) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2003003075")}
     let(:rights) {RDF::URI.new("http://creativecommons.org/licenses/by-nc-nd/4.0/")}
+    let(:opns) {RDF::URI.new("http://opaquenamespace.org/ns/creator/mylittlecreator")}
     let(:asset) {asset_class.new}
 
     before(:each) do
@@ -17,6 +18,8 @@ shared_examples "OAI endpoint" do |parameter|
       asset.descMetadata.creator.first.persist!
       asset.descMetadata.creator.second.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("Hisaishi, Joe", :language => :en))
       asset.descMetadata.creator.second.persist!
+      asset.descMetadata.contributor =[opns]
+      asset.descMetadata.contributor.first.persist!
       asset.descMetadata.identifier = "blahblah123"
       asset.descMetadata.lcsubject = [lcsubj]
       asset.descMetadata.lcsubject.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("anime", :language => :en))
@@ -40,6 +43,9 @@ shared_examples "OAI endpoint" do |parameter|
       it "should return a label instead of a uri" do
         expect(page).to have_content("Hisaishi")
         expect(page).not_to have_content("http://id.loc.gov/authorities/names/no00013511")
+      end
+      it "should not display controlled field if it doesn't have a label" do
+        expect(page).not_to have_xpath('//contributor')
       end
       it "should handle multiple values for a given field" do
         expect(page).to have_content("Hisaishi")

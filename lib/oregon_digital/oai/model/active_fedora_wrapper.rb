@@ -105,8 +105,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
 def extract_labels(qry, field)
   val = qry.first["desc_metadata__#{field}_label_ssm"]
+  label_arr = []
   unless val.nil?
-    label_arr = []
     val.each do |term|
       label = term.split('$')
       label_arr << label[0]
