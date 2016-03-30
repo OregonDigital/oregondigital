@@ -4,7 +4,7 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
 
   def initialize
     @prefix = 'oai_qdc'
-    @schema = 'http://dublincore.org/schemas/xmls/qdc/2008/02/11/qualifieddc.xsd'
+    @schema = 'http://dublincore.org/schemas/xmls/qdc/dcterms.xsd'
     @namespace = 'http://purl.org/dc/terms/'
     @element_namespace = 'dcterms'
 
@@ -23,9 +23,7 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
       'xmlns:dc' => "http://purl.org/dc/elements/1.1/",
       'xmlns:dcterms' => "http://purl.org/dc/terms/",
       'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-      'xsi:schemaLocation' =>
-        %{http://www.openarchives.org/OAI/2.0/oai_dc/
-          http://www.openarchives.org/OAI/2.0/oai_dc.xsd}.gsub(/\s+/, ' ')
+      'xsi:schemaLocation' => "http://dublincore.org/schemas/xmls/qdc/dcterms.xsd"
     }
   end
 end
