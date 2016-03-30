@@ -105,8 +105,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
 def extract_labels(qry, field)
   val = qry.first["desc_metadata__#{field}_label_ssm"]
+  label_arr = []
   unless val.nil?
-    label_arr = []
     val.each do |term|
       label = term.split('$')
       label_arr << label[0]
@@ -170,7 +170,7 @@ end
     solrqry = ActiveFedora::SolrService.query("id:#{RSolr.escape(col.id)}")
     description = "Title: " + col.title
     label_arr = extract_labels(solrqry, "institution")
-    if !label_arr.nil?
+    if !label_arr.empty?
       institutions = label_arr.inject{|collector,element| collector + ", " + element}
       description += ", Institution(s): " + institutions
     end

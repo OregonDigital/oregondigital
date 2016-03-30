@@ -10,7 +10,7 @@ module OregonDigital::OAI::Concern
     # Oregon Digital fields that store RDF URIs and labels need to be looked up for
     def uri_fields
       @uri_fields = [:creator, :lcsubject, :type, :format, :location, :author, :editor, :photographer, :rangerDistrict, :set,
-                      :taxonClass, :arranger, :artist, :author, :collector, :composer, :illustrator, :interviewee, :interviewer, :lyricist, 
+                      :taxonClass, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator, :interviewee, :interviewer, :lyricist,
                       :photographer, :translator, :ethnographicTerm, :genus, :phylum, :militaryBranch, :stylePeriod, :commonNames, :language, 
                       :localCollectionName, :od_repository]
     end
