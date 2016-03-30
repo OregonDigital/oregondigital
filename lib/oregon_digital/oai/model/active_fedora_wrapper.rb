@@ -71,7 +71,10 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     cols = []
     result = ActiveFedora::SolrService.query("active_fedora_model_ssi:GenericCollection AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true", :sort=>"id desc", :fl=> "id", :rows=>10000)
     result.each do |col|
-      cols << get_set(col["id"])
+      test = ActiveFedora::SolrService.query("desc_metadata__primarySet_ssi: #{RSolr.escape('http://oregondigital.org/resource/'+ col['id'])}", :rows=>1)
+      if !test.empty?
+        cols << get_set(col["id"])
+      end
     end
     cols
   end
@@ -156,14 +159,6 @@ end
       afresults << wrapped
     end
     afresults
-  end
-
-  def create_description(col)
-    institutions = ""
-    if !col.institution.nil?
-       col.institution.inject{|institutions,element| institutions + ", " + element}
-    end
-    description = "Title: " + col.title + ", Institution(s): " + institutions
   end
 
   def create_description(col)
