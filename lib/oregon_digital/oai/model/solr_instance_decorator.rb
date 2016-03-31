@@ -28,11 +28,4 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       return "http://oregondigital.org/catalog/" + descMetadata.pid
     end
 
-    def oaiIdentifier
-      itemid = descMetadata.pid.gsub("oregondigital:","")
-      if !descMetadata.primarySet.nil? && !descMetadata.primarySet.empty?
-        setid = descMetadata.primarySet.first.id.gsub("oregondigital:","")
-        return "oai:oregondigital.org:" + setid + "/" + itemid
-      end
-    end
 end

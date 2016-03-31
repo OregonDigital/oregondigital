@@ -59,10 +59,16 @@ shared_examples "OAI endpoint" do |parameter|
       it "should separate multiple values with a semicolon" do
         expect(page).to have_content("Miyazaki, Hayao, 1942-; Hisaishi, Joe")
       end
-      it "should include OD url and the oai identifier and any other identifiers" do
+      it "should include OD url and  any other identifiers" do
         expect(page).to have_content("http://oregondigital.org/catalog/" + asset.pid)
         expect(page).to have_content("blahblah123")
-        expect(page).to have_content("oai:oregondigital.org:myset/" + asset.pid.gsub("oregondigital:",""))
+        #expect(page).to have_content("oai:oregondigital.org:myset/" + asset.pid.gsub("oregondigital:",""))
+      end
+      it "should have the primarySet in the header identifier" do
+        binding.pry
+        id = asset.pid.gsub("oregondigital:","")
+        prefix = APP_CONFIG["oai"]["record_prefix"]
+        expect(page).to have_xpath('//identifier[@value="#{prefix}:myset/#{id}"]')
       end
       #note that can't look for dc:lcsubject because nokogiri doesn't recognize the namespace
       it "should use the mapped_field if there is one" do

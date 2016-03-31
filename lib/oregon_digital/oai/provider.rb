@@ -14,7 +14,7 @@ class OregonDigital::OAI::Provider < ::OAI::Provider::Base
         setid = record.descMetadata.primarySet.first.id.gsub("oregondigital:","")
       else setid = record.descMetadata.set.first.id.gsub("oregondigital:","")
       end
-      "#{Base.prefix}:#{setid}/#{record.id}"
+      "#{Base.prefix}:#{setid}/#{record.id.gsub('oregondigital:','')}"
     end
   end
 
