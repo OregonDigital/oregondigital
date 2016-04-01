@@ -12,7 +12,7 @@ pyramidal_tiff_path:
 oai:
   repository_name: "Oregon Digital OAI Repository"
   repository_url: "http://oregondigital.org/oai"
-  record_prefix: ""
+  record_prefix: "oai:oregondigital.org"
   admin_email: "admin@oregondigital.org"
   sample_id: "oregondigital:h989r3203"
 

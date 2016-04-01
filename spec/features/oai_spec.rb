@@ -65,10 +65,9 @@ shared_examples "OAI endpoint" do |parameter|
         #expect(page).to have_content("oai:oregondigital.org:myset/" + asset.pid.gsub("oregondigital:",""))
       end
       it "should have the primarySet in the header identifier" do
-        binding.pry
         id = asset.pid.gsub("oregondigital:","")
         prefix = APP_CONFIG["oai"]["record_prefix"]
-        expect(page).to have_xpath('//identifier[@value="#{prefix}:myset/#{id}"]')
+        expect(page).to have_selector('header/identifier',text: "#{prefix}:myset/#{id}")
       end
       #note that can't look for dc:lcsubject because nokogiri doesn't recognize the namespace
       it "should use the mapped_field if there is one" do
