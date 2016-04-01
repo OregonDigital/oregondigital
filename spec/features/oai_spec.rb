@@ -62,7 +62,6 @@ shared_examples "OAI endpoint" do |parameter|
       it "should include OD url and  any other identifiers" do
         expect(page).to have_content("http://oregondigital.org/catalog/" + asset.pid)
         expect(page).to have_content("blahblah123")
-        #expect(page).to have_content("oai:oregondigital.org:myset/" + asset.pid.gsub("oregondigital:",""))
       end
       it "should have the primarySet in the header identifier" do
         id = asset.pid.gsub("oregondigital:","")
