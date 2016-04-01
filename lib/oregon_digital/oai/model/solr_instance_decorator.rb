@@ -24,4 +24,8 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       end
     end
 
+    def accessURL
+      return "http://oregondigital.org/catalog/" + descMetadata.pid
+    end
+
 end
