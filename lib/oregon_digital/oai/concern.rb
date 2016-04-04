@@ -19,7 +19,7 @@ module OregonDigital::OAI::Concern
     def map_oai_qdc
       { :title => [:title],
         :alternative => [:alternative],
-        :description => [:description, :descriptionOfManifestation, :culturalContext, :stylePeriod, :awardDate],
+        :description => [:description, :descriptionOfManifestation, :culturalContext, :stylePeriod, :awardDate, :designerLabel],
         :abstract => [:abstract],
         :identifier => [:identifier, :accessionNumber, :itemLocator],
         :date => [:date, :viewDate, :earliestDate],
