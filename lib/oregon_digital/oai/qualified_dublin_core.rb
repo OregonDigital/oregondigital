@@ -10,7 +10,7 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
 
     # Dublin Core Terms Fields
     # For new fields, add here first then add to oai_qdc_map
-    @fields = [:title, :alternative, :description, :abstract, :identifier, :date, :created, :issued, :awardDate,
+    @fields = [:title, :alternative, :description, :abstract, :identifier, :date, :created, :issued,
                 :creator, :contributor, :subject, :type, :rights, :rightsHolder, :license, :publisher, :provenance,
                 :spatial, :language, :isPartOf, :tableOfContents, :temporal, :bibliographicCitation, :relation,
                 :isReferencedBy, :hasPart, :hasVersion, :isVersionOf, :extent]
