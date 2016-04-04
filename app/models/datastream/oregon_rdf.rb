@@ -81,6 +81,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :collector, :predicate => OregonDigital::Vocabularies::MARCREL.col, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :displayable
   end
+  property :designer, :predicate => OregonDigital::Vocabularies::MARCREL.dsr do |index|
+    index.as :searchable, :displayable
+  end
 
   # Descriptions
   property :description, :predicate => RDF::DC.description do |index|
