@@ -80,7 +80,8 @@ INGEST_MAP = {
     layout: "descMetadata.layout",
     specimenType: "descMetadata.specimenType",
     temporal: "descMetadata.temporal",
-    designerLabel: "descMetadata.designerLabel"
+    designerLabel: "descMetadata.designerLabel",
+    motif: "descMetadata.motif"
   },
 
   subject: {

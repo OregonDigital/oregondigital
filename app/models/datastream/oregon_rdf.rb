@@ -164,6 +164,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :designerLabel, :predicate => OregonDigital::Vocabularies::CDWA.InscriptionTranscription do |index|
     index.as :searchable, :displayable
   end
+  property :motif, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.motif do |index|
+    index.as :searchable, :displayable
+  end
 
   # Subjects
   # :lcsubject is controlled subject using multiple vocabs
