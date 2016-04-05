@@ -22,7 +22,7 @@ module OregonDigital::OAI::Concern
         :description => [:description, :descriptionOfManifestation, :culturalContext, :stylePeriod, :awardDate, :designerLabel, :motif],
         :abstract => [:abstract],
         :identifier => [:identifier, :accessionNumber, :itemLocator, :accessURL],
-        :date => [:date, :viewDate, :earliestDate],
+        :date => [:date, :viewDate, :earliestDate, :created, :awardDate, :issued],
         :created => [:created],
         :issued => [:issued],
         :creator => [:creator],
