@@ -45,6 +45,7 @@ INGEST_MAP = {
     donor: "descMetadata.donor",
     collector: "descMetadata.collector",
     translator: "descMetadata.translator",
+    designer: "descMetadata.designer"
   },
 
   description: {
@@ -79,6 +80,8 @@ INGEST_MAP = {
     layout: "descMetadata.layout",
     specimenType: "descMetadata.specimenType",
     temporal: "descMetadata.temporal",
+    designerLabel: "descMetadata.designerLabel",
+    motif: "descMetadata.motif"
   },
 
   subject: {
