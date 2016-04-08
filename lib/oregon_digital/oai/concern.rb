@@ -12,7 +12,7 @@ module OregonDigital::OAI::Concern
       @uri_fields = [:creator, :lcsubject, :type, :format, :location, :author, :editor, :photographer, :rangerDistrict, :set,
                       :taxonClass, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator, :interviewee, :interviewer, :lyricist,
                       :photographer, :translator, :ethnographicTerm, :genus, :phylum, :militaryBranch, :stylePeriod, :commonNames, :language, 
-                      :localCollectionName, :od_repository]
+                      :localCollectionName, :od_repository, :format]
     end
 
     # Map Qualified Dublin Core (Terms) fields to Oregon Digital fields
@@ -47,7 +47,8 @@ module OregonDigital::OAI::Concern
         :hasPart => [:hasPart],
         :hasVersion => [:hasVersion],
         :isVersionOf => [:isVersionOf],
-        :extent => [:extent, :physicalExtent, :measurements]
+        :extent => [:extent, :physicalExtent, :measurements],
+        :format => [:format]
       }
     end
 
@@ -67,7 +68,8 @@ module OregonDigital::OAI::Concern
         :type => [:type],
         :language => [:language],
         :relation => [:relation, :set, :localCollectionName, :artSeries, :findingAid],
-        :rights => [:rights, :rightsHolder, :license, :useRestrictions, :accessRestrictions]
+        :rights => [:rights, :rightsHolder, :license, :useRestrictions, :accessRestrictions],
+        :format => [:format]
       }
     end
 

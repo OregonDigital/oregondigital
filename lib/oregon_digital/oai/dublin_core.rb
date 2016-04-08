@@ -10,7 +10,7 @@ class OregonDigital::OAI::DublinCore < OAI::Provider::Metadata::Format
 
     # Dublin Core Elements fields
     @fields = [:title, :description, :date, :identifier, :creator, :contributor, :coverage, :relation,
-                 :type, :rights, :subject, :publisher, :language]
+                 :type, :rights, :subject, :publisher, :language, :format]
   end
 
   def header_specification

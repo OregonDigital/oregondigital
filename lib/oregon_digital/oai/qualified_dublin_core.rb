@@ -13,7 +13,7 @@ class OregonDigital::OAI::QualifiedDublinCore < OAI::Provider::Metadata::Format
     @fields = [:title, :alternative, :description, :abstract, :identifier, :date, :created, :issued,
                 :creator, :contributor, :subject, :type, :rights, :rightsHolder, :license, :publisher, :provenance,
                 :spatial, :language, :isPartOf, :tableOfContents, :temporal, :bibliographicCitation, :relation,
-                :isReferencedBy, :hasPart, :hasVersion, :isVersionOf, :extent]
+                :isReferencedBy, :hasPart, :hasVersion, :isVersionOf, :extent, :format]
   end
 
   def header_specification
