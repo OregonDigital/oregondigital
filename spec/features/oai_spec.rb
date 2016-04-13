@@ -59,9 +59,9 @@ shared_examples "OAI endpoint" do |parameter|
       it "should separate multiple values with a semicolon" do
         expect(page).to have_content("Miyazaki, Hayao, 1942-; Hisaishi, Joe")
       end
-      it "should include OD url and  any other identifiers" do
+      it "should include OD access url and no other identifiers" do
         expect(page).to have_content("http://oregondigital.org/catalog/" + asset.pid)
-        expect(page).to have_content("blahblah123")
+        expect(page).not_to have_content("blahblah123")
       end
       it "should have the primarySet in the header identifier" do
         id = asset.pid.gsub("oregondigital:","")
