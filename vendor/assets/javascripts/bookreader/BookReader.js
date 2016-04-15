@@ -2736,7 +2736,7 @@ function BookReader() {
     }
 
     BookReader.prototype.search_url = function(term) {
-      var url = 'https://'+this.server.replace(/:.+/, ''); //remove the port and userdir
+      var url = 'http://'+this.server.replace(/:.+/, ''); //remove the port and userdir
       url    += '/fulltext/inside.php?item_id='+this.bookId;
       url    += '&doc='+this.subPrefix;   //TODO: test with subitem
       url    += '&path='+this.bookPath.replace(new RegExp('/'+this.subPrefix+'$'), ''); //remove subPrefix from end of path
