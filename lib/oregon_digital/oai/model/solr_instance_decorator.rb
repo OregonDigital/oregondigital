@@ -28,4 +28,13 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       return "http://oregondigital.org/catalog/" + descMetadata.pid
     end
 
+    def format
+      if !descMetadata.format.empty?
+        url = descMetadata.format.first.rdf_subject.to_s
+        urlparts = url.split("/")
+        num = urlparts.count
+        urlparts[num-2] + "/" + urlparts[num-1]
+      end
+    end
+
 end

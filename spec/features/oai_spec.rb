@@ -9,6 +9,7 @@ shared_examples "OAI endpoint" do |parameter|
     let(:lcsubj) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2003003075")}
     let(:rights) {RDF::URI.new("http://creativecommons.org/licenses/by-nc-nd/4.0/")}
     let(:opns) {RDF::URI.new("http://opaquenamespace.org/ns/creator/mylittlecreator")}
+    let(:mtype) {RDF::URI.new("http://purl.org/NET/mediatypes/image/tiff")}
     let(:pset) {GenericCollection.new(pid:"oregondigital:myset")}
     let(:asset) {asset_class.new}
 
@@ -30,6 +31,9 @@ shared_examples "OAI endpoint" do |parameter|
       asset.descMetadata.rights.first.persist!
       asset.descMetadata.earliestDate = "1982"
       asset.descMetadata.latestDate = "1983"
+      asset.descMetadata.format = [mtype]
+      asset.descMetadata.format.first.persist!
+      #add label once mediatypes site is working again
       pset.title = "my set"
       pset.save
       asset.descMetadata.set = [pset]
@@ -78,6 +82,9 @@ shared_examples "OAI endpoint" do |parameter|
       it "should have both the rights url and the rights label" do
         expect(page).to have_content("Attribution-NonCommercial-NoDerivatives 4.0 International")
         expect(page).to have_content("http://creativecommons.org/licenses/by-nc-nd/4.0/")
+      end
+      it "should have a format label" do
+        expect(page).to have_content("image/tiff")
       end
     end
 
