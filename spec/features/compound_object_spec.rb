@@ -20,6 +20,9 @@ describe "compound objects" do
         expect(page).to have_link object.title
         expect(page).to have_link object_2.title
       end
+      it "should not show the OD content in metadata" do
+          expect(page).not_to have_content("Od content")
+      end
     end
     context "and the root page is visited" do
       before do
