@@ -22,7 +22,9 @@ class GenericAssetDecorator < Draper::Decorator
   end
 
   def field_values(field)
-    results = od_content if field == "od_content"
+    if field == "od_content"
+      return
+    end
     results ||= resource.get_values(field)
     results.map {|r| field_value_to_string(field, r)}.reject {|val| val.blank?}
   end
