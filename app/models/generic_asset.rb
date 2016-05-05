@@ -19,6 +19,7 @@ class GenericAsset < ActiveFedora::Base
   after_save :queue_derivatives
   attr_accessor :skip_queue
   after_save :queue_fetch
+  after_save :check_cache
 
 
   def self.assign_pid(_)
@@ -66,6 +67,28 @@ class GenericAsset < ActiveFedora::Base
 
   def queue_derivatives
     ::Resque.enqueue(::CreateDerivativesJob,pid) if @needs_derivatives
+  end
+
+  def check_cache
+    if compound?
+      #expire myself
+      ActionController::Base.new.expire_fragment("cpd/"+id)
+      #expire the children
+      od_content.each do |child|
+        if child.respond_to? :id
+          ActionController::Base.new.expire_fragment("cpd/"+ child.id)
+        end
+      end
+    elsif compounded?
+      #expire parent
+      ActionController::Base.new.expire_fragment("cpd/" + compound_parent_id)
+      #expire the children
+      compound_parent.od_content.each do |child|
+        if child.respond_to? :id
+          ActionController::Base.new.expire_fragment("cpd/" + child.id)
+        end
+      end
+    end
   end
 
 end
