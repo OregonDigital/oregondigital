@@ -46,7 +46,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   def next_set(result, token_string)
     raise OAI::ResumptionTokenException.new unless @limit
     token = OAI::Provider::ResumptionToken.parse(token_string)
-    if token.last+@limit == result.count
+    if token.last+@limit >= result.count
       part = result.slice(token.last, @limit)
       afresults = convert(part)
       return afresults.to_a

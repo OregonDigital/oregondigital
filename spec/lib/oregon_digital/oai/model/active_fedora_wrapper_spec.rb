@@ -50,7 +50,16 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
           token = subject.find(:all, :metadata_prefix => 'oai_dc').token.send(:encode_conditions)
           middle_result = subject.find(:all, :resumption_token => token)
           expect(middle_result.records).to eq [generic_asset_2]
+          expect(middle_result).to respond_to(:token)
           expect(subject.find(:all, :resumption_token => middle_result.token.send(:encode_conditions))).to eq [generic_asset_1]
+        end
+        context "but at the end of the set" do
+          subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset, :limit => 2)}
+          it "should stop providing tokens at the end of the results" do
+            token = subject.find(:all, :metadata_prefix => 'oai_dc').token.send(:encode_conditions)# this is the first set, first token
+            second_result = subject.find(:all, :resumption_token => token)#second set. should not have a token
+            expect(second_result).not_to respond_to(:token)
+          end
         end
       end
       context "when given a date range that ends prior to today" do
