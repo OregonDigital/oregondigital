@@ -1,4 +1,5 @@
 require 'spec_helper'
+include ActionController::Caching::Fragments
 
 describe "compound objects" do
   let(:parent) {FactoryGirl.create(:generic_asset)}
@@ -82,6 +83,7 @@ describe "compound objects" do
     end
     context "and the page is visited" do
       before do
+        Rails.cache.clear
         visit catalog_path(object.pid)
       end
       context "and the parent is an image" do
@@ -94,6 +96,16 @@ describe "compound objects" do
       it "should show a table of contents" do
         expect(page).to have_content("Contents")
         expect(page).to have_content(object_2.title)
+      end
+      it "should cache the table of contents fragment" do
+        Rails.cache.read(fragment_cache_key("cpd/" + object.pid)).should have_content(object.title)
+      end
+      context "but when the parent is saved" do
+        let (:parent) {FactoryGirl.create(:image) }
+        it "should not be in cache" do
+          parent.save
+          Rails.cache.read(fragment_cache_key("cpd/" + object.pid)).should be_nil
+        end
       end
       it "should not have a link to the current item" do
         expect(page).not_to have_link(object.title)

@@ -1,6 +1,6 @@
 </div>
 <div class="well" id="contents">
-
+<% cache "cpd/#{decorated_object.pid}", skip_digest: true do %>
 <ul class="nav nav-list">
     <li class="nav-header">Contents</li>
       <% decorated_object.compound_list.each do |item| %>
@@ -8,4 +8,4 @@
       <% end %>
     </li>
 </ul>
-
+<% end %>
