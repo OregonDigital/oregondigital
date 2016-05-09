@@ -38,7 +38,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
    qry_total = ActiveFedora::SolrService.count(query_pairs, query_args)
    solr_count = remove_children(solr_count,start, qry_total)
    return next_set(solr_count, options[:resumption_token], qry_total) if options[:resumption_token]
-   #possibly a partial even if results > limit if a lot of children were removed, so check
+   #possibly a partial even if results < limit if a lot of children were removed, so check
    if @limit && (solr_count.count > @limit || solr_count.last['rank'] != qry_total)
      return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0})))
    end
@@ -130,8 +130,8 @@ end
     rank = start
     items.each do |item|
       item["rank"] = rank
-      parent = ActiveFedora::SolrService.query("#{Solrizer.solr_name("desc_metadata__od_content", :symbol)}:#{RSolr.escape(uribase + item['id'])}", :fl => "id", :rows => 1).map{|x| x["id"]}.first
-      if parent.nil?
+      pseudo = ActiveFedora::Base.load_instance_from_solr(item["id"])
+      if !pseudo.compounded?
         afresults << item
       end
       rank = rank + 1
