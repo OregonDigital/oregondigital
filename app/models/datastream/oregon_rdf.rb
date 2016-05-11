@@ -441,25 +441,31 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # Darwin Core
-  property :taxonClass, :predicate => OregonDigital::Vocabularies::DWC.class, :class_name => OregonDigital::ControlledVocabularies::SciClass do |index|
+  property :phylum, :predicate => OregonDigital::Vocabularies::DWC.phylum, :class_name => OregonDigital::ControlledVocabularies::Scientific do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :order, :predicate => OregonDigital::Vocabularies::DWC.order do |index|
+  property :taxonClass, :predicate => OregonDigital::Vocabularies::DWC.class, :class_name => OregonDigital::ControlledVocabularies::Scientific do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :family, :predicate => OregonDigital::Vocabularies::DWC.family do |index|
+  property :order, :predicate => OregonDigital::Vocabularies::DWC.order, :class_name => OregonDigital::ControlledVocabularies::Scientific do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :genus, :predicate => OregonDigital::Vocabularies::DWC.genus, :class_name => OregonDigital::ControlledVocabularies::SciGenus do |index|
+  property :family, :predicate => OregonDigital::Vocabularies::DWC.family, :class_name => OregonDigital::ControlledVocabularies::Scientific do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :phylum, :predicate => OregonDigital::Vocabularies::DWC.phylum, :class_name => OregonDigital::ControlledVocabularies::SciPhylum do |index|
+  property :genus, :predicate => OregonDigital::Vocabularies::DWC.genus, :class_name => OregonDigital::ControlledVocabularies::Scientific do |index|
     index.as :searchable, :facetable, :displayable
+  end
+  property :species, :predicate => OregonDigital::Vocabularies::DWC.specificEpithet, :class_name => OregonDigital::ControlledVocabularies::Scientific do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :commonNames, :predicate => OregonDigital::Vocabularies::DWC.vernacularName, :class_name => OregonDigital::ControlledVocabularies::Scientific do |index|
+    index.as :searchable, :facetable, :displayable
+  end
+  property :scientificNameAuthorship, :predicate => OregonDigital::Vocabularies::DWC.scientificNameAuthorship do |index|
+    index.as :searchable, :displayable
   end
   property :higherClassification, :predicate => OregonDigital::Vocabularies::DWC.higherClassification do |index|
-    index.as :searchable, :facetable, :displayable
-  end
-  property :commonNames, :predicate => OregonDigital::Vocabularies::DWC.vernacularName, :class_name => OregonDigital::ControlledVocabularies::SciCommon do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :identificationVerificationStatus, :predicate => OregonDigital::Vocabularies::DWC.identificationVerificationStatus do |index|
