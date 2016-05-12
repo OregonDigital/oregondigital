@@ -29,11 +29,17 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   def find(selector, options = {})
    afresults = []
    query_pairs = build_query(selector, options)
-   query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>1000000}
+   if options[:resumption_token]
+     start = OAI::Provider::ResumptionToken.parse(options[:resumption_token]).last
+   else start = 0
+   end
+   query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>1000, :start=>start}
    solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
-   solr_count = remove_children(solr_count)
-   return next_set(solr_count, options[:resumption_token]) if options[:resumption_token]
-   if @limit && solr_count.count > @limit
+   qry_total = ActiveFedora::SolrService.count(query_pairs, query_args)
+   solr_count = remove_children(solr_count,start, qry_total)
+   return next_set(solr_count, options[:resumption_token], qry_total) if options[:resumption_token]
+   #possibly a partial even if results < limit if a lot of children were removed, so check
+   if @limit && (solr_count.count > @limit || solr_count.last['rank'] != qry_total)
      return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0})))
    end
    afresults = convert(solr_count)
@@ -43,13 +49,12 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
    return afresults.to_a
   end
 
-  def next_set(result, token_string)
+  def next_set(result, token_string, numFound)
     raise OAI::ResumptionTokenException.new unless @limit
     token = OAI::Provider::ResumptionToken.parse(token_string)
-    if token.last+@limit == result.count
-      part = result.slice(token.last, @limit)
-      afresults = convert(part)
-      return afresults.to_a
+    if @limit >= result.count && result.last['rank'] == numFound
+        afresults = convert(result)
+        return afresults.to_a
     else
       return partial_result(result, token)
     end
@@ -57,8 +62,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
   def partial_result(result, token)
     raise OAI::ResumptionTokenException.new unless result
-    offset = token.last+@limit
-    part = result.slice(token.last, @limit)
+    part = result.slice(0, @limit)
+    offset = part.last['rank'] + 1
     afresults = convert(part)
     OAI::Provider::PartialResult.new(afresults.to_a, token.next(offset))
   end
@@ -118,14 +123,22 @@ def extract_labels(qry, field)
   label_arr
 end
 
-  def remove_children(items)
+  def remove_children(items,start, numFound)
     afresults = []
+    return afresults if numFound == 0
     uribase = "http://oregondigital.org/resource/"
+    rank = start
     items.each do |item|
-      parent = ActiveFedora::SolrService.query("#{Solrizer.solr_name("desc_metadata__od_content", :symbol)}:#{RSolr.escape(uribase + item['id'])}", :fl => "id", :rows => 1).map{|x| x["id"]}.first
-      if parent.nil?
+      item["rank"] = rank
+      pseudo = ActiveFedora::Base.load_instance_from_solr(item["id"])
+      if !pseudo.compounded?
         afresults << item
       end
+      rank = rank + 1
+    end
+    #mark end of set in case last record was a child and removed.
+    if rank == numFound
+      afresults.last['rank'] = numFound
     end
     afresults
   end
