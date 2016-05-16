@@ -124,7 +124,7 @@
     <param name="POLICY-SCHEMA-PATH" value="xsd/cs-xacml-schema-policy-01.xsd"/>
     <param name="ENFORCE-MODE" value="permit-all-requests"/>
     <param name="VALIDATE-OBJECT-POLICIES-FROM-DATASTREAM" value="false"/>
-    <param name="XACML-COMBINING-ALGORITHM" value="com.sun.xacml.combine.OrderedDenyOverridesPolicyAlg"/>
+    <param name="XACML-COMBINING-ALGORITHM" value="org.jboss.security.xacml.sunxacml.combine.OrderedDenyOverridesPolicyAlg"/>
     <param name="VALIDATE-OBJECT-POLICIES-FROM-FILE" value="false"/>
     <param name="VALIDATE-REPOSITORY-POLICIES" value="true"/>
     <param name="REPOSITORY-POLICIES-DIRECTORY" value="data/fedora-xacml-policies/repository-policies" isFilePath="true"/>
@@ -471,7 +471,7 @@
       <comment>The local path for the Fedora-METS 1.0 XML
             schema used to do XML schema validation of digital objects.</comment>
     </param>
-    <param name="xsd_xacml_policy1.0" value="xsd/cs-xacml-schema-policy-1.0.xsd">
+    <param name="xsd_xacml_policy1.0" value="xsd/cs-xacml-schema-policy-01.xsd">
       <comment>The local path for the OASIS XACML XML policy schema 
 			used to do XML schema validation of XACML policies.</comment>
     </param>
