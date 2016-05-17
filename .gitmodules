@@ -1,4 +1,4 @@
 [submodule "jetty"]
 	path = jetty
-	url = https://github.com/projecthydra/hydra-jetty.git
+	url = https://github.com/uoregon-libraries/hydra-jetty.git
 	ignore = dirty
