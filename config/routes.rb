@@ -85,4 +85,8 @@ Oregondigital::Application.routes.draw do
 
   # Static Pages
   get ':action' => 'static#:action', :constraints => { :action => /copyright|help/ }, :as => :static
+
+  # Thumbnails
+  get '/thumbnails/:id', :to => 'thumbnails#thumbnail_links'
+
 end
