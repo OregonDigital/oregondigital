@@ -36,7 +36,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>1000, :start=>start}
    solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
    qry_total = ActiveFedora::SolrService.count(query_pairs, query_args)
-   solr_count = remove_children(solr_count,start, qry_total)
+   solr_count = remove_chaff(solr_count,start, qry_total)
    return next_set(solr_count, options[:resumption_token], qry_total) if options[:resumption_token]
    #possibly a partial even if results < limit if a lot of children were removed, so check
    if @limit && (solr_count.count > @limit || solr_count.last['rank'] != qry_total)
@@ -123,15 +123,25 @@ def extract_labels(qry, field)
   label_arr
 end
 
-  def remove_children(items,start, numFound)
+  def remove_chaff(items,start, numFound)
     afresults = []
     return afresults if numFound == 0
     uribase = "http://oregondigital.org/resource/"
     rank = start
     items.each do |item|
+      test = 0
       item["rank"] = rank
       pseudo = ActiveFedora::Base.load_instance_from_solr(item["id"])
-      if !pseudo.compounded?
+      #can add more tests here if necessary
+      #remove children
+      if pseudo.compounded?
+        test = test + 1
+      end
+      #check primarySet is not corrupt
+      if (!pseudo.descMetadata.primarySet.empty?) && (!pseudo.descMetadata.primarySet.first.respond_to? :id)
+        test = test + 1
+      end
+      if test == 0
         afresults << item
       end
       rank = rank + 1

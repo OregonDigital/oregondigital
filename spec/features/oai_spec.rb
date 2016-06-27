@@ -98,6 +98,22 @@ shared_examples "OAI endpoint" do |parameter|
         expect(page).to have_xpath('//header[@status="deleted"]')
       end
     end
+    context "when the asset's primaryset raises an error" do
+      let(:pset2) {GenericCollection.new(pid:"oregondigital:myset2") }
+      let(:asset2) {asset_class.new}
+      before do
+        asset2.title = "asset 2"
+        asset2.descMetadata.primarySet << pset2
+        asset2.save
+        asset2.review!
+        visit oai_path(:verb => "ListRecords", :metadataPrefix => parameter)
+      end
+      #pset2 not saved with title, raises a NoMethodError when asked for an id
+      it "shouldn't be included in the results" do
+        expect{asset2.descMetadata.primarySet.first.id}.to raise_error
+        expect(page).not_to have_content(asset2.id)
+      end
+    end
 
     context "and they are documents" do
       let(:asset_class) {Document}
