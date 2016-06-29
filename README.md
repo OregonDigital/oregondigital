@@ -13,7 +13,7 @@ New development is focused on Oregon Digital 2: http://github.com/OregonDigital/
 Connected projects:
   - [csv2bag](https://github.com/OregonDigital/csv2bag) - bulk ingest from CSV
   - [cdm2bag](https://github.com/OregonDigital/cdm2bag) - bulk ingest from CONTENTdm
-  - [ControlledVocabularyManager](https://github.com/OregonDigital/ControlledVocabularyManager) - Rails app + Marmotta powering OpaqueNamespace.org
+  - [ControlledVocabularyManager](https://github.com/OregonDigital/ControlledVocabularyManager) - Rails app with Blazegraph powering [OpaqueNamespace.org](http://opaquenamespace.org/)
 
 
 Local Development Setup
