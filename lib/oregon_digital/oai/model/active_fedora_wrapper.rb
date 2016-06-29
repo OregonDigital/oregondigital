@@ -126,22 +126,21 @@ end
   def remove_chaff(items,start, numFound)
     afresults = []
     return afresults if numFound == 0
-    uribase = "http://oregondigital.org/resource/"
     rank = start
     items.each do |item|
-      test = 0
+      include_item = true
       item["rank"] = rank
       pseudo = ActiveFedora::Base.load_instance_from_solr(item["id"])
       #can add more tests here if necessary
       #remove children
       if pseudo.compounded?
-        test = test + 1
+        include_item = false
       end
       #check primarySet is not corrupt
       if (!pseudo.descMetadata.primarySet.empty?) && (!pseudo.descMetadata.primarySet.first.respond_to? :id)
-        test = test + 1
+        include_item = false
       end
-      if test == 0
+      if include_item
         afresults << item
       end
       rank = rank + 1
