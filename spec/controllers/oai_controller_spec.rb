@@ -38,10 +38,18 @@ describe OaiController, :resque => true do
         f.save
         f
       end
+      let(:generic_asset_4) do
+        f = FactoryGirl.create(:generic_asset)
+        f.set << RDF::URI("http://oregondigital.org/resource/oregondigital:badset")
+        f.title = "gen asset 4"
+        f.save
+        f
+      end
       before (:each) do
         generic_asset_1.reload
         generic_asset_2
         generic_asset_3
+        generic_asset_4
       end
       context "and request is list" do
         before do

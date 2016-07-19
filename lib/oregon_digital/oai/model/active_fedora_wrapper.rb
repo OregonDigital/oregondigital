@@ -192,12 +192,16 @@ end
   end
 
   def get_set(id)
-    col = ActiveFedora::Base.load_instance_from_solr(id)
-    description = col.description
-    if description.nil?
-      description = create_description(col)
+    begin
+      col = ActiveFedora::Base.load_instance_from_solr(id)
+      description = col.description
+      if description.nil?
+        description = create_description(col)
+      end
+      set = ::OAI::Set.new(:name => col.title, :spec=> col.id, :description => description)
+    rescue
+      set = ::OAI::Set.new(:name => "unknown", :spec=> "oregondigital:unknown", :description => "unknown")
     end
-    set = ::OAI::Set.new(:name => col.title, :spec=> col.id, :description => description)
   end
 
     def is_valid(solrqry)
