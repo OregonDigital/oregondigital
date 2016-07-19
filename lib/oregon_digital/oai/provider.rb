@@ -17,10 +17,9 @@ class OregonDigital::OAI::Provider < ::OAI::Provider::Base
         elsif !record.descMetadata.set.empty?
           setid = record.descMetadata.set.first.id.gsub("oregondigital:","")
         end
-      rescue
-        setid = "unknown"
-      ensure
         "#{APP_CONFIG['oai']['record_prefix']}:#{setid}/#{record.id.gsub('oregondigital:','')}"
+      rescue
+        "#{APP_CONFIG['oai']['record_prefix']}:unknown/#{record.id.gsub('oregondigital:','')}"
       end
     end
   end
