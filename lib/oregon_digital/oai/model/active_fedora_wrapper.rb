@@ -137,7 +137,7 @@ end
         include_item = false
       end
       #check primarySet is not corrupt
-      if (!pseudo.descMetadata.primarySet.empty?) && (!pseudo.descMetadata.primarySet.first.respond_to? :id)
+      if (pseudo.descMetadata.primarySet.empty?) || (!pseudo.descMetadata.primarySet.first.respond_to? :id)
         include_item = false
       end
       if include_item
