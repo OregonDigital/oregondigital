@@ -11,11 +11,15 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
     end
     let(:generic_asset_1) do
       f = FactoryGirl.build(:generic_asset)
+      f.descMetadata.set = collection_1
+      f.descMetadata.primarySet = collection_1
       f.save
       f
     end
     let(:generic_asset_2) do
       f = FactoryGirl.build(:generic_asset)
+      f.descMetadata.set = collection_1
+      f.descMetadata.primarySet = collection_1
       f.save
       f
     end
@@ -38,6 +42,9 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
         before do
           sleep(1)
           generic_asset_3
+          generic_asset_3.descMetadata.set = collection_1
+          generic_asset_3.descMetadata.primarySet = collection_1
+          generic_asset_3.save
         end
         subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset, :limit => 1)}
         it "should return only that many" do
@@ -73,12 +80,8 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
         end
       end
       context "when given a set" do
-        before do
-          generic_asset_1.set = collection_1
-          generic_asset_1.save
-        end
         it "should return records belonging to set " do
-          expect(subject.find('', :set => collection_1.pid).first).to eq generic_asset_1
+          expect(subject.find('', :set => collection_1.pid).length).to eq 2
         end
       end
     end

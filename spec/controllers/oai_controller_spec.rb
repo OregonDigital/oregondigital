@@ -9,6 +9,14 @@ describe OaiController, :resque => true do
       let(:lcname2) {RDF::URI.new("http://id.loc.gov/authorities/names/no00013511")}
       let(:type) {RDF::URI.new("http://purl.org/dc/dcmitype/Image")}
       let(:rights){RDF::URI.new("http://creativecommons.org/licenses/by-nc-nd/4.0/")}
+      let(:generic_coll_1) do
+        g = FactoryGirl.build(:generic_collection)
+        g.title = "Collection_1"
+        g.description = "The first collection"
+        g.save
+        g
+      end
+
       let(:generic_asset_1) do
         f = FactoryGirl.build(:generic_asset)
         f.title = "gen asset 1"
@@ -20,6 +28,8 @@ describe OaiController, :resque => true do
         f.descMetadata.date = "2012-12-12"
         f.descMetadata.description = "This thing is a thing."
         f.descMetadata.identifier = "blahblah123"
+        f.descMetadata.set = generic_coll_1
+        f.descMetadata.primarySet = generic_coll_1
         f.save
         f
       end
@@ -28,6 +38,8 @@ describe OaiController, :resque => true do
         f = FactoryGirl.build(:generic_asset)
         f.descMetadata.format = format
         f.title = "gen asset 2"
+        f.descMetadata.set = generic_coll_1
+        f.descMetadata.primarySet = generic_coll_1
         f.save
         f
       end
@@ -35,13 +47,8 @@ describe OaiController, :resque => true do
         f = FactoryGirl.create(:generic_asset)
         f.descMetadata.format = format
         f.title = "gen asset 3"
-        f.save
-        f
-      end
-      let(:generic_asset_4) do
-        f = FactoryGirl.create(:generic_asset)
-        f.set << RDF::URI("http://oregondigital.org/resource/oregondigital:badset")
-        f.title = "gen asset 4"
+        f.descMetadata.set = RDF::URI("http://oregondigital.org/resource/oregondigital:badset")
+        f.descMetadata.primarySet = RDF::URI("http://oregondigital.org/resource/oregondigital:badset")
         f.save
         f
       end
@@ -49,7 +56,6 @@ describe OaiController, :resque => true do
         generic_asset_1.reload
         generic_asset_2
         generic_asset_3
-        generic_asset_4
       end
       context "and request is list" do
         before do
@@ -57,6 +63,10 @@ describe OaiController, :resque => true do
         end
         it "should work" do
           expect(response).to be_success
+        end
+        it "should not include the item with the bad set" do
+          expect(response.body).not_to include("badset")
+          expect(response.body).not_to include("unknown")
         end
       end
       context 'and request is get' do
