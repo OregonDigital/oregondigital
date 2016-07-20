@@ -65,8 +65,8 @@ describe OaiController, :resque => true do
           expect(response).to be_success
         end
         it "should not include the item with the bad set" do
-          expect(response.body).not_to include("badset")
-          expect(response.body).not_to include("unknown")
+          expect(response.body).not_to include("gen asset 3")
+          expect(response.body).to include("gen asset 2")
         end
       end
       context 'and request is get' do

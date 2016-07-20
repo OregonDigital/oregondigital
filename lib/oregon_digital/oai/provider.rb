@@ -19,7 +19,7 @@ class OregonDigital::OAI::Provider < ::OAI::Provider::Base
         end
         "#{APP_CONFIG['oai']['record_prefix']}:#{setid}/#{record.id.gsub('oregondigital:','')}"
       rescue
-        "#{APP_CONFIG['oai']['record_prefix']}:unknown/#{record.id.gsub('oregondigital:','')}"
+        return nil
       end
     end
   end
