@@ -137,7 +137,7 @@ end
         include_item = false
       end
       #check primarySet is not corrupt
-      if (!pseudo.descMetadata.primarySet.empty?) && (!pseudo.descMetadata.primarySet.first.respond_to? :id)
+      if (pseudo.descMetadata.primarySet.empty?) || (!pseudo.descMetadata.primarySet.first.respond_to? :id)
         include_item = false
       end
       if include_item
@@ -192,12 +192,16 @@ end
   end
 
   def get_set(id)
-    col = ActiveFedora::Base.load_instance_from_solr(id)
-    description = col.description
-    if description.nil?
-      description = create_description(col)
+    begin
+      col = ActiveFedora::Base.load_instance_from_solr(id)
+      description = col.description
+      if description.nil?
+        description = create_description(col)
+      end
+      set = ::OAI::Set.new(:name => col.title, :spec=> col.id, :description => description)
+    rescue
+      set = ::OAI::Set.new(:name => "unknown", :spec=> "oregondigital:unknown", :description => "unknown")
     end
-    set = ::OAI::Set.new(:name => col.title, :spec=> col.id, :description => description)
   end
 
     def is_valid(solrqry)

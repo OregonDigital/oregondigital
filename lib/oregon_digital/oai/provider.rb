@@ -10,13 +10,17 @@ class OregonDigital::OAI::Provider < ::OAI::Provider::Base
 
   OAI::Provider::Response::RecordResponse.class_eval do
     def identifier_for(record)
-      setid = ""
-      if !record.descMetadata.primarySet.empty?
-        setid = record.descMetadata.primarySet.first.id.gsub("oregondigital:","")
-      elsif !record.descMetadata.set.empty?
-        setid = record.descMetadata.set.first.id.gsub("oregondigital:","")
+      begin
+        setid = ""
+        if !record.descMetadata.primarySet.empty?
+          setid = record.descMetadata.primarySet.first.id.gsub("oregondigital:","")
+        elsif !record.descMetadata.set.empty?
+          setid = record.descMetadata.set.first.id.gsub("oregondigital:","")
+        end
+        "#{APP_CONFIG['oai']['record_prefix']}:#{setid}/#{record.id.gsub('oregondigital:','')}"
+      rescue
+        return nil
       end
-      "#{APP_CONFIG['oai']['record_prefix']}:#{setid}/#{record.id.gsub('oregondigital:','')}"
     end
   end
 
