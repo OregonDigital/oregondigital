@@ -106,9 +106,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     else
       query_pairs = "active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection"
     end
-    query_pairs += (" AND read_access_group_ssim:public")
+    query_pairs += (" AND (read_access_group_ssim:public OR workflow_metadata__destroyed_ssim:true)")
     query_pairs += (" AND " + add_from_to(options))
-    #query_pairs += " AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true"
   end
 
 
