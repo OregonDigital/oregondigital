@@ -23,7 +23,16 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
       f.save
       f
     end
-    let(:generic_asset_3) {FactoryGirl.create(:generic_asset)}
+    let(:generic_asset_3) {FactoryGirl.create(:generic_asset)}#does not have set, pset
+    let(:generic_asset_4) do #restricted
+      f = FactoryGirl.create(:generic_asset)
+      f.descMetadata.set = collection_1
+      f.descMetadata.primarySet = collection_1
+      f.read_groups = f.read_groups - ["public"]
+      f.read_groups |= ["University-of-Oregon"]
+      f.save
+      f
+    end
     before(:each) do
       generic_asset_1
       sleep(1)
@@ -67,6 +76,14 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
             second_result = subject.find(:all, :resumption_token => token)#second set. should not have a token
             expect(second_result).not_to respond_to(:token)
           end
+        end
+      end
+      context "when there is a restricted asset" do
+        before do
+          generic_asset_4
+        end
+        it "should not include the asset" do
+          expect(subject.find(:all)).not_to include generic_asset_4
         end
       end
       context "when given a date range that ends prior to today" do
