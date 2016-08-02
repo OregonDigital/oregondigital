@@ -77,9 +77,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     result = ActiveFedora::SolrService.query("active_fedora_model_ssi:GenericCollection AND #{ActiveFedora::SolrService.solr_name(:reviewed, :symbol)}:true", :sort=>"id desc", :fl=> "id", :rows=>10000)
     result.each do |col|
       test = ActiveFedora::SolrService.query("desc_metadata__primarySet_ssi: #{RSolr.escape('http://oregondigital.org/resource/'+ col['id'])}", :rows=>1)
-      if !test.empty?
-        cols << get_set(col["id"])
-      end
+      obj = get_set(col["id"]) unless test.empty?
+      cols << obj unless obj.nil?
     end
     cols
   end
@@ -110,18 +109,6 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     query_pairs += (" AND " + add_from_to(options))
   end
 
-
-def extract_labels(qry, field)
-  val = qry.first["desc_metadata__#{field}_label_ssm"]
-  label_arr = []
-  unless val.nil?
-    val.each do |term|
-      label = term.split('$')
-      label_arr << label[0]
-    end
-  end
-  label_arr
-end
 
   def remove_chaff(items,start, numFound)
     afresults = []
@@ -154,19 +141,22 @@ end
 
   def convert(items)
     afresults = []
-
     items.each do |item|
-      solrqry = ActiveFedora::SolrService.query("id:#{RSolr.escape(item['id'])}")
-      next unless is_valid(solrqry)
+
       pseudo_obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
       wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
       #replace the uris with labels
       uri_fields.each do |field|
-        label_arr = extract_labels(solrqry, field)
+        label_arr = []
+        pseudo_obj.descMetadata.send("#{field}").each do |val|
+          if ((val.respond_to? :rdf_label) && (!val.rdf_label.first.include? "http"))
+            label_arr << val.rdf_label.first
+          end
+        end
         wrapped.set_attrs("#{field}", label_arr)
       end
-      if solrqry.first["workflow_metadata__destroyed_ssm"]
-        wrapped.set_attrs("deleted", true) # put this in the decorator to begin with?
+      if pseudo_obj.soft_destroyed?
+        wrapped.set_attrs("deleted", true)
       end
       wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
       sets = []
@@ -181,14 +171,16 @@ end
     afresults
   end
 
-  def create_description(col)
-    solrqry = ActiveFedora::SolrService.query("id:#{RSolr.escape(col.id)}")
-    description = "Title: " + col.title
-    label_arr = extract_labels(solrqry, "institution")
-    if !label_arr.empty?
-      institutions = label_arr.inject{|collector,element| collector + ", " + element}
-      description += ", Institution(s): " + institutions
+  def create_description(obj)
+    description = "Title: " + obj.title
+    if obj.descMetadata.institution.first.respond_to? :rdf_label
+      label_arr = obj.descMetadata.institution.first.rdf_label
+      if !label_arr.empty?
+        institutions = label_arr.inject{|collector,element| collector + ", " + element}
+        description += ", Institution(s): " + institutions
+      end
     end
+    description
   end
 
   def get_set(id)
@@ -200,18 +192,10 @@ end
       end
       set = ::OAI::Set.new(:name => col.title, :spec=> col.id, :description => description)
     rescue
-      set = ::OAI::Set.new(:name => "unknown", :spec=> "oregondigital:unknown", :description => "unknown")
+      set = nil
     end
+    set
   end
-
-    def is_valid(solrqry)
-      if solrqry.first["reviewed_ssim"].first =="true"
-        return true
-      elsif !solrqry.first["workflow_metadata__destroyed_ssm"].nil? && solrqry.first["workflow_metadata__destroyed_ssm"].first == "true"
-        return true
-      else return false
-      end
-    end
 
     def add_from_to(options)
       from = options.delete(:from)
