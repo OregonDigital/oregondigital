@@ -27,45 +27,45 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def find(selector, options = {})
-   afresults = []
+   results = []
    query_pairs = build_query(selector, options)
+   #start/rank tracks asset indices throughout entire result set
    if options[:resumption_token]
      start = OAI::Provider::ResumptionToken.parse(options[:resumption_token]).last
    else start = 0
    end
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>1000, :start=>start}
-   solr_count = ActiveFedora::SolrService.query(query_pairs, query_args)
+   solr_results = ActiveFedora::SolrService.query(query_pairs, query_args)
+   #num items of the complete set
    qry_total = ActiveFedora::SolrService.count(query_pairs, query_args)
-   solr_count = remove_chaff(solr_count,start, qry_total)
-   return next_set(solr_count, options[:resumption_token], qry_total) if options[:resumption_token]
-   #possibly a partial even if results < limit if a lot of children were removed, so check
-   if @limit && (solr_count.count > @limit || solr_count.last['rank'] != qry_total)
-     return partial_result(solr_count, OAI::Provider::ResumptionToken.new(options.merge({:last => 0})))
+
+   #results will always be @limit or less
+   results = build_results(solr_results, start, qry_total)
+   return next_set(results, options[:resumption_token], qry_total) if options[:resumption_token]
+
+   if @limit && results.last.rank != qry_total - 1
+     return partial_result(results, OAI::Provider::ResumptionToken.new(options.merge({:last => 0})))
    end
-   afresults = convert(solr_count)
    if !selector.blank? && selector!= :all
-     return afresults.first
+     return results.first
    end
-   return afresults.to_a
+   return results
   end
 
-  def next_set(result, token_string, numFound)
+  def next_set(results, token_string, numFound)
     raise OAI::ResumptionTokenException.new unless @limit
     token = OAI::Provider::ResumptionToken.parse(token_string)
-    if @limit >= result.count && result.last['rank'] == numFound
-        afresults = convert(result)
-        return afresults.to_a
+    if results.last.rank == numFound -1
+        return results
     else
-      return partial_result(result, token)
+      return partial_result(results, token)
     end
   end
 
-  def partial_result(result, token)
-    raise OAI::ResumptionTokenException.new unless result
-    part = result.slice(0, @limit)
-    offset = part.last['rank'] + 1
-    afresults = convert(part)
-    OAI::Provider::PartialResult.new(afresults.to_a, token.next(offset))
+  def partial_result(results, token)
+    raise OAI::ResumptionTokenException.new unless results
+    offset = results.last.rank + 1
+    OAI::Provider::PartialResult.new(results, token.next(offset))
   end
 
   def timestamp_field
@@ -109,66 +109,67 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     query_pairs += (" AND " + add_from_to(options))
   end
 
-
-  def remove_chaff(items,start, numFound)
-    afresults = []
-    return afresults if numFound == 0
-    rank = start
-    items.each do |item|
-      include_item = true
-      item["rank"] = rank
-      pseudo = ActiveFedora::Base.load_instance_from_solr(item["id"])
-      #can add more tests here if necessary
-      #remove children
-      if pseudo.compounded?
-        include_item = false
-      end
-      #check primarySet is not corrupt
-      if (pseudo.descMetadata.primarySet.empty?) || (!pseudo.descMetadata.primarySet.first.respond_to? :id)
-        include_item = false
-      end
-      if include_item
-        afresults << item
-      end
-      rank = rank + 1
+  def keep_item(obj)
+    include_item = true
+    if obj.compounded?
+      include_item = false
     end
-    #mark end of set in case last record was a child and removed.
-    if rank == numFound
-      afresults.last['rank'] = numFound
+    #check primarySet is not corrupt
+    if (obj.descMetadata.primarySet.empty?) || (!obj.descMetadata.primarySet.first.respond_to? :id)
+      include_item = false
     end
-    afresults
+    include_item
   end
 
-  def convert(items)
-    afresults = []
-    items.each do |item|
+  def build_results(items,start, numFound)
 
+    results = []
+    return results if numFound == 0
+    this_set_counter = 0
+    total_set_counter = start #from the resumptionToken
+    items.each do |item|
       pseudo_obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
-      wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
-      #replace the uris with labels
-      uri_fields.each do |field|
-        label_arr = []
-        pseudo_obj.descMetadata.send("#{field}").each do |val|
-          if ((val.respond_to? :rdf_label) && (!val.rdf_label.first.include? "http"))
-            label_arr << val.rdf_label.first
+      if keep_item(pseudo_obj)
+        wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
+        #replace the uris with labels
+        uri_fields.each do |field|
+          label_arr = []
+          pseudo_obj.descMetadata.send("#{field}").each do |val|
+            if ((val.respond_to? :rdf_label) && (!val.rdf_label.first.include? "http"))
+              label_arr << val.rdf_label.first
+            end
           end
+          wrapped.set_attrs("#{field}", label_arr)
         end
-        wrapped.set_attrs("#{field}", label_arr)
-      end
-      if pseudo_obj.soft_destroyed?
-        wrapped.set_attrs("deleted", true)
-      end
-      wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
-      sets = []
-      if !pseudo_obj.set.nil?
-        pseudo_obj.set.each do |setid|
-          sets << get_set(setid.to_str.split('/').last)
+        if pseudo_obj.soft_destroyed?
+          wrapped.set_attrs("deleted", true)
         end
-        wrapped.sets = sets
+        wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
+        sets = []
+        if !pseudo_obj.set.nil?
+          pseudo_obj.set.each do |setid|
+            sets << get_set(setid.to_str.split('/').last)
+          end
+          wrapped.sets = sets
+        end
+        wrapped.rank = total_set_counter #add rank to the wrapper
+        results << wrapped
+        this_set_counter = this_set_counter + 1
+
+        #both counts are zero index.
+        #this_set_counter contains actual count after +1
+        if this_set_counter == @limit
+          break
+        end
       end
-      afresults << wrapped
+      total_set_counter = total_set_counter + 1
     end
-    afresults
+    #finished loop, set marker if necessary
+    #if last items were not included and finished last batch of items
+    if total_set_counter == numFound
+      results.last.rank = total_set_counter - 1
+    end
+    results
   end
 
   def create_description(obj)
@@ -197,28 +198,28 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     set
   end
 
-    def add_from_to(options)
-      from = options.delete(:from)
-      if from
-        from = from.to_time(:utc) unless from.is_a? Time
-        from = from.iso8601
-      else from = '*'
-      end
-      until_date = options.delete(:until)
-      if until_date
-        until_date = until_date.to_time(:utc)unless until_date.is_a? Time
-        until_date = until_date.iso8601
-      else until_date = '*'
-      end
-      "#{updated_at_field}:[#{from} TO #{until_date}]"
+  def add_from_to(options)
+    from = options.delete(:from)
+    if from
+      from = from.to_time(:utc) unless from.is_a? Time
+      from = from.iso8601
+    else from = '*'
     end
+    until_date = options.delete(:until)
+    if until_date
+      until_date = until_date.to_time(:utc)unless until_date.is_a? Time
+      until_date = until_date.iso8601
+    else until_date = '*'
+    end
+    "#{updated_at_field}:[#{from} TO #{until_date}]"
+  end
 
-    def created_at_field
-      "system_create_dtsi"
-    end
+  def created_at_field
+    "system_create_dtsi"
+  end
 
-    def updated_at_field
-      "system_modified_dtsi"
-    end
+  def updated_at_field
+    "system_modified_dtsi"
+  end
 
 end
