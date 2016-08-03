@@ -1,7 +1,7 @@
 class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
 
     delegate_all
-    attr_accessor :modified_date, :identifier, :sets
+    attr_accessor :modified_date, :identifier, :sets, :rank
 
     #override fields that return uris to return labels
     def set_attrs (key, val)
