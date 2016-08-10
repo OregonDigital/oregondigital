@@ -15,6 +15,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :ubio
     use_vocabulary :osubuildings
     use_vocabulary :wikidata
+    use_vocabulary :ulan
 
     # Make wikidata entity URIs usable to fetch.
     # Our gems don't handle their https redirect, and JSON is the default response which we have errors parsing, so force to NT.
