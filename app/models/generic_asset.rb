@@ -53,7 +53,7 @@ class GenericAsset < ActiveFedora::Base
   private
 
   def compound_parent_id
-    @compound_parent_id ||= ActiveFedora::SolrService.query("#{Solrizer.solr_name("desc_metadata__od_content", :symbol)}:#{RSolr.escape(resource.rdf_subject.to_s)}", :fl => "id", :rows => 1).map{|x| x["id"]}.first
+    @compound_parent_id ||= ActiveFedora::SolrService.query("#{Solrizer.solr_name("desc_metadata__od_content", :symbol)}:#{RSolr.escape(resource.rdf_subject.to_s)} AND #{Solrizer.solr_name("workflow_metadata__reviewed", :symbol)}:true", :fl => "id", :rows => 1).map{|x| x["id"]}.first
   end
 
   def queue_fetch
