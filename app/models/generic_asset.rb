@@ -19,7 +19,7 @@ class GenericAsset < ActiveFedora::Base
   after_save :queue_derivatives
   attr_accessor :skip_queue
   after_save :queue_fetch
-  after_save :check_cache
+  after_save :clear_cache
 
 
   def self.assign_pid(_)
@@ -33,6 +33,7 @@ class GenericAsset < ActiveFedora::Base
   has_attributes :format, :type, :location, :created, :description, :rights, :title, :modified, :date, :datastream => :descMetadata, :multiple => false
   has_attributes :identifier, :lcsubject, :set, :creator, :contributor, :institution, :datastream => :descMetadata, :multiple => true
   delegate :od_content, :to => :descMetadata, :allow_nil => true
+  delegate :cpd_pids, :to => :descMetadata, :allow_nil => true
 
   def compound?
     od_content_uris.length > 0
@@ -40,6 +41,14 @@ class GenericAsset < ActiveFedora::Base
 
   def od_content_uris
     resource.query([resource.rdf_subject, OregonDigital::Vocabularies::OREGONDIGITAL.contents, nil]).map{|x| x.object}
+  end
+
+  def compounded_short_test?
+    if compound_parent_id
+      return true
+    else
+      return false
+    end
   end
 
   def compounded?
@@ -69,7 +78,7 @@ class GenericAsset < ActiveFedora::Base
     ::Resque.enqueue(::CreateDerivativesJob,pid) if @needs_derivatives
   end
 
-  def check_cache
+  def clear_cache
     if compound?
       #expire myself
       ActionController::Base.new.expire_fragment("cpd/"+id)
