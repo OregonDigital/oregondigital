@@ -39,7 +39,7 @@ class ImageDecorator < GenericAssetDecorator
   end
 
   def small_image_mime_types
-    ["image/jpeg"]
+    ["image/jpeg", "image/png"]
   end
 
 end
