@@ -10,6 +10,7 @@ shared_examples "OAI endpoint" do |parameter|
     let(:rights) {RDF::URI.new("http://creativecommons.org/licenses/by-nc-nd/4.0/")}
     let(:opns) {RDF::URI.new("http://opaquenamespace.org/ns/creator/mylittlecreator")}
     let(:mtype) {RDF::URI.new("http://purl.org/NET/mediatypes/image/tiff")}
+    let(:geo) {RDF::URI.new("http://sws.geonames.org/5129691")}
     let(:pset) {GenericCollection.new(pid:"oregondigital:myset")}
     let(:asset) {asset_class.new}
 
@@ -33,6 +34,9 @@ shared_examples "OAI endpoint" do |parameter|
       asset.descMetadata.latestDate = "1983"
       asset.descMetadata.format = [mtype]
       asset.descMetadata.format.first.persist!
+      asset.descMetadata.location = [geo]
+      asset.descMetadata.location.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("New York City (United States >> New York)", :language => :en))
+      asset.descMetadata.location.first.persist!
       #add label once mediatypes site is working again
       pset.title = "my set"
       pset.save
@@ -79,12 +83,15 @@ shared_examples "OAI endpoint" do |parameter|
       it "should have earliest/latest date in the date field" do
         expect(page).to have_content("1982-1983")
       end
-      it "should have both the rights url and the rights label" do
-        expect(page).to have_content("Attribution-NonCommercial-NoDerivatives 4.0 International")
+      it "should have only the rights url" do
+        expect(page).not_to have_content("Attribution-NonCommercial-NoDerivatives 4.0 International")
         expect(page).to have_content("http://creativecommons.org/licenses/by-nc-nd/4.0/")
       end
       it "should have a format label" do
         expect(page).to have_content("image/tiff")
+      end
+      it "should have a location label with commas, not angle brackets" do
+        expect(page).to have_content("New York City (United States, New York)")
       end
     end
 

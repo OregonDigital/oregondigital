@@ -20,7 +20,7 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
 
     def rights
       if !descMetadata.rights.nil? && !descMetadata.rights.empty?
-        return descMetadata.rights.first.rdf_label.first + ", " + descMetadata.rights.first.rdf_subject.to_s
+        descMetadata.rights.first.rdf_subject.to_s
       end
     end
 
@@ -37,4 +37,27 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       end
     end
 
+    def location
+      if !descMetadata.location.empty?
+        string = descMetadata.location.first.rdf_label.first
+        string.gsub!(" >> ",", ")
+        string
+      end
+    end
+
+    def rangerDistrict
+      if !descMetadata.rangerDistrict.empty?
+        string = descMetadata.rangerDistrict.first.rdf_label.first
+        string.gsub!(" >> ",", ")
+        string
+      end
+    end
+
+    def waterBasin
+      if !descMetadata.waterBasin.empty?
+        string = descMetadata.waterBasin.first.rdf_label.first
+        string.gsub!(" >> ",", ")
+        string
+      end
+    end
 end
