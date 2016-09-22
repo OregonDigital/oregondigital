@@ -8,8 +8,9 @@ module OregonDigital::OAI::Concern
 
   module ClassMethods
     # Oregon Digital fields that store RDF URIs and labels need to be looked up for
+    # remove fields that have a method in the decorator
     def uri_fields
-      @uri_fields = [:creator, :lcsubject, :type, :location, :author, :editor, :photographer, :rangerDistrict, :set,
+      @uri_fields = [:creator, :lcsubject, :type, :author, :editor, :photographer, :set,
                       :taxonClass, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator, :interviewee, :interviewer, :lyricist,
                       :photographer, :translator, :ethnographicTerm, :genus, :phylum, :militaryBranch, :stylePeriod, :commonNames, :language, 
                       :localCollectionName, :od_repository]
