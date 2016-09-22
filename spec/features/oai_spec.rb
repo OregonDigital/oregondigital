@@ -12,6 +12,7 @@ shared_examples "OAI endpoint" do |parameter|
     let(:mtype) {RDF::URI.new("http://purl.org/NET/mediatypes/image/tiff")}
     let(:geo) {RDF::URI.new("http://sws.geonames.org/5129691")}
     let(:pset) {GenericCollection.new(pid:"oregondigital:myset")}
+    let(:find) {RDF::Literal.new("http://blahblah.org")}
     let(:asset) {asset_class.new}
 
     before(:each) do
@@ -35,8 +36,9 @@ shared_examples "OAI endpoint" do |parameter|
       asset.descMetadata.format = [mtype]
       asset.descMetadata.format.first.persist!
       asset.descMetadata.location = [geo]
-      asset.descMetadata.location.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("New York City (United States >> New York)", :language => :en))
+      asset.descMetadata.location.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("Eugene >> Lane County >> Oregon >> United States", :language => :en))
       asset.descMetadata.location.first.persist!
+      asset.descMetadata.findingAid = [find]
       #add label once mediatypes site is working again
       pset.title = "my set"
       pset.save
@@ -91,7 +93,10 @@ shared_examples "OAI endpoint" do |parameter|
         expect(page).to have_content("image/tiff")
       end
       it "should have a location label with commas, not angle brackets" do
-        expect(page).to have_content("New York City (United States, New York)")
+        expect(page).to have_content("Eugene, Lane County, Oregon, United States")
+      end
+      it "should have the string url for isReferencedBy" do
+        expect(page).to have_content("http://blahblah.org")
       end
     end
 

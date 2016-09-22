@@ -39,25 +39,56 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
 
     def location
       if !descMetadata.location.empty?
-        string = descMetadata.location.first.rdf_label.first
-        string.gsub!(" >> ",", ")
-        string
+        format_geonames(descMetadata.location)
       end
     end
 
     def rangerDistrict
       if !descMetadata.rangerDistrict.empty?
-        string = descMetadata.rangerDistrict.first.rdf_label.first
-        string.gsub!(" >> ",", ")
-        string
+        format_geonames(descMetadata.rangerDistrict)
       end
     end
 
     def waterBasin
       if !descMetadata.waterBasin.empty?
-        string = descMetadata.waterBasin.first.rdf_label.first
-        string.gsub!(" >> ",", ")
-        string
+        format_geonames(descMetadata.waterBasin)
       end
     end
+
+    #since load_instance_from_solr converts string url to rdf resource
+    #force result to be a string
+    def findingAid
+      if !descMetadata.findingAid.empty?
+        handle_string_urls(descMetadata.findingAid)
+      end
+    end
+
+    def hasVersion
+      if !descMetadata.hasVersion.empty?
+        handle_string_urls(descMetadata.hasVersion)
+      end
+    end
+
+  private
+
+  def format_geonames (items)
+    results = []
+    items.each do |item|
+      results << item.rdf_label.first.gsub(" >> ", ", ")
+    end
+    results
+  end
+
+  def handle_string_urls (items)
+    results = []
+    items.each do |item|
+      if item.respond_to? :rdf_subject
+        results << item.rdf_subject.to_s
+      else
+        results << item
+      end
+    end
+    results
+  end
+
 end
