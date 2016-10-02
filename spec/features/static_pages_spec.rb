@@ -11,4 +11,18 @@ describe "Static Pages" do
     end
   end
 
+  context "Controlled Vocabularies" do
+    before(:each) do
+      visit '/controlled_vocabularies'
+    end
+    it "should include OregonDigital::ControlledVocabularies::Creator" do
+      expect(page).to have_content('OregonDigital::ControlledVocabularies::Creator')
+    end
+    it "should not include GenericCollection" do
+      expect(page).not_to have_content('GenericCollection')
+    end
+    it "should not include GenericAsset" do
+      expect(page).not_to have_content('GenericAsset')
+    end
+  end
 end
