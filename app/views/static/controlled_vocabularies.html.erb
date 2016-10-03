@@ -9,8 +9,8 @@
     <% @controlled_vocabs.each do |cv| %>
       <li><h4><%= cv %></h4>
       <b>Usable Vocabularies:</b>
-        <% cv.vocabularies.each do |vocab| %>
-          <%= link_to vocab[0], "/vocabularies##{vocab[0]}" %>,
+        <% cv.vocabularies.to_a.each do |vocab| %>
+          <%= link_to vocab[0], "/vocabularies##{vocab[0]}" %><%= "," unless vocab == cv.vocabularies.to_a.last %>
         <% end %>
       <br/>
       </li>
