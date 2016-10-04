@@ -1,0 +1,30 @@
+version: '2'
+services:
+  mongo:
+    image: mongo
+    volumes:
+      - od-data-mongo:/data/db
+  redis:
+    image: redis
+  solr:
+    image: makuk66/docker-solr:4.10.4
+    volumes:
+      - od-data-solr:/opt/solr
+  #fedoracommons:
+    #image: fedoracommons
+  web:
+    image: oregondigital/od1
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-dev
+    ports:
+      - "3000:3000"
+    links:
+      - redis
+      - mongo
+      - solr
+    env_file:
+      - web-variables.env
+volumes:
+  od-data-mongo: {}
+  od-data-solr: {}
