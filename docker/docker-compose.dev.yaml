@@ -12,8 +12,10 @@ services:
     image: makuk66/docker-solr:4.10.4
     volumes:
       - od-data-solr:/opt/solr
-  #fedoracommons:
-    #image: fedoracommons
+  fc381:
+    image: oregondigital/hydra-jetty:3.8.1-4.0
+    volumes:
+      - od-data-fc:/opt/fedora/data
   web:
     image: oregondigital/od1
     build:
@@ -28,8 +30,10 @@ services:
       - redis
       - mongo
       - solr
+      - fc381
     env_file:
       - web-variables.env
 volumes:
   od-data-mongo: {}
   od-data-solr: {}
+  od-data-fc: {}
