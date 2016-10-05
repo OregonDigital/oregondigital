@@ -95,8 +95,7 @@ ADD spec spec
 ADD test test
 ADD vendor vendor
 
-# Try to precompile assets
-RUN bundle exec rake RAILS_ENV=production assets:precompile
+# TODO: Figure out how to precompile assets before databases are ready
 
 # Expose a volume so that the web server can read assets
 VOLUME ["$INSTALL_PATH/public"]
