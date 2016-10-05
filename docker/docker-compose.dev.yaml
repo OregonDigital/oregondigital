@@ -9,13 +9,17 @@ services:
   redis:
     image: redis
   solr:
-    image: makuk66/docker-solr:4.10.4
+    image: oregondigital/hydra-jetty:3.8.1-4.0
+    command: bash -c "rm /opt/jetty/webapps/fedora.war && java -jar start.jar"
     volumes:
-      - od-data-solr:/opt/solr
+      - od-data-solr-dev:/opt/jetty/solr/development-core/data
+      - ../solr_conf/solr.xml:/opt/jetty/solr/solr.xml
+      - ../solr_conf/conf/schema.xml:/opt/jetty/solr/development-core/conf/schema.xml
+      - ../solr_conf/conf/solrconfig.xml:/opt/jetty/solr/development-core/conf/solrconfig.xml
   fc381:
     image: oregondigital/hydra-jetty:3.8.1-4.0
     volumes:
-      - od-data-fc:/opt/fedora/data
+      - od-data-fc:/opt/jetty/fedora/data
   web:
     image: oregondigital/od1
     build:
@@ -35,5 +39,5 @@ services:
       - web-variables.env
 volumes:
   od-data-mongo: {}
-  od-data-solr: {}
+  od-data-solr-dev: {}
   od-data-fc: {}
