@@ -82,6 +82,16 @@ ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 RUN bundle install
 
+# Pull down set content
+ADD docker/sync-sets.sh /sync-sets.sh
+RUN chmod +x /sync-sets.sh
+RUN /sync-sets.sh
+
+# Create symlinks
+ADD docker/link-set-content.sh /link-set-content.sh
+RUN chmod +x /link-set-content.sh
+RUN /link-set-content.sh
+
 # Copy in OD code one piece at a time so we can trust what we end up with
 ADD app app
 ADD config config
