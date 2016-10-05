@@ -1,5 +1,7 @@
 version: '2'
 services:
+  memcached:
+    image: memcached
   mongo:
     image: mongo
     volumes:
@@ -20,6 +22,7 @@ services:
     ports:
       - "3000:3000"
     links:
+      - memcached
       - redis
       - mongo
       - solr
