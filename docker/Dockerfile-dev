@@ -104,6 +104,7 @@ ADD script script
 ADD spec spec
 ADD test test
 ADD vendor vendor
+RUN bundle exec rake tmp:create
 
 # TODO: Figure out how to precompile assets before databases are ready
 
