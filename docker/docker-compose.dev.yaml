@@ -19,6 +19,8 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile-dev
+    volumes:
+      - ../db:/oregondigital/db/
     ports:
       - "3000:3000"
     links:
