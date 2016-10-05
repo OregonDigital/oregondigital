@@ -8,7 +8,6 @@ docker-compose -f docker/docker-compose.dev.yaml rm -f web
 
 docker build --rm -t oregondigital/od1 -f docker/Dockerfile-dev .
 docker-compose -f docker/docker-compose.dev.yaml run web bundle exec rake db:migrate
-docker-compose -f docker/docker-compose.dev.yaml run web rm -rf /oregondigital/tmp/pids
 docker-compose -f docker/docker-compose.dev.yaml up
 
 # Need a shell in the web head?  Try this:
