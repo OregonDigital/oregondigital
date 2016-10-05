@@ -23,9 +23,6 @@ services:
       - od-data-fc:/opt/jetty/fedora/data
   web:
     image: oregondigital/od1
-    build:
-      context: .
-      dockerfile: docker/Dockerfile-dev
     volumes:
       - ../db:/oregondigital/db/
     ports:
