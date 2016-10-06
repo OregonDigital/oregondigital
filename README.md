@@ -25,6 +25,9 @@ git clone git@github.com:OregonDigital/oregondigital.git
 
 # Run the dev stack with docker-compose, nicely wrapped in a shell script
 ./docker/compose up
+
+# Alternatively, run dev.sh to do some extra setup such as rebuilding the OD1 image and running migrations:
+./docker/dev.sh
 ```
 
 You can run commands against the web head via standard compose commands using
