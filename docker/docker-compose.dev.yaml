@@ -12,13 +12,11 @@ services:
     volumes:
       - redis:/data
   solr:
-    image: oregondigital/hydra-jetty:3.8.1-4.0
-    command: bash -c "rm -f /opt/jetty/webapps/fedora.war && java -jar start.jar"
+    image: oregondigital/solr
+    ports:
+      - "8983:8983"
     volumes:
-      - solr-dev:/opt/jetty/solr/development-core/data
-      - ../solr_conf/solr.xml:/opt/jetty/solr/solr.xml
-      - ../solr_conf/conf/schema.xml:/opt/jetty/solr/development-core/conf/schema.xml
-      - ../solr_conf/conf/solrconfig.xml:/opt/jetty/solr/development-core/conf/solrconfig.xml
+      - solr-dev:/opt/solr/server/solr/mycores
   fc381:
     image: oregondigital/hydra-jetty:3.8.1-4.0
     command: bash -c "rm -f /opt/jetty/webapps/solr.war && java -jar start.jar"
