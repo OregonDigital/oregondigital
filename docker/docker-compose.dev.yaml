@@ -30,6 +30,7 @@ services:
     image: oregondigital/od1
     volumes:
       - ../db:/oregondigital/db/
+      - ../media:/oregondigital/media
     command: bundle exec rake resque:work
     links:
       - memcached
@@ -46,6 +47,7 @@ services:
     image: oregondigital/od1
     volumes:
       - ../db:/oregondigital/db/
+      - ../media:/oregondigital/media
     command: bash -c "rm -f /oregondigital/tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
     ports:
       - "3000:3000"

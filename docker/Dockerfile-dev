@@ -107,6 +107,10 @@ ADD test test
 ADD vendor vendor
 RUN bundle exec rake tmp:create
 
+RUN mkdir -p /oregondigital/media/thumbnails
+RUN ln -s /oregondigital/media /oregondigital/public/media
+RUN ln -s /oregondigital/media/thumbnails /oregondigital/public/thumbnails
+
 # TODO: Figure out how to precompile assets before databases are ready
 
 # Expose a volume so that the web server can read assets
