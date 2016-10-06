@@ -1,5 +1,6 @@
 version: '2'
 services:
+  # Back-end services
   memcached:
     image: memcached
   mongo:
@@ -24,6 +25,22 @@ services:
       - "8984:8983"
     volumes:
       - data-fedora:/opt/jetty/fedora/data
+  workers:
+    image: oregondigital/od1
+    volumes:
+      - ../db:/oregondigital/db/
+    command: bundle exec rake resque:work
+    links:
+      - memcached
+      - redis
+      - mongo
+      - solr
+      - fc381
+    env_file:
+      - web-variables.env
+      - resque-variables.env
+
+  # Front-end stuff
   web:
     image: oregondigital/od1
     volumes:
@@ -39,6 +56,16 @@ services:
       - fc381
     env_file:
       - web-variables.env
+  resquehead:
+    image: oregondigital/od1
+    command: bundle exec resque-web -FL -r redis:6379
+    ports:
+      - "5678:5678"
+    links:
+      - redis
+    env_file:
+      - web-variables.env
+      - resque-variables.env
 volumes:
   data-mongo: {}
   data-solr-dev: {}
