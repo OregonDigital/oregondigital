@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 #
 # Simple wrapper around the docker-compose call with some sane pre-defined stuff
-file=docker/docker-compose.dev.yaml
-docker-compose -p OD1 -f $file $@
+docker-compose -p OD1 $@

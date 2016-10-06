@@ -29,8 +29,8 @@ services:
   workers:
     image: oregondigital/od1
     volumes:
-      - ../db:/oregondigital/db/
-      - ../media:/oregondigital/media
+      - ./db:/oregondigital/db/
+      - ./media:/oregondigital/media
     command: bundle exec rake resque:work
     links:
       - memcached
@@ -39,15 +39,15 @@ services:
       - solr
       - fc381
     env_file:
-      - web-variables.env
-      - resque-variables.env
+      - docker/web-variables.env
+      - docker/resque-variables.env
 
   # Front-end stuff
   web:
     image: oregondigital/od1
     volumes:
-      - ../db:/oregondigital/db/
-      - ../media:/oregondigital/media
+      - ./db:/oregondigital/db/
+      - ./media:/oregondigital/media
     command: bash -c "rm -f /oregondigital/tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
     ports:
       - "3000:3000"
@@ -58,7 +58,7 @@ services:
       - solr
       - fc381
     env_file:
-      - web-variables.env
+      - docker/web-variables.env
   resquehead:
     image: oregondigital/od1
     command: bundle exec resque-web -FL -r redis:6379
@@ -67,8 +67,8 @@ services:
     links:
       - redis
     env_file:
-      - web-variables.env
-      - resque-variables.env
+      - docker/web-variables.env
+      - docker/resque-variables.env
 volumes:
   data-mongo: {}
   data-solr-dev: {}
