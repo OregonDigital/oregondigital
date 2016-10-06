@@ -41,6 +41,7 @@ RUN apt-get purge libreoffice*
 RUN add-apt-repository -y ppa:libreoffice/ppa
 RUN apt-get install -y poppler-utils poppler-data ghostscript libreoffice
 RUN apt-get install -y libmagic-dev libmagickwand-dev ffmpeg libvorbis-dev libavcodec-extra-53
+RUN apt-get install -y graphicsmagick
 
 # Database connection libraries
 RUN apt-get install -y libmysqlclient-dev
