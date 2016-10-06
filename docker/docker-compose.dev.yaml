@@ -5,25 +5,25 @@ services:
   mongo:
     image: mongo
     volumes:
-      - mongo:/data/db
+      - data-mongo:/data/db
   redis:
     image: redis
     command: redis-server --appendonly yes
     volumes:
-      - redis:/data
+      - data-redis:/data
   solr:
     image: oregondigital/solr
     ports:
       - "8983:8983"
     volumes:
-      - solr-dev:/opt/solr/server/solr/mycores
+      - data-solr-dev:/opt/solr/server/solr/mycores
   fc381:
     image: oregondigital/hydra-jetty:3.8.1-4.0
     command: bash -c "rm -f /opt/jetty/webapps/solr.war && java -jar start.jar"
     ports:
       - "8984:8983"
     volumes:
-      - fedora:/opt/jetty/fedora/data
+      - data-fedora:/opt/jetty/fedora/data
   web:
     image: oregondigital/od1
     volumes:
@@ -40,7 +40,7 @@ services:
     env_file:
       - web-variables.env
 volumes:
-  mongo: {}
-  solr-dev: {}
-  fedora: {}
-  redis: {}
+  data-mongo: {}
+  data-solr-dev: {}
+  data-fedora: {}
+  data-redis: {}
