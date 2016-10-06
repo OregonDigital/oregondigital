@@ -24,7 +24,8 @@ services:
     ports:
       - "8984:8983"
     volumes:
-      - data-fedora:/opt/jetty/fedora/data
+      - data-fedora:/opt/jetty/fedora/default/data
+      - data-derby:/opt/jetty/fedora/default/derby
   workers:
     image: oregondigital/od1
     volumes:
@@ -70,4 +71,5 @@ volumes:
   data-mongo: {}
   data-solr-dev: {}
   data-fedora: {}
+  data-derby: {}
   data-redis: {}
