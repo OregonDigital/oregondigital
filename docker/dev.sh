@@ -11,6 +11,8 @@
 docker build --rm -t oregondigital/od1 -f docker/Dockerfile-dev .
 ./docker/compose run web bundle exec rake db:migrate
 ./docker/compose rm -f web
+./docker/compose rm -f workers
+./docker/compose rm -f resquehead
 
 # Restart
 ./docker/compose up
