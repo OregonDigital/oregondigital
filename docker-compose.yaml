@@ -26,6 +26,7 @@ services:
     volumes:
       - data-fedora:/opt/jetty/fedora/default/data
       - data-derby:/opt/jetty/fedora/default/derby
+      - ./media:/oregondigital/media
   workers:
     image: oregondigital/od1
     volumes:
