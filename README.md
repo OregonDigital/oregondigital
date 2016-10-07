@@ -43,7 +43,7 @@ automatically when running the test script, but it's a VERY slow process.  If
 you can find a 1.8.1 binary that works in Ubuntu 12.04, you'll be a lot better
 off.  If not, the script should build it for you, but it can take a while.
 
-Want to focus tests?  Just pass it in: `./docker/test.sh spec/models`
+Want to focus tests?  Just pass in a path: `./docker/test.sh spec/models`.
 
 If you need to ensure your environment is pristine, use the `--destroy` flag,
 which will destroy and rebuild all containers.
