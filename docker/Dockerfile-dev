@@ -86,12 +86,12 @@ RUN curl -O https://raw.githubusercontent.com/OregonDigital/oregondigital/master
 RUN bundle install
 
 # Pull down set content
-ADD docker/sync-sets.sh /sync-sets.sh
+COPY docker/sync-sets.sh /sync-sets.sh
 RUN chmod +x /sync-sets.sh
 RUN /sync-sets.sh
 
 # Create symlinks
-ADD docker/link-set-content.sh /link-set-content.sh
+COPY docker/link-set-content.sh /link-set-content.sh
 RUN chmod +x /link-set-content.sh
 RUN /link-set-content.sh
 
@@ -101,23 +101,23 @@ RUN mkdir -p tmp/sessions tmp/sockets tmp/pids tmp/cache/assets/development \
              tmp/cache/assets/test tmp/cache/assets/production
 
 # Copy in OD code one piece at a time so we can trust what we end up with
-ADD app app
-ADD config config
-ADD config.ru config.ru
-ADD db db
-ADD lib lib
-ADD public public
-ADD Rakefile Rakefile
-ADD script script
-ADD spec spec
-ADD test test
-ADD vendor vendor
+COPY app app
+COPY config config
+COPY config.ru config.ru
+COPY db db
+COPY lib lib
+COPY public public
+COPY Rakefile Rakefile
+COPY script script
+COPY spec spec
+COPY test test
+COPY vendor vendor
 
 # Now add the Gemfiles and re-bundle - this is redundant, I know, but it makes
 # development better by only pulling changed gems and not re-running a bunch of
 # extraneous steps
-ADD Gemfile Gemfile
-ADD Gemfile.lock Gemfile.lock
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 
 RUN mkdir -p /oregondigital/media/thumbnails
