@@ -44,7 +44,7 @@ GIT
     sprockets-digest-assets-fix (1.0.0)
 
 GIT
-  remote: https://github.com/uoregon-libraries/active_fedora
+  remote: https://github.com/OregonDigital/active_fedora
   revision: 78cf58e6028b72ea3848d1e0567697283a17ad0c
   specs:
     active-fedora (7.0.0.rc3)
@@ -59,7 +59,7 @@ GIT
       rubydora (~> 1.7.4)
 
 GIT
-  remote: https://github.com/uoregon-libraries/hydra-head
+  remote: https://github.com/OregonDigital/hydra-head
   revision: 1ab00dd5c574c99852acb3a44486c6a5f706ca45
   specs:
     hydra-access-controls (6.4.0)
