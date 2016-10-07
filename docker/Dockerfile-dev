@@ -78,9 +78,11 @@ WORKDIR $INSTALL_PATH
 # Grab bundler for installing the gems
 RUN gem install bundler
 
-# Cache gem-building so we don't rebuild all the gems on every code change
-ADD Gemfile Gemfile
-ADD Gemfile.lock Gemfile.lock
+# Grab the current gemfiles from github so we have a place to start with
+# bundler - this ensures that changes to Gemfile and Gemfile.lock don't re-pull
+# the entire list of gems
+RUN curl -O https://raw.githubusercontent.com/OregonDigital/oregondigital/master/Gemfile
+RUN curl -O https://raw.githubusercontent.com/OregonDigital/oregondigital/master/Gemfile.lock
 RUN bundle install
 
 # Pull down set content
@@ -92,6 +94,11 @@ RUN /sync-sets.sh
 ADD docker/link-set-content.sh /link-set-content.sh
 RUN chmod +x /link-set-content.sh
 RUN /link-set-content.sh
+
+# Let's create the temp dirs manually instead of using rake, which depends on
+# the app already being in place
+RUN mkdir -p tmp/sessions tmp/sockets tmp/pids tmp/cache/assets/development \
+             tmp/cache/assets/test tmp/cache/assets/production
 
 # Copy in OD code one piece at a time so we can trust what we end up with
 ADD app app
@@ -105,13 +112,17 @@ ADD script script
 ADD spec spec
 ADD test test
 ADD vendor vendor
-RUN bundle exec rake tmp:create
+
+# Now add the Gemfiles and re-bundle - this is redundant, I know, but it makes
+# development better by only pulling changed gems and not re-running a bunch of
+# extraneous steps
+ADD Gemfile Gemfile
+ADD Gemfile.lock Gemfile.lock
+RUN bundle install
 
 RUN mkdir -p /oregondigital/media/thumbnails
 RUN ln -s /oregondigital/media /oregondigital/public/media
 RUN ln -s /oregondigital/media/thumbnails /oregondigital/public/thumbnails
-
-# TODO: Figure out how to precompile assets before databases are ready
 
 # Expose a volume so that the web server can read assets
 VOLUME ["$INSTALL_PATH/public"]
