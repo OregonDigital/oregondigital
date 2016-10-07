@@ -1,5 +1,7 @@
+<% content_for :page_title, "Sign Up " %>
+
 <div id="content" class="span12">
-<h2>Sign up</h2>
+<h2>Sign Up</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "well" }) do |f| %>
   <%= f.error_notification %>
