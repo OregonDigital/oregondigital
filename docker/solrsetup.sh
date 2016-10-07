@@ -16,5 +16,5 @@ fi
 
 # Override stuff with OD files
 rm -f $coredir/conf/managed-schema
-cp /var/odconf/conf/schema.xml $coredir/conf/schema.xml
-cp /var/odconf/conf/solrconfig.xml $coredir/conf/solrconfig.xml
+cp /var/odconf/schema.xml $coredir/conf/schema.xml
+cp /var/odconf/solrconfig.xml $coredir/conf/solrconfig.xml
