@@ -18,8 +18,11 @@ dctest run phantomjs ./go.sh
 docker build --rm -t oregondigital/od1-test -f docker/Dockerfile-test .
 
 # Test containers aren't important and can just be destroyed as needed
-dctest kill
-dctest rm -f
+if [[ $1 == "--destroy" ]]; then
+  dctest kill
+  dctest rm -f
+  shift
+fi
 
 # Start services one at a time so we can watch the actual test output properly.
 # We should probably reconsider using compose for testing, but meh....
@@ -37,6 +40,7 @@ while true; do
   sleep 0.1
 done
 
+target=${@:-spec/}
 # Run tests!
-echo "Running 'bundle exec rspec spec/'"
-dctest run test bundle exec rspec spec/
+echo "Running 'bundle exec rspec $target'"
+dctest run test bundle exec rspec $target

@@ -32,3 +32,18 @@ git clone git@github.com:OregonDigital/oregondigital.git
 
 You can run commands against the web head via standard compose commands using
 the wrapper.  e.g., `./docker/compose exec web bundle exec rake admin_user`.
+
+Testing
+---
+
+Easy as `./docker/test.sh`!  Except....
+
+In order to test, you need `phantombin/phantomjs`.  This will be built
+automatically when running the test script, but it's a VERY slow process.  If
+you can find a 1.8.1 binary that works in Ubuntu 12.04, you'll be a lot better
+off.  If not, the script should build it for you, but it can take a while.
+
+Want to focus tests?  Just pass it in: `./docker/test.sh spec/models`
+
+If you need to ensure your environment is pristine, use the `--destroy` flag,
+which will destroy and rebuild all containers.
