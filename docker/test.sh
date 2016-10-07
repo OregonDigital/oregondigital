@@ -13,8 +13,9 @@ dctest() {
 # Compile phantomjs if needed
 dctest run phantomjs ./go.sh
 
-# Rebuild the OD image just so we know it's good to go with whatever changes
+# Rebuild the OD images just so we know it's good to go with whatever changes
 # we've made last
+docker build --rm -t oregondigital/od1 -f docker/Dockerfile-dev .
 docker build --rm -t oregondigital/od1-test -f docker/Dockerfile-test .
 
 # Test containers aren't important and can just be destroyed as needed
