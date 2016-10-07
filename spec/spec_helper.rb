@@ -30,7 +30,7 @@ ROOT_PATH = Rails.root.join("spec")
 DUMMY_PATH = File.join(ROOT_PATH,"dummies")
 
 # Allow http connections on localhost
-WebMock.disable_net_connect!(:allow_localhost => true)
+WebMock.disable_net_connect!(:allow => ["memcached", "redis", "mongo", "solr", "fc381", "localhost", "127.0.0.1"])
 
 RSpec.configure do |config|
   # Let Rails do its thing with spec types
