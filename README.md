@@ -19,8 +19,18 @@ Connected projects:
 Local Development Setup
 -----
 
-Using Docker
----
+### Using Docker
+
+Pull images from dockerhub to speed the setup - phantomjs in particular takes a
+LONG time to build:
+
+```bash
+docker pull oregondigital/od1
+docker pull oregondigital/od1-test
+docker pull oregondigital/solr
+docker pull oregondigital/phantomjs
+docker pull oregondigital/hydra-jetty:3.8.1-4.0
+```
 
 ```bash
 # Grab the repository
@@ -36,13 +46,14 @@ git clone git@github.com:OregonDigital/oregondigital.git
 You can run commands against the web head via standard compose commands using
 the wrapper.  e.g., `./docker/compose exec web bundle exec rake admin_user`.
 
-### Testing
+#### Testing
 
 Easy as `./docker/test.sh`!  Except....
 
 In order to test, you need `phantombin/phantomjs`.  This can be built and
 copied automatically for you:
 
+    docker pull oregondigital/phantomjs
     docker-compose -p ODTEST -f test-compose.yaml run phantomjs
 
 **BUT**: it's a VERY slow process.  If you can find a 1.8.1 binary that works
@@ -55,8 +66,7 @@ Other information:
 - If you need to ensure your environment is pristine, use the `--destroy` flag,
   which will destroy and rebuild all containers.
 
-Manual
----
+### Manual
 
 **Requires Ruby 2.0**
 
@@ -86,8 +96,7 @@ Start the servers:
     rake jetty:start
 	rails server
 
-Vagrant Setup
------
+### Vagrant Setup
 
 Requires [Git](http://www.git-scm.com/),
 [VirtualBox](https://www.virtualbox.org/), and
