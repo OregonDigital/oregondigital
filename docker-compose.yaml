@@ -1,0 +1,93 @@
+version: '2'
+services:
+  # Back-end services
+  memcached:
+    image: memcached
+  mongo:
+    image: mongo
+    volumes:
+      - data-mongo:/data/db
+  redis:
+    image: redis
+    command: redis-server --appendonly yes
+    volumes:
+      - data-redis:/data
+  solr:
+    image: oregondigital/solr
+    build:
+      dockerfile: docker/Dockerfile-solr
+      context: .
+    ports:
+      - "8983:8983"
+    volumes:
+      - data-solr-dev:/opt/solr/server/solr/mycores
+  fc381:
+    image: oregondigital/hydra-jetty:3.8.1-4.0
+    build:
+      dockerfile: docker/Dockerfile-hydra-jetty
+      context: .
+    command: bash -c "rm -f /opt/jetty/webapps/solr.war && java -jar start.jar"
+    ports:
+      - "8984:8983"
+    volumes:
+      - data-fedora:/opt/jetty/fedora/default/data
+      - data-derby:/opt/jetty/fedora/default/derby
+      - ./media:/oregondigital/media
+  workers:
+    image: oregondigital/od1
+    build:
+      dockerfile: docker/Dockerfile-dev
+      context: .
+    volumes:
+      - ./db:/oregondigital/db/
+      - ./media:/oregondigital/media
+    command: bundle exec rake resque:work
+    links:
+      - memcached
+      - redis
+      - mongo
+      - solr
+      - fc381
+    env_file:
+      - docker/web-variables.env
+      - docker/resque-variables.env
+
+  # Front-end stuff
+  web:
+    image: oregondigital/od1
+    build:
+      dockerfile: docker/Dockerfile-dev
+      context: .
+    volumes:
+      - ./db:/oregondigital/db/
+      - ./media:/oregondigital/media
+    command: bash -c "rm -f /oregondigital/tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
+    ports:
+      - "3000:3000"
+    links:
+      - memcached
+      - redis
+      - mongo
+      - solr
+      - fc381
+    env_file:
+      - docker/web-variables.env
+  resquehead:
+    image: oregondigital/od1
+    build:
+      dockerfile: docker/Dockerfile-dev
+      context: .
+    command: bundle exec resque-web -FL -r redis:6379
+    ports:
+      - "5678:5678"
+    links:
+      - redis
+    env_file:
+      - docker/web-variables.env
+      - docker/resque-variables.env
+volumes:
+  data-mongo: {}
+  data-solr-dev: {}
+  data-fedora: {}
+  data-derby: {}
+  data-redis: {}

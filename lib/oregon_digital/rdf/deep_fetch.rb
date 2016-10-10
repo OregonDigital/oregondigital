@@ -37,7 +37,7 @@ module OregonDigital::RDF
     end
 
     def redis_connection
-      @redis ||= Redis.new
+      $redis
     end
   end
 end
