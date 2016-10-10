@@ -1,6 +1,4 @@
-# Creates an image suitable for building phantomjs for the dev setup's OS.
-# This file is only needed for testing, so it's a fairly manual process to get
-# the binary into the container.
+# Creates an image containing phantomjs 1.8.1 for the OD setup
 #
 # Build:
 #     docker build --rm -t oregondigital/phantomjs -f docker/Dockerfile-phantomjs .
@@ -18,9 +16,7 @@ RUN apt-get install -y build-essential g++ flex bison gperf ruby perl \
   libpng-dev libjpeg-dev python libx11-dev libxext-dev
 
 RUN apt-get install -y git
-
 RUN git clone https://github.com/ariya/phantomjs/ /opt/phantomjs
 WORKDIR /opt/phantomjs
 RUN git checkout 1.8.1
-RUN echo "if [[ ! -f ./bin/phantomjs ]]; then yes | ./build.sh; fi" > ./go.sh
-RUN chmod +x ./go.sh
+RUN yes | ./build.sh

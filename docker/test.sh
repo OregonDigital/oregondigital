@@ -10,11 +10,10 @@ dctest() {
   docker-compose -p ODTEST -f test-compose.yaml $@
 }
 
-# Compile phantomjs if needed
-dctest run phantomjs ./go.sh
-
 # Rebuild the OD images just so we know it's good to go with whatever changes
 # we've made last
+dctest build phantomjs
+dctest run phantomjs
 docker build --rm -t oregondigital/od1 -f docker/Dockerfile-dev .
 docker build --rm -t oregondigital/od1-test -f docker/Dockerfile-test .
 

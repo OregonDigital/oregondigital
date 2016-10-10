@@ -29,9 +29,9 @@ services:
     build:
       dockerfile: docker/Dockerfile-phantomjs
       context: .
-    command: ./go.sh
+    command: cp bin/phantomjs /mnt/phantombin
     volumes:
-      - ./phantombin:/opt/phantomjs/bin
+      - ./phantombin:/mnt/phantombin
 
   # Actual test setup
   test:
