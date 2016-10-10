@@ -12,10 +12,8 @@ dctest() {
 
 # Rebuild the OD images just so we know it's good to go with whatever changes
 # we've made last
-dctest build phantomjs
-dctest run phantomjs
-docker build --rm -t oregondigital/od1 -f docker/Dockerfile-dev .
-docker build --rm -t oregondigital/od1-test -f docker/Dockerfile-test .
+dctest build od
+dctest build test
 
 # Test containers aren't important and can just be destroyed as needed
 if [[ $1 == "--destroy" ]]; then

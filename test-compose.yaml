@@ -33,11 +33,18 @@ services:
     volumes:
       - ./phantombin:/mnt/phantombin
 
+  # OD dev image - just here to give the test compose some build info
+  od:
+    image: oregondigital/od1
+    build:
+      dockerfile: docker/Dockerfile-dev
+      context: .
+
   # Actual test setup
   test:
     image: oregondigital/od1-test
     build:
-      dockerfile: docker/Dockerfile-dev
+      dockerfile: docker/Dockerfile-test
       context: .
     command: echo You must run tests manually!
     links:
