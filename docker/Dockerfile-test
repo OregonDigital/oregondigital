@@ -1,0 +1,6 @@
+# Creates an image suitable for running the OD 1 tests
+FROM oregondigital/od1
+MAINTAINER Jeremy Echols <jechols@uoregon.edu>
+
+# If you don't have a phantomJS binary, version 1.8.1, you need to run the phantomjs container to build it
+COPY ./phantombin/phantomjs /usr/bin/phantomjs

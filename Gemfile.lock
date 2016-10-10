@@ -44,9 +44,8 @@ GIT
     sprockets-digest-assets-fix (1.0.0)
 
 GIT
-  remote: https://github.com/no-reply/active_fedora.git
-  revision: 3ee384fd3e3fcd83b226bf2840ad23788f157b11
-  branch: oregon-af7
+  remote: https://github.com/OregonDigital/active_fedora
+  revision: 78cf58e6028b72ea3848d1e0567697283a17ad0c
   specs:
     active-fedora (7.0.0.rc3)
       activesupport (>= 3.0.0)
@@ -60,9 +59,8 @@ GIT
       rubydora (~> 1.7.4)
 
 GIT
-  remote: https://github.com/no-reply/hydra-head.git
-  revision: bca8881b54af81dae02b659036481474089834e1
-  branch: AF7-RDF
+  remote: https://github.com/OregonDigital/hydra-head
+  revision: 1ab00dd5c574c99852acb3a44486c6a5f706ca45
   specs:
     hydra-access-controls (6.4.0)
       active-fedora
@@ -268,7 +266,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (4.2.0)
       railties (>= 3.2.16)
-    json (1.8.1)
+    json (1.8.3)
     json-ld (1.1.4)
       rdf (~> 1.1)
     kaminari (0.14.1)

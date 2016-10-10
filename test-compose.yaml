@@ -1,0 +1,59 @@
+version: '2'
+services:
+  # Back-end services
+  memcached:
+    image: memcached
+  mongo:
+    image: mongo
+  redis:
+    image: redis
+  solr:
+    image: oregondigital/solr
+    build:
+      dockerfile: docker/Dockerfile-solr
+      context: .
+  fc381:
+    image: oregondigital/hydra-jetty:3.8.1-4.0
+    build:
+      dockerfile: docker/Dockerfile-hydra-jetty
+      context: .
+    command: bash -c "rm -f /opt/jetty/webapps/solr.war && java -jar start.jar"
+    volumes:
+      - ./tmp/cache/media:/oregondigital/media
+    ports:
+      - "18983:8983"
+
+  # PhantomJS compiled binary
+  phantomjs:
+    image: oregondigital/phantomjs
+    build:
+      dockerfile: docker/Dockerfile-phantomjs
+      context: .
+    command: cp bin/phantomjs /mnt/phantombin
+    volumes:
+      - ./phantombin:/mnt/phantombin
+
+  # OD dev image - just here to give the test compose some build info
+  od:
+    image: oregondigital/od1
+    build:
+      dockerfile: docker/Dockerfile-dev
+      context: .
+
+  # Actual test setup
+  test:
+    image: oregondigital/od1-test
+    build:
+      dockerfile: docker/Dockerfile-test
+      context: .
+    command: echo You must run tests manually!
+    links:
+      - memcached
+      - redis
+      - mongo
+      - solr
+      - fc381
+    volumes:
+      - ./tmp/cache/media:/oregondigital/media
+    env_file:
+      - docker/test-variables.env

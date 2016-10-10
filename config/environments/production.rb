@@ -46,9 +46,6 @@ Oregondigital::Application.configure do
   Syslog::Logger.syslog = Syslog.open("rails-oregondigital-prod", nil, Syslog::LOG_LOCAL0)
   config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new)
 
-  # Use a different cache store in production
-  config.cache_store = :mem_cache_store, *((ENV['MEMCACHE_SERVERS'] || "localhost:11211").split(",").map(&:strip))
-
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
