@@ -5,9 +5,9 @@ require 'spec_helper'
 # either stub the map as a whole or else to traverse the real map instead of
 # hard-code attributes.
 describe IngestController do
-  let(:new_asset) { GenericAsset.new }
+  let(:new_asset) { GenericAsset.new(:pid => '121212')}
   let(:ds_new) { new_asset.descMetadata }
-  let(:existing_asset) { GenericAsset.new }
+  let(:existing_asset) { GenericAsset.new(:pid => '343434')}
   let(:ds_exist) { existing_asset.descMetadata }
   let(:form) { Metadata::Ingest::Form.new }
   let(:subject1) { RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282") }
