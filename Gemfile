@@ -42,6 +42,10 @@ gem 'rmagick', '~>2.13.2'
 gem "devise"
 gem "devise-guests", "~> 0.3"
 
+# Necessary for target server deployment
+gem 'capistrano', '2.15.5'
+gem 'capistrano-ext'
+
 # Nice gem for wrapping the most popular jquery file uploader
 gem "jquery-fileupload-rails", '~>0.4.1'
 
