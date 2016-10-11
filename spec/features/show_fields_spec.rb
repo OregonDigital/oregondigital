@@ -13,7 +13,6 @@ describe "show fields" do
     end
     let(:stub_setup) do
       asset
-      expect(asset.inner_object.repository).not_to receive(:datastream_dissemination)
     end
     it "should show it" do
       expect(page).to have_content("Known Title")
