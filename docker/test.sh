@@ -30,6 +30,7 @@ dctest start memcached
 dctest start redis
 dctest start mongo
 dctest start solr
+dctest run phantomjs
 
 # Fedora is the slow one, so we wait until we get a response
 echo "Waiting for Fedora to start"
