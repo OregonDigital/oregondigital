@@ -19,34 +19,25 @@ services:
       context: .
     command: bash -c "rm -f /opt/jetty/webapps/solr.war && java -jar start.jar"
     volumes:
-      - ./tmp/cache/media:/oregondigital/media
+      - ./media:/oregondigital/media
     ports:
       - "18983:8983"
 
-  # PhantomJS compiled binary
+  # PhantomJS compiled binary - pull the image from Dockerhub if at all
+  # possible - we don't tell compose how to build it because it's REALLY slow,
+  # and we only need the compiled binary, AND it's only critical for testing.
   phantomjs:
-    image: oregondigital/phantomjs
-    build:
-      dockerfile: docker/Dockerfile-phantomjs
-      context: .
+    image: oregondigital/phantomjs:1.8.1
     command: cp bin/phantomjs /mnt/phantombin
     volumes:
       - ./phantombin:/mnt/phantombin
-
-  # OD dev image - just here to give the test compose some build info
-  od:
-    image: oregondigital/od1
-    build:
-      dockerfile: docker/Dockerfile-dev
-      context: .
 
   # Actual test setup
   test:
     image: oregondigital/od1-test
     build:
-      dockerfile: docker/Dockerfile-test
+      dockerfile: docker/Dockerfile-dev
       context: .
-    command: echo You must run tests manually!
     links:
       - memcached
       - redis
@@ -54,6 +45,8 @@ services:
       - solr
       - fc381
     volumes:
-      - ./tmp/cache/media:/oregondigital/media
+      - .:/oregondigital
+      - ./phantombin/phantomjs:/usr/bin/phantomjs
+      - ./docker/test-entry.sh:/entrypoint.sh
     env_file:
       - docker/test-variables.env

@@ -10,11 +10,6 @@ dctest() {
   docker-compose -p ODTEST -f test-compose.yaml $@
 }
 
-# Rebuild the OD images just so we know it's good to go with whatever changes
-# we've made last
-dctest build od
-dctest build test
-
 # Test containers aren't important and can just be destroyed as needed
 if [[ $1 == "--destroy" ]]; then
   dctest kill
@@ -22,15 +17,24 @@ if [[ $1 == "--destroy" ]]; then
   shift
 fi
 
+quick=0
+if [[ $1 == "--quick" ]]; then
+  quick=1
+  shift
+fi
+
 # Start services one at a time so we can watch the actual test output properly.
-# We should probably reconsider using compose for testing, but meh....
 dctest create
 dctest start fc381
 dctest start memcached
 dctest start redis
 dctest start mongo
 dctest start solr
-dctest run phantomjs
+
+if [[ ! -f phantombin/phantomjs ]]; then
+  dctest run phantomjs
+  dctest rm -f phantomjs
+fi
 
 # Fedora is the slow one, so we wait until we get a response
 echo "Waiting for Fedora to start"
@@ -42,4 +46,8 @@ done
 target=${@:-spec/}
 # Run tests!
 echo "Running 'bundle exec rspec $target'"
-dctest run test bundle exec rspec $target
+dctest run test $target
+
+if [[ $quick == 0 ]]; then
+  dctest stop
+fi

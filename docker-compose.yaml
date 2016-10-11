@@ -34,13 +34,13 @@ services:
       - data-derby:/opt/jetty/fedora/default/derby
       - ./media:/oregondigital/media
   workers:
-    image: oregondigital/od1
+    image: oregondigital/od1-dev
     build:
       dockerfile: docker/Dockerfile-dev
       context: .
     volumes:
-      - ./db:/oregondigital/db/
-      - ./media:/oregondigital/media
+      - .:/oregondigital
+    entrypoint: ""
     command: bundle exec rake resque:work
     links:
       - memcached
@@ -52,16 +52,24 @@ services:
       - docker/web-variables.env
       - docker/resque-variables.env
 
+  # This is just here to help facilitate building the OD1 image; it isn't
+  # enabled when starting the web container
+  core:
+    image: oregondigital/od1
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    entrypoint: /bin/false
+
   # Front-end stuff
   web:
-    image: oregondigital/od1
+    image: oregondigital/od1-dev
     build:
       dockerfile: docker/Dockerfile-dev
       context: .
     volumes:
-      - ./db:/oregondigital/db/
-      - ./media:/oregondigital/media
-    command: bash -c "rm -f /oregondigital/tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
+      - .:/oregondigital
+      - ./docker/dev-entry.sh:/entrypoint.sh
     ports:
       - "3000:3000"
     links:
@@ -73,10 +81,11 @@ services:
     env_file:
       - docker/web-variables.env
   resquehead:
-    image: oregondigital/od1
+    image: oregondigital/od1-dev
     build:
       dockerfile: docker/Dockerfile-dev
       context: .
+    entrypoint: ""
     command: bundle exec resque-web -FL -r redis:6379
     ports:
       - "5678:5678"
