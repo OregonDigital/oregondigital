@@ -87,12 +87,14 @@ class IngestController < FormControllerBase
     @form.save
 
     if @form.has_cloned_associations?
+      success_message << ": " + @form.asset.title + " [" + @form.asset.pid + "]"
+
       @form = @form.clone_associations
       flash.now[:notice] = success_message
       render :new
       return
     end
 
-    redirect_to index_path, :notice => success_message
+    redirect_to catalog_path(@form.asset.pid), :notice => success_message
   end
 end
