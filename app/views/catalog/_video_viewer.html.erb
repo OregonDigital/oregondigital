@@ -1,3 +1,5 @@
+<% content_for :page_title, decorated_object.title.truncate(50) %>
+
 <video controls>
 <% decorated_object.video_files.each do |mime,file| %>
     <source src="<%= file %>" type="<%= mime %>">

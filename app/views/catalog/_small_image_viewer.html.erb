@@ -1,3 +1,5 @@
+<% content_for :page_title, decorated_object.title.truncate(50) %>
+
 <div align="center">
   <div id="small-image-viewer">
     <img src="/media/medium-images/<%= decorated_object.relative_medium_image_location %>"

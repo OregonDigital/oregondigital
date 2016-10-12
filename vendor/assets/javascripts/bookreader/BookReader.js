@@ -194,7 +194,8 @@ function BookReader() {
 
         // Set document title -- may have already been set in enclosing html for
         // search engine visibility
-        document.title = this.shortTitle(50);
+        // Disabled here to use title in document_viewer partial instead
+        // document.title = this.shortTitle(50);
 
         $("#BookReader").empty();
 
