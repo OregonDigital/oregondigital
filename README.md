@@ -26,9 +26,8 @@ LONG time to build:
 
 ```bash
 docker pull oregondigital/od1
-docker pull oregondigital/od1-test
 docker pull oregondigital/solr
-docker pull oregondigital/phantomjs
+docker pull oregondigital/phantomjs:1.8.1
 docker pull oregondigital/hydra-jetty:3.8.1-4.0
 ```
 
@@ -36,57 +35,42 @@ docker pull oregondigital/hydra-jetty:3.8.1-4.0
 # Grab the repository
 git clone git@github.com:OregonDigital/oregondigital.git
 
-# Run the dev stack with docker-compose, nicely wrapped in a shell script
-./docker/compose up
+# Start the whole stack
+docker-compose up -d
 
-# You can run compose manually, as well, just MAKE SURE YOU PICK A CONSISTENT
-# PROJECT NAME!  It must be different from your test setup!  Don't go with the
-# default project name!  If you do that for dev and test, you'll end up with
-# container name collisions, which could ruin your dev data!  (Or use the
-# default name here, but make sure you never use it for testing)
-docker-compose -p OD1 up
+# When you change code, rebuild the OD containers
+docker-compose stop web workers resquehead
+docker-compose rm web workers resquehead
+docker-compose build web workers resquehead
+docker-compose up -d
 
-# Set up the database
-docker-compose -p OD1 exec web bundle exec rake db:migrate
-docker-compose -p OD1 exec web bundle exec rake admin_user
+# Run a rake task - in this case, to create filler data
+docker-compose exec web bundle exec rake filler_data
 
-# If you do the above while the containers are not running, use the "run"
-# subcommand instead of the "exec" subcommand, but be warned that leaves trash
-# containers lying around until you clean up.
-docker-compose -p OD1 run web bundle exec rake db:migrate
-docker-compose -p OD1 run web bundle exec rake admin_user
+# Watch the logs for everything
+docker-compose logs -f
 
-# When you change code, rebuild the od container
-docker-compose -p OD1 rm web
-docker-compose -p OD1 build web
-docker-compose -p OD1 up
-
-# Alternatively, run dev.sh to do some extra setup such as rebuilding the OD1 image and running migrations:
-./docker/dev.sh
+# Just watch the Rails web app logs
+docker-compose logs -f web
 ```
-
-You can run commands against the web head via standard compose commands using
-the wrapper.  e.g., `./docker/compose exec web bundle exec rake admin_user`.
 
 #### Testing
 
 Easy as `./docker/test.sh`!  Except....
 
-In order to test, you need `phantombin/phantomjs`.  This can be built and
-copied automatically for you:
-
-    docker pull oregondigital/phantomjs
-    docker-compose -p ODTEST -f test-compose.yaml run phantomjs
-
-**BUT**: it's a VERY slow process.  If you can find a 1.8.1 binary that works
-in Ubuntu 12.04, you'll be a lot better off.  Once the binary is in
-`phantombin/phantomjs`, you should be fine moving forward.
+In order to test, you need `phantombin/phantomjs`.  This is available in the
+`oregondigital/phantomjs:1.8.1` image.  As long as you have that image, the
+test script will automatically copy phantomjs into your test container at
+runtime.
 
 Other information:
 
 - Want to focus tests?  Just pass in a path: `./docker/test.sh spec/models`.
 - If you need to ensure your environment is pristine, use the `--destroy` flag,
   which will destroy and rebuild all containers.
+- If you want to keep test containers running to speed up future tests, use the
+  `--quick` flag.  This may use up extra resources on your system, but it can
+  speed the dev-test loop considerably when isolating tests.
 
 ### Manual
 

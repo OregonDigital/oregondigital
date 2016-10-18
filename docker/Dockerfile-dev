@@ -1,134 +1,23 @@
-# Creates an image suitable for running the Rails stack for OD 1.  This is for
-# development at the moment; production Dockerizing will need tweaking to get
-# all the code baked into an image, possibly set up safer settings, etc.
+# Creates an image suitable for running the Rails stack in development and
+# testing.  You shouldn't push this image up, as it's concerned with making a
+# local image based on your current code.  It will not reflect general needs.
 #
 # Build:
-#     docker build --rm -t oregondigital/od1 -f docker/Dockerfile-dev .
-
-# TODO: Upgrade ubuntu!  Right now this just needs to work with what we have in
-# circleci, but longer-term this could get problematic when ubuntu 12 hits EOL.
-#
-# Known issues:
-# - VIPS install will need to be figured out for a newer Ubuntu
-# - Will need to test derivative generation for all types since CLI changes sometimes happen
-# - ffmpeg will need to be replaced, and libavcode-extra-53 definitely has to be replaced
-FROM ubuntu:12.04
+#     docker build --rm -t oregondigital/od1-dev -f docker/Dockerfile-dev .
+FROM oregondigital/od1
 MAINTAINER Jeremy Echols <jechols@uoregon.edu>
 
-# apt won't find some libs if this isn't run
-RUN apt-get update
-
-# Dependencies for vips installer
-RUN apt-get install -y pkg-config
-RUN apt-get install -y python-software-properties software-properties-common
-
-# Vips!  This is very specific to Ubuntu 12.04, pulled out of vips-install.sh
-RUN add-apt-repository -y ppa:lyrasis/precise-backports
-RUN apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev \
-                       libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff4-dev libexif-dev \
-                       libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl
-RUN mkdir -p /opt/libvips
-WORKDIR /opt/libvips
-RUN curl http://www.vips.ecs.soton.ac.uk/supported/7.42/vips-7.42.3.tar.gz | tar zx
-WORKDIR /opt/libvips/vips-7.42.3
-RUN ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw
-RUN make
-RUN make install
-RUN ldconfig
-
-# Various derivative libs
-RUN apt-get purge libreoffice*
-RUN add-apt-repository -y ppa:libreoffice/ppa
-RUN apt-get install -y poppler-utils poppler-data ghostscript libreoffice
-RUN apt-get install -y libmagic-dev libmagickwand-dev ffmpeg libvorbis-dev libavcodec-extra-53
-RUN apt-get install -y graphicsmagick
-
-# Database connection libraries
-RUN apt-get install -y libmysqlclient-dev
-RUN apt-get install -y libsqlite3-dev
-
-# Nodejs for compiling assets
-RUN apt-get install -y nodejs
-
-# We need git for all our github-hosted gems
-RUN apt-get install -y git
-
-# Dependencies for Ruby
-RUN apt-get install -y libssl-dev libreadline-dev
-
-# Grab Ruby manually - can't install the default for Ubuntu 12.04
-#
-# Make sure this comes after the big downloads, as it's more likely we'll
-# change our ruby version than, say, our vips version - at least until we deal
-# with a major change (like OS) that would require a ruby rebuild anyway
-RUN mkdir -p /opt/ruby
-WORKDIR /opt/ruby
-RUN curl https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.gz | tar zx
-WORKDIR /opt/ruby/ruby-2.2.5
-RUN ./configure
-RUN make
-RUN make install
-
-# Set an environment variable to store where the app is installed to inside
-# of the Docker image
-ENV INSTALL_PATH /oregondigital
-RUN mkdir -p $INSTALL_PATH
-WORKDIR $INSTALL_PATH
-
-# Grab bundler for installing the gems
-RUN gem install bundler
-
-# Grab the current gemfiles from github so we have a place to start with
-# bundler - this ensures that changes to Gemfile and Gemfile.lock don't re-pull
-# the entire list of gems
-RUN curl -O https://raw.githubusercontent.com/OregonDigital/oregondigital/master/Gemfile
-RUN curl -O https://raw.githubusercontent.com/OregonDigital/oregondigital/master/Gemfile.lock
+# ???? - docker won't remove or rewrite .bundle/config via RUN commands, so I
+# just copy in an empty file.  No clue why this is giving me issues.
+COPY docker/empty /oregondigital/.bundle/config
 RUN bundle install
 
-# Pull down set content
-COPY docker/sync-sets.sh /sync-sets.sh
-RUN chmod +x /sync-sets.sh
-RUN /sync-sets.sh
-
-# Create symlinks
-COPY docker/link-set-content.sh /link-set-content.sh
-RUN chmod +x /link-set-content.sh
-RUN /link-set-content.sh
-
-# Let's create the temp dirs manually instead of using rake, which depends on
-# the app already being in place
-RUN mkdir -p tmp/sessions tmp/sockets tmp/pids tmp/cache/assets/development \
-             tmp/cache/assets/test tmp/cache/assets/production
-
-# Copy in OD code one piece at a time so we can trust what we end up with
-COPY app app
-COPY config config
-COPY config.ru config.ru
-COPY db db
-COPY lib lib
-COPY public public
-COPY Rakefile Rakefile
-COPY script script
-COPY spec spec
-COPY test test
-COPY vendor vendor
-
-# Now add the Gemfiles and re-bundle - this is redundant, I know, but it makes
-# development better by only pulling changed gems and not re-running a bunch of
-# extraneous steps
+# Add the local Gemfiles over what's in the OD1 image and bundle install again.
+# This seemingly-redundant step ensures that only the local changes are
+# reinstalled when dependency changes occur locally, rather than having to
+# re-pull all dev/test gems again.
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 
-RUN mkdir -p /oregondigital/media/thumbnails
-RUN ln -s /oregondigital/media /oregondigital/public/media
-RUN ln -s /oregondigital/media/thumbnails /oregondigital/public/thumbnails
-
-# Expose a volume so that the web server can read assets
-VOLUME ["$INSTALL_PATH/public"]
-
-# Allow devs to override the app code entirely
-VOLUME ["$INSTALL_PATH/"]
-
-# The default command runs the web server
-CMD bundle exec rails s -p 3000 -b "0.0.0.0"
+RUN touch /var/firstrun
