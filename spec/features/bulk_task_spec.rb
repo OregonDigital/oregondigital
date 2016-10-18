@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'bulk tasks', :js => true do
+describe 'bulk tasks', :js => false do
   let(:admin) {FactoryGirl.create(:admin)}
   let(:asset) do
     a = GenericAsset.new
@@ -251,8 +251,8 @@ describe 'bulk tasks', :js => true do
           end
           context "on the child page" do
             before do
-              visit bulk_task_child_path(BulkTaskChild.last.id)
-              sleep(1)
+              click_link "bulkloads"
+              find("td.child-link a").click
             end
             it "should have the error" do
               expect(page).to have_content("Failed During reviewing")

@@ -20,7 +20,7 @@
       <tbody>
         <% @task.bulk_task_children.each do |child| %>
           <tr>
-            <td><%=link_to child.id, child %></td>
+            <td class="child-link"><%=link_to child.id, child %></td>
             <% if child.ingested_pid.blank? %>
               <td></td>
             <% else %>
