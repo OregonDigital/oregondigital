@@ -1,6 +1,6 @@
-# This file generated automatically using vocab-fetch from http://rdfdata.eionet.europa.eu/itis/taxon/
+# This file generated automatically using vocab-fetch from http://www.itis.gov
 require 'rdf'
 module OregonDigital::Vocabularies
-  class ITIS < ::RDF::Vocabulary("http://rdfdata.eionet.europa.eu/itis/taxon/")
+  class ITIS < ::RDF::Vocabulary("http://www.itis.gov/")
   end
 end

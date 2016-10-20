@@ -1,4 +1,5 @@
 require 'linkeddata'
+require 'rest_client'
 
 module OregonDigital::RDF
   ##
@@ -69,6 +70,38 @@ module OregonDigital::RDF
       return unless rdf_label == [rdf_subject.to_s] || rdf_label.empty? || rdf_label.length > 1
       super
     end
+
+
+    # Custom fetch method for ITIS.gov URLs since they're not linked data
+    # Extract the TSN ID from the URL, feed that to their JSON search service
+    # Parse the JSON for the scientific name, save that as the label
+    # More info: http://www.itis.gov/web_service.html
+    def fetch_itis
+      uri = self.rdf_subject.to_s
+      tsn = uri.sub 'http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=', ''
+      json_url = "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN?tsn=#{tsn}"
+
+      response = RestClient.get json_url, {accept: :json}
+      itis = JSON.parse(response)["scientificName"]
+      new_label = itis["combinedName"]
+
+      self << RDF::Statement.new(rdf_subject, RDF::SKOS.prefLabel, new_label)
+
+      persist!
+    end
+
+    # Custom fetch method for uBio URLs since they're not linked data
+    # Get the XML response from the uBio authority URL, parse for title
+    def fetch_ubio
+      response = RestClient.get self.rdf_subject.to_s, {accept: :xml}
+      xmldoc = Nokogiri::XML(response)
+      new_label = xmldoc.at_xpath("/rdf:RDF/rdf:Description/dc:title/text()")
+
+      self << RDF::Statement.new(rdf_subject, RDF::SKOS.prefLabel, new_label)
+
+      persist!
+    end
+
 
     ##
     #  Class methods for adding and using controlled vocabularies
