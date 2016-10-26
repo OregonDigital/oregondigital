@@ -25,26 +25,32 @@
       <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
     </li>
 
-    <% if can?(:show, Role) -%>
+
+    <% if can?(:create, GenericAsset) %>
       <li class="leaf">
-        <%= link_to "Roles", role_management.roles_path %>
+        <%= link_to "Ingest", ingest_index_path %>
       </li>
-    <% end -%>
+    <% end %>
+
     <% if can?(:review, GenericAsset) -%>
       <li class="leaf">
         <%= link_to "Review", reviewer_index_path %>
+      </li>
     <% end -%>
-    </li>
-    <li class="leaf">
-    <% if can?(:create, GenericAsset) %>
-      <%= link_to "Ingest", ingest_index_path %>
-    <% end %>
-    </li>
-    <li class="leaf">
+
     <% if can?(:create, ::Template) %>
-      <%= link_to "Templates", templates_path %>
+      <li class="leaf">
+        <%= link_to "Templates", templates_path %>
+      </li>
     <% end %>
-    </li>
+
+    <% if can?(:create, GenericAsset) -%>
+      <li class="leaf">
+        <%= link_to "Admin", "/admin" %>
+      </li>
+    <% end -%>
+
+
     <% if can?(:show, Role) -%>
     <% else %>
       <li class="leaf">

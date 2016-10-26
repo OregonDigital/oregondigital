@@ -1,0 +1,26 @@
+<%= content_for :page_title, 'Admin' %>
+<div id="content" class="span12">
+
+  <h2>Admin</h2>
+
+  <% if can?(:show, Role) -%>
+    <p><%= link_to "Roles", role_management.roles_path %></p>
+  <% end -%>
+
+  <% if current_user and current_user.admin? %>
+    <p><%= link_to "Resque Workers", '/resque/overview' %></p>
+  <% end %>
+
+  <% if current_user and current_user.admin? %>
+    <p><%= link_to "Bulk Tasks", bulk_tasks_path %></p>
+  <% end %>
+
+  <% if can?(:destroy, GenericAsset) %>
+    <p><%= link_to "Destroyed Items", destroyed_index_path %></p>
+  <% end %>
+
+  <p><a href="https://github.com/OregonDigital/oregondigital/wiki">GitHub Wiki</a></p>
+
+  <p><a href="https://docs.google.com/spreadsheets/d/1nnJz49oqstQLF2PFBn5ZvWfWdF-8PVl5TFL1EMotQrA/edit?usp=sharing">Metadata Dictionary</a></p>
+
+</div>
