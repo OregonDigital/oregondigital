@@ -5,11 +5,9 @@ describe "Role management" do
 
   before(:each) do
     capybara_login(user)
-    visit root_path
+    visit "/admin"
 
-    within(".utils .admin") do
-      click_link "Roles"
-    end
+    click_link "Roles"
   end
 
   it "should allow an admin to create a role" do
