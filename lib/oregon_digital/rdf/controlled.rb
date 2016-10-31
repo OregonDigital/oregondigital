@@ -78,7 +78,7 @@ module OregonDigital::RDF
     # More info: http://www.itis.gov/web_service.html
     def fetch_itis
       uri = self.rdf_subject.to_s
-      tsn = uri.sub 'http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=', ''
+      tsn = uri.sub 'https://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=', ''
       json_url = "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN?tsn=#{tsn}"
 
       response = RestClient.get json_url, {accept: :json}
