@@ -1,0 +1,19 @@
+<%= content_for :page_title, 'Controlled Vocabularies' %>
+<div id="content" class="span12">
+
+  <h2>Controlled Vocabularies</h2>
+
+  <p>This lists all of the controlled vocabularies configured in Oregon Digital. They group together <a href="/vocabularies">Vocabularies</a> already defined, and when specified on a property, control what Vocabularies are usable.</p>
+
+  <ul>
+    <% @controlled_vocabs.each do |cv| %>
+      <li><h4><%= cv %></h4>
+      <b>Usable Vocabularies:</b>
+        <% cv.vocabularies.to_a.each do |vocab| %>
+          <%= link_to vocab[0], "/vocabularies##{vocab[0]}" %><%= "," unless vocab == cv.vocabularies.to_a.last %>
+        <% end %>
+      <br/>
+      </li>
+    <% end %>
+  </ul>
+</div>
