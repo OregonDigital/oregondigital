@@ -5,6 +5,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :culture
     use_vocabulary :lcsh
     use_vocabulary :lcnames
+    use_vocabulary :aat
 
   end
 end
