@@ -488,7 +488,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # VRA
-  property :culturalContext, :predicate => OregonDigital::Vocabularies::VRA.culturalContext do |index|
+  property :culturalContext, :predicate => OregonDigital::Vocabularies::VRA.culturalContext, :class_name => OregonDigital::ControlledVocabularies::Culture do |index|
     index.as :displayable
   end
   property :idCurrentRepository, :predicate => OregonDigital::Vocabularies::VRA.idCurrentRepository do |index|
