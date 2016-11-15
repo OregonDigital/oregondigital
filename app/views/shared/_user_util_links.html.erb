@@ -22,25 +22,21 @@
   </div>
   <div class="util-links-auth">
     <div class="admin">
-      <% if can?(:show, Role) -%>
-        <%= link_to "Roles", role_management.roles_path %>
-        <% content_for :body_class, "admins" %>
-      <% end -%>
-      <% if can?(:review, GenericAsset) -%>
-        -
-        <%= link_to "Review", reviewer_index_path %>
-      <% end -%>
 
       <% if can?(:create, GenericAsset) %>
-        - <%= link_to "Ingest", ingest_index_path %>
+        <%= link_to "Ingest", ingest_index_path %>
       <% end %>
+
+      <% if can?(:review, GenericAsset) -%>
+        - <%= link_to "Review", reviewer_index_path %>
+      <% end -%>
 
       <% if can?(:create, ::Template) %>
         - <%= link_to "Templates", templates_path %>
       <% end %>
 
-      <% if can?(:destroy, GenericAsset) %>
-        - <%= link_to "Destroyed Items", destroyed_index_path %>
+      <% if can?(:create, GenericAsset) %>
+        - <%= link_to "Admin", '/admin' %>
       <% end %>
     </div>
   </div>

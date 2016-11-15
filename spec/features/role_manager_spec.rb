@@ -5,7 +5,7 @@ describe "admin panel links" do
   let(:admin) { FactoryGirl.create(:admin) }
 
   before(:each) do
-    visit root_path
+    visit "/admin"
   end
   context "when a user is logged in" do
     context "and they are an admin" do

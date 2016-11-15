@@ -25,31 +25,31 @@
           <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
         </li>
 
-          <% if can?(:show, Role) -%>
-        <li>
-            <%= link_to "Roles", role_management.roles_path %>
-        </li>
-          <% end -%>
-
-          <% if can?(:review, GenericAsset) -%>
-        <li>
-            <%= link_to "Review", reviewer_index_path %>
-        </li>
-          <% end -%>
-
 
         <% if can?(:create, GenericAsset) %>
-        <li>
-          <%= link_to "Ingest", ingest_index_path %>
-        </li>
+          <li>
+            <%= link_to "Ingest", ingest_index_path %>
+          </li>
         <% end %>
 
+        <% if can?(:review, GenericAsset) -%>
+          <li>
+            <%= link_to "Review", reviewer_index_path %>
+          </li>
+        <% end -%>
 
         <% if can?(:create, ::Template) %>
-        <li>
-          <%= link_to "Templates", templates_path %>
-        </li>
+          <li>
+            <%= link_to "Templates", templates_path %>
+          </li>
         <% end %>
+
+        <% if can?(:create, GenericAsset) %>
+          <li>
+            <%= link_to "Admin", "/admin" %>
+          </li>
+        <% end %>
+
         <li><a href="/copyright">Copyright</a></li>
         <li class="last"><%= link_to "Contact", contact_path %></li>
 

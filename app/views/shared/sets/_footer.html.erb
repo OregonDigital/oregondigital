@@ -32,9 +32,9 @@
         </ul>
         <ul>
           <li class="first">
-            <% if can?(:show, Role) -%>
-              <%= link_to "Roles", role_management.roles_path %>
-            <% end -%>
+            <% if can?(:create, GenericAsset) %>
+              <%= link_to "Ingest", ingest_index_path %>
+            <% end %>
           </li>
           <li>
             <% if can?(:review, GenericAsset) -%>
@@ -42,13 +42,13 @@
             <% end -%>
           </li>
           <li>
-            <% if can?(:create, GenericAsset) %>
-              <%= link_to "Ingest", ingest_index_path %>
+            <% if can?(:create, ::Template) %>
+              <%= link_to "Templates", templates_path %>
             <% end %>
           </li>
           <li class="last">
-            <% if can?(:create, ::Template) %>
-              <%= link_to "Templates", templates_path %>
+            <% if can?(:create, GenericAsset) %>
+              <%= link_to "Admin", "/admin" %>
             <% end %>
           </li>
         </ul>
