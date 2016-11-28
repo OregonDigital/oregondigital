@@ -115,6 +115,7 @@ INGEST_MAP = {
     tgn: "descMetadata.tgn",
     latitude: "descMetadata.latitude",
     longitude: "descMetadata.longitude",
+    geobox: "descMetadata.geobox",
   },
 
   date: {
