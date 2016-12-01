@@ -109,7 +109,7 @@ class BulkTaskChild < ActiveRecord::Base
     ingester.model_name = bag_class.to_s
     asset = ingester.ingest
     (asset.content.mimeType = bag_mime) if bag_mime
-    (asset.format = ::RDF::URI("http://purl.org/NET/mediatypes/#{asset.content.mimeType}")) if bag_mime
+    (asset.format = ::RDF::URI("https://w3id.org/spar/mediatype/#{asset.content.mimeType}")) if bag_mime and !asset.format
     update_rdf_subject(asset)
     adjust_compound(asset) if asset.compound?
     asset

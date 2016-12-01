@@ -19,7 +19,7 @@
 <http://example.org/ns/0> <http://opaquenamespace.org/ns/militaryServiceLocations> "(11/2003 - 04/2004): Ft Knox, KY. (04/2004 - 12/2005): Camp Hovey (Toko-Ri), Republic of Korea; Ramadi, Iraq (Forward Operating Base Junction City); Fort Carson, (Colorado Springs) Colorado." .
 <http://example.org/ns/0> <http://purl.org/dc/terms/date> "2012-17-02" .
 <http://example.org/ns/0> <http://purl.org/dc/terms/type> <http://purl.org/dc/dcmitype/Text> .
-<http://example.org/ns/0> <http://purl.org/dc/terms/format> <http://purl.org/NET/mediatypes/application/pdf> .
+<http://example.org/ns/0> <http://purl.org/dc/terms/format> <https://w3id.org/spar/mediatype/application/pdf> .
 <http://example.org/ns/0> <http://purl.org/dc/terms/language> <http://id.loc.gov/vocabulary/iso639-1/en> .
 <http://example.org/ns/0> <http://opaquenamespace.org/ns/set> <http://oregondigital.org/resource/oregondigital:uo-veterans> .
 <http://example.org/ns/0> <http://opaquenamespace.org/ns/contributingInstitution> <http://dbpedia.org/resource/University_of_Oregon> .

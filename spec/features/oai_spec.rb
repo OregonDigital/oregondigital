@@ -9,7 +9,7 @@ shared_examples "OAI endpoint" do |parameter|
     let(:lcsubj) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh2003003075")}
     let(:rights) {RDF::URI.new("http://creativecommons.org/licenses/by-nc-nd/4.0/")}
     let(:opns) {RDF::URI.new("http://opaquenamespace.org/ns/creator/mylittlecreator")}
-    let(:mtype) {RDF::URI.new("http://purl.org/NET/mediatypes/image/tiff")}
+    let(:mtype) {RDF::URI.new("https://w3id.org/spar/mediatype/image/tiff")}
     let(:geo) {RDF::URI.new("http://sws.geonames.org/5129691")}
     let(:pset) {GenericCollection.new(pid:"oregondigital:myset")}
     let(:find) {RDF::Literal.new("http://blahblah.org")}
@@ -34,12 +34,12 @@ shared_examples "OAI endpoint" do |parameter|
       asset.descMetadata.earliestDate = "1982"
       asset.descMetadata.latestDate = "1983"
       asset.descMetadata.format = [mtype]
+      asset.descMetadata.format.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("image/tiff"))
       asset.descMetadata.format.first.persist!
       asset.descMetadata.location = [geo]
       asset.descMetadata.location.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("Eugene >> Lane County >> Oregon >> United States", :language => :en))
       asset.descMetadata.location.first.persist!
       asset.descMetadata.findingAid = [find]
-      #add label once mediatypes site is working again
       pset.title = "my set"
       pset.save
       asset.descMetadata.set = [pset]

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe OaiController, :resque => true do
   describe '#index' do
     context "when given a request" do
-      let(:format) {RDF::URI.new("http://purl.org/NET/mediatypes/image/tiff")}
+      let(:format) {RDF::URI.new("https://w3id.org/spar/mediatype/image/tiff")}
       let(:lcsubject) {RDF::URI.new("http://id.loc.gov/authorities/subjects/sh85050282")}
       let(:lcname) {RDF::URI.new("http://id.loc.gov/authorities/names/nr93013379")}
       let(:lcname2) {RDF::URI.new("http://id.loc.gov/authorities/names/no00013511")}
