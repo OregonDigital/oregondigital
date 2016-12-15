@@ -271,6 +271,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :barcode, :predicate => OregonDigital::Vocabularies::BIBFRAME.barcode do |index|
     index.as :displayable
   end
+  property :hydrologicUnitCode, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.hydrologicUnitCode do |index|
+    index.as :searchable, :displayable
+  end
+  property :llid, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.llid do |index|
+    index.as :searchable, :displayable
+  end
+
 
   # Rights
   property :rights, :predicate => RDF::DC.rights, :class_name => OregonDigital::ControlledVocabularies::RightsStatement do |index|

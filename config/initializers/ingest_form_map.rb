@@ -134,7 +134,9 @@ INGEST_MAP = {
     locationCopyShelfLocator: "descMetadata.locationCopyShelfLocator",
     accessionNumber: "descMetadata.accessionNumber",
     itemLocator: "descMetadata.itemLocator",
-    LCCN: "descMetadata.lccn"
+    LCCN: "descMetadata.lccn", 
+    hydrologicUnitCode: "descMetadata.hydrologicUnitCode",
+    LLID: "descMetadata.llid"
   },
 
   right: {
