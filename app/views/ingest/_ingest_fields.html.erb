@@ -3,6 +3,10 @@
 
   <div class="control-group ingest-control">
     <div class="controls">
+      <% if f.object.internal %>
+        <%= link_to "URI", f.object.internal.to_s, :class => "btn btn-info", :target => '_blank' %>
+      <% end %>
+
       <%= link_to_remove_ingest_association(f) %>
     </div>
   </div>

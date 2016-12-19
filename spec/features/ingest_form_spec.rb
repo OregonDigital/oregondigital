@@ -281,11 +281,14 @@ describe "(Ingest Form)" do
         expect(asset.descMetadata.lcsubject.collect {|s| s.rdf_subject}).to eq([subject1, subject2])
       end
 
-      it "should display the label on a subsequent edit" do
+      it "should display the label and URI button on a subsequent edit" do
         click_the_ingest_button
         visit_edit_form_url(@pid)
         expect(page).to include_ingest_fields_for("subject", "lcsubject", label1)
         expect(page).to include_ingest_fields_for("subject", "lcsubject", label2)
+
+        expect(page).to have_selector(:link_or_button, 'URI')
+        expect(page).to have_link(nil, href: subject1)
       end
 
       it "should display the label to the public" do
