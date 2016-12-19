@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
   context "when initiated with a generic asset" do
-    subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset)}
+    subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset, :limit=>10)}
     let(:collection_1) do
       f = FactoryGirl.build(:generic_collection)
       f.title = "My wonderful launderette"
@@ -23,13 +23,13 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
       f.save
       f
     end
-    let(:generic_asset_3) {FactoryGirl.create(:generic_asset)}#does not have set, pset
-    let(:generic_asset_4) do #restricted
+    let(:generic_asset_3) do
+      f = FactoryGirl.create(:generic_asset)
+    end
+    let(:generic_asset_4) do
       f = FactoryGirl.create(:generic_asset)
       f.descMetadata.set = collection_1
       f.descMetadata.primarySet = collection_1
-      f.read_groups = f.read_groups - ["public"]
-      f.read_groups |= ["University-of-Oregon"]
       f.save
       f
     end
@@ -77,10 +77,33 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
             expect(second_result).not_to respond_to(:token)
           end
         end
+        context "when there are no results for one chunk" do
+          before do
+
+            generic_asset_3.descMetadata.primarySet.delete
+            generic_asset_3.save
+            generic_asset_4.read_groups = generic_asset_4.read_groups - ["public"]
+            generic_asset_4.read_groups |= ["University-of-Oregon"]
+            generic_asset_4.save
+
+            generic_asset_1.descMetadata.primarySet.delete
+            generic_asset_1.save
+            generic_asset_2.descMetadata.primarySet.delete
+            generic_asset_2.save
+
+          end
+          it "should try again with the next chunk" do
+            subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset, :limit => 2)}
+            result = subject.find(:all, :metadata_prefix=>'oai_dc')
+            expect(result.records).to include generic_asset_1
+          end
+        end
       end
       context "when there is a restricted asset" do
         before do
-          generic_asset_4
+          generic_asset_4.read_groups = generic_asset_4.read_groups - ["public"]
+          generic_asset_4.read_groups |= ["University-of-Oregon"]
+          generic_asset_4.save
         end
         it "should not include the asset" do
           expect(subject.find(:all)).not_to include generic_asset_4

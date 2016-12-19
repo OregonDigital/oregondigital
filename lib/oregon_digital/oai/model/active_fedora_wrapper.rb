@@ -29,34 +29,38 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   def find(selector, options = {})
    results = []
    query_pairs = build_query(selector, options)
-   #start/rank tracks asset indices throughout entire result set
+
    if options[:resumption_token]
      start = OAI::Provider::ResumptionToken.parse(options[:resumption_token]).last
    else start = 0
    end
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>1000, :start=>start}
-   solr_results = ActiveFedora::SolrService.query(query_pairs, query_args)
-   #num items of the complete set
    qry_total = ActiveFedora::SolrService.count(query_pairs, query_args)
+   return [] unless qry_total > 0
 
-   #results will always be @limit or less
-   results = build_results(solr_results, start, qry_total)
+   numres = 0
+   while numres==0
+     solr_results = ActiveFedora::SolrService.query(query_pairs, query_args)
+     results = build_results(solr_results, start, qry_total)
+     numres = results[:items].count
+     query_args[:start] = results[:rank] + 1
+   end
    return next_set(results, options[:resumption_token], qry_total) if options[:resumption_token]
 
-   if @limit && results.last.rank != qry_total - 1
+   if @limit && results[:rank] != qry_total - 1
      return partial_result(results, OAI::Provider::ResumptionToken.new(options.merge({:last => 0})))
    end
    if !selector.blank? && selector!= :all
-     return results.first
+     return results[:items].first
    end
-   return results
+   return results[:items]
   end
 
   def next_set(results, token_string, numFound)
     raise OAI::ResumptionTokenException.new unless @limit
     token = OAI::Provider::ResumptionToken.parse(token_string)
-    if results.last.rank == numFound -1
-        return results
+    if results[:rank] == numFound -1
+        return results[:items]
     else
       return partial_result(results, token)
     end
@@ -64,8 +68,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
   def partial_result(results, token)
     raise OAI::ResumptionTokenException.new unless results
-    offset = results.last.rank + 1
-    OAI::Provider::PartialResult.new(results, token.next(offset))
+    offset = results[:rank] + 1
+    OAI::Provider::PartialResult.new(results[:items], token.next(offset))
   end
 
   def timestamp_field
@@ -123,8 +127,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
   def build_results(items,start, numFound)
 
-    results = []
-    return results if numFound == 0
+    results = {:rank=>0, :items=>[]}
     this_set_counter = 0
     total_set_counter = start #from the resumptionToken
     items.each do |item|
@@ -152,22 +155,14 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
           end
           wrapped.sets = sets
         end
-        wrapped.rank = total_set_counter #add rank to the wrapper
-        results << wrapped
-        this_set_counter = this_set_counter + 1
-
-        #both counts are zero index.
-        #this_set_counter contains actual count after +1
-        if this_set_counter == @limit
-          break
-        end
+        results[:items] << wrapped
+        this_set_counter += 1
       end
-      total_set_counter = total_set_counter + 1
-    end
-    #finished loop, set marker if necessary
-    #if last items were not included and finished last batch of items
-    if total_set_counter == numFound
-      results.last.rank = total_set_counter - 1
+      results[:rank] = total_set_counter
+      #both counts are zero index.
+      #this_set_counter contains actual count after +1
+      break unless this_set_counter < @limit
+      total_set_counter += 1
     end
     results
   end
