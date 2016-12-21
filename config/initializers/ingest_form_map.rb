@@ -64,6 +64,8 @@ INGEST_MAP = {
     militaryOccupation: "descMetadata.militaryOccupation",
     tribalNotes: "descMetadata.tribalNotes",
     compassDirection: "descMetadata.compassDirection",
+    objectOrientation: "descMetadata.objectOrientation",
+    photographOrientation: "descMetadata.photographOrientation",
     tableOfContents: "descMetadata.tableOfContents",
     #contents: "descMetadata.contents",
     coverage: "descMetadata.coverage",
@@ -116,6 +118,7 @@ INGEST_MAP = {
     tgn: "descMetadata.tgn",
     latitude: "descMetadata.latitude",
     longitude: "descMetadata.longitude",
+    geobox: "descMetadata.geobox"
   },
 
   date: {
@@ -136,7 +139,8 @@ INGEST_MAP = {
     itemLocator: "descMetadata.itemLocator",
     LCCN: "descMetadata.lccn", 
     hydrologicUnitCode: "descMetadata.hydrologicUnitCode",
-    LLID: "descMetadata.llid"
+    LLID: "descMetadata.llid",
+    barcode: "descMetadata.barcode"
   },
 
   right: {
