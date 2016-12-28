@@ -13,7 +13,7 @@ module OregonDigital::OAI::Concern
       @uri_fields = [:creator, :lcsubject, :type, :author, :editor, :photographer, :set,
                       :taxonClass, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator, :interviewee, :interviewer, :lyricist,
                       :photographer, :translator, :ethnographicTerm, :genus, :phylum, :militaryBranch, :stylePeriod, :commonNames, :language, 
-                      :localCollectionName, :od_repository]
+                      :localCollectionName, :od_repository, :recipient]
     end
 
     # Map Qualified Dublin Core (Terms) fields to Oregon Digital fields
@@ -29,7 +29,7 @@ module OregonDigital::OAI::Concern
         :creator => [:creator],
         :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :donor, :editor, :illustrator,
                           :interviewee, :interviewer, :lyricist, :patron, :photographer, :printMaker, :scribe, :transcriber, :translator, :designer,
-                          :dedicatee],
+                          :dedicatee, :recipient],
         :subject => [:lcsubject, :subject, :taxonClass, :ethnographicTerm, :event, :family, :genus, :phylum, :militaryBranch, :sportsTeam,
                      :tribalClasses, :tribalTerms, :commonNames],
         :rights => [:rights, :useRestrictions, :accessRestrictions],
@@ -62,7 +62,7 @@ module OregonDigital::OAI::Concern
         :creator => [:creator],
         :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :donor, :editor, :illustrator,
                           :interviewee, :interviewer, :lyricist, :patron, :photographer, :printMaker, :scribe, :transcriber, :translator, :designer,
-                          :dedicatee],
+                          :dedicatee, :recipient],
         :subject => [:lcsubject, :subject, :taxonClass, :ethnographicTerm, :event, :family, :genus, :phylum, :militaryBranch, :sportsTeam,
                      :tribalClasses, :tribalTerms, :commonNames],
         :coverage => [:location, :tgn, :waterBasin, :rangerDistrict, :streetAddress, :temporal, :geobox, :latitude, :longitude],
