@@ -5,6 +5,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   def initialize(model, options={})
     self.inner_model = model
     @limit = options.delete(:limit)
+    @max_rows = options.delete(:qry_rows) || 1000
     unless options.empty?
       raise ArgumentError.new(
         "Unsupported options [#{options.keys.join(', ')}]"
@@ -27,24 +28,14 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   def find(selector, options = {})
-   results = []
-   query_pairs = build_query(selector, options)
 
-   if options[:resumption_token]
-     start = OAI::Provider::ResumptionToken.parse(options[:resumption_token]).last
-   else start = 0
-   end
-   query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>1000, :start=>start}
+   query_pairs = build_query(selector, options)
+   start = options[:resumption_token] ? OAI::Provider::ResumptionToken.parse(options[:resumption_token]).last : 0
+   query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>@max_rows, :start=>start}
    qry_total = ActiveFedora::SolrService.count(query_pairs, query_args)
    return [] unless qry_total > 0
-
-   numres = 0
-   while numres==0
-     solr_results = ActiveFedora::SolrService.query(query_pairs, query_args)
-     results = build_results(solr_results, start, qry_total)
-     numres = results[:items].count
-     query_args[:start] = results[:rank] + 1
-   end
+   results = get_results_from_query(query_pairs, query_args, qry_total, start)
+   return [] unless !results[:items].blank?
    return next_set(results, options[:resumption_token], qry_total) if options[:resumption_token]
 
    if @limit && results[:rank] != qry_total - 1
@@ -88,6 +79,18 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
   end
 
   private
+
+  def get_results_from_query(query_pairs, query_args, qry_total, start)
+   numres = 0
+   while numres==0
+     solr_results = ActiveFedora::SolrService.query(query_pairs, query_args)
+     results = build_results(solr_results, start, qry_total)
+     numres = results[:items].count
+     break unless results[:rank] < qry_total-1
+     query_args[:start] = results[:rank] + 1
+   end
+   results
+  end
 
   def get_set_from_options(options)
     if !options[:resumption_token].nil?
@@ -133,38 +136,46 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     items.each do |item|
       pseudo_obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
       if keep_item(pseudo_obj)
-        wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
-        #replace the uris with labels
-        uri_fields.each do |field|
-          label_arr = []
-          pseudo_obj.descMetadata.send("#{field}").each do |val|
-            if ((val.respond_to? :rdf_label) && (!val.rdf_label.first.include? "http"))
-              label_arr << val.rdf_label.first
-            end
-          end
-          wrapped.set_attrs("#{field}", label_arr)
-        end
-        if pseudo_obj.soft_destroyed?
-          wrapped.set_attrs("deleted", true)
-        end
-        wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
-        sets = []
-        if !pseudo_obj.set.nil?
-          pseudo_obj.set.each do |setid|
-            sets << get_set(setid.to_str.split('/').last)
-          end
-          wrapped.sets = sets
-        end
+        wrapped = build_wrapped(pseudo_obj, item)
         results[:items] << wrapped
         this_set_counter += 1
       end
       results[:rank] = total_set_counter
       #both counts are zero index.
-      #this_set_counter contains actual count after +1
       break unless this_set_counter < @limit
       total_set_counter += 1
     end
     results
+  end
+
+  def build_wrapped(pseudo_obj, item)
+    wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
+    #replace the uris with labels
+    uri_fields.each do |field|
+      label_arr = []
+      pseudo_obj.descMetadata.send("#{field}").each do |val|
+        if ((val.respond_to? :rdf_label) && (!val.rdf_label.first.include? "http"))
+          label_arr << val.rdf_label.first
+        end
+      end
+      wrapped.set_attrs("#{field}", label_arr)
+    end
+    #check if soft_delete
+    if pseudo_obj.soft_destroyed?
+      wrapped.set_attrs("deleted", true)
+    end
+    #add modified_date
+    wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
+    #add set
+    sets = []
+    if !pseudo_obj.set.nil?
+      pseudo_obj.set.each do |setid|
+        sets << get_set(setid.to_str.split('/').last)
+      end
+      wrapped.sets = sets
+    end
+
+    wrapped
   end
 
   def create_description(obj)
