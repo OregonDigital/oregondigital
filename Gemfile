@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.0'
 gem 'blacklight'
 gem 'hydra-head', '6.4.0', :git => 'https://github.com/OregonDigital/hydra-head'
 gem 'active-fedora', :git => 'https://github.com/OregonDigital/active_fedora'
