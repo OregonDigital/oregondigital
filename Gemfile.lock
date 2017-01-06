@@ -656,6 +656,7 @@ DEPENDENCIES
   rdf (~> 1.1.2.1)
   rdf-mongo!
   recursive-open-struct
+  responders (~> 2.0)
   resque (~> 1.25.0)
   resque-retry
   rmagick (~> 2.13.2)
