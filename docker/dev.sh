@@ -4,15 +4,23 @@
 # set up.  Some things may need to be tweaked, such as only migrating once.
 # Feel free to copy this to create your own docker-compose adventure!
 
-# Stop everything
-docker-compose stop
+# Stop and clean up everything
+docker-compose down
 
-# Build, migrate, and clean up
-docker build --rm -t oregondigital/od1 -f docker/Dockerfile-dev .
-docker-compose run web bundle exec rake db:migrate
-docker-compose rm -f web
-docker-compose rm -f workers
-docker-compose rm -f resquehead
+# Pull images from dockerhub; nothing happens if you already have these
+docker pull oregondigital/od1
+docker pull oregondigital/solr
+docker pull oregondigital/phantomjs:1.8.1
+docker pull oregondigital/hydra-jetty:3.8.1-4.0
 
-# Restart
-docker-compose up
+# Rebuild the od1 dev container in case of code changes
+docker-compose build web
+
+# Run migrations
+docker-compose run workers bundle exec rake db:migrate
+
+# Restart in the background
+docker-compose up -d
+
+# Follow the web logs
+docker-compose logs -f web
