@@ -6,14 +6,14 @@
 #
 # alias dctest="docker-compose -p ODTEST -f test-compose.yaml"
 
-dctest() {
-  docker-compose -p ODTEST -f test-compose.yaml $@
-}
+dctest="docker-compose -p ODTEST -f test-compose.yaml"
 
 # Test containers aren't important and can just be destroyed as needed
 if [[ $1 == "--destroy" ]]; then
-  dctest kill
-  dctest rm -f
+  $dctest kill
+  $dctest rm -f
+  $dctest down
+  $dctest build test
   shift
 fi
 
@@ -23,17 +23,12 @@ if [[ $1 == "--quick" ]]; then
   shift
 fi
 
-# Start services one at a time so we can watch the actual test output properly.
-dctest create
-dctest start fc381
-dctest start memcached
-dctest start redis
-dctest start mongo
-dctest start solr
+# Start services separately so we can watch the actual test output properly.
+$dctest up -d fc381 memcached redis mongo solr
 
 if [[ ! -f phantombin/phantomjs ]]; then
-  dctest run phantomjs
-  dctest rm -f phantomjs
+  $dctest run phantomjs
+  $dctest rm -f phantomjs
 fi
 
 # Fedora is the slow one, so we wait until we get a response
@@ -43,11 +38,14 @@ while true; do
   sleep 0.1
 done
 
+# Destroy screenshots so whatever is in the dir is from the latest run
+$dctest run --entrypoint="rm -f /oregondigital/tmp/capybara/*" test
+
 target=${@:-spec/}
 # Run tests!
 echo "Running 'bundle exec rspec $target'"
-dctest run test $target
+$dctest run test $target
 
 if [[ $quick == 0 ]]; then
-  dctest stop
+  $dctest stop
 fi
