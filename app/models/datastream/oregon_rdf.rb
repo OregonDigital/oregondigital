@@ -616,7 +616,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     relevant_values.each do |k, v|
       if k.start_with?("od_content")
         @od_content = v.map do |x|
-          pid = "oregondigital:#{OregonDigital::IdService.noidify(x)}"
+          pid = "oregondigital:#{OregonDigital::IdService.noidify(x.to_s)}"
           begin
             ActiveFedora::Base.load_instance_from_solr(pid)
           rescue ActiveFedora::ObjectNotFoundError
