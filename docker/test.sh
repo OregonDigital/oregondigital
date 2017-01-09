@@ -39,7 +39,7 @@ while true; do
 done
 
 # Destroy screenshots so whatever is in the dir is from the latest run
-$dctest run --entrypoint="rm -f /oregondigital/tmp/capybara/*" test
+$dctest run --entrypoint=" " test find /oregondigital/tmp/capybara -type f -exec rm {} \;
 
 target=${@:-spec/}
 # Run tests!
