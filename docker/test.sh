@@ -8,18 +8,16 @@
 
 dctest="docker-compose -p ODTEST -f test-compose.yaml"
 
+# Default to not shutting down services after testing
+quick=1
+
 # Test containers aren't important and can just be destroyed as needed
 if [[ $1 == "--destroy" ]]; then
   $dctest kill
   $dctest rm -f
   $dctest down
   $dctest build test
-  shift
-fi
-
-quick=0
-if [[ $1 == "--quick" ]]; then
-  quick=1
+  quick=0
   shift
 fi
 
@@ -48,4 +46,8 @@ $dctest run test $target
 
 if [[ $quick == 0 ]]; then
   $dctest stop
+else
+  echo "If you wish to stop and destroy all test containers, run this:"
+  echo "    $dctest stop"
+  echo "    $dctest rm"
 fi
