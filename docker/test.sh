@@ -38,6 +38,7 @@ done
 
 # Destroy screenshots so whatever is in the dir is from the latest run
 $dctest run --entrypoint=" " test find /oregondigital/tmp/capybara -type f -exec rm {} \;
+$dctest run --entrypoint=" " test rm /oregondigital/log/test.log
 
 target=${@:-spec/}
 # Run tests!
