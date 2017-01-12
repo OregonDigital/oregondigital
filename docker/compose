@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-#
-# Simple wrapper around the docker-compose call with some sane pre-defined stuff
-docker-compose -p OD1 $@
