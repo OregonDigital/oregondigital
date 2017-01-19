@@ -45,7 +45,7 @@ docker-compose build web workers resquehead
 docker-compose up -d
 
 # Run a rake task - in this case, to create filler data
-docker-compose exec web bundle exec rake filler_data
+docker-compose run --rm workers bundle exec rake filler_data
 
 # Watch the logs for everything
 docker-compose logs -f
