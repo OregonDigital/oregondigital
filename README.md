@@ -72,6 +72,22 @@ Other information:
   `--quick` flag.  This may use up extra resources on your system, but it can
   speed the dev-test loop considerably when isolating tests.
 
+#### Updating Gems
+
+The safest way to update gems is to destroy and rebuild the dev image,
+otherwise you're only updating gems within a container, and containers do not
+necessarily persist very long.
+
+    docker-compose stop
+    docker-compose rm
+    docker rmi oregondigital/od1-dev
+    docker-compose build workers
+
+You can also run "bundle install" inside a particular container, but this should
+only be done if you know what you're doing.  It can get really confusing when you
+accidentally use `docker-compose run` when you meant `docker-compose exec`.  Or
+if you choose the wrong container name.
+
 ### Manual
 
 **Requires Ruby 2.0**
