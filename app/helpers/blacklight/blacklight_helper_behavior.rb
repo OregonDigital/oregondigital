@@ -480,7 +480,7 @@ module Blacklight::BlacklightHelperBehavior
   def link_to_document(doc, opts={:label=>nil, :counter => nil})
     opts[:label] ||= blacklight_config.index.show_link.to_sym
     label = render_document_index_label doc, opts
-    link_to label, doc, { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
+    link_to label, catalog_path(doc[:id]), { :'data-counter' => opts[:counter] }.merge(opts.reject { |k,v| [:label, :counter].include? k  })
   end
 
   # link_back_to_catalog(:label=>'Back to Search')
@@ -563,18 +563,26 @@ module Blacklight::BlacklightHelperBehavior
     return hash_as_hidden_fields(my_params)
   end
 
-
-
-  def link_to_previous_document(previous_document)
-    link_to_unless previous_document.nil?, raw(t('views.pagination.previous')), previous_document, :class => "previous", :rel => 'prev', :'data-counter' => session[:search][:counter].to_i - 1 do
-      content_tag :span, raw(t('views.pagination.previous')), :class => 'previous'
+  def link_to_previous_document(doc)
+    label = raw(t('views.pagination.previous'))
+    if doc.nil?
+      return content_tag :span, label, :class => 'previous'
     end
+
+    counter = session[:search][:counter].to_i - 1
+    path = catalog_path(doc[:id])
+    link_to label, path, :class => "previous", :rel => 'prev', :'data-counter' => counter
   end
 
-  def link_to_next_document(next_document)
-    link_to_unless next_document.nil?, raw(t('views.pagination.next')), next_document, :class => "next", :rel => 'next', :'data-counter' => session[:search][:counter].to_i + 1 do
-      content_tag :span, raw(t('views.pagination.next')), :class => 'next'
+  def link_to_next_document(doc)
+    label = raw(t('views.pagination.next'))
+    if doc.nil?
+      return content_tag :span, label, :class => 'next'
     end
+
+    counter = session[:search][:counter].to_i + 1
+    path = catalog_path(doc[:id])
+    link_to label, path, :class => "next", :rel => 'next', :'data-counter' => counter
   end
 
   # Use case, you want to render an html partial from an XML (say, atom)
