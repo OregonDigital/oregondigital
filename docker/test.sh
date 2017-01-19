@@ -25,7 +25,7 @@ fi
 $dctest up -d fc381 memcached redis mongo solr
 
 if [[ ! -f phantombin/phantomjs ]]; then
-  $dctest run phantomjs
+  $dctest run --rm phantomjs
   $dctest rm -f phantomjs
 fi
 
@@ -37,13 +37,13 @@ while true; do
 done
 
 # Destroy screenshots so whatever is in the dir is from the latest run
-$dctest run --entrypoint=" " test find /oregondigital/tmp/capybara -type f -exec rm {} \;
-$dctest run --entrypoint=" " test rm /oregondigital/log/test.log
+$dctest run --rm --entrypoint=" " test find /oregondigital/tmp/capybara -type f -exec rm {} \;
+$dctest run --rm --entrypoint=" " test rm /oregondigital/log/test.log
 
 target=${@:-spec/}
 # Run tests!
 echo "Running 'bundle exec rspec $target'"
-$dctest run test $target
+$dctest run --rm test $target
 
 if [[ $quick == 0 ]]; then
   $dctest stop
