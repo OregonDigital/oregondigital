@@ -60,7 +60,7 @@ class BookReaderManager
       )
     return @br
   search_url: (term) =>
-    "/document/#{@br.bookId}/fulltext/#{term}.json"
+    "/document/#{@br.bookId}/fulltext/#{term.trim()}.json"
   reductionFactors: ->
     [ {reduce: 0.1, autofit: null},
      {reduce: 0.25, autofit: null},
