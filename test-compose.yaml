@@ -9,14 +9,8 @@ services:
     image: redis
   solr:
     image: oregondigital/solr
-    build:
-      dockerfile: docker/Dockerfile-solr
-      context: .
   fc381:
     image: oregondigital/hydra-jetty:3.8.1-4.0
-    build:
-      dockerfile: docker/Dockerfile-hydra-jetty
-      context: .
     command: bash -c "rm -f /opt/jetty/webapps/solr.war && java -jar start.jar"
     volumes:
       - ./media:/oregondigital/media

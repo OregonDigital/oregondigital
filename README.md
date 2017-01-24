@@ -21,28 +21,31 @@ Local Development Setup
 
 ### Using Docker
 
-Pull images from dockerhub to speed the setup - phantomjs in particular takes a
-LONG time to build:
-
-```bash
-docker pull oregondigital/od1
-docker pull oregondigital/solr
-docker pull oregondigital/phantomjs:1.8.1
-docker pull oregondigital/hydra-jetty:3.8.1-4.0
-```
-
 ```bash
 # Grab the repository
 git clone git@github.com:OregonDigital/oregondigital.git
 
-# Start the whole stack
+# Start the whole stack - on your first run, this can take a while to download
+all the necessary images
 docker-compose up -d
 
-# When you change code, rebuild the OD containers
+# When you change code, if you start getting odd errors, you may have to
+# restart the OD containers:
+docker-compose restart web workers resquehead
+
+# If things are still "weird", rebuild the OD containers:
 docker-compose stop web workers resquehead
 docker-compose rm web workers resquehead
 docker-compose build web workers resquehead
 docker-compose up -d
+
+# If you need a "hard reset", nuke it!  WARNING: THIS WILL REMOVE ALL YOUR
+# DEVELOPMENT-INGESTED ASSETS!
+./docker/nuke.sh
+
+# When nukes just don't destroy enough, try out a SUPERNOVA!  This will remove
+# every Docker entity related to OD, which will mean re-downloading the images:
+./docker/supernova.sh
 
 # Run a rake task - in this case, to create filler data
 docker-compose exec workers bundle exec rake filler_data
@@ -57,13 +60,6 @@ docker-compose logs -f web
 #### Testing
 
 Easy as `./docker/test.sh`!  Except....
-
-In order to test, you need `phantombin/phantomjs`.  This is available in the
-`oregondigital/phantomjs:1.8.1` image.  As long as you have that image, the
-test script will automatically copy phantomjs into your test container at
-runtime.
-
-Other information:
 
 - Want to focus tests?  Just pass in a path: `./docker/test.sh spec/models`.
 - If you need to ensure your environment is pristine, use the `--destroy` flag,

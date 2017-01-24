@@ -14,18 +14,12 @@ services:
       - data-redis:/data
   solr:
     image: oregondigital/solr
-    build:
-      dockerfile: docker/Dockerfile-solr
-      context: .
     ports:
       - "8983:8983"
     volumes:
       - data-solr-dev:/opt/solr/server/solr/mycores
   fc381:
     image: oregondigital/hydra-jetty:3.8.1-4.0
-    build:
-      dockerfile: docker/Dockerfile-hydra-jetty
-      context: .
     command: bash -c "rm -f /opt/jetty/webapps/solr.war && java -jar start.jar"
     ports:
       - "8984:8983"
@@ -56,9 +50,6 @@ services:
   # enabled when starting the web container
   core:
     image: oregondigital/od1
-    build:
-      dockerfile: docker/Dockerfile
-      context: .
     entrypoint: /bin/false
 
   # Front-end stuff
