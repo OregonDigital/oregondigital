@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Forcibly destroys all OD docker containers and volumes
-csi=$(echo -e "\x1b[")
+csi=$'\x1b['
 warn="${csi}31;1m"
 info="${csi}34m"
 reset="${csi}0m"

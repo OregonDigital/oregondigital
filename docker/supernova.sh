@@ -5,7 +5,7 @@
 # Builds upon nuke.sh to remove everything od-related, including the static
 # oregondigital/* images in case of a local image build going wrong.
 ./docker/nuke.sh
-csi=$(echo -e "\x1b[")
+csi=$'\x1b['
 warn="${csi}31;1m"
 info="${csi}34m"
 reset="${csi}0m"
