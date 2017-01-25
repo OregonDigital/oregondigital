@@ -21,6 +21,8 @@ Local Development Setup
 
 ### Using Docker
 
+#### Grab everything you need
+
 ```bash
 # Grab the repository
 git clone git@github.com:OregonDigital/oregondigital.git
@@ -28,34 +30,20 @@ git clone git@github.com:OregonDigital/oregondigital.git
 # Start the whole stack - on your first run, this can take a while to download
 all the necessary images
 docker-compose up -d
-
-# When you change code, if you start getting odd errors, you may have to
-# restart the OD containers:
-docker-compose restart web workers resquehead
-
-# If things are still "weird", rebuild the OD containers:
-docker-compose stop web workers resquehead
-docker-compose rm web workers resquehead
-docker-compose build web workers resquehead
-docker-compose up -d
-
-# If you need a "hard reset", nuke it!  WARNING: THIS WILL REMOVE ALL YOUR
-# DEVELOPMENT-INGESTED ASSETS!
-./docker/nuke.sh
-
-# When nukes just don't destroy enough, try out a SUPERNOVA!  This will remove
-# every Docker entity related to OD, which will mean re-downloading the images:
-./docker/supernova.sh
-
-# Run a rake task - in this case, to create filler data
-docker-compose exec workers bundle exec rake filler_data
-
-# Watch the logs for everything
-docker-compose logs -f
-
-# Just watch the Rails web app logs
-docker-compose logs -f web
 ```
+
+#### Generate filler data
+
+First, run the rake task:
+
+    docker-compose exec workers bundle exec rake filler_data
+
+Next, log into the main application by browsing to
+`http://localhost:3000/users/sign_in`.  Docker sets up the admin user as
+"admin@example.org" with the password "admin123".  Once you're signed in, visit
+`http://localhost:3000/resque/overview` and watch the queue slowly get
+processed.  This can take a while, but once it's done you should have 3
+collections of dummy data.
 
 #### Testing
 
@@ -83,6 +71,37 @@ You can also run "bundle install" inside a particular container, but this should
 only be done if you know what you're doing.  It can get really confusing when you
 accidentally use `docker-compose run` when you meant `docker-compose exec`.  Or
 if you choose the wrong container name.
+
+#### Various other docker stuff
+
+This list of commands should get you moving forward with most typical
+development tasks:
+
+```bash
+# When you change code, if you start getting odd errors, you may have to
+# restart the OD containers:
+docker-compose restart web workers resquehead
+
+# If things are still "weird", rebuild the OD containers:
+docker-compose stop web workers resquehead
+docker-compose rm web workers resquehead
+docker-compose build web workers resquehead
+docker-compose up -d
+
+# If you need a "hard reset", nuke it!  WARNING: THIS WILL REMOVE ALL YOUR
+# DEVELOPMENT-INGESTED ASSETS!
+./docker/nuke.sh
+
+# When nukes just don't destroy enough, try out a SUPERNOVA!  This will remove
+# every Docker entity related to OD, which will mean re-downloading the images:
+./docker/supernova.sh
+
+# Watch the logs for everything
+docker-compose logs -f
+
+# Just watch the Rails web app logs
+docker-compose logs -f web
+```
 
 ### Manual
 
