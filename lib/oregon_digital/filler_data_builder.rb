@@ -39,7 +39,6 @@ module OregonDigital
           object = FactoryGirl.build(model, *traits)
           object.set = collection
           object.review!
-          object.create_derivatives
         end
       end
 
