@@ -202,9 +202,13 @@ INGEST_MAP = {
     technique: "descMetadata.technique",
   },
 
-  grouping: {
+  # DO NOT put anything in here that isn't meant to be some type of OregonDigital set
+  collection: {
     set: "descMetadata.set",
     primarySet: "descMetadata.primarySet",
+  },
+
+  grouping: {
     exhibit: "descMetadata.exhibit",
   },
 
