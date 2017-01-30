@@ -235,7 +235,7 @@ describe "(Ingest Form)" do
       before do
         collection
         visit_ingest_url
-        choose_controlled_vocabulary_item("grouping", "set","Ala",collection.title, collection.resource.rdf_subject.to_s) 
+        choose_collection("set", collection.title)
       end
       it "should store the internal URI" do
         click_the_ingest_button

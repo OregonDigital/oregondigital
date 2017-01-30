@@ -37,6 +37,16 @@ def fill_in_ingest_data(group, type, value, position = 0, clone = false)
   end
 end
 
+def choose_collection(type, value)
+  type = OregonDigital::Metadata::FieldTypeLabel.for(type)
+  nodes = ingest_group_nodes("collection")
+  node = nodes[0]
+  within(node) do
+    select(type, :from => "Type")
+    select(value, :from => "Value")
+  end
+end
+
 def choose_controlled_vocabulary_item(group, type, search, pick, internal, position = 0)
   # Expectations are here to ensure tests for CV stuff stay solid
   expect(page).not_to have_content(pick)

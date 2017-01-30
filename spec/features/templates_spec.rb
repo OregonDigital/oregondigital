@@ -106,7 +106,7 @@ describe "(Administration of templates)", :js => true do
         end
         before do
           collection
-          choose_controlled_vocabulary_item("grouping", "set","Ala",collection.title, collection.resource.rdf_subject.to_s) 
+          choose_collection("set", collection.title)
         end
         it "should succeed" do
           find(:css, 'input[type=submit]').click
