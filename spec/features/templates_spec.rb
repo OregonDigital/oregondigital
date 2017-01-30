@@ -76,7 +76,14 @@ describe "(Administration of templates)", :js => true do
   end
 
   context "The 'new template' form" do
+    let(:collection) do
+      c = FactoryGirl.create(:generic_collection, :title => "Alabama")
+      c.review!
+      c
+    end
+
     before(:each) do
+      collection
       visit "/templates"
       click_link "Create new template"
     end
@@ -99,13 +106,7 @@ describe "(Administration of templates)", :js => true do
       end
 
       context "with a set" do
-        let(:collection) do
-          c = FactoryGirl.create(:generic_collection, :title => "Alabama")
-          c.review!
-          c
-        end
         before do
-          collection
           choose_collection("set", collection.title)
         end
         it "should succeed" do
@@ -119,7 +120,8 @@ describe "(Administration of templates)", :js => true do
             click_link "Edit My First Template (tm)"
           end
           it "should show that set's value" do
-            expect(page).to include_ingest_fields_for("grouping", "set", collection.title)
+            expect(page).to include_ingest_fields_for("collection", "set",
+                "http://oregondigital.org/resource/#{collection.pid}")
           end
         end
       end

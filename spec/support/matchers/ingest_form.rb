@@ -8,7 +8,7 @@ def page_includes_ingest_fields_for?(group, type_pattern, value_pattern)
   for node in nodes
     within(node) do
       type_field = find("select.type-selector")
-      value_field = find("input.value-field")
+      value_field = find(".value-field")
 
       return true if type_pattern === type_field.value && value_pattern === value_field.value
     end
