@@ -52,7 +52,6 @@ dcrun "rm -f /oregondigital/tmp/capybara/*"
 if [[ $quick == 0 ]]; then
   dcrun "rm -f /oregondigital/db/test.db"
   dcrun "bundle exec rake db:migrate"
-  dcrun "bundle exec rake db:test:create"
 fi
 
 target=${@:-spec/}
