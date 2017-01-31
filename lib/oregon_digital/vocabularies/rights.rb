@@ -6,5 +6,8 @@ module OregonDigital::Vocabularies
     # Other terms
     property :educational, :label => 'Educational Use Permitted'
     property :"orphan-work-us", :label => 'Orphan Work'
+    property :"rr-f/", :label => 'Rights Reserved - Free Access'
+    property :"rr-r/", :label => 'Rights Reserved - Restricted Access'
+    property :"unknown/", :label => 'Unknown'
   end
 end
