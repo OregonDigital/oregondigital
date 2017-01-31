@@ -50,24 +50,20 @@ class OembedController < ApplicationController
 
   def video_responder(pid, format)
     begin
-
       asset = Video.find(pid)
       return render_404 unless !asset.mp4_location.blank?
 
       url = "http://#{APP_CONFIG['default_url_host']}#{asset.mp4_location.sub(Rails.root.to_s, '')}"
-      #dim = get_dimensions(asset)
-      width = '320'
-      height = '240'
+      dim = get_dimensions(asset.mp4_location)
       data = {
         "version" => "1.0",
         "type" => "video",
-        "width" => width,
-        "height" => height, 
-        "html" => "<iframe width=\"#{width}\" height=\"#{height}\" src=\"#{url}\" frameborder=\"0\" allowfullscreen></iframe>"
+        "width" => dim[:width],
+        "height" => dim[:height],
+        "html" => "<iframe width=\"#{dim[:width]}\" height=\"#{dim[:height]}\" src=\"#{url}\" frameborder=\"0\" allowfullscreen></iframe>"
       }
 
       if format == 'json'
-
         json_response(data)
       else
         other_response
@@ -77,9 +73,9 @@ class OembedController < ApplicationController
     end
   end
 
-  def get_dimensions(asset)
+  def get_dimensions(asset_path)
     begin
-      command = "/home/lsato/Downloads/ffmpeg/ffprobe -v error -show_entries stream=width,height -of default=noprint_wrappers=1 \"#{asset.mp4_location}\""
+      command = "/home/lsato/Downloads/ffmpeg/ffprobe -v error -show_entries stream=width,height -of default=noprint_wrappers=1 \"#{asset_path}\""
       out, err, st = Open3.capture3(command)
       return nil unless st.success?
       widthmatch = /width=[0-9]*/.match out
