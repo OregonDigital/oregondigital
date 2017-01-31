@@ -34,6 +34,7 @@ services:
       context: .
     volumes:
       - .:/oregondigital
+      - ./batch:/data1/batch
     entrypoint: ""
     command: bundle exec rake resque:work
     links:
@@ -61,6 +62,7 @@ services:
     volumes:
       - .:/oregondigital
       - ./docker/dev-entry.sh:/entrypoint.sh
+      - ./batch:/data1/batch
     ports:
       - "3000:3000"
     links:
