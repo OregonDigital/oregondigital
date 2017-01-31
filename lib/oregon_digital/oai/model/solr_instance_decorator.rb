@@ -74,6 +74,7 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
   def format_geonames (items)
     results = []
     items.each do |item|
+      next unless item.respond_to? :rdf_label
       results << item.rdf_label.first.gsub(" >> ", ", ")
     end
     results
