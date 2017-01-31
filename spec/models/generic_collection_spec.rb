@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe GenericCollection do
   it_behaves_like 'a collection'
-  it_behaves_like 'a Questioning Authority interface'
   subject {FactoryGirl.build(:generic_collection)}
 
   describe '#resource' do

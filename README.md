@@ -28,7 +28,7 @@ Local Development Setup
 git clone git@github.com:OregonDigital/oregondigital.git
 
 # Start the whole stack - on your first run, this can take a while to download
-all the necessary images
+# all the necessary images
 docker-compose up -d
 ```
 
