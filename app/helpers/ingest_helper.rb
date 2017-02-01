@@ -62,10 +62,10 @@ module IngestHelper
       )
       set_options = set_pids.map do |pid|
         set = GenericCollection.load_instance_from_solr(pid["id"], pid)
-        [set.title,  "http://oregondigital.org/resource/#{set.pid}"]
+        ["#{set.title} (#{set.pid})",  "http://oregondigital.org/resource/#{set.pid}"]
       end
 
-      input_args[:collection] = set_options
+      input_args[:collection] = set_options.sort
       input_args[:selected] = f.object.internal
       input_args[:include_blank] = true
     end
