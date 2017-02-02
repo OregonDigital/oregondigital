@@ -32,9 +32,9 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
    query_pairs = build_query(selector, options)
    start = options[:resumption_token] ? OAI::Provider::ResumptionToken.parse(options[:resumption_token]).last : 0
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>@max_rows, :start=>start}
-   qry_total = ActiveFedora::SolrService.count(query_pairs, query_args)
+   qry_total = ActiveFedora::SolrService.count(query_pairs)
    return [] unless qry_total > 0
-   results = get_results_from_query(query_pairs, query_args, qry_total, start)
+   results = get_results_from_query(query_pairs, query_args, qry_total)
    return [] unless !results[:items].blank?
    return next_set(results, options[:resumption_token], qry_total) if options[:resumption_token]
 
@@ -80,11 +80,11 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
   private
 
-  def get_results_from_query(query_pairs, query_args, qry_total, start)
+  def get_results_from_query(query_pairs, query_args, qry_total)
    numres = 0
    while numres==0
      solr_results = ActiveFedora::SolrService.query(query_pairs, query_args)
-     results = build_results(solr_results, start, qry_total)
+     results = build_results(solr_results, query_args[:start], qry_total)
      numres = results[:items].count
      break unless results[:rank] < qry_total-1
      query_args[:start] = results[:rank] + 1
@@ -128,7 +128,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     include_item
   end
 
-  def build_results(items,start, numFound)
+  def build_results(items, start, numFound)
 
     results = {:rank=>0, :items=>[]}
     this_set_counter = 0
