@@ -3,6 +3,7 @@ OregonDigital
 
 [![Circle CI](https://circleci.com/gh/OregonDigital/oregondigital.svg?style=svg)](https://circleci.com/gh/OregonDigital/oregondigital)
 [![Coverage Status](https://coveralls.io/repos/OregonDigital/oregondigital/badge.png)](https://coveralls.io/r/OregonDigital/oregondigital)
+![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=<badge_key>)
 
 Overview
 -----
