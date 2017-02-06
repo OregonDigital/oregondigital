@@ -17,7 +17,7 @@ Connected projects:
   - [ControlledVocabularyManager](https://github.com/OregonDigital/ControlledVocabularyManager) - Rails app with Blazegraph powering [OpaqueNamespace.org](http://opaquenamespace.org/)
 
 <a href="https://www.browserstack.com">
-  <img src="https://rawgit.com/OregonDigital/development-practices/master/images/browserstack.svg" width="100%" height="48">
+  <img src="https://rawgit.com/OregonDigital/development-practices/master/images/browserstack.svg" width="100%" height="64">
 </a>
 
 
