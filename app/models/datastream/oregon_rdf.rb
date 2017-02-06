@@ -615,14 +615,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     relevant_values = solr_doc.select{|k, v| k.start_with?(dsid.underscore)}.map{|k, v| {k.split("__").last.split("_").reverse.drop(1).reverse.join("_") => v}}.inject(&:merge)
     relevant_values.each do |k, v|
       if k.start_with?("od_content")
-        @od_content = v.map do |x|
+        @cpd_pids = v.map do |x|
           pid = "oregondigital:#{OregonDigital::IdService.noidify(x)}"
-          begin
-            ActiveFedora::Base.load_instance_from_solr(pid)
-          rescue ActiveFedora::ObjectNotFoundError
-            OregonDigital::RDF::ObjectResource.new(pid)
-          end
-        end
+         end
       end
       meth_name = :"#{k}="
       v = coerce_to_uri(v)
@@ -637,6 +632,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
       value[i] = RDF::URI(v)
     end
     value
+  end
+
+  def cpd_pids
+    @cpd_pids
   end
 
   alias_method :orig_od_content, :od_content
