@@ -89,55 +89,56 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
           expect(middle_result.records.first.pid).to eq assets[1]["id"]
           expect(middle_result).to respond_to(:token)
         end
-        context "but at the end of the set" do
-          let(:assets) { ActiveFedora::SolrService.query("active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection AND (read_access_group_ssim:public OR workflow_metadata__destroyed_ssim:true)", :sort => "system_modified_dtsi desc", :fl=> "id, system_modified_dtsi") }
+      end
+      context "but at the end of the set" do
+        let(:assets) { ActiveFedora::SolrService.query("active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection AND (read_access_group_ssim:public OR workflow_metadata__destroyed_ssim:true)", :sort => "system_modified_dtsi desc", :fl=> "id, system_modified_dtsi") }
 
-          before do
-            generic_asset_3.descMetadata.set.clear
-            generic_asset_3.descMetadata.primarySet.clear
-            generic_asset_3.save
-            generic_asset_5.descMetadata.title = ["five"]
-            generic_asset_5.save
-            generic_asset_6.descMetadata.title = ["six"]
-            generic_asset_6.save
-            sleep(1)
-            generic_asset_1.descMetadata.title = ["one"]
-            generic_asset_1.save
-            generic_asset_2.descMetadata.title = ["two"]
-            generic_asset_2.save
-          end
-          subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset, :limit => 2)}
-          it "should stop providing tokens at the end of the results" do
-            first_result = subject.find(:all, :metadata_prefix => 'oai_dc')
-            token = first_result.token.send(:encode_conditions)# this is the first set, first token
-            second_result = subject.find(:all, :resumption_token => token)#second set. should not have a token
-            expect(second_result.respond_to? :token).to be false
-          end
+        before do
+          generic_asset_3.descMetadata.set.clear
+          generic_asset_3.descMetadata.primarySet.clear
+          generic_asset_3.save
+          generic_asset_5.descMetadata.title = ["five"]
+          generic_asset_5.save
+          generic_asset_6.descMetadata.title = ["six"]
+          generic_asset_6.save
+          sleep(1)
+          generic_asset_1.descMetadata.title = ["one"]
+          generic_asset_1.save
+          generic_asset_2.descMetadata.title = ["two"]
+          generic_asset_2.save
         end
-        context "when there are no results for one chunk" do
-          let(:assets) { ActiveFedora::SolrService.query("active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection AND (read_access_group_ssim:public OR workflow_metadata__destroyed_ssim:true)", :sort => "system_modified_dtsi desc", :fl=> "id, system_modified_dtsi") }
-          let(:ga1_obj) { {"id"=>generic_asset_1.pid} }
-          let(:ga2_obj) { {"id"=>generic_asset_2.pid} }
-          let(:subset) { assets.slice(0,2) }
-          before do
-            generic_asset_3.descMetadata.title = ["three"]
-            generic_asset_3.descMetadata.set.clear
-            generic_asset_3.descMetadata.primarySet.clear
-            generic_asset_3.save
-            generic_asset_5.descMetadata.title = ["five"]
-            generic_asset_5.save
-            generic_asset_6.descMetadata.title = ["six"]
-            generic_asset_6.save
-          end
-          it "should try again with the next chunk" do
-            expect(subset).not_to include ga1_obj
-            expect(subset).not_to include ga2_obj
-            subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset, :limit => 2)}
-            result = subject.find(:all, :qry_rows =>2, :metadata_prefix=>'oai_dc')
-            expect(result.records).not_to eq 0
-          end
+        subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset, :limit => 2)}
+        it "should stop providing tokens at the end of the results" do
+          first_result = subject.find(:all, :metadata_prefix => 'oai_dc')
+          token = first_result.token.send(:encode_conditions)# this is the first set, first token
+          second_result = subject.find(:all, :resumption_token => token)#second set. should not have a token
+          expect(second_result.respond_to? :token).to be false
         end
       end
+      context "when there are no results for one chunk" do
+        let(:assets) { ActiveFedora::SolrService.query("active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection AND (read_access_group_ssim:public OR workflow_metadata__destroyed_ssim:true)", :sort => "system_modified_dtsi desc", :fl=> "id, system_modified_dtsi") }
+        let(:ga1_obj) { {"id"=>generic_asset_1.pid} }
+        let(:ga2_obj) { {"id"=>generic_asset_2.pid} }
+        let(:subset) { assets.slice(0,2) }
+        before do
+          generic_asset_3.descMetadata.title = ["three"]
+          generic_asset_3.descMetadata.set.clear
+          generic_asset_3.descMetadata.primarySet.clear
+          generic_asset_3.save
+          generic_asset_5.descMetadata.title = ["five"]
+          generic_asset_5.save
+          generic_asset_6.descMetadata.title = ["six"]
+          generic_asset_6.save
+        end
+        subject {OregonDigital::OAI::Model::ActiveFedoraWrapper.new(GenericAsset, :qry_rows =>2, :limit => 2)}
+        it "should try again with the next chunk" do
+          expect(subset).not_to include ga1_obj
+          expect(subset).not_to include ga2_obj
+          result = subject.find(:all,  :metadata_prefix=>'oai_dc')
+          expect(result.records).not_to eq 0
+        end
+      end
+
       context "when there is a restricted asset" do
         it "should not include the asset" do
           expect(subject.find(:all)).not_to include generic_asset_4
