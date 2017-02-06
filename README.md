@@ -16,6 +16,8 @@ Connected projects:
   - [cdm2bag](https://github.com/OregonDigital/cdm2bag) - bulk ingest from CONTENTdm
   - [ControlledVocabularyManager](https://github.com/OregonDigital/ControlledVocabularyManager) - Rails app with Blazegraph powering [OpaqueNamespace.org](http://opaquenamespace.org/)
 
+https://rawgit.com/OregonDigital/development-practices/master/images/browserstack.svg
+
 Local Development Setup
 -----
 
