@@ -44,12 +44,33 @@ module IngestHelper
       :wrapper_html => {:class => "ingest-control type"}
     )
 
-    controls << f.input(
-      :value,
+    input_args = {
       :input_html => {:class => "input-xxlarge value-field"},
       :label_html => {:class => "sr-only"},
       :wrapper_html => {:class => "ingest-control value"}
-    )
+    }
+
+    # SUPER HACK!  If we're looking at sets, we don't want free-text, we want a
+    # drop-down.  Ideally we'd have a nicer way to make any given type do this,
+    # but the grouping dropdown makes it really tough without some painful new
+    # configurable ingest map format combined with JavaScript that swaps a
+    # dropdown over the text input magically
+    if f.object.group.to_sym == :collection
+      set_pids = ActiveFedora::SolrService.query(
+        "has_model_ssim:#{RSolr.escape("info:fedora/afmodel:GenericCollection")}",
+        :rows => 100000
+      )
+      set_options = set_pids.map do |pid|
+        set = GenericCollection.load_instance_from_solr(pid["id"], pid)
+        ["#{set.title} (#{set.pid})",  "http://oregondigital.org/resource/#{set.pid}"]
+      end
+
+      input_args[:collection] = set_options.sort
+      input_args[:selected] = f.object.internal
+      input_args[:include_blank] = true
+    end
+
+    controls << f.input(:value, input_args)
 
     if f.object.cloneable?
       controls << f.input(
@@ -62,7 +83,10 @@ module IngestHelper
       )
     end
 
-    controls << f.hidden_field(:internal, :class => "internal-field")
+    # Super hack, continued: don't put an internal field on the form for sets
+    if f.object.group.to_sym != :collection
+      controls << f.hidden_field(:internal, :class => "internal-field")
+    end
 
     return controls.reduce { |list, next_control| list << next_control }
   end

@@ -11,6 +11,10 @@ dctest="docker-compose -p ODTEST -f test-compose.yaml"
 # Default to not shutting down services after testing
 quick=1
 
+dcrun() {
+  $dctest run --rm --entrypoint="$1" test
+}
+
 # Test containers aren't important and can just be destroyed as needed
 if [[ $1 == "--destroy" ]]; then
   $dctest kill
@@ -37,8 +41,17 @@ while true; do
 done
 
 # Destroy screenshots so whatever is in the dir is from the latest run
-$dctest run --rm --entrypoint=" " test find /oregondigital/tmp/capybara -type f -exec rm {} \;
-$dctest run --rm --entrypoint=" " test rm /oregondigital/log/test.log
+dcrun "rm /oregondigital/log/test.log"
+dcrun "rm -f /oregondigital/tmp/capybara/*"
+
+# Unless "quick" is explicitly requested, we need to make sure the test
+# database is prepared.  This is painfully slow on post-setup runs, but it
+# ensures tests are always coming from a sane start, and avoids very painful
+# debugging when the schema changes.
+if [[ $quick == 0 ]]; then
+  dcrun "rm -f /oregondigital/db/test.db"
+  dcrun "bundle exec rake db:migrate"
+fi
 
 target=${@:-spec/}
 # Run tests!
