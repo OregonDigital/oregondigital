@@ -52,7 +52,7 @@ p {
 }
 
 #header-navbar-fixed-top {
-  
+
 }
 
 .vcenter {
@@ -109,7 +109,9 @@ a img {
   line-height: 22px;
 }
 
-
+.sets #common-header h1 {
+  max-width: 280px;
+}
 
 #searchbar {
   padding: 1rem 0;
