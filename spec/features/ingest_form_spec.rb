@@ -237,12 +237,51 @@ describe "(Ingest Form)" do
         visit_ingest_url
         choose_collection("set", collection.title)
       end
-      it "should store the internal URI" do
-        click_the_ingest_button
-        asset = GenericAsset.find(@pid)
-        expect(asset.descMetadata.set.first.resource.rdf_subject).to eq collection.resource.rdf_subject
-      end 
+
+      context "when a CV field is invalid" do
+        let(:group) { "subject" }
+        let(:subgroup) { "lcsubject" }
+
+        it "shouldn't create the asset" do
+          prior_count = GenericAsset.count
+          fill_in_ingest_data(group, subgroup, "blargh")
+          click_the_ingest_button
+          expect(GenericAsset.count).to eq(prior_count)
+        end
+        it "should preserve the set value in the dropdown" do
+          fill_in_ingest_data(group, subgroup, "blargh")
+          click_the_ingest_button
+          expect(page).to include_ingest_fields_for("collection", "set",
+              "http://oregondigital.org/resource/#{collection.pid}")
+        end
+      end
+
+      context "when any field is left blank" do
+        let(:group) { "creator" }
+        let(:subgroup) { "creator" }
+
+        it "shouldn't create the asset" do
+          prior_count = GenericAsset.count
+          fill_in_ingest_data(group, subgroup, "")
+          click_the_ingest_button
+          expect(GenericAsset.count).to eq(prior_count)
+        end
+        it "should preserve the set value in the dropdown" do
+          fill_in_ingest_data(group, subgroup, "")
+          click_the_ingest_button
+          expect(page).to include_ingest_fields_for("collection", "set",
+              "http://oregondigital.org/resource/#{collection.pid}")
+        end
+      end
+      context "when fields are filled in properly" do
+        it "should store the internal URI" do
+          click_the_ingest_button
+          asset = GenericAsset.find(@pid)
+          expect(asset.descMetadata.set.first.resource.rdf_subject).to eq collection.resource.rdf_subject
+        end
+      end
     end
+
     context "when a controlled vocabulary is picked", :js => true, :caching => true do
       context "for the first time" do
         before do
