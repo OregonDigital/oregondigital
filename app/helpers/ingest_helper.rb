@@ -60,13 +60,18 @@ module IngestHelper
         "has_model_ssim:#{RSolr.escape("info:fedora/afmodel:GenericCollection")}",
         :rows => 100000
       )
+      prefix = "http://oregondigital.org/resource"
       set_options = set_pids.map do |pid|
         set = GenericCollection.load_instance_from_solr(pid["id"], pid)
-        ["#{set.title} (#{set.pid})",  "http://oregondigital.org/resource/#{set.pid}"]
+        ["#{set.title} (#{set.pid})", "#{prefix}/#{set.pid}"]
       end
 
       input_args[:collection] = set_options.sort
-      input_args[:selected] = f.object.internal
+      selected = f.object.value
+      if selected.nil? || !selected.start_with?(prefix)
+        selected = f.object.internal
+      end
+      input_args[:selected] = selected
       input_args[:include_blank] = true
     end
 
