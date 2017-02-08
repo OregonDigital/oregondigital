@@ -31,13 +31,61 @@ class GenericAssetDecorator < Draper::Decorator
 
   def compound_list
     list = []
-    list << self if compound?
-    list |= od_content.to_a
-    list |= compound_parent.decorate.compound_list if compound_parent
+    if compound?
+      list << self
+      list |= pull_cpd_objects(slice_list(cpd_pids))
+    elsif compound_parent
+      list << compound_parent
+      list |= pull_cpd_objects( slice_list(compound_parent.cpd_pids) )
+    end
     list
   end
 
   private
+
+  def slice_list(list)
+    return [] unless !list.nil?
+    asset = 1
+    max = 40
+    half = max/2
+    if list.size <= max + asset
+      return list
+    end
+
+    if compounded?
+      index = list.find_index(self.pid)
+      start = get_start(list.size, max, index)
+      shortlist = list.slice(start, max + asset)
+    else
+      shortlist = list.slice(0, max)
+    end
+    shortlist
+  end
+
+  def get_start(list_size, max, index)
+    asset = 1
+    leftindex = index-(max/2)
+    rightindex = index + (max/2)
+    if leftindex < 0
+      leftmarker = 0
+    elsif rightindex >= list_size
+      leftindex = list_size - ( max + asset )
+    end
+    leftindex
+  end
+
+  def pull_cpd_objects(list)
+    return [] unless !list.nil?
+    od_cpd_contents = []
+    list.each do |pid|
+      begin
+        od_cpd_contents << ActiveFedora::Base.load_instance_from_solr(pid)
+      rescue  ActiveFedora::ObjectNotFoundError
+        OregonDigital::RDF::ObjectResource.new(pid)
+      end
+    end
+    od_cpd_contents
+  end
 
   def field_value_to_string(field, value)
     # CV fields will always have a resource and the resource will always have a

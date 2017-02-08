@@ -101,8 +101,8 @@ describe "compound objects" do
         Rails.cache.read(fragment_cache_key("cpd/" + object.pid)).should have_content(object.title)
       end
       context "but when the parent is saved" do
-        let (:parent) {FactoryGirl.create(:image) }
         it "should not be in cache" do
+          ActiveFedora::Base.load_instance_from_solr(parent.pid)
           parent.save
           Rails.cache.read(fragment_cache_key("cpd/" + object.pid)).should be_nil
         end
@@ -117,6 +117,28 @@ describe "compound objects" do
       it "should have a working link to the root item" do
         click_link parent.title
         expect(current_path).to eq catalog_path(parent.pid)
+      end
+    end
+    context "and there are MANY children" do
+      let (:parent2) { FactoryGirl.create(:generic_asset) }
+      let (:children) { [] }
+      before do
+        for i in 0..45
+          g = FactoryGirl.create(:generic_asset)
+          children << g
+          parent2.od_content << g
+        end
+        parent2.save
+        visit catalog_path(children[21].pid)
+      end
+      it "should only have <=40 nearest siblings before+after loaded child in toc" do
+        expect(page.html).not_to have_xpath("//a[@href = '/catalog/#{children[0].pid}']")
+        expect(page.html).to have_xpath("//a[@href = '/catalog/#{children[1].pid}']")
+        expect(page.html).to have_xpath("//a[@href = '/catalog/#{children[20].pid}']")
+        expect(page.html).to have_content(children[21].title)
+        expect(page.html).to have_xpath("//a[@href = '/catalog/#{children[22].pid}']")
+        expect(page.html).to have_xpath("//a[@href = '/catalog/#{children[41].pid}']")
+        expect(page.html).not_to have_xpath("//a[@href = '/catalog/#{children[42].pid}']")
       end
     end
   end

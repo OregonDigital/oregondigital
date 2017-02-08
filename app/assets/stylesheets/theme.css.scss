@@ -609,6 +609,11 @@ ul.sidenav {
   margin-top: 10px;
 }
 
+/* Bookmarks hiding per issue #1048 */
+label.toggle_bookmark {
+  display: none !important;
+}
+
 .nav-list > li > a, label.toggle_bookmark {
   font-size: 13px;
   line-height: 22px;
