@@ -18,7 +18,6 @@ RDF_VOCABS = {
   :ccpublic             =>  { :prefix => 'http://creativecommons.org/publicdomain/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/cclicenses/cclicenses.nt'},
   :uonames              =>  { :prefix => 'http://opaquenamespace.org/ns/uo-names/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/uo/names.jsonld', :strict => false, :fetch => false },
   :rights               =>  { :prefix => 'http://opaquenamespace.org/ns/rights/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/rights.jsonld', :strict => true },
-  :eurights             =>  { :prefix => 'http://www.europeana.eu/rights/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/eurights/rightsstatements.nt', :strict => true },
   :mediatype            =>  { :prefix => 'https://w3id.org/spar/mediatype/', :strict => false, :fetch => false },
   :mimetype             =>  { :prefix => 'http://purl.org/NET/mediatypes/', :fetch => false },
   :oregondigital        =>  { :prefix => 'http://opaquenamespace.org/ns/', :source => 'https://raw.github.com/OregonDigital/opaque_ns/master/opaquenamespace.jsonld', :strict => false, :fetch => false },

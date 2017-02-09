@@ -8,7 +8,7 @@
 <http://example.org/ns/11> <http://opaquenamespace.org/ns/localCollectionName> <http://opaquenamespace.org/ns/localCollectionName/UmpquaBasinExplorer> .
 <http://example.org/ns/11> <http://purl.org/dc/terms/isReferencedBy> "Umpqua Album" .
 <http://example.org/ns/11> <http://purl.org/dc/terms/identifier> "WilliamsG:Booth Bridge1" .
-<http://example.org/ns/11> <http://purl.org/dc/terms/rights> <http://www.europeana.eu/rights/rr-r/> .
+<http://example.org/ns/11> <http://purl.org/dc/terms/rights> <http://opaquenamespace.org/ns/rights/rr-r> .
 <http://example.org/ns/11> <http://opaquenamespace.org/rights/rightsHolder> "OSU Special Collections & Archives Research Center" .
 <http://example.org/ns/11> <http://opaquenamespace.org/ns/conversionSpecifications> "Master scanned with Epson 1640XL scanner at 800 dpi. Image manipulated with Adobe Elements 4.0." .
 <http://example.org/ns/11> <http://opaquenamespace.org/ns/dateDigitized> "2007-12-10" .
