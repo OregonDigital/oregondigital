@@ -17,7 +17,7 @@ class ImageDecorator < GenericAssetDecorator
 
   def tileSource
     return "" if small?
-    "#{APP_CONFIG.iip_server.location}?DeepZoom=/#{relative_pyramidal_tiff_location}.dzi"
+    "#{APP_CONFIG.iip_server.location}/#{relative_pyramidal_tiff_location}.dzi"
   end
 
   def relative_medium_image_location
