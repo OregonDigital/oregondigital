@@ -37,6 +37,18 @@ git clone git@github.com:OregonDigital/oregondigital.git
 docker-compose up -d
 ```
 
+#### Making zoomable images work
+
+Create `config/app.yml` with information about how to reach your local system's
+RAIS container; e.g.:
+
+    iip_server:
+      location: http://localhost:12415/images/dzi
+
+You may need to choose something other than localhost if you're doing a demo or
+running docker inside a virtual machine.  The rest of the settings (port and
+path) should remain untouched.
+
 #### Generate filler data
 
 First, run the rake task:
