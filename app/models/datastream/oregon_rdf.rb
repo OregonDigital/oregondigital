@@ -104,10 +104,10 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :view, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL['cco/viewDescription'] do |index|
     index.as :displayable
   end
-  property :firstLine, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.firstLine do |index|
+  property :firstLine, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sheetmusic_firstLine do |index|
     index.as :searchable, :displayable
   end
-  property :firstLineChorus, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.firstLineChorus do |index|
+  property :firstLineChorus, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sheetmusic_firstLineChorus do |index|
     index.as :searchable, :displayable
   end
   property :compassDirection, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.compassDirection do |index|
@@ -122,8 +122,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :conditionOfSource, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sourceCondition do |index|    
     index.as :searchable, :displayable
   end
-  property :instrumentation, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.instrumentation do |index|
-    index.as :searchable, :facetable, :displayable
+  property :instrumentation, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sheetmusic_instrumentation do |index|
+    index.as :searchable, :displayable
   end
   property :od_content, :predicate => RDF::URI('http://opaquenamespace.org/ns/contents'), :class_name => GenericAsset do |index|
     index.as :symbol
@@ -386,13 +386,13 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :relation, :predicate => RDF::DC.relation do |index|
     index.as :displayable
   end
-  property :largerWork, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.largerWork do |index|
+  property :largerWork, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sheetmusic_largerWork do |index|
     index.as :searchable, :displayable
   end
   property :artSeries, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.artSeries do |index|
     index.as :searchable, :displayable
   end
-  property :hostItem, :predicate => OregonDigital::Vocabularies::SHEETMUSIC.hostItem do |index|
+  property :hostItem, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.sheetmusic_hostItem do |index|
     index.as :displayable
   end
   property :hasPart, :predicate => RDF::DC.hasPart do |index|
