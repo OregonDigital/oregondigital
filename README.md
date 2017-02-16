@@ -57,9 +57,6 @@ Easy as `./docker/test.sh`!  Except....
 - Want to focus tests?  Just pass in a path: `./docker/test.sh spec/models`.
 - If you need to ensure your environment is pristine, use the `--destroy` flag,
   which will destroy and rebuild all containers.
-- If you want to keep test containers running to speed up future tests, use the
-  `--quick` flag.  This may use up extra resources on your system, but it can
-  speed the dev-test loop considerably when isolating tests.
 
 #### Updating Gems
 

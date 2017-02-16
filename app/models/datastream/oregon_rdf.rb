@@ -616,8 +616,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     relevant_values.each do |k, v|
       if k.start_with?("od_content")
         @cpd_pids = v.map do |x|
-          pid = "oregondigital:#{OregonDigital::IdService.noidify(x)}"
-         end
+          pid = "oregondigital:#{OregonDigital::IdService.noidify(x.to_s)}"
+        end
       end
       meth_name = :"#{k}="
       v = coerce_to_uri(v)

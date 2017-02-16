@@ -60,18 +60,34 @@ module CollectionsHelper
     "page/1/mode/1up/search/#{params[:q].to_s.gsub('"',"")}" if solr_document["active_fedora_model_ssi"] == "Document"
   end
 
-  def link_to_previous_document(previous_document)
-    if params[:controller] == "sets" && previous_document.present?
-      previous_document = {:controller => "sets", :action => "show", :set => params[:set], :id => previous_document["id"]}
+  def path_to_document(doc)
+    url_args = {:action => "show", :id => doc["id"]}
+    if params[:controller] == "sets"
+      url_args[:controller] = "sets"
+      url_args[:set] = params[:set]
     end
-    super
+
+    url_for url_args
   end
 
-  def link_to_next_document(next_document)
-    if params[:controller] == "sets" && next_document.present?
-      next_document = {:controller => "sets", :action => "show", :set => params[:set], :id => next_document["id"]}
+  def link_to_previous_document(doc)
+    label = raw(t('views.pagination.previous'))
+    unless doc.present?
+      return content_tag :span, label, :class => 'previous'
     end
-    super
+
+    counter = session[:search][:counter].to_i - 1
+    link_to label, path_to_document(doc), :class => "previous", :rel => 'prev', :'data-counter' => counter
+  end
+
+  def link_to_next_document(doc)
+    label = raw(t('views.pagination.next'))
+    unless doc.present?
+      return content_tag :span, label, :class => 'next'
+    end
+
+    counter = session[:search][:counter].to_i + 1
+    link_to label, path_to_document(doc), :class => "next", :rel => 'next', :'data-counter' => counter
   end
 
   ##

@@ -60,7 +60,7 @@ describe "(Ingest Form)" do
         fill_in_ingest_data("description", "description", "This is valid now")
         click_the_ingest_button
         asset = GenericAsset.find(@pid)
-        expect(asset.content.content == IO.binread(upload_path(:pdf))).to be_true
+        expect(asset.content.content == IO.binread(upload_path(:pdf))).to be true
       end
     end
 
@@ -126,13 +126,13 @@ describe "(Ingest Form)" do
       end
 
       it "saves uploaded files on new assets" do
-        expect(@asset.content.content == IO.binread(upload_path(:pdf))).to be_true
+        expect(@asset.content.content == IO.binread(upload_path(:pdf))).to be true
       end
 
       it "overwrites asset data with uploaded files" do
         visit_edit_form_url(@pid)
         submit_ingest_form_with_upload(:jpg)
-        expect(@asset.content.content == IO.binread(upload_path(:jpg))).to be_true
+        expect(@asset.content.content == IO.binread(upload_path(:jpg))).to be true
       end
 
       it "sets asset type based on mime type" do
@@ -295,7 +295,7 @@ describe "(Ingest Form)" do
         click_the_ingest_button
         mark_as_reviewed
         visit(catalog_path(@pid))
-        pending "Show view needs to show labels before we can test this!"
+        skip "Show view needs to show labels before we can test this!"
         expect(page).to have_content(label1)
         expect(page).to have_content(label2)
       end

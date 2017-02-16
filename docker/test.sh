@@ -8,6 +8,9 @@
 
 dctest="docker-compose -p ODTEST -f test-compose.yaml"
 
+# Default to not shutting down services after testing
+quick=1
+
 dcrun() {
   $dctest run --rm --entrypoint="$1" test
 }
@@ -18,12 +21,7 @@ if [[ $1 == "--destroy" ]]; then
   $dctest rm -f
   $dctest down
   $dctest build test
-  shift
-fi
-
-quick=0
-if [[ $1 == "--quick" ]]; then
-  quick=1
+  quick=0
   shift
 fi
 
@@ -31,7 +29,7 @@ fi
 $dctest up -d fc381 memcached redis mongo solr
 
 if [[ ! -f phantombin/phantomjs ]]; then
-  $dctest run phantomjs
+  $dctest run --rm phantomjs
   $dctest rm -f phantomjs
 fi
 
@@ -43,6 +41,7 @@ while true; do
 done
 
 # Destroy screenshots so whatever is in the dir is from the latest run
+dcrun "rm /oregondigital/log/test.log"
 dcrun "rm -f /oregondigital/tmp/capybara/*"
 
 # Unless "quick" is explicitly requested, we need to make sure the test
@@ -57,8 +56,12 @@ fi
 target=${@:-spec/}
 # Run tests!
 echo "Running 'bundle exec rspec $target'"
-$dctest run test $target
+$dctest run --rm test $target
 
 if [[ $quick == 0 ]]; then
   $dctest stop
+else
+  echo "If you wish to stop and destroy all test containers, run this:"
+  echo "    $dctest stop"
+  echo "    $dctest rm"
 fi
