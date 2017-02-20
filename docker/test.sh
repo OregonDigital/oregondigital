@@ -41,8 +41,8 @@ while true; do
 done
 
 # Destroy screenshots so whatever is in the dir is from the latest run
-dcrun "rm /oregondigital/log/test.log"
-dcrun "rm -f /oregondigital/tmp/capybara/*"
+dcrun "rm -f /oregondigital/log/test.log"
+dcrun "find /oregondigital/tmp/capybara -type f -exec rm {} \\;"
 
 # Unless "quick" is explicitly requested, we need to make sure the test
 # database is prepared.  This is painfully slow on post-setup runs, but it
