@@ -87,6 +87,15 @@ services:
     env_file:
       - docker/web-variables.env
       - docker/resque-variables.env
+  deepzoom:
+    image: uolibraries/rais:2.8.0
+    environment:
+      - RAIS_IIIFURL=http://localhost:12415/images/iiif
+      - RAIS_TILECACHELEN=100
+    ports:
+      - "12415:12415"
+    volumes:
+      - ./media/pyramidal-tiffs:/var/local/images
 volumes:
   data-mongo: {}
   data-solr-dev: {}

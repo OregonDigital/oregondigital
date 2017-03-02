@@ -21,7 +21,7 @@ batch_dir: /data1/batch
 
 # IIP server configuration
 iip_server:
-  location: http://localhost/iip/iipsrv.fcgi
+  location: http://localhost/iip/iipsrv.fcgi?DeepZoom=
 default_url_host: localhost:3000
 
 # Geonames Configuration

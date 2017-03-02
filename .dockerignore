@@ -2,3 +2,7 @@
 set_content
 jetty
 *.sqlite3
+batch
+media
+tmp
+log
