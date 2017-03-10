@@ -113,19 +113,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
       query_pairs = "active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection"
     end
     query_pairs += (" AND (read_access_group_ssim:public OR workflow_metadata__destroyed_ssim:true)")
+    query_pairs += (" AND desc_metadata__primarySet_teim:[ * TO * ]")
     query_pairs += (" AND " + add_from_to(options))
-  end
-
-  def keep_item(obj)
-    include_item = true
-    if obj.compounded?
-      include_item = false
-    end
-    #check primarySet is not corrupt
-    if (obj.descMetadata.primarySet.empty?) || (!obj.descMetadata.primarySet.first.respond_to? :id)
-      include_item = false
-    end
-    include_item
   end
 
   def build_results(items, start, numFound)
@@ -135,8 +124,9 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     total_set_counter = start #from the resumptionToken
     items.each do |item|
       pseudo_obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
-      if keep_item(pseudo_obj)
-        wrapped = build_wrapped(pseudo_obj, item)
+
+      wrapped = build_wrapped(pseudo_obj, item)
+      if !wrapped.nil?
         results[:items] << wrapped
         this_set_counter += 1
       end
@@ -150,6 +140,17 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
   def build_wrapped(pseudo_obj, item)
     wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
+    #add set
+    sets = []
+    if !pseudo_obj.set.nil?
+      pseudo_obj.set.each do |setid|
+        set = get_set(setid.to_str.split('/').last)
+        return nil unless !set.nil?
+        sets << set
+      end
+      wrapped.sets = sets
+    end
+
     #replace the uris with labels
     uri_fields.each do |field|
       label_arr = []
@@ -166,14 +167,6 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     end
     #add modified_date
     wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
-    #add set
-    sets = []
-    if !pseudo_obj.set.nil?
-      pseudo_obj.set.each do |setid|
-        sets << get_set(setid.to_str.split('/').last)
-      end
-      wrapped.sets = sets
-    end
 
     wrapped
   end
