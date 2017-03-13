@@ -118,9 +118,17 @@ describe OaiController, :resque => true do
         g.save
         g
       end
+      let(:generic_asset) do
+        g = FactoryGirl.build(:generic_asset)
+        g.title = "myasset"
+        g.descMetadata.primarySet = generic_coll_1
+        g.save
+        g
+      end
       before do
         generic_coll_1
         generic_coll_2
+        generic_asset
         get :index, :verb => "ListSets"
       end
       it "should work" do

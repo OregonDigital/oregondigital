@@ -41,7 +41,10 @@ shared_examples "OAI endpoint" do |parameter|
       asset.descMetadata.location.first.persist!
       asset.descMetadata.findingAid = [find]
       pset.title = "my set"
+      pset.descMetadata.institution = RDF::URI.new("http://dbpedia.org/resource/University_of_Oregon")
+      pset.descMetadata.institution.first.set_value(RDF::SKOS.prefLabel, RDF::Literal.new("University of Oregon"))
       pset.save
+      pset.review!
       asset.descMetadata.set = [pset]
       asset.descMetadata.primarySet = [pset]
       asset.save
@@ -145,6 +148,18 @@ shared_examples "OAI endpoint" do |parameter|
       end
       it "should not show them" do
         expect(page).not_to have_content("Test Title")
+      end
+    end
+    context "when the verb is list sets" do
+      before do
+        visit oai_path(:verb => "ListSets")
+      end
+
+      it "should show any set that is a primary set" do
+        expect(page).to have_content(pset.title)
+      end
+      it "should have the description for the set" do
+        expect(page).to have_content(pset.descMetadata.institution.first.rdf_label.first)
       end
     end
   end
