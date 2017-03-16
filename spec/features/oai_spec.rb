@@ -115,7 +115,8 @@ shared_examples "OAI endpoint" do |parameter|
       let(:asset2) {asset_class.new}
       before do
         asset2.title = "asset 2"
-        asset2.descMetadata.primarySet << pset2
+        asset2.descMetadata.primarySet = pset2
+        asset2.descMetadata.set = pset2
         asset2.save
         asset2.review!
         visit oai_path(:verb => "ListRecords", :metadataPrefix => parameter)
