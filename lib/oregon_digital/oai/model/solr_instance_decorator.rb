@@ -10,86 +10,71 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
     end
 
     def earliestDate
-      string = descMetadata.earliestDate.first || ""
-      if descMetadata.latestDate.nil? || descMetadata.latestDate.empty?
-        return ""
+      if !solr_doc["desc_metadata__earliestDate_ssm"].blank? && !solr_doc["desc_metadata__latestDate_ssm"].blank?
+        solr_doc["desc_metadata__earliestDate_ssm"].first + "-" +  solr_doc["desc_metadata__latestDate_ssm"].first
       end
-      string = string + "-" + descMetadata.latestDate.first
-      string
     end
 
     def rights
-      if !descMetadata.rights.nil? && !descMetadata.rights.empty?
-        descMetadata.rights.first.rdf_subject.to_s
+      if !solr_doc["desc_metadata__rights_ssm"].blank?
+        solr_doc["desc_metadata__rights_ssm"]
       end
     end
 
     def accessURL
-      return "http://oregondigital.org/catalog/" + descMetadata.pid
+      return "http://oregondigital.org/catalog/" + id
     end
 
     def format
-      if !descMetadata.format.empty?
-        url = descMetadata.format.first.rdf_subject.to_s
-        urlparts = url.split("/")
+      if !solr_doc["desc_metadata__format_ssm"].blank?
+        format = solr_doc["desc_metadata__format_ssm"].first
+        urlparts = format.split("/")
         num = urlparts.count
         urlparts[num-2] + "/" + urlparts[num-1]
       end
     end
 
     def location
-      if !descMetadata.location.empty?
-        format_geonames(descMetadata.location)
+      if !solr_doc["desc_metadata__location_label_ssm"].blank?
+        format_geonames(solr_doc["desc_metadata__location_label_ssm"])
       end
     end
 
     def rangerDistrict
-      if !descMetadata.rangerDistrict.empty?
-        format_geonames(descMetadata.rangerDistrict)
+      if !solr_doc["desc_metadata__rangerDistrict_label_ssm"].blank?
+        format_geonames(solr_doc["desc_metadata_rangerDistrict_label_ssm"])
       end
     end
 
     def waterBasin
-      if !descMetadata.waterBasin.empty?
-        format_geonames(descMetadata.waterBasin)
+      if !solr_doc["desc_metadata__waterBasin_ssm"].blank?
+        format_geonames(solr_doc["desc_metadata__waterBasin_ssm"])
       end
     end
 
     #since load_instance_from_solr converts string url to rdf resource
     #force result to be a string
     def findingAid
-      if !descMetadata.findingAid.empty?
-        handle_string_urls(descMetadata.findingAid)
-      end
+      solr_doc["desc_metadata__findingAid_ssm"]
     end
 
     def hasVersion
-      if !descMetadata.hasVersion.empty?
-        handle_string_urls(descMetadata.hasVersion)
-      end
+      solr_doc["desc_metadata__hasVersion_ssm"]
     end
 
   private
+  def solr_doc
+    @solr_doc ||= ActiveFedora::Base.find_with_conditions({:id=>id}).first
+  end
 
   def format_geonames (items)
     results = []
     items.each do |item|
-      next unless item.respond_to? :rdf_label
-      results << item.rdf_label.first.gsub(" >> ", ", ")
+      label = item.split("$").first
+      results << label.gsub(" >> ", ", ")
     end
     results
   end
 
-  def handle_string_urls (items)
-    results = []
-    items.each do |item|
-      if item.respond_to? :rdf_subject
-        results << item.rdf_subject.to_s
-      else
-        results << item
-      end
-    end
-    results
-  end
 
 end
