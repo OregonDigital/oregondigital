@@ -171,12 +171,18 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     wrapped
   end
 
-  def create_description(obj)
-    description = "Title: " + obj.title
-    if obj.descMetadata.institution.first.respond_to? :rdf_label
-      label_arr = obj.descMetadata.institution.first.rdf_label
+  def create_description(solr_doc)
+    description = ""
+    description += "Title: " + solr_doc["desc_metadata__title_ssm"].first unless solr_doc["desc_metadata__title_ssm"].blank?
+
+    label_arr = []
+    if !solr_doc["desc_metadata__institution_label_ssm"].blank?
+      solr_doc["desc_metadata__institution_label_ssm"].each do |inst|
+        label_arr << inst.split("$").first
+      end
+
       if !label_arr.empty?
-        institutions = label_arr.inject{|collector,element| collector + ", " + element}
+        institutions = label_arr.join(", ")
         description += ", Institution(s): " + institutions
       end
     end
@@ -185,12 +191,13 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
 
   def get_set(id)
     begin
-      col = ActiveFedora::Base.load_instance_from_solr(id)
-      description = col.description
-      if description.nil?
-        description = create_description(col)
+      solr_doc = ActiveFedora::Base.find_with_conditions({:id=>id}).first
+      if !solr_doc["desc_metadata__description_ssm"].blank?
+        description = solr_doc["desc_metadata__description_ssm"].first
+      else
+        description = create_description(solr_doc)
       end
-      set = ::OAI::Set.new(:name => col.title, :spec=> col.id, :description => description)
+      set = ::OAI::Set.new(:name => solr_doc["desc_metadata__title_ssm"].first, :spec=> id, :description => description)
     rescue
       set = nil
     end
