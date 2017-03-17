@@ -124,8 +124,9 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     total_set_counter = start #from the resumptionToken
     items.each do |item|
       pseudo_obj = ActiveFedora::Base.load_instance_from_solr(item["id"])
+      solr_doc = ActiveFedora::Base.find_with_conditions({:id=>item["id"]}).first
+      wrapped = build_wrapped(pseudo_obj, solr_doc)
 
-      wrapped = build_wrapped(pseudo_obj, item)
       if !wrapped.nil?
         results[:items] << wrapped
         this_set_counter += 1
@@ -138,7 +139,7 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     results
   end
 
-  def build_wrapped(pseudo_obj, item)
+  def build_wrapped(pseudo_obj, solr_doc)
     wrapped = OregonDigital::OAI::Model::SolrInstanceDecorator.new(pseudo_obj)
     #add set
     sets = []
@@ -154,19 +155,22 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     #replace the uris with labels
     uri_fields.each do |field|
       label_arr = []
-      pseudo_obj.descMetadata.send("#{field}").each do |val|
-        if ((val.respond_to? :rdf_label) && (!val.rdf_label.first.include? "http"))
-          label_arr << val.rdf_label.first
+      if !solr_doc["desc_metadata__#{field}_label_ssm"].blank?
+        solr_doc["desc_metadata__#{field}_label_ssm"].each do |val|
+          label = val.split("$").first
+          if !label.include? "http"
+            label_arr << label
+          end
         end
       end
       wrapped.set_attrs("#{field}", label_arr)
     end
     #check if soft_delete
-    if pseudo_obj.soft_destroyed?
+    if solr_doc["workflow_metadata__destroyed_ssim"] == ["true"]
       wrapped.set_attrs("deleted", true)
     end
     #add modified_date
-    wrapped.modified_date = Time.parse(item["system_modified_dtsi"]).utc
+    wrapped.modified_date = Time.parse(solr_doc["system_modified_dtsi"]).utc
 
     wrapped
   end
