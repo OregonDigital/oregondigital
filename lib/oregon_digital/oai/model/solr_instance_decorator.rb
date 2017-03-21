@@ -21,6 +21,11 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
       end
     end
 
+    #return the uri, for use in the provider
+    def primarySet
+      solr_doc["desc_metadata__primarySet_ssm"].first
+    end
+
     def accessURL
       return "http://oregondigital.org/catalog/" + id
     end
