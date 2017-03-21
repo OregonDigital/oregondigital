@@ -12,9 +12,10 @@ class OregonDigital::OAI::Provider < ::OAI::Provider::Base
     def identifier_for(record)
       begin
         setid = record.primarySet.split("/").last.gsub("oregondigital:","")
-        "#{APP_CONFIG['oai']['record_prefix']}:#{setid}/#{record.id.gsub('oregondigital:','')}"
       rescue
-        return ""
+        setid = record.sets.first.spec.gsub("oregondigital:","")
+      ensure
+        return "#{APP_CONFIG['oai']['record_prefix']}:#{setid}/#{record.id.gsub('oregondigital:','')}"
       end
     end
   end
