@@ -3,7 +3,6 @@ module OregonDigital::ControlledVocabularies
     include OregonDigital::RDF::Controlled
 
     use_vocabulary :mediatype
-    use_vocabulary :mimetype
 
     # Custom fetch method for SPAR Ontologies Mediatype URIs
     # to bypass HTTP redirects and go straight to RDF/XML file
