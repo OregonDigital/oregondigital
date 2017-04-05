@@ -10,50 +10,13 @@ describe 'soft delete' do
   end
   context "when a user is an admin" do
     let(:user) {FactoryGirl.create(:admin)}
-    it "should show a destroy button" do
-      expect(page).to have_link("Delete")
-    end
-    context "and the item is already destroyed" do
-      before do
-        asset.soft_destroy
-        visit catalog_path(:id => asset.pid)
-      end
-      it "should not show a destroy button" do
-        expect(page).not_to have_link("Delete")
-      end
-      it "should have a working Undelete button" do
-        click_link "Undelete"
-        expect(page).to have_content("restored")
-        expect(asset.reload).not_to be_soft_destroyed
-      end
-    end
     context "and the destroy button is clicked" do
       before do
         click_link "Delete"
-        within("#main-flashes") do
-          expect(page).to have_content("Successfully deleted asset.")
-        end
-      end
-      it "should not really delete the asset" do
-        expect(Image.find(asset.pid).pid).to eq asset.pid
       end
       it "should not show the asset on search results" do
         visit root_path(:search_field => "all_fields")
         expect(page).not_to have_selector(".document")
-      end
-    end
-  end
-  context "when a user is not an admin" do
-    it "should not show a destroy button" do
-      expect(page).not_to have_link("Delete")
-    end
-    context "and there is a soft destroyed item" do
-      before do
-        asset.soft_destroy
-        visit catalog_path(:id => asset.pid)
-      end
-      it "should not let them see it" do
-        expect(page).to have_content("You do not have sufficient")
       end
     end
   end
