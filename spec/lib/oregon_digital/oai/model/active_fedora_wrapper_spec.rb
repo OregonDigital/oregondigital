@@ -144,7 +144,7 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
       end
       context "when given a date range that ends prior to today" do
         it "should return 0 records" do
-          expect(subject.find(:all, :from => "2010-01-01", :until=>"2013-12-31").length).to eq 0
+          expect(subject.find(:all, :from => "2010-01-01", :until=>"2013-12-31")).to eq nil
         end
       end
       context "when given an id" do

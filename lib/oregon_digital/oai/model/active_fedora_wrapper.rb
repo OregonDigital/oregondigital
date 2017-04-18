@@ -33,9 +33,9 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
    start = options[:resumption_token] ? OAI::Provider::ResumptionToken.parse(options[:resumption_token]).last : 0
    query_args = {:sort => "system_modified_dtsi desc", :fl => "id,system_modified_dtsi", :rows=>@max_rows, :start=>start}
    qry_total = ActiveFedora::SolrService.count(query_pairs)
-   return [] unless qry_total > 0
+   return nil unless qry_total > 0
    results = get_results_from_query(query_pairs, query_args, qry_total)
-   return [] unless !results[:items].blank?
+   return nil unless !results[:items].blank?
    return next_set(results, options[:resumption_token], qry_total) if options[:resumption_token]
 
    if @limit && results[:rank] != qry_total - 1

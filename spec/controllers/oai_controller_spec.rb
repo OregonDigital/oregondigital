@@ -79,6 +79,14 @@ describe OaiController, :resque => true do
           expect(response).to be_success
         end
       end
+      context 'and request is get, but record does not exist' do
+        before do
+          get :index, :verb => "GetRecord", :metadataPrefix => "oai_dc", :identifier => "oai:oregondigital.org:myset:idontexist"
+        end
+        it "should handle it" do
+          expect(response).to be_success
+        end
+      end
       context "and request is identifiers" do
         before do
           get :index, :verb => "ListIdentifiers", :metadataPrefix => "oai_dc"
