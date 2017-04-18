@@ -71,7 +71,9 @@ describe OaiController, :resque => true do
       end
       context 'and request is get' do
         before do
-          get :index, :verb => "GetRecord", :metadataPrefix => "oai_dc", :identifier=>"#{generic_asset_1.id}"
+          coll_id=generic_coll_1.id.split(":").last
+          asset_id=generic_asset_1.id.split(":").last
+          get :index, :verb => "GetRecord", :metadataPrefix => "oai_dc", :identifier=> "oai:oregondigital.org:"+coll_id + ":" + asset_id
         end
         it "should work" do
           expect(response).to be_success
