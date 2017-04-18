@@ -108,7 +108,8 @@ class OregonDigital::OAI::Model::ActiveFedoraWrapper < ::OAI::Provider::Model
     if set
       query_pairs = "desc_metadata__set_sim: #{RSolr.escape('http://oregondigital.org/resource/' + set)}"
     elsif !selector.blank? && selector!= :all
-      query_pairs = "id:#{RSolr.escape(selector)}"
+      id = selector.split(":").last
+      query_pairs = "id:#{RSolr.escape('oregondigital:' + id)}"
     else
       query_pairs = "active_fedora_model_ssi:* -active_fedora_model_ssi:GenericCollection"
     end
