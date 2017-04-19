@@ -149,7 +149,9 @@ describe OregonDigital::OAI::Model::ActiveFedoraWrapper do
       end
       context "when given an id" do
         it "should return that record" do
-          expect(subject.find(generic_asset_1.pid).title).to eq generic_asset_1.title
+          asset_id = generic_asset_1.pid.split(":").last
+          coll_id = collection_1.pid.split(":").last
+          expect(subject.find("oai:oregondigital.org:#{coll_id}/#{asset_id}").title).to eq generic_asset_1.title
         end
       end
       context "when given a set" do
