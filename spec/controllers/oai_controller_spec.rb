@@ -73,7 +73,7 @@ describe OaiController, :resque => true do
         before do
           coll_id=generic_coll_1.id.split(":").last
           asset_id=generic_asset_1.id.split(":").last
-          get :index, :verb => "GetRecord", :metadataPrefix => "oai_dc", :identifier=> "oai:oregondigital.org:"+coll_id + ":" + asset_id
+          get :index, :verb => "GetRecord", :metadataPrefix => "oai_dc", :identifier=> "oai:oregondigital.org:#{coll_id }/#{asset_id}"
         end
         it "should work" do
           expect(response).to be_success
@@ -81,7 +81,7 @@ describe OaiController, :resque => true do
       end
       context 'and request is get, but record does not exist' do
         before do
-          get :index, :verb => "GetRecord", :metadataPrefix => "oai_dc", :identifier => "oai:oregondigital.org:myset:idontexist"
+          get :index, :verb => "GetRecord", :metadataPrefix => "oai_dc", :identifier => "oai:oregondigital.org:myset/idontexist"
         end
         it "should handle it" do
           expect(response).to be_success
