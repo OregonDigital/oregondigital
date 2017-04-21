@@ -17,6 +17,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :wikidata
     use_vocabulary :ulan
     use_vocabulary :lcgenreforms
+    use_vocabulary :osuacademicunits
 
     # Call custom fetch methods for ITIS or uBio URLs.
     # Make wikidata entity URIs usable to fetch.

@@ -50,8 +50,9 @@ RDF_VOCABS = {
   :ore                  =>  { :prefix => "http://www.openarchives.org/ore/1.0/datamodel#", :strict => false, :fetch => false},
   :schema               =>  { :prefix => 'https://schema.org', :strict => false, :fetch => false},
   :ulan                 =>  { :prefix => 'http://vocab.getty.edu/ulan/', :strict => false, :fetch => false},
-  :osubuildings		=>  { :prefix => 'http://opaquenamespace.org/ns/osuBuildings/', :strict => false, :fetch => false},
+  :osubuildings         =>  { :prefix => 'http://opaquenamespace.org/ns/osuBuildings/', :strict => false, :fetch => false},
   :cdwa                 =>  { :prefix => 'http://opaquenamespace.org/ns/cdwa/', :strict => false, :fetch => false},
   :wikidata             =>  { :prefix => 'http://www.wikidata.org/entity/', :strict => false, :fetch => false},
-  :lcgenreforms          =>  { :prefix => 'http://id.loc.gov/authorities/genreForms', :strict => false, :fetch => false }
+  :lcgenreforms         =>  { :prefix => 'http://id.loc.gov/authorities/genreForms', :strict => false, :fetch => false },
+  :osuacademicunits     =>  { :prefix => 'http://opaquenamespace.org/ns/osuAcademicUnits/', :strict => false, :fetch => false}
 }
