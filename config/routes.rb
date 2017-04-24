@@ -84,7 +84,7 @@ Oregondigital::Application.routes.draw do
   resources :resource, :only => [:show]
 
   # Static Pages
-  get ':action' => 'static#:action', :constraints => { :action => /admin|copyright|help|controlled_vocabularies|vocabularies/ }, :as => :static
+  get ':action' => 'static#:action', :constraints => { :action => /admin|copyright|help|controlled_vocabularies|vocabularies|about/ }, :as => :static
 
   # Thumbnails
   get '/thumbnails/:id', :to => 'thumbnails#thumbnail_links'
