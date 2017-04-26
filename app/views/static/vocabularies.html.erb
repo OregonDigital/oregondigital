@@ -1,15 +1,28 @@
 <%= content_for :page_title, 'Vocabularies' %>
-<div id="content" class="span12">
+<div id="content">
+  <div class="row-fluid">
+    <div class="span2">
+    </div>
+    <div class="span8">
+      <h2>Vocabularies</h2>
 
-  <h2>Vocabularies</h2>
+      <p>These vocabularies are defined in Oregon Digital, and are combined together in <a href="/controlled_vocabularies">controlled vocabularies</a> to control what values are allowed on a property.</p>
+      <br>
+      <table class="table table-striped">
+        <tr>
+          <th>Property</th>
+          <th>Values Control</th>
+        </tr>
+        <% RDF_VOCABS.sort.each do |vocab| %>
+          <tr>
+            <td><a name="<%= vocab[0] %>"></a><%= vocab[0] %></td><td><%= link_to vocab[1].first[1], vocab[1].first[1] %></td>
+          </tr>
+        <% end %>
+      </table>
 
-  <p>These Vocabularies are defined in Oregon Digital, and are combined together in <a href="/controlled_vocabularies">Controlled Vocabularies</a> to control what values are allowed on a property.</p>
-
-  <ul>
-    <% RDF_VOCABS.sort.each do |vocab| %>
-      <li><a name="<%= vocab[0] %>"></a><%= vocab[0] %> - <%= link_to vocab[1].first[1], vocab[1].first[1] %></li>
-    <% end %>
-    </ul>
-  <p><%= RDF_VOCABS.count %> total</p>
-
+      <p><%= RDF_VOCABS.count %> total</p>
+    </div>
+    <div class="span2">
+    </div>
+  </div>
 </div>

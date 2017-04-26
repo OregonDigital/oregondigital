@@ -1,19 +1,32 @@
 <%= content_for :page_title, 'Controlled Vocabularies' %>
-<div id="content" class="span12">
+<div id="content">
+  <div class="row-fluid">
+    <div class="span2">
+    </div>
+    <div class="span8">
+      <h2>Controlled Vocabularies</h2>
 
-  <h2>Controlled Vocabularies</h2>
+      <p>This lists all of the controlled vocabularies configured in Oregon Digital. They group together <a href="/vocabularies">vocabularies</a> already defined, and when specified on a property, control what vocabularies are usable.</p>
+      <br>
 
-  <p>This lists all of the controlled vocabularies configured in Oregon Digital. They group together <a href="/vocabularies">Vocabularies</a> already defined, and when specified on a property, control what Vocabularies are usable.</p>
-
-  <ul>
-    <% @controlled_vocabs.each do |cv| %>
-      <li><h4><%= cv %></h4>
-      <b>Usable Vocabularies:</b>
-        <% cv.vocabularies.to_a.each do |vocab| %>
-          <%= link_to vocab[0], "/vocabularies##{vocab[0]}" %><%= "," unless vocab == cv.vocabularies.to_a.last %>
+      <table class="table table-striped">
+        <tr>
+          <th>Controlled Vocabulary Term</th>
+          <th>Usable Vocabularies</th>
+        </tr>
+        <% @controlled_vocabs.each do |cv|%>
+          <tr>
+            <td><a name="<%= cv %>"></a><%= cv %></td>
+            <td>
+              <% cv.vocabularies.to_a.each do |vocab| %>
+                <%= link_to vocab[0], "/vocabularies##{vocab[0]}" %><%= "," unless vocab == cv.vocabularies.to_a.last %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      <br/>
-      </li>
-    <% end %>
-  </ul>
+      </table>
+    </div>
+    <div class="span2">
+    </div>
+  </div>
 </div>
