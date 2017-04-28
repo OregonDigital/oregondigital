@@ -47,7 +47,7 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
 
     def rangerDistrict
       if !solr_doc["desc_metadata__rangerDistrict_label_ssm"].blank?
-        format_geonames(solr_doc["desc_metadata_rangerDistrict_label_ssm"])
+        format_geonames(solr_doc["desc_metadata__rangerDistrict_label_ssm"])
       end
     end
 
