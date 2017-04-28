@@ -90,6 +90,12 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :recipient, :predicate => OregonDigital::Vocabularies::MARCREL.rcp, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
+  property :owner, :predicate => OregonDigital::Vocabularies::MARCREL.own do |index|
+    index.as :searchable, :displayable
+  end
+  property :formerOwner, :predicate => OregonDigital::Vocabularies::MARCREL.fmo do |index|
+    index.as :searchable, :displayable
+  end
 
   # Descriptions
   property :description, :predicate => RDF::DC.description do |index|
@@ -207,6 +213,12 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :tribalTerms, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tribalTerms do |index|
     index.as :searchable, :displayable
   end
+  property :award, :predicate => RDF::SCHEMA.award do |index|
+    index.as :searchable, :displayable
+  end
+  property :legalName, :predicate => RDF::SCHEMA.legalName do |index|
+    index.as :searchable, :displayable
+  end
 
 
   # Geographics
@@ -255,6 +267,9 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :displayable
   end
   property :collectedDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.collectedDate do |index|
+    index.as :displayable
+  end
+  property :acquisitionDate, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.acquisitionDate do |index|
     index.as :displayable
   end
 
