@@ -8,12 +8,12 @@ module OregonDigital::OAI::Concern
 
   module ClassMethods
     # Oregon Digital fields that store RDF URIs and labels need to be looked up for
-    # do not include fields here that have a method in the decorator, eg rights, any field using geonames, set
+    # do not include fields here that have a method in the decorator, eg rights, any field using geonames, primarySet
     def uri_fields
       @uri_fields = [:creator, :lcsubject, :type, :author, :editor, :photographer,
                       :taxonClass, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator, :interviewee, :interviewer, :lyricist,
                       :photographer, :translator, :ethnographicTerm, :genus, :phylum, :militaryBranch, :stylePeriod, :commonNames, :language, 
-                      :localCollectionName, :od_repository, :recipient]
+                      :localCollectionName, :od_repository, :recipient, :set]
     end
 
     # Map Qualified Dublin Core (Terms) fields to Oregon Digital fields
