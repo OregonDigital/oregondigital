@@ -1,8 +1,11 @@
 <div class="footer container">
   <div class="row">
-    <div class="span8 left">
+    <div class="span3 left">
+
+    </div>
+    <div class="span5 left">
       <ul>
-        <li class="first">
+        <!--li class="first">
           <% if current_user %>
             <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
           <% else %>
@@ -48,7 +51,7 @@
           <li>
             <%= link_to "Admin", "/admin" %>
           </li>
-        <% end %>
+        <% end %>-->
 
         <li><a href="/copyright">Copyright</a></li>
         <li class="last"><%= link_to "Contact", contact_path %></li>
@@ -56,10 +59,16 @@
       </ul>
     </div>
     <div class="span4 right">
-      <ul>
+      <a href="http://osulibrary.oregonstate.edu">
+        <%= image_tag("oregondigital/osulib_gray.svg", :alt => "Oregon State University Libraries", :onerror => image_path("oregondigital/osulib_white.png"), :class => "pull-left") %>
+      </a>
+      <a href="http://library.uoregon.edu">
+        <%= image_tag("oregondigital/uolib_gray.svg", :alt => "University of Oregon Libraries", :onerror => image_path("oregondigital/uolib_white.png"), :class => "pull-right") %>
+      </a>
+      <!--ul>
         <li class="first"><a href="http://library.uoregon.edu">University of Oregon Libraries</a></li>
         <li class="last"><a href="http://osulibrary.oregonstate.edu">Oregon State University Libraries</li>
-      </ul>
+      </ul-->
     </div>
   </div>
 </div>

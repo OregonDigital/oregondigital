@@ -1,32 +1,39 @@
-<div id="header-navbar-fixed-top" class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container-fluid black">
-        <a class="pull-left" href="http://library.uoregon.edu">
-        <%= image_tag "oregondigital/uolib_white.gif", :alt => "University of Oregon Libraries" %>
-        </a>
-        <a class="pull-right" href="http://osulibrary.oregonstate.edu">
-          <%= image_tag "oregondigital/osulib_white.gif", :alt => "Oregon State University Libraries" %>
-        </a>
-
+<div class="navbar navbar-fixed-top clearfix" role="navigation">
+<div class="header-top">
+  <div class="container">
+    <div class="row">
+      <a href="http://library.uoregon.edu">
+        <%= image_tag("oregondigital/uolib_white.svg", :alt => "University of Oregon Libraries", :onerror => image_path("oregondigital/uolib_white.png"), :class => "pull-left") %>
+      </a>
+      <a href="http://osulibrary.oregonstate.edu">
+        <%= image_tag("oregondigital/osulib_white.svg", :alt => "Oregon State University Libraries", :onerror => image_path("oregondigital/osulib_white.png"), :class => "pull-right") %>
+      </a>
     </div>
-    <div class="container">
-      <div class="row">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <div class="span3">
-          <%= link_to application_name, root_path, :class => "brand" %>
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+      <div class="span3">
+        <div class="vcenter">
+        <%= link_to image_tag("oregondigital/od-small.svg", :alt => "Oregon Digital logo", :onerror => image_path("oregondigital/od-small.png"), :class => "brandhome"), root_path %>
         </div>
-        <div class="span5 clearfix" id="searchbar">
-          <%= render_search_bar  %>
-        </div>
-        <div class="span3 nav-collapse">
-          <%= render :partial=>'/shared/user_util_links' %>
-        </div>
-
       </div>
+      <div class="span6 text-center" id="searchbar">
+        <div class="vcenter">
+        <%= render_search_bar  %>
+        </div>
+      </div>
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="span3 nav-collapse">
+        <div class="vcenter">
+        <%= render :partial=>'/shared/user_util_links' %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
     </div>
   </div>
 </div>
