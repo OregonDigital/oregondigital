@@ -101,6 +101,11 @@ shared_examples "OAI endpoint" do |parameter|
       it "should have the string url for isReferencedBy" do
         expect(page).to have_content("http://blahblah.org")
       end
+      it "should have the set label in isPartOf" do
+        if parameter == 'oai_qdc'
+         expect(page).to have_xpath('//ispartof', :text => "my set", :visible => true)
+        end
+      end
     end
 
     context "if one of them is deleted" do
