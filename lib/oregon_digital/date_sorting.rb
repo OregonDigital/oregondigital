@@ -14,11 +14,24 @@ module OregonDigital
     rescue ArgumentError
     end
 
+    # Determine the date value to use for Decades facet processing.
+    def date_value
+      if !date.nil? then
+        date
+      elsif !descMetadata.awardDate.first.nil?
+        descMetadata.awardDate.first.to_s
+      elsif !descMetadata.issued.first.nil?
+        descMetadata.issued.first.to_s
+      elsif !descMetadata.created.first.nil?
+        descMetadata.created.first.to_s
+      end
+    end
+
     def decade_dates
-      dates = DateDecadeConverter.new(date).run
+      dates = DateDecadeConverter.new(date_value).run
       dates ||= Array.wrap(DecadeDecorator.new(clean_datetime.year))
     end
-    
+
     class DecadeDecorator
       attr_accessor :year
       def initialize(year)
@@ -102,12 +115,12 @@ module OregonDigital
     end
 
     def clean_datetime
-      if date =~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/ # YYYY-MM-DD
-        DateTime.strptime(date, "%Y-%m-%d")
-      elsif date =~ /^[0-9]{4}-[0-9]{2}$/ # YYYY-MM
-        DateTime.strptime(date, "%Y-%m")
-      elsif date =~ /^[0-9]{4}/
-        DateTime.strptime(date.split("-").first, "%Y")
+      if date_value =~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/ # YYYY-MM-DD
+        DateTime.strptime(date_value, "%Y-%m-%d")
+      elsif date_value  =~ /^[0-9]{4}-[0-9]{2}$/ # YYYY-MM
+        DateTime.strptime(date_value, "%Y-%m")
+      elsif date_value =~ /^[0-9]{4}/
+        DateTime.strptime(date_value.split("-").first, "%Y")
       else
         raise ArgumentError
       end
