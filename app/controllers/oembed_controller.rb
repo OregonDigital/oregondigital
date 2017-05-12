@@ -7,7 +7,6 @@ class OembedController < ApplicationController
 
     begin
       asset = GenericAsset.find(pid)
-      return render_404 unless !asset.nil?
 
       return render_501 unless is_public(asset)
       
@@ -110,15 +109,15 @@ class OembedController < ApplicationController
   end
 
   def render_404
-    render :text => 'Not Found', :status => '404'
+     render :text => "Not Found", :status => 404
   end
 
   def render_401
-    render :text => "Not Authorized", :status => '401'
+    render :text => "Not Authorized", :status => 401
   end
 
   def render_501
-    render :text => 'Not Implemented', :status => '501'
+    render :text => "Not Implemented", :status => 501
   end
 
   def is_public(asset)
