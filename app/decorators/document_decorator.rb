@@ -11,8 +11,9 @@ class DocumentDecorator < GenericAssetDecorator
     end
   end
 
+  # Return only page datastreams, sort by integer of page in key, order important for viewer
   def page_datastreams
-    datastreams.select{|key, value| key.start_with?("page")}
+    datastreams.select{|key, value| key.start_with?("page")}.sort_by {|k,v| k.delete('page-').to_i }
   end
 
 
