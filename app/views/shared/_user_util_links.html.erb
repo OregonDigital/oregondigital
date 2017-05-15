@@ -14,10 +14,7 @@
     <% if current_or_guest_user %>
       <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path, :class => 'bookmarks' %>
     <% end %>
-    <!--<% if has_user_authentication_provider? and current_user %>
-      -
-      <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path, :class => 'saved-searches' %>
-    <% end %>--><br />
+    <br />
     <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
   </div>
   <div class="util-links-auth">

@@ -5,7 +5,7 @@ $highlight-bg: #1FA1BF;
 $color: #144651;
 $textcolor: #666666;
 $highlight-color: #ffffff;
-$linkColor: #0f959a;//#1C88A4;
+$linkColor: #0f959a;
 $linkColorHover: lighten($linkColor, 10%);
 
 $font-stack: Gudea, Helvetica, Verdana, sans-serif;
@@ -142,8 +142,6 @@ a img {
 /* not sure what this is for but leaving for now */
 @media (min-width: 400px) {
       form {
-        /*margin-right: 0;*/
-        /*width: 300px;*/
         .styled-select {
 
           width: 90px;
@@ -170,38 +168,6 @@ a img {
         }
       }
     }
-
-/*
-    .input-wrapper {
-      width: 110px;
-
-      input.search_q {
-        width: 95px;
-      }
-    }
-    @media (min-width: 481px) {
-      .input-wrapper {
-        width: auto;
-
-        input.search_q {
-          width: 195px;
-
-        }
-      }
-    }
-    @media (min-width: 768px) {
-      .input-wrapper input.search_q {
-        width: 220px;
-      }
-    }
-  }
-
-  .btn {
-    vertical-align: middle;
-  }
-}
-*/
-
 
 /* main-container - and contents */
 

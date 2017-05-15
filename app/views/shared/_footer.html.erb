@@ -1,61 +1,11 @@
 <div class="footer container">
   <div class="row">
     <div class="span3 left">
-
     </div>
     <div class="span5 left">
       <ul>
-        <!--li class="first">
-          <% if current_user %>
-            <%= link_to t('blacklight.header_links.logout'), destroy_user_session_path %>
-          <% else %>
-            <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
-          <% end %>
-        </li>
-        <li>
-          <% if current_or_guest_user %>
-            <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path %>
-          <% end %>
-        </li>
-
-          <% if has_user_authentication_provider? and current_user %>
-          <li>
-            <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path %>
-          </li>
-          <% end %>
-
-        <li>
-          <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
-        </li>
-
-
-        <% if can?(:create, GenericAsset) %>
-          <li>
-            <%= link_to "Ingest", ingest_index_path %>
-          </li>
-        <% end %>
-
-        <% if can?(:review, GenericAsset) -%>
-          <li>
-            <%= link_to "Review", reviewer_index_path %>
-          </li>
-        <% end -%>
-
-        <% if can?(:create, ::Template) %>
-          <li>
-            <%= link_to "Templates", templates_path %>
-          </li>
-        <% end %>
-
-        <% if can?(:create, GenericAsset) %>
-          <li>
-            <%= link_to "Admin", "/admin" %>
-          </li>
-        <% end %>-->
-
         <li><a href="/copyright">Copyright</a></li>
         <li class="last"><%= link_to "Contact", contact_path %></li>
-
       </ul>
     </div>
     <div class="span4 right">
@@ -65,10 +15,6 @@
       <a href="http://library.uoregon.edu">
         <%= image_tag("oregondigital/uolib_gray.svg", :alt => "University of Oregon Libraries", :onerror => image_path("oregondigital/uolib_white.png"), :class => "pull-right") %>
       </a>
-      <!--ul>
-        <li class="first"><a href="http://library.uoregon.edu">University of Oregon Libraries</a></li>
-        <li class="last"><a href="http://osulibrary.oregonstate.edu">Oregon State University Libraries</li>
-      </ul-->
     </div>
   </div>
 </div>
