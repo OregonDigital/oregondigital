@@ -3,8 +3,9 @@ $accent-bg: #F5DBB2;
 $highlight-bg: #1FA1BF;
 
 $color: #144651;
+$textcolor: #666666;
 $highlight-color: #ffffff;
-$linkColor: #0f959a;//#1C88A4;
+$linkColor: #0f959a;
 $linkColorHover: lighten($linkColor, 10%);
 
 $font-stack: Gudea, Helvetica, Verdana, sans-serif;
@@ -12,7 +13,7 @@ $font-stack: Gudea, Helvetica, Verdana, sans-serif;
 body {
   font: 100% $font-stack;
   background-color: $background;
-  color: #000000;
+  color: $textcolor;
   padding-top: 0;
 }
 
@@ -29,247 +30,118 @@ h1, h2, h3, h4, h5, h6 {
   color: $color;
 }
 
-@media (min-width: 980px) {
-  body {
-    padding-top: 8.5em;
-  }
-  body.admin {
-    padding-top: 9.5em;
-  }
-}
-
 p {
   line-height: 20px;
 }
 
 //Oregon Digital header
 
-#header-navbar-fixed-top, .navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
-  box-shadow: none;
-  background: none no-repeat $accent-bg;
-  min-width: inherit;
+.navbar {
+  background-color: $accent-bg;
+  min-height: 150px;
+}
 
-  .navbar-inner {
-    padding: 0;
-    min-height: 0;
+.header-top {
+  background: #635c55;
+  margin-bottom: 5px;
+}
 
-    .black {
-      background: #000000;
-      margin-bottom: 5px;
+.header-top img {
+  height: 30px;
+  width: auto;
+}
 
-      img {
-        height: 30px;
-        width: auto;
-      }
-    }
-    .btn-navbar {
-      margin-top: 0;
-    }
-    @media (min-width: 481px) {
-      .black img {
-        height: 45px;
-      }
-    }
-    @media (min-width: 769px) {
-      .btn-navbar {
-        margin-top: 5px;
-      }
-    }
-    @media (min-width: 980px) {
-      .black {
-        margin-bottom: 10px;
-      }
+#header-navbar-fixed-top {
 
-    }
+}
 
-    .span3, .span9, .span5, .span9 .span5, .span9 .span3 {
-      display: inline-block;
-      vertical-align: middle !important;
-      float: none;
-      /* width: auto;   */
-    }
-    .span3 {
-      width: 60px;
-      margin-bottom: 5px;
-    }
-    .span9 {
-      width: 200px;
-    }
-    .span5 {
-      width: 130px;
-      margin-bottom: 6px;
-    }
-    .span3.nav-collapse {
-      float: left;
-      margin-bottom: 0;
-      -moz-box-shadow: -15px 7px 15px -15px rgba(0, 0, 0, 0.8);
-      -webkit-box-shadow: -15px 7px 15px -15px rgba(0, 0, 0, 0.8);
-      box-shadow: -15px 7px 15px -15px rgba(0, 0, 0, 0.8);
-      width: 100%;
+.vcenter {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 71px;
+}
 
-      .utils {
-        border-left: none;
-        display: block;
-        padding-left: 60px;
-        width: 100%;
-        border-top: 1px solid #EBDAA7;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        font-size: 13px;
+.brandhome {
+  max-height: 60px;
+}
 
-        .util-links-login, .util-links-other {
-          font-size: inherit;
-          .bookmarks, .saved-searches {
-            display: inline-block;
-          }
-        }
+.utils {
+  display: block;
+  width: 100%;
 
-        .util-links-login a, .util-links-auth .admin a {
-          display: inline-block;
-        }
+  font-size: 90%;
+  border-left: 1px solid $textcolor;
+  border-top: none;
+  width: auto;
+  padding: 2px 0 2px 20px;
 
-        a {
-          padding-bottom: 6px;
-          padding-top: 6px;
-          color: $color;
-          display: block;
-          line-height: 22px;
-        }
-      }
-
-    }
-    @media (min-width: 980px) {
-      .span3.nav-collapse {
-        width: auto;
-        float: none;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-
-        .utils {
-          border-left: 1px solid $color;
-          border-top: none;
-          width: auto;
-          padding: 2px 0 2px 20px;
-          a {
-            padding-bottom: 0;
-            padding-top: 0;
-          }
-        }
-
-      }
-    }
-
-    @media (min-width: 480px) {
-      .span3 {
-        width: 70px;
-      }
-      .span9 {
-        width: 370px;
-        margin-left: 20px;
-      }
-      .span5 {
-        width: 130px;
-      }
-      span3.nav-collapse {
-        margin-bottom: 0;
-      }
-    }
-
-    @media (min-width: 769px) {
-      .span3 {
-        width: 172px;
-      }
-
-      .span5 {
-        width: 390px;
-        margin-bottom: 10px;
-      }
-      span3.nav-collapse {
-        margin-bottom: 0;
-      }
-    }
-    @media (min-width: 980px) {
-      .span3 {
-        width: 220px;
-        margin-bottom: 0;
-      }
-
-      .span5 {
-        margin-left: 30px;
-        width: 390px;
-      }
-      .span3.nav-collapse {
-        margin-bottom: 10px;
-        float: none;
-      }
-    }
-    @media (min-width: 1200px) {
-      .span3 {
-        width: 270px;
-      }
-      .span9 {
-        width: 860px;
-      }
-      .span5 {
-        width: 463px;
-
-      }
-    }
-  }
-
-  .brand {
-    background: url(image_path("oregondigital/logo.png")) no-repeat scroll left top / 100% transparent;
-    padding: 0;
-    text-indent: 100%;
-/*    overflow: hidden;*/
-    height: 24px;
-    width: 60px;
-    margin-right: 0;
-    float: right;
-  }
-
-  @media (min-width: 769px) {
-    .brand {
-      height: 46px;
-      width: 116px;
-      margin-bottom: 0;
-    }
-  }
-  @media (min-width: 980px) {
-    .brand {
-      height: 69px;
-      width: 172px;
-      float: right;
-      margin-bottom: 10px;
-    }
-  }
-
-  #searchbar {
+  a {
+    padding-bottom: 0;
     padding-top: 0;
+  }
 
-    form {
-      width: 160px;
+  .util-links-login, .util-links-other {
+    font-size: inherit;
+
+    .bookmarks, .saved-searches {
       display: inline-block;
-      white-space: nowrap;
-      margin-bottom: 0;
-      line-height: 12px;
+    }
+  }
 
-      .styled-select {
+  .util-links-login a, .util-links-auth .admin a {
+    display: inline-block;
+  }
 
+  .util-links-auth .admin a.btn-sm {
+    font-size: .75em;
+    padding: .5em;
+  }
+}
+
+
+
+a img {
+  padding-bottom: 6px;
+  padding-top: 6px;
+  color: $color;
+  display: block;
+  line-height: 22px;
+}
+
+.sets #common-header #header h1 {
+  width: 180px;
+  display: inline-block;
+  margin-right: 0;
+}
+
+#searchbar {
+  padding: 1rem 0;
+  vertical-align: middle;
+
+  input {
+    width: 320px;
+  }
+
+  form {
+    display: inline-block;
+    white-space: nowrap;
+    margin-bottom: 0;
+    line-height: 12px;
+
+    .styled-select {
+      display: none;
+      #search_field {
         display: none;
-
-        #search_field {
-
-          display: none;
-        }
-
       }
     }
-    @media (min-width: 400px) {
+  }
+}
+
+
+/* not sure what this is for but leaving for now */
+@media (min-width: 400px) {
       form {
-        margin-right: 0;
-        width: 300px;
         .styled-select {
 
           width: 90px;
@@ -296,115 +168,16 @@ p {
         }
       }
     }
-    @media (min-width: 770px) {
-      form {
-        margin-right: 0;
-        width: 320px;
-      }
-    }
-    @media (min-width: 979px) {
-      form {
-        margin-right: 0;
-        width: 320px;
-      }
-    }
-
-
-
-    .input-wrapper {
-      width: 110px;
-
-      input.search_q {
-        width: 95px;
-      }
-    }
-    @media (min-width: 481px) {
-      .input-wrapper {
-        width: auto;
-
-        input.search_q {
-          width: 195px;
-
-        }
-      }
-    }
-    @media (min-width: 768px) {
-      .input-wrapper input.search_q {
-        width: 220px;
-      }
-    }
-  }
-
-  .btn {
-    vertical-align: middle;
-  }
-}
 
 /* main-container - and contents */
 
 #main-container {
-  margin-top: 20px;
+  margin-top: .2rem;
   margin-bottom: 50px;
 }
 
-@media (min-width: 767px) {
-  #main-container {
-    .span9 {
-      width: 535px;
-
-      .span5 {
-        width: 295px;
-      }
-      .span3 {
-        width: 220px;
-      }
-    }
-  }
-
-  .nav-list > li {
-    width: 120px;
-  }
-}
-
-@media (min-width: 980px) {
-  #main-container {
-    .span9 {
-      width: 700px;
-
-      .span5 {
-        width: 440px;
-      }
-
-      .span3 {
-        width: 230px;
-      }
-    }
-  }
-
-  .nav-list > li {
-    width: 180px;
-  }
-}
-
-@media (min-width: 1200px) {
-  #main-container {
-    .span9 {
-      width: 870px;
-
-      .span5 {
-        width: 470px;
-      }
-
-      .span3 {
-        width: 270px;
-      }
-    }
-  }
-
-  .nav-list > li {
-    width: 230px;
-  }
-
+.homelogo {
+  max-height: 8rem;
 }
 
 /* facets */
@@ -444,6 +217,7 @@ p {
     padding-bottom: 0;
   }
 }
+
 /* Sidenav */
 ul.sidenav {
   list-style-type: none;
@@ -456,6 +230,7 @@ ul.sidenav {
     list-style-image:none;
   }
 }
+
 /* footer */
 
 .footer {
@@ -469,6 +244,8 @@ ul.sidenav {
       padding-right: 0;
     }
   }
+
+  img {max-width: 150px;}
 
   ul {
     list-style: none;
@@ -498,16 +275,21 @@ ul.sidenav {
 /* home  */
 
 .welcome, .imagecolumn {
-
   .collections-link {
     border-top: 1px solid $accent-bg;
     border-bottom: 1px solid $accent-bg;
     padding: 1em;
+    background-color: white;
+    text-align: center;
   }
 
   & > * {
     margin-bottom: 1em;
   }
+}
+
+.imagecolumn img {
+  margin-bottom: 1px;
 }
 
 /* search results */
@@ -556,7 +338,6 @@ ul.sidenav {
   background-color: #e2edfe;
 }
 
-
 /*item view */
 #large-image-viewer {
   margin-top: 10px;
@@ -590,9 +371,7 @@ ul.sidenav {
   }
 }
 
-
 /* misc bits */
-
 .form-actions {
   background: transparent;
   border-top: none;
@@ -635,6 +414,56 @@ label.toggle_bookmark {
   margin-left: 20px;
 }
 
+@media (max-width: 979px) and (min-width: 768px) {
+  .navbar .row {
+    margin-left: 0px;
+  }
+}
+
+@media (min-width: 980px) {
+  body {
+    padding-top: 10.5rem;
+  }
+
+  body.admin {
+    padding-top: 10.5rem;
+  }
+
+  .navbar {
+    padding-left: 0px;
+  }
+
+  .navbar.row {
+    margin: 0 0;
+  }
+
+}
+
+//smallest
+@media (max-width: 767px) {
+
+  .navbar-fixed-top {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+
+  .navbar {
+    margin-right: 0px;
+  }
+
+  .row {
+    margin: 0 .5rem;
+  }
+
+  .brandhome {
+    max-height: 40px;
+    float: left;
+  }
+
+  #searchbar input {
+    width: 220px;
+  }
+}
 
 /*
  * jQuery Blueberry Slider v0.4 BETA
@@ -657,8 +486,8 @@ label.toggle_bookmark {
  *
  */
 
-.blueberry { 
-  margin: 0 auto; 
+.blueberry {
+  margin: 0 auto;
 
 
   /* the following min-height is a quick cosmetic fix to eliminate a bug before the whole thing is rebuilt with Bootstrap 3 */
@@ -698,23 +527,23 @@ label.toggle_bookmark {
         bottom: 0;
       }
 
-      &.active { 
-        display: block; 
-        position: relative; 
+      &.active {
+        display: block;
+        position: relative;
       }
     }
   }
 
-  .crop li figure { 
-    width: auto; 
+  .crop li figure {
+    width: auto;
   }
 
   .pager {
     height: 40px;
     text-align: center;
 
-    li { 
-      display: inline-block; 
+    li {
+      display: inline-block;
 
       a, a span {
         display: block;
@@ -741,11 +570,11 @@ label.toggle_bookmark {
         border-radius: 12px;
       }
 
-      &.active a span { 
+      &.active a span {
         background: transparent;
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
-        border-radius: 6px; 
+        border-radius: 6px;
         border: 1px solid #aaa;
         height: 8px;
         width: 8px;
