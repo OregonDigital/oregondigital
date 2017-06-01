@@ -86,7 +86,7 @@ shared_examples "OAI endpoint" do |parameter|
         expect(page).not_to have_xpath('//lcsubject')
       end
       it "should have earliest/latest date in the date field" do
-        expect(page).to have_content("1982-1983")
+        expect(page).to have_content("1982/1983")
       end
       it "should have only the rights url" do
         expect(page).not_to have_content("Attribution-NonCommercial-NoDerivatives 4.0 International")
