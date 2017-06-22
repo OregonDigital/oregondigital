@@ -12,8 +12,8 @@ class OembedController < ApplicationController
       
       if is_image(asset)
         return image_responder(pid, params[:format])
-      elsif is_video(asset)
-        return video_responder(pid, params[:format])
+ #     elsif is_video(asset)
+ #       return video_responder(pid, params[:format])
       else
         return other_responder
       end
@@ -24,9 +24,10 @@ class OembedController < ApplicationController
   end
 
   def image_responder(pid, format)
+
     begin
       asset = Image.find(pid)
-      return render_404 unless !asset.medium_image_location.blank?
+      return render_404 unless ((!asset.medium_image_location.blank?) && (File.exist? asset.medium_image_location))
 
       img = MiniMagick::Image.open(asset.medium_image_location)
       data = {
@@ -95,7 +96,6 @@ class OembedController < ApplicationController
   end
 
   def json_response (data)
-
     response.headers['Content-Type'] = 'application/json'
     render body: JSON.generate(data)
   end

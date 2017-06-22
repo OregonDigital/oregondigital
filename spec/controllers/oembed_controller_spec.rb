@@ -14,55 +14,55 @@ describe OembedController, :resque => true do
       end
     end
     context 'if asset is not public' do
+      let(:generic_asset) { FactoryGirl.build(:generic_asset) }
+      before do
+        generic_asset.read_groups = ["admin"]
+        generic_asset.save
+        visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{generic_asset.pid}")
+      end
       it 'should return a 501' do
         expect(page.status_code).to eq(501)
       end
     end
     context 'if asset is not supported type' do
+      let(:document) { Document.new }
+      before do
+        document.title = "my doc"
+        document.review
+        document.save
+        visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{document.pid}")
+      end
       it 'should return a 401' do
         expect(page.status_code).to eq(401)
       end
     end
     context 'if asset is an image' do
-      it 'should call image_responder' do
-        expect(image_responder).to receive(pid)
-      end
-    end
-    context 'if asset is a video' do
-      it 'should call video_responder' do
-      end
-    end
-  end
-  describe '#image_responder' do
-    context 'when given an asset' do
-      context 'if the asset has no location' do
-        it 'should return a 401' do
-          expect(page.status_code).to eq(401)
+      context 'if asset has no location' do
+        let(:image) { Image.new }
+        before do
+          image.title = "my image"
+          image.review
+          image.save
+          visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{image.pid}")
+        end
+        it 'should return a 404' do
+          expect(page.status_code).to eq(404)
         end
       end
-      context 'if the requested format is json' do
-        it 'should call json_response' do
-          expect(json_response).to receive()
+      context 'if asset has an image file' do
+        let(:image) { Image.new }
+        let(:img) {{'width'=> 550, 'height'=>550}}
+        before do
+          image.title = "my image"
+          image.review
+          image.save
+          allow(File).to receive(:exist?).and_return(true)
+          allow(MiniMagick::Image).to receive(:open).and_return(img)
+          visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{image.pid}")
         end
-      end
-    end
-  end
-  describe '#video_responder' do
-    context 'when given an asset' do
-      context 'if the asset has no location' do
-        it 'should return a 401' do
-          expect(page.status_code).to eq(401)
+        it 'should have content' do
+          expect(page.body).to include("photo")
         end
-      end
-      context 'if the requested format is json' do
-        it 'should call json_response' do
-        end
-      end
-    end
-  end
-  describe '#json_response' do
-    context 'when given data' do
-      it 'should render a page' do
       end
     end
   end
