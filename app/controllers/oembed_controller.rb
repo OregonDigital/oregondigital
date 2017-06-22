@@ -75,7 +75,7 @@ class OembedController < ApplicationController
 
   def get_dimensions(asset_path)
     begin
-      command = "/home/lsato/Downloads/ffmpeg/ffprobe -v error -show_entries stream=width,height -of default=noprint_wrappers=1 \"#{asset_path}\""
+      command = "/usr/local/bin/ffprobe -v error -show_entries stream=width,height -of default=noprint_wrappers=1 \"#{asset_path}\""
       out, err, st = Open3.capture3(command)
       return nil unless st.success?
       widthmatch = /width=[0-9]*/.match out
