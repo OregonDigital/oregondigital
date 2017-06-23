@@ -35,7 +35,8 @@ Oregondigital::Application.routes.draw do
   resources :templates
 
   # Bulk Ingest Routes
-  resources :bulk_tasks, :only => [:index, :show, :update] do
+  get 'bulk_tasks/all_tasks', :to => 'bulk_tasks#all_tasks'
+  resources :bulk_tasks, :only => [:index, :show, :update, :all_tasks] do
     member do
       put '/ingest', :to => 'bulk_tasks#ingest'
       put '/reset', :to => 'bulk_tasks#reset_task'
@@ -46,6 +47,7 @@ Oregondigital::Application.routes.draw do
       delete '/stop_ingest', :to => 'bulk_tasks#stop_ingest'
     end
   end
+
   resources :bulk_task_children, :only => [:show]
 
   # Reviewer Controller Routes
