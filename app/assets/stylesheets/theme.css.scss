@@ -64,6 +64,7 @@ p {
 
 .brandhome {
   max-height: 60px;
+  padding-top: 1.5em;
 }
 
 .utils {
@@ -101,12 +102,16 @@ p {
 
 
 
-a img {
+.header-top a img {
   padding-bottom: 6px;
   padding-top: 6px;
   color: $color;
   display: block;
   line-height: 22px;
+}
+
+.header-top .row {
+  margin-left: 0px;
 }
 
 .sets #common-header #header h1 {
