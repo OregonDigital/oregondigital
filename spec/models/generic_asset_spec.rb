@@ -42,17 +42,56 @@ describe GenericAsset, :resque => true do
 
   describe "decade facets" do
     let(:asset) { FactoryGirl.build(:generic_asset, :date => date) }
-    let(:date) { "2011-01-01" }
+    let(:date) { "2022-01-01" }
     let(:facet) { asset.to_solr["date_decades_ssim"] }
     context "when no date" do
-      let(:date) { nil }
-      it "should be blank" do
-        expect(facet).to be_nil
+      context "and no other usable date" do
+        let(:asset) do
+          g = FactoryGirl.build(:generic_asset) 
+          # Force created to be nil since it's set by factory
+          g.descMetadata.created = nil
+          g.save
+          g
+        end
+        it "should be blank" do
+          expect(facet).to be_nil
+        end
+      end
+      context "but awardDate present" do
+        let(:asset) do
+          g = FactoryGirl.build(:generic_asset)
+          g.descMetadata.awardDate = awardDate
+          g.save
+          g
+        end
+        let(:awardDate) { "1973-03-09" }
+        it "should be that decade" do
+           expect(facet).to eq ["1970-1979"]
+        end
+      end
+      context "but issued date present" do
+        let(:asset) do
+          g = FactoryGirl.build(:generic_asset)
+          g.descMetadata.issued = issuedDate
+          g.save
+          g
+        end
+        let(:issuedDate) { "1943" }
+        it "should be that decade" do
+           expect(facet).to eq ["1940-1949"]
+        end
+      end
+      context "but created date present" do
+        # created date set by factory
+        let(:date) { nil }
+        it "should be that decade" do
+           expect(facet).to eq ["2010-2019"]
+        end
       end
     end
     context "when given a date" do
       it "should be that decade" do
-        expect(facet).to eq ["2010-2019"]
+        expect(facet).to eq ["2020-2029"]
       end
     end
     context "when given just a year" do
@@ -128,8 +167,8 @@ describe GenericAsset, :resque => true do
         end
         context "with no date" do
           let(:date_1) { nil }
-          it "should be able to sort" do
-            expect(result.first).to eq asset_2.id
+          it "should be able to sort, nil at the beginning" do
+            expect(result.second).to eq asset_2.id
           end
         end
       end

@@ -47,7 +47,9 @@ INGEST_MAP = {
     translator: "descMetadata.translator",
     designer: "descMetadata.designer",
     dedicatee: "descMetadata.dedicatee",
-    recipient: "descMetadata.recipient"
+    recipient: "descMetadata.recipient",
+    owner: "descMetadata.owner",
+    formerOwner: "descMetadata.formerOwner"
   },
 
   description: {
@@ -109,6 +111,8 @@ INGEST_MAP = {
     commonNames: "descMetadata.commonNames",
     scientificNameAuthorship: "descMetadata.scientificNameAuthorship",
     event: "descMetadata.event",
+    award: "descMetadata.award",
+    legalName: "descMetadata.legalName",
   },
 
   geographic: {
@@ -131,6 +135,7 @@ INGEST_MAP = {
     viewDate: "descMetadata.viewDate",
     awardDate: "descMetadata.awardDate",
     collectedDate: "descMetadata.collectedDate",
+    acquisitionDate: "descMetadata.acquisitionDate",
   },
 
   identifier: {

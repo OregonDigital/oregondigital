@@ -14,29 +14,26 @@
     <% if current_or_guest_user %>
       <%= link_to t('blacklight.header_links.bookmarks'), bookmarks_path, :class => 'bookmarks' %>
     <% end %>
-    <% if has_user_authentication_provider? and current_user %>
-      -
-      <%= link_to t('blacklight.header_links.saved_searches'), saved_searches_path, :class => 'saved-searches' %>
-    <% end %>
+    <br />
     <%= link_to t('blacklight.header_links.search_history'), search_history_path %>
   </div>
   <div class="util-links-auth">
     <div class="admin">
 
       <% if can?(:create, GenericAsset) %>
-        <%= link_to "Ingest", ingest_index_path %>
+        <%= link_to "Ingest", ingest_index_path, { :class=>"btn-sm btn-info" }  %>
       <% end %>
 
       <% if can?(:review, GenericAsset) -%>
-        - <%= link_to "Review", reviewer_index_path %>
+        <%= link_to "Review", reviewer_index_path, { :class=>"btn-sm btn-info" } %>
       <% end -%>
 
       <% if can?(:create, ::Template) %>
-        - <%= link_to "Templates", templates_path %>
+        <%= link_to "Templates", templates_path, { :class=>"btn-sm btn-info" } %>
       <% end %>
 
       <% if can?(:create, GenericAsset) %>
-        - <%= link_to "Admin", '/admin' %>
+        <%= link_to "Admin", '/admin', { :class=>"btn-sm btn-info" } %>
       <% end %>
     </div>
   </div>

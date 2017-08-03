@@ -53,7 +53,7 @@ describe 'Advanced Search' do
     end
     context "and you choose a facet", :js => true do
       before do
-        find(".facet_item").click
+        find(".blacklight-desc_metadata__lcsubject_label_sim").click
         expect(page).to have_content("Test Facet")
         find("label.checkbox").click
         within("form.advanced") do

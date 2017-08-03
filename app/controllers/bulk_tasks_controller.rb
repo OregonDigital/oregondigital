@@ -1,8 +1,13 @@
 class BulkTasksController < ApplicationController
   before_filter :restrict_to_archivist
-  before_filter :find_task, :except => :index
+  before_filter :find_task, :except => [:index, :all_tasks]
   
   def index
+    BulkTask.refresh
+    @tasks = BulkTaskDecorator.decorate_collection(BulkTask.includes(:bulk_task_children).last(30))
+  end
+
+  def all_tasks
     BulkTask.refresh
     @tasks = BulkTask.includes(:bulk_task_children).all.decorate
   end
