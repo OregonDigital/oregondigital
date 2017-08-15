@@ -11,7 +11,7 @@ class OregonDigital::OAI::Model::SolrInstanceDecorator < Draper::Decorator
 
     def earliestDate
       if !solr_doc["desc_metadata__earliestDate_ssm"].blank? && !solr_doc["desc_metadata__latestDate_ssm"].blank?
-        solr_doc["desc_metadata__earliestDate_ssm"].first + "-" +  solr_doc["desc_metadata__latestDate_ssm"].first
+        solr_doc["desc_metadata__earliestDate_ssm"].first + "/" +  solr_doc["desc_metadata__latestDate_ssm"].first
       end
     end
 
