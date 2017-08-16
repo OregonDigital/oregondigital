@@ -10,10 +10,10 @@ module OregonDigital::OAI::Concern
     # Oregon Digital fields that store RDF URIs and labels need to be looked up for
     # do not include fields here that have a method in the decorator, eg rights, any field using geonames, primarySet
     def uri_fields
-      @uri_fields = [:creator, :lcsubject, :type, :author, :editor, :photographer,
-                      :taxonClass, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator, :interviewee, :interviewer, :lyricist,
-                      :photographer, :translator, :ethnographicTerm, :genus, :phylum, :militaryBranch, :stylePeriod, :commonNames, :language, 
-                      :localCollectionName, :od_repository, :recipient, :set]
+      @uri_fields = [:creator, :lcsubject, :type, :author, :editor, :photographer, :phylum, :taxonClass, :order, :family,
+                     :genus, :species, :commonNames, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator,
+                     :interviewee, :interviewer, :lyricist, :photographer, :translator, :ethnographicTerm, :militaryBranch, :stylePeriod, 
+                     :language, :localCollectionName, :od_repository, :recipient, :set]
     end
 
     # Map Qualified Dublin Core (Terms) fields to Oregon Digital fields
@@ -27,11 +27,11 @@ module OregonDigital::OAI::Concern
         :created => [:created],
         :issued => [:issued],
         :creator => [:creator],
-        :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :donor, :editor, :illustrator,
+        :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :editor, :illustrator,
                           :interviewee, :interviewer, :lyricist, :patron, :photographer, :printMaker, :scribe, :transcriber, :translator, :designer,
                           :dedicatee, :recipient, :owner],
-        :subject => [:lcsubject, :subject, :taxonClass, :ethnographicTerm, :event, :family, :genus, :phylum, :militaryBranch, :sportsTeam,
-                     :tribalClasses, :tribalTerms, :commonNames, :award, :legalName],
+        :subject => [:lcsubject, :subject, :phylum, :taxonClass, :order, :family, :genus, :species, :commonNames, :ethnographicTerm, :event, :militaryBranch, :sportsTeam,
+                     :tribalClasses, :tribalTerms, :award, :legalName],
         :rights => [:rights, :useRestrictions, :accessRestrictions],
         :rightsHolder => [:rightsHolder],
         :license => [:license],
@@ -60,11 +60,11 @@ module OregonDigital::OAI::Concern
         :date => [:date, :created, :viewDate, :earliestDate],
         :identifier => [:accessURL],
         :creator => [:creator],
-        :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :donor, :editor, :illustrator,
+        :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :editor, :illustrator,
                           :interviewee, :interviewer, :lyricist, :patron, :photographer, :printMaker, :scribe, :transcriber, :translator, :designer,
                           :dedicatee, :recipient, :owner],
-        :subject => [:lcsubject, :subject, :taxonClass, :ethnographicTerm, :event, :family, :genus, :phylum, :militaryBranch, :sportsTeam,
-                     :tribalClasses, :tribalTerms, :commonNames, :award, :legalName],
+        :subject => [:lcsubject, :subject, :phylum, :taxonClass, :order, :family, :genus, :species, :commonNames, :ethnographicTerm, :event, :militaryBranch, :sportsTeam,
+                     :tribalClasses, :tribalTerms, :award, :legalName],
         :coverage => [:location, :tgn, :waterBasin, :rangerDistrict, :streetAddress, :temporal, :geobox, :latitude, :longitude],
         :publisher => [:publisher, :od_repository],
         :type => [:type],
