@@ -24,11 +24,13 @@ RUN apt-get install -y python-software-properties software-properties-common
 RUN add-apt-repository -y ppa:lyrasis/precise-backports
 RUN apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev \
                        libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff4-dev libexif-dev \
-                       libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl
+                       libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl \
+                       libgirepository1.0-dev
 RUN mkdir -p /opt/libvips
 WORKDIR /opt/libvips
-RUN curl http://www.vips.ecs.soton.ac.uk/supported/7.42/vips-7.42.3.tar.gz | tar zx
-WORKDIR /opt/libvips/vips-7.42.3
+RUN curl http://www.vips.ecs.soton.ac.uk/supported/current/vips-8.4.5.tar.gz | tar zx
+WORKDIR /opt/libvips/vips-8.4.5
+ENV GI_TYPELIB_PATH /usr/local/lib/girepository-1.0/
 RUN ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw
 RUN make
 RUN make install
