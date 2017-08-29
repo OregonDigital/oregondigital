@@ -108,7 +108,8 @@ case $(uname -s) in
           echo "Installing libvips dependencies via apt-get"
           add-apt-repository -y ppa:lyrasis/precise-backports
           apt-get update
-          apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff4-dev libexif-dev libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl libgirepository1.0-dev
+          apt-get install -y automake build-essential gobject-introspection libgirepository1.0-dev gtk-doc-tools libglib2.0-dev libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff4-dev libexif-dev libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl
+          export GI_TYPELIB_PATH="/usr/local/lib/girepository-1.0/"
           install_libvips_from_source
           ;;
         *)
