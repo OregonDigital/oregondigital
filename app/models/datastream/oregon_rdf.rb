@@ -345,8 +345,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :localCollectionName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.localCollectionName, :class_name => OregonDigital::ControlledVocabularies::LocalCollection do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :seriesName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.seriesName do |index|
-    index.as :searchable, :displayable
+  property :seriesName, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.seriesName, :class_name => OregonDigital::ControlledVocabularies::SeriesName do |index|
+    index.as :searchable, :displayable, :facetable
   end
   property :seriesNumber, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.seriesNumber do |index|
     index.as :displayable
