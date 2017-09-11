@@ -1,6 +1,8 @@
 machine:
   ruby:
     version: 2.2.0
+  environment:
+    GI_TYPELIB_PATH: /usr/local/lib/girepository-1.0/
 general:
   artifacts:
     - "tmp/capybara"
