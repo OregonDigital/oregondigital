@@ -28,7 +28,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :searchable, :facetable, :displayable
   end
   property :contributor, :predicate => RDF::DC11.contributor, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
-    index.as :searchable, :displayable
+    index.as :searchable, :facetable, :displayable
   end
   property :arranger, :predicate => OregonDigital::Vocabularies::MARCREL.arr, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
