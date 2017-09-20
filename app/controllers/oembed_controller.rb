@@ -8,12 +8,10 @@ class OembedController < ApplicationController
     begin
       asset = GenericAsset.find(pid)
 
-      return render_501 unless is_public(asset)
+      return render_401 unless is_public(asset)
       
       if is_image(asset)
         return image_responder(pid, params[:format])
- #     elsif is_video(asset)
- #       return video_responder(pid, params[:format])
       else
         return other_responder
       end
@@ -48,51 +46,13 @@ class OembedController < ApplicationController
     end
   end
 
-  def video_responder(pid, format)
-    begin
-      asset = Video.find(pid)
-      return render_404 unless !asset.mp4_location.blank?
-
-      url = "http://#{APP_CONFIG['default_url_host']}#{asset.mp4_location.sub(Rails.root.to_s, '')}"
-      dim = get_dimensions(asset.mp4_location)
-      data = {
-        "version" => "1.0",
-        "type" => "video",
-        "width" => dim[:width],
-        "height" => dim[:height],
-        "html" => "<iframe width=\"#{dim[:width]}\" height=\"#{dim[:height]}\" src=\"#{url}\" frameborder=\"0\" allowfullscreen></iframe>"
-      }
-
-      if format == 'json'
-        json_response(data)
-      else
-        other_response
-      end
-    rescue
-      return render_404
-    end
-  end
-
-  def get_dimensions(asset_path)
-    begin
-      command = "/usr/local/bin/ffprobe -v error -show_entries stream=width,height -of default=noprint_wrappers=1 \"#{asset_path}\""
-      out, err, st = Open3.capture3(command)
-      return nil unless st.success?
-      widthmatch = /width=[0-9]*/.match out
-      heightmatch = /height=[0-9]*/.match out
-      return nil unless ( !widthmatch.blank? && !heightmatch.blank? )
-      {:width => widthmatch.to_s.sub("width=",""), :height => heightmatch.to_s.sub("height=","")}
-    rescue
-      nil
-    end
-  end
 
   def other_responder
-    render_401
+    render_501
   end
 
   def other_response
-    render_401
+    render_501
   end
 
   def json_response (data)
@@ -102,10 +62,6 @@ class OembedController < ApplicationController
 
   def is_image (asset)
     asset.to_solr["has_model_ssim"].include? "Image"
-  end
-  
-  def is_video(asset)
-    asset.to_solr["has_model_ssim"].include? "Video"
   end
 
   def render_404

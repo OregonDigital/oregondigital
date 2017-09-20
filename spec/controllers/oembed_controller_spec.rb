@@ -20,8 +20,8 @@ describe OembedController, :resque => true do
         generic_asset.save
         visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{generic_asset.pid}")
       end
-      it 'should return a 501' do
-        expect(page.status_code).to eq(501)
+      it 'should return a 401' do
+        expect(page.status_code).to eq(401)
       end
     end
     context 'if asset is not supported type' do
@@ -32,8 +32,8 @@ describe OembedController, :resque => true do
         document.save
         visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{document.pid}")
       end
-      it 'should return a 401' do
-        expect(page.status_code).to eq(401)
+      it 'should return a 501' do
+        expect(page.status_code).to eq(501)
       end
     end
     context 'if asset is an image' do
