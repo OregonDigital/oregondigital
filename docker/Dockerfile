@@ -22,10 +22,11 @@ RUN apt-get install -y python-software-properties software-properties-common
 
 # Vips!  This is very specific to Ubuntu 12.04, pulled out of vips-install.sh
 RUN add-apt-repository -y ppa:lyrasis/precise-backports
-RUN apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev \
+RUN apt-get install -y automake build-essential libgirepository1.0-dev  \
+                       gtk-doc-tools libglib2.0-dev \
                        libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff4-dev libexif-dev \
-                       libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl \
-                       libgirepository1.0-dev
+                       libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl
+
 RUN mkdir -p /opt/libvips
 WORKDIR /opt/libvips
 RUN curl http://www.vips.ecs.soton.ac.uk/supported/current/vips-8.4.5.tar.gz | tar zx
@@ -63,8 +64,8 @@ RUN apt-get install -y libssl-dev libreadline-dev
 # with a major change (like OS) that would require a ruby rebuild anyway
 RUN mkdir -p /opt/ruby
 WORKDIR /opt/ruby
-RUN curl https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.gz | tar zx
-WORKDIR /opt/ruby/ruby-2.2.5
+RUN curl https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.3.tar.gz | tar zx
+WORKDIR /opt/ruby/ruby-2.1.3
 RUN ./configure
 RUN make
 RUN make install
