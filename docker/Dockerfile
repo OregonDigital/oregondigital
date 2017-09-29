@@ -39,7 +39,16 @@ RUN apt-get purge libreoffice*
 RUN add-apt-repository -y ppa:libreoffice/ppa
 RUN apt-get install -y poppler-utils poppler-data ghostscript libreoffice
 RUN apt-get install -y libmagic-dev libmagickwand-dev ffmpeg libvorbis-dev libavcodec-extra-53
-RUN apt-get install -y graphicsmagick
+
+# Version of GraphicsMagick that apt-get retrieves is too old
+RUN mkdir -p /opt/graphicsmagick
+WORKDIR /opt/graphicsmagick
+RUN curl ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/1.3/GraphicsMagick-1.3.26.tar.gz | tar zx
+WORKDIR /opt/graphicsmagick/GraphicsMagick-1.3.26
+# temporary workaround for problem with webp
+RUN ./configure  --with-webp=no
+RUN make
+RUN make install
 
 # Database connection libraries
 RUN apt-get install -y libmysqlclient-dev

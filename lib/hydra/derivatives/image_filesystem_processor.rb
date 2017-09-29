@@ -30,7 +30,10 @@ class Hydra::Derivatives::ImageFilesystemProcessor < Hydra::Derivatives::Image
   def create_image(output_datastream, format, quality=nil, file_path=nil)
     xfrm = load_image_transformer
     yield(xfrm) if block_given?
-    xfrm.format(format)
+    xfrm.format (format) do |c|
+      c.auto_orient
+      c.args.join(" ")
+    end
     xfrm.quality(quality.to_s) if quality
     write_image(output_datastream, xfrm, file_path)
   end
