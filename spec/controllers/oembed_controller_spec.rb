@@ -6,7 +6,7 @@ describe OembedController, :resque => true do
     context 'when given a request' do
       context 'if asset is nil' do
         before do
-          visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/oregondigital:abc123456")
+          visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/oregondigital:abc123456")
         end
         it 'should return a 404' do
           expect(page.status_code).to eq(404)
@@ -18,7 +18,7 @@ describe OembedController, :resque => true do
       before do
         generic_asset.read_groups = ["admin"]
         generic_asset.save
-        visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{generic_asset.pid}")
+        visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/#{generic_asset.pid}")
       end
       it 'should return a 401' do
         expect(page.status_code).to eq(401)
@@ -30,7 +30,7 @@ describe OembedController, :resque => true do
         document.title = "my doc"
         document.review
         document.save
-        visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{document.pid}")
+        visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/#{document.pid}")
       end
       it 'should return a 501' do
         expect(page.status_code).to eq(501)
@@ -43,7 +43,7 @@ describe OembedController, :resque => true do
           image.title = "my image"
           image.review
           image.save
-          visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{image.pid}")
+          visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/#{image.pid}")
         end
         it 'should return a 404' do
           expect(page.status_code).to eq(404)
@@ -58,7 +58,7 @@ describe OembedController, :resque => true do
           image.save
           allow(File).to receive(:exist?).and_return(true)
           allow(MiniMagick::Image).to receive(:open).and_return(img)
-          visit("http://#{APP_CONFIG['default_host']}/oembed/?format=json&url=http://#{APP_CONFIG['default_host']}/resource/#{image.pid}")
+          visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/#{image.pid}")
         end
         it 'should have content' do
           expect(page.body).to include("photo")
