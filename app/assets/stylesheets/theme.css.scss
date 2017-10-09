@@ -303,38 +303,6 @@ ul.sidenav {
   background: #fff;
   border-top: 1px solid $accent-bg;
 
-  .thumbnail-container {
-    max-width: 120px;
-    min-height: 120px;
-    min-width: 60px;
-  }
-
-  .blacklight-info-fedora-afmodel-audio .thumbnail-container {
-    background: url(icon_audio.svg) no-repeat 0px 0px;
-    background-size: 60px 60px;
-  }
-
-  .blacklight-info-fedora-afmodel-document .thumbnail-container {
-    background: url(icon_document.svg) no-repeat 0px 0px;
-    background-size: 60px 60px;
-  }
-
-  /* generic asset aka compound object? */
-  .blacklight-info-fedora-afmodel-genericasset .thumbnail-container {
-    background: url(icon_genericasset.svg) no-repeat 0px 0px;
-    background-size: 60px 60px;
-  }
-
-  .blacklight-info-fedora-afmodel-image .thumbnail-container {
-    background: url(icon_image.svg) no-repeat 0px 0px;
-    background-size: 60px 60px;
-  }
-
-  .blacklight-info-fedora-afmodel-video .thumbnail-container {
-    background: url(icon_video.svg) no-repeat 0px 0px;
-    background-size: 60px 60px;
-  }
-
   .well, .constraints-container, #sortAndPerPage {
     border: none;
     box-shadow: none;
