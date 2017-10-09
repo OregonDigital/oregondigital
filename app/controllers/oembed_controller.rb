@@ -33,7 +33,7 @@ class OembedController < ApplicationController
         "type" => "photo",
         "width" => img['width'],
         "height" => img['height'], 
-        "url" => "http://#{APP_CONFIG['default_url_host']}#{asset.medium_image_location.sub(Rails.root.to_s, '')}"
+        "url" => "#{APP_CONFIG['default_url_host']}#{asset.medium_image_location.sub(Rails.root.to_s, '')}"
       }
 
       if format == 'json'
