@@ -16,6 +16,7 @@ class GenericAsset < ActiveFedora::Base
   has_file_datastream name: 'content', type: Datastream::Content
 
   before_save :check_derivatives
+  before_save :compound_thumb
   after_save :queue_derivatives
   attr_accessor :skip_queue
   after_save :queue_fetch
@@ -76,6 +77,13 @@ class GenericAsset < ActiveFedora::Base
 
   def queue_derivatives
     ::Resque.enqueue(::CreateDerivativesJob,pid) if @needs_derivatives
+  end
+
+  def compound_thumb
+    if compound?
+      FileUtils.cp(::Image.default_icon_base.to_s + '/cpd.jpg', ::Image.thumbnail_location(pid))
+      workflowMetadata.has_thumbnail = true
+    end
   end
 
   def clear_cache

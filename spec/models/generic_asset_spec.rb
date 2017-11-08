@@ -481,6 +481,10 @@ describe GenericAsset, :resque => true do
     context "when it has one asset" do
       before do
         generic_asset.od_content << asset_2
+        if !Dir.exist? "media/default-thumbs"
+          Dir.mkdir "media/default-thumbs"
+          FileUtils.cp("#{ROOT}/spec/fixtures/fixture_cpd.jpg", "#{ROOT}/media/default-thumbs/cpd.jpg" )
+        end
       end
       context "and it's persisted" do
         before do
@@ -488,6 +492,10 @@ describe GenericAsset, :resque => true do
         end
         it "should be re-gettable" do
           expect(GenericAsset.find(generic_asset.pid).od_content).to eq [asset_2]
+        end
+        it "should have a thumbnail" do
+          expect(generic_asset.workflowMetadata.has_thumbnail).to eq true
+          expect(File).to exist(Image.thumbnail_location(generic_asset.pid))
         end
       end
     end
