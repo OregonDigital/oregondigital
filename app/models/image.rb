@@ -68,6 +68,10 @@ class Image < GenericAsset
     def default_content_ds
       "medium"
     end
+
+    def default_icon_base
+      APP_CONFIG.try(:default_icon_path) || Rails.root.join("media", "default-thumbs")
+    end
   end
 
   def pyramidal_tiff_location

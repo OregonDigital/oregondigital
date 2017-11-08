@@ -2,6 +2,12 @@ require 'spec_helper'
 require 'filemagic'
 
 describe Audio do
+  before do
+    if !Dir.exist? "media/default-thumbs"
+      Dir.mkdir "media/default-thumbs"
+      FileUtils.cp("#{ROOT}/spec/fixtures/fixture_audio.jpg", "#{ROOT}/media/default-thumbs/audio.jpg" )
+    end
+  end
   subject { FactoryGirl.build(:audio) }
   it "should instantiate" do
     expect {subject}.not_to raise_error
@@ -38,6 +44,10 @@ describe Audio do
       it "should populate the external mp3 datastream" do
         expect(subject.content_mp3.dsLocation).to eq("file://#{subject.mp3_location}")
         expect(Audio.find(subject.pid).content_mp3.dsLocation).to eq("file://#{subject.mp3_location}")
+      end
+      it "should have a default thumb" do
+        expect(subject.workflowMetadata.has_thumbnail).to eq true
+        expect(File).to exist(Image.thumbnail_location(subject.pid))
       end
     end
   end
