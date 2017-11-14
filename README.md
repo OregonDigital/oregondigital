@@ -121,6 +121,8 @@ docker-compose logs -f web
 
 **Requires Ruby 2.0**
 
+(Mongo needs to be running, 2.4 is known to work: https://docs.mongodb.com/v2.4/tutorial/install-mongodb-on-ubuntu/ )
+
     git clone git@github.com:OregonDigital/oregondigital.git
 	cd oregondigital
 	bundle install
@@ -128,6 +130,8 @@ docker-compose logs -f web
 	git submodule init
 	git submodule update
 	rake hydra:jetty:config
+
+On a newer install, may have to pin 
 
 Symlink media directories:
 
