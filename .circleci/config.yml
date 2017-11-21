@@ -16,7 +16,7 @@ jobs:
             sudo apt-get install -y automake build-essential libgirepository1.0-dev \
                                     gtk-doc-tools libglib2.0-dev libturbojpeg1-dev \
                                     libpng12-dev libwebp-dev libtiff5-dev libexif-dev \
-                                    libgsf-1-dev  liblcms2-dev libxml2-dev swig 
+                                    libgsf-1-dev  liblcms2-dev libxml2-dev swig \
                                     libmagickcore-dev curl
             mkdir -p /opt/libvips
             cd /opt/libvips
