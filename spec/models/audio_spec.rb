@@ -25,7 +25,7 @@ describe Audio do
       end
       it "should create an ogg" do
         mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(subject.ogg_location).split(';')[0]
-        expect(mime_type).to eq 'application/ogg'
+        expect(mime_type).to eq 'audio/ogg'
       end
       it 'should populate the external ogg datastream' do
         expect(subject.content_ogg.dsLocation).to eq("file://#{subject.ogg_location}")

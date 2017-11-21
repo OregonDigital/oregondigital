@@ -339,7 +339,7 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.10.1)
     multipart-post (2.0.0)
-    mysql2 (0.3.14)
+    mysql2 (0.3.21)
     native-package-installer (1.0.4)
     net-http-persistent (2.9.4)
     net-scp (1.2.1)
@@ -648,7 +648,7 @@ DEPENDENCIES
   mail_form
   metadata-ingest-form (~> 2.4)
   mini_magick
-  mysql2
+  mysql2 (~> 0.3.20)
   newrelic_rpm
   noid
   oai!
@@ -685,4 +685,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.15.4
+   1.16.0

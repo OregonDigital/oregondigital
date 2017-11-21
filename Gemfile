@@ -79,7 +79,7 @@ gem 'draper'
 gem 'metadata-ingest-form', '~>2.4'
 
 # mysql gem
-gem 'mysql2'
+gem 'mysql2', '~>0.3.20'
 
 # Unicorn for web server
 gem 'puma'
