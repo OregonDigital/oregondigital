@@ -22,7 +22,7 @@ jobs:
             cd /opt/libvips
             curl -L https://github.com/jcupitt/libvips/releases/download/v8.4.6/vips-8.4.6.tar.gz | sudo tar zx
             cd /opt/libvips/vips-8.4.6
-            configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw
+            ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw
             make
             make install
             lodconfig
