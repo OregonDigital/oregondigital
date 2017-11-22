@@ -86,6 +86,7 @@ jobs:
       - run:
           name: Jetty
           command: |
+            RAILS_ENV=development bundle exec rake jetty:clean
             bundle exec rake jetty:config
             bundle exec rake jetty:start
             sleep: 20
