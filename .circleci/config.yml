@@ -39,7 +39,9 @@ jobs:
 
       - run:
           name: Services
-          command: sudo apt-get install -y phantomjs memcached mongodb
+          command: |
+            sudo apt-get install -y phantomjs memcached mongodb
+            sudo mongod
 
       - run:
           name: Database connection libraries
