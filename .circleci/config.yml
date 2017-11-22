@@ -10,9 +10,10 @@ jobs:
     working_directory: ~/app
     steps:
 
-      -run:
+      - run:
          name: Sudo
          command: apt-get install -y sudo
+
       - run:
           name: Services
           command: |
