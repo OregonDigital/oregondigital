@@ -38,6 +38,10 @@ jobs:
             sudo apt-get install -y graphicsmagick graphicsmagick-libmagick-dev-compat
 
       - run:
+          name: Services
+          command: sudo apt-get install -y phantomjs memcached mongodb
+
+      - run:
           name: Database connection libraries
           command: |
             sudo apt-get install -y libmysqlclient-dev
