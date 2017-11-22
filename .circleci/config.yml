@@ -41,7 +41,8 @@ jobs:
           name: Services
           command: |
             sudo apt-get install -y phantomjs memcached mongodb
-            sudo mongod
+            sudo mkdir /data/db
+            sudo numactl --interleave=all mongod
 
       - run:
           name: Database connection libraries
