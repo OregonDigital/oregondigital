@@ -2,66 +2,18 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.1.10-browsers
+      - image: lsat12357/ruby-phantomjs:0.0.1
         environment:
           - GI_TYPELIB_PATH: /usr/local/lib/girepository-1.0/
       - image: circleci/mongo:3
 
     working_directory: ~/app
     steps:
-      - run:
-          name: Libvips
-          command: |
-            echo "deb http://http.debian.net/debian jessie-backports main" | sudo tee -a /etc/apt/sources.list
-            sudo apt-get update -qq
-            sudo apt-get install -y pkg-config
-            sudo apt-get install -y python-software-properties software-properties-common
-            sudo apt-get install -y automake build-essential libgirepository1.0-dev \
-                                    gtk-doc-tools libglib2.0-dev libturbojpeg1-dev \
-                                    libpng12-dev libwebp-dev libtiff5-dev libexif-dev \
-                                    libgsf-1-dev  liblcms2-dev libxml2-dev swig \
-                                    libmagickcore-dev curl
-            sudo mkdir -p /opt/libvips
-            cd /opt/libvips
-            curl -L https://github.com/jcupitt/libvips/releases/download/v8.4.6/vips-8.4.6.tar.gz | sudo tar zx
-            cd /opt/libvips/vips-8.4.6
-            sudo ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw
-            sudo make
-            sudo make install
-            sudo ldconfig
-
-      - run:
-          name: Derivatives
-          command: |
-            sudo apt-get purge libreoffice*
-            sudo add-apt-repository -y ppa:libreoffice/ppa
-            sudo apt-get install -y poppler-utils poppler-data ghostscript libreoffice
-            sudo apt-get install -y libmagic-dev libmagickwand-dev ffmpeg libavcodec-extra57 libvorbis-dev
-            sudo apt-get install -y graphicsmagick graphicsmagick-libmagick-dev-compat
 
       - run:
           name: Services
           command: |
             sudo apt-get install -y memcached
-
-      - run:
-          name: Database connection libraries
-          command: |
-            sudo apt-get install -y libmysqlclient-dev
-            sudo apt-get install -y libsqlite3-dev
-
-      - run:
-          name: Nodejs for compiling assets
-          command: |
-            sudo apt-get install -y nodejs
-
-      - run:
-          name: Git
-          command: |
-            sudo apt-get install -y git
-      - run:
-          name: Timezone info for Rails
-          command: sudo apt-get install -y tzdata
 
       - run:
           name: Bundler
