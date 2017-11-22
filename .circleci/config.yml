@@ -2,9 +2,11 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.1.10
+      - image: circleci/ruby:2.1.10-browsers
         environment:
           - GI_TYPELIB_PATH: /usr/local/lib/girepository-1.0/
+      - image: circleci/mongo:3
+
     working_directory: ~/app
     steps:
       - run:
@@ -40,10 +42,7 @@ jobs:
       - run:
           name: Services
           command: |
-            sudo apt-get install -y phantomjs memcached mongodb
-            sudo mkdir -p /data/db
-            sudo mongod
-          background: true
+            sudo apt-get install -y memcached
 
       - run:
           name: Database connection libraries
