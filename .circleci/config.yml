@@ -89,7 +89,7 @@ jobs:
             RAILS_ENV=development bundle exec rake jetty:clean
             bundle exec rake jetty:config
             bundle exec rake jetty:start
-            sleep: 20
+            sleep 20
 
       - run:
          name: Rspec
