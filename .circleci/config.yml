@@ -5,7 +5,11 @@ jobs:
       - image: lsat12357/ruby-phantomjs:0.0.1
         environment:
           - GI_TYPELIB_PATH: /usr/local/lib/girepository-1.0/
+          - RAILS_ENV: test
+          - OREGONDIGITAL_SOLR_HOST: http://127.0.0.1:8983/solr/development
+          - OREGONDIGITAL_FEDORA_HOST: http://127.0.0.1:8983/fedora
       - image: circleci/mongo:3
+      - image: redis
 
     working_directory: ~/app
     steps:
@@ -18,6 +22,7 @@ jobs:
           name: Services
           command: |
             sudo apt-get install -y memcached
+            sudo service memcached restart
 
       - run:
           name: Bundler
@@ -27,34 +32,64 @@ jobs:
 
       - checkout
 
-      - run:
-          name: Install gems
-          command: bundle install
+      - restore_cache:
+          key: gemfile-{{ checksum "Gemfile.lock" }}
 
       - run:
+          name: Install gems
+          command: |
+            bundle install
+
+      - save_cache:
+          key: gemfile-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
           name: DB
-          command: bundle exec rake db:create db:migrate
+          command: bundle exec rake db:create db:migrate db:test:prepare
+
+      - run:
+          name: Jetty setup
+          command: |
+            mkdir -p tmp
+            sudo apt-get install unzip
+            bundle exec rake jetty:clean
+            bundle exec rake jetty:config
+
+      - run:
+          name: Jetty start
+          command: cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/oregondigital/jetty/solr -XX:MaxPermSize=128m -Xmx256m -jar start.jar
+          background: true
 
       - run:
           name: Sets content
           command: bundle exec rake sets:content:sync
 
       - run:
-          name: Jetty
+          name: Phantomjs
           command: |
-            RAILS_ENV=development bundle exec rake jetty:clean
-            bundle exec rake jetty:config
-            bundle exec rake jetty:start
-            sleep 20
+            cp /opt/phantomjs/bin/phantomjs /usr/bin/phantomjs
 
       - run:
-         name: Rspec
-         command: |
-           bundle exec rspec --profile 10 \
-                             --format RspecJunitFormatter \
-                             --out /tmp/test-results/rspec.xml \
-                             --format progress \
-                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+          name: Asset dir
+          command: |
+            mkdir -p media/thumbnails
+            ln -s media public/media
+            ln -s media/thumbnails public/thumbnails
+
+      - run:
+          name: Sleep
+          command: sleep 20
+
+      - run:
+          name: Rspec
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out /tmp/test-results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
       - store_artifacts:
           path: coverage
           destination: coverage
