@@ -65,6 +65,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.deprecation_stream = 'deprecations.txt'
+
   config.before(:each) do
     ActiveFedora::Base.delete_all
     Blacklight.solr.delete_by_query "*:*"

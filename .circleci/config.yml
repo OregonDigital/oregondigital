@@ -11,6 +11,7 @@ jobs:
       - image: circleci/mongo:3
       - image: redis
 
+    parallelism: 3
     working_directory: ~/app
     steps:
 
@@ -84,9 +85,9 @@ jobs:
       - run:
           name: Rspec
           command: |
-            bundle exec rspec --profile 10 \
-                              --format RspecJunitFormatter \
-                              --out /tmp/test-results/rspec.xml \
+            RUBYOPT="-W0" rspec --profile 10 \
+                              --format documentation \
+                              --out /tmp/test-results/output \
                               --format progress \
                               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
@@ -94,7 +95,7 @@ jobs:
           path: coverage
           destination: coverage
       - store_test_results:
-          path: /tmp/circle-junit
+          path: /tmp/test-results
   
           
 
