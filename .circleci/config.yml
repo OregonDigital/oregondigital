@@ -49,6 +49,9 @@ jobs:
           name: DB
           command: bundle exec rake db:create db:migrate db:test:prepare
 
+      - restore_cache:
+          key: fedora_conf-{{ checksum "fedora_conf/conf/development/fedora.fcfg" }}
+
       - run:
           name: Jetty setup
           command: |
@@ -57,14 +60,25 @@ jobs:
             bundle exec rake jetty:clean
             bundle exec rake jetty:config
 
+      - save_cache:
+          key: fedora_conf-{{ checksum "fedora_conf/conf/development/fedora.fcfg" }}
+          paths: jetty
+
       - run:
           name: Jetty start
           command: cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/oregondigital/jetty/solr -XX:MaxPermSize=128m -Xmx256m -jar start.jar
           background: true
 
+      - restore_cache:
+          key: set_content-{{ .Branch }}
+
       - run:
           name: Sets content
           command: bundle exec rake sets:content:sync
+
+      - save_cache:
+          key: set_content-{{ .Branch }}
+          paths: set_content
 
       - run:
           name: Phantomjs
@@ -80,7 +94,7 @@ jobs:
 
       - run:
           name: Sleep
-          command: sleep 20
+          command: sleep 10
 
       - run:
           name: Rspec
