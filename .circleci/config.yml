@@ -11,7 +11,6 @@ jobs:
       - image: circleci/mongo:3
       - image: redis
 
-    parallelism: 3
     working_directory: ~/app
     steps:
 
@@ -103,42 +102,42 @@ jobs:
                               --format documentation \
                               --out /tmp/test-results/test_controllers \
                               --format progress \
-                              $(circleci tests glob "spec/controllers/*_spec.rb" | circleci tests split )
+                             spec/controllers
             rspec --profile 10 \
                               --format documentation \
                               --out /tmp/test-results/test_decorators \
                               --format progress \
-                              $(circleci tests glob "spec/decorators/*_spec.rb" | circleci tests split )
+                              spec/decorators
             rspec --profile 10 \
                               --format documentation \
                               --out /tmp/test-results/test_features \
                               --format progress \
-                              $(circleci tests glob "spec/features/*_spec.rb" | circleci tests split )
+                              spec/features
             rspec --profile 10 \
                               --format documentation \
                               --out /tmp/test-results/test_helpers \
                               --format progress \
-                              $(circleci tests glob "spec/helpers/*_spec.rb" | circleci tests split )
+                              spec/helpers
             rspec --profile 10 \
                               --format documentation \
                               --out /tmp/test-results/test_jobs \
                               --format progress \
-                              $(circleci tests glob "spec/jobs/*_spec.rb" | circleci tests split )
+                              spec/jobs
             rspec --profile 10 \
                               --format documentation \
                               --out /tmp/test-results/test_lib \
                               --format progress \
-                              $(circleci tests glob "spec/lib/**_spec.rb" | circleci tests split )
+                              spec/lib
             rspec --profile 10 \
                               --format documentation \
                               --out /tmp/test-results/test_services \
                               --format progress \
-                              $(circleci tests glob "spec/services/**_spec.rb" | circleci tests split )
+                              spec/services
             rspec --profile 10 \
                               --format documentation \
                               --out /tmp/test-results/test_views \
                               --format progress \
-                              $(circleci tests glob "spec/views/*_spec.rb" | circleci tests split )
+                              spec/views
 
 
       - store_artifacts:
