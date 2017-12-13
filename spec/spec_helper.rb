@@ -65,7 +65,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  config.deprecation_stream = 'deprecations.txt'
+  config.deprecation_stream = 'log/deprecations.txt'
 
   config.before(:each) do
     ActiveFedora::Base.delete_all
