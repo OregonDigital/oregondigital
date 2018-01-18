@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20141027163535) do
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer  "user_id",                 null: false
-    t.string   "document_id", limit: 255
-    t.string   "title",       limit: 255
+    t.integer  "user_id",     null: false
+    t.string   "document_id"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user_type",   limit: 255
+    t.string   "user_type"
   end
 
   create_table "bulk_task_children", force: :cascade do |t|
@@ -27,29 +27,29 @@ ActiveRecord::Schema.define(version: 20141027163535) do
     t.text     "result"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",       limit: 255, default: "pending"
-    t.string   "target",       limit: 255
-    t.string   "ingested_pid", limit: 255
+    t.string   "status",       default: "pending"
+    t.string   "target"
+    t.string   "ingested_pid"
   end
 
   add_index "bulk_task_children", ["bulk_task_id"], name: "index_bulk_task_children_on_bulk_task_id"
 
   create_table "bulk_tasks", force: :cascade do |t|
-    t.string "status",      limit: 255, default: "new"
+    t.string "status",      default: "new"
     t.text   "directory"
     t.text   "asset_ids"
     t.text   "bulk_errors"
   end
 
   create_table "ingest_file_uploads", force: :cascade do |t|
-    t.string   "file",       limit: 255
+    t.string   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "ip_ranges", force: :cascade do |t|
-    t.string   "ip_start",   limit: 255
-    t.string   "ip_end",     limit: 255
+    t.string   "ip_start"
+    t.string   "ip_end"
     t.integer  "ip_start_i", limit: 5
     t.integer  "ip_end_i",   limit: 5
     t.integer  "role_id"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20141027163535) do
   add_index "ip_ranges", ["role_id"], name: "index_ip_ranges_on_role_id"
 
   create_table "roles", force: :cascade do |t|
-    t.string "name", limit: 255
+    t.string "name"
   end
 
   create_table "roles_users", id: false, force: :cascade do |t|
@@ -78,25 +78,25 @@ ActiveRecord::Schema.define(version: 20141027163535) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user_type",    limit: 255
+    t.string   "user_type"
   end
 
   add_index "searches", ["user_id"], name: "index_searches_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",    null: false
-    t.string   "encrypted_password",     limit: 255, default: "",    null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "guest",                              default: false
+    t.boolean  "guest",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -12,9 +12,9 @@
 #   * Fedora 21, 22
 #   * Amazon Linux 2014.09
 
-vips_version_minimum=7.40.0
-vips_version_latest_major_minor=7.42
-vips_version_latest_patch=3
+vips_version_minimum=8.4.0
+vips_version_latest_major_minor=8.4
+vips_version_latest_patch=5
 
 install_libvips_from_source() {
   echo "Compiling libvips $vips_version_latest_major_minor.$vips_version_latest_patch from source"
@@ -25,7 +25,7 @@ install_libvips_from_source() {
   else
     mkdir vips_install
     cd vips_install
-    curl -O http://www.vips.ecs.soton.ac.uk/supported/$vips_version_latest_major_minor/vips-$vips_version_latest_major_minor.$vips_version_latest_patch.tar.gz
+    curl -O http://www.vips.ecs.soton.ac.uk/supported/current/vips-$vips_version_latest_major_minor.$vips_version_latest_patch.tar.gz
     tar zvxf vips-$vips_version_latest_major_minor.$vips_version_latest_patch.tar.gz
     cd vips-$vips_version_latest_major_minor.$vips_version_latest_patch
     ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw $1
@@ -100,7 +100,7 @@ case $(uname -s) in
         trusty|utopic|qiana|rebecca)
           # Ubuntu 14, Mint 17
           echo "Installing libvips dependencies via apt-get"
-          apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff5-dev libexif-dev libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl
+          apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff5-dev libexif-dev libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl libgirepository1.0-dev
           install_libvips_from_source
           ;;
         precise|wheezy|maya)
@@ -108,7 +108,7 @@ case $(uname -s) in
           echo "Installing libvips dependencies via apt-get"
           add-apt-repository -y ppa:lyrasis/precise-backports
           apt-get update
-          apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff4-dev libexif-dev libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl
+          apt-get install -y automake build-essential libgirepository1.0-dev gtk-doc-tools libglib2.0-dev libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff4-dev libexif-dev libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore5 libmagickcore5-extra libmagickcore-dev curl
           install_libvips_from_source
           ;;
         *)

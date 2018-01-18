@@ -19,17 +19,20 @@ class Hydra::Derivatives::PyramidalProcessor < Hydra::Derivatives::Image
 
     # Can't build tiffs from memory with VIPS. =(
     output_path = Dir::Tmpname.create(["#{source_pid}",".tiff"], Hydra::Derivatives.temp_file_base){}
-    i = VIPS::Image.new(file.path)
+    i = Vips::Image.new_from_file(file.path)
     # Can't convert 16 bit tiffs the traditional way - make it a jpeg first.
-    if i.vtype.to_s == "RGB16" || i.vtype.to_s == "GREY16"
+    if i.interpretation == :rgb16 || i.interpretation == :grey16
       i = i.msb
     end
-    i.tiff(output_path,
+    i.tiffsave(output_path,
+      {
       :compression  => :jpeg,
-      :layout       => :tile,
-      :multi_res    => :pyramid,
-      :quality      => quality,
-      :tile_size    => dimensions
+      :tile       => true,
+      :pyramid    => true,
+      :Q      => quality,
+      :tile_width    => tile_size,
+      :tile_height => tile_size
+      }
     )
 
     raise "Unable to store pyramidal TIFF for #{source_pid}!" if !File.exist?(output_path)
