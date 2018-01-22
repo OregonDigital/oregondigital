@@ -1,6 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
+
+gem 'mail', '~> 2.5.5'
+gem 'nokogiri', '~> 1.6.4'
+gem 'rest-client', '~> 1.7.3'
+gem 'sprockets', '~> 2.11.3'
+gem 'yard', '~> 0.9.11'
+
 gem 'responders', '~> 2.0'
 gem 'blacklight'
 gem 'hydra-head', '6.4.0', :git => 'https://github.com/OregonDigital/hydra-head'
@@ -8,7 +15,7 @@ gem 'active-fedora', :git => 'https://github.com/OregonDigital/active_fedora'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'sass-rails',   '~> 4.0.0'
+gem 'sass-rails',   '~> 4.0.4'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 
