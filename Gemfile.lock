@@ -426,7 +426,7 @@ GEM
       activesupport (= 4.2.7.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.3.0)
+    rake (11.3.0)
     rdf (1.1.2.1)
     rdf-aggregate-repo (1.1.0)
       rdf (>= 1.1)
@@ -667,6 +667,7 @@ DEPENDENCIES
   puma
   qa!
   rails (~> 4.2.0)
+  rake (~> 11.3.0)
   rdf (~> 1.1.2.1)
   rdf-mongo!
   recursive-open-struct

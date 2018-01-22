@@ -7,6 +7,7 @@ gem 'nokogiri', '~> 1.6.4'
 gem 'rest-client', '~> 1.7.3'
 gem 'sprockets', '~> 2.11.3'
 gem 'yard', '~> 0.9.11'
+gem 'rake', '~> 11.3.0'
 
 gem 'responders', '~> 2.0'
 gem 'blacklight'
