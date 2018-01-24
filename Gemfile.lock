@@ -18,14 +18,14 @@ GIT
       faraday_middleware
 
 GIT
-  remote: git://github.com/terrellt/questioning_authority.git
-  revision: e54fa1e8079faa80e3e178e4184edff154756674
-  branch: feature/od-fixes
+  remote: git://github.com/oregondigital/questioning_authority.git
+  revision: 44bf7155ce3e5fb56c8643a1fcd6b737341b97e0
+  branch: fix/update_nokogiri
   specs:
     qa (0.0.3)
       activerecord-import (>= 0.4.0)
       deprecation
-      nokogiri (~> 1.6.0)
+      nokogiri (~> 1.8.1)
       rails (~> 4.0)
       rest-client
 
@@ -336,7 +336,7 @@ GEM
     mime-types (1.25.1)
     mini_magick (3.7.0)
       subexec (~> 0.2.1)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.3.0)
     minitest (5.11.1)
     mongo (1.9.2)
       bson (~> 1.9.2)
@@ -357,8 +357,8 @@ GEM
     netrc (0.7.7)
     newrelic_rpm (3.7.3.204)
     noid (0.7.1)
-    nokogiri (1.6.8.1)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     nom-xml (0.5.1)
       activesupport
       i18n

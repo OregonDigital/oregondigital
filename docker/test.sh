@@ -56,8 +56,15 @@ fi
 target=${@:-spec/}
 # Run tests!
 echo "Running 'bundle exec rspec $target'"
-$dctest run --rm test $target
-
+if [ $@ ]; then
+  $dctest run --rm test $@
+else
+  for specdir in spec/*; do
+    if [ -d $specdir ]; then
+      $dctest run --rm test $specdir
+    fi
+  done
+fi
 if [[ $quick == 0 ]]; then
   $dctest stop
 else

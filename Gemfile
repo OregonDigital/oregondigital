@@ -41,7 +41,7 @@ gem 'sparql-client'
 
 gem 'noid'
 gem 'hybag'
-gem 'qa', :github => "terrellt/questioning_authority", :branch => "feature/od-fixes"
+gem 'qa', :github => "oregondigital/questioning_authority", :branch => "fix/update_nokogiri"
 
 gem 'resque', '~>1.25.0'
 
