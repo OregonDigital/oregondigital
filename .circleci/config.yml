@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: lsat12357/ruby-phantomjs:0.0.1
+      - image: oregondigital/ruby-phantomjs:1.8.1
         environment:
           - GI_TYPELIB_PATH: /usr/local/lib/girepository-1.0/
           - RAILS_ENV: test
