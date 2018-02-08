@@ -5,6 +5,8 @@ describe Audio do
   before do
     if !Dir.exist? "media/default-thumbs"
       Dir.mkdir "media/default-thumbs"
+    end
+    if !File.exist? "media/default-thumbs/audio.jpg"
       FileUtils.cp("#{ROOT}/spec/fixtures/fixture_audio.jpg", "#{ROOT}/media/default-thumbs/audio.jpg" )
     end
   end
