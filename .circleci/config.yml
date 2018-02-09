@@ -90,7 +90,9 @@ jobs:
             mkdir -p media/thumbnails
             ln -s media public/media
             ln -s media/thumbnails public/thumbnails
-
+            mkdir -p media/default-thumbs
+            cp spec/fixtures/fixture_audio.jpg media/default-thumbs/audio.jpg
+            cp spec/fictures/fixture_cpd.jpg media/default-thumbs/cpd.jpg
       - run:
           name: Sleep
           command: sleep 10
