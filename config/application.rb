@@ -68,5 +68,9 @@ module Oregondigital
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.middleware.use ::ConnegMiddleware
+
+
+    # Remove default for X-Frame-Options to allow pages to display in iframes
+    config.action_dispatch.default_headers.delete "X-Frame-Options"
   end
 end
