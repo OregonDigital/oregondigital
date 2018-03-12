@@ -28,7 +28,6 @@ services:
       - data-derby:/opt/jetty/fedora/default/derby
       - ./media:/oregondigital/media
   workers:
-    image: oregondigital/od1-dev
     build:
       dockerfile: docker/Dockerfile-dev
       context: .
@@ -55,7 +54,6 @@ services:
 
   # Front-end stuff
   web:
-    image: oregondigital/od1-dev
     build:
       dockerfile: docker/Dockerfile-dev
       context: .
@@ -74,7 +72,6 @@ services:
     env_file:
       - docker/web-variables.env
   resquehead:
-    image: oregondigital/od1-dev
     build:
       dockerfile: docker/Dockerfile-dev
       context: .
