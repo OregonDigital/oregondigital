@@ -481,12 +481,6 @@ describe GenericAsset, :resque => true do
     context "when it has one asset" do
       before do
         generic_asset.od_content << asset_2
-        if !Dir.exist? "media/default-thumbs"
-          Dir.mkdir "media/default-thumbs"
-        end
-        if !File.exist? "media/default-thumbs/cpd.jpg"
-          FileUtils.cp("#{ROOT}/spec/fixtures/fixture_cpd.jpg", "#{ROOT}/media/default-thumbs/cpd.jpg" )
-        end
       end
       context "and it's persisted" do
         before do
