@@ -81,7 +81,7 @@ class GenericAsset < ActiveFedora::Base
 
   def compound_thumb
     if compound?
-      ::Image.add_default_icon('cpd.jpg', pid)
+      ::Image.add_default_icon(APP_CONFIG['default_thumbs']['cpd_icon'], pid)
       workflowMetadata.has_thumbnail = true
     end
   end

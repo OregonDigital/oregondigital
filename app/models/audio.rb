@@ -5,7 +5,7 @@ class Audio < GenericAsset
   makes_derivatives do |obj|
     obj.create_ogg
     obj.workflowMetadata.has_thumbnail = true
-    ::Image.add_default_icon('audio.jpg', obj.pid)
+    ::Image.add_default_icon(APP_CONFIG['default_thumbs']['audio_icon'], obj.pid)
     obj.save
   end
 

@@ -69,14 +69,10 @@ class Image < GenericAsset
       "medium"
     end
 
-    def default_icon_base
-      APP_CONFIG.try(:default_icon_path) || Rails.root.join("media", "default-thumbs")
-    end
-
     def add_default_icon(icon, pid)
       path = thumbnail_location(pid)
       FileUtils.mkdir_p(File.dirname(path))
-      FileUtils.cp(File.join(default_icon_base, icon), path)
+      FileUtils.cp(File.join(APP_CONFIG['default_thumbs']['directory'], icon), path)
     end
   end
 

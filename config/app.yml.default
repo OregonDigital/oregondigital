@@ -28,3 +28,9 @@ default_url_host: http://localhost:3000
 geonames:
   prefix: http://sws.geonames.org/
   username: oregondigital
+
+# Add default thumb icons
+default_thumbs:
+  directory: "media/default-thumbs"
+  audio_icon: "audio.jpg"
+  cpd_icon: "cpd.jpg"
