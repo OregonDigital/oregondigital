@@ -248,13 +248,8 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     fastercsv (1.5.5)
     ffi (1.9.0)
-    glib2 (3.1.8)
-      native-package-installer (>= 1.0.3)
-      pkg-config (>= 1.2.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    gobject-introspection (3.1.8)
-      glib2 (= 3.1.8)
     haml (4.0.5)
       tilt
     highline (1.7.8)
@@ -343,8 +338,7 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.13.1)
     multipart-post (2.0.0)
-    mysql2 (0.3.21)
-    native-package-installer (1.0.4)
+    mysql2 (0.3.14)
     net-http-persistent (2.9.4)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -373,7 +367,6 @@ GEM
     orm_adapter (0.5.0)
     parslet (1.5.0)
       blankslate (~> 2.0)
-    pkg-config (1.2.7)
     poltergeist (1.5.1)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -508,8 +501,7 @@ GEM
       rspec-expectations (~> 2.99.0)
       rspec-mocks (~> 2.99.0)
     ruby-filemagic (0.4.2)
-    ruby-vips (1.0.6)
-      gobject-introspection (~> 3.1)
+    ruby-vips (0.3.6)
     rubydora (1.7.4)
       activemodel
       activesupport
@@ -653,7 +645,7 @@ DEPENDENCIES
   mail_form
   metadata-ingest-form (~> 2.4)
   mini_magick
-  mysql2 (~> 0.3.20)
+  mysql2
   newrelic_rpm
   noid
   nokogiri (~> 1.6.4)
@@ -679,8 +671,13 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   rspec_junit_formatter!
   ruby-filemagic (~> 0.4.2)
+<<<<<<< HEAD
   ruby-vips (~> 1.0.6)
   sass-rails (~> 4.0.4)
+=======
+  ruby-vips (~> 0.3.6)
+  sass-rails (~> 4.0.0)
+>>>>>>> parent of bc78f22... Fix/update vips (#1210)
   shoulda
   simple_form (~> 3.0.0)
   sparql
@@ -695,4 +692,4 @@ DEPENDENCIES
   yard (~> 0.9.11)
 
 BUNDLED WITH
-   1.16.0
+   1.11.2

@@ -16,7 +16,6 @@ RSpec.describe MigrateCompoundsJob do
         list[0].title = "Test"
         graph_resource << list[0]
         graph_resource << [graph_resource.rdf_subject, OregonDigital::Vocabularies::OREGONDIGITAL.contents, list.rdf_subject]
-        resource.descMetadata.od_content = list
         resource.save
         Blacklight.solr.add resource.to_solr.merge(:desc_metadata__od_content_references_ssim => [resource_2.resource.rdf_subject.to_s, resource_3.resource.rdf_subject.to_s])
         Blacklight.solr.commit

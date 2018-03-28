@@ -10,10 +10,10 @@
 # - VIPS install will need to be figured out for a newer Ubuntu
 # - Will need to test derivative generation for all types since CLI changes sometimes happen
 # - ffmpeg will need to be replaced, and libavcode-extra-53 definitely has to be replaced
-FROM ubuntu:16.04
+FROM ubuntu:12.04
 MAINTAINER Jeremy Echols <jechols@uoregon.edu>
 
-#apt won't find some libs if this isn't run
+# apt won't find some libs if this isn't run
 RUN apt-get update
 
 # Dependencies for vips installer
@@ -21,17 +21,14 @@ RUN apt-get install -y pkg-config
 RUN apt-get install -y python-software-properties software-properties-common
 
 # Vips!  This is very specific to Ubuntu 12.04, pulled out of vips-install.sh
-#RUN add-apt-repository -y ppa:lyrasis/precise-backports
-RUN apt-get install -y automake build-essential libgirepository1.0-dev  \
-                       gtk-doc-tools libglib2.0-dev \
-                       libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff5-dev libexif-dev \
+RUN add-apt-repository -y ppa:lyrasis/precise-backports
+RUN apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev \
+                       libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff4-dev libexif-dev \
                        libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl
-
-RUN  mkdir -p /opt/libvips
+RUN mkdir -p /opt/libvips
 WORKDIR /opt/libvips
-RUN curl -L https://github.com/jcupitt/libvips/releases/download/v8.4.6/vips-8.4.6.tar.gz | tar zx
-WORKDIR /opt/libvips/vips-8.4.6
-ENV GI_TYPELIB_PATH /usr/local/lib/girepository-1.0/
+RUN curl http://www.vips.ecs.soton.ac.uk/supported/7.42/vips-7.42.3.tar.gz | tar zx
+WORKDIR /opt/libvips/vips-7.42.3
 RUN ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw
 RUN make
 RUN make install
@@ -39,10 +36,10 @@ RUN ldconfig
 
 # Various derivative libs
 RUN apt-get purge libreoffice*
-RUN  add-apt-repository -y ppa:libreoffice/ppa
+RUN add-apt-repository -y ppa:libreoffice/ppa
 RUN apt-get install -y poppler-utils poppler-data ghostscript libreoffice
-RUN apt-get install -y libmagic-dev libmagickwand-dev ffmpeg libavcodec-ffmpeg-extra56 libvorbis-dev
-RUN apt-get install -y graphicsmagick graphicsmagick-libmagick-dev-compat
+RUN apt-get install -y libmagic-dev libmagickwand-dev ffmpeg libvorbis-dev libavcodec-extra-53
+RUN apt-get install -y graphicsmagick
 
 # Database connection libraries
 RUN apt-get install -y libmysqlclient-dev
@@ -53,8 +50,6 @@ RUN apt-get install -y nodejs
 
 # We need git for all our github-hosted gems
 RUN apt-get install -y git
-# Rails requires this
-RUN apt-get install -y tzdata
 
 # Dependencies for Ruby
 RUN apt-get install -y libssl-dev libreadline-dev
@@ -64,10 +59,10 @@ RUN apt-get install -y libssl-dev libreadline-dev
 # Make sure this comes after the big downloads, as it's more likely we'll
 # change our ruby version than, say, our vips version - at least until we deal
 # with a major change (like OS) that would require a ruby rebuild anyway
-RUN  mkdir -p /opt/ruby
+RUN mkdir -p /opt/ruby
 WORKDIR /opt/ruby
-RUN curl https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.3.tar.gz | tar zx
-WORKDIR /opt/ruby/ruby-2.1.3
+RUN curl https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.5.tar.gz | tar zx
+WORKDIR /opt/ruby/ruby-2.2.5
 RUN ./configure
 RUN make
 RUN make install
@@ -93,10 +88,8 @@ RUN /sync-sets.sh
 RUN cd / && git clone --depth 1 https://github.com/OregonDigital/oregondigital.git $INSTALL_PATH
 
 # Install gems
-
-RUN bash -lc 'PATH="/usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16:$PATH" gem install rmagick -v "2.13.2"'
 RUN bundle install --without development test
-RUN bundle update --source=mysql2 --major
+
 # Link the set content repo inside OD
 RUN ln -s /opt/od_set_content /oregondigital/set_content
 COPY docker/link-set-content.sh /link-set-content.sh

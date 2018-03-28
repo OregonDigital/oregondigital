@@ -15,7 +15,6 @@ RSpec.describe OregonDigital::RDF::ComplexGraphConverter do
       list[0].title = "Test"
       graph_resource << list[0]
       graph_resource << [graph_resource.rdf_subject, OregonDigital::Vocabularies::OREGONDIGITAL.contents, list.rdf_subject]
-      resource.descMetadata.od_content = list
       resource.save
     end
     describe "#run" do

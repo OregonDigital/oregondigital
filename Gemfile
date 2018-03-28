@@ -45,7 +45,7 @@ gem 'qa', :github => "oregondigital/questioning_authority", :branch => "fix/upda
 
 gem 'resque', '~>1.25.0'
 
-gem "ruby-vips", '~>1.0.6'
+gem "ruby-vips", '~>0.3.6'
 gem 'rmagick', '~>2.13.2'
 
 gem "devise", "~> 3.1"
@@ -87,7 +87,7 @@ gem 'draper'
 gem 'metadata-ingest-form', '~>2.4'
 
 # mysql gem
-gem 'mysql2', '~>0.3.20'
+gem 'mysql2'
 
 # Unicorn for web server
 gem 'puma'

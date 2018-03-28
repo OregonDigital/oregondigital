@@ -43,7 +43,6 @@ describe Image do
       it 'should populate the external pyramidal datastream' do
         expect(image.pyramidal.dsLocation).to eq("file://" + image.pyramidal_tiff_location)
         expect(Image.find(image.pid).pyramidal.dsLocation).to eq("file://#{image.pyramidal_tiff_location}")
-        expect(image.pyramidal.content).not_to be_blank
       end
       it 'should save the external pyramidal datastream' do
         mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(image.pyramidal_tiff_location).split(';')[0]
