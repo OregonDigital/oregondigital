@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.2.0'
 
 gem 'mail', '~> 2.5.5'
-gem 'nokogiri', '~> 1.6.4'
+gem 'nokogiri', '~> 1.8.1'
 gem 'rest-client', '~> 1.7.3'
 gem 'sprockets', '~> 2.11.3'
 gem 'yard', '~> 0.9.11'
@@ -45,7 +45,7 @@ gem 'qa', :github => "oregondigital/questioning_authority", :branch => "fix/upda
 
 gem 'resque', '~>1.25.0'
 
-gem "ruby-vips", '~>1.0.6'
+gem "ruby-vips", '~>2.0.0'
 gem 'rmagick', '~>2.13.2'
 
 gem "devise", "~> 3.1"

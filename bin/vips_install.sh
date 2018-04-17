@@ -133,8 +133,6 @@ case $(uname -s) in
           echo "Installing libvips dependencies via yum"
           yum groupinstall -y "Development Tools"
           yum install -y gtk-doc libxml2-devel libjpeg-turbo-devel libpng-devel libtiff-devel libexif-devel libgsf-devel lcms-devel ImageMagick-devel curl
-          yum install -y http://li.nux.ro/download/nux/dextop/el6/x86_64/nux-dextop-release-0-2.el6.nux.noarch.rpm
-          yum install -y --enablerepo=nux-dextop gobject-introspection-devel
           yum install -y http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
           yum install -y --enablerepo=remi libwebp-devel
           install_libvips_from_source "--prefix=/usr"
