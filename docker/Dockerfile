@@ -20,18 +20,16 @@ RUN apt-get update
 RUN apt-get install -y pkg-config
 RUN apt-get install -y python-software-properties software-properties-common
 
-# Vips!  This is very specific to Ubuntu 12.04, pulled out of vips-install.sh
-#RUN add-apt-repository -y ppa:lyrasis/precise-backports
-RUN apt-get install -y automake build-essential libgirepository1.0-dev  \
+# Vips!
+RUN apt-get install -y automake build-essential \
                        gtk-doc-tools libglib2.0-dev \
                        libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff5-dev libexif-dev \
                        libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl
 
 RUN  mkdir -p /opt/libvips
 WORKDIR /opt/libvips
-RUN curl -L https://github.com/jcupitt/libvips/releases/download/v8.4.6/vips-8.4.6.tar.gz | tar zx
-WORKDIR /opt/libvips/vips-8.4.6
-ENV GI_TYPELIB_PATH /usr/local/lib/girepository-1.0/
+RUN curl -L https://github.com/jcupitt/libvips/releases/download/v8.6.3/vips-8.6.3.tar.gz | tar zx
+WORKDIR /opt/libvips/vips-8.6.3
 RUN ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw
 RUN make
 RUN make install

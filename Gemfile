@@ -45,7 +45,7 @@ gem 'qa', :github => "oregondigital/questioning_authority", :branch => "fix/upda
 
 gem 'resque', '~>1.25.0'
 
-gem "ruby-vips", '~>2.0.0'
+gem "ruby-vips", '~>2.0.11'
 gem 'rmagick', '~>2.13.2'
 
 gem "devise", "~> 3.1"
