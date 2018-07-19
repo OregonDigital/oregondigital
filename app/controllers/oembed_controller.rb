@@ -1,9 +1,9 @@
 class OembedController < ApplicationController
 
   def traffic_control
-    find_pid = /oregondigital:[0-9a-z]{9}/.match params[:url]
-    return render_404 unless !find_pid.blank?
-    pid = find_pid.to_s
+    extract_pid(params[:url])
+    return render_400 unless !pid.blank?
+    @format = params[:format] || "json"
 
     begin
       return render_401 unless is_public
@@ -14,9 +14,10 @@ class OembedController < ApplicationController
         return other_responder
       end
 
-    rescue
+    rescue  OembedSolrError
       render_404
-    end
+    rescue
+      render_500
   end
 
   def image_responder(format)
@@ -30,14 +31,33 @@ class OembedController < ApplicationController
         "height" => img['height'], 
         "url" => "#{APP_CONFIG['default_url_host']}#{location}"
       }
-      if format == 'json'
-        json_response(data)
-      else
-        other_response
-      end
+      formatter(data)
     rescue
       raise
     end
+  end
+
+  def pid
+    @pid
+  end
+
+  def extract_pid(url)
+    find_pid = /oregondigital:[0-9a-z]{9}/.match url
+    @pid = find_pid.to_s
+  end
+
+  def format
+    @format
+  end
+
+  def formatter(data)
+    if format == 'json'
+      json_response(data)
+    else
+      other_response
+    end
+    rescue
+      raise
   end
 
   def other_responder
@@ -55,6 +75,10 @@ class OembedController < ApplicationController
 
   def is_image
     solr_doc["has_model_ssim"].include? "Image"
+  end
+
+  def render_400
+    render :text => "Bad Request", :status => 400
   end
 
   def render_404
