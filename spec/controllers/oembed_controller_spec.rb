@@ -4,7 +4,15 @@ describe OembedController, :resque => true do
 
   describe '#traffic_control' do
     context 'when given a request' do
-      context 'if asset is nil' do
+      context 'but request is garbage' do
+        before do
+          visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/blah")
+        end
+        it 'should return a 400' do
+          expect(page.status_code).to eq(400)
+        end
+      end
+      context 'if there is no solr doc' do
         before do
           visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/oregondigital:abc123456")
         end
@@ -17,7 +25,7 @@ describe OembedController, :resque => true do
       let(:generic_asset) { FactoryGirl.build(:generic_asset) }
       before do
         generic_asset.read_groups = ["admin"]
-        generic_asset.save
+        generic_asset.save!
         visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/#{generic_asset.pid}")
       end
       it 'should return a 401' do
@@ -25,12 +33,12 @@ describe OembedController, :resque => true do
       end
     end
     context 'if asset is not supported type' do
-      let(:document) { Document.new }
+      let(:audio) { Audio.new }
       before do
-        document.title = "my doc"
-        document.review
-        document.save
-        visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/#{document.pid}")
+        audio.title = "my doc"
+        audio.review
+        audio.save
+        visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/#{audio.pid}")
       end
       it 'should return a 501' do
         expect(page.status_code).to eq(501)
@@ -62,6 +70,29 @@ describe OembedController, :resque => true do
         end
         it 'should have content' do
           expect(page.body).to include("photo")
+        end
+      end
+    end
+    context 'if asset is a doc' do
+      let(:document) do
+        d = FactoryGirl.create(:document, :with_pdf_datastream)
+        d.create_derivatives
+        d
+      end
+      context 'and hitting the oembed provider' do
+        before do
+          visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/#{document.pid}")
+        end
+        it 'should have content' do
+          expect(page.body).to include("embedded_reader")
+        end
+      end
+      context 'and hitting the reader' do
+        before do
+          visit("#{APP_CONFIG['default_url_host']}/embedded_reader/#{document.pid}")
+        end
+        it 'should have content' do
+          expect(page.body).to include("BookReader")
         end
       end
     end

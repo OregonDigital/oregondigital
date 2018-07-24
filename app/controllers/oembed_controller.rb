@@ -4,23 +4,20 @@ class OembedController < ApplicationController
     extract_pid(params[:url])
     return render_400 unless !pid.blank?
     @format = params[:format] || "json"
-
-    begin
-      return render_401 unless is_public
-      
-      if is_image
-        return image_responder(params[:format])
-      else
-        return other_responder
-      end
-
+    return render_401 unless is_public
+    item_type = solr_doc["active_fedora_model_ssi"].downcase
+    if item_types.include? item_type
+      send(item_type)
+    else
+      other_responder
+    end
     rescue  OembedSolrError
       render_404
     rescue
       render_500
   end
 
-  def image_responder(format)
+  def image
     location = "/media/medium-images/#{loc}/#{modified_pid}.jpg"
     begin
       img = MiniMagick::Image.open(location)
@@ -35,6 +32,67 @@ class OembedController < ApplicationController
     rescue
       raise
     end
+  end
+
+  def document
+    html = "<iframe src=\"#{APP_CONFIG['default_url_host']}/embedded_reader/#{pid}\"></iframe>"
+    data = {
+      "version" => "1.0",
+      "type" => "rich",
+      "html" => html,
+      "width" => solr_doc["leaf_metadata__pages__size__width_ssm"].first,
+      "height" => solr_doc["leaf_metadata__pages__size__height_ssm"].first
+    }
+    formatter(data)
+    rescue
+      raise
+  end
+
+  def reader
+    @pid = params[:id]
+    @data_hash = data_hash
+    render "oembed/reader", :layout => false
+    rescue OembedSolrError
+      render_404
+    rescue
+      render_500
+  end
+
+  def data_hash
+    {
+    :pages => pages,
+    :title => title,
+    :root => root,
+    :pid => pid
+    }
+    rescue
+      raise
+  end
+
+  def pages
+    json['datastreams'].keys.select{|key, value| key.start_with?("page")}.size
+    rescue
+      raise
+  end
+
+  def title
+    solr_doc["desc_metadata__title_ssm"].first
+    rescue
+      raise
+  end
+
+  def modified_pid
+    pid.gsub(":","-")
+  end
+
+  def root
+    "/media/document_pages/#{loc}/#{modified_pid}"
+    rescue
+      raise
+  end
+
+  def item_types
+    ["image", "document"]
   end
 
   def pid
@@ -71,10 +129,8 @@ class OembedController < ApplicationController
   def json_response (data)
     response.headers['Content-Type'] = 'application/json'
     render body: JSON.generate(data)
-  end
-
-  def is_image
-    solr_doc["has_model_ssim"].include? "Image"
+    rescue
+      raise
   end
 
   def render_400
@@ -87,6 +143,10 @@ class OembedController < ApplicationController
 
   def render_401
     render :text => "Not Authorized", :status => 401
+  end
+
+  def render_500
+    render :text => "Internal Server Error", :status => 500
   end
 
   def render_501
