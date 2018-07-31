@@ -294,11 +294,7 @@ function BookReader() {
 
         // We init the nav bar after the params processing so that the nav slider knows where
         // it should start (doesn't jump after init)
-        if (this.ui == "embed") {
-            this.initEmbedNavbar();
-        } else {
-            this.initNavbar();
-        }
+        this.initNavbar();
         this.bindNavigationHandlers();
 
         // Set strings in the UI
@@ -3382,26 +3378,6 @@ function BookReader() {
          changeArrow();
          $('.BRnavCntl').delay(3000).animate({height:'43px'}).delay(1000).animate({opacity:.25},1000);
          */
-    }
-
-// initEmbedNavbar
-//______________________________________________________________________________
-// Initialize the navigation bar when embedded
-    BookReader.prototype.initEmbedNavbar = function() {
-        var thisLink = (window.location + '').replace('?ui=embed',''); // IA-specific
-
-        $('#BookReader').append(
-            '<div id="BRnav">'
-                +   "<span id='BRtoolbarbuttons'>"
-                +         '<button class="BRicon full"></button>'
-                +         '<button class="BRicon book_left"></button>'
-                +         '<button class="BRicon book_right"></button>'
-                +   "</span>"
-                +   "<span></span>"// <a class='logo' href='" + this.logoURL + "' 'target='_blank' ></a></span>"
-                +   "<span id='BRembedreturn'><a href='" + thisLink + "' target='_blank' ></a></span>"
-                + '</div>'
-        );
-        $('#BRembedreturn a').text(this.bookTitle);
     }
 
     BookReader.prototype.updateNavPageNum = function(index) {
