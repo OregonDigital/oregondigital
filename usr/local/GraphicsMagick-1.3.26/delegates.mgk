@@ -76,27 +76,27 @@
   <delegate decode="dot" command='"dot" -Tps "%i" -o "%o"' />
   <delegate decode="dvi" command='"dvips" -q -o "%o" "%i"' />
   <delegate decode="edit" stealth="True" command='"xterm" -title "Edit Image Comment" -e vi "%o"' />
-  <delegate decode="eps" encode="pdf" mode="bi" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pdfwrite "-sOutputFile=%o" -- "%i" -c quit' />
-  <delegate decode="eps" encode="ps" mode="bi" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pswrite "-sOutputFile=%o" -- "%i" -c quit' />
+  <delegate decode="eps" encode="pdf" mode="bi" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pdfwrite "-sOutputFile=%o" -- "%i" -c quit' />
+  <delegate decode="eps" encode="ps" mode="bi" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pswrite "-sOutputFile=%o" -- "%i" -c quit' />
   <delegate decode="fig" command='"fig2dev" -L ps "%i" "%o"' />
 
   <!-- Read monochrome Postscript, EPS, and PDF  -->
-  <delegate decode="gs-mono" stealth="True" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pbmraw -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
+  <delegate decode="gs-mono" stealth="True" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pbmraw -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
 
   <!-- Read grayscale Postscript, EPS, and PDF  -->
-  <delegate decode="gs-gray" stealth="True" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pgmraw -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
+  <delegate decode="gs-gray" stealth="True" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pgmraw -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
 
   <!-- Read colormapped Postscript, EPS, and PDF  -->
-  <delegate decode="gs-palette" stealth="True" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pcx256 -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
+  <delegate decode="gs-palette" stealth="True" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pcx256 -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
 
   <!-- Read color Postscript, EPS, and PDF  -->
-  <delegate decode="gs-color" stealth="True" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=ppmraw -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
+  <delegate decode="gs-color" stealth="True" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=ppmraw -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
 
   <!-- Read color+alpha Postscript, EPS, and PDF  -->
-  <delegate decode="gs-color+alpha" stealth="True" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pngalpha -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
+  <delegate decode="gs-color+alpha" stealth="True" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pngalpha -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
 
   <!-- Read CMYK Postscript, EPS, and PDF  -->
-  <delegate decode="gs-cmyk" stealth="True" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE= -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
+  <delegate decode="gs-cmyk" stealth="True" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE= -dTextAlphaBits=%u -dGraphicsAlphaBits=%u -r%s %s "-sOutputFile=%s" -- "%s" -c quit' />
 
   <delegate decode="hpg" command='"hp2xx" -q -m eps -f `basename "%o"` "%i" && /bin/mv -f `basename "%o"` "%o"' />
   <delegate decode="hpgl" command='"hp2xx" -q -m eps -f `basename "%o"` "%i" && /bin/mv -f `basename "%o"` "%o"' />
@@ -111,15 +111,15 @@
   <!-- Write MPEG file using mpeg2encode -->
   <delegate encode="mpeg-encode" stealth="True" command='"mpeg2encode" "%i" "%o"' />
   <!-- Convert PDF to Encapsulated Poscript using Ghostscript -->
-  <delegate decode="pdf" encode="eps" mode="bi" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=epswrite "-sOutputFile=%o" -- "%i" -c quit' />
+  <delegate decode="pdf" encode="eps" mode="bi" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=epswrite "-sOutputFile=%o" -- "%i" -c quit' />
   <!-- Convert PDF to Postcript using Ghostscript -->
-  <delegate decode="pdf" encode="ps" mode="bi" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pswrite "-sOutputFile=%o" -- "%i" -c quit' />
+  <delegate decode="pdf" encode="ps" mode="bi" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pswrite "-sOutputFile=%o" -- "%i" -c quit' />
   <!-- Convert PNM file to IFF ILBM format using ppmtoilbm -->
   <delegate decode="pnm" encode="ilbm" mode="encode" command='"ppmtoilbm" -24if "%i" > "%o"' />
   <delegate decode="pnm" encode="launch" mode="encode" command='"gimp" "%i"' />
   <delegate decode="pnm" encode="win" mode="encode" command='"gm" display -immutable "%i"' />
-  <delegate decode="ps" encode="eps" mode="bi" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=epswrite "-sOutputFile=%o" -- "%i" -c quit' />
-  <delegate decode="ps" encode="pdf" mode="bi" command='"gs" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pdfwrite "-sOutputFile=%o" -- "%i" -c quit' />
+  <delegate decode="ps" encode="eps" mode="bi" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=epswrite "-sOutputFile=%o" -- "%i" -c quit' />
+  <delegate decode="ps" encode="pdf" mode="bi" command='"/usr/local/deploy-rails/bin/gs-871" -q -dBATCH -dSAFER -dMaxBitmap=50000000 -dNOPAUSE -sDEVICE=pdfwrite "-sOutputFile=%o" -- "%i" -c quit' />
   <delegate decode="ps" encode="print" mode="encode" command='"/usr/bin/lpr" "%i"' />
   <!-- Read HTML file  -->
   <delegate decode="shtml" command='"html2ps" -U -o "%o" "%i"' />
