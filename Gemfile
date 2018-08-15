@@ -107,14 +107,15 @@ gem 'blacklight_advanced_search', '~> 2.2.0'
 # Send email from form
 gem 'mail_form'
 
-gem 'newrelic_rpm'
-
 # Dalli for memcache
 gem 'dalli'
 
 # Resque-retry for retrying resque jobs
 gem 'resque-retry'
 gem 'rspec-rails', '~>2.0'
+
+# DataDog for application performance monitoring
+gem 'ddtrace'
 
 group :development do
   # Spring as Rails preloader
