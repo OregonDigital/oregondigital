@@ -9,7 +9,7 @@ Overview
 -----
 Current production Oregon Digital running Fedora 3 and Hydra 6.
 
-New development is focused on Oregon Digital 2: http://github.com/OregonDigital/oregondigital_2
+New development is focused on Oregon Digital 2: http://github.com/OregonDigital/OD2
 
 Connected projects:
   - [csv2bag](https://github.com/OregonDigital/csv2bag) - bulk ingest from CSV
