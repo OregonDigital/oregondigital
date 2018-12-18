@@ -207,6 +207,8 @@ GEM
     daemons (1.1.9)
     dalli (2.7.2)
     database_cleaner (1.2.0)
+    ddtrace (0.14.0)
+      msgpack
     debugger-linecache (1.2.0)
     deep_merge (1.0.0)
     deprecation (0.1.0)
@@ -336,6 +338,7 @@ GEM
     mongo (1.9.2)
       bson (~> 1.9.2)
     mono_logger (1.1.0)
+    msgpack (1.2.4)
     multi_json (1.13.1)
     multipart-post (2.0.0)
     mysql2 (0.3.21)
@@ -349,7 +352,6 @@ GEM
       net-ssh (>= 2.6.5)
     netaddr (1.5.0)
     netrc (0.7.7)
-    newrelic_rpm (3.7.3.204)
     noid (0.7.1)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -626,6 +628,7 @@ DEPENDENCIES
   coveralls
   dalli
   database_cleaner
+  ddtrace
   devise (~> 3.1)
   devise-guests (~> 0.3)
   docsplit
@@ -647,7 +650,6 @@ DEPENDENCIES
   metadata-ingest-form (~> 2.4)
   mini_magick
   mysql2 (~> 0.3.20)
-  newrelic_rpm
   noid
   nokogiri (~> 1.8.1)
   oai!
@@ -688,4 +690,4 @@ DEPENDENCIES
   yard (~> 0.9.11)
 
 BUNDLED WITH
-   1.16.1
+   1.16.3
