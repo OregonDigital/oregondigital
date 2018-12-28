@@ -81,6 +81,12 @@ GIT
       hydra-core (= 6.4.0)
       rails (>= 3.2.6)
 
+GIT
+  remote: https://github.com/nahi/logger
+  revision: 9f87939b71938ecc095fe2cc0408eb724c4b310f
+  specs:
+    logger (1.2.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -314,7 +320,6 @@ GEM
       rdf-turtle (>= 1.1.0)
       sparql (>= 1.1.2)
       sparql-client (>= 1.1.0)
-    logger (1.2.8)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -645,6 +650,7 @@ DEPENDENCIES
   jquery-fileupload-rails (~> 0.4.1)
   jquery-rails (~> 3.1.4)
   jquery-ui-rails
+  logger (~> 1.2.8)!
   mail (~> 2.5.5)
   mail_form
   metadata-ingest-form (~> 2.4)
@@ -690,4 +696,4 @@ DEPENDENCIES
   yard (~> 0.9.11)
 
 BUNDLED WITH
-   1.16.3
+   1.17.3
