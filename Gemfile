@@ -135,6 +135,8 @@ group :development, :test do
 
   gem 'sqlite3', '~>1.3.7'
   gem 'jettywrapper'
+  gem 'logger', '~> 1.2.8', :git => 'https://github.com/nahi/logger'
+
 
   # Form testing
   gem 'capybara'

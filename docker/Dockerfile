@@ -28,7 +28,7 @@ RUN apt-get install -y automake build-essential \
 
 RUN  mkdir -p /opt/libvips
 WORKDIR /opt/libvips
-RUN curl -L https://github.com/jcupitt/libvips/releases/download/v8.6.3/vips-8.6.3.tar.gz | tar zx
+RUN curl -L https://github.com/libvips/libvips/releases/download/v8.6.3/vips-8.6.3.tar.gz | tar zx
 WORKDIR /opt/libvips/vips-8.6.3
 RUN ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw
 RUN make
