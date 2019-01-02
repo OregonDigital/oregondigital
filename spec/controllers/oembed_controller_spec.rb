@@ -91,8 +91,8 @@ describe OembedController, :resque => true do
         before do
           visit("#{APP_CONFIG['default_url_host']}/embedded_reader/#{document.pid}")
         end
-        it 'should have content' do
-          expect(page.body).to include("BookReader")
+        it 'should be a success' do
+          expect(page.status_code).to eq(200)
         end
       end
     end
