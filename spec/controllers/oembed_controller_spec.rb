@@ -8,8 +8,8 @@ describe OembedController, :resque => true do
         before do
           visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/blah")
         end
-        it 'should return a 400' do
-          expect(page.status_code).to eq(400)
+        it 'should return a 404' do
+          expect(page.status_code).to eq(404)
         end
       end
       context 'if there is no solr doc' do
