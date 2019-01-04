@@ -58,14 +58,12 @@ describe OembedController, :resque => true do
         end
       end
       context 'if asset has an image file' do
-        let(:image) { Image.new }
-        let(:img) {{'width'=> 550, 'height'=>550}}
+        let(:image) { image = FactoryGirl.create(:image, :with_jpeg_datastream) }
         before do
           image.title = "my image"
+          image.create_derivatives
           image.review
           image.save
-          allow(File).to receive(:exist?).and_return(true)
-          allow(MiniMagick::Image).to receive(:open).and_return(img)
           visit("#{APP_CONFIG['default_url_host']}/oembed/?format=json&url=#{APP_CONFIG['default_url_host']}/resource/#{image.pid}")
         end
         it 'should have content' do
