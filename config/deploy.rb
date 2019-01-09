@@ -2,7 +2,6 @@ require 'yaml'
 config = YAML.load_file('config/app.yml')["deployment"] || {}
 
 require 'bundler/capistrano'
-require 'new_relic/recipes'
 
 set :stages, config['stages'] || []
 set :default_stage, config['default_stage'] || (config['stages'] || []).first
