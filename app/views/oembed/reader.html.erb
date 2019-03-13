@@ -1,0 +1,13 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+  <head>
+    <%= content_tag(:title, @data_hash[:title]) %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body>
+    <%= content_tag(:div, nil, :id => "BookReader", :data=>@data_hash) %>
+  </body>
+</html>
+

@@ -2,7 +2,6 @@ require 'yaml'
 config = YAML.load_file('config/app.yml')["deployment"] || {}
 
 require 'bundler/capistrano'
-require 'new_relic/recipes'
 
 set :stages, config['stages'] || []
 set :default_stage, config['default_stage'] || (config['stages'] || []).first
@@ -28,8 +27,6 @@ after 'deploy:finalize_update', 'deploy:symlink_config'
 after 'deploy:update_code', 'deploy:migrate'
 before 'deploy:assets:precompile', 'sets:sync'
 after 'deploy:restart', 'deploy:cleanup'
-
-after "deploy:update", "newrelic:notice_deployment"
 
 namespace :deploy do
   desc "Symlinks required configuration files"
