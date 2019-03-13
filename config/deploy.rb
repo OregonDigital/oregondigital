@@ -28,8 +28,6 @@ after 'deploy:update_code', 'deploy:migrate'
 before 'deploy:assets:precompile', 'sets:sync'
 after 'deploy:restart', 'deploy:cleanup'
 
-after "deploy:update", "newrelic:notice_deployment"
-
 namespace :deploy do
   desc "Symlinks required configuration files"
   task :symlink_config, :roles => :app do
