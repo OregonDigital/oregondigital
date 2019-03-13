@@ -92,4 +92,5 @@ Oregondigital::Application.routes.draw do
   get '/thumbnails/:id', :to => 'thumbnails#thumbnail_links'
 
   get '/oembed/', :to => 'oembed#traffic_control'
+  get '/embedded_reader/:id', :to => 'oembed#reader'
 end
