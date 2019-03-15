@@ -14,7 +14,7 @@ FROM ubuntu:16.04
 MAINTAINER Jeremy Echols <jechols@uoregon.edu>
 
 #apt won't find some libs if this isn't run
-RUN apt-get update
+RUN apt-get update --fix-missing
 
 # Dependencies for vips installer
 RUN apt-get install -y pkg-config
@@ -71,7 +71,7 @@ RUN make
 RUN make install
 
 # Grab bundler for installing the gems
-RUN gem install bundler
+RUN gem install bundler -v '1.17.3'
 
 # Set an environment variable to store where the app is installed to inside
 # of the Docker image
