@@ -4,8 +4,8 @@ gem 'rails', '~> 4.2.0'
 
 gem 'mail', '~> 2.5.5'
 gem 'nokogiri', '~> 1.8.1'
-gem 'rest-client', '~> 1.7.3'
-gem 'sprockets', '~> 2.11.3'
+gem 'rest-client', '~> 1.8.0'
+gem 'sprockets', '~> 2.12.5'
 gem 'yard', '~> 0.9.11'
 gem 'rake', '~> 11.3.0'
 
@@ -99,7 +99,9 @@ gem 'oai', :github => "code4lib/ruby-oai", :branch => :master
 gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-fix"
 
 gem 'rdf-mongo', :github => "terrellt/rdf-mongo"
-gem 'bson_ext'
+gem 'mongo', '>= 1.12.3'
+gem 'bson_ext', '>= 1.12.3'
+gem 'bson', '>= 1.12.3'
 
 # Blacklight Advanced Search
 gem 'blacklight_advanced_search', '~> 2.2.0'
