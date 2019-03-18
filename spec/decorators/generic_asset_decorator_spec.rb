@@ -84,4 +84,25 @@ describe GenericAssetDecorator do
     end
   end
 
+  describe "#get_start" do
+    let(:max) { 40 }
+    let(:list_size) { 50 }
+    context "when asset is near the beginning of max" do
+      let(:list_size) { 50 }
+      let(:index) { 5 }
+      it "returns 0" do
+        expect( get_start(list_size, max, index).to eq 0
+      end
+    context "when asset is in the middle" do
+      let(:index) { 25 }
+      it 'returns 5' do
+        expect( get_start(list_size, max, index).to eq 5
+      end
+    context 'when asset is near the end' do
+      let(:index) { 40 } do
+      it 'returns 9' do
+        expect( get_start(list_size, max, index).to eq 9
+      end
+    end
+  end
 end

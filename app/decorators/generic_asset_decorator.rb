@@ -67,7 +67,7 @@ class GenericAssetDecorator < Draper::Decorator
     leftindex = index-(max/2)
     rightindex = index + (max/2)
     if leftindex < 0
-      leftmarker = 0
+      leftindex = 0
     elsif rightindex >= list_size
       leftindex = list_size - ( max + asset )
     end
