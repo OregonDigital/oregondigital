@@ -4,7 +4,7 @@ services:
   memcached:
     image: memcached
   mongo:
-    image: mongo
+    image: mongo:3.0.15
     volumes:
       - data-mongo:/data/db
   redis:
