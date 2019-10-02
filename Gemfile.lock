@@ -212,8 +212,6 @@ GEM
     daemons (1.1.9)
     dalli (2.7.2)
     database_cleaner (1.2.0)
-    ddtrace (0.14.0)
-      msgpack
     debugger-linecache (1.2.0)
     deep_merge (1.0.0)
     deprecation (0.1.0)
@@ -346,7 +344,6 @@ GEM
     mongo (1.12.5)
       bson (= 1.12.5)
     mono_logger (1.1.0)
-    msgpack (1.2.4)
     multi_json (1.13.1)
     multipart-post (2.0.0)
     mysql2 (0.3.21)
@@ -641,7 +638,6 @@ DEPENDENCIES
   coveralls
   dalli
   database_cleaner
-  ddtrace
   devise (~> 3.1)
   devise-guests (~> 0.3)
   docsplit

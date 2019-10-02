@@ -116,9 +116,6 @@ gem 'dalli'
 gem 'resque-retry'
 gem 'rspec-rails', '~>2.0'
 
-# DataDog for application performance monitoring
-gem 'ddtrace'
-
 group :development do
   # Spring as Rails preloader
   gem 'spring'
