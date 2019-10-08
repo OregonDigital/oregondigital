@@ -316,8 +316,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :accessRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.accessRestrictions do |index|
     index.as :searchable, :displayable
   end
-  property :license, :predicate => OregonDigital::Vocabularies::CCREL.license do |index|
-    index.as :displayable
+  property :license, :predicate => OregonDigital::Vocabularies::CCREL.license, :class_name => OregonDigital::ControlledVocabularies::License do |index|
+    index.as :searchable, :facetable, :displayable
   end
   property :copyrightClaimant, :predicate => OregonDigital::Vocabularies::MARCREL.cpc do |index|
     index.as :displayable
