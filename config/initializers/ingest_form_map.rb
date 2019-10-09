@@ -151,6 +151,7 @@ INGEST_MAP = {
 
   right: {
     rights: "descMetadata.rights",
+    license: "descMetadata.license",
     rightsHolder: "descMetadata.rightsHolder",
     useRestrictions: "descMetadata.useRestrictions",
     accessRestrictions: "descMetadata.accessRestrictions",
