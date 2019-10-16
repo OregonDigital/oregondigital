@@ -53,5 +53,6 @@ RDF_VOCABS = {
   :wikidata             =>  { :prefix => 'http://www.wikidata.org/entity/', :strict => false, :fetch => false},
   :lcgenreforms         =>  { :prefix => 'http://id.loc.gov/authorities/genreForms', :strict => false, :fetch => false },
   :osuacademicunits     =>  { :prefix => 'http://opaquenamespace.org/ns/osuAcademicUnits/', :strict => false, :fetch => false},
-  :seriesname           =>  { :prefix => 'http://opaquenamespace.org/ns/seriesName/', :strict => false, :fetch => false}
+  :seriesname           =>  { :prefix => 'http://opaquenamespace.org/ns/seriesName/', :strict => false, :fetch => false},
+  :rightsstatements     =>  { :prefix => 'http://rightsstatements.org/vocab/', :strict => false, :fetch => false}
 }
