@@ -357,6 +357,7 @@ GEM
       net-ssh (>= 2.6.5)
     netaddr (1.5.0)
     netrc (0.11.0)
+    nio4r (2.5.2)
     noid (0.7.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
@@ -395,8 +396,8 @@ GEM
     pry-remote (0.1.8)
       pry (~> 0.9)
       slop (~> 3.0)
-    puma (2.10.2)
-      rack (>= 1.1, < 2.0)
+    puma (4.3.1)
+      nio4r (~> 2.0)
     rack (1.6.11)
     rack-protection (1.5.5)
       rack
