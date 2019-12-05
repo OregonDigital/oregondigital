@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: oregondigital/ruby-phantomjs:1.8.1
+      - image: oregondigital/ruby-phantomjs:201912
         environment:
           - GI_TYPELIB_PATH: /usr/local/lib/girepository-1.0/
           - RAILS_ENV: test

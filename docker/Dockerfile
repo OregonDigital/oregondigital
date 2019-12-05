@@ -64,8 +64,8 @@ RUN apt-get install -y libssl-dev libreadline-dev
 # with a major change (like OS) that would require a ruby rebuild anyway
 RUN  mkdir -p /opt/ruby
 WORKDIR /opt/ruby
-RUN curl https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.3.tar.gz | tar zx
-WORKDIR /opt/ruby/ruby-2.1.3
+RUN curl https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.8.tar.gz | tar zx
+WORKDIR /opt/ruby/ruby-2.3.8
 RUN ./configure
 RUN make
 RUN make install
