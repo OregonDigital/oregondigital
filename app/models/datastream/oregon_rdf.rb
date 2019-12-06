@@ -313,8 +313,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :useRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.useRestrictions do |index|
     index.as :searchable, :displayable
   end
-  property :accessRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.accessRestrictions do |index|
-    index.as :searchable, :displayable
+  property :accessRestrictions, :predicate => OregonDigital::Vocabularies::ARCHIVESHUB.accessRestrictions, :class_name => OregonDigital::ControlledVocabularies::AccessRestrictions do |index|
+    index.as :searchable, :facetable, :displayable
   end
   property :license, :predicate => OregonDigital::Vocabularies::CCREL.license, :class_name => OregonDigital::ControlledVocabularies::License do |index|
     index.as :searchable, :facetable, :displayable
