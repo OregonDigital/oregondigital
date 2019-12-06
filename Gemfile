@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.2.0'
 
 gem 'mail', '~> 2.5.5'
-gem 'nokogiri', '~> 1.8.1'
+gem 'nokogiri', '~> 1.10.7'
 gem 'rest-client', '~> 1.8.0'
 gem 'sprockets', '~> 2.12.5'
 gem 'yard', '~> 0.9.20'
