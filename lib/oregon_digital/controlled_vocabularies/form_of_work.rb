@@ -4,6 +4,7 @@ module OregonDigital::ControlledVocabularies
 
     use_vocabulary :aat
     use_vocabulary :lcsh
+    use_vocabulary :afs_ethn
 
   end
 end
