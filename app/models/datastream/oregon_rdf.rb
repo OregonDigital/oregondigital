@@ -541,8 +541,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   end
 
   # RDA
-  property :formOfWork, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/w/#formOfWork.en') do |index|
-    index.as :displayable
+  property :formOfWork, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/w/#formOfWork.en'), :class_name => OregonDigital::ControlledVocabularies::FormOfWork do |index|
+    index.as :searchable, :facetable, :displayable
   end
   property :fileSize, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#fileSize.en') do |index|
     index.as :displayable
