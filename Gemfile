@@ -48,7 +48,7 @@ gem 'resque', '~>1.25.0'
 gem "ruby-vips", '~>2.0.12'
 gem 'rmagick', '~>2.13.2'
 
-gem "devise", "~> 3.1"
+gem "devise", "~> 4.7"
 gem "devise-guests", "~> 0.3"
 
 # Necessary for target server deployment
