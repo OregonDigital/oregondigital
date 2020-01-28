@@ -1,10 +1,22 @@
+# frozen_string_literal: true
+
 require 'bagit'
 
+# Usage:
+#
+# task export_datastreams
+# args
+#   input_tsv: full path to the tsv file
+#   batch: name of a batch or group of assets (or collections)
+#
+# example:
+#
+# RAILS_ENV=production bundle exec rake export_datastreams input_tsv="/data1/batch/exports/od2_seed_data_pids_Baseball_jpegs.tsv"
+#
 desc 'Export datastreams given a vts file'
 task :export_datastreams => :environment do |t, args|
-  batch = ENV['batch']
+  path_to_tsv_file = ENV['input_tsv']
   path_to_export_dir = "/data1/batch/exports/"
-  path_to_tsv_file = "/data1/batch/exports/od2_seed_data_pids_#{batch}.tsv"
   keylist = { "DC" => "xml", "RELS-EXT" => "xml", "rightsMetadata" => "xml", "workflowMetadata" => "yml", "descMetadata" => "nt", "leafMetadata" => "yml"}
   File.readlines(path_to_tsv_file).each do |line|
     line_cols = line.split("\t")
@@ -27,6 +39,16 @@ task :export_datastreams => :environment do |t, args|
   puts "export_datastreams done"
 end
 
+# Usage:
+#
+# task make_bags
+# args
+#   batch: name of a batch or group of assets (or collections)
+#
+# example:
+#
+# RAILS_ENV=production bundle exec rake make_bags batch="Baseball_jpegs"
+#
 desc 'Make bags given re-exported datastreams'
 task :make_bags => :environment do |t, args|
   batch = ENV['batch']
