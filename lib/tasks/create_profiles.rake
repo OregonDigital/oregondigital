@@ -23,9 +23,9 @@ task create_profile: :environment do
       f.print assemble_field(field, vals)
     end
     f.close
+  rescue StandardError => e
+    puts e.message
   end
-rescue StandardError => e
-  puts e.message
 end
 
 def assemble_sets(sets)
