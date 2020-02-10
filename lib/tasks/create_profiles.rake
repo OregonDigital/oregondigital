@@ -1,7 +1,7 @@
 # For use as part of verification process in migrating assets from oregondigital
-# to call: bundle exec rake create_profiles pids=mypids, export_path=myexportpath
-# where mypids = ['oregondigital:abcde1234']
-# and myexportpath = '/data1/batch/profiles'
+# Requires a list of pids, one pid per line
+# to call: bundle exec rake create_profiles pids=/data1/batch/profiles/pidlist.txt export_path=/data1/batch/profiles
+
 
 INDENT = "  "
 DASH = "- "
@@ -10,7 +10,6 @@ desc 'Create asset profile yml file'
 task create_profile: :environment do
   begin
     export_path = ENV['export_path']
-    pids = ENV['pids']
     pids.each do |pid|
       f = File.open("#{export_path}/#{cleanpid(pid)}_profile.yml", 'w')
       item = GenericAsset.find(pid)
@@ -29,6 +28,14 @@ task create_profile: :environment do
   rescue StandardError => e
     puts e.message
   end
+end
+
+def pids
+  arr = []
+  File.readlines(ENV['pids']).each do |line|
+    arr << line.strip
+  end
+  arr
 end
 
 def assemble_sets(sets)
