@@ -7,7 +7,7 @@ INDENT = "  "
 DASH = "- "
 
 desc 'Create asset profile yml file' 
-task create_profile: :environment do
+task create_profiles: :environment do
   begin
     export_path = ENV['export_path']
     pids.each do |pid|
