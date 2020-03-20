@@ -16,6 +16,8 @@ task create_profiles: :environment do
       f.puts "sets:"
       f.print assemble_sets(item.descMetadata.set)
       f.print assemble_primary(item.descMetadata.primarySet)
+      f.puts "checksums:"
+      f.print assemble_checksums(item.datastreams['content'].content) unless item.datastreams["content"].blank?
       f.puts "fields:"
       fields(item).each do |field|
         vals = item.descMetadata.send(field)
@@ -36,6 +38,18 @@ def pids
     arr << line.strip
   end
   arr
+end
+
+def assemble_checksums(content)
+  str = "#{INDENT}SHA1hex:\n"
+  str += "#{INDENT}#{DASH}#{Digest::SHA1.hexdigest content}\n"
+  str += "#{INDENT}SHA1base64:\n"
+  str += "#{INDENT}#{DASH}#{Digest::SHA1.base64digest content}\n"
+  str += "#{INDENT}MD5hex:\n"
+  str += "#{INDENT}#{DASH}#{Digest::MD5.hexdigest content}\n"
+  str += "#{INDENT}MD5base64:\n"
+  str += "#{INDENT}#{DASH}#{Digest::MD5.base64digest content}\n"
+  str
 end
 
 def assemble_sets(sets)
