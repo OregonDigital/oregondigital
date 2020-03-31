@@ -635,7 +635,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
         end
       end
       meth_name = :"#{k}="
-      v = coerce_to_uri(v)
+      v = coerce_to_uri(v) if controlled_properties.include? k
       self.send(meth_name, v) if respond_to?(meth_name)
     end
   end
