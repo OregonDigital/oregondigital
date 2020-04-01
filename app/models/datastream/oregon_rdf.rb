@@ -569,17 +569,17 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
     index.as :displayable
   end
 
-  # SWPO
-  property :containedInJournal, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#containedInJournal') do |index|
+  #bibtex
+  property :containedInJournal, :predicate => RDF::URI('http://purl.org/net/nknouf/ns/bibtex#hasJournal') do |index|
     index.as :displayable
   end
-  property :isVolume, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#isVolume') do |index|
+  property :isVolume, :predicate => RDF::URI('http://purl.org/net/nknouf/ns/bibtex#hasVolume') do |index|
     index.as :displayable
   end
-  property :hasNumber, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#hasNumber') do |index|
+  property :hasNumber, :predicate => RDF::URI('http://purl.org/net/nknouf/ns/bibtex#hasNumber') do |index|
     index.as :displayable
   end
-  property :onPages, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#onPages') do |index|
+  property :onPages, :predicate => RDF::URI('http://purl.org/net/nknouf/ns/bibtex#hasPages') do |index|
     index.as :displayable
   end
 
