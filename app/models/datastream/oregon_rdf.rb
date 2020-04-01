@@ -579,7 +579,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :hasNumber, :predicate => RDF::URI('http://purl.org/net/nknouf/ns/bibtex#hasNumber') do |index|
     index.as :displayable
   end
-  property :onPages, :predicate => RDF::URI('http://sw-portal.deri.org/ontologies/swportal#onPages') do |index|
+  property :onPages, :predicate => RDF::URI('http://purl.org/net/nknouf/ns/bibtex#hasPages') do |index|
     index.as :displayable
   end
 
