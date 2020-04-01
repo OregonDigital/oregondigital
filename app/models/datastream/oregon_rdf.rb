@@ -4,6 +4,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   include ActiveFedora::Crosswalks::Crosswalkable
   include OregonDigital::RDF::DeepFetch
 
+  STRING_URIS = ["findingAid"]
+
   def self.resource_class
     OregonDigital::RDF::ObjectResource
   end
@@ -635,7 +637,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
         end
       end
       meth_name = :"#{k}="
-      v = coerce_to_uri(v) if controlled_properties.include? k
+      v = coerce_to_uri(v) unless STRING_URIS.include? k
       self.send(meth_name, v) if respond_to?(meth_name)
     end
   end
