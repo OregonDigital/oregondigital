@@ -177,6 +177,7 @@ INGEST_MAP = {
     containedInJournal: "descMetadata.containedInJournal",
     isVolume: "descMetadata.isVolume",
     hasNumber: "descMetadata.hasNumber",
+    onPages: "descMetadata.onPages",
     provenance: "descMetadata.provenance",
   },
 
