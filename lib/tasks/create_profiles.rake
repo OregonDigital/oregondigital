@@ -19,7 +19,7 @@ task create_profiles: :environment do
       f.puts "checksums:"
       f.print assemble_checksums(item.datastreams['content'].content) unless item.datastreams["content"].blank?
       f.puts "derivatives_info:"
-      f.print assemble_derivatives(item.datastreams) if external_datastreams(item.datastreams).present?
+      f.print assemble_derivatives_info(item.datastreams) if external_datastreams(item.datastreams).present?
       f.puts "fields:"
       fields(item).each do |field|
         vals = item.descMetadata.send(field)
@@ -54,26 +54,17 @@ def assemble_checksums(content)
   str
 end
 
-def assemble_derivatives(datastreams)
+def assemble_derivatives_info(datastreams)
   derivatives = external_datastreams(datastreams)
-  str = "#{INDENT}has_thumbnail:\n"
-  str += "#{INDENT}#{DASH}#{derivatives.include? 'thumbnail'}\n"
-  str += "#{INDENT}has_content_ocr:\n"
-  str += "#{INDENT}#{DASH}#{derivatives.include? 'content_ocr'}\n"
-  str += "#{INDENT}page_count:\n"
-  str += "#{INDENT}#{DASH}#{derivatives.select {|d| d.start_with? 'page' }.count}\n"
-  str += "#{INDENT}has_content_ogg:\n"
-  str += "#{INDENT}#{DASH}#{derivatives.include? 'content_ogg'}\n"
-  str += "#{INDENT}has_content_mp3:\n"
-  str += "#{INDENT}#{DASH}#{derivatives.include? 'content_mp3'}\n"
-  str += "#{INDENT}has_medium_image:\n"
-  str += "#{INDENT}#{DASH}#{derivatives.include? 'medium'}\n"
-  str += "#{INDENT}has_pyramidal_image:\n"
-  str += "#{INDENT}#{DASH}#{derivatives.include? 'pyramidal'}\n"
-  str += "#{INDENT}has_content_mp4:\n"
-  str += "#{INDENT}#{DASH}#{derivatives.include? 'content_mp4'}\n"
-  str += "#{INDENT}has_content_jpg:\n"
-  str += "#{INDENT}#{DASH}#{derivatives.include? 'content_jpg'}\n"
+  str = "#{INDENT}has_thumbnail: #{derivatives.include? 'thumbnail'}\n"
+  str += "#{INDENT}has_content_ocr: #{derivatives.include? 'content_ocr'}\n"
+  str += "#{INDENT}page_count: #{derivatives.select { |d| d.start_with? 'page' }.count}\n"
+  str += "#{INDENT}has_content_ogg: #{derivatives.include? 'content_ogg'}\n"
+  str += "#{INDENT}has_content_mp3: #{derivatives.include? 'content_mp3'}\n"
+  str += "#{INDENT}has_medium_image: #{derivatives.include? 'medium'}\n"
+  str += "#{INDENT}has_pyramidal_image: #{derivatives.include? 'pyramidal'}\n"
+  str += "#{INDENT}has_content_mp4: #{derivatives.include? 'content_mp4'}\n"
+  str += "#{INDENT}has_content_jpg: #{derivatives.include? 'content_jpg'}\n"
   str
 end
 
