@@ -14,7 +14,7 @@
 
 vips_version_minimum=8.4.0
 vips_version_latest_major_minor=8.4
-vips_version_latest_patch=5
+vips_version_latest_patch=6
 
 install_libvips_from_source() {
   echo "Compiling libvips $vips_version_latest_major_minor.$vips_version_latest_patch from source"
@@ -25,8 +25,7 @@ install_libvips_from_source() {
   else
     mkdir vips_install
     cd vips_install
-    curl -O http://www.vips.ecs.soton.ac.uk/supported/current/vips-$vips_version_latest_major_minor.$vips_version_latest_patch.tar.gz
-    tar zvxf vips-$vips_version_latest_major_minor.$vips_version_latest_patch.tar.gz
+    curl -sL https://github.com/jcupitt/libvips/releases/download/v$vips_version_latest_major_minor.$vips_version_latest_patch/vips-$vips_version_latest_major_minor.$vips_version_latest_patch.tar.gz | tar zvx
     cd vips-$vips_version_latest_major_minor.$vips_version_latest_patch
     ./configure --enable-debug=no --enable-docs=no --enable-cxx=yes --without-python --without-orc --without-fftw $1
     make
@@ -97,7 +96,7 @@ case $(uname -s) in
           echo "Installing libvips via apt-get"
           apt-get install -y libvips-dev libgsf-1-dev
           ;;
-        trusty|utopic|qiana|rebecca)
+        trusty|utopic|qiana|rebecca|sonya)
           # Ubuntu 14, Mint 17
           echo "Installing libvips dependencies via apt-get"
           apt-get install -y automake build-essential gobject-introspection gtk-doc-tools libglib2.0-dev libjpeg-turbo8-dev libpng12-dev libwebp-dev libtiff5-dev libexif-dev libgsf-1-dev liblcms2-dev libxml2-dev swig libmagickcore-dev curl libgirepository1.0-dev
