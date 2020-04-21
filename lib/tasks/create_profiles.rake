@@ -10,7 +10,7 @@ desc 'Create asset profile yml file'
 task create_profiles: :environment do
   begin
     export_path = ENV['export_path']
-    pids.each do |pid|
+    pidlist.each do |pid|
       f = File.open("#{export_path}/#{cleanpid(pid)}_profile.yml", 'w')
       item = GenericAsset.find(pid)
       f.puts "sets:"
@@ -31,10 +31,11 @@ task create_profiles: :environment do
     end
   rescue StandardError => e
     puts e.message
+    puts e.backtrace.join("\n")
   end
 end
 
-def pids
+def pidlist
   arr = []
   File.readlines(ENV['pids']).each do |line|
     arr << line.strip
