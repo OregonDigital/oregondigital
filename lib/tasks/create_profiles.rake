@@ -10,7 +10,7 @@ desc 'Create asset profile yml file'
 task create_profiles: :environment do
   begin
     export_path = ENV['export_path']
-    pids.each do |pid|
+    pidlist.each do |pid|
       f = File.open("#{export_path}/#{cleanpid(pid)}_profile.yml", 'w')
       item = GenericAsset.find(pid)
       f.puts "sets:"
@@ -18,6 +18,8 @@ task create_profiles: :environment do
       f.print assemble_primary(item.descMetadata.primarySet)
       f.puts "checksums:"
       f.print assemble_checksums(item.datastreams['content'].content) unless item.datastreams["content"].blank?
+      f.puts "derivatives_info:"
+      f.print assemble_derivatives_info(item.datastreams) if external_datastreams(item.datastreams).present?
       f.puts "fields:"
       fields(item).each do |field|
         vals = item.descMetadata.send(field)
@@ -29,10 +31,11 @@ task create_profiles: :environment do
     end
   rescue StandardError => e
     puts e.message
+    puts e.backtrace.join("\n")
   end
 end
 
-def pids
+def pidlist
   arr = []
   File.readlines(ENV['pids']).each do |line|
     arr << line.strip
@@ -50,6 +53,24 @@ def assemble_checksums(content)
   str += "#{INDENT}MD5base64:\n"
   str += "#{INDENT}#{DASH}#{Digest::MD5.base64digest content}\n"
   str
+end
+
+def assemble_derivatives_info(datastreams)
+  derivatives = external_datastreams(datastreams)
+  str = "#{INDENT}has_thumbnail: #{derivatives.include? 'thumbnail'}\n"
+  str += "#{INDENT}has_content_ocr: #{derivatives.include? 'content_ocr'}\n"
+  str += "#{INDENT}page_count: #{derivatives.select { |d| d.start_with? 'page' }.count}\n"
+  str += "#{INDENT}has_content_ogg: #{derivatives.include? 'content_ogg'}\n"
+  str += "#{INDENT}has_content_mp3: #{derivatives.include? 'content_mp3'}\n"
+  str += "#{INDENT}has_medium_image: #{derivatives.include? 'medium'}\n"
+  str += "#{INDENT}has_pyramidal_image: #{derivatives.include? 'pyramidal'}\n"
+  str += "#{INDENT}has_content_mp4: #{derivatives.include? 'content_mp4'}\n"
+  str += "#{INDENT}has_content_jpg: #{derivatives.include? 'content_jpg'}\n"
+  str
+end
+
+def external_datastreams(input)
+  input.select { |_k, v| v.controlGroup == 'E' }.map { |k, _v| k }
 end
 
 def assemble_sets(sets)
