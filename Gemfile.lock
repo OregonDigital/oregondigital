@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/OregonDigital/metadata-ingest-form.git
+  revision: 1d36b5a1380fe009cda797555883b1d258463682
+  specs:
+    metadata-ingest-form (2.4.1)
+      activemodel (>= 3.0)
+
+GIT
   remote: git://github.com/circleci/rspec_junit_formatter.git
   revision: 7b098c8ab2ac5e5f78190b51629ed6d67a9de4d1
   specs:
@@ -333,8 +340,6 @@ GEM
     map (4.7.1)
     marc (0.7.1)
     mediashelf-loggable (0.4.9)
-    metadata-ingest-form (2.4.0)
-      activemodel (>= 3.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (4.9.5)
@@ -657,7 +662,7 @@ DEPENDENCIES
   logger (~> 1.2.8)!
   mail (~> 2.5.5)
   mail_form
-  metadata-ingest-form (~> 2.4)
+  metadata-ingest-form (~> 2.4)!
   mini_magick
   mongo (>= 1.12.3)
   mysql2 (~> 0.3.20)
