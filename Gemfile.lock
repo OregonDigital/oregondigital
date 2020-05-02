@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/OregonDigital/metadata-ingest-form.git
-  revision: 1d36b5a1380fe009cda797555883b1d258463682
+  revision: 3c4ef19f87e2f6e3eca22c470bb31cb940b1e6df
+  branch: relative_path_update_2
   specs:
     metadata-ingest-form (2.4.1)
       activemodel (>= 3.0)
@@ -662,7 +663,7 @@ DEPENDENCIES
   logger (~> 1.2.8)!
   mail (~> 2.5.5)
   mail_form
-  metadata-ingest-form (~> 2.4)!
+  metadata-ingest-form (~> 2.4.1)!
   mini_magick
   mongo (>= 1.12.3)
   mysql2 (~> 0.3.20)
