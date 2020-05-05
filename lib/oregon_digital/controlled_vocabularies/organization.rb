@@ -6,6 +6,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :oregon_universities
     use_vocabulary :institutions
     use_vocabulary :creator
+    use_vocabulary :lcnames
 
     property :label, :predicate => RDF::RDFS.label
 
