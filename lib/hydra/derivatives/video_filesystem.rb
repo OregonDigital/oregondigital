@@ -5,7 +5,7 @@ module Hydra::Derivatives
         :output_file => object.send("#{format}_location")
       }.merge(super)
       output_options = result[Ffmpeg::OUTPUT_OPTIONS] || ''
-      output_options += " -nostdin -y"
+      output_options += " -v 0 -nostats -y"
       result[Ffmpeg::OUTPUT_OPTIONS] = output_options
       result
     end
