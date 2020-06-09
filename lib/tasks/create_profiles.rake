@@ -106,6 +106,9 @@ def cleanpid(pid)
 end
 
 def extract(val)
-  val.respond_to?(:rdf_subject) ? val.rdf_subject.to_s : val
+  val.respond_to?(:rdf_subject) ? escape_chars(val.rdf_subject.to_s) : escape_chars(val.to_s)
 end
 
+def escape_chars(val)
+  val.gsub("\"", "\\\"")
+end
