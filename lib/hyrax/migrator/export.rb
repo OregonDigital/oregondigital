@@ -5,6 +5,7 @@ module Hyrax::Migrator
   # To use during the export step in OD2 migration
   # Example:
   #  e = Hyrax::Migrator::Export.new('/data1/batch/exports', 'test-bags', 'test-bags-pidlist.txt', true)
+  #  e.export
   class Export
     def initialize(export_dir, export_name, pidlist, verbose = false)
       @export_dir = export_dir
@@ -40,9 +41,8 @@ module Hyrax::Migrator
         next unless item.present?
 
         add_content_to_keylist(item)
-        export_data(item, line)
-        # convert hash profile to yml then export to file
-        # item.datastreams['workflowMetadata'].profile.to_yaml
+        export_metadata(item, line)
+        export_workflow_metadata_profile(item, line)
       end
     end
 
@@ -65,15 +65,24 @@ module Hyrax::Migrator
       item.datastreams['content'].mimeType.split('/').last
     end
 
-    def export_data(item, line)
+    def export_metadata(item, line)
       @keylist.each do |key, ext|
         next if item.datastreams[key].blank?
 
-        cleanpid = line.strip.gsub('oregondigital:', '')
-        f = File.open(File.join(@datastreams_dir, cleanpid + '_' + key + '.' + ext), 'wb')
-        f.write(item.datastreams[key].content)
-        f.close
+        filename = line.strip.gsub('oregondigital:', '') + '_' + key + '.' + ext
+        write_file(filename, item.datastreams[key].content)
       end
+    end
+
+    def export_workflow_metadata_profile(item, line)
+      profile = item.datastreams['workflowMetadata'].profile.to_yaml
+      write_file(line.strip.gsub('oregondigital:', '') + '_workflowMetadata_profile.yml', profile)
+    end
+
+    def write_file(filename, content)
+      f = File.open(File.join(@datastreams_dir, filename), 'wb')
+      f.write(content)
+      f.close
     end
 
     def make_bags
