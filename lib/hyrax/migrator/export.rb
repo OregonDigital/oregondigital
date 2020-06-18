@@ -3,6 +3,8 @@
 module Hyrax::Migrator
   ##
   # To use during the export step in OD2 migration
+  # Example:
+  #  e = Hyrax::Migrator::Export.new('/data1/batch/exports', 'test-bags', 'test-bags-pidlist.txt', true)
   class Export
     def initialize(export_dir, export_name, pidlist, verbose = false)
       @export_dir = export_dir
@@ -38,7 +40,9 @@ module Hyrax::Migrator
         next unless item.present?
 
         add_content_to_keylist(item)
-        export_data(item, item.datastreams[key].content, line)
+        export_data(item, line)
+        # convert hash profile to yml then export to file
+        # item.datastreams['workflowMetadata'].profile.to_yaml
       end
     end
 
@@ -61,13 +65,13 @@ module Hyrax::Migrator
       item.datastreams['content'].mimeType.split('/').last
     end
 
-    def export_data(item, content, line)
+    def export_data(item, line)
       @keylist.each do |key, ext|
         next if item.datastreams[key].blank?
 
         cleanpid = line.strip.gsub('oregondigital:', '')
-        f = File.open(File.join(@export_dir, cleanpid + '_' + key + '.' + ext), 'wb')
-        f.write(content)
+        f = File.open(File.join(@datastreams_dir, cleanpid + '_' + key + '.' + ext), 'wb')
+        f.write(item.datastreams[key].content)
         f.close
       end
     end
