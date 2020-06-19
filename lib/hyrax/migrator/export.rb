@@ -2,7 +2,7 @@
 
 module Hyrax::Migrator
   ##
-  # To use during the export step in OD2 migration
+  # To use during the export step in OD2 migration workflow
   # Example:
   #  e = Hyrax::Migrator::Export.new('/data1/batch/exports', 'test-bags', 'test-bags-pidlist.txt', true)
   #  e.export
@@ -15,28 +15,25 @@ module Hyrax::Migrator
       @verbose = verbose
       @keylist = keylist
       datetime_today = Time.zone.now.strftime('%Y-%m-%d-%H%M%S') # "2017-10-21-125903"
-      report_filename = File.join(export_dir, "report_#{export_name}_#{datetime_today}.txt")
-      @report = File.open(report_filename, 'w')
-      @errors = []
+      @logger = Logger.new(File.join(@export_dir, 'exportlogs',
+                                     "export_#{export_name}_#{datetime_today}.log"))
     end
 
     def export
-      begin
-        @errors << "Exporting #{@export_name}"
-        Dir.mkdir(@export_dir) unless Dir.exist?(@export_dir)
-        Dir.mkdir(@datastreams_dir) unless Dir.exist?(@datastreams_dir)
-        export_datastreams
-        make_bags
-      rescue StandardError => e
-        @errors << "Error #{e.message}:#{e.backtrace.join("\n")}"
-      end
-      write_errors
-      @report.close
+      puts "Exporting #{@export_name}." if @verbose
+      Dir.mkdir(@export_dir) unless Dir.exist?(@export_dir)
+      Dir.mkdir(@datastreams_dir) unless Dir.exist?(@datastreams_dir)
+      export_datastreams
+      make_bags
+    rescue StandardError => e
+      message = "Error #{e.message}:#{e.backtrace.join("\n")}"
+      puts message if @verbose
+      @logger.error(message)
     end
 
     def export_datastreams
       File.readlines(File.join(@export_dir, @pidlist)).each do |line|
-        puts "exporting content for #{line}" if @verbose
+        puts "Exporting datastreams for #{line}." if @verbose
         item = GenericAsset.find(line.strip)
         next unless item.present?
 
@@ -95,13 +92,9 @@ module Hyrax::Migrator
         pid = get_short_pid(item)
         list = Dir.glob("*#{pid}*")
         make_bag(bag_dir, @datastreams_dir, list, pid)
-        if validate_list(list)
-          puts "bagged #{pid}"
-        else
-          puts "no content file included for #{pid}"
-        end
+        validate_list(list, pid) if @verbose
       end
-      puts 'Completed bagging.'
+      puts 'Completed bagging.' if @verbose
     end
 
     def make_bag(dir, source_dir, list, pid)
@@ -119,14 +112,11 @@ module Hyrax::Migrator
       pid.to_s.try(:gsub, 'oregondigital-', '') unless pid.nil?
     end
 
-    def validate_list(list)
-      list.join.include? 'content'
-    end
-
-    def write_errors
-      @errors.each do |e|
-        @report.puts e
-      end
+    def validate_list(list, pid)
+      valid = list.join.include? 'content'
+      message = valid ? "bagged #{pid}" : "no content file included for #{pid}"
+      puts message if @verbose
+      @logger.info message if valid == false
     end
   end
 end

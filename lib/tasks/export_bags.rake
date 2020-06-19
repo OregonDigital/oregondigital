@@ -4,15 +4,17 @@ require 'bagit'
 
 # Usage:
 #
-# task export_datastreams
+# task export_bags
 # args
 #   export_dir:
 #     base directory for exported bags
 #   name:
-#     name of the batch (a directory with this name will be added to the
+#     name of the batch (a directory with this name will be added to export_dir)
 #   pidlist:
-#     path to the pidlist txt file (one pid per line) expected within export_dir 
-#     base directory
+#     path to the pidlist txt file (one pid per line) expected within export_dir
+#
+# task export_bags creates a folder with {name} for datastreams, makes bags
+# based on this folder, and then adds them in {name}_bags folder also inside export_dir
 #
 # example:
 #
