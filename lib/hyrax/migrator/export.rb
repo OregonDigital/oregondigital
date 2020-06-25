@@ -15,6 +15,7 @@ module Hyrax::Migrator
       @verbose = verbose
       @keylist = keylist
       datetime_today = Time.zone.now.strftime('%Y-%m-%d-%H%M%S') # "2017-10-21-125903"
+      @reporter = ExportReporter.new
       @logger = Logger.new(File.join(@export_dir, 'exportlogs',
                                      "export_#{export_name}_#{datetime_today}.log"))
     end
@@ -40,7 +41,9 @@ module Hyrax::Migrator
         add_content_to_keylist(item)
         export_metadata(item, line)
         export_workflow_metadata_profile(item, line)
+        @reporter.update(item)
       end
+      @reporter.log(@logger)
     end
 
     def keylist
