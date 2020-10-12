@@ -12,7 +12,7 @@ module OregonDigital::OAI::Concern
     def uri_fields
       @uri_fields = [:creator, :lcsubject, :type, :author, :editor, :photographer, :phylum, :taxonClass, :order, :family,
                      :genus, :species, :commonNames, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator,
-                     :interviewee, :interviewer, :lyricist, :photographer, :translator, :ethnographicTerm, :militaryBranch, :stylePeriod, 
+                     :interviewee, :interviewer, :lyricist, :photographer, :translator, :owner, :ethnographicTerm, :militaryBranch, :stylePeriod, 
                      :language, :localCollectionName, :od_repository, :recipient, :set]
     end
 

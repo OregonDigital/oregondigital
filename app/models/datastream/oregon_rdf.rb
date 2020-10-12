@@ -92,8 +92,8 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :recipient, :predicate => OregonDigital::Vocabularies::MARCREL.rcp, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :owner, :predicate => OregonDigital::Vocabularies::MARCREL.own do |index|
-    index.as :searchable, :displayable
+  property :owner, :predicate => OregonDigital::Vocabularies::MARCREL.own, :class_name => OregonDigital::ControlledVocabularies::Creator do |index|
+    index.as :searchable, :facetable, :displayable
   end
   property :formerOwner, :predicate => OregonDigital::Vocabularies::MARCREL.fmo do |index|
     index.as :searchable, :displayable
