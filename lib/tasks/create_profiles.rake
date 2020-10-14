@@ -16,6 +16,7 @@ task create_profiles: :environment do
       f.puts "sets:"
       f.print assemble_sets(item.descMetadata.set)
       f.print assemble_primary(item.descMetadata.primarySet)
+      f.print assemble_contents(item.descMetadata.od_content) unless item.descMetadata.od_content.blank?
       f.puts "checksums:"
       f.print assemble_checksums(item.datastreams['content'].content) unless item.datastreams["content"].blank?
       f.puts "derivatives_info:"
@@ -73,6 +74,14 @@ def external_datastreams(input)
   input.select { |_k, v| v.controlGroup == 'E' }.map { |k, _v| k }
 end
 
+def assemble_contents(contents)
+  str = "#{INDENT}contents:\n"
+  contents.each do |content|
+    str += "#{INDENT}#{DASH}#{content.pid}\n"
+  end
+  str
+end
+
 def assemble_sets(sets)
   str = "#{INDENT}set:\n"
   sets.each do |set|
@@ -98,7 +107,7 @@ def assemble_field(field, vals)
 end
 
 def fields(item)
-  item.resource.fields - [:primarySet, :set]
+  item.resource.fields - [:primarySet, :set, :od_content]
 end
 
 def cleanpid(pid)
