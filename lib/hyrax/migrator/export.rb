@@ -58,7 +58,12 @@ module Hyrax::Migrator
     end
 
     def add_content_to_keylist(item)
-      @keylist['content'] = asset_mimetype(item) unless item.datastreams['content'].blank?
+      return if item.datastreams['content'].blank?
+
+      mimetype = asset_mimetype(item)
+      return if !item.descMetadata.od_content.empty? && mimetype == 'xml'
+
+      @keylist['content'] = mimetype
     end
 
     def asset_mimetype(item)

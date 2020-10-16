@@ -18,7 +18,7 @@ task create_profiles: :environment do
       f.print assemble_primary(item.descMetadata.primarySet)
       f.print assemble_contents(item.descMetadata.od_content) unless item.descMetadata.od_content.blank?
       f.puts "checksums:"
-      f.print assemble_checksums(item.datastreams['content'].content) unless item.datastreams["content"].blank?
+      f.print assemble_checksums(item.datastreams['content'].content) unless no_content?(item)
       f.puts "derivatives_info:"
       f.print assemble_derivatives_info(item.datastreams) if external_datastreams(item.datastreams).present?
       f.puts "fields:"
@@ -42,6 +42,14 @@ def pidlist
     arr << line.strip
   end
   arr
+end
+
+def no_content?(item)
+  return true if item.datastreams['content'].blank?
+
+  return true if !item.descMetadata.od_content.empty? && asset_mimetype(item) == 'xml'
+
+  false
 end
 
 def assemble_checksums(content)
@@ -120,4 +128,8 @@ end
 
 def escape_chars(val)
   val.gsub("\"", "\\\"")
+end
+
+def asset_mimetype(item)
+  item.datastreams['content'].mimeType.split('/').last
 end
