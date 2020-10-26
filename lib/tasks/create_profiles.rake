@@ -83,9 +83,9 @@ def external_datastreams(input)
 end
 
 def assemble_contents(contents)
-  str = "#{INDENT}contents:\n"
+  str = "contents:\n"
   contents.each do |content|
-    str += "#{INDENT}#{DASH}#{content.pid}\n"
+    str += "#{DASH}#{content.pid.gsub("oregondigital:", "")}\n"
   end
   str
 end
