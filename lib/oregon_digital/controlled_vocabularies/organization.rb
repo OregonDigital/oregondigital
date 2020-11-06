@@ -13,6 +13,7 @@ module OregonDigital::ControlledVocabularies
     # Custom fetch methods for dbpedia.org URIs
     # Fetch began failing, due to error with rdf:LangString not having a language, in JSON and n-triples
     # This forces the download of the RDF/XML which doesn't have this issue
+    # Also change id.loc.gov URIs to https for fetch to avoid redirect we can't handle
     def fetch
       if self.rdf_subject.to_s.include?('dbpedia') then
         original_uri = self.rdf_subject.to_s
@@ -29,7 +30,15 @@ module OregonDigital::ControlledVocabularies
 
         persist!
       else
+        if self.rdf_subject.to_s.include?('loc.gov') then
+          self.rdf_subject.to_s.gsub!('http', 'https')
+        end
+
         super
+
+        if self.rdf_subject.to_s.include?('loc.gov') then
+          self.rdf_subject.to_s.gsub!('https', 'http')
+        end
       end
     end
   end

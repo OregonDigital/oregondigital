@@ -18,6 +18,8 @@ module OregonDigital::ControlledVocabularies
       if self.rdf_subject.to_s.include?('wikidata') then
         self.rdf_subject.to_s.gsub!('http://www.wikidata.org/entity/', 'https://www.wikidata.org/wiki/Special:EntityData/')
         self.rdf_subject.to_s.concat('.nt')
+      elsif self.rdf_subject.to_s.include?('loc.gov') then
+        self.rdf_subject.to_s.gsub!('http', 'https')
       end
 
       super
@@ -25,6 +27,8 @@ module OregonDigital::ControlledVocabularies
       if self.rdf_subject.to_s.include?('wikidata') then
         self.rdf_subject.to_s.gsub!('https://www.wikidata.org/wiki/Special:EntityData/', 'http://www.wikidata.org/entity/')
         self.rdf_subject.to_s.gsub!('.nt', '')
+      elsif self.rdf_subject.to_s.include?('loc.gov') then
+        self.rdf_subject.to_s.gsub!('https', 'http')
       end
     end
 
