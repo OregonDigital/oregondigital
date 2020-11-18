@@ -4,17 +4,17 @@
 
 desc 'Create asset profile yml file' 
 task create_profiles: :environment do
-require 'hyrax/migrator/metadata_profiler'
-  begin
-    export_path = ENV['export_path']
-    pidlist.each do |pid|
-      item = GenericAsset.find(pid)
-      Hyrax::Migrator::MetadataProfiler.create_profile(export_path, item)
-    end
-  rescue StandardError => e
-    puts e.message
-    puts e.backtrace.join("\n")
+  require 'hyrax/migrator/metadata_profiler'
+  include Hyrax::Migrator::MetadataProfiler
+
+  export_path = ENV['export_path']
+  pidlist.each do |pid|
+    item = GenericAsset.find(pid)
+    create_profile(export_path, item)
   end
+rescue StandardError => e
+  puts e.message
+  puts e.backtrace.join("\n")
 end
 
 def pidlist
