@@ -6,26 +6,24 @@ module Hyrax::Migrator
     DASH = "- "
 
     def create_profile(export_path, item)
-begin
-        f = File.open(File.join(export_path, "#{cleanpid(item.pid)}_profile.yml"), 'w')
-        f.puts "sets:"
-        f.print assemble_sets(item)
-        f.print assemble_primary(item)
-        f.print assemble_contents(item)
-        f.puts "derivatives_info:"
-        f.print assemble_derivatives_info(item.datastreams)
-        f.puts "fields:"
-        fields(item).each do |field|
-          vals = item.descMetadata.send(field)
-          next if vals.blank?
+      f = File.open(File.join(export_path, "#{cleanpid(item.pid)}_profile.yml"), 'w')
+      f.puts "sets:"
+      f.print assemble_sets(item)
+      f.print assemble_primary(item)
+      f.print assemble_contents(item)
+      f.puts "derivatives_info:"
+      f.print assemble_derivatives_info(item.datastreams)
+      f.puts "fields:"
+      fields(item).each do |field|
+        vals = item.descMetadata.send(field)
+        next if vals.blank?
 
-          f.print assemble_field(field, vals)
-        end
-        f.close   
-      rescue StandardError => e
-        puts e.message
-        puts e.backtrace.join("\n")
-end
+        f.print assemble_field(field, vals)
+      end
+      f.close
+    rescue StandardError => e
+      puts e.message
+      puts e.backtrace.join("\n")
     end
 
     def assemble_derivatives_info(datastreams)
