@@ -1,7 +1,5 @@
 # frozen_string_literal:true
 
-require 'checksums_profiler'
-
 module Hyrax::Migrator
   ##
   # To use during the export step in OD2 migration workflow
@@ -27,36 +25,40 @@ module Hyrax::Migrator
     ## Use when all datastreams need to be exported
     def export
       File.foreach(File.join(@export_dir, @pidlist)) do |line|
-        short_pid = strip_pid(line.strip)
-        puts "Exporting datastreams for #{short_pid}." if @verbose
-        bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
-        item = GenericAsset.find(line.strip)
-        export_profile(item,  short_pid)
-        export_content(item, short_pid)
-        export_metadata(item, short_pid)
-        export_workflow_metadata_profile(item, short_pid)
-        bag_finisher(bag)
-      rescue StandardError => e
-        message = "Error #{e.message}:#{e.backtrace.join("\n")}"
-        puts message if @verbose
-        @logger.error(message)
+        begin
+          short_pid = strip_pid(line.strip)
+          puts "Exporting datastreams for #{short_pid}." if @verbose
+          bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
+          item = GenericAsset.find(line.strip)
+          export_profile(item,  short_pid)
+          export_content(item, short_pid)
+          export_metadata(item, short_pid)
+          export_workflow_metadata_profile(item, short_pid)
+          bag_finisher(bag)
+        rescue StandardError => e
+          message = "Error #{e.message}:#{e.backtrace.join("\n")}"
+          puts message if @verbose
+          @logger.error(message)
+        end
       end
     end
 
     ## Use when metadata has changed
     def update_metadata
       File.foreach(File.join(@export_dir, @pidlist)) do |line|
-        short_pid = strip_pid(line.strip)
-        item = GenericAsset.find(line.strip)
+        begin
+          short_pid = strip_pid(line.strip)
+          item = GenericAsset.find(line.strip)
 
-        export_profile(item, short_pid)
-        export_metadata(item, short_pid)
-        bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
-        bag_finisher(bag)
-      rescue StandardError => e
-        message = "Error #{e.message}:#{e.backtrace.join("\n")}"
-        puts message if @verbose
-        @logger.error(message)
+          export_profile(item, short_pid)
+          export_metadata(item, short_pid)
+          bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
+          bag_finisher(bag)
+        rescue StandardError => e
+          message = "Error #{e.message}:#{e.backtrace.join("\n")}"
+          puts message if @verbose
+          @logger.error(message)
+        end
       end
     end
 
@@ -76,7 +78,7 @@ module Hyrax::Migrator
 
       write_file(short_pid, "#{short_pid}_content.#{mimetype}", item.datastreams['content'].content)
       print_checksums(item.datastreams['content'].content, data_dir(short_pid), short_pid)
-    rescue NoContentFileError
+    rescue NoContentFileError => e
       return if !od_content_is_empty(item)
 
       @logger.error(e.message)
@@ -129,6 +131,9 @@ module Hyrax::Migrator
         'descMetadata' => 'nt',
         'leafMetadata' => 'yml'
       }
+    end
+
+    class NoContentFileError < StandardError
     end
   end
 end
