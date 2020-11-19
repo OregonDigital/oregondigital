@@ -72,9 +72,9 @@ module Hyrax::Migrator
     end
 
     def assemble_field(field, vals)
-      str = "#{INDENT}#{field}:\n"
-      return str + "#{INDENT}#{field}: \"#{extract(vals)}\"\n" unless vals.is_a? Array
+      return "#{INDENT}#{field}: \"#{extract(vals)}\"\n" unless vals.is_a? Array
 
+      str = "#{INDENT}#{field}:\n"
       vals.each do |v|
         str += "#{INDENT}#{DASH}\"#{extract(v)}\"\n"
       end
