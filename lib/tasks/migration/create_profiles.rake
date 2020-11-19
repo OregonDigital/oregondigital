@@ -9,12 +9,13 @@ task create_profiles: :environment do
 
   export_path = ENV['export_path']
   pidlist.each do |pid|
-    item = GenericAsset.find(pid)
-    create_profile(export_path, item)
+    begin
+      item = GenericAsset.find(pid)
+      create_profile(export_path, item)
+    rescue StandardError => e
+      puts e.message
+    end
   end
-rescue StandardError => e
-  puts e.message
-  puts e.backtrace.join("\n")
 end
 
 def pidlist
