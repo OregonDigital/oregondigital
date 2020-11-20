@@ -3,47 +3,123 @@
 module Hyrax::Migrator
   ##
   # To use during the export step in OD2 migration workflow
-  # Example:
-  #  e = Hyrax::Migrator::Export.new('/data1/batch/exports', 'test-bags', 'test-bags-pidlist.txt', true)
+  # Example for a batch named named mycoll-batch1
+  #  e = Hyrax::Migrator::Export.new('/data1/batch/exports', 'mycoll-batch1', 'mycoll-batch1-pidlist.txt', true)
   #  e.export
+
   class Export
+    include ChecksumsProfiler
+    include MetadataProfiler
     def initialize(export_dir, export_name, pidlist, verbose = false)
       @export_dir = export_dir
       @export_name = export_name
-      @datastreams_dir = File.join(export_dir, export_name)
+      @bags_dir = File.join(export_dir, export_name)
       @pidlist = pidlist
       @verbose = verbose
-      @keylist = keylist
       datetime_today = Time.zone.now.strftime('%Y-%m-%d-%H%M%S') # "2017-10-21-125903"
-      @reporter = ExportReporter.new
       @logger = Logger.new(File.join(@export_dir, 'exportlogs',
                                      "export_#{export_name}_#{datetime_today}.log"))
+      Dir.mkdir(@bags_dir) unless Dir.exist?(@bags_dir)
     end
 
+    ## Use when all datastreams need to be exported
     def export
-      puts "Exporting #{@export_name}." if @verbose
-      Dir.mkdir(@export_dir) unless Dir.exist?(@export_dir)
-      Dir.mkdir(@datastreams_dir) unless Dir.exist?(@datastreams_dir)
-      export_datastreams
-      make_bags
-    rescue StandardError => e
-      message = "Error #{e.message}:#{e.backtrace.join("\n")}"
-      puts message if @verbose
-      @logger.error(message)
+      File.foreach(File.join(@export_dir, @pidlist)) do |line|
+        begin
+          short_pid = strip_pid(line.strip)
+          puts "Exporting datastreams for #{short_pid}." if @verbose
+          bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
+          item = GenericAsset.find(line.strip)
+          export_profile(item,  short_pid)
+          export_content(item, short_pid)
+          export_metadata(item, short_pid)
+          export_workflow_metadata_profile(item, short_pid)
+          bag_finisher(bag)
+        rescue StandardError => e
+          message = "Error #{e.message}:#{e.backtrace.join("\n")}"
+          puts message if @verbose
+          @logger.error(message)
+        end
+      end
     end
 
-    def export_datastreams
-      File.readlines(File.join(@export_dir, @pidlist)).each do |line|
-        puts "Exporting datastreams for #{line}." if @verbose
-        item = GenericAsset.find(line.strip)
-        next unless item.present?
+    ## Use when metadata has changed
+    def update_metadata
+      File.foreach(File.join(@export_dir, @pidlist)) do |line|
+        begin
+          short_pid = strip_pid(line.strip)
+          item = GenericAsset.find(line.strip)
 
-        add_content_to_keylist(item)
-        export_metadata(item, line)
-        export_workflow_metadata_profile(item, line)
-        @reporter.update(item)
+          export_profile(item, short_pid)
+          export_metadata(item, short_pid)
+          bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
+          bag_finisher(bag)
+        rescue StandardError => e
+          message = "Error #{e.message}:#{e.backtrace.join("\n")}"
+          puts message if @verbose
+          @logger.error(message)
+        end
       end
-      @reporter.log(@logger)
+    end
+
+    def export_profile(item, short_pid)
+      create_profile(data_dir(short_pid), item)
+    end
+
+    def bag_finisher(bag)
+      bag.write_bag_info
+      bag.tagmanifest!
+      bag.manifest!
+    end
+
+    def export_content(item, short_pid)
+      mimetype = asset_mimetype(item)
+      return if mimetype == 'xml' && !od_content_is_empty(item)
+
+      write_file(short_pid, "#{short_pid}_content.#{mimetype}", item.datastreams['content'].content)
+      print_checksums(item.datastreams['content'].content, data_dir(short_pid), short_pid)
+    rescue NoContentFileError => e
+      return if !od_content_is_empty(item)
+
+      @logger.error(e.message)
+    end
+
+    def od_content_is_empty(item)
+      item.descMetadata.graph.query(:predicate => RDF::URI('http://opaquenamespace.org/ns/contents')).empty?
+    end
+
+    def asset_mimetype(item)
+      item.datastreams['content'].mimeType.split('/').last
+    rescue NoMethodError
+      raise NoContentFileError
+    end
+
+    def export_metadata(item, short_pid)
+      keylist.each do |key, ext|
+        next if item.datastreams[key].blank?
+
+        filename = "#{short_pid}_#{key}.#{ext}"
+        write_file(short_pid, filename, item.datastreams[key].content)
+      end
+    end
+
+    def export_workflow_metadata_profile(item, short_pid)
+      profile = item.datastreams['workflowMetadata'].profile.to_yaml
+      write_file(short_pid, "#{short_pid}_workflowMetadata_profile.yml", profile)
+    end
+
+    def strip_pid(pid)
+      pid.gsub("oregondigital:", "")
+    end
+
+    def data_dir(short_pid)
+      File.join(@bags_dir, short_pid + "/data")
+    end
+
+    def write_file(short_pid, filename, content)
+      f = File.open(File.join(data_dir(short_pid), filename), 'wb')
+      f.write(content)
+      f.close
     end
 
     def keylist
@@ -57,74 +133,7 @@ module Hyrax::Migrator
       }
     end
 
-    def add_content_to_keylist(item)
-      return if item.datastreams['content'].blank?
-
-      mimetype = asset_mimetype(item)
-      return if !item.descMetadata.od_content.empty? && mimetype == 'xml'
-
-      @keylist['content'] = mimetype
-    end
-
-    def asset_mimetype(item)
-      item.datastreams['content'].mimeType.split('/').last
-    end
-
-    def export_metadata(item, line)
-      @keylist.each do |key, ext|
-        next if item.datastreams[key].blank?
-
-        filename = line.strip.gsub('oregondigital:', '') + '_' + key + '.' + ext
-        write_file(filename, item.datastreams[key].content)
-      end
-    end
-
-    def export_workflow_metadata_profile(item, line)
-      profile = item.datastreams['workflowMetadata'].profile.to_yaml
-      write_file(line.strip.gsub('oregondigital:', '') + '_workflowMetadata_profile.yml', profile)
-    end
-
-    def write_file(filename, content)
-      f = File.open(File.join(@datastreams_dir, filename), 'wb')
-      f.write(content)
-      f.close
-    end
-
-    def make_bags
-      puts "Bagging from #{@datastreams_dir}..." if @verbose
-      bag_dir = @datastreams_dir + '_bags'
-      Dir.mkdir bag_dir unless Dir.exist? bag_dir
-
-      Dir.chdir(@datastreams_dir)
-      Dir.glob('*.nt').each do |item|
-        pid = get_short_pid(item)
-        list = Dir.glob("*#{pid}*")
-        make_bag(bag_dir, @datastreams_dir, list, pid)
-        validate_list(list, pid) if @verbose
-      end
-      puts 'Completed bagging.' if @verbose
-    end
-
-    def make_bag(dir, source_dir, list, pid)
-      bag = BagIt::Bag.new(File.join(dir, pid))
-
-      list.each do |item|
-        bag.add_file(item, File.join(source_dir, item))
-      end
-      bag.tagmanifest!
-      bag.manifest!
-    end
-
-    def get_short_pid(filename)
-      pid = /[a-z0-9]{9}/.match filename
-      pid.to_s.try(:gsub, 'oregondigital-', '') unless pid.nil?
-    end
-
-    def validate_list(list, pid)
-      valid = list.join.include? 'content'
-      message = valid ? "bagged #{pid}" : "no content file included for #{pid}"
-      puts message if @verbose
-      @logger.info message if valid == false
+    class NoContentFileError < StandardError
     end
   end
 end
