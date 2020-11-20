@@ -17,6 +17,7 @@ module Hyrax::Migrator
       @work_dir = work_dir
       @pidlist = pidlist
       @verbose = verbose
+      @counters = init_counters
       init_continue
     end
 
@@ -27,7 +28,14 @@ module Hyrax::Migrator
       @required_service = Hyrax::Migrator::RequiredFields.new(required_fields_file)
       @status_service = Hyrax::Migrator::AssetStatus.new
       @visibility_service = Hyrax::Migrator::VisibilityLookupPreflight.new
+      @cpd_service = Hyrax::Migrator::CpdCheck.new(File.join(@work_dir, @pidlist))
       @errors = []
+    end
+
+    def init_counters
+      counters = {}
+      counters[:cpds] = 0
+      counters
     end
 
     def verify
@@ -66,7 +74,10 @@ module Hyrax::Migrator
       required_result = @required_service.verify_fields
       reset_visibility(work)
       visibility_result = @visibility_service.lookup_visibility
-      concat_errors([crosswalk_result[:errors], required_result, [visibility_result]])
+      reset_cpd_check(work)
+      cpd_result = @cpd_service.check_cpd
+      bump_counters(visibility_result, cpd_result)
+      concat_errors([crosswalk_result[:errors], required_result, [visibility_result], [cpd_result])
       verbose_display(work.pid, crosswalk_result.except(:errors)) if @verbose
     end
 
@@ -75,6 +86,10 @@ module Hyrax::Migrator
 
       concat_errors([[result]])
       false
+    end
+
+    def bump_counters(cpd)
+      counters[:cpds] +=1 if cpd.include? 'cpd'
     end
 
     def concat_errors(errors)
@@ -101,6 +116,10 @@ module Hyrax::Migrator
       @visibility_service.work = work
     end
 
+    def reset_cpd_check(work)
+      @cpd_service.work = work
+    end
+
     def crosswalk_overrides_file
       File.join(@work_dir, 'crosswalk_overrides.yml')
     end
@@ -125,6 +144,7 @@ module Hyrax::Migrator
     end
 
     def write_errors
+      @report.puts "CPD count: #{@counters[:cpds]}"
       @errors.each do |e|
         @report.puts e
       end
