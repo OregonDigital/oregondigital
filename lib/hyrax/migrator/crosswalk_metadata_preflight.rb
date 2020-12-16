@@ -5,22 +5,32 @@ require 'hyrax/migrator/crosswalk_metadata'
 module Hyrax::Migrator
   # For use with MetadataPreflightRake
   class CrosswalkMetadataPreflight < Hyrax::Migrator::CrosswalkMetadata
-    attr_accessor :errors, :result
+    attr_accessor :errors, :result, :work
     def initialize(crosswalk_metadata_file, crosswalk_overrides_file)
       super
-      @errors = []
-      @result = {}
+      reset
     end
 
-    # returns result hash
+    # to allow result and errors to be reset automatically, return clone
+    # force return from ensure block, otherwise super will return @result
     def crosswalk
       super
-    ensure
-      @result[:errors] = @errors unless @errors.empty?
-      @result
+      result = @result.dup
+      result[:errors] = @errors
+      reset
+      result
+    end
+
+    def graph
+      work.descMetadata.graph
     end
 
     private
+
+    def reset
+      @result = {}
+      @errors = []
+    end
 
     # Given an OD2 predicate, returns associated property data or nil
     def lookup(predicate)

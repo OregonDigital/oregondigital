@@ -10,9 +10,9 @@ module Hyrax::Migrator
 
     def lookup_visibility
       result = lookup(read_groups)
-      return '' if comparison_check(result)
+      return 'error: read_groups does not agree with access_restrictions' unless comparison_check(result)
 
-      'read_groups does not agree with access_restrictions'
+      result
     end
 
     private
