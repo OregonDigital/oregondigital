@@ -5,10 +5,8 @@
 # Will write a report of any errors found to the work dir
 # To use: rake preflight_tools:metadata_preflight work_dir=/data1/batch/some_dir pidlist=list.txt
 # If verbose=true then the attributes will be displayed
-require 'hyrax/migrator/crosswalk_metadata_preflight'
-require 'hyrax/migrator/required_fields'
-require 'hyrax/migrator/asset_status'
-require 'hyrax/migrator/visibility_lookup_preflight'
+
+require 'hyrax/migrator/preflight_check_services'
 
 module Hyrax::Migrator
   # Intended to be run on OD1, reuses migrator code to perform pre-migration checks
@@ -17,110 +15,84 @@ module Hyrax::Migrator
       @work_dir = work_dir
       @pidlist = pidlist
       @verbose = verbose
-      init_continue
-    end
-
-    def init_continue
-      datetime_today = Time.zone.now.strftime('%Y%m%d%H%M%S') # "20171021125903"
-      @report = File.open(File.join(@work_dir, "report_#{datetime_today}.txt"), 'w')
-      @crosswalk_service = Hyrax::Migrator::CrosswalkMetadataPreflight.new(crosswalk_file, crosswalk_overrides_file)
-      @required_service = Hyrax::Migrator::RequiredFields.new(required_fields_file)
-      @status_service = Hyrax::Migrator::AssetStatus.new
-      @visibility_service = Hyrax::Migrator::VisibilityLookupPreflight.new
-      @errors = []
+      @counters = { cpds: 0, visibility: 0 }
+      @report = File.open(File.join(@work_dir, "report_#{Time.zone.now.strftime('%Y%m%d%H%M%S')}.txt"), 'w')
+      @services = Hyrax::Migrator::PreflightCheckServices.new(files, work_dir, pidlist)
     end
 
     def verify
-      pids.each do |pid|
+      File.foreach(File.join(@work_dir, @pidlist)).each do |pid|
         begin
-          @errors << "Working on #{pid}..."
-          process(pid)
+          process(pid.strip)
         rescue StandardError => e
           @errors << "System error: #{e.message}"
+        ensure
+          write_errors
         end
       end
-      write_errors
-      @report.close
-    end
-
-    def pids
-      pids = []
-      File.readlines(File.join(@work_dir, @pidlist)).each do |line|
-        pids << line.strip
-      end
-      pids
+      close
     end
 
     def process(pid)
+      @errors = ["Working on #{pid.strip}..."]
       work = GenericAsset.find(pid)
-      reset_status(work)
-      return unless status(@status_service.verify_status)
+      @services.members[:status].reset(work)
+      return unless status?
 
-      process_continue(work)
+      @services.reset(%i[crosswalk visibility cpd], work)
+      fetch_results
+      verbose_display if @verbose
     end
 
-    def process_continue(work)
-      reset_crosswalk(work)
-      crosswalk_result = @crosswalk_service.crosswalk
-      reset_required(crosswalk_result)
-      required_result = @required_service.verify_fields
-      reset_visibility(work)
-      visibility_result = @visibility_service.lookup_visibility
-      concat_errors([crosswalk_result[:errors], required_result, [visibility_result]])
-      verbose_display(work.pid, crosswalk_result.except(:errors)) if @verbose
+    def fetch_results
+      @results = @services.run(%i[crosswalk visibility cpd])
+      concat_errors(@results[:crosswalk][:errors])
+      run_required
+      cpds?
+      visibility?
     end
 
-    def status(result)
+    def run_required
+      @services.members[:required].reset(@results[:crosswalk])
+      @results[:required] = @services.members[:required].run
+      concat_errors(@results[:required])
+    end
+
+    def status?
+      result = @services.members[:status].run
       return true if result == 'ok'
 
-      concat_errors([[result]])
+      concat_errors(result)
+      verbose_display if @verbose
       false
     end
 
-    def concat_errors(errors)
-      errors.each do |errs|
-        @errors.concat errs unless errs.blank?
-      end
+    def cpds?
+      result = @results.delete :cpd
+      @counters[:cpds] += 1 if result.include? 'cpd'
+      concat_errors(result) if result.include? 'missing'
     end
 
-    def reset_crosswalk(work)
-      @crosswalk_service.graph = create_graph(work)
-      @crosswalk_service.errors = []
-      @crosswalk_service.result = {}
+    def visibility?
+      result = @results.delete :visibility
+      @counters[:visibility] += 1 unless result.value? 'open'
+      concat_errors(result) if result.include? 'error'
     end
 
-    def reset_required(attributes)
-      @required_service.attributes = attributes
+    def concat_errors(error)
+      err = error.is_a?(Array) ? error : [error]
+      @errors.concat err
     end
 
-    def reset_status(work)
-      @status_service.work = work
+    def files
+      { crosswalk_overrides: File.join(@work_dir, 'crosswalk_overrides.yml'),
+        crosswalk: File.join(@work_dir, 'crosswalk.yml'),
+        required_fields: File.join(@work_dir, 'required_fields.yml') }
     end
 
-    def reset_visibility(work)
-      @visibility_service.work = work
-    end
-
-    def crosswalk_overrides_file
-      File.join(@work_dir, 'crosswalk_overrides.yml')
-    end
-
-    def crosswalk_file
-      File.join(@work_dir, 'crosswalk.yml')
-    end
-
-    def required_fields_file
-      File.join(@work_dir, 'required_fields.yml')
-    end
-
-    def create_graph(item)
-      item.datastreams['descMetadata'].graph
-    end
-
-    def verbose_display(pid, attributes)
-      puts "Attributes for #{pid}..."
-      attributes.each do |attr|
-        puts attr.to_s
+    def verbose_display
+      @errors.each do |e|
+        puts e
       end
     end
 
@@ -128,6 +100,12 @@ module Hyrax::Migrator
       @errors.each do |e|
         @report.puts e
       end
+    end
+
+    def close
+      @report.puts "CPD count: #{@counters[:cpds]}"
+      @report.puts "Restricted items count: #{@counters[:visibility]}"
+      @report.close
     end
   end
 end
