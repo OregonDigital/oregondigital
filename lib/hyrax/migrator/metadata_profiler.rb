@@ -13,6 +13,7 @@ module Hyrax::Migrator
       f.print assemble_contents(item)
       f.puts "derivatives_info:"
       f.print assemble_derivatives_info(item.datastreams)
+      f.print visibility(item)
       f.puts "fields:"
       fields(item).each do |field|
         vals = item.descMetadata.send(field)
@@ -110,6 +111,15 @@ module Hyrax::Migrator
 
     def asset_mimetype(item)
       item.datastreams['content'].mimeType.split('/').last
+    end
+
+    def visibility(item)
+      str = "visibility:\n"
+      visibility = item.read_groups - ['admin', 'archivist']
+      visibility.each do |v|
+        str += "#{INDENT}#{DASH} \"#{v}\"\n"
+      end
+      str
     end
   end
 end
