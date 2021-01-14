@@ -332,7 +332,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :publisher, :predicate => RDF::DC.publisher do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup do |index|
+  property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
     index.as :displayable
   end
   property :od_repository, :predicate => OregonDigital::Vocabularies::MARCREL.rps, :class_name => OregonDigital::ControlledVocabularies::Repos do |index|
@@ -555,7 +555,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :modeOfIssuance, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#modeOfIssuance.en') do |index|
     index.as :displayable
   end
-  property :placeOfProduction, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#placeOfProduction.en') do |index|
+  property :placeOfProduction, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#placeOfProduction.en'), :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
     index.as :displayable
   end
   property :descriptionOfManifestation, :predicate => RDF::URI('http://www.rdaregistry.info/Elements/m/#descriptionOfManifestation.en') do |index|
