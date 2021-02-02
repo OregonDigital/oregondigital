@@ -329,7 +329,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :language, :predicate => RDF::DC.language, :class_name => OregonDigital::ControlledVocabularies::Language do |index|
     index.as :displayable, :facetable
   end
-  property :publisher, :predicate => RDF::DC.publisher do |index|
+  property :publisher, :predicate => RDF::DC.publisher, :class_name => OregonDigital::ControlledVocabularies::Publisher do |index|
     index.as :searchable, :facetable, :displayable
   end
   property :placeOfPublication, :predicate => OregonDigital::Vocabularies::MARCREL.pup, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|

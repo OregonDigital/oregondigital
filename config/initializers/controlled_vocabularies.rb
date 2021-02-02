@@ -55,5 +55,6 @@ RDF_VOCABS = {
   :osuacademicunits     =>  { :prefix => 'http://opaquenamespace.org/ns/osuAcademicUnits/', :strict => false, :fetch => false},
   :seriesname           =>  { :prefix => 'http://opaquenamespace.org/ns/seriesName/', :strict => false, :fetch => false},
   :rightsstatements     =>  { :prefix => 'http://rightsstatements.org/vocab/', :strict => false, :fetch => false},
-  :accessrestrict       =>  { :prefix => 'http://opaquenamespace.org/ns/accessRestrictions/', :strict => false, :fetch => false}
+  :accessrestrict       =>  { :prefix => 'http://opaquenamespace.org/ns/accessRestrictions/', :strict => false, :fetch => false},
+  :publisher            =>  { :prefix => 'http://opaquenamespace.org/ns/publisher/', :strict => false, :fetch => false}
 }
