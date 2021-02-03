@@ -12,8 +12,8 @@ module OregonDigital::OAI::Concern
     def uri_fields
       @uri_fields = [:creator, :lcsubject, :type, :author, :editor, :photographer, :phylum, :taxonClass, :order, :family,
                      :genus, :species, :commonNames, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator,
-                     :interviewee, :interviewer, :lyricist, :photographer, :translator, :owner, :designer, :ethnographicTerm, :militaryBranch, :stylePeriod, 
-                     :language, :localCollectionName, :od_repository, :recipient, :set]
+                     :interviewee, :interviewer, :lyricist, :photographer, :translator, :owner, :designer, :ethnographicTerm, :militaryBranch, :stylePeriod,
+                     :language, :localCollectionName, :od_repository, :recipient, :set, :publisher]
     end
 
     # Map Qualified Dublin Core (Terms) fields to Oregon Digital fields
