@@ -49,11 +49,10 @@ module Hyrax::Migrator
         begin
           short_pid = strip_pid(line.strip)
           item = GenericAsset.find(line.strip)
-
+          bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
           export_profile(item, short_pid)
           export_metadata(item, short_pid)
           export_workflow_metadata_profile(item, short_pid)
-          bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
           bag_finisher(bag)
         rescue StandardError => e
           message = "Error #{e.message}:#{e.backtrace.join("\n")}"
