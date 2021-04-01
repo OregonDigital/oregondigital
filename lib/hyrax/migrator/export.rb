@@ -63,7 +63,7 @@ module Hyrax::Migrator
     end
 
     def export_profile(item, short_pid)
-      create_profile(data_dir(short_pid), item)
+      create_profile(data_dir(short_pid), item, @export_dir)
     end
 
     def bag_finisher(bag)
