@@ -5,7 +5,8 @@ module Hyrax::Migrator
     INDENT = "  "
     DASH = "- "
 
-    def create_profile(export_path, item)
+    def create_profile(export_path, item, configs_path)
+      @configs_path = configs_path
       f = File.open(File.join(export_path, "#{cleanpid(item.pid)}_profile.yml"), 'w')
       f.puts "sets:"
       f.print assemble_sets(item)
@@ -15,11 +16,11 @@ module Hyrax::Migrator
       f.print assemble_derivatives_info(item.datastreams)
       f.print visibility(item)
       f.puts "fields:"
-      fields(item).each do |field|
-        vals = item.descMetadata.send(field)
+      property_hash.keys.each do |k|
+        vals = item.descMetadata.send(k)
         next if vals.blank?
 
-        f.print assemble_field(field, vals)
+        f.print assemble_field(k, vals)
       end
       f.close
     rescue StandardError => e
@@ -73,13 +74,18 @@ module Hyrax::Migrator
     end
 
     def assemble_field(field, vals)
-      return "#{INDENT}#{field}: \"#{extract(vals)}\"\n" unless vals.is_a? Array
+      return assemble_field_single(field, vals) unless prop_is_array? field.to_sym
 
       str = "#{INDENT}#{field}:\n"
       vals.each do |v|
         str += "#{INDENT}#{DASH}\"#{extract(v)}\"\n"
       end
       str
+    end
+
+    def assemble_field_single(field, val)
+      v = val.is_a?(Array) ? val.first : val
+      "#{INDENT}#{field}: \"#{extract(v)}\"\n"
     end
   
     def query_graph(item, term)
@@ -120,6 +126,42 @@ module Hyrax::Migrator
         str += "#{INDENT}#{DASH} \"#{v}\"\n"
       end
       str
+    end
+
+    # check if property is an array in OD2
+    def prop_is_array?(property)
+      is_multiple?(property_hash[property])
+    end
+
+    def is_multiple?(predicate)
+      @lookup ||= crosswalk_service.crosswalk_hash.select{|k| k[:multiple] == false }.map{ |k| k[:predicate] }
+      !@lookup.include? predicate
+    end
+
+    def crosswalk_service
+      Hyrax::Migrator::CrosswalkMetadata.new(crosswalk_file, crosswalk_overrides_file)
+    end
+
+    def crosswalk_file
+      File.join(@configs_path, 'crosswalk.yml')
+    end
+
+    def crosswalk_overrides_file
+      File.join(@configs_path, 'crosswalk_overrides.yml')
+    end
+
+    # just do this once
+    def property_hash
+      @hash ||= get_od_properties
+    end
+
+    # returns hash, eg { :title => "http://purl.org/dc/terms/title" }
+    def get_od_properties
+      hash = {}
+      Datastream::OregonRDF.properties.except(:set, :primarySet, :od_content).map{|p| p[1]}.each do |val|
+        hash[val.term] = val.predicate.to_s
+      end
+      hash
     end
   end
 end
