@@ -46,6 +46,18 @@ describe Hyrax::Migrator::MetadataProfiler do
   end
  
   describe 'assemble_field' do
+    let(:crosswalk_service) { double }
+    let(:crosswalk_hash) do
+      [{ property: "title", predicate: "http://purl.org/dc/terms/title" , multiple: true, function: nil },
+       { property: "creator_attributes", predicate: "purl.org/dc/elements/1.1/creator", multiple: true, function: "attributes_data" },
+       { property: "firstLine", predicate: "http://opaquenamespace.org/ns/sheetmusic_firstLine", multiple: false, function: nil }]
+    end
+
+    before do
+      allow(Hyrax::Migrator::CrosswalkMetadata).to receive(:new).and_return(crosswalk_service)
+      allow(crosswalk_service).to receive(:crosswalk_hash).and_return(crosswalk_hash)
+    end
+
     context 'when the value is a string' do
       let(:field) { 'title' }
       let(:val) { ['Maple Bar'] }
@@ -69,6 +81,16 @@ describe Hyrax::Migrator::MetadataProfiler do
       end
 
       it 'returns the subject as a formatted string' do
+        expect(assemble_field(field, vals)).to eq(report)
+      end
+    end
+
+    context 'when the field will not be an array on OD2' do
+      let(:field) { 'firstLine' }
+      let(:vals) { ['Aardvark a mile for one of your smiles'] }
+      let(:report) { "  firstLine: \"Aardvark a mile for one of your smiles\"\n" }
+
+      it 'returns the formatted string' do
         expect(assemble_field(field, vals)).to eq(report)
       end
     end
