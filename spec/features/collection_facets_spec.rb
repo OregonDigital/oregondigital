@@ -51,22 +51,18 @@ describe 'collection facets' do
       end
     end
     context "and search results are being displayed" do
-      before(:each) do
-        visit root_path(:search_field => "all_fields")
-      end
       context "when the facet is clicked" do
-        before(:each) do
-          click_link collection.title
-        end
         it "should not go to the collection landing page" do
+          visit root_path(:search_field => "all_fields")
+          click_link collection.title
           expect(current_path).not_to eq "/sets/#{collection.pid.split(':').last}"
         end
         context "and then a more precise search is done" do
-          before do
+          it "should still show the facet" do
+            visit root_path(:search_field => "all_fields")
+            click_link collection.title
             fill_in "Search...", :with => "Return Nothing"
             click_button "search"
-          end
-          it "should still show the facet" do
             within("#appliedParams") do
               expect(page).to have_content(collection.title)
             end
