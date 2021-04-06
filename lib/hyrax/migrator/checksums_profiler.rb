@@ -13,7 +13,7 @@ module Hyrax::Migrator
     end
 
     def assemble_checksums(content)
-      str += "#{INDENT}MD5hex:\n"
+      str = "#{INDENT}MD5hex:\n"
       str += "#{INDENT}#{DASH}#{Digest::MD5.hexdigest content}\n"
       str
     end
