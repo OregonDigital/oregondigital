@@ -13,14 +13,8 @@ module Hyrax::Migrator
     end
 
     def assemble_checksums(content)
-      str = "#{INDENT}SHA1hex:\n"
-      str += "#{INDENT}#{DASH}#{Digest::SHA1.hexdigest content}\n"
-      str += "#{INDENT}SHA1base64:\n"
-      str += "#{INDENT}#{DASH}#{Digest::SHA1.base64digest content}\n"
-      str += "#{INDENT}MD5hex:\n"
+      str = "#{INDENT}MD5hex:\n"
       str += "#{INDENT}#{DASH}#{Digest::MD5.hexdigest content}\n"
-      str += "#{INDENT}MD5base64:\n"
-      str += "#{INDENT}#{DASH}#{Digest::MD5.base64digest content}\n"
       str
     end
 
