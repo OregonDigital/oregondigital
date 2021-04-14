@@ -64,7 +64,7 @@ describe 'collection facets' do
             find_link(collection.title).click
             fill_in "Search...", :with => "Nothing"
             find_button("search").click
-            find("#appliedParams") do
+            within("#appliedParams") do
               expect(page).to have_content(collection.title)
             end
           end
