@@ -59,9 +59,10 @@ describe 'collection facets' do
         end
         context "and then a more precise search is done" do
           it "should still show the facet" do
-            visit root_path(:search_field => "all_fields")
+            visit root_path
+            find_button("search").click
             find_link(collection.title).click
-            fill_in "Search...", :with => "Return Nothing"
+            fill_in "Search...", :with => "Nothing"
             find_button("search").click
             find("#appliedParams") do
               expect(page).to have_content(collection.title)
