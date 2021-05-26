@@ -37,7 +37,7 @@ namespace :migration do
     name = ENV['name']
     pidlist = ENV['pidlist']
     service = Hyrax::Migrator::Export.new(export_dir, name, pidlist, ENV['verbose'])
-    service.export_metadata
+    service.export_metadata_only
   end
 
   task export_content: :environment do
@@ -46,6 +46,6 @@ namespace :migration do
     name = ENV['name']
     pidlist = ENV['pidlist']
     service = Hyrax::Migrator::Export.new(export_dir, name, pidlist, ENV['verbose'])
-    service.export_content
+    service.export_content_only
   end
 end
