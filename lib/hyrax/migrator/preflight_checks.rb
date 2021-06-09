@@ -39,17 +39,18 @@ module Hyrax::Migrator
       @services.members[:status].reset(work)
       return unless status?
 
-      @services.reset(%i[crosswalk visibility cpd], work)
+      @services.reset(%i[crosswalk visibility cpd edtf], work)
       fetch_results
       verbose_display if @verbose
     end
 
     def fetch_results
-      @results = @services.run(%i[crosswalk visibility cpd])
+      @results = @services.run(%i[crosswalk visibility cpd edtf])
       concat_errors(@results[:crosswalk][:errors])
       run_required
       cpds?
       visibility?
+      edtf?
     end
 
     def run_required
@@ -77,6 +78,11 @@ module Hyrax::Migrator
       result = @results.delete :visibility
       @counters[:visibility] += 1 unless result.value? 'open'
       concat_errors(result) if result.include? 'error'
+    end
+
+    def edtf?
+      result = @results.delete :edtf
+      concat_errors(result) unless result.empty?
     end
 
     def concat_errors(error)
