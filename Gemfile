@@ -116,6 +116,9 @@ gem 'dalli'
 gem 'resque-retry'
 gem 'rspec-rails', '~>2.0'
 
+# EDTF for preflight tools
+gem 'edtf'
+
 group :development do
   # Spring as Rails preloader
   gem 'spring'
