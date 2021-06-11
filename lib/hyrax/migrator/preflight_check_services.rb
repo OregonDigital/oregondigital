@@ -5,6 +5,7 @@ require 'hyrax/migrator/required_fields'
 require 'hyrax/migrator/asset_status'
 require 'hyrax/migrator/visibility_lookup_preflight'
 require 'hyrax/migrator/cpd_check'
+require 'hyrax/migrator/edtf_check'
 
 module Hyrax::Migrator
   # Initialize and wrap all the preflight services for the preflight check
@@ -16,7 +17,8 @@ module Hyrax::Migrator
         required: ServiceWrapper.new(Hyrax::Migrator::RequiredFields.new(files[:required_fields]), :verify_fields, :attributes=),
         status: ServiceWrapper.new(Hyrax::Migrator::AssetStatus.new, :verify_status, :work=),
         visibility: ServiceWrapper.new(Hyrax::Migrator::VisibilityLookupPreflight.new, :lookup_visibility, :work=),
-        cpd: ServiceWrapper.new(Hyrax::Migrator::CpdCheck.new(File.join(work_dir, pidlist)), :check_cpd, :work=)
+        cpd: ServiceWrapper.new(Hyrax::Migrator::CpdCheck.new(File.join(work_dir, pidlist)), :check_cpd, :work=),
+        edtf: ServiceWrapper.new(Hyrax::Migrator::EdtfCheck.new, :check_date_fields, :work=)
       }
     end
 
