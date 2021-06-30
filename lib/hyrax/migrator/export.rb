@@ -84,7 +84,9 @@ module Hyrax::Migrator
     end
 
     def bag_finisher(bag)
-      bag.write_bag_info
+      info = bag.bag_info
+      info['Bagging-Date'] = Date.today.strftime("%Y-%m-%d")
+      bag.write_bag_info info
       bag.tagmanifest!
       bag.manifest!
     end
