@@ -6,6 +6,7 @@ module OregonDigital::ControlledVocabularies
 
     configure :rdf_label => RDF::URI('http://www.geonames.org/ontology#name')
     use_vocabulary :geonames
+    use_vocabulary :tfddbasins
 
     property :name, :predicate => RDF::URI('http://www.geonames.org/ontology#name')
     property :latitude, :predicate => RDF::URI('http://www.w3.org/2003/01/geo/wgs84_pos#lat')
