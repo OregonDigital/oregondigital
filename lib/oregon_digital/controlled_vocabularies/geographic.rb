@@ -36,16 +36,7 @@ module OregonDigital::ControlledVocabularies
 
     # Fetch parent features if they exist. Necessary for automatic population of rdf label.
     def fetch
-      puts "1: " + self.rdf_subject.to_s
-
-      # self.rdf_subject.to_s.gsub!('http:', 'https:')
-
-      puts "2: " + self.rdf_subject.to_s
-
       result = super
-
-      puts result.to_s
-
       return result if top_level_element?
       parentFeature.each do |feature|
         feature.fetch
