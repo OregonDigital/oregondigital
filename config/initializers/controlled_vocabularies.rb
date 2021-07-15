@@ -56,5 +56,6 @@ RDF_VOCABS = {
   :seriesname           =>  { :prefix => 'http://opaquenamespace.org/ns/seriesName/', :strict => false, :fetch => false},
   :rightsstatements     =>  { :prefix => 'http://rightsstatements.org/vocab/', :strict => false, :fetch => false},
   :accessrestrict       =>  { :prefix => 'http://opaquenamespace.org/ns/accessRestrictions/', :strict => false, :fetch => false},
-  :publisher            =>  { :prefix => 'http://opaquenamespace.org/ns/publisher/', :strict => false, :fetch => false}
+  :publisher            =>  { :prefix => 'http://opaquenamespace.org/ns/publisher/', :strict => false, :fetch => false},
+  :tfddbasins          =>  { :prefix => 'http://opaquenamespace.org/ns/TFDDbasins/', :strict => false, :fetch => fasle}
 }

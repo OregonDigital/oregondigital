@@ -6,6 +6,7 @@ module OregonDigital::ControlledVocabularies
 
     configure :rdf_label => RDF::URI('http://www.geonames.org/ontology#name')
     use_vocabulary :geonames
+    use_vocabulary :tfddbasins
 
     property :name, :predicate => RDF::URI('http://www.geonames.org/ontology#name')
     property :latitude, :predicate => RDF::URI('http://www.w3.org/2003/01/geo/wgs84_pos#lat')
@@ -35,7 +36,16 @@ module OregonDigital::ControlledVocabularies
 
     # Fetch parent features if they exist. Necessary for automatic population of rdf label.
     def fetch
+      puts "1: " + self.rdf_subject.to_s
+
+      # self.rdf_subject.to_s.gsub!('http:', 'https:')
+
+      puts "2: " + self.rdf_subject.to_s
+
       result = super
+
+      puts result.to_s
+
       return result if top_level_element?
       parentFeature.each do |feature|
         feature.fetch
