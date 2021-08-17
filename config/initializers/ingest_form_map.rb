@@ -49,7 +49,8 @@ INGEST_MAP = {
     dedicatee: "descMetadata.dedicatee",
     recipient: "descMetadata.recipient",
     owner: "descMetadata.owner",
-    formerOwner: "descMetadata.formerOwner"
+    formerOwner: "descMetadata.formerOwner",
+    landscapeArchitect: "descMetadata.landscapeArchitect"
   },
 
   description: {
