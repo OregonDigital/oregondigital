@@ -23,7 +23,7 @@
         <%= h(application_name) %>
     <% end %>
     </title>
-    <link href="<%= opensearch_catalog_path(:format => 'xml', :only_path => false) %>" title="<%= application_name%>" type="application/opensearchdescription+xml" rel="search"/>
+    <link href="<%= opensearch_catalog_path(:format => 'xml', :only_url => false) %>" title="<%= application_name%>" type="application/opensearchdescription+xml" rel="search"/>
 
     <%= stylesheet_link_tag "application", "//fonts.googleapis.com/css?family=Gudea:400,400italic,700" %>
     <%= javascript_include_tag "application" %>
