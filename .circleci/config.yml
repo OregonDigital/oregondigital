@@ -67,7 +67,7 @@ jobs:
 
       - run:
           name: Jetty start
-          command: cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/oregondigital/jetty/solr -XX:MaxPermSize=128m -Xmx256m -jar start.jar
+          command: cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/oregondigital/jetty/solr -Djetty.httpConfig.requestHeaderSize=12288 -XX:MaxPermSize=128m -Xmx256m -jar start.jar
           background: true
 
       - restore_cache:
