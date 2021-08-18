@@ -11,6 +11,7 @@ module OregonDigital
               :"hl.fl" => "desc_metadata__full_text_tsimv",
               :"hl.useFastVectorHighlighter" => true
           }
+          config.http_method = :post
         end
       end
     end
