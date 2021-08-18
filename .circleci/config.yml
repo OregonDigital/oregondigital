@@ -10,6 +10,7 @@ jobs:
           - OREGONDIGITAL_FEDORA_HOST: http://127.0.0.1:8983/fedora
       - image: circleci/mongo:3
       - image: redis
+      - image: oregondigital/solr
 
     working_directory: ~/app
     steps:
@@ -67,7 +68,7 @@ jobs:
 
       - run:
           name: Jetty start
-          command: cd jetty && java -Djetty.port=8983 -Dsolr.solr.home=/home/ubuntu/oregondigital/jetty/solr -XX:MaxPermSize=128m -Xmx256m -jar start.jar
+          command: cd jetty && rm -f /opt/jetty/webapps/solr.war && java -XX:MaxPermSize=128m -Xmx256m -jar start.jar
           background: true
 
       - restore_cache:
