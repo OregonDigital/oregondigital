@@ -77,6 +77,9 @@ jobs:
             ln -s media/thumbnails public/thumbnails
 
       - run:
+          command: touch tmp/minter-state
+
+      - run:
           name: Sleep
           command: sleep 10
 
