@@ -10,8 +10,8 @@ jobs:
           - OREGONDIGITAL_FEDORA_HOST: http://localhost:8983/fedora
       - image: circleci/mongo:3
       - image: redis
-      - image: oregondigital/solr
-        command: bash -lc 'chmod 775 /docker-entrypoint-initdb.d/odsetup.sh && /docker-entrypoint-initdb.d/odsetup.sh && bin/solr start -f -p 8985'
+      - image: oregondigital/solr:20210819
+        command: bash -lc '/docker-entrypoint-initdb.d/odsetup.sh && bin/solr start -f -p 8985'
       - image: oregondigital/hydra-jetty:3.8.1-4.0
         command: bash -lc 'rm -f /opt/jetty/webapps/solr.war && java -jar start.jar'
 
