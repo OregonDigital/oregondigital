@@ -6,12 +6,14 @@ jobs:
         environment:
           - GI_TYPELIB_PATH: /usr/local/lib/girepository-1.0/
           - RAILS_ENV: test
-          - OREGONDIGITAL_SOLR_HOST: http://127.0.0.1:8983/solr/development
-          - OREGONDIGITAL_FEDORA_HOST: http://127.0.0.1:8983/fedora
+          - OREGONDIGITAL_SOLR_HOST: solr:8983/solr/development
+          - OREGONDIGITAL_FEDORA_HOST: fedora:8983/fedora
       - image: circleci/mongo:3
       - image: redis
       - image: oregondigital/solr
+        name: solr
       - image: oregondigital/hydra-jetty:3.8.1-4.0
+        name: fedora
         command: bash -lc 'rm -f /opt/jetty/webapps/solr.war && java -jar start.jar'
 
     working_directory: ~/app
