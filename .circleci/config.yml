@@ -74,6 +74,7 @@ jobs:
           name: Asset dir
           command: |
             mkdir -p media/thumbnails
+            mkdir media/test
             ln -s media public/media
             ln -s media/thumbnails public/thumbnails
 
