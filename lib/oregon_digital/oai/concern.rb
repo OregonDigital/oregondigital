@@ -13,7 +13,7 @@ module OregonDigital::OAI::Concern
       @uri_fields = [:creator, :lcsubject, :type, :author, :editor, :photographer, :phylum, :taxonClass, :order, :family,
                      :genus, :species, :commonNames, :arranger, :artist, :author, :collector, :composer, :contributor, :illustrator,
                      :interviewee, :interviewer, :lyricist, :photographer, :translator, :owner, :designer, :ethnographicTerm, :militaryBranch, :stylePeriod,
-                     :language, :localCollectionName, :od_repository, :recipient, :set, :publisher]
+                     :language, :localCollectionName, :od_repository, :recipient, :set, :publisher, :landscapeArchitect]
     end
 
     # Map Qualified Dublin Core (Terms) fields to Oregon Digital fields
@@ -29,7 +29,7 @@ module OregonDigital::OAI::Concern
         :creator => [:creator],
         :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :editor, :illustrator,
                           :interviewee, :interviewer, :lyricist, :patron, :photographer, :printMaker, :scribe, :transcriber, :translator, 
-                          :dedicatee, :recipient, :owner, :designer],
+                          :dedicatee, :recipient, :owner, :designer, :landscapeArchitect],
         :subject => [:lcsubject, :subject, :phylum, :taxonClass, :order, :family, :genus, :species, :commonNames, :ethnographicTerm, :event, :militaryBranch, :sportsTeam,
                      :tribalClasses, :tribalTerms, :award, :legalName],
         :rights => [:rights, :useRestrictions, :accessRestrictions],
@@ -62,7 +62,7 @@ module OregonDigital::OAI::Concern
         :creator => [:creator],
         :contributor => [:arranger, :artist, :author, :cartographer, :collector, :composer, :contributor, :editor, :illustrator,
                           :interviewee, :interviewer, :lyricist, :patron, :photographer, :printMaker, :scribe, :transcriber, :translator,
-                          :dedicatee, :recipient, :owner, :designer],
+                          :dedicatee, :recipient, :owner, :designer, :landscapeArchitect],
         :subject => [:lcsubject, :subject, :phylum, :taxonClass, :order, :family, :genus, :species, :commonNames, :ethnographicTerm, :event, :militaryBranch, :sportsTeam,
                      :tribalClasses, :tribalTerms, :award, :legalName],
         :coverage => [:location, :tgn, :waterBasin, :rangerDistrict, :streetAddress, :temporal, :geobox, :latitude, :longitude],
