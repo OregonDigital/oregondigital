@@ -45,6 +45,34 @@ describe Hyrax::Migrator::MetadataProfiler do
     end
   end
  
+  describe 'assemble_contents' do
+    let(:item) { double }
+    let(:descMetadata) { double }
+    let(:subject) { RDF::URI('http://oregondigital.org/resource/abcde1234') }
+    let(:predicate) { RDF::URI('http://opaquenamespace.org/ns/contents') }
+    let(:pid1) { 'fghij2323' }
+    let(:pid2) { 'klmno4545' }
+    let(:object1) { RDF::URI("http://oregondigital.org/resource/oregondigital:#{pid1}") }
+    let(:object2) { RDF::URI("http://oregondigital.org/resource/oregondigital:#{pid2}") }
+    let(:graph) do
+      g = RDF::Graph.new
+      g << RDF::Statement.new(subject, predicate, object1)
+      g << RDF::Statement.new(subject, predicate, object2)
+      g
+    end
+    context 'when the work is a cpd' do
+      before do
+        allow(item).to receive(:descMetadata).and_return(descMetadata)
+        allow(descMetadata).to receive(:graph).and_return(graph)
+      end
+
+      it 'lists the children on the profile' do
+        parsed = YAML::parse(assemble_contents(item))
+        expect(parsed.to_ruby["contents"]).to eq [pid1, pid2]
+      end
+    end
+  end
+
   describe 'assemble_field' do
     let(:crosswalk_service) { double }
     let(:crosswalk_hash) do
@@ -61,10 +89,10 @@ describe Hyrax::Migrator::MetadataProfiler do
     context 'when the value is a string' do
       let(:field) { 'title' }
       let(:val) { ['Maple Bar'] }
-      let(:report) { "  title:\n  - \"Maple Bar\"\n" }
 
       it 'returns the formatted string' do
-        expect(assemble_field(field, val)).to eq(report)
+        parsed = YAML::parse(assemble_field(field, val))
+        expect(parsed.to_ruby["title"]).to eq ["Maple Bar"]
       end
     end
 
@@ -73,7 +101,6 @@ describe Hyrax::Migrator::MetadataProfiler do
       let(:vals) { [val] }
       let(:val) { double }
       let(:rdf_subject) { RDF::URI('http://dbpedia.org/resource/dunkin-donuts') }
-      let(:report) { "  creator:\n  - \"http://dbpedia.org/resource/dunkin-donuts\"\n" }
 
       before do
         allow(val).to receive(:respond_to?).and_return(true)
@@ -81,18 +108,33 @@ describe Hyrax::Migrator::MetadataProfiler do
       end
 
       it 'returns the subject as a formatted string' do
-        expect(assemble_field(field, vals)).to eq(report)
+        parsed = YAML::parse(assemble_field(field, vals))
+        expect(parsed.to_ruby['creator']).to eq [rdf_subject.to_s]
       end
     end
 
     context 'when the field will not be an array on OD2' do
       let(:field) { 'firstLine' }
       let(:vals) { ['Aardvark a mile for one of your smiles'] }
-      let(:report) { "  firstLine: \"Aardvark a mile for one of your smiles\"\n" }
 
       it 'returns the formatted string' do
-        expect(assemble_field(field, vals)).to eq(report)
+        parsed = YAML::parse(assemble_field(field, vals))
+        expect(parsed.to_ruby['firstLine']).to eq vals.first
       end
+    end
+  end
+
+  describe 'assemble_visibility' do
+    let(:item) { double }
+    let(:read_groups) { ['admin', 'archivist', 'fluffy'] }
+
+     before do
+       allow(item).to receive(:read_groups).and_return(read_groups)
+     end
+
+    it 'prints the visibility' do
+      parsed = YAML::parse(visibility(item))
+      expect(parsed.to_ruby["visibility"]).to eq ["fluffy"]
     end
   end
 end
