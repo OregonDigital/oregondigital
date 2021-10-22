@@ -45,6 +45,34 @@ describe Hyrax::Migrator::MetadataProfiler do
     end
   end
  
+  describe 'assemble_contents' do
+    let(:report) { "contents:\n  - #{pid1}\n  - #{pid2}\n" }
+    let(:item) { double }
+    let(:descMetadata) { double }
+    let(:subject) { RDF::URI('http://oregondigital.org/resource/abcde1234') }
+    let(:predicate) { RDF::URI('http://opaquenamespace.org/ns/contents') }
+    let(:pid1) { 'fghij2323' }
+    let(:pid2) { 'klmno4545' }
+    let(:object1) { RDF::URI("http://oregondigital.org/resource/oregondigital:#{pid1}") }
+    let(:object2) { RDF::URI("http://oregondigital.org/resource/oregondigital:#{pid2}") }
+    let(:graph) do
+      g = RDF::Graph.new
+      g << RDF::Statement.new(subject, predicate, object1)
+      g << RDF::Statement.new(subject, predicate, object2)
+      g
+    end
+    context 'when the work is a cpd' do
+      before do
+        allow(item).to receive(:descMetadata).and_return(descMetadata)
+        allow(descMetadata).to receive(:graph).and_return(graph)
+      end
+
+      it 'lists the children on the profile' do
+        expect(assemble_contents(item)).to eq(report)
+      end
+    end
+  end
+
   describe 'assemble_field' do
     let(:crosswalk_service) { double }
     let(:crosswalk_hash) do
@@ -93,6 +121,20 @@ describe Hyrax::Migrator::MetadataProfiler do
       it 'returns the formatted string' do
         expect(assemble_field(field, vals)).to eq(report)
       end
+    end
+  end
+
+  describe 'assemble_visibility' do
+    let(:report) { "visibility:\n  -  \"fluffy\"\n" }
+    let(:item) { double }
+    let(:read_groups) { ['admin', 'archivist', 'fluffy'] }
+
+     before do
+       allow(item).to receive(:read_groups).and_return(read_groups)
+     end
+
+    it 'prints the visibility' do
+      expect(visibility(item)).to eq report
     end
   end
 end

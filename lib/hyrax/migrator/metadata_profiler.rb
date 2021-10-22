@@ -49,12 +49,12 @@ module Hyrax::Migrator
     end
 
     def assemble_contents(item)
-      contents = query_graph(item, 'content')
+      contents = query_graph(item, 'contents')
       return if contents.blank?
 
       str = "contents:\n"
       contents.each do |content|
-        str += "#{DASH}#{content}\n"
+        str += "#{INDENT}#{DASH}#{content}\n"
       end
       str
     end
