@@ -10,7 +10,7 @@ module Hyrax::Migrator
       reset
       edtf_fields.each do |field|
         @work.descMetadata.send(field).each do |value|
-          @errors << "#{@work.pid}: in #{field}, #{value} is not in EDTF format" unless EDTF.parse(value).present?
+          @errors << "in #{field}, #{value} is not in EDTF format" unless EDTF.parse(value).present?
         end
       end
       @errors
