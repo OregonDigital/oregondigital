@@ -41,7 +41,7 @@ module Hyrax::Migrator
     end
 
     def find(predicate)
-      proc { |k| k[:predicate].casecmp(predicate).zero? }
+      proc { |k| k[:predicate] == predicate }
     end
 
     # Given an OD2 predicate, returns associated property data or nil
