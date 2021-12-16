@@ -12,7 +12,7 @@ module Hyrax::Migrator
       result = lookup(read_groups)
       return 'error: read_groups does not agree with access_restrictions' unless comparison_check(result)
 
-      result
+      result[:visibility]
     end
 
     private
