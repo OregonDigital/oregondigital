@@ -11,7 +11,7 @@
 # - Will need to test derivative generation for all types since CLI changes sometimes happen
 # - ffmpeg will need to be replaced, and libavcode-extra-53 definitely has to be replaced
 FROM ubuntu:16.04
-MAINTAINER Jeremy Echols <jechols@uoregon.edu>
+MAINTAINER OSULP Infrastructure <systems@library.oregonstate.edu>
 
 #apt won't find some libs if this isn't run
 RUN apt-get update --fix-missing && apt-get install -y pkg-config \
@@ -84,11 +84,4 @@ RUN chmod +x /link-set-content.sh && /link-set-content.sh && bundle exec \
   ln -s /oregondigital/media/thumbnails /oregondigital/public/thumbnails && \
   chmod +x /entrypoint.sh
   
-
-# Expose a volume so that the web server can read assets
-VOLUME ["$INSTALL_PATH/public"]
-
-# Allow devs to override the app code entirely
-VOLUME ["$INSTALL_PATH/"]
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/entrypoint.sh"]
