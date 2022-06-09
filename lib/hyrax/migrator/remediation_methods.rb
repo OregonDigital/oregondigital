@@ -15,6 +15,8 @@ module Hyrax::Migrator
 
     def fix_geonames(graph)
       graph.statements.select{|s| s.object.to_s.include? 'geonames'}.each do |s|
+        next if s.object.to_s.include? 'https'
+
         uri = s.object.to_s.gsub('http', 'https')
         graph << RDF::Statement(s.subject, s.predicate, RDF::URI(uri))
         graph.delete s
