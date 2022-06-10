@@ -41,7 +41,7 @@ gem 'sparql-client'
 
 gem 'noid'
 gem 'hybag'
-gem 'qa', :github => "oregondigital/questioning_authority", :branch => "fix/update_nokogiri"
+gem 'qa', :git => "git@github.com:oregondigital/questioning_authority", :branch => "fix/update_nokogiri"
 
 gem 'resque', '~>1.25.0'
 
@@ -84,7 +84,7 @@ gem 'hydra-role-management'
 gem 'draper'
 
 # Ingest form FBOs
-gem 'metadata-ingest-form', '~>2.4.1', :github => "OregonDigital/metadata-ingest-form"
+gem 'metadata-ingest-form', '~>2.4.1', :git => "git@github.com:OregonDigital/metadata-ingest-form"
 
 # mysql gem
 gem 'mysql2', '~>0.3.20'
@@ -93,12 +93,12 @@ gem 'mysql2', '~>0.3.20'
 gem 'puma'
 
 # OAI
-gem 'oai', :github => "code4lib/ruby-oai", :branch => :master
+gem 'oai', :git => "git@github.com:code4lib/ruby-oai", :branch => :master
 
 # Old Asset Precompile Behavior for Stylesheets
-gem "sprockets-digest-assets-fix", :github => "tobiasr/sprockets-digest-assets-fix"
+gem "sprockets-digest-assets-fix", :git => "git@github.com:tobiasr/sprockets-digest-assets-fix"
 
-gem 'rdf-mongo', :github => "terrellt/rdf-mongo"
+gem 'rdf-mongo', :git => "git@github.com:terrellt/rdf-mongo"
 gem 'mongo', '>= 1.12.3'
 gem 'bson_ext', '>= 1.12.3'
 gem 'bson', '>= 1.12.3'
@@ -128,7 +128,7 @@ end
 group :test do
   gem 'webmock'
   gem 'fakeredis', :require => 'fakeredis/rspec'
-  gem 'rspec_junit_formatter', :github => 'circleci/rspec_junit_formatter'
+  gem 'rspec_junit_formatter', :git => 'git@github.com:circleci/rspec_junit_formatter'
   gem 'capybara-screenshot'
 end
 

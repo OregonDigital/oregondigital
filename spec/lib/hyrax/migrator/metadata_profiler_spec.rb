@@ -24,8 +24,6 @@ describe Hyrax::Migrator::MetadataProfiler do
   end
 
   describe 'query_graph' do
-    let(:item) { double }
-    let(:descMetadata) { double }
     let(:subject) { RDF::URI('http://oregondigital.org/resource/abcde1234') }
     let(:predicate) { RDF::URI('http://opaquenamespace.org/ns/set') }
     let(:object) { RDF::URI('http://oregondigital.org/resource/oregondigital:famous-donuts') }
@@ -35,18 +33,12 @@ describe Hyrax::Migrator::MetadataProfiler do
       g
     end
 
-    before do
-      allow(item).to receive(:descMetadata).and_return(descMetadata)
-      allow(descMetadata).to receive(:graph).and_return(graph)
-    end
-
     it 'returns a short pid' do
-      expect(query_graph(item, 'set')).to eq(['famous-donuts'])
+      expect(query_graph(graph, 'set')).to eq(['famous-donuts'])
     end
   end
  
   describe 'assemble_contents' do
-    let(:item) { double }
     let(:descMetadata) { double }
     let(:subject) { RDF::URI('http://oregondigital.org/resource/abcde1234') }
     let(:predicate) { RDF::URI('http://opaquenamespace.org/ns/contents') }
@@ -61,15 +53,37 @@ describe Hyrax::Migrator::MetadataProfiler do
       g
     end
     context 'when the work is a cpd' do
-      before do
-        allow(item).to receive(:descMetadata).and_return(descMetadata)
-        allow(descMetadata).to receive(:graph).and_return(graph)
-      end
-
       it 'lists the children on the profile' do
-        parsed = YAML::parse(assemble_contents(item))
+        parsed = YAML::parse(assemble_contents(graph))
         expect(parsed.to_ruby["contents"]).to eq [pid1, pid2]
       end
+    end
+  end
+
+  describe 'assemble_fields' do
+    let(:property_hash) { { location: 'http://purl.org/dc/terms/spatial' } }
+    let(:crosswalk_service) { double }
+    let(:crosswalk_hash) do
+      [{ property: "location", predicate: "http://purl.org/dc/terms/spatial" , multiple: true, function: nil }]
+    end
+
+    let(:obj) { RDF::URI('http://sws.geonames/123456/') }
+    let(:graph) do
+      g = RDF::Graph.new
+      subj = RDF::URI('http://oregondigital.org/resource/oregondigital:abcde1234')
+      pred = RDF::URI('http://purl.org/dc/terms/spatial')
+      g << RDF::Statement(subj, pred, obj)
+      g
+    end
+
+    before do
+      allow(Hyrax::Migrator::CrosswalkMetadata).to receive(:new).and_return(crosswalk_service)
+      allow(crosswalk_service).to receive(:crosswalk_hash).and_return(crosswalk_hash)
+      allow(Hyrax::Migrator::MetadataProfiler).to receive(:property_hash).and_return(property_hash)
+    end
+
+    it 'assembles string of fields' do
+      expect(assemble_fields(graph)).to eq("  location:\n  - \"http://sws.geonames/123456/\"\n")
     end
   end
 

@@ -4,17 +4,20 @@ module Hyrax::Migrator
   ##
   # To use during the export step in OD2 migration workflow
   # Example for a batch named named mycoll-batch1
-  #  e = Hyrax::Migrator::Export.new('/data1/batch/exports', 'mycoll-batch1', 'mycoll-batch1-pidlist.txt', true)
-  #  e.export
+  #  e = Hyrax::Migrator::Export.new('/data1/batch/exports', 'mycoll-batch1', 'mycoll-batch1-pidlist.txt','fix_geonames', true)
+  #  e.export_all
 
   class Export
     include ChecksumsProfiler
     include MetadataProfiler
-    def initialize(export_dir, export_name, pidlist, verbose = false)
+    include RemediationMethods
+
+    def initialize(export_dir, export_name, pidlist, remediation, verbose = false)
       @export_dir = export_dir
       @export_name = export_name
       @bags_dir = File.join(export_dir, export_name)
       @pidlist = pidlist
+      @remediation = set_remediation(remediation)
       @verbose = verbose
       datetime_today = Time.zone.now.strftime('%Y-%m-%d-%H%M%S') # "2017-10-21-125903"
       @logger = Logger.new(File.join(@export_dir, 'exportlogs',
@@ -30,9 +33,10 @@ module Hyrax::Migrator
           puts "Exporting datastreams for #{short_pid}." if @verbose
           bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
           item = GenericAsset.find(line.strip)
-          export_profile(item,  short_pid)
+          rem_graph = remediate(@remediation, item.descMetadata.graph)
+          export_profile(item, rem_graph, short_pid)
           export_content(item, short_pid)
-          export_metadata(item, short_pid)
+          export_metadata(item, rem_graph, short_pid)
           export_workflow_metadata_profile(item, short_pid)
           bag_finisher(bag)
         rescue StandardError => e
@@ -49,9 +53,10 @@ module Hyrax::Migrator
         begin
           short_pid = strip_pid(line.strip)
           item = GenericAsset.find(line.strip)
+          rem_graph = remediate(@remediation, item.descMetadata.graph)
           bag = BagIt::Bag.new(File.join(@bags_dir, short_pid))
-          export_profile(item, short_pid)
-          export_metadata(item, short_pid)
+          export_profile(item, rem_graph, short_pid)
+          export_metadata(item, rem_graph, short_pid)
           export_workflow_metadata_profile(item, short_pid)
           bag_finisher(bag)
         rescue StandardError => e
@@ -79,8 +84,8 @@ module Hyrax::Migrator
       end
     end
 
-    def export_profile(item, short_pid)
-      create_profile(data_dir(short_pid), item, @export_dir)
+    def export_profile(item, graph, short_pid)
+      create_profile(data_dir(short_pid), item, graph, @export_dir)
     end
 
     def bag_finisher(bag)
@@ -113,13 +118,23 @@ module Hyrax::Migrator
       raise NoContentFileError
     end
 
-    def export_metadata(item, short_pid)
+    def export_metadata(item, graph, short_pid)
       keylist.each do |key, ext|
         next if item.datastreams[key].blank?
 
         filename = "#{short_pid}_#{key}.#{ext}"
         write_file(short_pid, filename, item.datastreams[key].content)
       end
+      export_descriptive(graph, short_pid)
+    end
+
+    def export_descriptive(graph, short_pid)
+      filename = "#{short_pid}_descMetadata.nt"
+      write_file(short_pid, filename, graph2string(graph))
+    end
+
+    def graph2string(graph)
+      graph.statements.map{|s| s.to_s}.join("\n")
     end
 
     def export_workflow_metadata_profile(item, short_pid)
@@ -147,7 +162,6 @@ module Hyrax::Migrator
         'RELS-EXT' => 'xml',
         'rightsMetadata' => 'xml',
         'workflowMetadata' => 'yml',
-        'descMetadata' => 'nt',
         'leafMetadata' => 'yml'
       }
     end

@@ -27,7 +27,8 @@ namespace :migration do
     export_dir = ENV['export_dir']
     name = ENV['name']
     pidlist = ENV['pidlist']
-    service = Hyrax::Migrator::Export.new(export_dir, name, pidlist, ENV['verbose'])
+    remediation = ENV['remediation']
+    service = Hyrax::Migrator::Export.new(export_dir, name, pidlist, remediation, ENV['verbose'])
     service.export_all
   end
 
@@ -36,7 +37,8 @@ namespace :migration do
     export_dir = ENV['export_dir']
     name = ENV['name']
     pidlist = ENV['pidlist']
-    service = Hyrax::Migrator::Export.new(export_dir, name, pidlist, ENV['verbose'])
+    remediation = ENV['remediation']
+    service = Hyrax::Migrator::Export.new(export_dir, name, pidlist, remediation, ENV['verbose'])
     service.export_metadata_only
   end
 
@@ -45,7 +47,7 @@ namespace :migration do
     export_dir = ENV['export_dir']
     name = ENV['name']
     pidlist = ENV['pidlist']
-    service = Hyrax::Migrator::Export.new(export_dir, name, pidlist, ENV['verbose'])
+    service = Hyrax::Migrator::Export.new(export_dir, name, pidlist, nil, ENV['verbose'])
     service.export_content_only
   end
 end

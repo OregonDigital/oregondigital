@@ -1,7 +1,7 @@
 require 'spec_helper'
 describe Hyrax::Migrator::Export do
   describe 'export_content' do
-    let(:exporter) { described_class.new('some_path', 'some_name', 'pidlist.txt') }
+    let(:exporter) { described_class.new('some_path', 'some_name', 'some_test', 'pidlist.txt') }
     let(:item) { double }
     let(:short_pid) { 'abcde1234' }
     let(:descMetadata) { double }
