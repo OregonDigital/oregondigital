@@ -11,6 +11,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :ubio
     use_vocabulary :itis
     use_vocabulary :wikidata
+    use_vocabulary :lcsh
 
     # Custom fetch methods for ITIS.gov and uBio authority URLs
     # Make wikidata entity URIs usable to fetch.
