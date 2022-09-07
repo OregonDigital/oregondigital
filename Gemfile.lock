@@ -1,56 +1,4 @@
 GIT
-  remote: git://github.com/OregonDigital/metadata-ingest-form.git
-  revision: 2b456c7c9b2d9f1f867dc0987cb5fa4ce5cb8e6b
-  specs:
-    metadata-ingest-form (2.4.1)
-      activemodel (>= 3.0)
-
-GIT
-  remote: git://github.com/circleci/rspec_junit_formatter.git
-  revision: 7b098c8ab2ac5e5f78190b51629ed6d67a9de4d1
-  specs:
-    rspec_junit_formatter (0.2.0)
-      builder (< 4)
-      rspec (>= 2, < 4)
-      rspec-core (!= 2.12.0)
-
-GIT
-  remote: git://github.com/code4lib/ruby-oai.git
-  revision: 2962523677f8619f646ea95ece490c8c3a43e742
-  branch: master
-  specs:
-    oai (0.3.1)
-      builder (>= 3.1.0)
-      faraday
-      faraday_middleware
-
-GIT
-  remote: git://github.com/oregondigital/questioning_authority.git
-  revision: 03009a16710c40cbb78ca90b88c955b914fb5706
-  branch: fix/update_nokogiri
-  specs:
-    qa (0.0.3)
-      activerecord-import (>= 0.4.0)
-      deprecation
-      nokogiri (~> 1.10.4)
-      rails (~> 4.0)
-      rest-client
-
-GIT
-  remote: git://github.com/terrellt/rdf-mongo.git
-  revision: 4bd2a866fd9c8c4c65619c817325886ae70658e4
-  specs:
-    rdf-mongo (1.1.0)
-      mongo (>= 1.8.6)
-      rdf (>= 1.1)
-
-GIT
-  remote: git://github.com/tobiasr/sprockets-digest-assets-fix.git
-  revision: 88c756c20c17038fb5b463ae2430d13da35f33a8
-  specs:
-    sprockets-digest-assets-fix (1.0.0)
-
-GIT
   remote: https://github.com/OregonDigital/active_fedora
   revision: 78cf58e6028b72ea3848d1e0567697283a17ad0c
   specs:
@@ -89,10 +37,53 @@ GIT
       rails (>= 3.2.6)
 
 GIT
+  remote: https://github.com/OregonDigital/metadata-ingest-form
+  revision: 2b456c7c9b2d9f1f867dc0987cb5fa4ce5cb8e6b
+  specs:
+    metadata-ingest-form (2.4.1)
+      activemodel (>= 3.0)
+
+GIT
+  remote: https://github.com/OregonDigital/questioning_authority
+  revision: 03009a16710c40cbb78ca90b88c955b914fb5706
+  branch: fix/update_nokogiri
+  specs:
+    qa (0.0.3)
+      activerecord-import (>= 0.4.0)
+      deprecation
+      nokogiri (~> 1.10.4)
+      rails (~> 4.0)
+      rest-client
+
+GIT
+  remote: https://github.com/code4lib/ruby-oai
+  revision: 1bc409da9c7319d4f9ba5b835ed41fc49b4e0fd7
+  tag: v0.3.1
+  specs:
+    oai (0.3.1)
+      builder (>= 2.0.0)
+      faraday
+      faraday_middleware
+
+GIT
   remote: https://github.com/nahi/logger
   revision: 9f87939b71938ecc095fe2cc0408eb724c4b310f
   specs:
     logger (1.2.8)
+
+GIT
+  remote: https://github.com/terrellt/rdf-mongo
+  revision: 4bd2a866fd9c8c4c65619c817325886ae70658e4
+  specs:
+    rdf-mongo (1.1.0)
+      mongo (>= 1.8.6)
+      rdf (>= 1.1)
+
+GIT
+  remote: https://github.com/tobiasr/sprockets-digest-assets-fix
+  revision: 88c756c20c17038fb5b463ae2430d13da35f33a8
+  specs:
+    sprockets-digest-assets-fix (1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -131,7 +122,7 @@ GEM
       activemodel (= 4.2.11.1)
       activesupport (= 4.2.11.1)
       arel (~> 6.0)
-    activerecord-import (1.0.3)
+    activerecord-import (1.2.0)
       activerecord (>= 3.2)
     activesupport (4.2.11.1)
       i18n (~> 0.7)
@@ -258,10 +249,10 @@ GEM
       railties (>= 3.0.0)
     fakeredis (0.4.3)
       redis (~> 3.0.0)
-    faraday (0.9.0)
+    faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.9.1)
-      faraday (>= 0.7.4, < 0.10)
+    faraday_middleware (1.2.0)
+      faraday (~> 1.0)
     fastercsv (1.5.5)
     ffi (1.9.25)
     globalid (0.3.7)
@@ -351,7 +342,7 @@ GEM
       bson (= 1.12.5)
     mono_logger (1.1.0)
     multi_json (1.13.1)
-    multipart-post (2.0.0)
+    multipart-post (2.2.3)
     mysql2 (0.3.21)
     net-http-persistent (2.9.4)
     net-scp (1.2.1)
@@ -497,10 +488,6 @@ GEM
     rmagick (2.13.2)
     rsolr (1.0.10.pre1)
       builder (>= 2.1.2)
-    rspec (2.99.0)
-      rspec-core (~> 2.99.0)
-      rspec-expectations (~> 2.99.0)
-      rspec-mocks (~> 2.99.0)
     rspec-collection_matchers (1.0.0)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (2.99.2)
@@ -691,7 +678,6 @@ DEPENDENCIES
   rest-client (~> 1.8.0)
   rmagick (~> 2.13.2)
   rspec-rails (~> 2.0)
-  rspec_junit_formatter!
   ruby-filemagic (~> 0.4.2)
   ruby-vips (~> 2.0.12)
   sass-rails (~> 4.0.4)
