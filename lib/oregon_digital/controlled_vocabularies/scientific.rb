@@ -7,6 +7,7 @@ module OregonDigital::ControlledVocabularies
     use_vocabulary :sciphylum
     use_vocabulary :sciclass
     use_vocabulary :scigenus
+    use_vocabulary :scispecies
     use_vocabulary :scicommon
     use_vocabulary :ubio
     use_vocabulary :itis
