@@ -2,7 +2,7 @@ id_namespace: oregondigital
 minter_statefile: 'tmp/minter-state'
 uri_base:
   oregondigital: 'http://oregondigital.org/resource/'
-set_content_repo: "git://github.com/OregonDigital/oregon-digital-set-content.git"
+set_content_repo: "https://github.com/OregonDigital/oregon-digital-set-content.git"
 secret_key_base: 'b16037becb6710bc72b7691310c78307b529be854e2ed40685b23abcbe3f20382a53eff24593d6077b037b1219effa7823d8b608b6cd10451c6a69da145014471'
 devise:
   secret: 'd330c022c85eeab638dc59efaac57ajasdfja79c254e64dcc9a83635f218d20f30c65854e0df366c5b303e38dcabfc0dc4b585cd247a147c48f5420a95ff9ad8'
