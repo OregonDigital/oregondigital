@@ -59,7 +59,7 @@ gem 'capistrano-ext'
 gem "jquery-fileupload-rails", '~>0.4.1'
 
 # File uploader gem - superior to paperclip in every way!
-gem "carrierwave", '~>0.9.0'
+gem "carrierwave", '~>1.3.2'
 
 gem 'ip-ranges', '~>0.1.1'
 
