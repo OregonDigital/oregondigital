@@ -93,7 +93,7 @@ gem 'mysql2', '~>0.3.20'
 gem 'puma'
 
 # OAI
-gem 'oai', :git => "https://github.com/code4lib/ruby-oai", tag: 'v0.3.1'
+gem 'oai', :git => "https://github.com/code4lib/ruby-oai", tag: 'v0.4.0'
 
 # Old Asset Precompile Behavior for Stylesheets
 gem "sprockets-digest-assets-fix", :git => "https://github.com/tobiasr/sprockets-digest-assets-fix"

@@ -57,11 +57,11 @@ GIT
 
 GIT
   remote: https://github.com/code4lib/ruby-oai
-  revision: 1bc409da9c7319d4f9ba5b835ed41fc49b4e0fd7
-  tag: v0.3.1
+  revision: 52aa1cc0d3d2a250f0d4480e0be32f13d8c97692
+  tag: v0.4.0
   specs:
-    oai (0.3.1)
-      builder (>= 2.0.0)
+    oai (0.4.0)
+      builder (>= 3.1.0)
       faraday
       faraday_middleware
 
