@@ -85,7 +85,7 @@ describe GenericAsset, :resque => true do
         # created date set by factory
         let(:date) { nil }
         it "should be that decade" do
-           expect(facet).to eq ["2010-2019"]
+           expect(facet).to eq ["2020-2029"]
         end
       end
     end
