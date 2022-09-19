@@ -41,6 +41,12 @@ module Hyrax::Migrator
       nil
     end
 
+    def process(data, object)
+      data[:function].blank? ? object.to_s : send(data[:function].to_sym, object.to_s) unless illegal_string? object
+
+      @errors <<  "illegal string object"
+    end
+
     ##
     # Generate the data necessary for a Rails nested attribute
     def attributes_data(object)

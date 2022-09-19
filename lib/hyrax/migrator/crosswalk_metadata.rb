@@ -117,6 +117,16 @@ module Hyrax::Migrator
       uri =~ URI.regexp(%w[http https])
     end
 
+    def illegal_string?(object)
+      return false if object.is_a? RDF::URI
+
+      patt = /[\a\b\f\n\r\t\v\\]/
+      res = patt.match object.strip
+      return false if res.nil?
+
+      return true
+    end
+
     # Raise in datetime_data when error found or format is unsupported
     class DateTimeDataError < StandardError
     end
@@ -127,6 +137,9 @@ module Hyrax::Migrator
 
     # Use in object modifying functions, identify object in message
     class ModifyObjectFailedError < StandardError
+    end
+
+    class IllegalStringError < StandardError
     end
   end
 end
