@@ -109,7 +109,11 @@ module Hyrax::Migrator
       raise DateTimeDataError, object
     end
 
+    # don't raise error here, allow child classes to handle
+    # =~ is a special match operator that returns an index or nil
     def valid_uri(uri)
+      return nil unless uri.ascii_only?
+
       uri =~ URI.regexp(%w[http https])
     end
 
