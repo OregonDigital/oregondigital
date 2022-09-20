@@ -121,7 +121,7 @@ module Hyrax::Migrator
       return false if object.is_a? RDF::URI
 
       patt = /[\a\b\f\n\r\t\v\\]/
-      res = patt.match object.strip
+      res = patt.match object.to_s
       return false if res.nil?
 
       return true

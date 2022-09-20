@@ -42,9 +42,10 @@ module Hyrax::Migrator
     end
 
     def process(data, object)
-      data[:function].blank? ? object.to_s : send(data[:function].to_sym, object.to_s) unless illegal_string? object
+      return data[:function].blank? ? object.to_s : send(data[:function].to_sym, object.to_s) unless illegal_string? object
 
       @errors <<  "illegal string object"
+      return nil
     end
 
     ##
