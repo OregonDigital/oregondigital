@@ -248,7 +248,7 @@ class Datastream::OregonRDF < OregonDigital::QuadResourceDatastream
   property :waterBasin, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.waterBasin, :class_name => OregonDigital::ControlledVocabularies::Geographic do |index|
     index.as :searchable, :facetable, :displayable
   end
-  property :tgn, :predicate => OregonDigital::Vocabularies::OREGONDIGITAL.tgn, :class_name => OregonDigital::ControlledVocabularies::GettyTGN do |index|
+  property :tgn, :predicate => RDF::URI('http://dbpedia.org/ontology/HistoricPlace'), :class_name => OregonDigital::ControlledVocabularies::GettyTGN do |index|
     index.as :searchable, :facetable, :displayable
   end
 
