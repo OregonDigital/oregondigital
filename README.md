@@ -1,24 +1,21 @@
 OregonDigital
 =============
 
-[![Circle CI](https://circleci.com/gh/OregonDigital/oregondigital.svg?style=svg)](https://circleci.com/gh/OregonDigital/oregondigital)
-[![Coverage Status](https://coveralls.io/repos/OregonDigital/oregondigital/badge.png)](https://coveralls.io/r/OregonDigital/oregondigital)
+<!--[![Circle CI](https://circleci.com/gh/OregonDigital/oregondigital.svg?style=svg)](https://circleci.com/gh/OregonDigital/oregondigital)
+[![Coverage Status](https://coveralls.io/repos/OregonDigital/oregondigital/badge.png)](https://coveralls.io/r/OregonDigital/oregondigital) -->
 <!--![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=<badge_key>)-->
 
 Overview
 -----
-Current production Oregon Digital running Fedora 3 and Hydra 6.
+The current production Oregon Digital is running off code in the OD2 repo.
+http://github.com/OregonDigital/OD2
 
-New development is focused on Oregon Digital 2: http://github.com/OregonDigital/OD2
+Archived Oregon Digital 1 codebase running Fedora 3 and Hydra 6.
 
 Connected projects:
   - [csv2bag](https://github.com/OregonDigital/csv2bag) - bulk ingest from CSV
   - [cdm2bag](https://github.com/OregonDigital/cdm2bag) - bulk ingest from CONTENTdm
   - [ControlledVocabularyManager](https://github.com/OregonDigital/ControlledVocabularyManager) - Rails app with Blazegraph powering [OpaqueNamespace.org](http://opaquenamespace.org/)
-
-<a href="https://www.browserstack.com">
-  <img src="https://rawgit.com/OregonDigital/development-practices/master/images/browserstack.svg" width="100%" height="64">
-</a>
 
 
 Local Development Setup
